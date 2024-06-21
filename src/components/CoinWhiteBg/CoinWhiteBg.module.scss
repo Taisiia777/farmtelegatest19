@@ -1,0 +1,25 @@
+@import '/src/index.scss';
+
+.wrap {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #fff;
+   width: rem(32);
+   height: rem(31);
+   border-radius: 100%;
+
+   &._huge {
+      width: rem(60);
+      height: rem(58);
+   }
+
+   &._small {
+      width: rem(20);
+      height: rem(19);
+   }
+
+   img {
+      width: 80%;
+   }
+}
