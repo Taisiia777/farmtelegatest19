@@ -1,8 +1,29 @@
 @import './scss/mixins.scss';
 @import './scss/null.scss';
-@import './scss/document';
+
+// Подключаем шрифты
+@font-face {
+   font-family: 'Berlin';
+   font-display: swap;
+   src: url("fonts/BRLNSR.woff2") format("woff2");
+   font-weight: 400;
+   font-style: normal;
+}
+
+@font-face {
+   font-family: 'Berlin';
+   font-display: swap;
+   src: url("fonts/BRLNSB.woff2") format("woff2");
+   font-weight: 700;
+   font-style: normal;
+}
+
+@import './scss/variables.scss';
 
 body {
-   background-color: var(--tg-theme-bg-color);
-   color: var(--tg-theme-text-color);
+   font-family: $mainFont;
+   font-size: 50px;
+   font-weight: 700;
+   color: #fff;
+   background: rgba(0, 0, 0, 0);
 }
