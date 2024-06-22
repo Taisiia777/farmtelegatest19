@@ -15,6 +15,8 @@ tg.expand();
 tg.ready();
 tg.enableClosingConfirmation();
 
+tg.setHeaderColor("#00000000");
+
 const App = () => {
    return <RouterProvider router={router} />;
 };
