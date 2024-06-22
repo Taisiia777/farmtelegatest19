@@ -1,9 +1,18 @@
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
+import {
+   Route,
+   RouterProvider,
+   createBrowserRouter,
+   createRoutesFromElements,
+} from "react-router-dom";
 import Home from "./pages/Home/Home";
+import { tg } from "./constants/app";
 
 const router = createBrowserRouter(
    createRoutesFromElements(<Route path="/" element={<Home />}></Route>)
 );
+
+// Расширяем height на максимум в telergam приложении
+tg.expand();
 
 const App = () => {
    return <RouterProvider router={router} />;
