@@ -6,7 +6,7 @@
    flex-direction: column;
    justify-content: space-between;
    background: linear-gradient(#75B245, #8BC346, #BADE4A);
-   height: 100dvh;
+   height: 110dvh;
    overflow: hidden;
 
    &>img {
@@ -15,7 +15,8 @@
    }
 }
 
-.top, .bottom {
+.top,
+.bottom {
    position: relative;
    z-index: 10;
 }
