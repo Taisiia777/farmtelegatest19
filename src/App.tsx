@@ -11,8 +11,9 @@ const router = createBrowserRouter(
    createRoutesFromElements(<Route path="/" element={<Home />}></Route>)
 );
 
-// Расширяем height на максимум в telergam приложении
 tg.expand();
+tg.ready();
+tg.enableClosingConfirmation();
 
 const App = () => {
    return <RouterProvider router={router} />;
