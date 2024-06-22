@@ -59,45 +59,89 @@
    &:nth-child(1) {
       top: 45%;
       left: 3%;
+
+      @media screen and (min-width:rem(415)) {
+         top: 46%;
+         left: 4%;
+      }
+
    }
 
    &:nth-child(2) {
       top: 49%;
       left: 18%;
+
+      @media screen and (min-width:rem(415)) {
+         top: 49.5%;
+         left: 16.5%;
+      }
+
    }
 
    &:nth-child(3) {
       top: 53%;
       left: 33%;
+
+      @media screen and (min-width:rem(415)) {
+         left: 29.7%;
+      }
    }
 
    &:nth-child(4) {
       top: 50%;
       left: 48%;
+
+      @media screen and (min-width:rem(415)) {
+         left: 43%;
+      }
    }
 
    &:nth-child(5) {
       top: 47%;
       left: 62%;
+
+      @media screen and (min-width:rem(415)) {
+         left: 56%;
+      }
    }
 
    &:nth-child(6) {
       top: 42%;
       left: 18%;
+
+      @media screen and (min-width:rem(415)) {
+         top: 43%;
+         left: 17%;
+      }
    }
 
    &:nth-child(7) {
       top: 46%;
       left: 32%;
+
+      @media screen and (min-width:rem(415)) {
+         top: 47%;
+         left: 30%;
+      }
    }
 
    &:nth-child(8) {
       top: 43%;
       left: 46%;
+
+      @media screen and (min-width:rem(415)) {
+         top: 44%;
+         left: 43%;
+      }
    }
 
    &:nth-child(9) {
       top: 39%;
       left: 33%;
+
+      @media screen and (min-width:rem(415)) {
+         top: 40%;
+         left: 31%;
+      }
    }
 }

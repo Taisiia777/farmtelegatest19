@@ -38,8 +38,8 @@ const FarmBlock = ({ zIndex }: IFarmBlockProps) => {
             alt="Wooden"
          />
          <img
-            src="img/growthStages/fourth.png"
-            className={cn("farmBlock__growthStage", "_fourth")}
+            src="img/growthStages/first.png"
+            className={cn("farmBlock__growthStage", "_first")}
             alt="first"
          />
       </div>
