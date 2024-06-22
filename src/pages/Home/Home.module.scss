@@ -8,11 +8,6 @@
    background: linear-gradient(#75B245, #8BC346, #BADE4A);
    height: 110dvh;
    overflow: hidden;
-
-   &>img {
-      position: absolute;
-      overflow: hidden;
-   }
 }
 
 .top,
@@ -141,17 +136,25 @@
       align-items: center;
       justify-content: space-between;
       font-size: rem(16);
-      padding: rem(20) rem(10) 0 rem(10);
-      margin-bottom: rem(10);
+      padding: rem(10) rem(10) 0 rem(10);
+      margin-bottom: rem(5);
 
       li {
          display: flex;
+         align-items: center;
          flex-direction: column;
          gap: rem(3);
          text-align: center;
 
+
          &:nth-child(3) {
             transform: translateY(rem(-15));
+         }
+      }
+
+      li:not(:nth-child(3)) {
+         img {
+            width: 85%;
          }
       }
    }
@@ -165,7 +168,9 @@
 }
 
 .bg-elements {
+   position: absolute;
    top: 0;
    left: 0;
    width: 100%;
+   overflow: hidden;
 }
