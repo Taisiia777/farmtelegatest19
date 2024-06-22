@@ -6,6 +6,7 @@ import Liga from "./modules/Liga";
 import styles from "./Home.module.scss";
 import Energy from "./modules/Energy";
 import Menu from "./modules/Menu";
+import FarmBloks from "./modules/FarmBlocks/FarmBloks";
 const cn = classNames.bind(styles);
 
 const Home = () => {
@@ -26,6 +27,9 @@ const Home = () => {
             className={cn("bg-elements")}
             alt="road"
          />
+
+         {/* Блоки земли */}
+         <FarmBloks />
       </div>
    );
 };

@@ -6,7 +6,7 @@
    flex-direction: column;
    justify-content: space-between;
    background: linear-gradient(#75B245, #8BC346, #BADE4A);
-   height: 110dvh;
+   height: 100dvh;
    overflow: hidden;
 }
 
@@ -169,7 +169,7 @@
 
 .bg-elements {
    position: absolute;
-   top: 0;
+   top: rem(-30);
    left: 0;
    width: 100%;
    overflow: hidden;
