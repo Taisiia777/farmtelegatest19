@@ -174,3 +174,104 @@
    width: 100%;
    overflow: hidden;
 }
+
+.popup {
+
+   &__body {
+      position: absolute;
+      text-align: center;
+      top: 0;
+      left: 0;
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: rem(60);
+
+      @media screen and (max-width:rem(400)) {
+         padding-top: rem(50);
+      }
+   }
+
+   &__bg-lightnings {
+
+      img {
+         position: absolute;
+         opacity: 0.3;
+      }
+
+      & img:nth-child(1) {
+         top: rem(40);
+         left: rem(50);
+      }
+
+      & img:nth-child(2) {
+         top: rem(110);
+         left: rem(100);
+      }
+
+      & img:nth-child(3) {
+         bottom: rem(50);
+         left: rem(60);
+      }
+
+      & img:nth-child(4) {
+         top: rem(70);
+         right: rem(60);
+      }
+
+      & img:nth-child(5) {
+         top: rem(130);
+         right: rem(100);
+      }
+
+      & img:nth-child(6) {
+         bottom: rem(30);
+         right: rem(80);
+      }
+
+   }
+
+   &__energyIcon {
+      display: block;
+      width: rem(85);
+      height: rem(105);
+      margin-bottom: rem(10);
+
+      @media screen and (max-width:rem(400)) {
+         width: rem(75);
+         height: rem(95);
+      }
+   }
+
+   &__level {
+      display: block;
+      font-size: rem(16);
+      margin-bottom: rem(17);
+
+      @media screen and (max-width:rem(400)) {
+         margin-bottom: rem(10);
+      }
+   }
+
+   &__earning {
+      display: flex;
+      align-items: center;
+      gap: rem(3);
+      font-size: rem(20);
+      margin-bottom: rem(10);
+
+      img {
+         width: rem(20);
+         object-fit: contain;
+      }
+   }
+
+   &__btn {
+      display: flex;
+      align-items: center;
+      gap: rem(10);
+      font-size: rem(25);
+   }
+}

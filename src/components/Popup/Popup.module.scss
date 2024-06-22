@@ -1,0 +1,57 @@
+@import '/src/index.scss';
+
+.popup {
+   position: fixed;
+   z-index: 100;
+   top: 0;
+   left: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 100%;
+   opacity: 0;
+   visibility: hidden;
+   background-color: transparent;
+   transition: all 0.4s ease-in-out;
+
+   &._open {
+      opacity: 1;
+      visibility: visible;
+      background-color: rgba(0, 0, 0, 0.5);
+   }
+
+   &._open &__body {
+      transform: none;
+   }
+
+   &__body {
+      position: relative;
+      border-radius: rem(20);
+      margin: 0 rem(10);
+
+      transform: translateY(100%);
+      transition: transform 0.4s ease-in-out;
+   }
+
+   &__border {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+   }
+
+   &__label {
+      position: absolute;
+      top: rem(7);
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: rem(30);
+   }
+
+   &__close {
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      right: rem(-5);
+   }
+}

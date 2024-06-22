@@ -5,12 +5,13 @@ const cn = classNames.bind(styles);
 interface EnergyProps {
    total: number;
    current: number;
+   onClick: () => void;
 }
 // FIXME: Криво отображается при изменении ширины экрана
 
-const Energy = ({ total, current }: EnergyProps) => {
+const Energy = ({ total, current, onClick }: EnergyProps) => {
    return (
-      <div className={cn("energy")}>
+      <div className={cn("energy")} onClick={() => onClick()}>
          {/* Главная доска */}
          <img
             src="img/pages/home/energy/board.svg"
