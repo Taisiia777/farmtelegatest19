@@ -12,8 +12,20 @@
 }
 
 //Percent
-@function percent($px, $from) {
+@function per($px, $from) {
 	$result: math.div($px, $from) * 100%;
+	@return $result;
+}
+
+// VW
+@function vw($px, $from) {
+	$result: math.div($px, $from) * 100 + dvw;
+	@return $result;
+}
+
+// VH
+@function vh($px, $from) {
+	$result: math.div($px, $from) * 100 + dvh;
 	@return $result;
 }
 
