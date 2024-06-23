@@ -1,14 +1,12 @@
-import classNames from "classnames/bind";
+import { useState } from "react";
 
 import Coins from "./modules/Coins";
 import Liga from "./modules/Liga";
-
 import styles from "./Home.module.scss";
 import Energy from "./modules/Energy";
 import Menu from "./modules/Menu";
 import FarmBloks from "./modules/FarmBlocks/FarmBloks";
 import Popup from "../../components/Popup/Popup";
-import { useState } from "react";
 import Button from "../../components/Button/Button";
 import CoinWhiteBg from "../../components/CoinWhiteBg/CoinWhiteBg";
 import PopupListWrap from "../../components/PopupList/modules/PopupListWrap";
@@ -16,21 +14,36 @@ import PopupListTabs from "../../components/PopupList/modules/PopupListTabs";
 import PopupList from "../../components/PopupList/PopupList";
 import BoostBlock from "../../components/BoostBlock/BoostBlock";
 import CoinBlock from "../../components/CoinBlock/CoinBlock";
+
+import { useOutsideClick } from "../../hooks/useOutsideClick";
+
+import classNames from "classnames/bind";
 const cn = classNames.bind(styles);
 
 const Home = () => {
+   // Стейты открытости модалок
    const [energyPopupOpen, setEnergyPopupOpen] = useState(false);
-   const [boostPopupOpen, setBoostPopupOpen] = useState(false);
 
-   const [activeTab, setActiveTab] = useState("COINS");
+   const [boostPopupOpen, setBoostPopupOpen] = useState(false);
+   const boostRef = useOutsideClick(
+      () => setBoostPopupOpen(false),
+      ["#menu", "#tabs"]
+   );
+
+   const [ligaPopupOpen, setLigaPopupOpen] = useState(false);
+
+   // True если хоятбы один попап открыть
+   const isPopupOpen = energyPopupOpen || boostPopupOpen || ligaPopupOpen;
+
+   const [activeTab, setActiveTab] = useState("BOOST");
 
    return (
       <div className={cn("wrap")}>
          <div className={cn("top")}>
             <Coins quantity={1000} />
-            <Liga liga="Diamond" />
+            <Liga liga="Diamond" onLigaOpen={() => setLigaPopupOpen(true)} />
          </div>
-         {!boostPopupOpen && (
+         {!isPopupOpen && (
             <div className={cn("bottom")}>
                <Energy
                   total={1000}
@@ -101,6 +114,7 @@ const Home = () => {
             />
             {activeTab === "BOOST" ? (
                <PopupList
+                  ref={boostRef}
                   nodes={[
                      <BoostBlock
                         boostName="mill"
@@ -140,6 +154,7 @@ const Home = () => {
                />
             ) : (
                <PopupList
+                  ref={boostRef}
                   nodes={[
                      <CoinBlock
                         coinName="BTC"
@@ -154,7 +169,12 @@ const Home = () => {
                         price="15 000"
                         isBought
                      />,
-                     <CoinBlock coinName="TON" earning="700" price="20 000" isBlocked />,
+                     <CoinBlock
+                        coinName="TON"
+                        earning="700"
+                        price="20 000"
+                        isBlocked
+                     />,
                      <CoinBlock
                         coinName="Binance"
                         earning="1 000"
@@ -184,6 +204,44 @@ const Home = () => {
                />
             )}
          </PopupListWrap>
+
+         {/* LEAGUES popup */}
+         {/* <PopupListWrap isOpen={ligaPopupOpen}>
+            <PopupList
+               nodes={[
+                  <LigaBlock
+                     ligaName="Wooden"
+                     percent={100}
+                     price="5 000"
+                     acitve={true}
+                  />,
+                  <LigaBlock
+                     ligaName="Silver"
+                     percent={0}
+                     price="25 000"
+                     acitve={false}
+                  />,
+                  <LigaBlock
+                     ligaName="Gold"
+                     percent={20}
+                     price="100 000"
+                     acitve={false}
+                  />,
+                  <LigaBlock
+                     ligaName="Fire"
+                     percent={10}
+                     price="1 000 000"
+                     acitve={false}
+                  />,
+                  <LigaBlock
+                     ligaName="Diamond"
+                     percent={5}
+                     price="2 500 000"
+                     acitve={false}
+                  />,
+               ]}
+            />
+         </PopupListWrap> */}
       </div>
    );
 };

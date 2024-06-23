@@ -98,7 +98,7 @@ const BoostBlock = ({
                {/* FIXME: Если здесь передать например "100 000" то влезать не будет */}
                <Button className={cn("boost__price")}>
                   <CoinWhiteBg size="small" iconName="BTC" />
-                  {price}
+                  <span className="textShadow">{price}</span>
                </Button>
             </div>
          </div>

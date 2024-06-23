@@ -6,11 +6,12 @@ const cn = classNames.bind(styles);
 
 interface LigaProps {
    liga: TLiga;
+   onLigaOpen: () => void;
 }
 
-const Liga = ({ liga }: LigaProps) => {
+const Liga = ({ liga, onLigaOpen }: LigaProps) => {
    return (
-      <div className={cn("liga")}>
+      <div className={cn("liga")} onClick={onLigaOpen}>
          <img src={`img/leagueIcons/${liga}.png`} alt="Wooden" />
          <span className="textShadow">{liga} league</span>
       </div>

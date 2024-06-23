@@ -17,7 +17,7 @@ const Menu = ({
 }: IMenuProps) => {
    return (
       <>
-         <div className={cn("menu")}>
+         <div className={cn("menu")} id="menu">
             {/* Border */}
             <img
                src="img/pages/home/menu/border.svg"

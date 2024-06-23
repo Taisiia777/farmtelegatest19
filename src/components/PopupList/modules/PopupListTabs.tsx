@@ -10,12 +10,13 @@ interface ITabsProps {
 
 const PopupListTabs = ({ labels, activeTab, onTabChange }: ITabsProps) => {
    return (
-      <div className={cn("tabs")}>
+      <div className={cn("tabs")} id="tabs">
          <ul className={cn("tabs__list")}>
             {labels.map((label) => (
                <li
                   className={cn("tabs__item", activeTab === label && "_active")}
-                  onClick={() => onTabChange(label)}>
+                  onClick={() => onTabChange(label)}
+                  key={label}>
                   <span>{label}</span>
                   <img src="img/global/border-block/label.svg" alt={label} />
                </li>

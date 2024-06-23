@@ -29,6 +29,7 @@ const CoinBlock = ({
    // Определяем тип контента монеты
    // в зависимости от того купленна ли она уже
    // или может заблокирована
+
    if (isBought) {
       content = (
          <div className={cn("coinBlock")}>
@@ -46,7 +47,7 @@ const CoinBlock = ({
                className={cn("coinBlock__right")}
                style={{
                   height: "45px",
-                  paddingRight: "20px",
+                  paddingRight: "23.5px",
                }}>
                {isActive ? (
                   <img

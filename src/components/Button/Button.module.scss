@@ -1,9 +1,20 @@
 @import '/src/index.scss';
 
 .button {
-   width: fit-content;
    position: relative;
-   padding: rem(5) rem(15);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   &._small {
+      width: rem(104);
+      height: rem(30);
+   }
+
+   &._normal {
+      width: rem(124);
+      height: rem(41);
+   }
 
    &>div {
       position: relative;
