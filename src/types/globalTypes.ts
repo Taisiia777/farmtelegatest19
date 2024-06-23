@@ -9,3 +9,5 @@ export type TCoin =
    | "XRP"
    | "Polkadot"
    | "TON";
+
+export type TBoostName = "mill" | "minicar" | "car-2" | "car-3" | "drone";

@@ -1,0 +1,50 @@
+@import '/src/index.scss';
+
+.coinBlock {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 100%;
+   height: 93%;
+
+   &__left {
+      display: flex;
+      align-items: center;
+      gap: rem(15);
+      padding-left: rem(25);
+   }
+
+   &__right {
+      padding-right: rem(15);
+   }
+
+   &__info {
+      display: flex;
+      flex-direction: column;
+      gap: rem(10);
+
+      &>h3 {
+         font-size: rem(23);
+      }
+
+   }
+
+   &__earning {
+      display: flex;
+      align-items: center;
+      gap: rem(5);
+      font-size: rem(18);
+
+      &>img {
+         height: rem(20);
+         object-fit: contain;
+      }
+   }
+
+   &__price {
+      display: flex;
+      align-items: center;
+      gap: rem(5);
+      font-size: rem(24);
+   }
+}

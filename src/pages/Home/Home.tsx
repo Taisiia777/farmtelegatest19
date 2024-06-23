@@ -11,10 +11,18 @@ import Popup from "../../components/Popup/Popup";
 import { useState } from "react";
 import Button from "../../components/Button/Button";
 import CoinWhiteBg from "../../components/CoinWhiteBg/CoinWhiteBg";
+import PopupListWrap from "../../components/PopupList/modules/PopupListWrap";
+import PopupListTabs from "../../components/PopupList/modules/PopupListTabs";
+import PopupList from "../../components/PopupList/PopupList";
+import BoostBlock from "../../components/BoostBlock/BoostBlock";
+import CoinBlock from "../../components/CoinBlock/CoinBlock";
 const cn = classNames.bind(styles);
 
 const Home = () => {
-   const [popupOpen, setPopupOpen] = useState(false);
+   const [energyPopupOpen, setEnergyPopupOpen] = useState(false);
+   const [boostPopupOpen, setBoostPopupOpen] = useState(false);
+
+   const [activeTab, setActiveTab] = useState("COINS");
 
    return (
       <div className={cn("wrap")}>
@@ -22,14 +30,21 @@ const Home = () => {
             <Coins quantity={1000} />
             <Liga liga="Diamond" />
          </div>
-         <div className={cn("bottom")}>
-            <Energy
-               total={1000}
-               current={300}
-               onClick={() => setPopupOpen(true)}
-            />
-            <Menu />
-         </div>
+         {!boostPopupOpen && (
+            <div className={cn("bottom")}>
+               <Energy
+                  total={1000}
+                  current={300}
+                  onClick={() => setEnergyPopupOpen(true)}
+               />
+               <Menu
+                  onBoostOpen={() => setBoostPopupOpen(true)}
+                  onEarnOpen={() => {}}
+                  onTopOpen={() => {}}
+                  onStatsOpen={() => {}}
+               />
+            </div>
+         )}
 
          {/* Элементы заднего фона */}
          <img
@@ -41,7 +56,10 @@ const Home = () => {
          {/* Блоки земли */}
          <FarmBloks />
 
-         <Popup isOpen={popupOpen} onClose={() => setPopupOpen(false)}>
+         {/* Energy popup */}
+         <Popup
+            isOpen={energyPopupOpen}
+            onClose={() => setEnergyPopupOpen(false)}>
             <div className={cn("popup__body")}>
                {/* Молнии на заднем фоне */}
                <div className={cn("popup__bg-lightnings")}>
@@ -67,12 +85,74 @@ const Home = () => {
                   <img src="img/pages/home/energy/energy.svg" alt="energy" />
                </div>
 
-               <Button className={cn('popup__btn')}>
+               <Button className={cn("popup__btn")}>
                   <CoinWhiteBg iconName="BTC" />
                   <span>10 000</span>
                </Button>
             </div>
          </Popup>
+
+         {/* BOOST popup */}
+         <PopupListWrap isOpen={boostPopupOpen}>
+            <PopupListTabs
+               labels={["BOOST", "COINS"]}
+               activeTab={activeTab}
+               onTabChange={(label) => setActiveTab(label)}
+            />
+            {activeTab === "BOOST" ? (
+               <PopupList
+                  nodes={[
+                     <BoostBlock
+                        boostName="mill"
+                        earning={500}
+                        price="10 000"
+                        ligaName="Wooden"
+                     />,
+                     <BoostBlock
+                        boostName="drone"
+                        earning={1000}
+                        price="15 000"
+                        ligaName="Silver"
+                        isBlocked
+                     />,
+                     <BoostBlock
+                        boostName="minicar"
+                        earning={1500}
+                        price="30 000"
+                        ligaName="Gold"
+                        isBlocked
+                     />,
+                     <BoostBlock
+                        boostName="car-2"
+                        earning={2000}
+                        price="40 000"
+                        ligaName="Fire"
+                        isBlocked
+                     />,
+                     <BoostBlock
+                        boostName="car-3"
+                        earning={5000}
+                        price="70 000"
+                        ligaName="Diamond"
+                        isBlocked
+                     />,
+                  ]}
+               />
+            ) : (
+               <PopupList
+                  nodes={[
+                     <CoinBlock coinName="BTC" earning="200" price="10 000" />,
+                     <CoinBlock coinName="Polkadot" earning="500" price="15 000" />,
+                     <CoinBlock coinName="TON" earning="700" price="20 000" />,
+                     <CoinBlock coinName="Binance" earning="1 000" price="30 000" />,
+                     <CoinBlock coinName="Polkadot" earning="2 000" price="35 000" />,
+                     <CoinBlock coinName="Solana" earning="5 000" price="50 000" />,
+                     <CoinBlock coinName="ETHerium" earning="10 000" price="40 000" />,
+                     <CoinBlock coinName="XRP" earning="20 000" price="80 000" />,
+                  ]}
+               />
+            )}
+         </PopupListWrap>
       </div>
    );
 };

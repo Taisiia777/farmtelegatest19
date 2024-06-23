@@ -5,15 +5,15 @@ const cn = classNames.bind(styles);
 const FarmBloks = () => {
    return (
       <div className={cn("wrap")}>
-         <FarmBlock zIndex={10} />
-         <FarmBlock zIndex={10} />
-         <FarmBlock zIndex={10} />
+         <FarmBlock zIndex={9} />
+         <FarmBlock zIndex={9} />
          <FarmBlock zIndex={9} />
          <FarmBlock zIndex={8} />
          <FarmBlock zIndex={7} />
-         <FarmBlock zIndex={7} />
+         <FarmBlock zIndex={6} />
          <FarmBlock zIndex={6} />
          <FarmBlock zIndex={5} />
+         <FarmBlock zIndex={4} />
       </div>
    );
 };

@@ -1,0 +1,94 @@
+@import '/src/index.scss';
+
+.popupListWrap {
+   position: fixed;
+   z-index: 100;
+   top: rem(200);
+   left: 0;
+   width: 100%;
+   height: 75%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   opacity: 0;
+   visibility: hidden;
+
+   transform: translateY(100%);
+   transition: transform 0.4s ease-in-out;
+
+   &._open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+   }
+}
+
+.popupList {
+   display: flex;
+   flex-direction: column;
+   width: 90%;
+   align-items: center;
+   overflow: auto;
+
+   &__item {
+      height: auto !important;
+      position: relative;
+
+      &>img {
+         width: 100%;
+      }
+   }
+
+   &__item-body {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+   }
+}
+
+.tabs {
+   position: relative;
+   z-index: 100;
+   width: 85%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: rem(-35);
+
+   &__list {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: rem(4);
+   }
+
+   &__item {
+      position: relative;
+
+      span {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 85%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-size: rem(20);
+         opacity: 0.5;
+      }
+
+      &._active {
+         span {
+            opacity: 1;
+         }
+      }
+
+      &>img {
+         width: 100%;
+      }
+   }
+
+}
