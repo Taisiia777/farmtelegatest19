@@ -15,7 +15,7 @@
    }
 
    &__right {
-      padding-right: rem(15);
+      padding-right: rem(10);
    }
 
    &__info {
@@ -25,6 +25,10 @@
 
       &>h3 {
          font-size: rem(23);
+
+         @media screen and (max-width:em(390)) {
+            font-size: rem(21);
+         }
       }
 
    }
@@ -46,5 +50,26 @@
       align-items: center;
       gap: rem(5);
       font-size: rem(24);
+
+      @media screen and (max-width:em(390)) {
+         font-size: rem(22);
+      }
+   }
+
+   &__invate {
+      display: flex;
+      align-items: center;
+      gap: rem(4);
+
+      &>span {
+         font-size: rem(24);
+
+      }
+   }
+
+   &__checkbox {
+      display: block;
+      width: rem(45);
+      padding-right: rem(10);
    }
 }

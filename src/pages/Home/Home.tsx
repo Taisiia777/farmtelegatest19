@@ -107,31 +107,31 @@ const Home = () => {
                         earning={500}
                         price="10 000"
                         ligaName="Wooden"
+                        isBought
                      />,
                      <BoostBlock
                         boostName="drone"
-                        earning={1000}
+                        earning={500}
                         price="15 000"
                         ligaName="Silver"
-                        isBlocked
                      />,
                      <BoostBlock
                         boostName="minicar"
-                        earning={1500}
+                        earning={500}
                         price="30 000"
                         ligaName="Gold"
                         isBlocked
                      />,
                      <BoostBlock
                         boostName="car-2"
-                        earning={2000}
+                        earning={500}
                         price="40 000"
                         ligaName="Fire"
                         isBlocked
                      />,
                      <BoostBlock
                         boostName="car-3"
-                        earning={5000}
+                        earning={500}
                         price="70 000"
                         ligaName="Diamond"
                         isBlocked
@@ -141,14 +141,45 @@ const Home = () => {
             ) : (
                <PopupList
                   nodes={[
-                     <CoinBlock coinName="BTC" earning="200" price="10 000" />,
-                     <CoinBlock coinName="Polkadot" earning="500" price="15 000" />,
-                     <CoinBlock coinName="TON" earning="700" price="20 000" />,
-                     <CoinBlock coinName="Binance" earning="1 000" price="30 000" />,
-                     <CoinBlock coinName="Polkadot" earning="2 000" price="35 000" />,
-                     <CoinBlock coinName="Solana" earning="5 000" price="50 000" />,
-                     <CoinBlock coinName="ETHerium" earning="10 000" price="40 000" />,
-                     <CoinBlock coinName="XRP" earning="20 000" price="80 000" />,
+                     <CoinBlock
+                        coinName="BTC"
+                        earning="200"
+                        price="10 000"
+                        isBought
+                        isActive
+                     />,
+                     <CoinBlock
+                        coinName="Polkadot"
+                        earning="500"
+                        price="15 000"
+                        isBought
+                     />,
+                     <CoinBlock coinName="TON" earning="700" price="20 000" isBlocked />,
+                     <CoinBlock
+                        coinName="Binance"
+                        earning="1 000"
+                        price="30 000"
+                     />,
+                     <CoinBlock
+                        coinName="Polkadot"
+                        earning="2 000"
+                        price="35 000"
+                     />,
+                     <CoinBlock
+                        coinName="Solana"
+                        earning="5 000"
+                        price="50 000"
+                     />,
+                     <CoinBlock
+                        coinName="ETHerium"
+                        earning="10 000"
+                        price="40 000"
+                     />,
+                     <CoinBlock
+                        coinName="XRP"
+                        earning="20 000"
+                        price="80 000"
+                     />,
                   ]}
                />
             )}

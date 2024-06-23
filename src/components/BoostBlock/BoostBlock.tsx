@@ -11,6 +11,7 @@ interface IBoostBlockProps {
    earning: number;
    ligaName: TLiga;
    isBlocked?: boolean;
+   isBought?: boolean;
 }
 
 const BoostBlock = ({
@@ -19,11 +20,24 @@ const BoostBlock = ({
    earning,
    ligaName,
    isBlocked = false,
+   isBought = false,
 }: IBoostBlockProps) => {
-   return (
-      <>
-         {!isBlocked ? (
-            <div className={cn("boost")}>
+   let content;
+
+   // Определяем тип контента
+   // в зависимости от того купленна ли она уже
+   // или может заблокирована
+   if (isBlocked) {
+      content = (
+         <div className={cn("blocked")}>
+            <img src={`img/leagueIcons/${ligaName}.png`} alt={ligaName} />
+            <strong className="textShadow">{ligaName} league</strong>
+         </div>
+      );
+   } else if (isBought) {
+      content = (
+         <div className={cn("boost")}>
+            <div className={cn("boost__left")}>
                <img
                   src={`img/boosts/${boostName}.svg`}
                   className={cn("boost__img")}
@@ -42,21 +56,55 @@ const BoostBlock = ({
                      <CoinWhiteBg size="small" iconName="BTC" />
                   </div>
                </div>
+            </div>
+            <div
+               className={cn("boost__right")}
+               style={{
+                  height: "45px",
+               }}>
+               <img
+                  src="img/global/checkbox/green.svg"
+                  className={cn("boost__checkbox")}
+                  alt="Bought"
+               />
+            </div>
+         </div>
+      );
+   } else {
+      content = (
+         <div className={cn("boost")}>
+            <div className={cn("boost__left")}>
+               <img
+                  src={`img/boosts/${boostName}.svg`}
+                  className={cn("boost__img")}
+                  alt={boostName}
+               />
+               <div className={cn("boost__info", "boostInfo")}>
+                  <h3 className={`${cn("boostInfo__name")}` + " textShadow"}>
+                     {boostName}
+                  </h3>
+                  <div className={cn("boostInfo__index")}>
+                     <img
+                        src={`img/leagueIcons/${ligaName}.png`}
+                        alt={ligaName}
+                     />
+                     <span className="textShadow">+ {earning}/h</span>
+                     <CoinWhiteBg size="small" iconName="BTC" />
+                  </div>
+               </div>
+            </div>
 
+            <div className={cn("boost__right")}>
                {/* FIXME: Если здесь передать например "100 000" то влезать не будет */}
                <Button className={cn("boost__price")}>
                   <CoinWhiteBg size="small" iconName="BTC" />
                   {price}
                </Button>
             </div>
-         ) : (
-            <div className={cn("blocked")}>
-               <img src={`img/leagueIcons/${ligaName}.png`} alt={ligaName} />
-               <strong className="textShadow">{ligaName} league</strong>
-            </div>
-         )}
-      </>
-   );
+         </div>
+      );
+   }
+   return content;
 };
 
 export default BoostBlock;
