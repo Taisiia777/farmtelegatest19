@@ -7,11 +7,18 @@ const cn = classNames.bind(styles);
 interface IPopupListWrapProps {
    children: ReactNode;
    isOpen: boolean;
+   className?: string;
 }
 
-const PopupListWrap = ({ children, isOpen }: IPopupListWrapProps) => {
+const PopupListWrap = ({
+   children,
+   isOpen,
+   className,
+}: IPopupListWrapProps) => {
    return (
-      <div className={cn("popupListWrap", isOpen && "_open")}>{children}</div>
+      <div className={cn("popupListWrap", isOpen && "_open", className)}>
+         {children}
+      </div>
    );
 };
 

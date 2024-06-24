@@ -18,6 +18,7 @@
       row-gap: rem(33);
       column-gap: rem(18);
       padding: 0 rem(16);
+      animation: appear 0.4s ease-in-out;
 
       @media screen and (max-width:em(400)) {
          row-gap: rem(15);
@@ -61,7 +62,7 @@
    align-items: center;
    gap: rem(12);
    font-size: rem(40);
-   margin-bottom: rem(12);
+   margin-bottom: rem(31);
 }
 
 .borderBlock {
@@ -111,5 +112,62 @@
       text-wrap: nowrap;
       font-size: rem(24);
       padding-bottom: 7%;
+   }
+}
+
+.stats-img-bg {
+   position: absolute;
+   z-index: -1;
+
+   &._1 {
+      top: 10%;
+      left: 5%;
+   }
+
+   &._2 {
+      top: 8%;
+      right: 12%;
+   }
+
+   &._3 {
+      top: 19%;
+      left: 13%;
+   }
+
+   &._4 {
+      top: 18%;
+      right: 5%;
+   }
+
+   &._5 {
+      bottom: 18%;
+      left: 15%;
+   }
+
+   &._6 {
+      bottom: 8%;
+      left: 10%;
+   }
+
+   &._7 {
+      bottom: 5%;
+      left: 50%;
+   }
+
+   &._8 {
+      bottom: 13%;
+      right: 25%;
+   }
+}
+
+@keyframes appear {
+   0% {
+      transform: translateY(40%);
+      opacity: 0;
+   }
+
+   100% {
+      transform: translateY(0%);
+      opacity: 1;
    }
 }

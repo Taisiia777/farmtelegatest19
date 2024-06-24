@@ -16,6 +16,11 @@
       height: rem(41);
    }
 
+   &._huge {
+      width: rem(189);
+      height: rem(58);
+   }
+
    &>div {
       position: relative;
       z-index: 5;

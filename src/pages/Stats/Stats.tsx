@@ -16,7 +16,7 @@ const Stats = () => {
       tg.BackButton.show();
       tg.BackButton.onClick(() => navigate(-1));
       return () => tg.BackButton.hide();
-   }, []);
+   }, [navigate]);
 
    return (
       <div className={cn("stats")}>
@@ -43,6 +43,48 @@ const Stats = () => {
 
          {/* Задний зеленный фон */}
          <GreenBg />
+
+         {/* Элементы заднего фона */}
+         <img
+            src="img/pages/stats/stats.svg"
+            className={cn("stats-img-bg", "_1")}
+            alt="stats bg"
+         />
+         <img
+            src="img/pages/stats/stats.svg"
+            className={cn("stats-img-bg", "_2")}
+            alt="stats bg"
+         />
+         <img
+            src="img/pages/stats/stats.svg"
+            className={cn("stats-img-bg", "_3")}
+            alt="stats bg"
+         />
+         <img
+            src="img/pages/stats/stats.svg"
+            className={cn("stats-img-bg", "_4")}
+            alt="stats bg"
+         />
+         <img
+            src="img/pages/stats/stats.svg"
+            className={cn("stats-img-bg", "_5")}
+            alt="stats bg"
+         />
+         <img
+            src="img/pages/stats/stats.svg"
+            className={cn("stats-img-bg", "_6")}
+            alt="stats bg"
+         />
+         <img
+            src="img/pages/stats/stats.svg"
+            className={cn("stats-img-bg", "_7")}
+            alt="stats bg"
+         />
+         <img
+            src="img/pages/stats/stats.svg"
+            className={cn("stats-img-bg", "_8")}
+            alt="stats bg"
+         />
       </div>
    );
 };

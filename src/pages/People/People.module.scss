@@ -1,0 +1,54 @@
+@import '/src/index.scss';
+
+.wrap {
+   height: 100dvh;
+   overflow: hidden;
+}
+
+.people {
+   padding-top: rem(80);
+
+   &__title {
+      text-align: center;
+      font-size: rem(32);
+      margin-bottom: em(10, 32);
+   }
+
+   &__invite-btn-wrap {
+      width: fit-content;
+      margin: 0 auto;
+   }
+
+   &__invite-btn {
+      font-size: rem(24);
+   }
+
+   &__list {
+      width: 100%;
+      top: rem(250);
+      height: 66%;
+      animation: appear 0.4s ease-in-out;
+   }
+}
+
+.coins {
+   text-align: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: rem(6);
+   font-size: rem(14);
+   margin-bottom: rem(25);
+}
+
+@keyframes appear {
+   0% {
+      transform: translateY(40%);
+      opacity: 0;
+   }
+
+   100% {
+      transform: translateY(0%);
+      opacity: 1;
+   }
+}
