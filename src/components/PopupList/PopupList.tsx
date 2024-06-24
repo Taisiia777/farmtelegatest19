@@ -10,17 +10,18 @@ import "swiper/css";
 interface IPopupListProps {
    nodes: ReactNode[];
    // Если true, то первый блок в списке будет больше, чем все последующие
-   peopleMode?: boolean;
+   type?: "first" | "second" | "third";
+   className?: string;
 }
 const PopupList = forwardRef(
    (
-      { nodes, peopleMode = false }: IPopupListProps,
+      { nodes, type = "first", className }: IPopupListProps,
       ref: ForwardedRef<HTMLUListElement>
    ) => {
       return (
-         <ul className={cn("popupList")} ref={ref}>
-            {/* Вариант списка на странице EARN, где список людей */}
-            {!peopleMode && (
+         <ul className={cn("popupList", className)} ref={ref}>
+            {/* Вариант где все большие блоки */}
+            {type === "first" && (
                <>
                   {nodes.map((node, index) => (
                      <li className={cn("popupList__item")} key={index}>
@@ -34,8 +35,8 @@ const PopupList = forwardRef(
                </>
             )}
 
-            {/* Вариант списка для всех остальных страниц*/}
-            {peopleMode && (
+            {/* Вариант где певрый блок больше, остальныые меньше*/}
+            {type === "second" && (
                <>
                   {nodes.map((node, index) => {
                      if (index === 0) {
@@ -64,6 +65,21 @@ const PopupList = forwardRef(
                         );
                      }
                   })}
+               </>
+            )}
+
+            {/* Вариант где все маленькие блоки */}
+            {type === "third" && (
+               <>
+                  {nodes.map((node, index) => (
+                     <li className={cn("popupList__item")} key={index}>
+                        <img
+                           src="img/global/border-block/item-small.svg"
+                           alt="border"
+                        />
+                        <div className={cn("popupList__item-body")}>{node}</div>
+                     </li>
+                  ))}
                </>
             )}
          </ul>

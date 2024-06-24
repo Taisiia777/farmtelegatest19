@@ -98,7 +98,7 @@ const Home = () => {
                   <img src="img/pages/home/energy/energy.svg" alt="energy" />
                </div>
 
-               <Button className={cn("popup__btn")}>
+               <Button className={cn("popup__btn")} size="big">
                   <CoinWhiteBg iconName="BTC" />
                   <span>10 000</span>
                </Button>

@@ -5,6 +5,7 @@ import { TCoin } from "../../types/globalTypes";
 
 import classNames from "classnames/bind";
 import styles from "./CoinBlock.module.scss";
+import { useNavigate } from "react-router-dom";
 const cn = classNames.bind(styles);
 
 interface ICoinBlockProps {
@@ -24,6 +25,8 @@ const CoinBlock = ({
    price,
    isActive = false,
 }: ICoinBlockProps) => {
+   const navigate = useNavigate();
+
    let content;
 
    // Определяем тип контента монеты
@@ -85,7 +88,11 @@ const CoinBlock = ({
                      paddingRight: "10px",
                   }}>
                   <span>x10</span>
-                  <img src="img/global/person-btn.svg" alt="Invite" />
+                  <img
+                     onClick={() => navigate("/invite")}
+                     src="img/global/person-btn.svg"
+                     alt="Invite"
+                  />
                </div>
             </div>
          </div>

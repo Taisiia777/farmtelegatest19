@@ -25,7 +25,9 @@ const PersonBlock = ({
       <div className={cn("person")}>
          <div className={cn("person__left")}>
             {inviteMode && (
-               <div className={cn("person__rating")}># {rating}</div>
+               <div className={`${cn("person__rating")}` + " textShadow"}>
+                  #{rating}
+               </div>
             )}
             <img src={imgSrc} className={cn("person__img")} alt={name} />
             <div className={cn("person__info")}>
@@ -39,12 +41,22 @@ const PersonBlock = ({
             </div>
          </div>
 
-         <div className={cn("person__right")}>
-            <div className={cn("person__earning")}>
-               <CoinWhiteBg iconName="BTC" size="small" />
-               <span className="textShadow">+{earning}</span>
+         {!inviteMode && (
+            <div className={cn("person__right")}>
+               <div className={cn("person__earning")}>
+                  <CoinWhiteBg iconName="BTC" size="small" />
+                  <span className="textShadow">+{earning}</span>
+               </div>
             </div>
-         </div>
+         )}
+
+         {/* Значек того что на первом месте */}
+         {rating === 1 && (
+            <img
+               src="img/pages/people/medal.svg"
+               className={cn("person__firstPlace")}
+               alt="First place"></img>
+         )}
       </div>
    );
 };

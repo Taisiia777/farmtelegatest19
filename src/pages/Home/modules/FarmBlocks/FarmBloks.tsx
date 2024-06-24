@@ -33,13 +33,13 @@ const FarmBlock = ({ zIndex }: IFarmBlockProps) => {
          }}>
          {/* FIXME: ХАРДКО! Нужно подставлять динамическую src и брать ее из store */}
          <img
-            src="img/leagueStages/Wooden.png"
+            src="img/leagueStages/Fire.png"
             className={cn("farmBlock__earth")}
             alt="Wooden"
          />
          <img
-            src="img/growthStages/first.png"
-            className={cn("farmBlock__growthStage", "_first")}
+            src="img/growthStages/fourth.png"
+            className={cn("farmBlock__growthStage", "_fourth")}
             alt="first"
          />
       </div>

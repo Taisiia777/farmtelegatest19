@@ -11,13 +11,17 @@ import styles from "./People.module.scss";
 import classNames from "classnames/bind";
 import PopupListWrap from "../../components/PopupList/modules/PopupListWrap";
 import { tg } from "../../constants/app";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Routes } from "../../routes/routes";
 const cn = classNames.bind(styles);
 
 const People = () => {
+   const location = useLocation();
    const navigate = useNavigate();
 
-   const [activeTab, setActiveTab] = useState("FARM FRENS");
+   const [activeTab, setActiveTab] = useState(
+      location.state?.label ?? "FARM FRENDS"
+   );
 
    useEffect(() => {
       tg.BackButton.show();
@@ -28,57 +32,127 @@ const People = () => {
    return (
       <div className={cn("wrap")}>
          <div className={cn("people")}>
-            <h1 className={cn("people__title")}>4 frends</h1>
+            <h2 className={`${cn("people__title")}` + " textShadow"}>
+               4 frends
+            </h2>
             <Coins quantity={"1 180 000"} />
             <div className={cn("people__invite-btn-wrap")}>
-               <Button className={cn("people__invite-btn")} size="huge">
+               <Button
+                  className={cn("people__invite-btn")}
+                  size="huge"
+                  onClick={() => navigate(Routes.INVITE)}>
                   Invite freiend
                </Button>
             </div>
 
+            {/* Списко пользователей */}
             <PopupListWrap className={cn("people__list")} isOpen={true}>
                <PopupListTabs
-                  labels={["FARM FRENS", "LEADERBOARD"]}
+                  labels={["FARM FRENDS", "LEADERBOARD"]}
                   activeTab={activeTab}
                   onTabChange={(label) => setActiveTab(label)}
                />
-               <PopupList
-                  nodes={[
-                     <PersonBlock
-                        name="Nickname User"
-                        imgSrc="img/pages/people/person.png"
-                        earning="1 260 000"
-                        coinAmount="983 124"
-                     />,
-                     <PersonBlock
-                        name="Nickname User"
-                        imgSrc="img/pages/people/person.png"
-                        earning="1 260 000"
-                        coinAmount="983 124"
-                     />,
-                     <PersonBlock
-                        name="Nickname User"
-                        imgSrc="img/pages/people/person.png"
-                        earning="1 260 000"
-                        coinAmount="983 124"
-                     />,
-                     <PersonBlock
-                        name="Nickname User"
-                        imgSrc="img/pages/people/person.png"
-                        earning="1 260 000"
-                        coinAmount="983 124"
-                     />,
-                     <PersonBlock
-                        name="Nickname User"
-                        imgSrc="img/pages/people/person.png"
-                        earning="1 260 000"
-                        coinAmount="983 124"
-                     />,
-                  ]}
-                  peopleMode
-               />
+               {activeTab === "FARM FRENDS" && (
+                  <PopupList
+                     nodes={[
+                        <PersonBlock
+                           name="Nickname User"
+                           imgSrc="img/pages/people/person.png"
+                           earning="1 260 000"
+                           coinAmount="983 124"
+                        />,
+                        <PersonBlock
+                           name="Nickname User"
+                           imgSrc="img/pages/people/person.png"
+                           earning="1 260 000"
+                           coinAmount="983 124"
+                        />,
+                        <PersonBlock
+                           name="Nickname User"
+                           imgSrc="img/pages/people/person.png"
+                           earning="1 260 000"
+                           coinAmount="983 124"
+                        />,
+                        <PersonBlock
+                           name="Nickname User"
+                           imgSrc="img/pages/people/person.png"
+                           earning="1 260 000"
+                           coinAmount="983 124"
+                        />,
+                        <PersonBlock
+                           name="Nickname User"
+                           imgSrc="img/pages/people/person.png"
+                           earning="1 260 000"
+                           coinAmount="983 124"
+                        />,
+                     ]}
+                     type="second"
+                  />
+               )}
+
+               {activeTab === "LEADERBOARD" && (
+                  <PopupList
+                     nodes={[
+                        <PersonBlock
+                           name="Nickname User"
+                           imgSrc="img/pages/people/person.png"
+                           earning="1 260 000"
+                           coinAmount="983 124"
+                           inviteMode
+                           rating={1}
+                        />,
+                        <PersonBlock
+                           name="Nickname User"
+                           imgSrc="img/pages/people/person.png"
+                           earning="1 260 000"
+                           coinAmount="983 124"
+                           inviteMode
+                           rating={2}
+                        />,
+                        <PersonBlock
+                           name="Nickname User"
+                           imgSrc="img/pages/people/person.png"
+                           earning="1 260 000"
+                           coinAmount="983 124"
+                           inviteMode
+                           rating={3}
+                        />,
+                        <PersonBlock
+                           name="Nickname User"
+                           imgSrc="img/pages/people/person.png"
+                           earning="1 260 000"
+                           coinAmount="983 124"
+                           inviteMode
+                           rating={4}
+                        />,
+                        <PersonBlock
+                           name="Nickname User"
+                           imgSrc="img/pages/people/person.png"
+                           earning="1 260 000"
+                           coinAmount="983 124"
+                           inviteMode
+                           rating={5}
+                        />,
+                     ]}
+                     type="second"
+                  />
+               )}
             </PopupListWrap>
 
+            {/* Звезды на заднем фоне */}
+            <div className={cn("bg-elements")}>
+               <img src="img/pages/people/star.svg" alt="star" />
+               <img src="img/pages/people/star.svg" alt="star" />
+               <img src="img/pages/people/star.svg" alt="star" />
+               <img src="img/pages/people/star.svg" alt="star" />
+               <img src="img/pages/people/star.svg" alt="star" />
+               <img src="img/pages/people/star.svg" alt="star" />
+               <img src="img/pages/people/star.svg" alt="star" />
+               <img src="img/pages/people/star.svg" alt="star" />
+               <img src="img/pages/people/star.svg" alt="star" />
+               <img src="img/pages/people/star.svg" alt="star" />
+               <img src="img/pages/people/star.svg" alt="star" />
+            </div>
             <GreenBg />
          </div>
       </div>

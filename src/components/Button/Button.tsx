@@ -4,10 +4,11 @@ import { ReactNode } from "react";
 const cn = classNames.bind(styles);
 
 interface IButtonProps {
-   size?: "small" | "normal" | "huge";
+   size?: "small" | "normal" | "huge" | "big";
    className?: string;
    children: ReactNode;
    disabled?: boolean;
+   onClick?: () => void;
 }
 
 const Button = ({
@@ -15,9 +16,10 @@ const Button = ({
    size = "normal",
    children,
    disabled = false,
+   onClick,
 }: IButtonProps) => {
    return (
-      <div className={cn("button", `_${size}`)}>
+      <div className={cn("button", `_${size}`)} onClick={onClick}>
          <div className={className}>{children}</div>
          {!disabled ? (
             <img src="img/global/button-green/huge.svg" alt="Кнопка" />

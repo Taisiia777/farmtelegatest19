@@ -5,18 +5,21 @@ import {
    createRoutesFromElements,
 } from "react-router-dom";
 
+import { tg } from "./constants/app";
+import Invite from "./pages/Invite/Invite";
+
 import Home from "./pages/Home/Home";
 import Stats from "./pages/Stats/Stats";
-
-import { tg } from "./constants/app";
 import People from "./pages/People/People";
+import { Routes } from "./routes/routes";
 
 const router = createBrowserRouter(
    createRoutesFromElements(
       <>
-         <Route path="/" element={<Home />} />
-         <Route path="/stats" element={<Stats />} />
-         <Route path="/people" element={<People />}></Route>
+         <Route path={Routes.HOME} element={<Home />} />
+         <Route path={Routes.STATS} element={<Stats />} />
+         <Route path={Routes.PEOPLE} element={<People />} />
+         <Route path={Routes.INVITE} element={<Invite />} />
       </>
    )
 );

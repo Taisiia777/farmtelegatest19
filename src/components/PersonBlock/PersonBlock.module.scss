@@ -14,6 +14,10 @@
       gap: rem(8);
    }
 
+   &__rating {
+      font-size: rem(24);
+   }
+
    &__img {
       flex-shrink: 0;
       width: rem(46);
@@ -30,7 +34,11 @@
    }
 
    &__name {
-      font-size: rem(18)
+      font-size: rem(18);
+
+      @media screen and (max-width:em(390)) {
+         font-size: rem(16);
+      }
    }
 
    &__coins-amount {

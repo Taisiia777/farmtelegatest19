@@ -23,7 +23,14 @@ const Menu = ({ onBoostOpen }: IMenuProps) => {
             {/* Menu elements */}
             <div className={cn("menu__body")}>
                <ul className={cn("menu__list")}>
-                  <li onClick={() => navigate(Routes.PEOPLE)}>
+                  <li
+                     onClick={() =>
+                        navigate(Routes.PEOPLE, {
+                           state: {
+                              label: "FARM FRENDS",
+                           },
+                        })
+                     }>
                      <img src="img/pages/home/menu/Earn.svg" alt="Earn" />
                      EARN
                   </li>
@@ -34,7 +41,14 @@ const Menu = ({ onBoostOpen }: IMenuProps) => {
                   <li>
                      <img src="img/pages/home/menu/Farm.svg" alt="Earn" />
                   </li>
-                  <li>
+                  <li
+                     onClick={() =>
+                        navigate(Routes.PEOPLE, {
+                           state: {
+                              label: "LEADERBOARD",
+                           },
+                        })
+                     }>
                      <img src="img/pages/home/menu/Top.svg" alt="Earn" />
                      TOP
                   </li>

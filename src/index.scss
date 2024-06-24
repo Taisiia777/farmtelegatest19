@@ -28,4 +28,16 @@ body {
    background: rgba(0, 0, 0, 0);
 }
 
+@keyframes appear {
+   0% {
+      transform: translateY(40%);
+      opacity: 0;
+   }
+
+   100% {
+      transform: translateY(0%);
+      opacity: 1;
+   }
+}
+
 @import './scss/globalStyles.scss'
