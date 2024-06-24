@@ -9,7 +9,6 @@ import Home from "./pages/Home/Home";
 import Stats from "./pages/Stats/Stats";
 
 import { tg } from "./constants/app";
-import { useEffect } from "react";
 
 const router = createBrowserRouter(
    createRoutesFromElements(
@@ -25,9 +24,6 @@ tg.ready();
 tg.enableClosingConfirmation();
 
 const App = () => {
-   useEffect(() => {
-      window.addEventListener("resize", () => console.log(window.innerWidth));
-   }, []);
    return <RouterProvider router={router} />;
 };
 

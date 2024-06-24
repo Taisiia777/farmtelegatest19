@@ -6,12 +6,15 @@ import classNames from "classnames/bind";
 import styles from "./Stats.module.scss";
 import { useEffect } from "react";
 import { tg } from "../../constants/app";
+import { useNavigate } from "react-router-dom";
 const cn = classNames.bind(styles);
 
 const Stats = () => {
+   const navigate = useNavigate();
+
    useEffect(() => {
       tg.BackButton.show();
-
+      tg.BackButton.onClick(() => navigate(-1));
       return () => tg.BackButton.hide();
    }, []);
 

@@ -34,7 +34,11 @@
             transform: translateX(-45%);
 
             @media screen and (max-width:em(415)) {
-               font-size: rem(20);
+               font-size: rem(24);
+            }
+
+            @media screen and (max-width:em(390)) {
+               font-size: rem(22);
             }
          }
 
