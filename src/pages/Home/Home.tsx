@@ -18,24 +18,29 @@ import CoinBlock from "../../components/CoinBlock/CoinBlock";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 
 import classNames from "classnames/bind";
+import LigaBlock from "../../components/LigaBlock/LigaBlock";
 const cn = classNames.bind(styles);
 
 const Home = () => {
-   // Стейты открытости модалок
+   // Energy popup
    const [energyPopupOpen, setEnergyPopupOpen] = useState(false);
 
+   // Boost popup
    const [boostPopupOpen, setBoostPopupOpen] = useState(false);
    const boostRef = useOutsideClick(
       () => setBoostPopupOpen(false),
       ["#menu", "#tabs"]
    );
-
-   const [ligaPopupOpen, setLigaPopupOpen] = useState(false);
-
-   // True если хоятбы один попап открыть
-   const isPopupOpen = energyPopupOpen || boostPopupOpen || ligaPopupOpen;
-
+   // Активный таб в boost popup
    const [activeTab, setActiveTab] = useState("BOOST");
+
+   // Liga popup
+   const [ligaPopupOpen, setLigaPopupOpen] = useState(false);
+   const ligaRef = useOutsideClick(() => setLigaPopupOpen(false), ["#league"]);
+
+   // True если хотябы один попап открыт
+   // но кроме попапа Energy!
+   const isPopupOpen = boostPopupOpen || ligaPopupOpen;
 
    return (
       <div className={cn("wrap")}>
@@ -50,12 +55,7 @@ const Home = () => {
                   current={300}
                   onClick={() => setEnergyPopupOpen(true)}
                />
-               <Menu
-                  onBoostOpen={() => setBoostPopupOpen(true)}
-                  onEarnOpen={() => {}}
-                  onTopOpen={() => {}}
-                  onStatsOpen={() => {}}
-               />
+               <Menu onBoostOpen={() => setBoostPopupOpen(true)} />
             </div>
          )}
 
@@ -206,8 +206,9 @@ const Home = () => {
          </PopupListWrap>
 
          {/* LEAGUES popup */}
-         {/* <PopupListWrap isOpen={ligaPopupOpen}>
+         <PopupListWrap isOpen={ligaPopupOpen}>
             <PopupList
+               ref={ligaRef}
                nodes={[
                   <LigaBlock
                      ligaName="Wooden"
@@ -241,7 +242,7 @@ const Home = () => {
                   />,
                ]}
             />
-         </PopupListWrap> */}
+         </PopupListWrap>
       </div>
    );
 };

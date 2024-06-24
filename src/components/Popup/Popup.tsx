@@ -19,18 +19,21 @@ const Popup = ({ isOpen, children, onClose }: IPopupProps) => {
                className={cn("popup__border")}
                alt="border"
             />
+
             {/* Надпись на popup-border */}
             <strong className={cn("popup__label")}>Energy</strong>
+
             {/* Иконка закрытия попапа */}
             <img
                src="img/global/closeIcon.svg"
                className={cn("popup__close")}
                onClick={() => {
-                  console.log('work!!')
+                  console.log("work!!");
                   onClose();
                }}
                alt="Закрыть"
             />
+
             {/* Контент попапа */}
             {children}
          </div>

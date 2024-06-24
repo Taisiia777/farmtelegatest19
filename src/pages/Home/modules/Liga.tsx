@@ -11,7 +11,7 @@ interface LigaProps {
 
 const Liga = ({ liga, onLigaOpen }: LigaProps) => {
    return (
-      <div className={cn("liga")} onClick={onLigaOpen}>
+      <div className={cn("liga")} onClick={onLigaOpen} id="league">
          <img src={`img/leagueIcons/${liga}.png`} alt="Wooden" />
          <span className="textShadow">{liga} league</span>
       </div>

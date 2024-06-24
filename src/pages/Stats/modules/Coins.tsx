@@ -1,7 +1,5 @@
-import CoinWhiteBg from "../../../components/CoinWhiteBg/CoinWhiteBg";
-
 import classNames from "classnames/bind";
-import styles from "../Home.module.scss";
+import styles from "../Stats.module.scss";
 const cn = classNames.bind(styles);
 
 interface CoinsProps {
@@ -10,8 +8,8 @@ interface CoinsProps {
 
 const Coins = ({ quantity }: CoinsProps) => {
    return (
-      <div className={cn("coins")}>
-         <CoinWhiteBg iconName="BTC" />
+      <div className={`${cn("coins")}` + " textShadow"}>
+         <img src="img/coins/BTC.svg" alt="BTC" />
          <span>{quantity} B</span>
       </div>
    );

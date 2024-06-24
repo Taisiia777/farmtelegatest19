@@ -1,20 +1,14 @@
 import classNames from "classnames/bind";
 import styles from "../Home.module.scss";
+import { useNavigate } from "react-router-dom";
 const cn = classNames.bind(styles);
 
 interface IMenuProps {
-   onEarnOpen: () => void;
    onBoostOpen: () => void;
-   onTopOpen: () => void;
-   onStatsOpen: () => void;
 }
 
-const Menu = ({
-   onBoostOpen,
-   onEarnOpen,
-   onStatsOpen,
-   onTopOpen,
-}: IMenuProps) => {
+const Menu = ({ onBoostOpen }: IMenuProps) => {
+   const navigate = useNavigate();
    return (
       <>
          <div className={cn("menu")} id="menu">
@@ -28,7 +22,7 @@ const Menu = ({
             {/* Menu elements */}
             <div className={cn("menu__body")}>
                <ul className={cn("menu__list")}>
-                  <li onClick={() => onEarnOpen()}>
+                  <li>
                      <img src="img/pages/home/menu/Earn.svg" alt="Earn" />
                      EARN
                   </li>
@@ -39,11 +33,11 @@ const Menu = ({
                   <li>
                      <img src="img/pages/home/menu/Farm.svg" alt="Earn" />
                   </li>
-                  <li onClick={() => onTopOpen()}>
+                  <li>
                      <img src="img/pages/home/menu/Top.svg" alt="Earn" />
                      TOP
                   </li>
-                  <li onClick={() => onStatsOpen()}>
+                  <li onClick={() => navigate("/stats")}>
                      <img src="img/pages/home/menu/Stats.svg" alt="Earn" />
                      STATS
                   </li>
