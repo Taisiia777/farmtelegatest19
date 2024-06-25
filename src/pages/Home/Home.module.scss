@@ -88,6 +88,7 @@
          font-size: rem(18);
          height: 100%;
          width: 100%;
+
       }
    }
 
@@ -176,10 +177,29 @@
 
 .bg-elements {
    position: absolute;
-   top: rem(-30);
+   top: 0;
    left: 0;
    width: 100%;
-   overflow: hidden;
+
+   &>img {
+      width: 100%;
+   }
+
+   // Экраны с 820px < height < 850px
+   @media screen and (min-height:em(820)) and (max-height:em(850)) {
+      top: rem(-30);
+   }
+
+   @media screen and (min-height:em(820)) and (max-height:em(850)) and (max-width:em(410)) {
+      top: rem(-10);
+   }
+
+   // // Экраны с height < 820px
+   @media screen and (max-height:em(820)) {
+      top: rem(-30);
+   }
+
+   // // Экраны с height < 820px && width < 400px
 }
 
 .popup {
@@ -246,9 +266,14 @@
       height: rem(105);
       margin-bottom: rem(10);
 
-      @media screen and (max-width:rem(400)) {
+      @media screen and (max-width:em(415)) {
          width: rem(75);
          height: rem(95);
+      }
+
+      @media screen and (max-width:em(360)) {
+         width: rem(65);
+         height: rem(85);
       }
    }
 
@@ -257,9 +282,11 @@
       font-size: rem(16);
       margin-bottom: rem(17);
 
-      @media screen and (max-width:rem(400)) {
+
+      @media screen and (max-width:em(380)) {
          margin-bottom: rem(10);
       }
+
    }
 
    &__earning {
@@ -268,6 +295,11 @@
       gap: rem(3);
       font-size: rem(20);
       margin-bottom: rem(10);
+
+      @media screen and (max-width:em(370)) {
+         margin-bottom: rem(5);
+      }
+
 
       img {
          width: rem(20);
@@ -280,5 +312,9 @@
       align-items: center;
       gap: rem(10);
       font-size: rem(25);
+
+      @media screen and (max-width:em(380)) {
+         font-size: rem(23);
+      }
    }
 }

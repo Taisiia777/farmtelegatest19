@@ -1,18 +1,23 @@
 @import '/src/index.scss';
 
 
-.wrap {
+.farmBlockWrap {
    position: absolute;
    top: 0;
-   left: 0;
+   right: 0;
    width: 100%;
    height: 100%;
 }
 
 .farmBlock {
    position: absolute;
-   width: rem(129);
-   height: rem(80);
+   width: 30%;
+   height: 10.67%;
+
+   // @media screen and (max-width:em(420)) {
+   //    width: rem(120);
+   //    height: rem(84);
+   // }
 
    &__earth {
       position: absolute;
@@ -42,15 +47,15 @@
       }
 
       &._third {
-         top: -55%;
-         left: 38%;
+         top: -40%;
+         left: 36%;
          width: rem(41);
          height: rem(76);
       }
 
       &._fourth {
-         top: -135%;
-         left: 20%;
+         top: -105%;
+         left: 22%;
          width: rem(75);
          height: rem(144);
       }
@@ -60,88 +65,69 @@
       top: 45%;
       left: 3%;
 
-      @media screen and (min-width:rem(415)) {
-         top: 46%;
-         left: 4%;
-      }
-
+      // @media screen and (max-width:em(420)) {
+      //    top: 47%;
+      // }
    }
 
    &:nth-child(2) {
       top: 49%;
-      left: 18%;
+      left: 19.2%;
 
-      @media screen and (min-width:rem(415)) {
-         top: 49.5%;
-         left: 16.5%;
-      }
-
+      // @media screen and (max-width:em(420)) {
+      //    top: 51%;
+      //    left: 18%;
+      // }
    }
 
    &:nth-child(3) {
-      top: 53%;
-      left: 33%;
+      top: 52.6%;
+      left: 35.4%;
 
-      @media screen and (min-width:rem(415)) {
-         left: 29.7%;
-      }
+      // @media screen and (max-width:em(420)) {
+      //    top: 54.6%;
+      //    left: 33.2%;
+      // }
    }
 
    &:nth-child(4) {
-      top: 50%;
-      left: 48%;
+      top: 49.2%;
+      left: 51.2%;
 
-      @media screen and (min-width:rem(415)) {
-         left: 43%;
-      }
+      // @media screen and (max-width:em(420)) {
+      //    top: 51%;
+      //    left: 48%;
+      // }
+
    }
 
    &:nth-child(5) {
-      top: 47%;
-      left: 62%;
+      top: 45.5%;
+      left: 66.7%;
 
-      @media screen and (min-width:rem(415)) {
-         left: 56%;
-      }
+      // @media screen and (max-width:em(420)) {
+      //    top: 47.5%;
+      //    left: 62.3%;
+      // }
    }
 
    &:nth-child(6) {
-      top: 42%;
-      left: 18%;
-
-      @media screen and (min-width:rem(415)) {
-         top: 43%;
-         left: 17%;
-      }
+      top: 41%;
+      left: 19.7%;
    }
 
    &:nth-child(7) {
-      top: 46%;
-      left: 32%;
-
-      @media screen and (min-width:rem(415)) {
-         top: 47%;
-         left: 30%;
-      }
+      top: 45%;
+      left: 35%;
    }
 
    &:nth-child(8) {
-      top: 43%;
-      left: 46%;
-
-      @media screen and (min-width:rem(415)) {
-         top: 44%;
-         left: 43%;
-      }
+      top: 41.5%;
+      left: 50.3%;
    }
 
    &:nth-child(9) {
-      top: 39%;
-      left: 33%;
-
-      @media screen and (min-width:rem(415)) {
-         top: 40%;
-         left: 31%;
-      }
+      top: 37.5%;
+      left: 34.3%;
    }
 }

@@ -4,7 +4,7 @@ const cn = classNames.bind(styles);
 
 const FarmBloks = () => {
    return (
-      <div className={cn("wrap")}>
+      <div className={cn("farmBlockWrap")}>
          <FarmBlock zIndex={9} />
          <FarmBlock zIndex={9} />
          <FarmBlock zIndex={9} />
@@ -31,15 +31,14 @@ const FarmBlock = ({ zIndex }: IFarmBlockProps) => {
          style={{
             zIndex,
          }}>
-         {/* FIXME: ХАРДКО! Нужно подставлять динамическую src и брать ее из store */}
          <img
             src="img/leagueStages/Fire.png"
             className={cn("farmBlock__earth")}
             alt="Wooden"
          />
          <img
-            src="img/growthStages/fourth.png"
-            className={cn("farmBlock__growthStage", "_fourth")}
+            src="img/growthStages/first.png"
+            className={cn("farmBlock__growthStage", "_first")}
             alt="first"
          />
       </div>

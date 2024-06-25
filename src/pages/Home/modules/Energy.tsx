@@ -11,7 +11,7 @@ interface EnergyProps {
 
 const Energy = ({ total, current, onClick }: EnergyProps) => {
    return (
-      <div className={cn("energy")} onClick={onClick}>
+      <div className={cn("energy")} id="energy" onClick={onClick}>
          {/* Главная доска */}
          <img
             src="img/pages/home/energy/board.svg"

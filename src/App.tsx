@@ -42,35 +42,6 @@ const App = () => {
       document.documentElement.style.height = "auto";
 
       window.scrollTo(0, overflow);
-
-      // let ts: number | undefined;
-      // const onTouchStart = (e: TouchEvent) => {
-      //    ts = e.touches[0].clientY;
-      // };
-
-      // const scrollableEl = document.getElementById("app");
-      // if (scrollableEl) {
-      //    scrollableEl.style.overflowY = "auto";
-      //    scrollableEl.style.height = "100vh";
-      // }
-
-      // const onTouchMove = (e: TouchEvent) => {
-      //    if (scrollableEl) {
-      //       const scroll = scrollableEl.scrollTop;
-      //       const te = e.changedTouches[0].clientY;
-      //       if (scroll <= 0 && ts! < te) {
-      //          e.preventDefault();
-      //       }
-      //    } else {
-      //       e.preventDefault();
-      //    }
-      // };
-      // document.documentElement.addEventListener("touchstart", onTouchStart, {
-      //    passive: false,
-      // });
-      // document.documentElement.addEventListener("touchmove", onTouchMove, {
-      //    passive: false,
-      // });
    }, []);
 
    return <RouterProvider router={router} />;

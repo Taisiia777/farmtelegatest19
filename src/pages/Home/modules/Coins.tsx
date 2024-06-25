@@ -5,14 +5,14 @@ import styles from "../Home.module.scss";
 const cn = classNames.bind(styles);
 
 interface CoinsProps {
-   quantity: number;
+   quantity: string;
 }
 
 const Coins = ({ quantity }: CoinsProps) => {
    return (
       <div className={cn("coins")}>
          <CoinWhiteBg iconName="BTC" />
-         <span>{quantity} B</span>
+         <span className="textShadow">{quantity} B</span>
       </div>
    );
 };

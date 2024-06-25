@@ -19,11 +19,18 @@ import { useOutsideClick } from "../../hooks/useOutsideClick";
 
 import classNames from "classnames/bind";
 import LigaBlock from "../../components/LigaBlock/LigaBlock";
+import useWindowSize from "../../hooks/useWindowSize";
 const cn = classNames.bind(styles);
 
 const Home = () => {
+   const { width } = useWindowSize();
+
    // Energy popup
    const [energyPopupOpen, setEnergyPopupOpen] = useState(false);
+   const energyRef = useOutsideClick(
+      () => setEnergyPopupOpen(false),
+      ["#energy"]
+   );
 
    // Boost popup
    const [boostPopupOpen, setBoostPopupOpen] = useState(false);
@@ -45,9 +52,10 @@ const Home = () => {
    return (
       <div className={cn("wrap")}>
          <div className={cn("top")}>
-            <Coins quantity={1000} />
+            <Coins quantity={"349.917"} />
             <Liga liga="Diamond" onLigaOpen={() => setLigaPopupOpen(true)} />
          </div>
+
          {!isPopupOpen && (
             <div className={cn("bottom")}>
                <Energy
@@ -60,19 +68,18 @@ const Home = () => {
          )}
 
          {/* Элементы заднего фона */}
-         <img
-            src="img/pages/home/home-bg.svg"
-            className={cn("bg-elements")}
-            alt="road"
-         />
+         <div className={cn("bg-elements")}>
+            <img src="img/pages/home/home-bg.svg" alt="road" />
 
-         {/* Блоки земли */}
-         <FarmBloks />
+            {/* Блоки земли */}
+            <FarmBloks />
+         </div>
 
          {/* Energy popup */}
          <Popup
             isOpen={energyPopupOpen}
-            onClose={() => setEnergyPopupOpen(false)}>
+            onClose={() => setEnergyPopupOpen(false)}
+            ref={energyRef}>
             <div className={cn("popup__body")}>
                {/* Молнии на заднем фоне */}
                <div className={cn("popup__bg-lightnings")}>
@@ -98,8 +105,13 @@ const Home = () => {
                   <img src="img/pages/home/energy/energy.svg" alt="energy" />
                </div>
 
-               <Button className={cn("popup__btn")} size="big">
-                  <CoinWhiteBg iconName="BTC" />
+               <Button
+                  className={cn("popup__btn")}
+                  size={width > 380 ? "big" : "normal"}>
+                  <CoinWhiteBg
+                     iconName="BTC"
+                     size={width > 380 ? "normall" : "small"}
+                  />
                   <span>10 000</span>
                </Button>
             </div>
