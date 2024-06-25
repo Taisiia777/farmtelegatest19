@@ -180,8 +180,8 @@
       align-items: center;
       justify-content: space-between;
       font-size: rem(16);
-      padding: rem(10) rem(10) 0 rem(10);
-      margin-bottom: rem(5);
+      padding: rem(10) rem(15) 0 rem(10);
+      margin-bottom: rem(8);
 
       li {
          position: relative;
@@ -189,18 +189,36 @@
          align-items: center;
          flex-direction: column;
          gap: rem(3);
+         height: 100%;
          text-align: center;
 
          &:nth-child(3) {
             transform: translateY(rem(-15));
+
+            & img:last-child {
+               position: absolute;
+               top: 17%;
+               left: 50%;
+               transform: translateX(-50%);
+            }
+         }
+
+         &:nth-child(2) {
+            transform: translateY(8%);
+         }
+
+         &:nth-child(4) {
+            @media screen and (max-width:em(420)) {
+                  transform: translateY(4%);
+               & img {
+                  width: rem(50);
+
+               }
+            }
          }
       }
 
-      li:not(:nth-child(3)) {
-         img {
-            width: 85%;
-         }
-      }
+
    }
 }
 
