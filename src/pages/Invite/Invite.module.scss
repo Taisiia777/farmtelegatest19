@@ -151,14 +151,17 @@
 }
 
 .inviteUsersBlock {
+   position: relative;
+   z-index: 10;
+
    display: flex;
    align-items: center;
    justify-content: space-between;
    gap: rem(10);
-   padding: rem(14) rem(18);
-   background-color: #F8F8FA;
+   padding: rem(14) rem(10) rem(14) rem(18);
+
+   background-color: #A2C521;
    border-radius: rem(12);
-   color: #555555;
 
    &__left {
       display: flex;
@@ -187,5 +190,10 @@
          height: rem(16);
          object-fit: contain;
       }
+   }
+
+   &__one-gift-img {
+      display: block;
+      padding-right: rem(32);
    }
 }

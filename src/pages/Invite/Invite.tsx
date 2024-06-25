@@ -36,28 +36,42 @@ const Invite = () => {
             <div className={cn("invite__users")}>
                <div className={cn("inviteUsersBlock")}>
                   <div className={cn("inviteUsersBlock__left")}>
-                     <b className={cn("inviteUsersBlock__title")}>
+                     <b
+                        className={`${cn(
+                           "inviteUsersBlock__title"
+                        )} + ' textShadow_center`}>
                         Invite user
                      </b>
                      <div className={cn("inviteUsersBlock__coins")}>
                         <img src="img/coins/BTC.svg" alt="BTC" />
-                        <span>+10 000</span>
+                        <span className="textShadow_center">+10 000</span>
                      </div>
                   </div>
-                  <img src="img/pages/invite/one-gift.svg" alt="Gift" />
+                  <img
+                     src="img/pages/invite/one-gift.svg"
+                     className={cn("inviteUsersBlock__one-gift-img")}
+                     alt="Gift"
+                  />
                </div>
 
                <div className={cn("inviteUsersBlock")}>
                   <div className={cn("inviteUsersBlock__left")}>
-                     <b className={cn("inviteUsersBlock__title")}>
+                     <b
+                        className={`${cn(
+                           "inviteUsersBlock__title"
+                        )} + ' textShadow_center`}>
                         Invite users
                      </b>
-                     <p className={cn("inviteUsersBlock__subtitle")}>
+                     <p
+                        className={
+                           `${cn("inviteUsersBlock__subtitle")}` +
+                           " textShadow_center"
+                        }>
                         10% from every friend earnings
                      </p>
                      <div className={cn("inviteUsersBlock__coins")}>
                         <img src="img/coins/BTC.svg" alt="BTC" />
-                        <span>+60 000</span>
+                        <span className="textShadow_center">+60 000</span>
                      </div>
                   </div>
                   <img src="img/pages/invite/many-gifts.svg" alt="Gifts" />

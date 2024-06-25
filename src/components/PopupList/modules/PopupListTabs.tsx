@@ -6,9 +6,15 @@ interface ITabsProps {
    labels: string[];
    activeTab: string;
    onTabChange: (label: string) => void;
+   labelClassName?: string;
 }
 
-const PopupListTabs = ({ labels, activeTab, onTabChange }: ITabsProps) => {
+const PopupListTabs = ({
+   labels,
+   activeTab,
+   onTabChange,
+   labelClassName,
+}: ITabsProps) => {
    return (
       <div className={cn("tabs")} id="tabs">
          <ul className={cn("tabs__list")}>
@@ -17,7 +23,7 @@ const PopupListTabs = ({ labels, activeTab, onTabChange }: ITabsProps) => {
                   className={cn("tabs__item", activeTab === label && "_active")}
                   onClick={() => onTabChange(label)}
                   key={label}>
-                  <span>{label}</span>
+                  <span className={labelClassName}>{label}</span>
                   <img src="img/global/border-block/label.svg" alt={label} />
                </li>
             ))}

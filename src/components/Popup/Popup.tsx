@@ -19,7 +19,7 @@ const Popup = forwardRef(
             <div className={cn("popup__body")} ref={ref}>
                {/* Popup border */}
                <img
-                  src="img/global/popup-body.svg"
+                  src="img/global/popup-border.svg"
                   className={cn("popup__border")}
                   alt="border"
                />

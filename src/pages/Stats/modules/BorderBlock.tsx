@@ -13,7 +13,7 @@ const BorderBlock = ({ label, number, imgSrc }: BorderBlockProps) => {
       <div className={cn("borderBlock")}>
          {/* Label в бордере */}
          <img
-            src="img/global/popup-body.svg"
+            src="img/global/popup-border.svg"
             className={cn("borderBlock__border")}
             alt={label}
          />

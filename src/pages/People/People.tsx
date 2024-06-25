@@ -51,6 +51,7 @@ const People = () => {
                   labels={["FARM FRENDS", "LEADERBOARD"]}
                   activeTab={activeTab}
                   onTabChange={(label) => setActiveTab(label)}
+                  labelClassName={cn("people__list-tab-label")}
                />
                {activeTab === "FARM FRENDS" && (
                   <PopupList
