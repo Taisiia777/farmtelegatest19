@@ -17,6 +17,10 @@
    gap: rem(6);
    padding-top: rem(80);
 
+   @media screen and (max-height:em(820)) {
+      padding-top: rem(50);
+   }
+
 }
 
 .top,

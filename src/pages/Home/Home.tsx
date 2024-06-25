@@ -23,6 +23,7 @@ import CoinBlock from "../../components/CoinBlock/CoinBlock";
 import Boosts from "./modules/Boosts/Boosts";
 import Account from "./modules/Account";
 import LigaBlock from "../../components/LigaBlock/LigaBlock";
+import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
 
 const Home = () => {
    const { width } = useWindowSize();
@@ -40,14 +41,22 @@ const Home = () => {
       () => setBoostPopupOpen(false),
       ["#menu", "#tabs"]
    );
+   useClosePopupByTgButton({
+      isOpen: boostPopupOpen,
+      closePopup: () => setBoostPopupOpen(false),
+   });
    // Активный таб в boost popup
    const [activeTab, setActiveTab] = useState("BOOST");
 
    // Liga popup
    const [ligaPopupOpen, setLigaPopupOpen] = useState(false);
    const ligaRef = useOutsideClick(() => setLigaPopupOpen(false), ["#league"]);
+   useClosePopupByTgButton({
+      isOpen: ligaPopupOpen,
+      closePopup: () => setLigaPopupOpen(false),
+   });
 
-   // True если хотябы один попап открыт
+   // True если хотя бы один попап открыт
    // но кроме попапа Energy!
    const isPopupOpen = boostPopupOpen || ligaPopupOpen;
 
