@@ -1,5 +1,11 @@
 import { useState } from "react";
 
+import { useOutsideClick } from "../../hooks/useOutsideClick";
+
+import classNames from "classnames/bind";
+import useWindowSize from "../../hooks/useWindowSize";
+const cn = classNames.bind(styles);
+
 import Coins from "./modules/Coins";
 import Liga from "./modules/Liga";
 import styles from "./Home.module.scss";
@@ -14,14 +20,9 @@ import PopupListTabs from "../../components/PopupList/modules/PopupListTabs";
 import PopupList from "../../components/PopupList/PopupList";
 import BoostBlock from "../../components/BoostBlock/BoostBlock";
 import CoinBlock from "../../components/CoinBlock/CoinBlock";
-
-import { useOutsideClick } from "../../hooks/useOutsideClick";
-
-import classNames from "classnames/bind";
-import LigaBlock from "../../components/LigaBlock/LigaBlock";
-import useWindowSize from "../../hooks/useWindowSize";
 import Boosts from "./modules/Boosts/Boosts";
-const cn = classNames.bind(styles);
+import Account from "./modules/Account";
+import LigaBlock from "../../components/LigaBlock/LigaBlock";
 
 const Home = () => {
    const { width } = useWindowSize();
@@ -53,6 +54,10 @@ const Home = () => {
    return (
       <div className={cn("wrap")}>
          <div className={cn("top")}>
+            <Account
+               nickname="dimamrkv"
+               imgSrc={"img/pages/people/person.png"}
+            />
             <Coins quantity={"349.917"} />
             <Liga liga="Diamond" onLigaOpen={() => setLigaPopupOpen(true)} />
          </div>
