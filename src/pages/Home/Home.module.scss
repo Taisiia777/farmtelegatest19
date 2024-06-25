@@ -198,8 +198,57 @@
    @media screen and (max-height:em(820)) {
       top: rem(-30);
    }
+}
 
-   // // Экраны с height < 820px && width < 400px
+.boosts {
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 100%;
+   width: 100%;
+
+   img {
+      position: absolute;
+   }
+
+   &__mill {
+      top: 20%;
+      left: 0;
+      width: 60%;
+   }
+
+   &__drone {
+      top: 23%;
+      left: 40%;
+      width: 20%;
+
+      @media screen and (max-width:em(400)) {
+         top: 25%;
+      }
+
+      @media screen and (max-width:em(380)) {
+         top: 26%;
+      }
+   }
+
+   &__mini-car {
+      top: 27%;
+      right: 3%;
+      width: 23%;
+   }
+
+   &__car-2 {
+      z-index: 15;
+      bottom: 33%;
+      left: 72%;
+      width: 25%;
+   }
+
+   &__car-3 {
+      bottom: 27.8%;
+      left: 0%;
+      width: 33%;
+   }
 }
 
 .popup {

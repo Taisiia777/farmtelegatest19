@@ -20,6 +20,7 @@ import { useOutsideClick } from "../../hooks/useOutsideClick";
 import classNames from "classnames/bind";
 import LigaBlock from "../../components/LigaBlock/LigaBlock";
 import useWindowSize from "../../hooks/useWindowSize";
+import Boosts from "./modules/Boosts/Boosts";
 const cn = classNames.bind(styles);
 
 const Home = () => {
@@ -67,12 +68,15 @@ const Home = () => {
             </div>
          )}
 
-         {/* Элементы заднего фона */}
+         {/* Элементы фона */}
          <div className={cn("bg-elements")}>
             <img src="img/pages/home/home-bg.svg" alt="road" />
 
             {/* Блоки земли */}
             <FarmBloks />
+
+            {/* Активные boosts */}
+            <Boosts />
          </div>
 
          {/* Energy popup */}
