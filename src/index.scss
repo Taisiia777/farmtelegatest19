@@ -26,17 +26,4 @@ body {
    font-weight: 700;
    color: #fff;
 }
-
-@keyframes appear {
-   0% {
-      transform: translateY(40%);
-      opacity: 0;
-   }
-
-   100% {
-      transform: translateY(0%);
-      opacity: 1;
-   }
-}
-
 @import './scss/globalStyles.scss'

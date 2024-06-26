@@ -41,10 +41,6 @@ export interface IGrowthStages {
          stage: TGrowthStage;
       }
    ];
-
-   // True если все блоки зелми в последней стадии.
-   // Это означает, что пшеницу можно собирать
-   isReady: boolean;
 }
 
 const initialState: IGrowthStages = {
@@ -86,18 +82,12 @@ const initialState: IGrowthStages = {
          stage: "fourth",
       },
    ],
-
-   isReady: false,
 };
 
 export const counterSlice = createSlice({
    name: "growthStages",
    initialState,
    reducers: {
-      ready: (state) => {
-         state.isReady = true;
-      },
-
       // В action.payload передется id блока
       pickWheat: (state, action: PayloadAction<{ id: number }>) => {
          const block = state.blocks.find(
@@ -111,7 +101,7 @@ export const counterSlice = createSlice({
    },
 });
 
-export const { pickWheat, ready } = counterSlice.actions;
+export const { pickWheat } = counterSlice.actions;
 
 export const selectEarthBlock = (state: RootState, id: number) =>
    state.growthStages.blocks.find((block) => block.id === id);

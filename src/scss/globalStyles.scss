@@ -5,3 +5,29 @@
 .textShadow_center {
    text-shadow: 0 0 2.4px rgba(0, 0, 0, 0.25);
 }
+
+@keyframes appear {
+   0% {
+      transform: translateY(40%);
+      opacity: 0;
+   }
+
+   100% {
+      transform: translateY(0%);
+      opacity: 1;
+   }
+}
+
+@keyframes moneyDisappear {
+   0% {
+      visibility: visible;
+      transform: translateY(0);
+      opacity: 1;
+   }
+
+   100% {
+      visibility: hidden;
+      transform: translateY(-200%);
+      opacity: 0;
+   }
+}

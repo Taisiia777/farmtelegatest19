@@ -2,9 +2,6 @@
 
 .wrap {
    position: relative;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
    background: linear-gradient(#75B245, #8BC346, #BADE4A);
    height: 100dvh;
    overflow: hidden;
@@ -27,6 +24,13 @@
 .bottom {
    position: relative;
    z-index: 10;
+}
+
+.bottom {
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 100%;
 }
 
 .account {

@@ -8,6 +8,7 @@
    width: rem(32);
    height: rem(31);
    border-radius: 100%;
+   animation: rotateY 4.5s linear infinite;
 
    &._huge {
       width: rem(60);
@@ -21,5 +22,15 @@
 
    img {
       width: 80%;
+   }
+}
+
+@keyframes rotateY {
+   0% {
+      transform: rotateY(-360deg);
+   }
+
+   100% {
+      transform: rotateY(360deg);
    }
 }

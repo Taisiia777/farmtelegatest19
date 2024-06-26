@@ -49,58 +49,46 @@
          top: -90%;
          left: 22%;
          width: calc(75 / 129 * 100%);
+      }
+   }
 
+   &__money {
+      position: absolute;
+      top: -80%;
+      left: 24%;
+      width: calc(75 / 129 * 100%);
+      opacity: 0;
+      visibility: hidden;
+
+      &._anim {
+         animation: moneyDisappear 0.4s ease-in;
       }
    }
 
    &:nth-child(1) {
       top: 45%;
       left: 3%;
-
-      // @media screen and (max-width:em(420)) {
-      //    top: 47%;
-      // }
    }
 
    &:nth-child(2) {
       top: 49%;
       left: 19.2%;
-
-      // @media screen and (max-width:em(420)) {
-      //    top: 51%;
-      //    left: 18%;
-      // }
    }
 
    &:nth-child(3) {
       top: 52.6%;
       left: 35.4%;
 
-      // @media screen and (max-width:em(420)) {
-      //    top: 54.6%;
-      //    left: 33.2%;
-      // }
    }
 
    &:nth-child(4) {
       top: 49.2%;
       left: 51.2%;
-
-      // @media screen and (max-width:em(420)) {
-      //    top: 51%;
-      //    left: 48%;
-      // }
-
    }
 
    &:nth-child(5) {
       top: 45.5%;
       left: 66.7%;
-
-      // @media screen and (max-width:em(420)) {
-      //    top: 47.5%;
-      //    left: 62.3%;
-      // }
    }
 
    &:nth-child(6) {

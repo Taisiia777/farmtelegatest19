@@ -1,37 +1,15 @@
-import { useEffect } from "react";
-
 import styles from "./FarmBlocks.module.scss";
 import classNames from "classnames/bind";
 const cn = classNames.bind(styles);
 
-import {
-   pickWheat,
-   selectEarthBlock,
-} from "../../../../store/reducers/growthStages";
-import { useAppDispatch, useAppSelector } from "../../../../store";
+import { selectEarthBlock } from "../../../../store/reducers/growthStages";
+import { useAppSelector } from "../../../../store";
+import useWheatTrunctaion from "../../hooks/useWheatTrunctation";
 
 const FarmBloks = () => {
-   const dispatch = useAppDispatch();
+   // Собирание пшеницы
+   useWheatTrunctaion();
 
-   useEffect(() => {
-      document.addEventListener("touchmove", (e) => {
-         var xPos = e.touches[0].pageX;
-
-         // Вычитаем 100 у "pageY", так как мы в "App" компоненте
-         // добавляли 100px у body, в целью отключения закрытия tg при сколе вних
-         var yPos = e.touches[0].pageY - 100;
-
-         const target = document.elementFromPoint(xPos, yPos);
-
-         // Если это картинка самой пшеницы
-         if (target && target.closest("#growthStageImg")) {
-            const growthStageImgID = target.getAttribute("data-id");
-
-            if (growthStageImgID)
-               dispatch(pickWheat({ id: +growthStageImgID }));
-         }
-      });
-   });
    return (
       <div className={cn("farmBlockWrap")}>
          <FarmBlock zIndex={9} id={1} />
@@ -77,6 +55,13 @@ const FarmBlock = ({ zIndex, id }: IFarmBlockProps) => {
                // Dataset нужен, чтобы при событие touchmove на document
                // Мы могли найти именно этот блок и срезать именно его
                data-id={id}
+               data-stage={farmBlock?.stage}
+            />
+
+            {/* Монеты, которые будут улетать вверх при сборе пшеницы */}
+            <img
+               src="img/pages/home/mоney.svg"
+               className={cn("farmBlock__money")}
             />
          </div>
       );

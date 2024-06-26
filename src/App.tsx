@@ -14,7 +14,6 @@ import Stats from "./pages/Stats/Stats";
 import People from "./pages/People/People";
 import Invite from "./pages/Invite/Invite";
 
-
 const router = createBrowserRouter(
    createRoutesFromElements(
       <>

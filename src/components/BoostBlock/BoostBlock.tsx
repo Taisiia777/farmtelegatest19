@@ -3,6 +3,8 @@ import styles from "./BoostBlock.module.scss";
 import { TBoostName, TLiga } from "../../types/globalTypes";
 import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
 import Button from "../Button/Button";
+import Popup from "../Popup/Popup";
+import { useState } from "react";
 const cn = classNames.bind(styles);
 
 interface IBoostBlockProps {
@@ -22,6 +24,8 @@ const BoostBlock = ({
    isBlocked = false,
    isBought = false,
 }: IBoostBlockProps) => {
+   const [buyPopup, setBuyPopup] = useState(false);
+
    let content;
 
    // Определяем тип контента
@@ -96,11 +100,18 @@ const BoostBlock = ({
 
             <div className={cn("boost__right")}>
                {/* FIXME: Если здесь передать например "100 000" то влезать не будет */}
-               <Button className={cn("boost__price")}>
+               <Button
+                  className={cn("boost__price")}
+                  onClick={() => setBuyPopup(true)}>
                   <CoinWhiteBg size="small" iconName="BTC" />
                   <span className="textShadow">{price}</span>
                </Button>
             </div>
+
+            {/* Попап с покупкой буста */}
+            <Popup isOpen={buyPopup} onClose={() => setBuyPopup(false)}>
+               <div className={cn("boost__popup")}>Hello world</div>
+            </Popup>
          </div>
       );
    }
