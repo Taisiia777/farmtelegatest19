@@ -1,6 +1,10 @@
 import { useState } from "react";
 
+import { useAppSelector } from "../../store";
+import { useDispatch } from "react-redux";
+
 import { useOutsideClick } from "../../hooks/useOutsideClick";
+import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
 
 import classNames from "classnames/bind";
 import useWindowSize from "../../hooks/useWindowSize";
@@ -23,9 +27,10 @@ import CoinBlock from "../../components/CoinBlock/CoinBlock";
 import Boosts from "./modules/Boosts/Boosts";
 import Account from "./modules/Account";
 import LigaBlock from "../../components/LigaBlock/LigaBlock";
-import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
+import { closeBoostBuyPopup } from "../../store/reducers/boost";
 
 const Home = () => {
+   const dispatch = useDispatch();
    const { width } = useWindowSize();
 
    // Energy popup
@@ -33,6 +38,13 @@ const Home = () => {
    const energyRef = useOutsideClick(
       () => setEnergyPopupOpen(false),
       ["#energy"]
+   );
+
+   // Buy Boost popup
+   const boostState = useAppSelector((state) => state.boost);
+   const boostBuyRef = useOutsideClick(
+      () => dispatch(closeBoostBuyPopup()),
+      ["#buyBoost"]
    );
 
    // Boost popup
@@ -95,6 +107,7 @@ const Home = () => {
 
          {/* Energy popup */}
          <Popup
+            borderlabel="Energy"
             isOpen={energyPopupOpen}
             onClose={() => setEnergyPopupOpen(false)}
             ref={energyRef}>
@@ -112,26 +125,68 @@ const Home = () => {
                {/* Главная иконка молнии */}
                <img
                   src="img/pages/home/energy/energy.svg"
-                  className={cn("popup__energyIcon")}
+                  className={cn("popup__icon")}
                   alt="energy"
                />
 
                <span className={cn("popup__level")}>Level 7</span>
 
-               <div className={cn("popup__earning")}>
-                  <span>+500/h</span>
-                  <img src="img/pages/home/energy/energy.svg" alt="energy" />
+               <div className={cn("popup__bottom")}>
+                  <div className={cn("popup__earning")}>
+                     <span>+500/h</span>
+                     <img src="img/pages/home/energy/energy.svg" alt="energy" />
+                  </div>
+
+                  <Button
+                     className={cn("popup__btn")}
+                     size={width > 380 ? "big" : "normal"}>
+                     <CoinWhiteBg
+                        iconName="BTC"
+                        size={width > 380 ? "normall" : "small"}
+                     />
+                     <span>10 000</span>
+                  </Button>
+               </div>
+            </div>
+         </Popup>
+
+         {/* Boost popup */}
+         <Popup
+            borderlabel={boostState.info.name}
+            isOpen={boostState.isOpen}
+            onClose={() => dispatch(closeBoostBuyPopup())}
+            ref={boostBuyRef}>
+            <div className={cn("popup__body")}>
+               <div className={cn("popup__bg-lightnings")}>
+                  <img src="img/global/lightning.svg" alt="energy" />
+                  <img src="img/global/lightning.svg" alt="energy" />
+                  <img src="img/global/lightning.svg" alt="energy" />
+                  <img src="img/global/lightning.svg" alt="energy" />
+                  <img src="img/global/lightning.svg" alt="energy" />
+                  <img src="img/global/lightning.svg" alt="energy" />
                </div>
 
-               <Button
-                  className={cn("popup__btn")}
-                  size={width > 380 ? "big" : "normal"}>
-                  <CoinWhiteBg
-                     iconName="BTC"
-                     size={width > 380 ? "normall" : "small"}
-                  />
-                  <span>10 000</span>
-               </Button>
+               <img
+                  src={boostState.info.imgSrc}
+                  className={cn("popup__icon", "_boost")}
+               />
+
+               <div className={cn("popup__bottom")}>
+                  <div className={cn("popup__earning")}>
+                     <span>+{boostState.info.earning}/h</span>
+                     <img src="img/pages/home/energy/energy.svg" alt="energy" />
+                  </div>
+
+                  <Button
+                     className={cn("popup__btn")}
+                     size={width > 380 ? "big" : "normal"}>
+                     <CoinWhiteBg
+                        iconName="BTC"
+                        size={width > 380 ? "normall" : "small"}
+                     />
+                     <span>{boostState.info.price}</span>
+                  </Button>
+               </div>
             </div>
          </Popup>
 
@@ -148,37 +203,33 @@ const Home = () => {
                   nodes={[
                      <BoostBlock
                         boostName="mill"
-                        earning={500}
+                        earning={"500"}
                         price="10 000"
                         ligaName="Wooden"
-                        isBought
                      />,
                      <BoostBlock
                         boostName="drone"
-                        earning={500}
+                        earning={"500"}
                         price="15 000"
                         ligaName="Silver"
                      />,
                      <BoostBlock
                         boostName="minicar"
-                        earning={500}
+                        earning={"500"}
                         price="30 000"
                         ligaName="Gold"
-                        isBlocked
                      />,
                      <BoostBlock
                         boostName="car-2"
-                        earning={500}
+                        earning={"500"}
                         price="40 000"
                         ligaName="Fire"
-                        isBlocked
                      />,
                      <BoostBlock
                         boostName="car-3"
-                        earning={500}
+                        earning={"500"}
                         price="70 000"
                         ligaName="Diamond"
-                        isBlocked
                      />,
                   ]}
                />

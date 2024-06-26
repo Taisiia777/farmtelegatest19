@@ -5,17 +5,18 @@ const cn = classNames.bind(styles);
 
 interface IPopupProps {
    isOpen: boolean;
+   borderlabel: string;
    onClose: () => void;
    children: ReactNode;
 }
 
 const Popup = forwardRef(
    (
-      { isOpen, children, onClose }: IPopupProps,
+      { isOpen, children, onClose, borderlabel }: IPopupProps,
       ref: ForwardedRef<HTMLDivElement>
    ) => {
       return (
-         <div className={cn("popup", isOpen && "_open")}>
+         <div className={cn("popup", isOpen && "_open")} id="popup">
             <div className={cn("popup__body")} ref={ref}>
                {/* Popup border */}
                <img
@@ -25,16 +26,13 @@ const Popup = forwardRef(
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("popup__label")}>Energy</strong>
+               <strong className={cn("popup__label")}>{borderlabel}</strong>
 
                {/* Иконка закрытия попапа */}
                <img
                   src="img/global/closeIcon.svg"
                   className={cn("popup__close")}
-                  onClick={() => {
-                     console.log("work!!");
-                     onClose();
-                  }}
+                  onClick={onClose}
                   alt="Закрыть"
                />
 

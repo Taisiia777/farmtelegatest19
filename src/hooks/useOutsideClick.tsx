@@ -17,6 +17,10 @@ export const useOutsideClick = (callback: () => void, ids: string[]) => {
             }
          }
 
+         if (target.closest("#popup")) {
+            canProceed = false;
+         }
+
          if (
             ref.current &&
             !ref.current.contains(event.target as Node) &&

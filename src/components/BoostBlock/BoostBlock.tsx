@@ -1,16 +1,19 @@
 import classNames from "classnames/bind";
 import styles from "./BoostBlock.module.scss";
+const cn = classNames.bind(styles);
+
 import { TBoostName, TLiga } from "../../types/globalTypes";
+
 import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
 import Button from "../Button/Button";
-import Popup from "../Popup/Popup";
-import { useState } from "react";
-const cn = classNames.bind(styles);
+
+import { useDispatch } from "react-redux";
+import { setBoostInfo } from "../../store/reducers/boost";
 
 interface IBoostBlockProps {
    boostName: TBoostName;
    price: string;
-   earning: number;
+   earning: string;
    ligaName: TLiga;
    isBlocked?: boolean;
    isBought?: boolean;
@@ -24,7 +27,18 @@ const BoostBlock = ({
    isBlocked = false,
    isBought = false,
 }: IBoostBlockProps) => {
-   const [buyPopup, setBuyPopup] = useState(false);
+   const dispatch = useDispatch();
+
+   function openBoostBuyPopup() {
+      dispatch(
+         setBoostInfo({
+            earning,
+            price,
+            name: boostName,
+            imgSrc: `img/boosts/${boostName}.svg`,
+         })
+      );
+   }
 
    let content;
 
@@ -98,20 +112,16 @@ const BoostBlock = ({
                </div>
             </div>
 
-            <div className={cn("boost__right")}>
-               {/* FIXME: Если здесь передать например "100 000" то влезать не будет */}
+            <div className={cn("boost__right")} id="buyBoost">
                <Button
                   className={cn("boost__price")}
-                  onClick={() => setBuyPopup(true)}>
+                  onClick={openBoostBuyPopup}>
                   <CoinWhiteBg size="small" iconName="BTC" />
                   <span className="textShadow">{price}</span>
                </Button>
             </div>
 
             {/* Попап с покупкой буста */}
-            <Popup isOpen={buyPopup} onClose={() => setBuyPopup(false)}>
-               <div className={cn("boost__popup")}>Hello world</div>
-            </Popup>
          </div>
       );
    }

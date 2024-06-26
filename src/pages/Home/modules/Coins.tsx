@@ -11,7 +11,7 @@ interface CoinsProps {
 const Coins = ({ quantity }: CoinsProps) => {
    return (
       <div className={cn("coins")}>
-         <CoinWhiteBg iconName="BTC" />
+         <CoinWhiteBg iconName="BTC" rotate />
          <span className="textShadow">{quantity} B</span>
       </div>
    );

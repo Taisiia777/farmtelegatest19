@@ -84,7 +84,7 @@ const initialState: IGrowthStages = {
    ],
 };
 
-export const counterSlice = createSlice({
+export const growthStagesSlice = createSlice({
    name: "growthStages",
    initialState,
    reducers: {
@@ -101,9 +101,9 @@ export const counterSlice = createSlice({
    },
 });
 
-export const { pickWheat } = counterSlice.actions;
+export const { pickWheat } = growthStagesSlice.actions;
 
 export const selectEarthBlock = (state: RootState, id: number) =>
    state.growthStages.blocks.find((block) => block.id === id);
 
-export default counterSlice.reducer;
+export default growthStagesSlice.reducer;

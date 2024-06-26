@@ -1,7 +1,7 @@
 @import '/src/index.scss';
 
 .popupListWrap {
-   position: relative;
+   position: fixed;
    z-index: 100;
    top: rem(200);
    width: 100%;

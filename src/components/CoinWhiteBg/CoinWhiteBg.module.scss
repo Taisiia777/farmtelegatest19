@@ -1,5 +1,9 @@
 @import '/src/index.scss';
 
+.rotate {
+   animation: rotateY 6s linear infinite;
+}
+
 .wrap {
    display: flex;
    align-items: center;
@@ -8,7 +12,7 @@
    width: rem(32);
    height: rem(31);
    border-radius: 100%;
-   animation: rotateY 4.5s linear infinite;
+
 
    &._huge {
       width: rem(60);

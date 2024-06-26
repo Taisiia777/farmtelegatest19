@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, useStore } from "react-redux";
-import growthStages from "./reducers/growthStages";
+import growthStagesSlice from "./reducers/growthStages";
+import boostSlice from "./reducers/boost";
 
 const store = configureStore({
    reducer: {
-      growthStages: growthStages,
+      growthStages: growthStagesSlice,
+      boost: boostSlice,
    },
 });
 

@@ -321,6 +321,7 @@
       top: 0;
       left: 0;
       width: 100%;
+      height: calc(100% - rem(60));
 
       display: flex;
       flex-direction: column;
@@ -329,6 +330,7 @@
 
       @media screen and (max-width:rem(400)) {
          padding-top: rem(50);
+         height: calc(100% - rem(50));
       }
    }
 
@@ -371,28 +373,44 @@
 
    }
 
-   &__energyIcon {
+   &__icon {
       display: block;
       width: rem(85);
-      height: rem(105);
-      margin-bottom: rem(10);
+      object-fit: contain;
 
       @media screen and (max-width:em(415)) {
          width: rem(75);
-         height: rem(95);
       }
 
       @media screen and (max-width:em(360)) {
          width: rem(65);
-         height: rem(85);
+      }
+
+      &._boost {
+         display: block;
+         margin-top: rem(10);
+         max-width: rem(100);
+         width: 100%;
+
+         max-height: rem(100);
+         height: 100%;
+
+         object-fit: contain;
+
+         @media screen and (max-width:em(415)) {
+            width: rem(90);
+         }
+
+         @media screen and (max-width:em(360)) {
+            width: rem(80);
+         }
       }
    }
 
    &__level {
       display: block;
       font-size: rem(16);
-      margin-bottom: rem(17);
-
+      padding-top: rem(10);
 
       @media screen and (max-width:em(380)) {
          margin-bottom: rem(10);
@@ -400,10 +418,18 @@
 
    }
 
+   &__bottom {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+   }
+
    &__earning {
       display: flex;
       align-items: center;
       gap: rem(3);
+      justify-content: center;
       font-size: rem(20);
       margin-bottom: rem(10);
 
