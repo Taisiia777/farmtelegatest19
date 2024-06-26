@@ -7,16 +7,18 @@ interface CoinWhiteBgProps {
    iconName: TCoin;
    size?: "small" | "normall" | "huge";
    rotate?: boolean;
+   className?: string;
 }
 
 const CoinWhiteBg = ({
    iconName,
    size = "normall",
    rotate = false,
+   className,
 }: CoinWhiteBgProps) => {
    return (
       <div className={cn(rotate && "rotate")}>
-         <div className={cn("wrap", `_${size}`)}>
+         <div className={cn("wrap", `_${size}`, className)}>
             <img src={`img/coins/${iconName}.svg`} alt={iconName} />
          </div>
       </div>

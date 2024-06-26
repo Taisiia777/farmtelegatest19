@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export const useOutsideClick = (callback: () => void, ids: string[]) => {
+export const useOutsideClick = (callback: () => void, ids?: string[]) => {
    const ref = useRef<any>(null);
 
    useEffect(() => {
@@ -9,16 +9,14 @@ export const useOutsideClick = (callback: () => void, ids: string[]) => {
 
          const target = event.target as HTMLElement;
 
-         for (let i = 0; i < ids.length; i++) {
-            const id = ids[i];
+         if (ids && ids.length > 0) {
+            for (let i = 0; i < ids.length; i++) {
+               const id = ids[i];
 
-            if (target.closest(id)) {
-               canProceed = false;
+               if (target.closest(id)) {
+                  canProceed = false;
+               }
             }
-         }
-
-         if (target.closest("#popup")) {
-            canProceed = false;
          }
 
          if (

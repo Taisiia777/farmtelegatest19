@@ -1,34 +1,32 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { TCoin } from "../../types/globalTypes";
 
-export interface IBoostState {
+export interface ICoinState {
    info: {
-      name: string;
-      imgSrc: string;
+      name: TCoin;
       earning: string;
       price: string;
    };
    isOpen: boolean;
 }
 
-const initialState: IBoostState = {
+const initialState: ICoinState = {
    info: {
-      name: "",
-      imgSrc: "",
+      name: "BTC",
       earning: "",
       price: "",
    },
    isOpen: false,
 };
 
-export const boostSlice = createSlice({
+export const coinSlice = createSlice({
    name: "growthStages",
    initialState,
    reducers: {
-      setBoostInfo: (
+      setCoinIfno: (
          state,
          action: PayloadAction<{
-            name: string;
-            imgSrc: string;
+            name: TCoin;
             earning: string;
             price: string;
          }>
@@ -36,12 +34,12 @@ export const boostSlice = createSlice({
          state.info = action.payload;
          state.isOpen = true;
       },
-      closeBoostBuyPopup: (state) => {
+      closeCoinBuyPopup: (state) => {
          state.isOpen = false;
       },
    },
 });
 
-export const { setBoostInfo, closeBoostBuyPopup } = boostSlice.actions;
+export const { setCoinIfno, closeCoinBuyPopup } = coinSlice.actions;
 
-export default boostSlice.reducer;
+export default coinSlice.reducer;

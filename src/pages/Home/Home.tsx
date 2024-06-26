@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { RefObject, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { useAppSelector } from "../../store";
-import { useDispatch } from "react-redux";
+import { closeBoostBuyPopup } from "../../store/reducers/boost";
+import { closeCoinBuyPopup } from "../../store/reducers/coin";
 
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
@@ -27,7 +29,6 @@ import CoinBlock from "../../components/CoinBlock/CoinBlock";
 import Boosts from "./modules/Boosts/Boosts";
 import Account from "./modules/Account";
 import LigaBlock from "../../components/LigaBlock/LigaBlock";
-import { closeBoostBuyPopup } from "../../store/reducers/boost";
 
 const Home = () => {
    const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const Home = () => {
       () => setEnergyPopupOpen(false),
       ["#energy"]
    );
+   const energyMoneyAnimRef = useRef<HTMLImageElement>(null);
 
    // Buy Boost popup
    const boostState = useAppSelector((state) => state.boost);
@@ -51,18 +53,31 @@ const Home = () => {
    const [boostPopupOpen, setBoostPopupOpen] = useState(false);
    const boostRef = useOutsideClick(
       () => setBoostPopupOpen(false),
-      ["#menu", "#tabs"]
+      ["#menu", "#tabs", "#popup"]
    );
    useClosePopupByTgButton({
       isOpen: boostPopupOpen,
       closePopup: () => setBoostPopupOpen(false),
    });
+   const boostMoneyAnimRef = useRef<HTMLImageElement>(null);
+
    // Активный таб в boost popup
    const [activeTab, setActiveTab] = useState("BOOST");
 
+   // buyCoin popup
+   const coinState = useAppSelector((state) => state.coin);
+   const coinMoneyAnimRef = useRef<HTMLImageElement>(null);
+   const coinBuyRef = useOutsideClick(
+      () => dispatch(closeCoinBuyPopup()),
+      ["#buyCoin"]
+   );
+
    // Liga popup
    const [ligaPopupOpen, setLigaPopupOpen] = useState(false);
-   const ligaRef = useOutsideClick(() => setLigaPopupOpen(false), ["#league"]);
+   const ligaRef = useOutsideClick(
+      () => setLigaPopupOpen(false),
+      ["#league", "#popup"]
+   );
    useClosePopupByTgButton({
       isOpen: ligaPopupOpen,
       closePopup: () => setLigaPopupOpen(false),
@@ -71,6 +86,16 @@ const Home = () => {
    // True если хотя бы один попап открыт
    // но кроме попапа Energy!
    const isPopupOpen = boostPopupOpen || ligaPopupOpen;
+
+   // Осуществляет покупку в попапе и делает анимацию монет
+   function buy(ref: RefObject<HTMLImageElement>, callback: () => void) {
+      ref.current?.classList.add(cn("_anim"));
+
+      setTimeout(() => {
+         ref.current?.classList.remove(cn("_anim"));
+         callback();
+      }, 500);
+   }
 
    return (
       <div className={cn("wrap")}>
@@ -139,13 +164,21 @@ const Home = () => {
 
                   <Button
                      className={cn("popup__btn")}
-                     size={width > 380 ? "big" : "normal"}>
+                     size={width > 380 ? "big" : "normal"}
+                     onClick={() =>
+                        buy(boostMoneyAnimRef, () => setEnergyPopupOpen(false))
+                     }>
                      <CoinWhiteBg
                         iconName="BTC"
                         size={width > 380 ? "normall" : "small"}
                      />
                      <span>10 000</span>
                   </Button>
+                  <img
+                     src="img/pages/home/mоney.svg"
+                     className={cn("popup__money-anim")}
+                     ref={energyMoneyAnimRef}
+                  />
                </div>
             </div>
          </Popup>
@@ -179,13 +212,73 @@ const Home = () => {
 
                   <Button
                      className={cn("popup__btn")}
-                     size={width > 380 ? "big" : "normal"}>
+                     size={width > 380 ? "big" : "normal"}
+                     onClick={() =>
+                        buy(boostMoneyAnimRef, () =>
+                           dispatch(closeBoostBuyPopup())
+                        )
+                     }>
                      <CoinWhiteBg
                         iconName="BTC"
                         size={width > 380 ? "normall" : "small"}
                      />
                      <span>{boostState.info.price}</span>
                   </Button>
+                  <img
+                     src="img/pages/home/mоney.svg"
+                     className={cn("popup__money-anim")}
+                     ref={boostMoneyAnimRef}
+                  />
+               </div>
+            </div>
+         </Popup>
+
+         {/* Coin popup */}
+         <Popup
+            borderlabel={coinState.info.name}
+            isOpen={coinState.isOpen}
+            onClose={() => dispatch(closeCoinBuyPopup())}
+            ref={coinBuyRef}>
+            <div className={cn("popup__body")}>
+               <div className={cn("popup__bg-lightnings")}>
+                  <img src="img/global/lightning.svg" alt="energy" />
+                  <img src="img/global/lightning.svg" alt="energy" />
+                  <img src="img/global/lightning.svg" alt="energy" />
+                  <img src="img/global/lightning.svg" alt="energy" />
+                  <img src="img/global/lightning.svg" alt="energy" />
+                  <img src="img/global/lightning.svg" alt="energy" />
+               </div>
+
+               <CoinWhiteBg
+                  className={cn("popup__icon", "_coin")}
+                  iconName={coinState.info.name}
+               />
+
+               <div className={cn("popup__bottom")}>
+                  <div className={cn("popup__earning")}>
+                     <span>+{coinState.info.earning}/h</span>
+                     <img src="img/pages/home/energy/energy.svg" alt="energy" />
+                  </div>
+
+                  <Button
+                     className={cn("popup__btn")}
+                     size={width > 380 ? "big" : "normal"}
+                     onClick={() =>
+                        buy(coinMoneyAnimRef, () =>
+                           dispatch(closeCoinBuyPopup())
+                        )
+                     }>
+                     <CoinWhiteBg
+                        iconName="BTC"
+                        size={width > 380 ? "normall" : "small"}
+                     />
+                     <span>{coinState.info.price}</span>
+                  </Button>
+                  <img
+                     src="img/pages/home/mоney.svg"
+                     className={cn("popup__money-anim")}
+                     ref={coinMoneyAnimRef}
+                  />
                </div>
             </div>
          </Popup>
@@ -212,24 +305,28 @@ const Home = () => {
                         earning={"500"}
                         price="15 000"
                         ligaName="Silver"
+                        isBought
                      />,
                      <BoostBlock
                         boostName="minicar"
                         earning={"500"}
                         price="30 000"
                         ligaName="Gold"
+                        isBlocked
                      />,
                      <BoostBlock
                         boostName="car-2"
                         earning={"500"}
                         price="40 000"
                         ligaName="Fire"
+                        isBlocked
                      />,
                      <BoostBlock
                         boostName="car-3"
                         earning={"500"}
                         price="70 000"
                         ligaName="Diamond"
+                        isBlocked
                      />,
                   ]}
                />

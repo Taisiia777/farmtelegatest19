@@ -21,6 +21,13 @@ const FarmBloks = () => {
          <FarmBlock zIndex={6} id={7} />
          <FarmBlock zIndex={5} id={8} />
          <FarmBlock zIndex={4} id={9} />
+
+         {/* Тень */}
+         <img
+            src="img/pages/home/earth-blocks-bg.svg"
+            className={cn("farmBlock__shadow")}
+            alt=""
+         />
       </div>
    );
 };

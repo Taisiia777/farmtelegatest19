@@ -10,8 +10,17 @@ interface IAccountProps {
 const Account = ({ nickname, imgSrc }: IAccountProps) => {
    return (
       <div className={cn("account")}>
-         <img src={imgSrc} alt="foto" />
-         <strong className="textShadow">{nickname}</strong>
+         <div className={cn("account__info")}>
+            <img src={imgSrc} className={cn("account__avatar")} alt="foto" />
+            <strong className="textShadow">{nickname}</strong>
+         </div>
+
+         {/* Border */}
+         <img
+            src="img/pages/home/account/board.svg"
+            className={cn("account__border")}
+            alt=""
+         />
       </div>
    );
 };

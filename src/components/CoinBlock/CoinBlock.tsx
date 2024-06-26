@@ -6,6 +6,8 @@ import { TCoin } from "../../types/globalTypes";
 import classNames from "classnames/bind";
 import styles from "./CoinBlock.module.scss";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCoinIfno } from "../../store/reducers/coin";
 const cn = classNames.bind(styles);
 
 interface ICoinBlockProps {
@@ -25,14 +27,24 @@ const CoinBlock = ({
    price,
    isActive = false,
 }: ICoinBlockProps) => {
+   const dispatch = useDispatch();
    const navigate = useNavigate();
+
+   function openCoinBuyPopup() {
+      dispatch(
+         setCoinIfno({
+            earning,
+            price,
+            name: coinName,
+         })
+      );
+   }
 
    let content;
 
    // Определяем тип контента монеты
    // в зависимости от того купленна ли она уже
    // или может заблокирована
-
    if (isBought) {
       content = (
          <div className={cn("coinBlock")}>
@@ -110,8 +122,10 @@ const CoinBlock = ({
                   </div>
                </div>
             </div>
-            <div className={cn("coinBlock__right")}>
-               <Button className={cn("coinBlock__price")}>
+            <div className={cn("coinBlock__right")} id="buyCoin">
+               <Button
+                  className={cn("coinBlock__price")}
+                  onClick={openCoinBuyPopup}>
                   <CoinWhiteBg size="small" iconName={"BTC"} />
                   <span>{price}</span>
                </Button>

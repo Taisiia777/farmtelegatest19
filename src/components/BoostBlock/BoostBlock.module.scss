@@ -7,6 +7,10 @@
    height: 93%;
    width: 100%;
 
+   &._blur {
+      filter: blur(6px);
+   }
+
    &__left {
       display: flex;
       align-items: center;
@@ -76,9 +80,14 @@
 }
 
 .blocked {
+   position: absolute;
+   z-index: 10;
+   top: 10%;
+   left: 2%;
+   right: 2%;
+   bottom: 20%;
+
    display: flex;
-   width: 100%;
-   height: 93%;
    align-items: center;
    justify-content: center;
    gap: rem(5);
