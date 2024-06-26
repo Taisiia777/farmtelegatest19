@@ -14,6 +14,7 @@ import Stats from "./pages/Stats/Stats";
 import People from "./pages/People/People";
 import Invite from "./pages/Invite/Invite";
 
+
 const router = createBrowserRouter(
    createRoutesFromElements(
       <>
@@ -30,6 +31,7 @@ tg.ready();
 tg.enableClosingConfirmation();
 
 const App = () => {
+   // Чтобы tg не закрывался когда делаем touchmove вниз
    useEffect(() => {
       const overflow = 100;
       document.body.style.overflowY = "hidden";

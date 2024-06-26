@@ -14,11 +14,6 @@
    width: 30%;
    height: 10.67%;
 
-   // @media screen and (max-width:em(420)) {
-   //    width: rem(120);
-   //    height: rem(84);
-   // }
-
    &__earth {
       position: absolute;
       top: 0;
@@ -35,29 +30,26 @@
       &._first {
          top: 26%;
          left: 40%;
-         width: rem(24);
-         height: rem(15);
+         width: calc(24 / 129 * 100%);
       }
 
       &._second {
          top: -2%;
          left: 38%;
-         width: rem(26);
-         height: rem(38);
+         width: calc(26 / 129 * 100%);
       }
 
       &._third {
          top: -40%;
          left: 36%;
-         width: rem(41);
-         height: rem(76);
+         width: calc(41 / 129 * 100%);
       }
 
       &._fourth {
-         top: -105%;
+         top: -90%;
          left: 22%;
-         width: rem(75);
-         height: rem(144);
+         width: calc(75 / 129 * 100%);
+
       }
    }
 

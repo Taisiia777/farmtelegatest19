@@ -7,11 +7,12 @@ export const useOutsideClick = (callback: () => void, ids: string[]) => {
       const handleClickOutside = (event: MouseEvent) => {
          let canProceed = true;
 
+         const target = event.target as HTMLElement;
+
          for (let i = 0; i < ids.length; i++) {
             const id = ids[i];
 
-            //@ts-expect-error
-            if (event.target!.closest(id)) {
+            if (target.closest(id)) {
                canProceed = false;
             }
          }

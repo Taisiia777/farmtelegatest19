@@ -15,10 +15,10 @@
    flex-direction: column;
    align-items: center;
    gap: rem(6);
-   padding-top: rem(80);
+   padding-top: rem(50);
 
-   @media screen and (max-height:em(820)) {
-      padding-top: rem(50);
+   @media screen and (max-width:em(390)) {
+      padding-top: rem(30);
    }
 
 }
@@ -209,7 +209,8 @@
 
          &:nth-child(4) {
             @media screen and (max-width:em(420)) {
-                  transform: translateY(4%);
+               transform: translateY(4%);
+
                & img {
                   width: rem(50);
 
@@ -272,17 +273,20 @@
    }
 
    &__drone {
-      top: 23%;
+      z-index: 10;
+      top: 20%;
       left: 40%;
       width: 20%;
 
-      @media screen and (max-width:em(410)) {
-         top: 25%;
+      @media screen and (max-height:em(850)) {
+         top: 22%;
       }
 
-      @media screen and (max-width:em(380)) {
-         top: 27%;
+      @media screen and (max-height:em(820)) and (max-width:em(415)) {
+         width: 19%;
+         top: 23.3%;
       }
+
    }
 
    &__mini-car {
