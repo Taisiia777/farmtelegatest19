@@ -67,7 +67,7 @@ const FarmBlock = ({ zIndex, id }: IFarmBlockProps) => {
 
             {/* Монеты, которые будут улетать вверх при сборе пшеницы */}
             <img
-               src="img/pages/home/mоney.svg"
+               src="img/pages/home/money.svg"
                className={cn("farmBlock__money")}
             />
          </div>

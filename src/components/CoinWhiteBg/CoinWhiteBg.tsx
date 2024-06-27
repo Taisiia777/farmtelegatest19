@@ -4,14 +4,14 @@ import { TCoin } from "../../types/globalTypes";
 const cn = classNames.bind(styles);
 
 interface CoinWhiteBgProps {
-   iconName: TCoin;
+   iconName?: TCoin;
    size?: "small" | "normall" | "huge";
    rotate?: boolean;
    className?: string;
 }
 
 const CoinWhiteBg = ({
-   iconName,
+   iconName = "BTC",
    size = "normall",
    rotate = false,
    className,

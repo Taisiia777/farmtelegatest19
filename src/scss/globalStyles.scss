@@ -6,6 +6,10 @@
    text-shadow: 0 0 2.4px rgba(0, 0, 0, 0.25);
 }
 
+.moneyAnim {
+   animation: moneyDisappear 0.4s ease-in;
+}
+
 @keyframes appear {
    0% {
       transform: translateY(40%);
