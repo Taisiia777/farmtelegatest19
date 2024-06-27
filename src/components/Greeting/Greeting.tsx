@@ -4,12 +4,15 @@ import classNames from "classnames/bind";
 import styles from "./Greeting.module.scss";
 import Button from "../Button/Button";
 import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
+import { useAppDispatch, useAppSelector } from "../../store";
+import { finishGreeting } from "../../store/reducers/greeting";
 const cn = classNames.bind(styles);
 
 const Greeting = () => {
-   const [step, setStep] = useState(1);
+   const dispatch = useAppDispatch();
+   const isFinish = useAppSelector((state) => state.greeting.isFinished);
 
-   const [isFinish, setIsFinish] = useState(false);
+   const [step, setStep] = useState(1);
 
    const coinMoneyAnimRef = useRef<HTMLImageElement>(null);
 
@@ -22,7 +25,7 @@ const Greeting = () => {
 
       setTimeout(() => {
          coinMoneyAnimRef.current?.classList.remove("moneyAnim");
-         setIsFinish(true);
+         dispatch(finishGreeting());
       }, 500);
    }
 

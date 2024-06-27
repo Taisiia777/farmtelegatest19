@@ -327,6 +327,17 @@
    }
 }
 
+.earn {
+   &__label {
+      top: 11% !important;
+      font-size: rem(13) !important;
+
+      @media screen and (max-width:em(400)) {
+         font-size: rem(11) !important;
+      }
+   }
+}
+
 .popup {
 
    &__body {

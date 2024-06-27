@@ -6,9 +6,10 @@ const cn = classNames.bind(styles);
 
 interface IMenuProps {
    onBoostOpen: () => void;
+   onEarnOpen: () => void;
 }
 
-const Menu = ({ onBoostOpen }: IMenuProps) => {
+const Menu = ({ onBoostOpen, onEarnOpen }: IMenuProps) => {
    const navigate = useNavigate();
    return (
       <>
@@ -23,14 +24,7 @@ const Menu = ({ onBoostOpen }: IMenuProps) => {
             {/* Menu elements */}
             <div className={cn("menu__body")}>
                <ul className={cn("menu__list")}>
-                  <li
-                     onClick={() =>
-                        navigate(Routes.PEOPLE, {
-                           state: {
-                              label: "FARM FRENDS",
-                           },
-                        })
-                     }>
+                  <li onClick={() => onEarnOpen()}>
                      <img src="img/pages/home/menu/earn.svg" alt="Earn" />
                      <span className="textShadow">EARN</span>
                   </li>

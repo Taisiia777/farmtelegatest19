@@ -1,14 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, useStore } from "react-redux";
+
 import growthStagesSlice from "./reducers/growthStages";
 import boostSlice from "./reducers/boost";
 import coinSlice from "./reducers/coin";
+import greetingSlice from "./reducers/greeting";
 
 const store = configureStore({
    reducer: {
       growthStages: growthStagesSlice,
       boost: boostSlice,
       coin: coinSlice,
+      greeting: greetingSlice,
    },
 });
 
