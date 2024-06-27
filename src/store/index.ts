@@ -5,6 +5,7 @@ import growthStagesSlice from "./reducers/growthStages";
 import boostSlice from "./reducers/boost";
 import coinSlice from "./reducers/coin";
 import greetingSlice from "./reducers/greeting";
+import preloaderSlice from "./reducers/preloader";
 
 const store = configureStore({
    reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
       boost: boostSlice,
       coin: coinSlice,
       greeting: greetingSlice,
+      preloader: preloaderSlice,
    },
 });
 

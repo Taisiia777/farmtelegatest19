@@ -1,7 +1,7 @@
 @import '/src/index.scss';
 
 .greeting {
-   position: fixed;
+   position: absolute;
    z-index: 1000;
    top: 0;
    left: 0;
@@ -125,16 +125,18 @@
          top: 19%;
          left: -15%;
       }
+
       &._third {
          object-fit: contain;
          width: 80%;
          top: 9%;
          left: -28%;
       }
+
       &._fourth {
          object-fit: contain;
          width: 78%;
-         top:13%;
+         top: 13%;
          left: -20%;
       }
    }

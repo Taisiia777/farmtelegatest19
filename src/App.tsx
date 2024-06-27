@@ -13,15 +13,16 @@ import Home from "./pages/Home/Home";
 import Stats from "./pages/Stats/Stats";
 import People from "./pages/People/People";
 import Invite from "./pages/Invite/Invite";
+import Preloader from "./components/Preloader/Preloader";
 
 const router = createBrowserRouter(
    createRoutesFromElements(
-      <>
+      <Route element={<Preloader />}>
          <Route path={Routes.HOME} element={<Home />} />
          <Route path={Routes.STATS} element={<Stats />} />
          <Route path={Routes.PEOPLE} element={<People />} />
          <Route path={Routes.INVITE} element={<Invite />} />
-      </>
+      </Route>
    )
 );
 

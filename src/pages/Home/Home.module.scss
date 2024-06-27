@@ -5,6 +5,10 @@
    background: linear-gradient(#75B245, #8BC346, #BADE4A);
    height: 100dvh;
    overflow: hidden;
+
+   &._hidden {
+      visibility: hidden;
+   }
 }
 
 .top {
@@ -89,6 +93,8 @@
    width: fit-content;
    margin: 0 auto;
    font-size: rem(14);
+
+   margin-bottom: rem(10);
 
    img {
       width: rem(21);
@@ -201,6 +207,10 @@
       padding: rem(10) rem(15) 0 rem(10);
       margin-bottom: rem(8);
 
+      @media screen and (max-width:em(400)) {
+         font-size: rem(14.7);
+      }
+
       li {
          position: relative;
          display: flex;
@@ -236,8 +246,6 @@
             }
          }
       }
-
-
    }
 }
 
@@ -334,6 +342,10 @@
 
       @media screen and (max-width:em(400)) {
          font-size: rem(11) !important;
+      }
+
+      @media screen and (max-width:em(380)) {
+         top: 15% !important;
       }
    }
 }

@@ -36,6 +36,8 @@ const Home = () => {
    const dispatch = useDispatch();
    const { width } = useWindowSize();
 
+   const isLoading = useAppSelector((state) => state.preloader.isLodaing);
+
    // Energy popup
    const [energyPopupOpen, setEnergyPopupOpen] = useState(false);
    const energyRef = useOutsideClick(
@@ -113,18 +115,19 @@ const Home = () => {
    }
 
    return (
-      <div className={cn("wrap")}>
+      <div className={cn("wrap", isLoading && "_hidden")}>
          <div className={cn("top")}>
             <Account
                nickname="dimamrkv"
                imgSrc={"img/pages/people/person.png"}
             />
             <Coins quantity={"349.917"} />
-            <Liga liga="Diamond" onLigaOpen={() => setEarnPopupOpen(true)} />
          </div>
 
          {!isPopupOpen && (
             <div className={cn("bottom")}>
+               {/* Лига */}
+               <Liga liga="Diamond" onLigaOpen={() => setEarnPopupOpen(true)} />
                <Energy
                   total={1000}
                   current={300}
