@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface ICoinState {
+export interface IGreetingState {
    isFinished: boolean;
 }
 
-const initialState: ICoinState = {
+const initialState: IGreetingState = {
    isFinished: false,
 };
 
 export const greetingSlice = createSlice({
-   name: "growthStages",
+   name: "greeting",
    initialState,
    reducers: {
       finishGreeting: (state) => {

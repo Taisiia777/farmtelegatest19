@@ -12,6 +12,9 @@ const Greeting = () => {
    const dispatch = useAppDispatch();
    const isFinish = useAppSelector((state) => state.greeting.isFinished);
 
+   // Состояние прелоудреа
+   const isLoading = useAppSelector((state) => state.preloader.isLodaing);
+
    const [step, setStep] = useState(1);
 
    const coinMoneyAnimRef = useRef<HTMLImageElement>(null);
@@ -30,7 +33,7 @@ const Greeting = () => {
    }
 
    return (
-      <div className={cn("greeting", !isFinish && "_active")}>
+      <div className={cn("greeting", !isLoading && !isFinish && "_active")}>
          {/* Introduction */}
          {step === 1 && (
             <div className={cn("greeting__body", "_first")}>

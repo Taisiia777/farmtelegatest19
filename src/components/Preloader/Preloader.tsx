@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
 
-import classNames from "classnames/bind";
-import styles from "./Preloader.module.scss";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { loadingToggle } from "../../store/reducers/preloader";
+
+import styles from "./Preloader.module.scss";
+import classNames from "classnames/bind";
 const cn = classNames.bind(styles);
 
 const Preloader = () => {

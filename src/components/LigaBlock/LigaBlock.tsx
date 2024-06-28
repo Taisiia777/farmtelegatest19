@@ -42,7 +42,7 @@ const LigaBlock = ({ ligaName, percent, price, acitve }: ILigaBlockProps) => {
                   disabled={!acitve}>
                   <CoinWhiteBg iconName="BTC" size="small" />
                   <span
-                     className={cn("ligaBlockInfo__price")}
+                     className={cn("ligaBlockInfo__price") + " textShadow"}
                      style={{
                         fontSize: priceFontSize + "px",
                      }}>
