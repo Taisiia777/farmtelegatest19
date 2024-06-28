@@ -49,7 +49,7 @@ const CoinBlock = ({
       content = (
          <div className={cn("coinBlock")}>
             <div className={cn("coinBlock__left")}>
-               <CoinWhiteBg rotate size="huge" iconName={coinName} />
+               <CoinWhiteBg size="huge" iconName={coinName} />
                <div className={cn("coinBlock__info")}>
                   <h3 className="textShadow">{coinName}</h3>
                   <div className={cn("coinBlock__earning")}>
