@@ -14,9 +14,24 @@
       margin-bottom: em(10, 32);
    }
 
-   &__invite-btn-wrap {
+   &__invite-btn {
+      position: relative;
+      z-index: 20;
+
       width: fit-content;
       margin: 0 auto;
+   }
+
+   &__invite-btn-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 80%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
    }
 
    &__invite-btn {
@@ -107,4 +122,10 @@
       top: 20%;
       left: 10%;
    }
+}
+
+.close {
+   position: absolute;
+   top: 20%;
+   right: 5.8%;
 }

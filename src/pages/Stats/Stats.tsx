@@ -7,6 +7,7 @@ import styles from "./Stats.module.scss";
 import { useEffect } from "react";
 import { tg } from "../../constants/app";
 import { useNavigate } from "react-router-dom";
+import { Routes } from "../../routes/routes";
 const cn = classNames.bind(styles);
 
 const Stats = () => {
@@ -19,73 +20,85 @@ const Stats = () => {
    }, [navigate]);
 
    return (
-      <div className={cn("stats")}>
-         <small className={cn("stats__top-label")}>Total money in game</small>
-         <Coins quantity={1000} />
+      <>
+         <div className={cn("stats")}>
+            <small className={cn("stats__top-label")}>
+               Total money in game
+            </small>
+            <Coins quantity={1000} />
 
-         <div className={cn("stats__body")}>
-            <BorderBlock
-               label="Online"
-               imgSrc="img/pages/stats/star.svg"
-               number="4 392"
+            <div className={cn("stats__body")}>
+               <BorderBlock
+                  label="Online"
+                  imgSrc="img/pages/stats/star.svg"
+                  number="4 392"
+               />
+               <BorderBlock
+                  label="Daily users"
+                  imgSrc="img/pages/stats/rubin.svg"
+                  number="789"
+               />
+               <BorderBlock
+                  label="Total players"
+                  imgSrc="img/pages/stats/medal.svg"
+                  number="152 423"
+               />
+            </div>
+
+            {/* Задний зеленный фон */}
+            <GreenBg />
+
+            {/* Элементы заднего фона */}
+            <img
+               src="img/pages/stats/stats.svg"
+               className={cn("stats-img-bg", "_1")}
+               alt="stats bg"
             />
-            <BorderBlock
-               label="Daily users"
-               imgSrc="img/pages/stats/rubin.svg"
-               number="789"
+            <img
+               src="img/pages/stats/stats.svg"
+               className={cn("stats-img-bg", "_2")}
+               alt="stats bg"
             />
-            <BorderBlock
-               label="Total players"
-               imgSrc="img/pages/stats/medal.svg"
-               number="152 423"
+            <img
+               src="img/pages/stats/stats.svg"
+               className={cn("stats-img-bg", "_3")}
+               alt="stats bg"
+            />
+            <img
+               src="img/pages/stats/stats.svg"
+               className={cn("stats-img-bg", "_4")}
+               alt="stats bg"
+            />
+            <img
+               src="img/pages/stats/stats.svg"
+               className={cn("stats-img-bg", "_5")}
+               alt="stats bg"
+            />
+            <img
+               src="img/pages/stats/stats.svg"
+               className={cn("stats-img-bg", "_6")}
+               alt="stats bg"
+            />
+            <img
+               src="img/pages/stats/stats.svg"
+               className={cn("stats-img-bg", "_7")}
+               alt="stats bg"
+            />
+            <img
+               src="img/pages/stats/stats.svg"
+               className={cn("stats-img-bg", "_8")}
+               alt="stats bg"
             />
          </div>
 
-         {/* Задний зеленный фон */}
-         <GreenBg />
-
-         {/* Элементы заднего фона */}
+         {/* Кнопка закрытия страницы */}
          <img
-            src="img/pages/stats/stats.svg"
-            className={cn("stats-img-bg", "_1")}
-            alt="stats bg"
+            src="img/global/closeIcon.svg"
+            onClick={() => navigate(Routes.HOME)}
+            className={cn("close")}
+            alt="Close"
          />
-         <img
-            src="img/pages/stats/stats.svg"
-            className={cn("stats-img-bg", "_2")}
-            alt="stats bg"
-         />
-         <img
-            src="img/pages/stats/stats.svg"
-            className={cn("stats-img-bg", "_3")}
-            alt="stats bg"
-         />
-         <img
-            src="img/pages/stats/stats.svg"
-            className={cn("stats-img-bg", "_4")}
-            alt="stats bg"
-         />
-         <img
-            src="img/pages/stats/stats.svg"
-            className={cn("stats-img-bg", "_5")}
-            alt="stats bg"
-         />
-         <img
-            src="img/pages/stats/stats.svg"
-            className={cn("stats-img-bg", "_6")}
-            alt="stats bg"
-         />
-         <img
-            src="img/pages/stats/stats.svg"
-            className={cn("stats-img-bg", "_7")}
-            alt="stats bg"
-         />
-         <img
-            src="img/pages/stats/stats.svg"
-            className={cn("stats-img-bg", "_8")}
-            alt="stats bg"
-         />
-      </div>
+      </>
    );
 };
 

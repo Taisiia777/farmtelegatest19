@@ -29,8 +29,8 @@ import CoinBlock from "../../components/CoinBlock/CoinBlock";
 import Boosts from "./modules/Boosts/Boosts";
 import Account from "./modules/Account";
 import LigaBlock from "../../components/LigaBlock/LigaBlock";
-import Greeting from "../../components/Greeting/Greeting";
 import FreindOrSpecialBlock from "../../components/FreindOrSpecialBlock/FreindOrSpecialBlock";
+import Greeting from "../../components/Greeting/Greeting";
 import DailyBonus from "../../components/DailyBonus/DailyBonus";
 
 const Home = () => {
@@ -90,17 +90,6 @@ const Home = () => {
       ["#buyCoin"]
    );
 
-   // Liga popup
-   // const [ligaPopupOpen, setLigaPopupOpen] = useState(false);
-   // const ligaRef = useOutsideClick(
-   //    () => setLigaPopupOpen(false),
-   //    ["#league", "#popup"]
-   // );
-   // useClosePopupByTgButton({
-   //    isOpen: ligaPopupOpen,
-   //    closePopup: () => setLigaPopupOpen(false),
-   // });
-
    // True если хотя бы один попап открыт
    // но кроме попапа Energy!
    const isPopupOpen = boostPopupOpen || earnPopupOpen;
@@ -157,41 +146,40 @@ const Home = () => {
                <Boosts />
             </div>
 
-            {/* Energy popup */}
+            {/* Rain popup */}
             <Popup
-               borderlabel="Energy"
+               borderlabel="Rain"
                isOpen={energyPopupOpen}
                onClose={() => setEnergyPopupOpen(false)}
                ref={energyRef}>
                <div className={cn("popup__body")}>
                   {/* Молнии на заднем фоне */}
-                  <div className={cn("popup__bg-lightnings")}>
-                     <img src="img/global/lightning.svg" alt="energy" />
-                     <img src="img/global/lightning.svg" alt="energy" />
-                     <img src="img/global/lightning.svg" alt="energy" />
-                     <img src="img/global/lightning.svg" alt="energy" />
-                     <img src="img/global/lightning.svg" alt="energy" />
-                     <img src="img/global/lightning.svg" alt="energy" />
+                  <div className={cn("popup__bg-drops")}>
+                     <img src="img/pages/home/energy/drop.svg" />
+                     <img src="img/pages/home/energy/drop.svg" />
+                     <img src="img/pages/home/energy/drop.svg" />
+                     <img src="img/pages/home/energy/drop.svg" />
+                     <img src="img/pages/home/energy/drop.svg" />
+                     <img src="img/pages/home/energy/drop.svg" />
+                     <img src="img/pages/home/energy/drop.svg" />
+                     <img src="img/pages/home/energy/drop.svg" />
+                     <img src="img/pages/home/energy/drop.svg" />
                   </div>
 
                   {/* Главная иконка молнии */}
                   <img
-                     src="img/pages/home/energy/energy.svg"
+                     src="img/pages/home/energy/rain.svg"
                      className={cn("popup__icon")}
                      alt="energy"
                   />
 
-                  <span className={cn("popup__level")}>Level 7</span>
+                  <p className={cn("popup__desc") + " textShadow"}>
+                     Activate rain to instantly grow your crops to their maximum
+                     yield without waiting! Collect your fully grown harvest
+                     immediately!
+                  </p>
 
                   <div className={cn("popup__bottom")}>
-                     <div className={cn("popup__earning")}>
-                        <span>+500/h</span>
-                        <img
-                           src="img/pages/home/energy/energy.svg"
-                           alt="energy"
-                        />
-                     </div>
-
                      <Button
                         className={cn("popup__btn")}
                         size={width > 380 ? "big" : "normal"}
@@ -532,10 +520,23 @@ const Home = () => {
                   />
                )}
             </PopupListWrap>
+
+            {/* Иконка close, которая закрывает попапы с вариантом списка (<PopupListWrap />) */}
+            {(boostPopupOpen || earnPopupOpen) && (
+               <img
+                  src="img/global/closeIcon.svg"
+                  onClick={() => {
+                     setBoostPopupOpen(false);
+                     setEarnPopupOpen(false);
+                  }}
+                  className={cn("close")}
+                  alt="Close"
+               />
+            )}
          </div>
 
          {/* Приветствие */}
-         <Greeting  />
+         <Greeting />
 
          {/* Ежедневный бонус */}
          <DailyBonus />

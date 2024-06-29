@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
-
-import GreenBg from "../../components/GreenBg/GreenBg";
-import Coins from "./modules/Coins";
-import Button from "../../components/Button/Button";
-import PopupListTabs from "../../components/PopupList/modules/PopupListTabs";
-import PopupList from "../../components/PopupList/PopupList";
-import PersonBlock from "../../components/PersonBlock/PersonBlock";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import styles from "./People.module.scss";
 import classNames from "classnames/bind";
-import PopupListWrap from "../../components/PopupList/modules/PopupListWrap";
-import { tg } from "../../constants/app";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Routes } from "../../routes/routes";
 const cn = classNames.bind(styles);
+
+import { tg } from "../../constants/app";
+import { Routes } from "../../routes/routes";
+
+import GreenBg from "../../components/GreenBg/GreenBg";
+import Coins from "./modules/Coins";
+import PopupListTabs from "../../components/PopupList/modules/PopupListTabs";
+import PopupList from "../../components/PopupList/PopupList";
+import PersonBlock from "../../components/PersonBlock/PersonBlock";
+import PopupListWrap from "../../components/PopupList/modules/PopupListWrap";
 
 const People = () => {
    const location = useLocation();
@@ -36,13 +36,14 @@ const People = () => {
                4 frends
             </h2>
             <Coins quantity={"1 180 000"} />
-            <div className={cn("people__invite-btn-wrap")}>
-               <Button
-                  className={cn("people__invite-btn")}
-                  size="huge"
-                  onClick={() => navigate(Routes.INVITE)}>
+            <div
+               className={cn("people__invite-btn")}
+               onClick={() => navigate(Routes.INVITE)}>
+               <span className={cn("people__invite-btn-text")}>
+                  {" "}
                   Invite freiend
-               </Button>
+               </span>
+               <img src="img/pages/invite/btn.svg" alt="Invite friends" />
             </div>
 
             {/* Списко пользователей */}
@@ -156,6 +157,14 @@ const People = () => {
             </div>
             <GreenBg />
          </div>
+
+         {/* Кнопка закрытия страницы */}
+         <img
+            src="img/global/closeIcon.svg"
+            onClick={() => navigate(Routes.HOME)}
+            className={cn("close")}
+            alt="Close"
+         />
       </div>
    );
 };

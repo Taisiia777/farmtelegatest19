@@ -44,7 +44,7 @@
 
 .account {
    position: relative;
-   margin-bottom: rem(-10);
+   margin-bottom: rem(10);
    width: rem(239);
    transform: translateX(rem(3));
 
@@ -120,23 +120,14 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      left: rem(-13);
-      width: calc(29 / 380 * 100%);
+      left: -5%;
+      width: calc(34 / 380 * 100%);
    }
 
-   &__addIcon {
-      position: absolute;
-      top: 50%;
-      right: rem(8);
-      transform: translateY(-50%);
-      width: calc(18 / 380 * 100%);
-   }
-
-   // TODO: Доделать box-shadow здесь
    &__progressBarWrap {
       position: absolute;
-      top: calc(7 / 43 * 100%);
-      bottom: calc(9 / 43 * 100%);
+      top: calc(5 / 43 * 100%);
+      bottom: calc(12 / 43 * 100%);
       left: calc(16.8 / 380 * 100%);
       right: calc(29 / 380 * 100%);
 
@@ -323,8 +314,8 @@
 
    &__car-2 {
       z-index: 15;
-      bottom: 31%;
-      left: 74%;
+      bottom: 30%;
+      left: 75%;
       width: 25%;
    }
 
@@ -410,6 +401,59 @@
 
    }
 
+   &__bg-drops {
+      img {
+         position: absolute;
+         opacity: 0.5;
+      }
+
+      & img:nth-child(1) {
+         top: 20%;
+         left: 27%;
+      }
+
+      & img:nth-child(2) {
+         top: 30%;
+         left: 10%;
+      }
+
+      & img:nth-child(3) {
+         top: 40%;
+         left: 25%;
+      }
+
+      & img:nth-child(4) {
+         bottom: 14%;
+         left: 8%;
+      }
+
+      & img:nth-child(5) {
+         top: 13%;
+         right: 13%;
+      }
+
+      & img:nth-child(6) {
+         top: 25%;
+         right: 25%;
+      }
+
+      & img:nth-child(7) {
+         top: 38%;
+         right: 5%;
+      }
+
+      & img:nth-child(8) {
+         bottom: 20%;
+         right: 5%;
+      }
+
+      & img:nth-child(9) {
+         bottom: 13%;
+         right: 25%;
+      }
+   }
+
+
    &__icon {
       display: block;
       width: rem(85);
@@ -449,6 +493,13 @@
          height: rem(93);
          transform: translateY(15%);
       }
+   }
+
+   &__desc {
+      text-align: center;
+      font-size: clamp(0.875rem, 0.104rem + 3.33vw, 1rem);
+      max-width: 90%;
+      padding-top: 5%;
    }
 
    &__level {
@@ -510,4 +561,10 @@
          animation: moneyDisappear 0.4s ease-in;
       }
    }
+}
+
+.close {
+   position: absolute;
+   top: 20%;
+   right: 5.8%;
 }

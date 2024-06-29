@@ -29,7 +29,9 @@ const PopupList = forwardRef(
                            src="img/global/border-block/item.svg"
                            alt="border"
                         />
-                        <div className={cn("popupList__item-body")}>{node}</div>
+                        <div className={cn("popupList__item-body", "_big")}>
+                           {node}
+                        </div>
                      </li>
                   ))}
                </>
@@ -46,7 +48,8 @@ const PopupList = forwardRef(
                                  src="img/global/border-block/item.svg"
                                  alt="border"
                               />
-                              <div className={cn("popupList__item-body")}>
+                              <div
+                                 className={cn("popupList__item-body", "_big")}>
                                  {node}
                               </div>
                            </li>

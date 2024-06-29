@@ -16,11 +16,10 @@ const Account = ({ nickname, imgSrc }: IAccountProps) => {
          </div>
 
          {/* Border */}
-         <img
+         {/* <img
             src="img/pages/home/account/board.svg"
             className={cn("account__border")}
-            alt=""
-         />
+         /> */}
       </div>
    );
 };

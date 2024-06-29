@@ -160,6 +160,12 @@
    }
 }
 
+.close {
+   position: absolute;
+   top: 20%;
+   right: 5.8%;
+}
+
 @keyframes appear {
    0% {
       transform: translateY(40%);

@@ -11,6 +11,7 @@ import Button from "../../components/Button/Button";
 
 import classNames from "classnames/bind";
 import styles from "./Invite.module.scss";
+import { Routes } from "../../routes/routes";
 const cn = classNames.bind(styles);
 
 const Invite = () => {
@@ -153,6 +154,14 @@ const Invite = () => {
             </div>
             <GreenBg />
          </div>
+
+         {/* Кнопка закрытия страницы */}
+         <img
+            src="img/global/closeIcon.svg"
+            onClick={() => navigate(Routes.HOME)}
+            className={cn("close")}
+            alt="Close"
+         />
       </div>
    );
 };

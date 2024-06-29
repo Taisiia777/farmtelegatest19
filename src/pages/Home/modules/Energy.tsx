@@ -21,16 +21,9 @@ const Energy = ({ total, current, onClick }: EnergyProps) => {
 
          {/* Иконка энергии */}
          <img
-            src="img/pages/home/energy/energy.svg"
+            src="img/pages/home/energy/rain.svg"
             className={cn("energy__icon")}
             alt="Energy"
-         />
-
-         {/* Иконка добавить */}
-         <img
-            src="img/pages/home/energy/addIcon.svg"
-            className={cn("energy__addIcon")}
-            alt="Add energy"
          />
 
          {/* Прогресс бар */}
