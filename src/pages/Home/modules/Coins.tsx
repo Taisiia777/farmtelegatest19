@@ -11,13 +11,14 @@ const Coins = ({ quantity }: CoinsProps) => {
       <div className={cn("coins")}>
          <div className={cn("coins__video-wrap")}>
             <video
-               src="video/BTC.webm"
                className={cn("coins__video")}
                muted
                autoPlay
                loop
-            />
-            f
+               playsInline>
+               {/* <source src="video/BTC.mov"></source> */}
+               <source src="video/BTC.webm"></source>
+            </video>
          </div>
          <span className="textShadow">{quantity} B</span>
       </div>
