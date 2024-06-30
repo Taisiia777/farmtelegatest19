@@ -9,6 +9,7 @@ interface IButtonProps {
    children: ReactNode;
    disabled?: boolean;
    onClick?: () => void;
+   isBlueBg?: boolean;
 }
 
 const Button = ({
@@ -17,12 +18,20 @@ const Button = ({
    children,
    disabled = false,
    onClick,
+   isBlueBg = false,
 }: IButtonProps) => {
    return (
       <div className={cn("button", `_${size}`)} onClick={onClick}>
          <div className={className}>{children}</div>
          {!disabled ? (
-            <img src="img/global/button-green/huge.svg" alt="Кнопка" />
+            <img
+               src={
+                  isBlueBg
+                     ? "img/global/button-blue/btn.svg"
+                     : "img/global/button-green/huge.svg"
+               }
+               alt="Кнопка"
+            />
          ) : (
             <img src="img/global/button-grey/btn.svg" alt="Кнопка" />
          )}

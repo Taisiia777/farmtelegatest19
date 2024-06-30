@@ -10,8 +10,14 @@
    &__left {
       display: flex;
       align-items: center;
-      gap: rem(15);
+      gap: rem(5);
       padding-left: rem(25);
+
+      transform: translateX(rem(-10));
+   }
+
+   &__coin {
+      height: rem(70);
    }
 
    &__right {

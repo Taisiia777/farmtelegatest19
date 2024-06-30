@@ -8,11 +8,12 @@ interface IPopupProps {
    borderlabel: string;
    onClose: () => void;
    children: ReactNode;
+   isBlueBg?: boolean;
 }
 
 const Popup = forwardRef(
    (
-      { isOpen, children, onClose, borderlabel }: IPopupProps,
+      { isOpen, children, onClose, borderlabel, isBlueBg = false }: IPopupProps,
       ref: ForwardedRef<HTMLDivElement>
    ) => {
       return (
@@ -20,7 +21,11 @@ const Popup = forwardRef(
             <div className={cn("popup__body")} ref={ref}>
                {/* Popup border */}
                <img
-                  src="img/global/popup-border.svg"
+                  src={
+                     isBlueBg
+                        ? "img/global/popup-border-blue.svg"
+                        : "img/global/popup-border.svg"
+                  }
                   className={cn("popup__border")}
                   alt="border"
                />

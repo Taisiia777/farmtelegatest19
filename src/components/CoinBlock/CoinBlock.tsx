@@ -49,7 +49,13 @@ const CoinBlock = ({
       content = (
          <div className={cn("coinBlock")}>
             <div className={cn("coinBlock__left")}>
-               <CoinWhiteBg size="huge" iconName={coinName} />
+               <video
+                  src={`video/${coinName}.webm`}
+                  className={cn("coinBlock__coin")}
+                  autoPlay
+                  muted
+                  loop
+               />
                <div className={cn("coinBlock__info")}>
                   <h3 className="textShadow">{coinName}</h3>
                   <div className={cn("coinBlock__earning")}>
@@ -84,7 +90,13 @@ const CoinBlock = ({
       content = (
          <div className={cn("coinBlock")}>
             <div className={cn("coinBlock__left")}>
-               <CoinWhiteBg size="huge" iconName={coinName} />
+               <video
+                  src={`video/${coinName}.webm`}
+                  className={cn("coinBlock__coin")}
+                  autoPlay
+                  muted
+                  loop
+               />
                <div className={cn("coinBlock__info")}>
                   <h3 className="textShadow">{coinName}</h3>
                   <div className={cn("coinBlock__earning")}>
@@ -113,7 +125,13 @@ const CoinBlock = ({
       content = (
          <div className={cn("coinBlock")}>
             <div className={cn("coinBlock__left")}>
-               <CoinWhiteBg size="huge" iconName={coinName} />
+               <video
+                  src={`video/${coinName}.webm`}
+                  className={cn("coinBlock__coin")}
+                  autoPlay
+                  muted
+                  loop
+               />
                <div className={cn("coinBlock__info")}>
                   <h3 className="textShadow">{coinName}</h3>
                   <div className={cn("coinBlock__earning")}>

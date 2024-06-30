@@ -173,6 +173,7 @@ const Home = () => {
             {/* Rain popup */}
             <Popup
                borderlabel="Rain"
+               isBlueBg
                isOpen={energyPopupOpen}
                onClose={() => setEnergyPopupOpen(false)}
                ref={energyRef}>
@@ -190,9 +191,9 @@ const Home = () => {
                      <img src="img/pages/home/energy/drop.svg" />
                   </div>
 
-                  {/* Главная иконка молнии */}
+                  {/* Иконка туч */}
                   <img
-                     src="img/pages/home/energy/rain.svg"
+                     src="img/pages/home/energy/clouds.svg"
                      className={cn("popup__icon")}
                      alt="energy"
                   />
@@ -207,6 +208,7 @@ const Home = () => {
                      <Button
                         className={cn("popup__btn")}
                         size={width > 380 ? "big" : "normal"}
+                        isBlueBg
                         onClick={() =>
                            buy(energyMoneyAnimRef, () =>
                               setEnergyPopupOpen(false)

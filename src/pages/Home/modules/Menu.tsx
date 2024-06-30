@@ -25,15 +25,15 @@ const Menu = ({ onBoostOpen, onEarnOpen }: IMenuProps) => {
             <div className={cn("menu__body")}>
                <ul className={cn("menu__list")}>
                   <li onClick={() => onEarnOpen()}>
-                     <img src="img/pages/home/menu/earn.svg" alt="Earn" />
+                     <img src="img/pages/home/menu/Earn.svg" alt="Earn" />
                      <span className="textShadow">EARN</span>
                   </li>
                   <li onClick={() => onBoostOpen()}>
-                     <img src="img/pages/home/menu/boost.svg" alt="Boost" />
+                     <img src="img/pages/home/menu/Boost.svg" alt="Boost" />
                      <span className="textShadow">BOOST</span>
                   </li>
                   <li>
-                     <img src="img/pages/home/menu/farm.svg" alt="Farm" />
+                     <img src="img/pages/home/menu/Farm.svg" alt="Farm" />
                      <img src="img/pages/home/menu/wheat.svg" alt="" />
                   </li>
                   <li
@@ -44,11 +44,11 @@ const Menu = ({ onBoostOpen, onEarnOpen }: IMenuProps) => {
                            },
                         })
                      }>
-                     <img src="img/pages/home/menu/top.svg" alt="Top" />
+                     <img src="img/pages/home/menu/Top.svg" alt="Top" />
                      <span className="textShadow">TOP</span>
                   </li>
                   <li onClick={() => navigate(Routes.STATS)}>
-                     <img src="img/pages/home/menu/stats.svg" alt="Stats" />
+                     <img src="img/pages/home/menu/Stats.svg" alt="Stats" />
                      <span className="textShadow">STATS</span>
                   </li>
                </ul>
