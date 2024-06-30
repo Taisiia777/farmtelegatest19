@@ -568,3 +568,21 @@
    top: 20%;
    right: 5.8%;
 }
+
+.finger {
+   position: absolute;
+   z-index: 100;
+   animation:moveFinger 2s ease-in-out infinite ;
+}
+
+@keyframes moveFinger {
+   0% {
+      top: 55%;
+      left: 48%;
+   }
+
+   100% {
+      top: 47%;
+      left: 15%;
+   }
+}

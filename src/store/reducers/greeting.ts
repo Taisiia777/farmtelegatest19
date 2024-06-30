@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface IGreetingState {
-   isFinished: boolean;
+   isOpen: boolean;
 }
 
 const initialState: IGreetingState = {
-   isFinished: false,
+   isOpen: true,
 };
 
 export const greetingSlice = createSlice({
@@ -13,7 +13,7 @@ export const greetingSlice = createSlice({
    initialState,
    reducers: {
       finishGreeting: (state) => {
-         state.isFinished = true;
+         state.isOpen = false;
       },
    },
 });

@@ -10,7 +10,7 @@ const cn = classNames.bind(styles);
 
 const Greeting = () => {
    const dispatch = useAppDispatch();
-   const isFinish = useAppSelector((state) => state.greeting.isFinished);
+   const isOpen = useAppSelector((state) => state.greeting.isOpen);
 
    // Состояние прелоудреа
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
@@ -33,7 +33,7 @@ const Greeting = () => {
    }
 
    return (
-      <div className={cn("greeting", !isLoading && !isFinish && "_active")}>
+      <div className={cn("greeting", !isLoading && isOpen && "_active")}>
          {/* Introduction */}
          {step === 1 && (
             <div className={cn("greeting__body", "_first")}>

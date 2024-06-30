@@ -37,7 +37,20 @@ const Home = () => {
    const dispatch = useDispatch();
    const { width } = useWindowSize();
 
+   // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
+
+   // Состояние попапов приветсвия
+   const isGreetingOpen = useAppSelector(
+      (state) => state.greeting.isOpen
+   );
+
+   // Состояние попапа бонуса
+   const isDailyBonusOpen = useAppSelector((state) => state.dailyBonus.isOpen);
+
+   const isFingerActve = useAppSelector(
+      (state) => state.growthStages.isFingerActive
+   );
 
    // Energy popup
    const [energyPopupOpen, setEnergyPopupOpen] = useState(false);
@@ -94,6 +107,10 @@ const Home = () => {
    // но кроме попапа Energy!
    const isPopupOpen = boostPopupOpen || earnPopupOpen;
 
+   // Показываем палец подсказку только когда попапы приветсвия и бонуса прошли.
+   // А также только когда первый раз собирает
+   const canShowFinger = !isGreetingOpen && !isDailyBonusOpen && isFingerActve;
+
    // Осуществляет покупку в попапе и делает анимацию монет
    function buy(ref: RefObject<HTMLImageElement>, callback: () => void) {
       ref.current?.classList.add("moneyAnim");
@@ -144,6 +161,13 @@ const Home = () => {
 
                {/* Активные boosts */}
                <Boosts />
+
+               {/* Палец подсказка */}
+               {canShowFinger && (
+                  <div className={cn("finger")}>
+                     <img src="img/pages/home/finger.svg" />
+                  </div>
+               )}
             </div>
 
             {/* Rain popup */}

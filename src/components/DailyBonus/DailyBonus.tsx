@@ -11,7 +11,7 @@ const cn = classNames.bind(styles);
 const DailyBonus = () => {
    const dispatch = useAppDispatch();
    const isDailyBonusOpen = useAppSelector((state) => state.dailyBonus.isOpen);
-   const isGreetingOpen = useAppSelector((state) => state.greeting.isFinished);
+   const isGreetingOpen = useAppSelector((state) => state.greeting.isOpen);
 
    // Состояние прелоудреа
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
@@ -28,7 +28,7 @@ const DailyBonus = () => {
    }
 
    // True, если прелоадер, приветсвенные попапы уже отключены
-   const canShow = !isLoading && isDailyBonusOpen && isGreetingOpen;
+   const canShow = !isLoading && isDailyBonusOpen && !isGreetingOpen;
 
    return (
       <div className={cn("dailyBonus", canShow && "_open")}>

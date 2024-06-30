@@ -41,6 +41,9 @@ export interface IGrowthStages {
          stage: TGrowthStage;
       }
    ];
+
+   // Состояние подсказки в виде пальца
+   isFingerActive: boolean;
 }
 
 const initialState: IGrowthStages = {
@@ -82,6 +85,8 @@ const initialState: IGrowthStages = {
          stage: "fourth",
       },
    ],
+
+   isFingerActive: true,
 };
 
 export const growthStagesSlice = createSlice({
@@ -96,6 +101,9 @@ export const growthStagesSlice = createSlice({
 
          if (block) {
             block.stage = "first";
+
+            // Как только мы срезали какую-то пшеницу, сразу скрываем палец подсказку
+            state.isFingerActive = false;
          }
       },
    },
