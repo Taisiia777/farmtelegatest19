@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "./FriendOrSpecialBlock.module.scss";
 import Button from "../Button/Button";
+import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
 const cn = classNames.bind(styles);
 
 interface IFreindOrSpecialBlockProps {
@@ -32,7 +33,8 @@ const FreindOrSpecialBlock = ({
                   </strong>
                   <div className={cn("block__earning")}>
                      <span className="textShadow_center">+{earning}</span>
-                     <img src="img/coins/BTC.svg" />
+                     <CoinWhiteBg size="small" />
+                     {/* <img src="img/coins/BTC.svg" /> */}
                   </div>
                </div>
             </div>

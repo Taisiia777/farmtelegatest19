@@ -1,7 +1,7 @@
 @import '/src/index.scss';
 
 .greeting {
-   position: absolute;
+   position: fixed;
    z-index: 1000;
    top: 0;
    left: 0;
@@ -9,7 +9,7 @@
    align-items: center;
    justify-content: center;
    width: 100%;
-   height: calc(100% + 200px);
+   height: 100%;
    opacity: 0;
    visibility: hidden;
    background-color: transparent;

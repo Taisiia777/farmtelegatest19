@@ -49,12 +49,10 @@ const CoinBlock = ({
       content = (
          <div className={cn("coinBlock")}>
             <div className={cn("coinBlock__left")}>
-               <video
-                  src={`video/${coinName}.webm`}
+               <img
                   className={cn("coinBlock__coin")}
-                  autoPlay
-                  muted
-                  loop
+                  src={`video/${coinName}.gif`}
+                  alt=""
                />
                <div className={cn("coinBlock__info")}>
                   <h3 className="textShadow">{coinName}</h3>
@@ -90,12 +88,10 @@ const CoinBlock = ({
       content = (
          <div className={cn("coinBlock")}>
             <div className={cn("coinBlock__left")}>
-               <video
-                  src={`video/${coinName}.webm`}
+               <img
                   className={cn("coinBlock__coin")}
-                  autoPlay
-                  muted
-                  loop
+                  src={`video/${coinName}.gif`}
+                  alt=""
                />
                <div className={cn("coinBlock__info")}>
                   <h3 className="textShadow">{coinName}</h3>
@@ -125,12 +121,10 @@ const CoinBlock = ({
       content = (
          <div className={cn("coinBlock")}>
             <div className={cn("coinBlock__left")}>
-               <video
-                  src={`video/${coinName}.webm`}
+               <img
                   className={cn("coinBlock__coin")}
-                  autoPlay
-                  muted
-                  loop
+                  src={`video/${coinName}.gif`}
+                  alt=""
                />
                <div className={cn("coinBlock__info")}>
                   <h3 className="textShadow">{coinName}</h3>

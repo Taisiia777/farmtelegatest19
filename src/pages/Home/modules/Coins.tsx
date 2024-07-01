@@ -10,15 +10,7 @@ const Coins = ({ quantity }: CoinsProps) => {
    return (
       <div className={cn("coins")}>
          <div className={cn("coins__video-wrap")}>
-            <video
-               className={cn("coins__video")}
-               muted
-               autoPlay
-               loop
-               playsInline>
-               {/* <source src="video/BTC.mov"></source> */}
-               <source src="video/BTC.webm"></source>
-            </video>
+            <img src="video/BTC.gif" alt="I'm a gif" />
          </div>
          <span className="textShadow">{quantity} B</span>
       </div>

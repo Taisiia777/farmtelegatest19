@@ -22,8 +22,13 @@
 
 body {
    font-family: $mainFont;
-   font-size: 50px;
+   font-size: rem(50);
    font-weight: 700;
    color: #fff;
 }
+
+html {
+   height: 100%;
+}
+
 @import './scss/globalStyles.scss'
