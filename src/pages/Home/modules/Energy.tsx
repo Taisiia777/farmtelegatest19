@@ -7,7 +7,6 @@ interface EnergyProps {
    current: number;
    onClick: () => void;
 }
-// FIXME: Криво отображается при изменении ширины экрана
 
 const Energy = ({ total, current, onClick }: EnergyProps) => {
    return (

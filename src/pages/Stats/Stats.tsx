@@ -49,46 +49,53 @@ const Stats = () => {
             <GreenBg />
 
             {/* Элементы заднего фона */}
-            <img
-               src="img/pages/stats/stats.svg"
-               className={cn("stats-img-bg", "_1")}
-               alt="stats bg"
-            />
-            <img
-               src="img/pages/stats/stats.svg"
-               className={cn("stats-img-bg", "_2")}
-               alt="stats bg"
-            />
-            <img
-               src="img/pages/stats/stats.svg"
-               className={cn("stats-img-bg", "_3")}
-               alt="stats bg"
-            />
-            <img
-               src="img/pages/stats/stats.svg"
-               className={cn("stats-img-bg", "_4")}
-               alt="stats bg"
-            />
-            <img
-               src="img/pages/stats/stats.svg"
-               className={cn("stats-img-bg", "_5")}
-               alt="stats bg"
-            />
-            <img
-               src="img/pages/stats/stats.svg"
-               className={cn("stats-img-bg", "_6")}
-               alt="stats bg"
-            />
-            <img
-               src="img/pages/stats/stats.svg"
-               className={cn("stats-img-bg", "_7")}
-               alt="stats bg"
-            />
-            <img
-               src="img/pages/stats/stats.svg"
-               className={cn("stats-img-bg", "_8")}
-               alt="stats bg"
-            />
+            <div className={cn("stats__bg-elements")}>
+               <img
+                  src="img/pages/stats/stats.svg"
+                  className={cn("stats-img-bg", "_1")}
+                  alt="stats bg"
+               />
+               <img
+                  src="img/pages/stats/stats.svg"
+                  className={cn("stats-img-bg", "_2")}
+                  alt="stats bg"
+               />
+               <img
+                  src="img/pages/stats/stats.svg"
+                  className={cn("stats-img-bg", "_3")}
+                  alt="stats bg"
+               />
+               <img
+                  src="img/pages/stats/stats.svg"
+                  className={cn("stats-img-bg", "_4")}
+                  alt="stats bg"
+               />
+               <img
+                  src="img/pages/stats/stats.svg"
+                  className={cn("stats-img-bg", "_5")}
+                  alt="stats bg"
+               />
+               <img
+                  src="img/pages/stats/stats.svg"
+                  className={cn("stats-img-bg", "_6")}
+                  alt="stats bg"
+               />
+               <img
+                  src="img/pages/stats/stats.svg"
+                  className={cn("stats-img-bg", "_7")}
+                  alt="stats bg"
+               />
+               <img
+                  src="img/pages/stats/stats.svg"
+                  className={cn("stats-img-bg", "_8")}
+                  alt="stats bg"
+               />
+               <img
+                  src="img/pages/stats/stats.svg"
+                  className={cn("stats-img-bg", "_9")}
+                  alt="stats bg"
+               />
+            </div>
          </div>
 
          {/* Кнопка закрытия страницы */}

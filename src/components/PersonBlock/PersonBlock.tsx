@@ -50,7 +50,7 @@ const PersonBlock = ({
             </div>
          )}
 
-         {/* Значек того что на первом месте */}
+         {/* Значек того, что на первом месте */}
          {rating === 1 && (
             <img
                src="img/pages/people/medal.svg"

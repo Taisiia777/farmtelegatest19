@@ -28,7 +28,7 @@ const Button = ({
                src={
                   isBlueBg
                      ? "img/global/button-blue/btn.svg"
-                     : "img/global/button-green/huge.svg"
+                     : "img/global/button-green/btn.svg"
                }
                alt="Кнопка"
             />

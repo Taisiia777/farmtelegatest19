@@ -41,9 +41,7 @@ const Home = () => {
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
 
    // Состояние попапов приветсвия
-   const isGreetingOpen = useAppSelector(
-      (state) => state.greeting.isOpen
-   );
+   const isGreetingOpen = useAppSelector((state) => state.greeting.isOpen);
 
    // Состояние попапа бонуса
    const isDailyBonusOpen = useAppSelector((state) => state.dailyBonus.isOpen);
@@ -154,7 +152,7 @@ const Home = () => {
 
             {/* Элементы фона */}
             <div className={cn("bg-elements")}>
-               <img src="img/pages/home/home-bg.svg" alt="road" />
+               <img src="img/pages/home/bg-elements.svg" alt="road" />
 
                {/* Блоки земли */}
                <FarmBloks />
@@ -216,9 +214,10 @@ const Home = () => {
                         }>
                         <CoinWhiteBg
                            iconName="BTC"
+                           className={cn("popup__btn-coin")}
                            size={width > 380 ? "normall" : "small"}
                         />
-                        <span>10 000</span>
+                        <span className="textShadow">10 000</span>
                      </Button>
                      <img
                         src="img/pages/home/money.svg"

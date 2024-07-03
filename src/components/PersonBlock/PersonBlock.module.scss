@@ -23,8 +23,11 @@
       width: rem(46);
       height: rem(46);
       border-radius: rem(12);
+      
       object-fit: cover;
       overflow: hidden;
+
+      box-shadow: 0 rem(2.8) rgba($color: #000000, $alpha: .45);
    }
 
    &__info {
@@ -53,5 +56,8 @@
       align-items: center;
       gap: rem(6);
       font-size: rem(14);
+   }
+   &__firstPlace {
+      width: rem(55);
    }
 }
