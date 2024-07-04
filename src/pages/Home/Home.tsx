@@ -1,4 +1,4 @@
-import { RefObject, useRef, useState } from "react";
+import { RefObject, useRef, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { useAppSelector } from "../../store";
@@ -36,7 +36,9 @@ import DailyBonus from "../../components/DailyBonus/DailyBonus";
 const Home = () => {
    const dispatch = useDispatch();
    const { width } = useWindowSize();
+   const [nickname, setNickname] = useState('Savelii777'); // Состояние для никнейма
 
+   
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
 
@@ -118,14 +120,24 @@ const Home = () => {
          callback();
       }, 500);
    }
-
+  // Получение данных пользователя из Telegram Web App при монтировании компонента
+  useEffect(() => {
+   if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
+     const user = window.Telegram.WebApp.initDataUnsafe.user;
+     alert(user)
+     if (user && user.username) {
+       setNickname(user.username);
+     }
+   }
+ }, []);
    return (
       <>
          {/* Основной контент */}
          <div className={cn("wrap", isLoading && "_hidden")}>
             <div className={cn("top")}>
                <Account
-                  nickname="dimamrkv"
+                  // nickname="dimamrkv"
+                  nickname={nickname}
                   imgSrc={"img/pages/people/person.png"}
                />
                <Coins quantity={"349.917"} />
