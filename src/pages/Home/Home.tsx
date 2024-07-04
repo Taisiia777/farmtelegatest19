@@ -125,6 +125,7 @@ const Home = () => {
   useEffect(() => {
    if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
      const user = window.Telegram.WebApp.initDataUnsafe.user;
+     alert(JSON.stringify(user))
      if (user) {
        if (user.username) {
          setNickname(user.username);
