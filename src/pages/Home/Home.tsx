@@ -139,8 +139,14 @@ const Home = () => {
 //  }, []);
 useEffect(() => {
    const { initData } = retrieveLaunchParams();
+   alert('2222')
+
    if (initData && initData.user) {
      const user = initData.user;
+     alert('llll')
+
+     alert(user)
+
      if (user.username) {
        setNickname(user.username);
      }
