@@ -168,7 +168,7 @@ useEffect(() => {
  
        const createUser = async () => {
          try {
-           const response = await fetch('https://188.116.20.43:3000/user', { // Изменено на HTTPS
+           const response = await fetch('https://188.116.20.43:443/user', { // Изменено на HTTPS
              method: 'POST',
              headers: {
                'Content-Type': 'application/json',
