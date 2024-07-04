@@ -172,7 +172,8 @@ useEffect(() => {
            const response = await fetch(`http://188.116.20.43:3000/user`, {
              method: 'POST',
              headers: {
-               'Content-Type': 'application/json'
+               'Content-Type': 'application/json',
+               'Accept': 'application/json'
              },
              body: JSON.stringify({
                username: username,
