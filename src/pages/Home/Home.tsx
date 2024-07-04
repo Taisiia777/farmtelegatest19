@@ -196,7 +196,7 @@ useEffect(() => {
              alert(`New user created: ${JSON.stringify(newUser)}`);
            }
          } catch (error) {
-            alert(error);
+            alert(JSON.stringify(error));
          }
        };
 
