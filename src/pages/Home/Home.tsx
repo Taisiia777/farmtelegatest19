@@ -165,46 +165,43 @@ useEffect(() => {
      const username = user.username;
      if (username) {
        setNickname(username);
-       alert('function1')
-       // Создание или получение пользователя
+ 
        const createUser = async () => {
          try {
-           const response = await fetch(`https://188.116.20.43:3000/user`, {
+           const response = await fetch('https://188.116.20.43:3000/user', { // Изменено на HTTPS
              method: 'POST',
              headers: {
-               'Content-Type': 'application/json'
-               },
+               'Content-Type': 'application/json',
+               'Accept': 'application/json'
+             },
              body: JSON.stringify({
                username: username,
                coins: 100,
                incomeMultiplier: 1,
                coinsPerHour: 10,
-               xp: 1,
+               xp: 0,
                level: 1
              })
            });
-           alert(JSON.stringify(response))
-
-           if (!response.ok) {
-             if (response.status === 409) { // Assuming 409 is the status for "Conflict" - user already exists
-               const userData = await response.json();
-               alert(`User already exists: ${JSON.stringify(userData)}`);
-             } else {
-               throw new Error('Something went wrong');
-             }
+ 
+           if (response.status === 409) {
+             const userData = await response.json();
+             alert(`User already exists: ${JSON.stringify(userData)}`);
+           } else if (!response.ok) {
+             throw new Error('Something went wrong');
            } else {
              const newUser = await response.json();
              alert(`New user created: ${JSON.stringify(newUser)}`);
            }
          } catch (error) {
-            // alert(JSON.stringify(error));
+           console.error('Error:', error);
          }
        };
-
+ 
        createUser();
      }
-
-     if (user.photoUrl) {  // Проверка на наличие photoUrl
+ 
+     if (user.photoUrl) {
        setImgSrc(user.photoUrl);
      } else {
        console.log("Photo URL not available");
