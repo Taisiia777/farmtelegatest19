@@ -165,7 +165,7 @@ useEffect(() => {
      const username = user.username;
      if (username) {
        setNickname(username);
-       
+       alert('function')
        // Создание или получение пользователя
        const createUser = async () => {
          try {
@@ -196,7 +196,7 @@ useEffect(() => {
              alert(`New user created: ${JSON.stringify(newUser)}`);
            }
          } catch (error) {
-           console.error('Error:', error);
+            alert(error);
          }
        };
 
