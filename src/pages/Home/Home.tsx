@@ -139,6 +139,8 @@ const Home = () => {
 //  }, []);
 useEffect(() => {
    const { initData } = retrieveLaunchParams();
+   alert('kkk')
+   alert(JSON.stringify(initData))
    if (initData && initData.user) {
      const user = initData.user;
      if (user.username) {
