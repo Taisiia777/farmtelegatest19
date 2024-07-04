@@ -146,6 +146,7 @@ useEffect(() => {
      }
      if (user.photoUrl) {  // Проверка на наличие photoUrl
        setImgSrc(user.photoUrl);
+       alert(user.photoUrl)
      } else {
        console.log("Photo URL not available");
      }
