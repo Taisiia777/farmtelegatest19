@@ -183,6 +183,7 @@ useEffect(() => {
                level: 1
              })
            });
+           alert(JSON.stringify(response))
 
            if (!response.ok) {
              if (response.status === 409) { // Assuming 409 is the status for "Conflict" - user already exists
@@ -196,7 +197,7 @@ useEffect(() => {
              alert(`New user created: ${JSON.stringify(newUser)}`);
            }
          } catch (error) {
-            alert(JSON.stringify(error));
+            // alert(JSON.stringify(error));
          }
        };
 
