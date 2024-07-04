@@ -139,15 +139,15 @@ const Home = () => {
 //  }, []);
 useEffect(() => {
    const { initData } = retrieveLaunchParams();
-   alert('kkk')
-   alert(JSON.stringify(initData))
    if (initData && initData.user) {
      const user = initData.user;
      if (user.username) {
        setNickname(user.username);
      }
-     if (user.photoUrl) {
+     if (user.photoUrl) {  // Проверка на наличие photoUrl
        setImgSrc(user.photoUrl);
+     } else {
+       console.log("Photo URL not available");
      }
    }
  }, []);
