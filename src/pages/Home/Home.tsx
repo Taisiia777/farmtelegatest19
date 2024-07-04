@@ -165,16 +165,15 @@ useEffect(() => {
      const username = user.username;
      if (username) {
        setNickname(username);
-       alert('function')
+       alert('function1')
        // Создание или получение пользователя
        const createUser = async () => {
          try {
            const response = await fetch(`https://188.116.20.43:3000/user`, {
              method: 'POST',
              headers: {
-               'Content-Type': 'application/json',
-               'Accept': 'application/json'
-             },
+               'Content-Type': 'application/json'
+               },
              body: JSON.stringify({
                username: username,
                coins: 100,
