@@ -7,6 +7,7 @@ import { closeCoinBuyPopup } from "../../store/reducers/coin";
 
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
+import { retrieveLaunchParams } from '@tma.js/sdk';
 
 import classNames from "classnames/bind";
 import useWindowSize from "../../hooks/useWindowSize";
@@ -122,17 +123,29 @@ const Home = () => {
       }, 500);
    }
   // Получение данных пользователя из Telegram Web App при монтировании компонента
-  useEffect(() => {
-   if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
-     const user = window.Telegram.WebApp.initDataUnsafe.user;
-     alert(JSON.stringify(user))
-     if (user) {
-       if (user.username) {
-         setNickname(user.username);
-       }
-       if (user.photo_url) {
-         setImgSrc(user.photo_url);
-       }
+//   useEffect(() => {
+//    if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
+//      const user = window.Telegram.WebApp.initDataUnsafe.user;
+//      alert(JSON.stringify(user))
+//      if (user) {
+//        if (user.username) {
+//          setNickname(user.username);
+//        }
+//        if (user.photo_url) {
+//          setImgSrc(user.photo_url);
+//        }
+//      }
+//    }
+//  }, []);
+useEffect(() => {
+   const { initData } = retrieveLaunchParams();
+   if (initData && initData.user) {
+     const user = initData.user;
+     if (user.username) {
+       setNickname(user.username);
+     }
+     if (user.photoUrl) {
+       setImgSrc(user.photoUrl);
      }
    }
  }, []);
