@@ -177,10 +177,10 @@ useEffect(() => {
              body: JSON.stringify({
                username: username,
                coins: 100,
-               incomeMultiplier: -1,
+               incomeMultiplier: 1,
                coinsPerHour: 10,
-               xp: 0,
-               level: -1
+               xp: 1,
+               level: 1
              })
            });
 
