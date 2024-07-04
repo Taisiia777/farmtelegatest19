@@ -137,23 +137,74 @@ const Home = () => {
 //      }
 //    }
 //  }, []);
-alert('slslslsl')
+// useEffect(() => {
+//    const { initData } = retrieveLaunchParams();
+//    alert('2222')
+
+//    if (initData && initData.user) {
+//      const user = initData.user;
+//      alert('llll')
+
+//      alert(user)
+
+//      if (user.username) {
+//        setNickname(user.username);
+//      }
+//      if (user.photoUrl) {  // Проверка на наличие photoUrl
+//        setImgSrc(user.photoUrl);
+//        alert(user.photoUrl)
+//      } else {
+//        console.log("Photo URL not available");
+//      }
+//    }
+//  }, []);
 useEffect(() => {
    const { initData } = retrieveLaunchParams();
-   alert('2222')
-
    if (initData && initData.user) {
      const user = initData.user;
-     alert('llll')
+     const username = user.username;
+     if (username) {
+       setNickname(username);
+       
+       // Создание или получение пользователя
+       const createUser = async () => {
+         try {
+           const response = await fetch(`http://188.116.20.43:3000/user`, {
+             method: 'POST',
+             headers: {
+               'Content-Type': 'application/json'
+             },
+             body: JSON.stringify({
+               username: username,
+               coins: 100,
+               incomeMultiplier: -1,
+               coinsPerHour: 10,
+               xp: 0,
+               level: -1
+             })
+           });
 
-     alert(user)
+           if (!response.ok) {
+             if (response.status === 409) { // Assuming 409 is the status for "Conflict" - user already exists
+               const userData = await response.json();
+               alert(`User already exists: ${JSON.stringify(userData)}`);
+             } else {
+               throw new Error('Something went wrong');
+             }
+           } else {
+             const newUser = await response.json();
+             alert(`New user created: ${JSON.stringify(newUser)}`);
+           }
+         } catch (error) {
+           console.error('Error:', error);
+         }
+       };
 
-     if (user.username) {
-       setNickname(user.username);
+       createUser();
      }
+
      if (user.photoUrl) {  // Проверка на наличие photoUrl
        setImgSrc(user.photoUrl);
-       alert(user.photoUrl)
      } else {
        console.log("Photo URL not available");
      }
