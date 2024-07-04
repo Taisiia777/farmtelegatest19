@@ -37,6 +37,7 @@ const Home = () => {
    const dispatch = useDispatch();
    const { width } = useWindowSize();
    const [nickname, setNickname] = useState('Savelii777'); // Состояние для никнейма
+   const [imgSrc, setImgSrc] = useState("img/pages/people/person.png");
 
    
    // Состояние прелоудера
@@ -124,9 +125,13 @@ const Home = () => {
   useEffect(() => {
    if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
      const user = window.Telegram.WebApp.initDataUnsafe.user;
-     alert(user)
-     if (user && user.username) {
-       setNickname(user.username);
+     if (user) {
+       if (user.username) {
+         setNickname(user.username);
+       }
+       if (user.photo_url) {
+         setImgSrc(user.photo_url);
+       }
      }
    }
  }, []);
@@ -138,8 +143,8 @@ const Home = () => {
                <Account
                   // nickname="dimamrkv"
                   nickname={nickname}
-                  imgSrc={"img/pages/people/person.png"}
-               />
+                  imgSrc={imgSrc}
+                  />
                <Coins quantity={"349.917"} />
             </div>
 
