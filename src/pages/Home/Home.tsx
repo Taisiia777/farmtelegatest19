@@ -137,6 +137,7 @@ const Home = () => {
 //      }
 //    }
 //  }, []);
+alert('slslslsl')
 useEffect(() => {
    const { initData } = retrieveLaunchParams();
    alert('2222')
