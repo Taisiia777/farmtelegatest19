@@ -43,7 +43,7 @@ const DailyBonus = () => {
       if (user?.id && bonusAmount > 0) {
          try {
             const response = await fetch(`https://86c5-188-116-20-43.ngrok-free.app/coin/giveCoins/${user.id}/${bonusAmount}`, {
-               method: 'PATCH',
+               method: 'POST',
                headers: {
                   'Content-Type': 'application/json',
                   'Accept': 'application/json'
