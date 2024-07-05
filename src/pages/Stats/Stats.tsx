@@ -22,6 +22,7 @@ const Stats = () => {
       tg.BackButton.onClick(() => navigate(-1));
       return () => tg.BackButton.hide();
    }, [navigate]);
+
    useEffect(() => {
       const fetchTotalPlayers = async () => {
         try {
@@ -31,10 +32,12 @@ const Stats = () => {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
-        }); // Используйте HTTPS
-          alert(JSON.stringify(response))
-          if (response.ok) {
+        });
+
+          if (response) {
             const data = await response.json();
+            console.log("Fetched data:", data); // Логируем данные для проверки
+            alert(JSON.stringify(data)); // Показываем данные в алерте для проверки
             setTotalPlayers(data.length); // Предполагается, что API возвращает массив пользователей
           } else {
             console.error('Failed to fetch total players');
@@ -43,26 +46,34 @@ const Stats = () => {
           console.error('Error:', error);
         }
       };
-  
+
       fetchTotalPlayers();
     }, []);
-   //  useEffect(() => {
-   //    const fetchTotalEarnings = async () => {
+   // useEffect(() => {
+   //    const fetchTotalPlayers = async () => {
    //      try {
-   //        const response = await fetch(`http://188.116.20.43:3000/user/1`); // Запрос данных пользователя с id 1
+   //        const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user', {
+   //          method: 'GET',
+   //          headers: {
+   //              'Content-Type': 'application/json',
+   //              'Accept': 'application/json'
+   //          }
+   //      }); // Используйте HTTPS
+   //        alert(JSON.stringify(response))
    //        if (response.ok) {
    //          const data = await response.json();
-   //          setTotalEarnings(data.totalEarnings); // Предполагается, что API возвращает объект пользователя
+   //          setTotalPlayers(data.length); // Предполагается, что API возвращает массив пользователей
    //        } else {
-   //          console.error('Failed to fetch total earnings');
+   //          console.error('Failed to fetch total players');
    //        }
    //      } catch (error) {
    //        console.error('Error:', error);
    //      }
    //    };
   
-   //    fetchTotalEarnings();
+   //    fetchTotalPlayers();
    //  }, []);
+
   
    return (
       <>
