@@ -38,7 +38,7 @@ const Home = () => {
    const dispatch = useDispatch();
    const { width } = useWindowSize();
    const [nickname, setNickname] = useState('Savelii777'); // Состояние для никнейма
-   const [imgSrc, setImgSrc] = useState("img/pages/people/person.png");
+   // const [imgSrc, setImgSrc] = useState("img/pages/people/person.png");
 
    
    // Состояние прелоудера
@@ -171,7 +171,7 @@ const Home = () => {
         }
     
         if (user.photoUrl) {
-          setImgSrc(user.photoUrl);
+         //  setImgSrc(user.photoUrl);
         } else {
           console.log("Photo URL not available");
         }
