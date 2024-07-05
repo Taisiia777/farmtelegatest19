@@ -42,7 +42,11 @@ const Greeting = () => {
             throw new Error('Something went wrong');
          } else {
             const updatedUser = await response.json();
-            dispatch(setUser(updatedUser)); // Обновляем данные пользователя в Redux
+            dispatch(setUser({
+               ...updatedUser,
+               coins: Number(updatedUser.coins),
+               totalEarnings: Number(updatedUser.totalEarnings)
+           }));// Обновляем данные пользователя в Redux
          }
       } catch (error) {
          console.error('Error:', error);
