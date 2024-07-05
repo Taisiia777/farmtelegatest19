@@ -34,16 +34,25 @@ import FreindOrSpecialBlock from "../../components/FreindOrSpecialBlock/FreindOr
 import Greeting from "../../components/Greeting/Greeting";
 import DailyBonus from "../../components/DailyBonus/DailyBonus";
 
+type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Определение типа TLiga
+
+
+const leagues = [
+   { name: "Wooden", coinsRequired: 5000 },
+   { name: "Silver", coinsRequired: 25000 },
+   { name: "Gold", coinsRequired: 100000 },
+   { name: "Fire", coinsRequired: 1000000 },
+   { name: "Diamond", coinsRequired: 2500000 },
+ ];
 const Home = () => {
    const dispatch = useDispatch();
    const { width } = useWindowSize();
+   const user = useAppSelector((state: RootState) => state.user.user);
    const [nickname, setNickname] = useState('Savelii777'); // Состояние для никнейма
    // const [imgSrc, setImgSrc] = useState("img/pages/people/person.png");
-   const user = useAppSelector((state: RootState) => state.user.user);
    const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
-
-
-   
+   const [level, setLevel] = useState(user ? user.level : 1);
+   const [progressPercent, setProgressPercent] = useState(0);
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
 
@@ -125,7 +134,126 @@ const Home = () => {
          callback();
       }, 500);
    }
+   
+  const updateLeagueProgress = () => {
+   const nextLeague = leagues[level];
+   if (nextLeague) {
+     const percent = (localCoins / nextLeague.coinsRequired) * 100;
+     setProgressPercent(Math.min(percent, 100));
+     
+     if (localCoins >= nextLeague.coinsRequired) {
+       setLevel(level + 1);
+       dispatch(setUser({ ...user, level: level + 1 }));
+     }
+   }
+ };
 
+ useEffect(() => {
+   updateLeagueProgress();
+ }, [localCoins, level]);
+
+ useEffect(() => {
+   const { initData } = retrieveLaunchParams();
+   if (initData && initData.user) {
+     const user = initData.user;
+     const username = user.username;
+     if (username) {
+       setNickname(username);
+
+       const createUser = async () => {
+         try {
+           const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user', {
+             method: 'POST',
+             headers: {
+               'Content-Type': 'application/json',
+               'Accept': 'application/json'
+             },
+             body: JSON.stringify({
+               username: nickname,
+               coins: 0,
+               totalEarnings: 0,
+               incomeMultiplier: 1,
+               coinsPerHour: 10,
+               xp: 0,
+               level: 1
+             })
+           });
+
+           if (response.status === 409) {
+             const userData = await response.json();
+             alert(`User already exists: ${JSON.stringify(userData)}`);
+           } else if (!response.ok) {
+             throw new Error('Something went wrong');
+           } else {
+             const newUser = await response.json();
+             dispatch(setUser(newUser));
+           }
+         } catch (error) {
+           console.error('Error:', error);
+         }
+       };
+
+       createUser();
+     }
+
+     if (user.photoUrl) {
+       // setImgSrc(user.photoUrl);
+     } else {
+       console.log("Photo URL not available");
+     }
+   }
+ }, [dispatch, nickname]);
+
+ useEffect(() => {
+   const interval = setInterval(() => {
+     if (user) {
+       const newCoins = parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
+       setLocalCoins(newCoins);
+
+       // Отправляем обновленные данные на сервер
+       fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${user.coinsPerHour / 3600}`, {
+         method: 'PATCH',
+         headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json'
+         }
+       })
+         .then(response => response.json())
+         .then(updatedUser => {
+           dispatch(setUser({
+             ...updatedUser,
+             coins: parseFloat(updatedUser.coins),
+             totalEarnings: parseFloat(updatedUser.totalEarnings)
+           }));
+         })
+         .catch(error => console.error('Error:', error));
+     }
+   }, 1000);
+
+   return () => clearInterval(interval);
+ }, [localCoins, user, dispatch]);
+
+ useEffect(() => {
+   if (user) {
+     setLocalCoins(parseFloat(user.coins));
+   }
+ }, [user]);
+
+ const renderLeagues = () => {
+   return leagues.map((league, index) => {
+     const isActive = index === level;
+     const percent = isActive ? progressPercent : (localCoins / league.coinsRequired) * 100;
+     return (
+       <LigaBlock
+         key={league.name}
+         ligaName={league.name as TLiga} // Приведение типа к TLiga
+         percent={percent}
+         price={league.coinsRequired.toString()}
+         acitve={isActive}
+       />
+     );
+   });
+ };
    // useEffect(() => {
    //    const { initData } = retrieveLaunchParams();
    //    if (initData && initData.user) {
@@ -133,7 +261,7 @@ const Home = () => {
    //      const username = user.username;
    //      if (username) {
    //        setNickname(username);
-    
+
    //        const createUser = async () => {
    //          try {
    //              const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user', {
@@ -152,7 +280,7 @@ const Home = () => {
    //                      level: 1
    //                  })
    //              });
-     
+
    //              if (response.status === 409) {
    //                  const userData = await response.json();
    //                  alert(`User already exists: ${JSON.stringify(userData)}`);
@@ -167,12 +295,10 @@ const Home = () => {
    //              console.error('Error:', error);
    //          }
    //      };
-     
-   //      createUser();
-    
+
    //        createUser();
    //      }
-    
+
    //      if (user.photoUrl) {
    //       //  setImgSrc(user.photoUrl);
    //      } else {
@@ -180,95 +306,6 @@ const Home = () => {
    //      }
    //    }
    //  }, [dispatch, nickname]);
-
-   //  useEffect(() => {
-   //    const interval = setInterval(() => {
-   //      if (user) {
-   //        const newCoins = localCoins + user.coinsPerHour / 3600;
-   //        alert(newCoins)
-   //        setLocalCoins(newCoins);
-  
-   //        // Отправляем обновленные данные на сервер
-   //        fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${user.coinsPerHour / 3600}`, {
-   //          method: 'PATCH',
-   //          headers: {
-   //            'Content-Type': 'application/json',
-   //            'Accept': 'application/json'
-   //          }
-   //        })
-   //        .then(response => response.json())
-   //        .then(updatedUser => {
-   //          dispatch(setUser({
-   //            ...updatedUser,
-   //            coins: Number(updatedUser.coins),
-   //            totalEarnings: Number(updatedUser.totalEarnings)
-   //          }));
-   //        })
-   //        .catch(error => console.error('Error:', error));
-   //      }
-   //    }, 1000);
-  
-   //    return () => clearInterval(interval);
-   //  }, [localCoins, user, dispatch]);
-  
-   //  useEffect(() => {
-   //    if (user) {
-   //      setLocalCoins(user.coins);
-   //    }
-   //  }, [user]);
-
-   useEffect(() => {
-      const { initData } = retrieveLaunchParams();
-      if (initData && initData.user) {
-        const user = initData.user;
-        const username = user.username;
-        if (username) {
-          setNickname(username);
-
-          const createUser = async () => {
-            try {
-                const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: nickname,
-                        coins: 0,
-                        totalEarnings: 0,
-                        incomeMultiplier: 1,
-                        coinsPerHour: 10,
-                        xp: 0,
-                        level: 1
-                    })
-                });
-
-                if (response.status === 409) {
-                    const userData = await response.json();
-                    alert(`User already exists: ${JSON.stringify(userData)}`);
-                } else if (!response.ok) {
-                    throw new Error('Something went wrong');
-                } else {
-                    const newUser = await response.json();
-                    dispatch(setUser(newUser)); // Сохраняем пользователя в Redux
-                    // alert(`New user created: ${JSON.stringify(newUser)}`);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        };
-
-          createUser();
-        }
-
-        if (user.photoUrl) {
-         //  setImgSrc(user.photoUrl);
-        } else {
-          console.log("Photo URL not available");
-        }
-      }
-    }, [dispatch, nickname]);
 
     useEffect(() => {
       const interval = setInterval(() => {
@@ -629,8 +666,13 @@ const Home = () => {
                   activeTab={earnActiveTab}
                   onTabChange={(label) => setEarnActiveTab(label)}
                />
-
-               {earnActiveTab === "LEAGUES" && (
+            {earnActiveTab === "LEAGUES" && (
+               <PopupList
+                  ref={earnRef}
+                  nodes={renderLeagues()}
+               />
+            )}
+               {/* {earnActiveTab === "LEAGUES" && (
                   <PopupList
                      ref={earnRef}
                      nodes={[
@@ -666,7 +708,7 @@ const Home = () => {
                         />,
                      ]}
                   />
-               )}
+               )} */}
 
                {earnActiveTab === "SPECIAL" && (
                   <PopupList
