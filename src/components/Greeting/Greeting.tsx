@@ -29,29 +29,32 @@ const Greeting = () => {
       setStep((prev) => prev + 1);
    }
    async function addCoins(userId: number, amount: number) {
+       alert(amount)
       try {
-         const response = await fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${userId}/earn/${amount}`, {
-            method: 'PATCH',
-            headers: {
-               'Content-Type': 'application/json',
-               'Accept': 'application/json'
-            }
-         });
-
-         if (!response.ok) {
-            throw new Error('Something went wrong');
-         } else {
-            const updatedUser = await response.json();
-            dispatch(setUser({
-               ...updatedUser,
-               coins: Number(updatedUser.coins),
-               totalEarnings: Number(updatedUser.totalEarnings)
-           }));// Обновляем данные пользователя в Redux
-         }
+          const response = await fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${userId}/earn/${amount}`, {
+              method: 'PATCH',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+              }
+          });
+  
+          if (!response.ok) {
+              throw new Error('Something went wrong');
+          } else {
+              const updatedUser = await response.json();
+              // Преобразование значений coins и totalEarnings в числа
+              dispatch(setUser({
+                  ...updatedUser,
+                  coins: Number(updatedUser.coins),
+                  totalEarnings: Number(updatedUser.totalEarnings)
+              })); // Обновляем данные пользователя в Redux
+          }
       } catch (error) {
-         console.error('Error:', error);
+          console.error('Error:', error);
       }
-   }
+  }
+  
    function handleAddCoins() {
       if (user?.id) {
          addCoins(user.id, 100);
