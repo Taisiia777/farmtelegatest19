@@ -34,13 +34,18 @@ const Stats = () => {
             }
         });
 
-          if (response) {
+          console.log("Response status:", response.status);
+          console.log("Response headers:", response.headers);
+
+          if (response.ok) {
             const data = await response.json();
             console.log("Fetched data:", data); // Логируем данные для проверки
             alert(JSON.stringify(data)); // Показываем данные в алерте для проверки
             setTotalPlayers(data.length); // Предполагается, что API возвращает массив пользователей
           } else {
-            console.error('Failed to fetch total players');
+            const errorText = await response.text();
+            console.error('Failed to fetch total players:', errorText);
+            alert('Failed to fetch total players: ' + errorText);
           }
         } catch (error) {
           console.error('Error:', error);
