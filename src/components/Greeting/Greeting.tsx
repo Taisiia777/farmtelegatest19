@@ -32,7 +32,7 @@ const Greeting = () => {
        alert(amount)
       try {
           const response = await fetch(`https://86c5-188-116-20-43.ngrok-free.app/coin/giveCoins/${userId}/${amount}`, {
-              method: 'PATCH',
+              method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
                   'Accept': 'application/json'
