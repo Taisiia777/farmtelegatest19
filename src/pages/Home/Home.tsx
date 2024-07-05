@@ -226,7 +226,7 @@ const user = useAppSelector((state: RootState) => state.user.user);
                <Account
                   // nickname="dimamrkv"
                   nickname={nickname}
-                  imgSrc={imgSrc}
+                  // imgSrc={imgSrc}
                   />
                <Coins quantity={user?.coins} />
             </div>
