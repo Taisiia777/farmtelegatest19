@@ -276,7 +276,6 @@ const Home = () => {
       const interval = setInterval(() => {
         if (user) {
           const newCoins = parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
-          alert(newCoins);
           setLocalCoins(newCoins);
     
           // Отправляем обновленные данные на сервер
