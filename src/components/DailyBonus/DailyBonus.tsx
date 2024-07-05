@@ -6,6 +6,8 @@ import styles from "./DailyBonus.module.scss";
 import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
 import Button from "../Button/Button";
 import { useState } from "react";
+import { RootState } from "../../store";
+import { setUser } from "../../store/reducers/userSlice";
 const cn = classNames.bind(styles);
 
 const DailyBonus = () => {
@@ -15,16 +17,61 @@ const DailyBonus = () => {
 
    // Состояние прелоудреа
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
+   const user = useAppSelector((state: RootState) => state.user.user);
 
    const [moneyAnimActive, setMoneyAnimACtive] = useState(false);
+   const [bonusAmount, setBonusAmount] = useState(0);
 
-   function recieveCoins() {
-      setMoneyAnimACtive(true);
+   // function recieveCoins() {
+   //    setMoneyAnimACtive(true);
 
-      setTimeout(() => {
-         setMoneyAnimACtive(false);
-         dispatch(closeDailyBonus());
-      }, 500);
+   //    setTimeout(() => {
+   //       setMoneyAnimACtive(false);
+   //       dispatch(closeDailyBonus());
+   //    }, 500);
+   // }
+
+   useEffect(() => {
+      // Находим бонус для текущего дня
+      const currentBonus = bonuses.find(bonus => bonus.currentDay);
+      if (currentBonus) {
+         setBonusAmount(currentBonus.bonusAmount);
+      }
+   }, []);
+
+   async function recieveCoins() {
+      if (user?.id && bonusAmount > 0) {
+         try {
+            const response = await fetch(`https://86c5-188-116-20-43.ngrok-free.app/coin/giveCoins/${user.id}/${bonusAmount}`, {
+               method: 'PATCH',
+               headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+               }
+            });
+
+            if (!response.ok) {
+               throw new Error('Something went wrong');
+            } else {
+               const updatedUser = await response.json();
+               dispatch(setUser({
+                  ...updatedUser,
+                  coins: Number(updatedUser.coins),
+                  totalEarnings: Number(updatedUser.totalEarnings)
+               })); // Обновляем данные пользователя в Redux
+            }
+         } catch (error) {
+            console.error('Error:', error);
+         }
+
+         setMoneyAnimACtive(true);
+         setTimeout(() => {
+            setMoneyAnimACtive(false);
+            dispatch(closeDailyBonus());
+         }, 500);
+      } else {
+         console.error("User ID not found or bonus amount is zero");
+      }
    }
 
    // True, если прелоадер, приветсвенные попапы уже отключены
@@ -57,8 +104,9 @@ const DailyBonus = () => {
                </p>
 
                <div className={cn("content__grid")}>
-                  <BonusBlock dayNumber={1} bonusAmount={10} recieved />
-                  <BonusBlock dayNumber={2} bonusAmount={20} currentDay />
+                  {/* <BonusBlock dayNumber={1} bonusAmount={10} recieved /> */}
+                  <BonusBlock dayNumber={1} bonusAmount={10} currentDay />
+                  <BonusBlock dayNumber={2} bonusAmount={20}  />
                   <BonusBlock dayNumber={3} bonusAmount={50} />
                   <BonusBlock dayNumber={4} bonusAmount={100} />
                   <BonusBlock dayNumber={5} bonusAmount={200} />

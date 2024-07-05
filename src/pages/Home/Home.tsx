@@ -141,8 +141,8 @@ const Home = () => {
                     },
                     body: JSON.stringify({
                         username: nickname,
-                        coins: 1010,
-                        totalEarnings: 1010,
+                        coins: 0,
+                        totalEarnings: 0,
                         incomeMultiplier: 1,
                         coinsPerHour: 10,
                         xp: 0,
