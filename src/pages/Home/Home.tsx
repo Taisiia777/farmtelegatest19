@@ -382,10 +382,11 @@ const Home = () => {
             {!isPopupOpen && (
                <div className={cn("bottom")}>
                   {/* Лига */}
-                  <Liga
+                  {/* <Liga
                      liga="Diamond"
                      onLigaOpen={() => setEarnPopupOpen(true)}
-                  />
+                  /> */}
+                  <Liga liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
                   <Energy
                      total={1000}
                      current={300}
@@ -403,8 +404,8 @@ const Home = () => {
                <img src="img/pages/home/bg-elements.svg" alt="road" />
 
                {/* Блоки земли */}
-               <FarmBloks />
-
+               {/* <FarmBloks /> */}
+               <FarmBloks league={leagues[level].name as TLiga} />
                {/* Активные boosts */}
                <Boosts />
 
