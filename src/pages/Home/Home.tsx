@@ -1,5 +1,5 @@
 import { RefObject, useRef, useState, useEffect } from "react";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch} from "react-redux";
 import { setUser } from "../../store/reducers/userSlice";
 import { RootState } from "../../store";
 import { useAppSelector } from "../../store";

@@ -15,7 +15,7 @@ const Stats = () => {
    const navigate = useNavigate();
    const user = useSelector((state: RootState) => state.user.user);
    const [totalPlayers, setTotalPlayers] = useState(0);
-   const [totalEarnings, setTotalEarnings] = useState(0);
+   // const [totalEarnings, setTotalEarnings] = useState(0);
    // alert(JSON.stringify(user))
    useEffect(() => {
       tg.BackButton.show();
