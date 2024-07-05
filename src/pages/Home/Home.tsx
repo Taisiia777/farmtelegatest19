@@ -151,6 +151,7 @@ const Home = () => {
     };
 
     const updateUserLevel = async (userId: number, newLevel: number) => {
+      alert(newLevel)
       try {
         const response = await fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${userId}`, {
           method: 'PUT',
