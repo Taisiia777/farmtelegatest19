@@ -135,18 +135,41 @@ const Home = () => {
       }, 500);
    }
    
-  const updateLeagueProgress = () => {
-   const nextLeague = leagues[level];
-   if (nextLeague) {
-     const percent = (localCoins / nextLeague.coinsRequired) * 100;
-     setProgressPercent(Math.min(percent, 100));
-     
-     if (localCoins >= nextLeague.coinsRequired) {
-       setLevel(level + 1);
-       dispatch(setUser({ ...user, level: level + 1 }));
-     }
-   }
- };
+   const updateLeagueProgress = async () => {
+      const nextLeague = leagues[level];
+      if (nextLeague) {
+        const percent = (localCoins / nextLeague.coinsRequired) * 100;
+        setProgressPercent(Math.min(percent, 100));
+        
+        if (localCoins >= nextLeague.coinsRequired) {
+          const newLevel = level + 1;
+          setLevel(newLevel);
+          await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
+          dispatch(setUser({ ...user, level: newLevel }));
+        }
+      }
+    };
+
+    const updateUserLevel = async (userId: number, newLevel: number) => {
+      try {
+        const response = await fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${userId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({ level: newLevel })
+        });
+        if (!response.ok) {
+          throw new Error('Failed to update user level');
+        }
+        const updatedUser = await response.json();
+        dispatch(setUser(updatedUser));
+      } catch (error) {
+        console.error('Error updating user level:', error);
+      }
+    };
+    
 
  useEffect(() => {
    updateLeagueProgress();
