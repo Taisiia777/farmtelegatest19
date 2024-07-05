@@ -26,6 +26,7 @@ const Stats = () => {
       const fetchTotalPlayers = async () => {
         try {
           const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user'); // Используйте HTTPS
+          alert(JSON.stringify(response))
           if (response.ok) {
             const data = await response.json();
             setTotalPlayers(data.length); // Предполагается, что API возвращает массив пользователей
