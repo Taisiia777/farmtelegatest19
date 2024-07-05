@@ -30,7 +30,10 @@ const Stats = () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json'
+                'Accept': '*/*',
+                'User-Agent': 'PostmanRuntime/7.39.0',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Connection': 'keep-alive'
             }
           });
 
