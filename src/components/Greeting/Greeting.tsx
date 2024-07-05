@@ -31,7 +31,7 @@ const Greeting = () => {
    async function addCoins(userId: number, amount: number) {
        alert(amount)
       try {
-          const response = await fetch(`https://86c5-188-116-20-43.ngrok-free.app/coin/giveCoins/${userId}/${amount}`, {
+          const response = await fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${userId}/earn/${amount}`, {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
