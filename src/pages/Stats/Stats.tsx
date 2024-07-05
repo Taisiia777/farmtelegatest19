@@ -32,23 +32,26 @@ const Stats = () => {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
-        });
+          });
 
           console.log("Response status:", response.status);
           console.log("Response headers:", response.headers);
 
+          const responseBody = await response.text(); // Чтение тела ответа как текст
+          console.log("Response body:", responseBody);
+
           if (response.ok) {
-            const data = await response.json();
+            const data = JSON.parse(responseBody); // Преобразование текста в JSON
             console.log("Fetched data:", data); // Логируем данные для проверки
             alert(JSON.stringify(data)); // Показываем данные в алерте для проверки
             setTotalPlayers(data.length); // Предполагается, что API возвращает массив пользователей
           } else {
-            const errorText = await response.text();
-            console.error('Failed to fetch total players:', errorText);
-            alert('Failed to fetch total players: ' + errorText);
+            console.error('Failed to fetch total players:', responseBody);
+            alert('Failed to fetch total players: ' + responseBody);
           }
         } catch (error) {
           console.error('Error:', error);
+          alert('Error: ' + error.message);
         }
       };
 
