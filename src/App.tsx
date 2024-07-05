@@ -23,6 +23,7 @@ const router = createBrowserRouter(
          <Route path={Routes.PEOPLE} element={<People />} />
          <Route path={Routes.INVITE} element={<Invite />} />
       </Route>
+
    )
 );
 

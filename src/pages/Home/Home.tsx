@@ -1,10 +1,10 @@
 import { RefObject, useRef, useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector} from "react-redux";
+import { setUser } from "../../store/reducers/userSlice";
+import { RootState } from "../../store";
 import { useAppSelector } from "../../store";
 import { closeBoostBuyPopup } from "../../store/reducers/boost";
 import { closeCoinBuyPopup } from "../../store/reducers/coin";
-
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
 import { retrieveLaunchParams } from '@tma.js/sdk';
@@ -122,92 +122,102 @@ const Home = () => {
          callback();
       }, 500);
    }
-  // Получение данных пользователя из Telegram Web App при монтировании компонента
-//   useEffect(() => {
-//    if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe) {
-//      const user = window.Telegram.WebApp.initDataUnsafe.user;
-//      alert(JSON.stringify(user))
-//      if (user) {
-//        if (user.username) {
-//          setNickname(user.username);
-//        }
-//        if (user.photo_url) {
-//          setImgSrc(user.photo_url);
-//        }
-//      }
-//    }
-//  }, []);
+
+   useEffect(() => {
+      const { initData } = retrieveLaunchParams();
+      if (initData && initData.user) {
+        const user = initData.user;
+        const username = user.username;
+        if (username) {
+          setNickname(username);
+    
+          const createUser = async () => {
+            try {
+                const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: nickname,
+                        coins: 1010,
+                        totalEarnings: 1010,
+                        incomeMultiplier: 1,
+                        coinsPerHour: 10,
+                        xp: 0,
+                        level: 1
+                    })
+                });
+     
+                if (response.status === 409) {
+                    const userData = await response.json();
+                    // alert(`User already exists: ${JSON.stringify(userData)}`);
+                } else if (!response.ok) {
+                    throw new Error('Something went wrong');
+                } else {
+                    const newUser = await response.json();
+                    dispatch(setUser(newUser)); // Сохраняем пользователя в Redux
+                    // alert(`New user created: ${JSON.stringify(newUser)}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+     
+        createUser();
+    
+          createUser();
+        }
+    
+        if (user.photoUrl) {
+          setImgSrc(user.photoUrl);
+        } else {
+          console.log("Photo URL not available");
+        }
+      }
+    }, [dispatch, nickname]);
+
+
 // useEffect(() => {
-//    const { initData } = retrieveLaunchParams();
-//    alert('2222')
+//    const createUser = async () => {
+//        try {
+//            const response = await fetch('http://188.116.20.43:3000/user', {
+//                method: 'POST',
+//                headers: {
+//                    'Content-Type': 'application/json',
+//                    'Accept': 'application/json'
+//                },
+//                body: JSON.stringify({
+//                    username: nickname,
+//                    coins: 1010,
+//                    totalEarnings: 1010,
+//                    incomeMultiplier: 1,
+//                    coinsPerHour: 10,
+//                    xp: 0,
+//                    level: 1
+//                })
+//            });
 
-//    if (initData && initData.user) {
-//      const user = initData.user;
-//      alert('llll')
+//            if (response.status === 409) {
+//                const userData = await response.json();
+//                // alert(`User already exists: ${JSON.stringify(userData)}`);
+//            } else if (!response.ok) {
+//                throw new Error('Something went wrong');
+//            } else {
+//                const newUser = await response.json();
+//                dispatch(setUser(newUser)); // Сохраняем пользователя в Redux
+//                // alert(`New user created: ${JSON.stringify(newUser)}`);
+//            }
+//        } catch (error) {
+//            console.error('Error:', error);
+//        }
+//    };
 
-//      alert(user)
+//    createUser();
+// }, [dispatch, nickname]);
 
-//      if (user.username) {
-//        setNickname(user.username);
-//      }
-//      if (user.photoUrl) {  // Проверка на наличие photoUrl
-//        setImgSrc(user.photoUrl);
-//        alert(user.photoUrl)
-//      } else {
-//        console.log("Photo URL not available");
-//      }
-//    }
-//  }, []);
-useEffect(() => {
-   const { initData } = retrieveLaunchParams();
-   if (initData && initData.user) {
-     const user = initData.user;
-     const username = user.username;
-     if (username) {
-       setNickname(username);
- 
-       const createUser = async () => {
-         try {
-           const response = await fetch('https://188.116.20.43:443/user', { // Изменено на HTTPS
-             method: 'POST',
-             headers: {
-               'Content-Type': 'application/json',
-               'Accept': 'application/json'
-             },
-             body: JSON.stringify({
-               username: username,
-               coins: 100,
-               incomeMultiplier: 1,
-               coinsPerHour: 10,
-               xp: 0,
-               level: 1
-             })
-           });
- 
-           if (response.status === 409) {
-             const userData = await response.json();
-             alert(`User already exists: ${JSON.stringify(userData)}`);
-           } else if (!response.ok) {
-             throw new Error('Something went wrong');
-           } else {
-             const newUser = await response.json();
-             alert(`New user created: ${JSON.stringify(newUser)}`);
-           }
-         } catch (error) {
-           console.error('Error:', error);
-         }
-       };
- 
-       createUser();
-     }
- 
-     if (user.photoUrl) {
-       setImgSrc(user.photoUrl);
-     } else {
-       console.log("Photo URL not available");
-     }
-   }
- }, []);
+const user = useAppSelector((state: RootState) => state.user.user);
    return (
       <>
          {/* Основной контент */}
@@ -218,14 +228,14 @@ useEffect(() => {
                   nickname={nickname}
                   imgSrc={imgSrc}
                   />
-               <Coins quantity={"349.917"} />
+               <Coins quantity={user?.coins} />
             </div>
 
             {!isPopupOpen && (
                <div className={cn("bottom")}>
                   {/* Лига */}
                   <Liga
-                     liga="Diamond"
+                     liga="Wooden"
                      onLigaOpen={() => setEarnPopupOpen(true)}
                   />
                   <Energy
