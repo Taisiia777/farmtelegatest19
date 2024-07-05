@@ -25,7 +25,13 @@ const Stats = () => {
    useEffect(() => {
       const fetchTotalPlayers = async () => {
         try {
-          const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user'); // Используйте HTTPS
+          const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }); // Используйте HTTPS
           alert(JSON.stringify(response))
           if (response.ok) {
             const data = await response.json();
