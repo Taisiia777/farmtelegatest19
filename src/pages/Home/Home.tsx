@@ -185,6 +185,7 @@ const Home = () => {
       const interval = setInterval(() => {
         if (user) {
           const newCoins = localCoins + user.coinsPerHour / 3600;
+          alert(newCoins)
           setLocalCoins(newCoins);
   
           // Отправляем обновленные данные на сервер
