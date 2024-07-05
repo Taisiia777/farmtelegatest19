@@ -6,6 +6,11 @@ import Button from "../Button/Button";
 import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { finishGreeting } from "../../store/reducers/greeting";
+import { setUser } from "../../store/reducers/userSlice";
+import { RootState } from "../../store";
+import { useSelector } from "react-redux";
+
+
 const cn = classNames.bind(styles);
 
 const Greeting = () => {
@@ -14,6 +19,7 @@ const Greeting = () => {
 
    // Состояние прелоудреа
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
+   const user = useSelector((state: RootState) => state.user.user);
 
    const [step, setStep] = useState(1);
 
@@ -21,6 +27,34 @@ const Greeting = () => {
 
    function goNext() {
       setStep((prev) => prev + 1);
+   }
+   async function addCoins(userId: number, amount: number) {
+      try {
+         const response = await fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${userId}/earn/${amount}`, {
+            method: 'PATCH',
+            headers: {
+               'Content-Type': 'application/json',
+               'Accept': 'application/json'
+            }
+         });
+
+         if (!response.ok) {
+            throw new Error('Something went wrong');
+         } else {
+            const updatedUser = await response.json();
+            dispatch(setUser(updatedUser)); // Обновляем данные пользователя в Redux
+         }
+      } catch (error) {
+         console.error('Error:', error);
+      }
+   }
+   function handleAddCoins() {
+      if (user?.id) {
+         addCoins(user.id, 100);
+         fihish();
+      } else {
+         console.error("User ID not found");
+      }
    }
 
    function fihish() {
@@ -31,6 +65,7 @@ const Greeting = () => {
          dispatch(finishGreeting());
       }, 500);
    }
+   
 
    return (
       <div className={cn("greeting", !isLoading && isOpen && "_active")}>
@@ -171,9 +206,9 @@ const Greeting = () => {
                      <div className={cn("content__end-btn-wrap")}>
                         <Button
                            className={cn("content__end-btn")}
-                           onClick={fihish}>
+                           onClick={handleAddCoins}>
                            <CoinWhiteBg size="small" />
-                           <span className="textShadow">+1000</span>
+                           <span className="textShadow">+100</span>
                         </Button>
                      </div>
                      <img
