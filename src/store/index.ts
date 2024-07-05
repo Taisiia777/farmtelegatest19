@@ -7,7 +7,7 @@ import coinSlice from './reducers/coin';
 import greetingSlice from './reducers/greeting';
 import preloaderSlice from './reducers/preloader';
 import dailyBonus from './reducers/dailyBonus';
-import userSlice, { UserState } from './reducers/userSlice'; // Импортируем тип UserState
+import userSlice from './reducers/userSlice'; // Импортируем тип UserState
 
 const store = configureStore({
   reducer: {
