@@ -383,7 +383,7 @@ const Home = () => {
                <div className={cn("bottom")}>
                   {/* Лига */}
                   <Liga
-                     liga="Wooden"
+                     liga="Diamond"
                      onLigaOpen={() => setEarnPopupOpen(true)}
                   />
                   <Energy
