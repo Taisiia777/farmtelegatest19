@@ -275,10 +275,10 @@ const Home = () => {
     useEffect(() => {
       const interval = setInterval(() => {
         if (user) {
-          const newCoins = localCoins + user.coinsPerHour / 3600;
-          alert(newCoins)
+          const newCoins = parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
+          alert(newCoins);
           setLocalCoins(newCoins);
-
+    
           // Отправляем обновленные данные на сервер
           fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${user.coinsPerHour / 3600}`, {
             method: 'PATCH',
@@ -291,22 +291,23 @@ const Home = () => {
           .then(updatedUser => {
             dispatch(setUser({
               ...updatedUser,
-              coins: Number(updatedUser.coins),
-              totalEarnings: Number(updatedUser.totalEarnings)
+              coins: parseFloat(updatedUser.coins),
+              totalEarnings: parseFloat(updatedUser.totalEarnings)
             }));
           })
           .catch(error => console.error('Error:', error));
         }
       }, 1000);
-
+    
       return () => clearInterval(interval);
     }, [localCoins, user, dispatch]);
-
+    
     useEffect(() => {
       if (user) {
-        setLocalCoins(user.coins);
+        setLocalCoins(parseFloat(user.coins));
       }
     }, [user]);
+    
    return (
       <>
          {/* Основной контент */}
