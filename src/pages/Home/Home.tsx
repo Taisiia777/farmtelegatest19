@@ -126,6 +126,97 @@ const Home = () => {
       }, 500);
    }
 
+   // useEffect(() => {
+   //    const { initData } = retrieveLaunchParams();
+   //    if (initData && initData.user) {
+   //      const user = initData.user;
+   //      const username = user.username;
+   //      if (username) {
+   //        setNickname(username);
+    
+   //        const createUser = async () => {
+   //          try {
+   //              const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user', {
+   //                  method: 'POST',
+   //                  headers: {
+   //                      'Content-Type': 'application/json',
+   //                      'Accept': 'application/json'
+   //                  },
+   //                  body: JSON.stringify({
+   //                      username: nickname,
+   //                      coins: 0,
+   //                      totalEarnings: 0,
+   //                      incomeMultiplier: 1,
+   //                      coinsPerHour: 10,
+   //                      xp: 0,
+   //                      level: 1
+   //                  })
+   //              });
+     
+   //              if (response.status === 409) {
+   //                  const userData = await response.json();
+   //                  alert(`User already exists: ${JSON.stringify(userData)}`);
+   //              } else if (!response.ok) {
+   //                  throw new Error('Something went wrong');
+   //              } else {
+   //                  const newUser = await response.json();
+   //                  dispatch(setUser(newUser)); // Сохраняем пользователя в Redux
+   //                  // alert(`New user created: ${JSON.stringify(newUser)}`);
+   //              }
+   //          } catch (error) {
+   //              console.error('Error:', error);
+   //          }
+   //      };
+     
+   //      createUser();
+    
+   //        createUser();
+   //      }
+    
+   //      if (user.photoUrl) {
+   //       //  setImgSrc(user.photoUrl);
+   //      } else {
+   //        console.log("Photo URL not available");
+   //      }
+   //    }
+   //  }, [dispatch, nickname]);
+
+   //  useEffect(() => {
+   //    const interval = setInterval(() => {
+   //      if (user) {
+   //        const newCoins = localCoins + user.coinsPerHour / 3600;
+   //        alert(newCoins)
+   //        setLocalCoins(newCoins);
+  
+   //        // Отправляем обновленные данные на сервер
+   //        fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${user.coinsPerHour / 3600}`, {
+   //          method: 'PATCH',
+   //          headers: {
+   //            'Content-Type': 'application/json',
+   //            'Accept': 'application/json'
+   //          }
+   //        })
+   //        .then(response => response.json())
+   //        .then(updatedUser => {
+   //          dispatch(setUser({
+   //            ...updatedUser,
+   //            coins: Number(updatedUser.coins),
+   //            totalEarnings: Number(updatedUser.totalEarnings)
+   //          }));
+   //        })
+   //        .catch(error => console.error('Error:', error));
+   //      }
+   //    }, 1000);
+  
+   //    return () => clearInterval(interval);
+   //  }, [localCoins, user, dispatch]);
+  
+   //  useEffect(() => {
+   //    if (user) {
+   //      setLocalCoins(user.coins);
+   //    }
+   //  }, [user]);
+
    useEffect(() => {
       const { initData } = retrieveLaunchParams();
       if (initData && initData.user) {
@@ -133,7 +224,7 @@ const Home = () => {
         const username = user.username;
         if (username) {
           setNickname(username);
-    
+
           const createUser = async () => {
             try {
                 const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user', {
@@ -152,7 +243,7 @@ const Home = () => {
                         level: 1
                     })
                 });
-     
+
                 if (response.status === 409) {
                     const userData = await response.json();
                     alert(`User already exists: ${JSON.stringify(userData)}`);
@@ -167,12 +258,12 @@ const Home = () => {
                 console.error('Error:', error);
             }
         };
-     
+
         createUser();
-    
+
           createUser();
         }
-    
+
         if (user.photoUrl) {
          //  setImgSrc(user.photoUrl);
         } else {
@@ -187,7 +278,7 @@ const Home = () => {
           const newCoins = localCoins + user.coinsPerHour / 3600;
           alert(newCoins)
           setLocalCoins(newCoins);
-  
+
           // Отправляем обновленные данные на сервер
           fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${user.coinsPerHour / 3600}`, {
             method: 'PATCH',
@@ -207,17 +298,15 @@ const Home = () => {
           .catch(error => console.error('Error:', error));
         }
       }, 1000);
-  
+
       return () => clearInterval(interval);
     }, [localCoins, user, dispatch]);
-  
+
     useEffect(() => {
       if (user) {
         setLocalCoins(user.coins);
       }
     }, [user]);
-
-
    return (
       <>
          {/* Основной контент */}
