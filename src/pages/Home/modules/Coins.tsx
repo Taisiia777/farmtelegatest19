@@ -12,7 +12,7 @@ const Coins = ({ quantity }: CoinsProps) => {
          <div className={cn("coins__video-wrap")}>
             <img src="video/BTC.gif" alt="I'm a gif" />
          </div>
-         <span className="textShadow">{quantity} B</span>
+         <span className="textShadow">{quantity}</span>
       </div>
    );
 };

@@ -12,13 +12,13 @@ const Account = ({ nickname, imgSrc }: IAccountProps) => {
       <div className={cn("account")}>
          <div className={cn("account__info")}>
             {/* Аватар */}
-            <div className={cn("account__avatar")}>
+            {/* <div className={cn("account__avatar")}>
                <img
                   src="img/pages/home/avatar-btn.svg"
                   className={cn("account__border")}
                />
                <img src={imgSrc} className={cn("account__avatar-person")} alt="foto" />
-            </div>
+            </div> */}
             <strong className="textShadow">{nickname}</strong>
          </div>
       </div>
