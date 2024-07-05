@@ -51,7 +51,6 @@ const Stats = () => {
           }
         } catch (error) {
           console.error('Error:', error);
-          alert('Error: ' + error.message);
         }
       };
 
