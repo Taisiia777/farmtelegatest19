@@ -151,7 +151,7 @@ const Home = () => {
                 });
      
                 if (response.status === 409) {
-                    const userData = await response.json();
+                  //   const userData = await response.json();
                     // alert(`User already exists: ${JSON.stringify(userData)}`);
                 } else if (!response.ok) {
                     throw new Error('Something went wrong');
