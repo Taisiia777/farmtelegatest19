@@ -135,20 +135,6 @@ const Home = () => {
       }, 500);
    }
    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    const updateLeagueProgress = async () => {
       const nextLeague = leagues[level];
       if (nextLeague) {
@@ -157,18 +143,17 @@ const Home = () => {
         
         if (localCoins >= nextLeague.coinsRequired) {
           const newLevel = level + 1;
-          if (newLevel < leagues.length) {
-            setLevel(newLevel);
-            await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
-            dispatch(setUser({ ...user, level: newLevel }));
-          }
+          setLevel(newLevel);
+          await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
+          dispatch(setUser({ ...user, level: newLevel }));
         }
       }
     };
-  
+
     const updateUserLevel = async (userId: number, newLevel: number) => {
+      alert(newLevel)
       try {
-        const response = await fetch(`https://ваш-сервер/user/${userId}`, {
+        const response = await fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${userId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -185,273 +170,114 @@ const Home = () => {
         console.error('Error updating user level:', error);
       }
     };
-  
-    useEffect(() => {
-      updateLeagueProgress();
-    }, [localCoins, level]);
-  
-    useEffect(() => {
-      const { initData } = retrieveLaunchParams();
-      if (initData && initData.user) {
-        const user = initData.user;
-        const username = user.username;
-        if (username) {
-          setNickname(username);
-  
-          const createUser = async () => {
-            try {
-              const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                  username: nickname,
-                  coins: 0,
-                  totalEarnings: 0,
-                  incomeMultiplier: 1,
-                  coinsPerHour: 10,
-                  xp: 0,
-                  level: 1
-                })
-              });
-  
-              if (response.status === 409) {
-                const userData = await response.json();
-                alert(`User already exists: ${JSON.stringify(userData)}`);
-              } else if (!response.ok) {
-                throw new Error('Something went wrong');
-              } else {
-                const newUser = await response.json();
-                dispatch(setUser(newUser));
-              }
-            } catch (error) {
-              console.error('Error creating user:', error);
-            }
-          };
-  
-          createUser();
-        }
-  
-        if (user.photoUrl) {
-          // setImgSrc(user.photoUrl);
-        } else {
-          console.log("Photo URL not available");
-        }
-      }
-    }, [dispatch, nickname]);
-  
-    useEffect(() => {
-      const interval = setInterval(() => {
-        if (user) {
-          const newCoins = parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
-          setLocalCoins(newCoins);
-  
-          // Отправляем обновленные данные на сервер
-          fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${user.coinsPerHour / 3600}`, {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            }
-          })
-            .then(response => response.json())
-            .then(updatedUser => {
-              dispatch(setUser({
-                ...updatedUser,
-                coins: parseFloat(updatedUser.coins),
-                totalEarnings: parseFloat(updatedUser.totalEarnings)
-              }));
-            })
-            .catch(error => console.error('Error:', error));
-        }
-      }, 1000);
-  
-      return () => clearInterval(interval);
-    }, [localCoins, user, dispatch]);
-  
-    useEffect(() => {
-      if (user) {
-        setLocalCoins(parseFloat(user.coins));
-      }
-    }, [user]);
-  
-    const renderLeagues = () => {
-      return leagues.map((league, index) => {
-        const isActive = index === level;
-        const percent = isActive ? progressPercent : (localCoins / league.coinsRequired) * 100;
-        return (
-          <LigaBlock
-            key={league.name}
-            ligaName={league.name as TLiga} // Приведение типа к TLiga
-            percent={percent}
-            price={league.coinsRequired.toString()}
-            acitve={isActive} // Исправлено на 'acitve'
-          />
-        );
-      });
-    };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    const updateLeagueProgress = async () => {
-//       const nextLeague = leagues[level];
-//       if (nextLeague) {
-//         const percent = (localCoins / nextLeague.coinsRequired) * 100;
-//         setProgressPercent(Math.min(percent, 100));
-        
-//         if (localCoins >= nextLeague.coinsRequired) {
-//           const newLevel = level + 1;
-//           setLevel(newLevel);
-//           await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
-//           dispatch(setUser({ ...user, level: newLevel }));
-//         }
-//       }
-//     };
-
-//     const updateUserLevel = async (userId: number, newLevel: number) => {
-//       alert(newLevel)
-//       try {
-//         const response = await fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${userId}`, {
-//           method: 'PUT',
-//           headers: {
-//             'Content-Type': 'application/json',
-//             'Accept': 'application/json'
-//           },
-//           body: JSON.stringify({ level: newLevel })
-//         });
-//         if (!response.ok) {
-//           throw new Error('Failed to update user level');
-//         }
-//         const updatedUser = await response.json();
-//         dispatch(setUser(updatedUser));
-//       } catch (error) {
-//         console.error('Error updating user level:', error);
-//       }
-//     };
     
 
-//  useEffect(() => {
-//    updateLeagueProgress();
-//  }, [localCoins, level]);
+ useEffect(() => {
+   updateLeagueProgress();
+ }, [localCoins, level]);
 
-//  useEffect(() => {
-//    const { initData } = retrieveLaunchParams();
-//    if (initData && initData.user) {
-//      const user = initData.user;
-//      const username = user.username;
-//      if (username) {
-//        setNickname(username);
+ useEffect(() => {
+   const { initData } = retrieveLaunchParams();
+   if (initData && initData.user) {
+     const user = initData.user;
+     const username = user.username;
+     if (username) {
+       setNickname(username);
 
-//        const createUser = async () => {
-//          try {
-//            const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user', {
-//              method: 'POST',
-//              headers: {
-//                'Content-Type': 'application/json',
-//                'Accept': 'application/json'
-//              },
-//              body: JSON.stringify({
-//                username: nickname,
-//                coins: 0,
-//                totalEarnings: 0,
-//                incomeMultiplier: 1,
-//                coinsPerHour: 10,
-//                xp: 0,
-//                level: 1
-//              })
-//            });
+       const createUser = async () => {
+         try {
+           const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user', {
+             method: 'POST',
+             headers: {
+               'Content-Type': 'application/json',
+               'Accept': 'application/json'
+             },
+             body: JSON.stringify({
+               username: nickname,
+               coins: 0,
+               totalEarnings: 0,
+               incomeMultiplier: 1,
+               coinsPerHour: 10,
+               xp: 0,
+               level: 1
+             })
+           });
 
-//            if (response.status === 409) {
-//              const userData = await response.json();
-//              alert(`User already exists: ${JSON.stringify(userData)}`);
-//            } else if (!response.ok) {
-//              throw new Error('Something went wrong');
-//            } else {
-//              const newUser = await response.json();
-//              dispatch(setUser(newUser));
-//            }
-//          } catch (error) {
-//            console.error('Error:', error);
-//          }
-//        };
+           if (response.status === 409) {
+             const userData = await response.json();
+             alert(`User already exists: ${JSON.stringify(userData)}`);
+           } else if (!response.ok) {
+             throw new Error('Something went wrong');
+           } else {
+             const newUser = await response.json();
+             dispatch(setUser(newUser));
+           }
+         } catch (error) {
+           console.error('Error:', error);
+         }
+       };
 
-//        createUser();
-//      }
+       createUser();
+     }
 
-//      if (user.photoUrl) {
-//        // setImgSrc(user.photoUrl);
-//      } else {
-//        console.log("Photo URL not available");
-//      }
-//    }
-//  }, [dispatch, nickname]);
+     if (user.photoUrl) {
+       // setImgSrc(user.photoUrl);
+     } else {
+       console.log("Photo URL not available");
+     }
+   }
+ }, [dispatch, nickname]);
 
-//  useEffect(() => {
-//    const interval = setInterval(() => {
-//      if (user) {
-//        const newCoins = parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
-//        setLocalCoins(newCoins);
+ useEffect(() => {
+   const interval = setInterval(() => {
+     if (user) {
+       const newCoins = parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
+       setLocalCoins(newCoins);
 
-//        // Отправляем обновленные данные на сервер
-//        fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${user.coinsPerHour / 3600}`, {
-//          method: 'PATCH',
-//          headers: {
-//            'Content-Type': 'application/json',
-//            'Accept': 'application/json'
-//          }
-//        })
-//          .then(response => response.json())
-//          .then(updatedUser => {
-//            dispatch(setUser({
-//              ...updatedUser,
-//              coins: parseFloat(updatedUser.coins),
-//              totalEarnings: parseFloat(updatedUser.totalEarnings)
-//            }));
-//          })
-//          .catch(error => console.error('Error:', error));
-//      }
-//    }, 1000);
+       // Отправляем обновленные данные на сервер
+       fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${user.coinsPerHour / 3600}`, {
+         method: 'PATCH',
+         headers: {
+           'Content-Type': 'application/json',
+           'Accept': 'application/json'
+         }
+       })
+         .then(response => response.json())
+         .then(updatedUser => {
+           dispatch(setUser({
+             ...updatedUser,
+             coins: parseFloat(updatedUser.coins),
+             totalEarnings: parseFloat(updatedUser.totalEarnings)
+           }));
+         })
+         .catch(error => console.error('Error:', error));
+     }
+   }, 1000);
 
-//    return () => clearInterval(interval);
-//  }, [localCoins, user, dispatch]);
+   return () => clearInterval(interval);
+ }, [localCoins, user, dispatch]);
 
-//  useEffect(() => {
-//    if (user) {
-//      setLocalCoins(parseFloat(user.coins));
-//    }
-//  }, [user]);
+ useEffect(() => {
+   if (user) {
+     setLocalCoins(parseFloat(user.coins));
+   }
+ }, [user]);
 
-//  const renderLeagues = () => {
-//    return leagues.map((league, index) => {
-//      const isActive = index === level;
-//      const percent = isActive ? progressPercent : (localCoins / league.coinsRequired) * 100;
-//      return (
-//        <LigaBlock
-//          key={league.name}
-//          ligaName={league.name as TLiga} // Приведение типа к TLiga
-//          percent={percent}
-//          price={league.coinsRequired.toString()}
-//          acitve={isActive}
-//        />
-//      );
-//    });
-//  };
-
-
+ const renderLeagues = () => {
+   return leagues.map((league, index) => {
+     const isActive = index === level;
+     const percent = isActive ? progressPercent : (localCoins / league.coinsRequired) * 100;
+     return (
+       <LigaBlock
+         key={league.name}
+         ligaName={league.name as TLiga} // Приведение типа к TLiga
+         percent={percent}
+         price={league.coinsRequired.toString()}
+         acitve={isActive}
+       />
+     );
+   });
+ };
 
 
 
@@ -471,6 +297,8 @@ const Home = () => {
 
 
 
+
+ 
    // useEffect(() => {
    //    const { initData } = retrieveLaunchParams();
    //    if (initData && initData.user) {
