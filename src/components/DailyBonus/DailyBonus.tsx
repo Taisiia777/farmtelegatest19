@@ -5,7 +5,7 @@ import classNames from "classnames/bind";
 import styles from "./DailyBonus.module.scss";
 import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
 import Button from "../Button/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RootState } from "../../store";
 import { setUser } from "../../store/reducers/userSlice";
 const cn = classNames.bind(styles);
@@ -150,7 +150,18 @@ interface IBonusBlock {
    recieved?: boolean;
    currentDay?: boolean;
 }
-
+const bonuses = [
+   { dayNumber: 1, bonusAmount: 10, currentDay: true },
+   { dayNumber: 2, bonusAmount: 20 },
+   { dayNumber: 3, bonusAmount: 50 },
+   { dayNumber: 4, bonusAmount: 100 },
+   { dayNumber: 5, bonusAmount: 200 },
+   { dayNumber: 6, bonusAmount: 300 },
+   { dayNumber: 7, bonusAmount: 500 },
+   { dayNumber: 8, bonusAmount: 800 },
+   { dayNumber: 9, bonusAmount: 1000 },
+   { dayNumber: 10, bonusAmount: 2000 }
+];
 const BonusBlock = ({
    dayNumber,
    bonusAmount,
