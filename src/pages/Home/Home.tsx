@@ -169,14 +169,14 @@ const Home = () => {
    const updateLeagueProgress = async () => {
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
-  
+    
       while (level < leagues.length) {
         const nextLeague = leagues[level];
         if (!nextLeague) break;
-  
+    
         const percent = (localCoins / nextLeague.coinsRequired) * 100;
         setProgressPercent(Math.min(percent, 100));
-  
+    
         if (localCoins >= nextLeague.coinsRequired) {
           const newLevel = level + 1;
           setLevel(newLevel);
@@ -186,9 +186,10 @@ const Home = () => {
           break;
         }
       }
-  
+    
       setIsProgressUpdating(false);
     };
+    
   
     const updateUserLevel = async (userId: number, newLevel: number) => {
       try {
@@ -224,7 +225,7 @@ const Home = () => {
         const username = user.username;
         if (username) {
           setNickname(username);
-  
+    
           const createUser = async () => {
             try {
               const response = await fetch(
@@ -242,28 +243,30 @@ const Home = () => {
                     incomeMultiplier: 1,
                     coinsPerHour: 10,
                     xp: 0,
-                    level: 0, // Установите начальный уровень на 0
+                    level: 0,
                   }),
                 }
               );
-  
+    
               if (response.status === 409) {
                 const userData = await response.json();
                 alert(`User already exists: ${JSON.stringify(userData)}`);
+                console.log('Existing user ID:', userData.id);
               } else if (!response.ok) {
                 throw new Error("Something went wrong");
               } else {
                 const newUser = await response.json();
                 dispatch(setUser(newUser));
+                console.log('New user ID:', newUser.id);
               }
             } catch (error) {
               console.error("Error:", error);
             }
           };
-  
+    
           createUser();
         }
-  
+    
         if (user.photoUrl) {
           // setImgSrc(user.photoUrl);
         } else {
