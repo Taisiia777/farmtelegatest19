@@ -54,7 +54,7 @@ const Home = () => {
    const [nickname, setNickname] = useState('Savelii777'); // Состояние для никнейма
    // const [imgSrc, setImgSrc] = useState("img/pages/people/person.png");
    const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
-   const [level, setLevel] = useState(user ? user.level : 1);
+   const [level, setLevel] = useState(user ? user.level : 0);
    const [progressPercent, setProgressPercent] = useState(0);
    const [isProgressUpdating, setIsProgressUpdating] = useState(false);
 
