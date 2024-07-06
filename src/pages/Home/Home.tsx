@@ -220,6 +220,7 @@ const Home = () => {
    //  }, [localCoins]);
 
    useEffect(() => {
+      alert(level)
       switch(level) {
         case 0:
           if (localCoins >= 5000) {
