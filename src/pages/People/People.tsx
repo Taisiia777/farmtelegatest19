@@ -255,7 +255,7 @@ const People = () => {
                 <PersonBlock
                   key={user.id}
                   name={user.username}
-                  imgSrc={"img/pages/people/person.png"}
+                  // imgSrc={"img/pages/people/person.png"}
                   earning={user.coinsPerHour.toString()}
                   coinAmount={user.coins.toString()}
                 />
@@ -270,7 +270,7 @@ const People = () => {
                 <PersonBlock
                   key={user.id}
                   name={user.username}
-                  imgSrc={"img/pages/people/person.png"}
+                  // imgSrc={"img/pages/people/person.png"}
                   earning={user.coinsPerHour.toString()}
                   coinAmount={user.coins.toString()}
                   inviteMode

@@ -35,7 +35,27 @@ import Greeting from "../../components/Greeting/Greeting";
 import DailyBonus from "../../components/DailyBonus/DailyBonus";
 
 type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Определение типа TLiga
+type TBoostName = 'mill' | 'drone' | 'minicar' | 'car-2' | 'car-3';
 
+interface Booster {
+   id: number;
+   name: TBoostName;
+   cost: number;
+   yieldIncrease: number;
+   league: string;
+ }
+ 
+//  interface User {
+//    id: number;
+//    username: string;
+//    coins: number;
+//    totalEarnings: number;
+//    incomeMultiplier: number;
+//    coinsPerHour: number;
+//    xp: number;
+//    level: number;
+//    activeBoosters: Booster[];
+//  }
 
 const leagues = [
    { name: "Wooden", coinsRequired: 5000 },
@@ -57,7 +77,9 @@ const Home = () => {
    const [level, setLevel] = useState(user ? user.level : 0);
    const [progressPercent, setProgressPercent] = useState(0);
    const [isProgressUpdating, setIsProgressUpdating] = useState(false);
-
+   const [boosters, setBoosters] = useState<Booster[]>([]);
+   const [userBoosters, setUserBoosters] = useState<Booster[]>([]);
+   
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
 
@@ -311,7 +333,53 @@ const Home = () => {
       });
     };
 
+    useEffect(() => {
+      const fetchBoosters = async () => {
+        try {
+          const response = await fetch("https://coinfarm.club/booster");
+          const data = await response.json();
+          setBoosters(data);
+        } catch (error) {
+          console.error("Error fetching boosters:", error);
+        }
+      };
+    
+      const fetchUserBoosters = async () => {
+        if (user) {
+          try {
+            const response = await fetch(`https://coinfarm.club/user/${user.id}/boosters`);
+            const data = await response.json();
+            setUserBoosters(data);
+          } catch (error) {
+            console.error("Error fetching user boosters:", error);
+          }
+        }
+      };
+    
+      fetchBoosters();
+      fetchUserBoosters();
+    }, [user]);
 
+
+    const renderBoosters = () => {
+      return boosters.map((booster) => {
+        const isBought = userBoosters.some((userBooster) => userBooster.id === booster.id);
+        const isBlocked = leagues[level].name !== booster.league;
+    
+        return (
+          <BoostBlock
+            key={booster.id}
+            boostName={booster.name}
+            earning={booster.yieldIncrease.toString()}
+            price={booster.cost.toString()}
+            ligaName={booster.league as TLiga}
+            isBought={isBought}
+            isBlocked={isBlocked}
+          />
+        );
+      });
+    };
+    
 
 
 
@@ -717,45 +785,47 @@ const Home = () => {
                   onTabChange={(label) => setBoostActiveTab(label)}
                />
                {boostActiveTab === "BOOST" ? (
-                  <PopupList
-                     ref={boostRef}
-                     nodes={[
-                        <BoostBlock
-                           boostName="mill"
-                           earning={"500"}
-                           price="10 000"
-                           ligaName="Wooden"
-                        />,
-                        <BoostBlock
-                           boostName="drone"
-                           earning={"500"}
-                           price="15 000"
-                           ligaName="Silver"
-                           isBought
-                        />,
-                        <BoostBlock
-                           boostName="minicar"
-                           earning={"500"}
-                           price="30 000"
-                           ligaName="Gold"
-                           isBlocked
-                        />,
-                        <BoostBlock
-                           boostName="car-2"
-                           earning={"500"}
-                           price="40 000"
-                           ligaName="Fire"
-                           isBlocked
-                        />,
-                        <BoostBlock
-                           boostName="car-3"
-                           earning={"500"}
-                           price="70 000"
-                           ligaName="Diamond"
-                           isBlocked
-                        />,
-                     ]}
-                  />
+                  // <PopupList
+                  //    ref={boostRef}
+                  //    nodes={[
+                  //       <BoostBlock
+                  //          boostName="mill"
+                  //          earning={"500"}
+                  //          price="10 000"
+                  //          ligaName="Wooden"
+                  //       />,
+                  //       <BoostBlock
+                  //          boostName="drone"
+                  //          earning={"500"}
+                  //          price="15 000"
+                  //          ligaName="Silver"
+                  //          isBought
+                  //       />,
+                  //       <BoostBlock
+                  //          boostName="minicar"
+                  //          earning={"500"}
+                  //          price="30 000"
+                  //          ligaName="Gold"
+                  //          isBlocked
+                  //       />,
+                  //       <BoostBlock
+                  //          boostName="car-2"
+                  //          earning={"500"}
+                  //          price="40 000"
+                  //          ligaName="Fire"
+                  //          isBlocked
+                  //       />,
+                  //       <BoostBlock
+                  //          boostName="car-3"
+                  //          earning={"500"}
+                  //          price="70 000"
+                  //          ligaName="Diamond"
+                  //          isBlocked
+                  //       />,
+                  //    ]}
+                  // />
+                  <PopupList ref={boostRef} nodes={renderBoosters()} />
+
                ) : (
                   <PopupList
                      ref={boostRef}
