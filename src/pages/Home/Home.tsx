@@ -164,6 +164,7 @@ const Home = () => {
    
 
    const updateLeagueProgress = async () => {
+      alert("111")
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
     
@@ -189,8 +190,7 @@ const Home = () => {
     
   
     const updateUserLevel = async (userId: number, newLevel: number) => {
-      alert(userId)
-      alert(newLevel)
+     
 
       try {
         const response = await fetch(
@@ -215,6 +215,7 @@ const Home = () => {
     };
   
     useEffect(() => {
+      alert("2222")
       updateLeagueProgress();
     }, [localCoins]);
   
