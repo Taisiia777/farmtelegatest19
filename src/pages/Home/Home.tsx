@@ -254,13 +254,13 @@ const Home = () => {
       const interval = setInterval(() => {
         if (user) {
           const newCoins =
-            parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
+            parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 360;
           setLocalCoins(newCoins);
   
           // Отправляем обновленные данные на сервер
           fetch(
             `https://coinfarm.club/user/${user.id}/earn/${
-              user.coinsPerHour / 3600
+              user.coinsPerHour / 360
             }`,
             {
               method: "PATCH",
@@ -282,7 +282,7 @@ const Home = () => {
             })
             .catch((error) => console.error("Error:", error));
         }
-      }, 1000);
+      }, 10000);
   
       return () => clearInterval(interval);
     }, [localCoins, user, dispatch]);
