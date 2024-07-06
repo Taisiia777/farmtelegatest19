@@ -158,7 +158,7 @@ const Home = () => {
           const newLevel = level + 1;
           console.log(`Updating level from ${level} to ${newLevel}`);
           setLevel(newLevel);
-          await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере только если изменился уровень
+         //  await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере только если изменился уровень
           dispatch(setUser({ ...user, level: newLevel }));
         } else {
           break;
