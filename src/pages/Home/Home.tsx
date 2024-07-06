@@ -164,7 +164,6 @@ const Home = () => {
    
 
    const updateLeagueProgress = async () => {
-      alert("111")
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
     
@@ -223,22 +222,22 @@ const Home = () => {
       alert(level)
       switch(level) {
         case 0:
-          if (localCoins >= 5000) {
+          if (localCoins >= 5000 && localCoins < 25000) {
             updateLeagueProgress();
           }
           break;
         case 1:
-          if (localCoins >= 25000) {
+          if (localCoins >= 25000 && localCoins < 100000) {
             updateLeagueProgress();
           }
           break;
         case 2:
-            if (localCoins >= 100000) {
+            if (localCoins >= 100000 && localCoins < 1000000) {
               updateLeagueProgress();
             }
             break;
         case 3:
-            if (localCoins >= 1000000) {
+            if (localCoins >= 1000000 && localCoins < 2500000) {
               updateLeagueProgress();
             }
             break;
