@@ -17,7 +17,8 @@ interface IBoostBlockProps {
    ligaName: TLiga;
    isBlocked?: boolean;
    isBought?: boolean;
-   
+   userId: number;
+   boosterId: number;
 }
 
 const BoostBlock = ({
@@ -27,8 +28,12 @@ const BoostBlock = ({
    ligaName,
    isBlocked = false,
    isBought = false,
+   userId,
+   boosterId
 }: IBoostBlockProps) => {
    const dispatch = useDispatch();
+   console.log(userId)
+   console.log(boosterId)
 
    function openBoostBuyPopup() {
       dispatch(
