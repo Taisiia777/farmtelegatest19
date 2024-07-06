@@ -141,9 +141,7 @@ const Home = () => {
    }
    
 
-
-   
-  const updateLeagueProgress = async () => {
+   const updateLeagueProgress = async () => {
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
   
@@ -156,9 +154,11 @@ const Home = () => {
   
         if (localCoins >= nextLeague.coinsRequired) {
           const newLevel = level + 1;
-          setLevel(newLevel);
-          await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
-          dispatch(setUser({ ...user, level: newLevel }));
+          if (newLevel !== level) {
+            setLevel(newLevel);
+            await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере только если изменился уровень
+            dispatch(setUser({ ...user, level: newLevel }));
+          }
         } else {
           break;
         }
@@ -250,16 +250,20 @@ const Home = () => {
     }, [dispatch, nickname]);
   
     useEffect(() => {
-      const interval = setInterval(() => {
+      const localCoinsInterval = setInterval(() => {
         if (user) {
           const newCoins =
             parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
           setLocalCoins(newCoins);
+        }
+      }, 1000); // Обновляем локальные монеты каждую секунду
   
-          // Отправляем обновленные данные на сервер
+      const serverSyncInterval = setInterval(() => {
+        if (user) {
+          // Отправляем обновленные данные на сервер раз в 10 секунд
           fetch(
             `https://coinfarm.club/user/${user.id}/earn/${
-              user.coinsPerHour / 3600
+              user.coinsPerHour / 360
             }`,
             {
               method: "PATCH",
@@ -281,9 +285,12 @@ const Home = () => {
             })
             .catch((error) => console.error("Error:", error));
         }
-      }, 10000);
+      }, 10000); // Отправляем данные на сервер каждые 10 секунд
   
-      return () => clearInterval(interval);
+      return () => {
+        clearInterval(localCoinsInterval);
+        clearInterval(serverSyncInterval);
+      };
     }, [localCoins, user, dispatch]);
   
     useEffect(() => {
@@ -309,7 +316,6 @@ const Home = () => {
         );
       });
     };
-
 
 
    // const updateLeagueProgress = async () => {
