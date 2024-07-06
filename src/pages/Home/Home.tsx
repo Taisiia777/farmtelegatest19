@@ -198,7 +198,7 @@ const Home = () => {
             const newLevel = level + 1;
             setLevel(newLevel);
             setUpdatedLevels(prev => new Set(prev).add(level)); // Mark the level as updated
-            await updateUserLevel(user.id, newLevel); // Update level on the server
+            // await updateUserLevel(user.id, newLevel); // Update level on the server
             dispatch(setUser({ ...user, level: newLevel }));
          } else {
             break;
@@ -306,7 +306,7 @@ const Home = () => {
 
       return () => clearInterval(interval);
    }, [localCoins, user, dispatch]);
-   
+
    useEffect(() => {
       if (user) {
          setLocalCoins(parseFloat(user.coins));
