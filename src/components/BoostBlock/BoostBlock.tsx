@@ -9,7 +9,6 @@ import Button from "../Button/Button";
 
 import { useDispatch } from "react-redux";
 import { setBoostInfo } from "../../store/reducers/boost";
-import axios from 'axios';
 
 interface IBoostBlockProps {
    boostName: TBoostName;
@@ -18,8 +17,7 @@ interface IBoostBlockProps {
    ligaName: TLiga;
    isBlocked?: boolean;
    isBought?: boolean;
-   userId: number;
-   boosterId: number;
+   
 }
 
 const BoostBlock = ({
@@ -29,18 +27,9 @@ const BoostBlock = ({
    ligaName,
    isBlocked = false,
    isBought = false,
-   userId,
-   boosterId
 }: IBoostBlockProps) => {
    const dispatch = useDispatch();
-  async function applyBooster() {
-    try {
-      const response = await axios.post(`https://coinfarm.club/booster/apply/${userId}/${boosterId}`);
-      console.log('Booster applied:', response.data);
-    } catch (error) {
-      console.error('Error applying booster:', error);
-    }
-  }
+
    function openBoostBuyPopup() {
       dispatch(
          setBoostInfo({
@@ -50,7 +39,6 @@ const BoostBlock = ({
             imgSrc: `img/boosts/${boostName}.svg`,
          })
       );
-      applyBooster()
    }
 
    let content;
