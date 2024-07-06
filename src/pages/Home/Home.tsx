@@ -44,6 +44,8 @@ interface Booster {
    yieldIncrease: number;
    league: string;
  }
+
+ 
  
 //  interface User {
 //    id: number;
@@ -368,27 +370,6 @@ const Home = () => {
     }, [user]);
 
 
-   //  const renderBoosters = () => {
-   //    return boosters.map((booster) => {
-   //      const isBought = userBoosters.some((userBooster) => userBooster.id === booster.id);
-   //      const isBlocked = leagues[level].name !== booster.league;
-    
-   //      return (
-   //        <BoostBlock
-   //          key={booster.id}
-   //          boostName={booster.name}
-   //          earning={booster.yieldIncrease.toString()}
-   //          price={booster.cost.toString()}
-   //          ligaName={booster.league as TLiga}
-   //          isBought={isBought}
-   //          isBlocked={isBlocked}
-   //        />
-   //      );
-   //    });
-   //  };
-    
-
-
 
    const renderBoosters = () => {
       return boosters.map((booster) => {
@@ -414,7 +395,20 @@ const Home = () => {
     };
     
 
-
+    const getActiveBoosterIds = (): number[] => {
+      return boosters
+        .filter(booster => {
+          const isBought = userBoosters.some(userBooster => userBooster.id === booster.id);
+          const currentLeagueIndex = leagues.findIndex(league => league.name === leagues[level].name);
+          const boosterLeagueIndex = leagues.findIndex(league => league.name === booster.league);
+          const isBlocked = boosterLeagueIndex > currentLeagueIndex;
+    
+          return isBought && !isBlocked;
+        })
+        .map(booster => booster.id);
+    };
+    
+  
 
 
    return (
@@ -458,7 +452,7 @@ const Home = () => {
                {/* <FarmBloks /> */}
                <FarmBloks league={leagues[level].name as TLiga} />
                {/* Активные boosts */}
-               <Boosts />
+               <Boosts activeBoosterIds={getActiveBoosterIds()} />
 
                {/* Палец подсказка */}
                {canShowFinger && (
