@@ -183,8 +183,11 @@ const Home = () => {
         if (localCoins >= nextLeague.coinsRequired) {
           const newLevel = level + 1;
           setLevel(newLevel);
-          await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
-          dispatch(setUser({ ...user, level: newLevel }));
+          const success = await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
+          if (success) {
+            dispatch(setUser({ ...user, level: newLevel }));
+            break; // Прерываем цикл после успешного обновления уровня
+          }
         } else {
           break;
         }
@@ -193,34 +196,29 @@ const Home = () => {
       setIsProgressUpdating(false);
     };
     
-  
-    const updateUserLevel = async (userId: number, newLevel: number) => {
-
-
+    const updateUserLevel = async (userId, newLevel) => {
       try {
-        const response = await fetch(
-          `https://coinfarm.club/user/${userId}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify({ level: newLevel }),
-          }
-        );
+        const response = await fetch(`https://coinfarm.club/user/${userId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({ level: newLevel }),
+        });
         if (!response.ok) {
           throw new Error("Failed to update user level");
         }
         const updatedUser = await response.json();
         dispatch(setUser(updatedUser));
+        return true;
       } catch (error) {
         console.error("Error updating user level:", error);
+        return false;
       }
     };
-  
+    
     useEffect(() => {
-      alert("kkkk")
       updateLeagueProgress();
     }, [localCoins]);
   
