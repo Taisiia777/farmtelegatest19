@@ -214,10 +214,44 @@ const Home = () => {
       }
     };
   
-    useEffect(() => {
-      alert("2222")
-      updateLeagueProgress();
-    }, [localCoins]);
+   //  useEffect(() => {
+
+   //    updateLeagueProgress();
+   //  }, [localCoins]);
+
+   useEffect(() => {
+      switch(level) {
+        case 0:
+          if (localCoins >= 5000) {
+            updateLeagueProgress();
+          }
+          break;
+        case 1:
+          if (localCoins >= 25000) {
+            updateLeagueProgress();
+          }
+          break;
+        case 2:
+            if (localCoins >= 100000) {
+              updateLeagueProgress();
+            }
+            break;
+        case 3:
+            if (localCoins >= 1000000) {
+              updateLeagueProgress();
+            }
+            break;
+         case 4:
+            if (localCoins >= 2500000) {
+                 updateLeagueProgress();
+               }
+               break;
+        // другие случаи для других уровней, если необходимо
+        default:
+          // действия по умолчанию, если нужно
+          break;
+      }
+    }, [level, localCoins]);
   
     useEffect(() => {
       const { initData } = retrieveLaunchParams();
