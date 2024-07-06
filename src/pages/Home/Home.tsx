@@ -142,7 +142,8 @@ const Home = () => {
    
 
 
-   const updateLeagueProgress = async () => {
+   
+  const updateLeagueProgress = async () => {
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
   
@@ -249,20 +250,16 @@ const Home = () => {
     }, [dispatch, nickname]);
   
     useEffect(() => {
-      const localCoinsInterval = setInterval(() => {
+      const interval = setInterval(() => {
         if (user) {
           const newCoins =
             parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
           setLocalCoins(newCoins);
-        }
-      }, 1000); // Обновляем локальные монеты каждую секунду
   
-      const serverSyncInterval = setInterval(() => {
-        if (user) {
-          // Отправляем обновленные данные на сервер раз в 10 секунд
+          // Отправляем обновленные данные на сервер
           fetch(
             `https://coinfarm.club/user/${user.id}/earn/${
-              user.coinsPerHour / 360
+              user.coinsPerHour / 3600
             }`,
             {
               method: "PATCH",
@@ -284,12 +281,9 @@ const Home = () => {
             })
             .catch((error) => console.error("Error:", error));
         }
-      }, 10000); // Отправляем данные на сервер каждые 10 секунд
+      }, 10000);
   
-      return () => {
-        clearInterval(localCoinsInterval);
-        clearInterval(serverSyncInterval);
-      };
+      return () => clearInterval(interval);
     }, [localCoins, user, dispatch]);
   
     useEffect(() => {
@@ -315,7 +309,8 @@ const Home = () => {
         );
       });
     };
-  
+
+
 
    // const updateLeagueProgress = async () => {
    //    if (isProgressUpdating) return;
