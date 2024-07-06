@@ -207,7 +207,7 @@ const People = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('/api/users'); // Замените на реальный URL API
+        const response = await fetch('https://coinfarm.club/user/'); // Замените на реальный URL API
         const data: User[] = await response.json();
         const sortedUsers = data.sort((a, b) => b.earning - a.earning); // Сортировка по убыванию прибыли
         setUsers(sortedUsers);
