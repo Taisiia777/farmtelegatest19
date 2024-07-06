@@ -141,6 +141,7 @@ const Home = () => {
    }
    
 
+
    const updateLeagueProgress = async () => {
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
@@ -151,14 +152,14 @@ const Home = () => {
   
         const percent = (localCoins / nextLeague.coinsRequired) * 100;
         setProgressPercent(Math.min(percent, 100));
+        console.log(`Progress for ${nextLeague.name}: ${percent}%`);
   
         if (localCoins >= nextLeague.coinsRequired) {
           const newLevel = level + 1;
-          if (newLevel !== level) {
-            setLevel(newLevel);
-            await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере только если изменился уровень
-            dispatch(setUser({ ...user, level: newLevel }));
-          }
+          console.log(`Updating level from ${level} to ${newLevel}`);
+          setLevel(newLevel);
+          await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере только если изменился уровень
+          dispatch(setUser({ ...user, level: newLevel }));
         } else {
           break;
         }
@@ -184,6 +185,7 @@ const Home = () => {
           throw new Error("Failed to update user level");
         }
         const updatedUser = await response.json();
+        console.log(`User level updated to ${newLevel}`);
         dispatch(setUser(updatedUser));
       } catch (error) {
         console.error("Error updating user level:", error);
@@ -316,7 +318,6 @@ const Home = () => {
         );
       });
     };
-
 
    // const updateLeagueProgress = async () => {
    //    if (isProgressUpdating) return;
