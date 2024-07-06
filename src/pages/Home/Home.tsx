@@ -451,6 +451,9 @@ const Home = () => {
    const renderBoosters = () => {
       
       return boosters.map((booster) => {
+         console.log(user.id)
+         console.log(booster.id)
+
         // Проверка, куплен ли бустер пользователем
         const isBought = userBoosters.some((userBooster) => userBooster.id === booster.id);
         // Проверка, доступен ли бустер для текущей или предыдущих лиг
@@ -467,8 +470,8 @@ const Home = () => {
             ligaName={booster.league as TLiga}
             isBought={isBought}
             isBlocked={isBlocked}
-            userId={user.id} // Передача userId
-            boosterId={booster.id} // Передача boosterId
+            // userId={user.id} // Передача userId
+            // boosterId={booster.id} // Передача boosterId
           />
         );
       });
