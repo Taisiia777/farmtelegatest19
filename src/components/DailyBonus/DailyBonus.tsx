@@ -42,7 +42,7 @@ const DailyBonus = () => {
    async function recieveCoins() {
       if (user?.id && bonusAmount > 0) {
          try {
-            const response = await fetch(`https://6875-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${bonusAmount}`, {
+            const response = await fetch(`https://coinfarm.club/user/${user.id}/earn/${bonusAmount}`, {
                method: 'PATCH',
                headers: {
                   'Content-Type': 'application/json',

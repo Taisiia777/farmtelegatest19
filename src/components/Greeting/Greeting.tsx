@@ -31,7 +31,7 @@ const Greeting = () => {
    async function addCoins(userId: number, amount: number) {
        alert(amount)
       try {
-          const response = await fetch(`https://6875-188-116-20-43.ngrok-free.app/user/${userId}/earn/${amount}`, {
+          const response = await fetch(`https://coinfarm.club/user/${userId}/earn/${amount}`, {
               method: 'PATCH',
               headers: {
                   'Content-Type': 'application/json',
