@@ -145,13 +145,12 @@ const Home = () => {
 
 
 
-
-
-
-
    const updateLeagueProgress = async () => {
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
+  
+      console.log('Initial level:', level);
+      console.log('Initial coins:', localCoins);
   
       while (level < leagues.length) {
         const nextLeague = leagues[level];
@@ -159,12 +158,13 @@ const Home = () => {
   
         const percent = (localCoins / nextLeague.coinsRequired) * 100;
         setProgressPercent(Math.min(percent, 100));
-  
+    
         if (localCoins >= nextLeague.coinsRequired) {
           const newLevel = level + 1;
           setLevel(newLevel);
           await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
           dispatch(setUser({ ...user, level: newLevel }));
+          console.log('New level:', newLevel);
         } else {
           break;
         }
@@ -300,9 +300,6 @@ const Home = () => {
         );
       });
     };
-
-
-
 
 
 
