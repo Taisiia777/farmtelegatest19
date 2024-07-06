@@ -150,7 +150,6 @@
 // };
 
 // export default CoinBlock;
-import React from 'react';
 import Button from "../Button/Button";
 import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
 import { TCoin } from "../../types/globalTypes";
