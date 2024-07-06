@@ -29,7 +29,7 @@ const BoostBlock = ({
    isBlocked = false,
    isBought = false,
    userId,
-   boosterId
+   boosterId = 1
 }: IBoostBlockProps) => {
    const dispatch = useDispatch();
    console.log(userId)
