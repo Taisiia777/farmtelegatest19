@@ -26,7 +26,7 @@ const Stats = () => {
    useEffect(() => {
       const fetchTotalPlayers = async () => {
         try {
-          const response = await fetch('https://6875-188-116-20-43.ngrok-free.app/user', {
+          const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ const Stats = () => {
    // useEffect(() => {
    //    const fetchTotalPlayers = async () => {
    //      try {
-   //        const response = await fetch('https://6875-188-116-20-43.ngrok-free.app/user', {
+   //        const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user', {
    //          method: 'GET',
    //          headers: {
    //              'Content-Type': 'application/json',
