@@ -214,7 +214,7 @@ const Home = () => {
       updateLeagueProgress();
    }, [localCoins]);
 
-    useEffect(() => {
+   useEffect(() => {
       const { initData } = retrieveLaunchParams();
       if (initData && initData.user) {
         const user = initData.user;
@@ -222,29 +222,18 @@ const Home = () => {
         if (username) {
           setNickname(username);
     
-          const checkAndCreateUser = async () => {
+          const createUser = async () => {
             try {
-              const checkResponse = await fetch(`https://coinfarm.club/user/check/${username}`, {
-                method: "GET",
-                headers: {
-                  "Content-Type": "application/json",
-                  Accept: "application/json",
-                },
-              });
-
-              if (checkResponse.status === 200) {
-                const existingUser = await checkResponse.json();
-                dispatch(setUser(existingUser));
-                console.log('Existing user ID:', existingUser.id);
-              } else if (checkResponse.status === 404) {
-                const createUserResponse = await fetch("https://coinfarm.club/user", {
+              const response = await fetch(
+                "https://coinfarm.club/user",
+                {
                   method: "POST",
                   headers: {
                     "Content-Type": "application/json",
                     Accept: "application/json",
                   },
                   body: JSON.stringify({
-                    username: username,
+                    username: nickname,
                     coins: 0,
                     totalEarnings: 0,
                     incomeMultiplier: 1,
@@ -252,24 +241,26 @@ const Home = () => {
                     xp: 0,
                     level: 0,
                   }),
-                });
-    
-                if (!createUserResponse.ok) {
-                  throw new Error("Failed to create user");
                 }
-
-                const newUser = await createUserResponse.json();
+              );
+    
+              if (response.status === 409) {
+                const userData = await response.json();
+                alert(`User already exists: ${JSON.stringify(userData)}`);
+                console.log('Existing user ID:', userData.id);
+              } else if (!response.ok) {
+                throw new Error("Something went wrong");
+              } else {
+                const newUser = await response.json();
                 dispatch(setUser(newUser));
                 console.log('New user ID:', newUser.id);
-              } else {
-                throw new Error("Failed to check if user exists");
               }
             } catch (error) {
-              console.error("Error checking or creating user:", error);
+              console.error("Error:", error);
             }
           };
     
-          checkAndCreateUser();
+          createUser();
         }
     
         if (user.photoUrl) {
@@ -278,7 +269,8 @@ const Home = () => {
           console.log("Photo URL not available");
         }
       }
-    }, [dispatch]);
+    }, [dispatch, nickname]);
+
 
     useEffect(() => {
       const interval = setInterval(() => {
