@@ -448,7 +448,26 @@ const Home = () => {
         .map(booster => booster.id);
     };
     
-    const renderCoins = () => {
+   //  const renderCoins = () => {
+   //    return coins.map((coin) => {
+   //      // Проверка, куплена ли монета пользователем
+   //      const isBought = userCoins.some((userCoin) => userCoin.id === coin.id);
+   //      const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
+    
+   //      return (
+   //        <CoinBlock
+   //          key={coin.id}
+   //          coinName={coin.name}
+   //          earning={coin.hourlyIncome.toString()}
+   //          price={coin.cost.toString()}
+   //          isBought={isBought}
+   //          isBlocked={isBlocked}
+   //        />
+   //      );
+   //    });
+   //  };
+
+   const renderCoins = () => {
       return coins.map((coin) => {
         // Проверка, куплена ли монета пользователем
         const isBought = userCoins.some((userCoin) => userCoin.id === coin.id);
@@ -462,10 +481,13 @@ const Home = () => {
             price={coin.cost.toString()}
             isBought={isBought}
             isBlocked={isBlocked}
+            userId={user.id} // Передача userId
+            coinId={coin.id} // Передача coinId
           />
         );
       });
     };
+    
 
 
    return (
