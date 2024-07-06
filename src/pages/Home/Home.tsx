@@ -196,7 +196,7 @@ const Home = () => {
       setIsProgressUpdating(false);
     };
     
-    const updateUserLevel = async (userId, newLevel) => {
+    const updateUserLevel = async (userId: number, newLevel: number) => {
       try {
         const response = await fetch(`https://coinfarm.club/user/${userId}`, {
           method: "PUT",
