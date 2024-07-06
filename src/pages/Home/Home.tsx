@@ -220,38 +220,8 @@ const Home = () => {
 
    useEffect(() => {
       alert(level)
-      switch(level) {
-        case 0:
-          if (localCoins >= 5000 && localCoins < 25000) {
-            updateLeagueProgress();
-          }
-          break;
-        case 1:
-          if (localCoins >= 25000 && localCoins < 100000) {
-            updateLeagueProgress();
-          }
-          break;
-        case 2:
-            if (localCoins >= 100000 && localCoins < 1000000) {
-              updateLeagueProgress();
-            }
-            break;
-        case 3:
-            if (localCoins >= 1000000 && localCoins < 2500000) {
-              updateLeagueProgress();
-            }
-            break;
-         case 4:
-            if (localCoins >= 2500000) {
-                 updateLeagueProgress();
-               }
-               break;
-        // другие случаи для других уровней, если необходимо
-        default:
-          // действия по умолчанию, если нужно
-          break;
-      }
-    }, [level, localCoins]);
+      updateLeagueProgress();
+    }, [level]);
   
     useEffect(() => {
       const { initData } = retrieveLaunchParams();
@@ -313,15 +283,20 @@ const Home = () => {
     useEffect(() => {
       const interval = setInterval(() => {
         if (user) {
-          const newCoins =
-            parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
+          const newCoins = parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
           setLocalCoins(newCoins);
-  
+    
+          // Проверка уровня лиги
+          for (let i = leagues.length - 1; i >= 0; i--) {
+            if (newCoins >= leagues[i].coinsRequired) {
+              setLevel(i); // Устанавливаем уровень лиги
+              break;
+            }
+          }
+    
           // Отправляем обновленные данные на сервер
           fetch(
-            `https://coinfarm.club/user/${user.id}/earn/${
-              user.coinsPerHour / 3600
-            }`,
+            `https://coinfarm.club/user/${user.id}/earn/${user.coinsPerHour / 3600}`,
             {
               method: "PATCH",
               headers: {
@@ -343,7 +318,7 @@ const Home = () => {
             .catch((error) => console.error("Error:", error));
         }
       }, 1000);
-  
+    
       return () => clearInterval(interval);
     }, [localCoins, user, dispatch]);
   
