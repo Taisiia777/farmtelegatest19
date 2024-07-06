@@ -192,6 +192,9 @@ const Home = () => {
     
   
     const updateUserLevel = async (userId: number, newLevel: number) => {
+      alert(userId)
+      alert(newLevel)
+
       try {
         const response = await fetch(
           `https://coinfarm.club/user/${userId}`,
