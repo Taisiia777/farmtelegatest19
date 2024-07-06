@@ -167,53 +167,50 @@ const Home = () => {
    const updateLeagueProgress = async () => {
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
-    
+
       while (level < leagues.length) {
-        const nextLeague = leagues[level];
-        if (!nextLeague) break;
-    
-        const percent = (localCoins / nextLeague.coinsRequired) * 100;
-        setProgressPercent(Math.min(percent, 100));
-    
-        if (localCoins >= nextLeague.coinsRequired) {
-          const newLevel = level + 1;
-          setLevel(newLevel);
-          await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
-          dispatch(setUser({ ...user, level: newLevel }));
-        } else {
-          break;
-        }
+         const nextLeague = leagues[level];
+         if (!nextLeague) break;
+
+         const percent = (localCoins / nextLeague.coinsRequired) * 100;
+         setProgressPercent(Math.min(percent, 100));
+
+         if (localCoins >= nextLeague.coinsRequired) {
+            const newLevel = level + 1;
+            setLevel(newLevel);
+            await updateUserLevel(user.id, newLevel); // Update level on the server
+            dispatch(setUser({ ...user, level: newLevel }));
+         } else {
+            break;
+         }
       }
-    
+
       setIsProgressUpdating(false);
-    };
+   };
 
     const updateUserLevel = async (userId: number, newLevel: number) => {
       try {
-        const response = await fetch(
-          `https://coinfarm.club/user/${userId}`,
-          {
+         const response = await fetch(`https://coinfarm.club/user/${userId}`, {
             method: "PUT",
             headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
+               "Content-Type": "application/json",
+               Accept: "application/json",
             },
             body: JSON.stringify({ level: newLevel }),
-          }
-        );
-        if (!response.ok) {
-          throw new Error("Failed to update user level");
-        }
-        const updatedUser = await response.json();
-        dispatch(setUser(updatedUser));
+         });
+         if (!response.ok) {
+            throw new Error("Failed to update user level");
+         }
+         const updatedUser = await response.json();
+         dispatch(setUser(updatedUser));
       } catch (error) {
-        console.error("Error updating user level:", error);
+         console.error("Error updating user level:", error);
       }
-    };
+   };
 
-    useEffect(() => {
+   useEffect(() => {
       updateLeagueProgress();
-    }, [localCoins]);
+   }, [localCoins]);
 
     useEffect(() => {
       const { initData } = retrieveLaunchParams();
@@ -283,42 +280,36 @@ const Home = () => {
 
     useEffect(() => {
       const interval = setInterval(() => {
-        if (user) {
-          const newCoins = parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
-          setLocalCoins(newCoins);
-
-          fetch(
-            `https://coinfarm.club/user/${user.id}/earn/${user.coinsPerHour / 3600}`,
-            {
-              method: "PATCH",
-              headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-              },
-            }
-          )
-            .then((response) => response.json())
-            .then((updatedUser) => {
-              dispatch(
-                setUser({
-                  ...updatedUser,
-                  coins: parseFloat(updatedUser.coins),
-                  totalEarnings: parseFloat(updatedUser.totalEarnings),
-                })
-              );
+         if (user) {
+            const newCoins = parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
+            setLocalCoins(newCoins);
+            fetch(`https://coinfarm.club/user/${user.id}/earn/${user.coinsPerHour / 3600}`, {
+               method: "PATCH",
+               headers: {
+                  "Content-Type": "application/json",
+                  Accept: "application/json",
+               },
             })
-            .catch((error) => console.error("Error:", error));
-        }
+               .then((response) => response.json())
+               .then((updatedUser) => {
+                  dispatch(setUser({
+                     ...updatedUser,
+                     coins: parseFloat(updatedUser.coins),
+                     totalEarnings: parseFloat(updatedUser.totalEarnings),
+                  }));
+               })
+               .catch((error) => console.error("Error:", error));
+         }
       }, 1000);
 
       return () => clearInterval(interval);
-    }, [localCoins, user, dispatch]);
+   }, [localCoins, user, dispatch]);
 
-    useEffect(() => {
+   useEffect(() => {
       if (user) {
-        setLocalCoins(parseFloat(user.coins));
+         setLocalCoins(parseFloat(user.coins));
       }
-    }, [user]);
+   }, [user]);
 
     const renderLeagues = () => {
       return leagues.map((league, index) => {
