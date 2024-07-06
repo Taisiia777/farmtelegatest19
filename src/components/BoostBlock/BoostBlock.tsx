@@ -201,7 +201,7 @@ const BoostBlock = ({
 
   async function applyBooster() {
     try {
-      const response = await axios.post(`https://coinfarm.club/booster/apply/99/${boosterId}`);
+      const response = await axios.post(`https://coinfarm.club/booster/apply/101/${boosterId}`);
       console.log('Booster applied:', response.data);
     } catch (error) {
       console.error('Error applying booster:', error);
