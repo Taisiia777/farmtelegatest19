@@ -34,16 +34,28 @@ import FreindOrSpecialBlock from "../../components/FreindOrSpecialBlock/FreindOr
 import Greeting from "../../components/Greeting/Greeting";
 import DailyBonus from "../../components/DailyBonus/DailyBonus";
 
-type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Определение типа TLiga
+// type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Определение типа TLiga
 
+
+// const leagues = [
+//    { name: "Wooden", coinsRequired: 5000 },
+//    { name: "Silver", coinsRequired: 25000 },
+//    { name: "Gold", coinsRequired: 100000 },
+//    { name: "Fire", coinsRequired: 1000000 },
+//    { name: "Diamond", coinsRequired: 2500000 },
+//  ];
+
+type TLiga = "None" | "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Добавляем "None" для уровня 0
 
 const leagues = [
-   { name: "Wooden", coinsRequired: 5000 },
-   { name: "Silver", coinsRequired: 25000 },
-   { name: "Gold", coinsRequired: 100000 },
-   { name: "Fire", coinsRequired: 1000000 },
-   { name: "Diamond", coinsRequired: 2500000 },
- ];
+  { name: "None", coinsRequired: 0 },
+  { name: "Wooden", coinsRequired: 5000 },
+  { name: "Silver", coinsRequired: 25000 },
+  { name: "Gold", coinsRequired: 100000 },
+  { name: "Fire", coinsRequired: 1000000 },
+  { name: "Diamond", coinsRequired: 2500000 },
+];
+
 const Home = () => {
    const dispatch = useDispatch();
    const { width } = useWindowSize();
@@ -144,7 +156,6 @@ const Home = () => {
 
 
 
-
    const updateLeagueProgress = async () => {
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
@@ -158,7 +169,7 @@ const Home = () => {
   
         const percent = (localCoins / nextLeague.coinsRequired) * 100;
         setProgressPercent(Math.min(percent, 100));
-    
+      
         if (localCoins >= nextLeague.coinsRequired) {
           const newLevel = level + 1;
           setLevel(newLevel);
@@ -300,11 +311,7 @@ const Home = () => {
         );
       });
     };
-
-
-
-
-
+  
 
 
 

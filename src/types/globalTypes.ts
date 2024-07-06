@@ -1,4 +1,4 @@
-export type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond";
+export type TLiga = "None" | "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond";
 
 export type TCoin =
    | "BTC"

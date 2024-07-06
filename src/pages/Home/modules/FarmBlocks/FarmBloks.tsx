@@ -85,7 +85,7 @@ import { selectEarthBlock } from "../../../../store/reducers/growthStages";
 import { useAppSelector } from "../../../../store";
 import useWheatTrunctaion from "../../hooks/useWheatTrunctation";
 
-type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Определение типа TLiga
+type TLiga = "None" | "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Определение типа TLiga
 
 interface FarmBlocksProps {
   league: TLiga;
