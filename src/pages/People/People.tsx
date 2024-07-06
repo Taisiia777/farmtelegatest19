@@ -217,7 +217,7 @@ const People = () => {
     // Функция для получения данных пользователей
     const fetchUsers = async () => {
       try {
-        const response = await fetch("https://86c5-188-116-20-43.ngrok-free.app/user"); // замените URL на реальный эндпоинт
+        const response = await fetch("https://6875-188-116-20-43.ngrok-free.app/user"); // замените URL на реальный эндпоинт
         const data: User[] = await response.json();
         setUsers(data);
       } catch (error) {

@@ -97,7 +97,7 @@ const LigaBlock = ({ ligaName, percent, price, acitve }: ILigaBlockProps) => {
 
       // Обновляем количество монет у пользователя на сервере и в Redux
       try {
-        const response = await fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${amount}`, {
+        const response = await fetch(`https://6875-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${amount}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',

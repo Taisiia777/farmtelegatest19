@@ -171,7 +171,7 @@ const Home = () => {
     const updateUserLevel = async (userId: number, newLevel: number) => {
       try {
         const response = await fetch(
-          `https://86c5-188-116-20-43.ngrok-free.app/user/${userId}`,
+          `https://6875-188-116-20-43.ngrok-free.app/user/${userId}`,
           {
             method: "PUT",
             headers: {
@@ -206,7 +206,7 @@ const Home = () => {
           const createUser = async () => {
             try {
               const response = await fetch(
-                "https://86c5-188-116-20-43.ngrok-free.app/user",
+                "https://6875-188-116-20-43.ngrok-free.app/user",
                 {
                   method: "POST",
                   headers: {
@@ -259,7 +259,7 @@ const Home = () => {
   
           // Отправляем обновленные данные на сервер
           fetch(
-            `https://86c5-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${
+            `https://6875-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${
               user.coinsPerHour / 3600
             }`,
             {
@@ -344,7 +344,7 @@ const Home = () => {
    //  const updateUserLevel = async (userId: number, newLevel: number) => {
    //    alert(newLevel);
    //    try {
-   //      const response = await fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${userId}`, {
+   //      const response = await fetch(`https://6875-188-116-20-43.ngrok-free.app/user/${userId}`, {
    //        method: 'PUT',
    //        headers: {
    //          'Content-Type': 'application/json',
@@ -376,7 +376,7 @@ const Home = () => {
   
    //        const createUser = async () => {
    //          try {
-   //            const response = await fetch('https://86c5-188-116-20-43.ngrok-free.app/user', {
+   //            const response = await fetch('https://6875-188-116-20-43.ngrok-free.app/user', {
    //              method: 'POST',
    //              headers: {
    //                'Content-Type': 'application/json',
@@ -425,7 +425,7 @@ const Home = () => {
    //        setLocalCoins(newCoins);
   
    //        // Отправляем обновленные данные на сервер
-   //        fetch(`https://86c5-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${user.coinsPerHour / 3600}`, {
+   //        fetch(`https://6875-188-116-20-43.ngrok-free.app/user/${user.id}/earn/${user.coinsPerHour / 3600}`, {
    //          method: 'PATCH',
    //          headers: {
    //            'Content-Type': 'application/json',
