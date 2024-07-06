@@ -28,8 +28,8 @@ const BoostBlock = ({
    ligaName,
    isBlocked = false,
    isBought = false,
-   userId,
-   boosterId = 1
+   userId = 98,
+   boosterId
 }: IBoostBlockProps) => {
    const dispatch = useDispatch();
    console.log(userId)
