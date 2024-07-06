@@ -79,7 +79,8 @@ const Home = () => {
    const [isProgressUpdating, setIsProgressUpdating] = useState(false);
    const [boosters, setBoosters] = useState<Booster[]>([]);
    const [userBoosters, setUserBoosters] = useState<Booster[]>([]);
-   
+   const [updatedLevels, setUpdatedLevels] = useState(new Set<number>()); // New state to track updated levels
+
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
 
@@ -162,33 +163,7 @@ const Home = () => {
       }, 500);
    }
    
-
-
-   const updateLeagueProgress = async () => {
-      if (isProgressUpdating) return;
-      setIsProgressUpdating(true);
-
-      while (level < leagues.length) {
-         const nextLeague = leagues[level];
-         if (!nextLeague) break;
-
-         const percent = (localCoins / nextLeague.coinsRequired) * 100;
-         setProgressPercent(Math.min(percent, 100));
-
-         if (localCoins >= nextLeague.coinsRequired) {
-            const newLevel = level + 1;
-            setLevel(newLevel);
-            await updateUserLevel(user.id, newLevel); // Update level on the server
-            dispatch(setUser({ ...user, level: newLevel }));
-         } else {
-            break;
-         }
-      }
-
-      setIsProgressUpdating(false);
-   };
-
-    const updateUserLevel = async (userId: number, newLevel: number) => {
+   const updateUserLevel = async (userId: number, newLevel: number) => {
       try {
          const response = await fetch(`https://coinfarm.club/user/${userId}`, {
             method: "PUT",
@@ -208,6 +183,33 @@ const Home = () => {
       }
    };
 
+   const updateLeagueProgress = async () => {
+      if (isProgressUpdating) return;
+      setIsProgressUpdating(true);
+
+      while (level < leagues.length) {
+         const nextLeague = leagues[level];
+         if (!nextLeague) break;
+
+         const percent = (localCoins / nextLeague.coinsRequired) * 100;
+         setProgressPercent(Math.min(percent, 100));
+
+         if (localCoins >= nextLeague.coinsRequired && !updatedLevels.has(level)) {
+            const newLevel = level + 1;
+            setLevel(newLevel);
+            setUpdatedLevels(prev => new Set(prev).add(level)); // Mark the level as updated
+            await updateUserLevel(user.id, newLevel); // Update level on the server
+            dispatch(setUser({ ...user, level: newLevel }));
+         } else {
+            break;
+         }
+      }
+
+      setIsProgressUpdating(false);
+   };
+
+   
+   
    useEffect(() => {
       updateLeagueProgress();
    }, [localCoins]);
@@ -304,7 +306,7 @@ const Home = () => {
 
       return () => clearInterval(interval);
    }, [localCoins, user, dispatch]);
-
+   
    useEffect(() => {
       if (user) {
          setLocalCoins(parseFloat(user.coins));
