@@ -411,34 +411,7 @@ const Home = () => {
 
 
 
-   const renderBoosters = () => {
-      return boosters.map((booster) => {
-        // Проверка, куплен ли бустер пользователем
-        const isBought = userBoosters.some((userBooster) => userBooster.id === booster.id);
-        // Проверка, доступен ли бустер для текущей или предыдущих лиг
-        const currentLeagueIndex = leagues.findIndex((league) => league.name === leagues[level].name);
-        const boosterLeagueIndex = leagues.findIndex((league) => league.name === booster.league);
-        const isBlocked = boosterLeagueIndex > currentLeagueIndex;
-    
-        return (
-          <BoostBlock
-            key={booster.id}
-            boostName={booster.name}
-            earning={booster.yieldIncrease.toString()}
-            price={booster.cost.toString()}
-            ligaName={booster.league as TLiga}
-            isBought={isBought}
-            isBlocked={isBlocked}
-          />
-        );
-      });
-    };
-    
-
-
-
    // const renderBoosters = () => {
-      
    //    return boosters.map((booster) => {
    //      // Проверка, куплен ли бустер пользователем
    //      const isBought = userBoosters.some((userBooster) => userBooster.id === booster.id);
@@ -456,12 +429,39 @@ const Home = () => {
    //          ligaName={booster.league as TLiga}
    //          isBought={isBought}
    //          isBlocked={isBlocked}
-   //          userId={user.id} // Передача userId
-   //          boosterId={booster.id} // Передача boosterId
    //        />
    //      );
    //    });
    //  };
+    
+
+
+
+   const renderBoosters = () => {
+      
+      return boosters.map((booster) => {
+        // Проверка, куплен ли бустер пользователем
+        const isBought = userBoosters.some((userBooster) => userBooster.id === booster.id);
+        // Проверка, доступен ли бустер для текущей или предыдущих лиг
+        const currentLeagueIndex = leagues.findIndex((league) => league.name === leagues[level].name);
+        const boosterLeagueIndex = leagues.findIndex((league) => league.name === booster.league);
+        const isBlocked = boosterLeagueIndex > currentLeagueIndex;
+    
+        return (
+          <BoostBlock
+            key={booster.id}
+            boostName={booster.name}
+            earning={booster.yieldIncrease.toString()}
+            price={booster.cost.toString()}
+            ligaName={booster.league as TLiga}
+            isBought={isBought}
+            isBlocked={isBlocked}
+            userId={user.id} // Передача userId
+            boosterId={booster.id} // Передача boosterId
+          />
+        );
+      });
+    };
     
 
 
