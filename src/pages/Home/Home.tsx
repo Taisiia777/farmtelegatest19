@@ -36,13 +36,28 @@ import DailyBonus from "../../components/DailyBonus/DailyBonus";
 
 type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Определение типа TLiga
 type TBoostName = 'mill' | 'drone' | 'minicar' | 'car-2' | 'car-3';
-
+type TCoin =
+   | "BTC"
+   | "ETHerium"
+   | "Binance"
+   | "Cardano"
+   | "Solana"
+   | "XRP"
+   | "Polkadot"
+   | "TON";
 interface Booster {
    id: number;
    name: TBoostName;
    cost: number;
    yieldIncrease: number;
    league: string;
+ }
+
+ interface Coin {
+   id: number;
+   name: TCoin;
+   cost: number;
+   hourlyIncome: number;
  }
 
  
@@ -81,7 +96,8 @@ const Home = () => {
    const [isProgressUpdating, setIsProgressUpdating] = useState(false);
    const [boosters, setBoosters] = useState<Booster[]>([]);
    const [userBoosters, setUserBoosters] = useState<Booster[]>([]);
-
+   const [coins, setCoins] = useState<Coin[]>([]);
+   const [userCoins, setUserCoins] = useState<Coin[]>([]);
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
 
@@ -364,10 +380,34 @@ const Home = () => {
           }
         }
       };
-    
+      const fetchCoins = async () => {
+         try {
+           const response = await fetch("https://coinfarm.club/coin");
+           const data = await response.json();
+           setCoins(data);
+         } catch (error) {
+           console.error("Error fetching boosters:", error);
+         }
+       };
+     
+       const fetchUserCoins = async () => {
+         if (user) {
+           try {
+             const response = await fetch(`https://coinfarm.club/user/${user.id}/coins`);
+             const data = await response.json();
+             setUserCoins(data);
+           } catch (error) {
+             console.error("Error fetching user boosters:", error);
+           }
+         }
+       };
+     
+       fetchCoins();
+       fetchUserCoins();
       fetchBoosters();
       fetchUserBoosters();
     }, [user]);
+
 
 
 
@@ -408,7 +448,24 @@ const Home = () => {
         .map(booster => booster.id);
     };
     
-  
+    const renderCoins = () => {
+      return coins.map((coin) => {
+        // Проверка, куплена ли монета пользователем
+        const isBought = userCoins.some((userCoin) => userCoin.id === coin.id);
+        const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
+    
+        return (
+          <CoinBlock
+            key={coin.id}
+            coinName={coin.name}
+            earning={coin.hourlyIncome.toString()}
+            price={coin.cost.toString()}
+            isBought={isBought}
+            isBlocked={isBlocked}
+          />
+        );
+      });
+    };
 
 
    return (
@@ -678,55 +735,57 @@ const Home = () => {
                   <PopupList ref={boostRef} nodes={renderBoosters()} />
 
                ) : (
-                  <PopupList
-                     ref={boostRef}
-                     nodes={[
-                        <CoinBlock
-                           coinName="BTC"
-                           earning="200"
-                           price="10 000"
-                           isBought
-                           isActive
-                        />,
-                        <CoinBlock
-                           coinName="Polkadot"
-                           earning="500"
-                           price="15 000"
-                           isBought
-                        />,
-                        <CoinBlock
-                           coinName="TON"
-                           earning="700"
-                           price="20 000"
-                           isBlocked
-                        />,
-                        <CoinBlock
-                           coinName="Binance"
-                           earning="1 000"
-                           price="30 000"
-                        />,
-                        <CoinBlock
-                           coinName="Polkadot"
-                           earning="2 000"
-                           price="35 000"
-                        />,
-                        <CoinBlock
-                           coinName="Solana"
-                           earning="5 000"
-                           price="50 000"
-                        />,
-                        <CoinBlock
-                           coinName="ETHerium"
-                           earning="10 000"
-                           price="40 000"
-                        />,
-                        <CoinBlock
-                           coinName="XRP"
-                           earning="20 000"
-                           price="80 000"
-                        />,
-                     ]}
-                  />
+                  <PopupList ref={boostRef} nodes={renderCoins()} />
+
+                  // <PopupList
+                  //    ref={boostRef}
+                  //    nodes={[
+                  //       <CoinBlock
+                  //          coinName="BTC"
+                  //          earning="200"
+                  //          price="10 000"
+                  //          isBought
+                  //          isActive
+                  //       />,
+                  //       <CoinBlock
+                  //          coinName="Polkadot"
+                  //          earning="500"
+                  //          price="15 000"
+                  //          isBought
+                  //       />,
+                  //       <CoinBlock
+                  //          coinName="TON"
+                  //          earning="700"
+                  //          price="20 000"
+                  //          isBlocked
+                  //       />,
+                  //       <CoinBlock
+                  //          coinName="Binance"
+                  //          earning="1 000"
+                  //          price="30 000"
+                  //       />,
+                  //       <CoinBlock
+                  //          coinName="Polkadot"
+                  //          earning="2 000"
+                  //          price="35 000"
+                  //       />,
+                  //       <CoinBlock
+                  //          coinName="Solana"
+                  //          earning="5 000"
+                  //          price="50 000"
+                  //       />,
+                  //       <CoinBlock
+                  //          coinName="ETHerium"
+                  //          earning="10 000"
+                  //          price="40 000"
+                  //       />,
+                  //       <CoinBlock
+                  //          coinName="XRP"
+                  //          earning="20 000"
+                  //          price="80 000"
+                  //       />,
+                  //    ]}
+                  // />
                )}
             </PopupListWrap>
 
