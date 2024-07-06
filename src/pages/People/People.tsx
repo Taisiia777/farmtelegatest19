@@ -210,6 +210,7 @@ const People = () => {
         const response = await fetch('https://coinfarm.club/user/'); // Замените на реальный URL API
         const data: User[] = await response.json();
         const sortedUsers = data.sort((a, b) => b.earning - a.earning); // Сортировка по убыванию прибыли
+        alert(JSON.stringify(sortedUsers))
         setUsers(sortedUsers);
       } catch (error) {
         console.error('Failed to fetch users', error);
