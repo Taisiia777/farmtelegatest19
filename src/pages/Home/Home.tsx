@@ -163,6 +163,12 @@ const Home = () => {
    }
    
 
+    
+
+
+
+
+
    const updateLeagueProgress = async () => {
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
@@ -189,7 +195,8 @@ const Home = () => {
     
   
     const updateUserLevel = async (userId: number, newLevel: number) => {
-     
+      alert(userId)
+      alert(newLevel)
 
       try {
         const response = await fetch(
@@ -213,15 +220,9 @@ const Home = () => {
       }
     };
   
-   //  useEffect(() => {
-
-   //    updateLeagueProgress();
-   //  }, [localCoins]);
-
-   useEffect(() => {
-      alert(level)
+    useEffect(() => {
       updateLeagueProgress();
-    }, [level]);
+    }, [localCoins]);
   
     useEffect(() => {
       const { initData } = retrieveLaunchParams();
@@ -283,20 +284,15 @@ const Home = () => {
     useEffect(() => {
       const interval = setInterval(() => {
         if (user) {
-          const newCoins = parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
+          const newCoins =
+            parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
           setLocalCoins(newCoins);
-    
-          // Проверка уровня лиги
-          for (let i = leagues.length - 1; i >= 0; i--) {
-            if (newCoins >= leagues[i].coinsRequired) {
-              setLevel(i); // Устанавливаем уровень лиги
-              break;
-            }
-          }
-    
+  
           // Отправляем обновленные данные на сервер
           fetch(
-            `https://coinfarm.club/user/${user.id}/earn/${user.coinsPerHour / 3600}`,
+            `https://coinfarm.club/user/${user.id}/earn/${
+              user.coinsPerHour / 3600
+            }`,
             {
               method: "PATCH",
               headers: {
@@ -317,8 +313,8 @@ const Home = () => {
             })
             .catch((error) => console.error("Error:", error));
         }
-      }, 1000);
-    
+      }, 10000);
+  
       return () => clearInterval(interval);
     }, [localCoins, user, dispatch]);
   
@@ -563,6 +559,12 @@ const Home = () => {
    //      );
    //    });
    //  };
+
+
+
+
+
+
 
 
 
