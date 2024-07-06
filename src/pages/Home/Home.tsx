@@ -195,8 +195,7 @@ const Home = () => {
     
   
     const updateUserLevel = async (userId: number, newLevel: number) => {
-      alert(userId)
-      alert(newLevel)
+
 
       try {
         const response = await fetch(
@@ -221,6 +220,7 @@ const Home = () => {
     };
   
     useEffect(() => {
+      alert("kkkk")
       updateLeagueProgress();
     }, [localCoins]);
   
@@ -313,7 +313,7 @@ const Home = () => {
             })
             .catch((error) => console.error("Error:", error));
         }
-      }, 10000);
+      }, 1000);
   
       return () => clearInterval(interval);
     }, [localCoins, user, dispatch]);
