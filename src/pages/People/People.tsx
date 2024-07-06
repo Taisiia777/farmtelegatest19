@@ -170,6 +170,15 @@
 // };
 
 // export default People;
+
+
+
+
+
+
+
+
+
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./People.module.scss";
@@ -182,21 +191,25 @@ import PopupListTabs from "../../components/PopupList/modules/PopupListTabs";
 import PopupList from "../../components/PopupList/PopupList";
 import PersonBlock from "../../components/PersonBlock/PersonBlock";
 import PopupListWrap from "../../components/PopupList/modules/PopupListWrap";
-interface User {
-   id: number;
-   name: string;
-   imgSrc: string;
-   earning: number;
-   coinAmount: number;
- }
- 
+
 const cn = classNames.bind(styles);
+
+interface User {
+  id: number;
+  username: string;
+  coins: number;
+  totalEarnings: number;
+  incomeMultiplier: number;
+  coinsPerHour: number;
+  xp: number;
+  level: number;
+}
 
 const People = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(location.state?.label ?? "FARM FRENDS");
-  const [users, setUsers] = useState<User[]>([]); // Указываем тип данных для состояния
+  const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
     tg.BackButton.show();
@@ -209,8 +222,7 @@ const People = () => {
       try {
         const response = await fetch('https://coinfarm.club/user/'); // Замените на реальный URL API
         const data: User[] = await response.json();
-        const sortedUsers = data.sort((a, b) => b.earning - a.earning); // Сортировка по убыванию прибыли
-        alert(JSON.stringify(sortedUsers))
+        const sortedUsers = data.sort((a, b) => b.coinsPerHour - a.coinsPerHour); // Сортировка по убыванию прибыли в час
         setUsers(sortedUsers);
       } catch (error) {
         console.error('Failed to fetch users', error);
@@ -242,10 +254,10 @@ const People = () => {
               nodes={users.map((user) => (
                 <PersonBlock
                   key={user.id}
-                  name={user.name}
-                  imgSrc={user.imgSrc}
-                  earning={user.earning.toString()}
-                  coinAmount={user.coinAmount.toString()}
+                  name={user.username}
+                  imgSrc={"img/pages/people/person.png"}
+                  earning={user.coinsPerHour.toString()}
+                  coinAmount={user.coins.toString()}
                 />
               ))}
               type="second"
@@ -257,10 +269,10 @@ const People = () => {
               nodes={users.map((user, index) => (
                 <PersonBlock
                   key={user.id}
-                  name={user.name}
-                  imgSrc={user.imgSrc}
-                  earning={user.earning.toString()}
-                  coinAmount={user.coinAmount.toString()}
+                  name={user.username}
+                  imgSrc={"img/pages/people/person.png"}
+                  earning={user.coinsPerHour.toString()}
+                  coinAmount={user.coins.toString()}
                   inviteMode
                   rating={index + 1}
                 />
@@ -298,3 +310,7 @@ const People = () => {
 };
 
 export default People;
+
+
+
+
