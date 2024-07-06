@@ -368,10 +368,36 @@ const Home = () => {
     }, [user]);
 
 
-    const renderBoosters = () => {
+   //  const renderBoosters = () => {
+   //    return boosters.map((booster) => {
+   //      const isBought = userBoosters.some((userBooster) => userBooster.id === booster.id);
+   //      const isBlocked = leagues[level].name !== booster.league;
+    
+   //      return (
+   //        <BoostBlock
+   //          key={booster.id}
+   //          boostName={booster.name}
+   //          earning={booster.yieldIncrease.toString()}
+   //          price={booster.cost.toString()}
+   //          ligaName={booster.league as TLiga}
+   //          isBought={isBought}
+   //          isBlocked={isBlocked}
+   //        />
+   //      );
+   //    });
+   //  };
+    
+
+
+
+   const renderBoosters = () => {
       return boosters.map((booster) => {
+        // Проверка, куплен ли бустер пользователем
         const isBought = userBoosters.some((userBooster) => userBooster.id === booster.id);
-        const isBlocked = leagues[level].name !== booster.league;
+        // Проверка, доступен ли бустер для текущей или предыдущих лиг
+        const currentLeagueIndex = leagues.findIndex((league) => league.name === leagues[level].name);
+        const boosterLeagueIndex = leagues.findIndex((league) => league.name === booster.league);
+        const isBlocked = boosterLeagueIndex > currentLeagueIndex;
     
         return (
           <BoostBlock
@@ -391,187 +417,6 @@ const Home = () => {
 
 
 
-// const updateLeagueProgress = async () => {
-   //    if (isProgressUpdating) return;
-   //    setIsProgressUpdating(true);
-  
-   //    while (level < leagues.length) {
-   //      const nextLeague = leagues[level];
-   //      if (!nextLeague) break;
-  
-   //      const percent = (localCoins / nextLeague.coinsRequired) * 100;
-   //      setProgressPercent(Math.min(percent, 100));
-  
-   //      if (localCoins >= nextLeague.coinsRequired) {
-   //        const newLevel = level + 1;
-   //        setLevel(newLevel);
-   //        await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
-   //        dispatch(setUser({ ...user, level: newLevel }));
-   //      } else {
-   //        break;
-   //      }
-   //    }
-  
-   //    setIsProgressUpdating(false);
-   //  };
-  
-   //  const updateUserLevel = async (userId: number, newLevel: number) => {
-   //    try {
-   //      const response = await fetch(
-   //        `https://coinfarm.club/user/${userId}`,
-   //        {
-   //          method: "PUT",
-   //          headers: {
-   //            "Content-Type": "application/json",
-   //            Accept: "application/json",
-   //          },
-   //          body: JSON.stringify({ level: newLevel }),
-   //        }
-   //      );
-   //      if (!response.ok) {
-   //        throw new Error("Failed to update user level");
-   //      }
-   //      const updatedUser = await response.json();
-   //      dispatch(setUser(updatedUser));
-   //    } catch (error) {
-   //      console.error("Error updating user level:", error);
-   //    }
-   //  };
-  
-   //  useEffect(() => {
-   //    updateLeagueProgress();
-   //  }, [localCoins]);
-  
-   //  useEffect(() => {
-   //    const { initData } = retrieveLaunchParams();
-   //    if (initData && initData.user) {
-   //      const user = initData.user;
-   //      const username = user.username;
-   //      if (username) {
-   //        setNickname(username);
-  
-   //        const createUser = async () => {
-   //          try {
-   //            const response = await fetch(
-   //              "https://coinfarm.club/user",
-   //              {
-   //                method: "POST",
-   //                headers: {
-   //                  "Content-Type": "application/json",
-   //                  Accept: "application/json",
-   //                },
-   //                body: JSON.stringify({
-   //                  username: nickname,
-   //                  coins: 0,
-   //                  totalEarnings: 0,
-   //                  incomeMultiplier: 1,
-   //                  coinsPerHour: 10,
-   //                  xp: 0,
-   //                  level: 0, // Установите начальный уровень на 0
-   //                }),
-   //              }
-   //            );
-  
-   //            if (response.status === 409) {
-   //              const userData = await response.json();
-   //              alert(`User already exists: ${JSON.stringify(userData)}`);
-   //            } else if (!response.ok) {
-   //              throw new Error("Something went wrong");
-   //            } else {
-   //              const newUser = await response.json();
-   //              dispatch(setUser(newUser));
-   //            }
-   //          } catch (error) {
-   //            console.error("Error:", error);
-   //          }
-   //        };
-  
-   //        createUser();
-   //      }
-  
-   //      if (user.photoUrl) {
-   //        // setImgSrc(user.photoUrl);
-   //      } else {
-   //        console.log("Photo URL not available");
-   //      }
-   //    }
-   //  }, [dispatch, nickname]);
-  
-   //  useEffect(() => {
-   //    const interval = setInterval(() => {
-   //      if (user) {
-   //        const newCoins =
-   //          parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
-   //        setLocalCoins(newCoins);
-  
-   //        // Отправляем обновленные данные на сервер
-   //        fetch(
-   //          `https://coinfarm.club/user/${user.id}/earn/${
-   //            user.coinsPerHour / 3600
-   //          }`,
-   //          {
-   //            method: "PATCH",
-   //            headers: {
-   //              "Content-Type": "application/json",
-   //              Accept: "application/json",
-   //            },
-   //          }
-   //        )
-   //          .then((response) => response.json())
-   //          .then((updatedUser) => {
-   //            dispatch(
-   //              setUser({
-   //                ...updatedUser,
-   //                coins: parseFloat(updatedUser.coins),
-   //                totalEarnings: parseFloat(updatedUser.totalEarnings),
-   //              })
-   //            );
-   //          })
-   //          .catch((error) => console.error("Error:", error));
-   //      }
-   //    }, 1000);
-  
-   //    return () => clearInterval(interval);
-   //  }, [localCoins, user, dispatch]);
-  
-   //  useEffect(() => {
-   //    if (user) {
-   //      setLocalCoins(parseFloat(user.coins));
-   //    }
-   //  }, [user]);
-  
-   //  const renderLeagues = () => {
-   //    return leagues.map((league, index) => {
-   //      const isActive = index === level;
-   //      const percent = isActive
-   //        ? progressPercent
-   //        : (localCoins / league.coinsRequired) * 100;
-   //      return (
-   //        <LigaBlock
-   //          key={league.name}
-   //          ligaName={league.name as TLiga} // Приведение типа к TLiga
-   //          percent={percent}
-   //          price={league.coinsRequired.toString()}
-   //          acitve={isActive}
-   //        />
-   //      );
-   //    });
-   //  };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
    return (
       <>
          {/* Основной контент */}
