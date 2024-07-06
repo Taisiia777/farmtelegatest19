@@ -6,7 +6,7 @@ const cn = classNames.bind(styles);
 
 interface IPersonBlockProps {
    inviteMode?: boolean;
-   // imgSrc: string;
+   imgSrc: string;
    name: string;
    coinAmount: string;
    earning: string;
@@ -15,7 +15,7 @@ interface IPersonBlockProps {
 
 const PersonBlock = ({
    inviteMode = false,
-   // imgSrc,
+   imgSrc,
    name,
    coinAmount,
    earning,
@@ -29,7 +29,7 @@ const PersonBlock = ({
                   #{rating}
                </div>
             )}
-            {/* <img src={imgSrc} className={cn("person__img")} alt={name} /> */}
+            <img src={imgSrc} className={cn("person__img")} alt={name} />
             <div className={cn("person__info")}>
                <strong className={`${cn("person__name")}` + " textShadow"}>
                   {name}
