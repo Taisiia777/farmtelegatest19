@@ -238,7 +238,7 @@ const People = () => {
           />
           {activeTab === "FARM FRENDS" && (
             <PopupList
-              nodes={users.map((user, index) => (
+              nodes={users.map((user) => (
                 <PersonBlock
                   key={user.id}
                   name={user.name}
