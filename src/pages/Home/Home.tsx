@@ -439,6 +439,7 @@ const Home = () => {
 
    const renderBoosters = () => {
       return boosters.map((booster) => {
+         alert(JSON.stringify(booster))
         // Проверка, куплен ли бустер пользователем
         const isBought = userBoosters.some((userBooster) => userBooster.id === booster.id);
         // Проверка, доступен ли бустер для текущей или предыдущих лиг
