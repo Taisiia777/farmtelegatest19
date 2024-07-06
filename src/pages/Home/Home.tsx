@@ -440,14 +440,15 @@ const Home = () => {
    const renderBoosters = () => {
       
       return boosters.map((booster) => {
+         alert(user.id)
+         alert(booster.id)
         // Проверка, куплен ли бустер пользователем
         const isBought = userBoosters.some((userBooster) => userBooster.id === booster.id);
         // Проверка, доступен ли бустер для текущей или предыдущих лиг
         const currentLeagueIndex = leagues.findIndex((league) => league.name === leagues[level].name);
         const boosterLeagueIndex = leagues.findIndex((league) => league.name === booster.league);
         const isBlocked = boosterLeagueIndex > currentLeagueIndex;
-         alert(user.id)
-         alert(booster.id)
+        
         return (
           <BoostBlock
             key={booster.id}
