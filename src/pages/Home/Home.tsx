@@ -468,7 +468,6 @@ const Home = () => {
             ligaName={booster.league as TLiga}
             isBought={isBought}
             isBlocked={isBlocked}
-            userId={user.id} // Передача userId
             boosterId={booster.id} // Передача boosterId
           />
         );
