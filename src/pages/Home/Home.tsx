@@ -8,6 +8,7 @@ import { closeCoinBuyPopup } from "../../store/reducers/coin";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
 import { retrieveLaunchParams } from '@tma.js/sdk';
+import { calculateGrassEarnings } from "../../store/reducers/growthStages";
 
 import classNames from "classnames/bind";
 import useWindowSize from "../../hooks/useWindowSize";
@@ -88,6 +89,7 @@ const Home = () => {
    const dispatch = useDispatch();
    const { width } = useWindowSize();
    const user = useAppSelector((state: RootState) => state.user.user);
+   const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
    const [nickname, setNickname] = useState('Savelii777'); // Состояние для никнейма
    // const [imgSrc, setImgSrc] = useState("img/pages/people/person.png");
    const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
@@ -552,7 +554,7 @@ const Home = () => {
       });
     };
     
-
+    const currentGrassEarnings = calculateGrassEarnings(blocks, user ? user.coinsPerHour : 0);
 
    return (
       <>
@@ -577,7 +579,7 @@ const Home = () => {
                   <Liga liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
                   <Energy
                      total={grassTotal*3*9}
-                     current={300}
+                     current={currentGrassEarnings}
                      onClick={() => setEnergyPopupOpen(true)}
                   />
                   <Menu
