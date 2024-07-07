@@ -194,7 +194,7 @@
 
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TGrowthStage } from "../../types/globalTypes";
+// import { TGrowthStage } from "../../types/globalTypes";
 import { RootState } from "..";
 
 type GrowthStage = "first" | "second" | "third" | "fourth";
