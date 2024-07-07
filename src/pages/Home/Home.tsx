@@ -82,10 +82,7 @@ const leagues = [
    { name: "Diamond", coinsRequired: 2500000 },
  ];
 
- interface InitDataParsed {
-   user?: any; // Замените 'any' на более конкретный тип, если он известен
-   // Добавьте другие поля, если они есть в объекте initData
- }
+
 
 const Home = () => {
    const dispatch = useDispatch();
@@ -101,8 +98,6 @@ const Home = () => {
    const [userBoosters, setUserBoosters] = useState<Booster[]>([]);
    const [coins, setCoins] = useState<Coin[]>([]);
    const [userCoins, setUserCoins] = useState<Coin[]>([]);
-   const [initData, setInitData] = useState<InitDataParsed | null>(null);
-
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
 
@@ -247,12 +242,6 @@ const Home = () => {
   
     useEffect(() => {
       const { initData } = retrieveLaunchParams();
-      const launchParams = retrieveLaunchParams();
-      if (launchParams && launchParams.initData) {
-        setInitData(launchParams.initData);
-      } else {
-        setInitData(null);
-      }
       if (initData && initData.user) {
         const user = initData.user;
         const username = user.username;
@@ -469,6 +458,7 @@ const Home = () => {
         const currentLeagueIndex = leagues.findIndex((league) => league.name === leagues[level].name);
         const boosterLeagueIndex = leagues.findIndex((league) => league.name === booster.league);
         const isBlocked = boosterLeagueIndex > currentLeagueIndex;
+        alert(JSON.stringify(user))
         return (
           <BoostBlock
             key={booster.id}
@@ -478,7 +468,7 @@ const Home = () => {
             ligaName={booster.league as TLiga}
             isBought={isBought}
             isBlocked={isBlocked}
-            userId={user.id} // Передача userId
+            // userId={user.id} // Передача userId
             boosterId={booster.id} // Передача boosterId
           />
         );
@@ -758,7 +748,7 @@ const Home = () => {
                   activeTab={boostActiveTab}
                   onTabChange={(label) => setBoostActiveTab(label)}
                />
-               {boostActiveTab === "BOOST" && initData && initData.user ? (
+               {boostActiveTab === "BOOST"  ? (
                   // <PopupList
                   //    ref={boostRef}
                   //    nodes={[

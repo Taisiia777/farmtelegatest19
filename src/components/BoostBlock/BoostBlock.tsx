@@ -176,6 +176,8 @@ import Button from "../Button/Button";
 import { useDispatch } from "react-redux";
 import { setBoostInfo } from "../../store/reducers/boost";
 import axios from 'axios';
+import { retrieveLaunchParams } from '@tma.js/sdk';
+
 const cn = classNames.bind(styles);
 
 interface IBoostBlockProps {
@@ -186,7 +188,6 @@ interface IBoostBlockProps {
   isBlocked?: boolean;
   isBought?: boolean;
   boosterId: number;
-  userId: number
 }
 
 const BoostBlock = ({
@@ -196,11 +197,11 @@ const BoostBlock = ({
   ligaName,
   isBlocked = false,
   isBought = false,
-  boosterId,
-  userId
+  boosterId
 }: IBoostBlockProps) => {
   const dispatch = useDispatch();
-  alert(userId)
+  const { initData } = retrieveLaunchParams();
+  alert(JSON.stringify(initData))
   async function applyBooster() {
     try {
       const response = await axios.post(`https://coinfarm.club/booster/apply/101/${boosterId}`);
