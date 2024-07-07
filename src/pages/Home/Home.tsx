@@ -297,42 +297,42 @@ const Home = () => {
       }
     }, [dispatch, nickname]);
   
-    useEffect(() => {
-      const interval = setInterval(() => {
-        if (user) {
-          const newCoins =
-            parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
-          setLocalCoins(newCoins);
+   //  useEffect(() => {
+   //    const interval = setInterval(() => {
+   //      if (user) {
+   //        const newCoins =
+   //          parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
+   //        setLocalCoins(newCoins);
   
-          // Отправляем обновленные данные на сервер
-          fetch(
-            `https://coinfarm.club/user/${user.id}/earn/${
-              user.coinsPerHour / 3600
-            }`,
-            {
-              method: "PATCH",
-              headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-              },
-            }
-          )
-            .then((response) => response.json())
-            .then((updatedUser) => {
-              dispatch(
-                setUser({
-                  ...updatedUser,
-                  coins: parseFloat(updatedUser.coins),
-                  totalEarnings: parseFloat(updatedUser.totalEarnings),
-                })
-              );
-            })
-            .catch((error) => console.error("Error:", error));
-        }
-      }, 1000);
+   //        // Отправляем обновленные данные на сервер
+   //        fetch(
+   //          `https://coinfarm.club/user/${user.id}/earn/${
+   //            user.coinsPerHour / 3600
+   //          }`,
+   //          {
+   //            method: "PATCH",
+   //            headers: {
+   //              "Content-Type": "application/json",
+   //              Accept: "application/json",
+   //            },
+   //          }
+   //        )
+   //          .then((response) => response.json())
+   //          .then((updatedUser) => {
+   //            dispatch(
+   //              setUser({
+   //                ...updatedUser,
+   //                coins: parseFloat(updatedUser.coins),
+   //                totalEarnings: parseFloat(updatedUser.totalEarnings),
+   //              })
+   //            );
+   //          })
+   //          .catch((error) => console.error("Error:", error));
+   //      }
+   //    }, 1000);
   
-      return () => clearInterval(interval);
-    }, [localCoins, user, dispatch]);
+   //    return () => clearInterval(interval);
+   //  }, [localCoins, user, dispatch]);
   
     useEffect(() => {
       if (user) {
@@ -468,6 +468,7 @@ const Home = () => {
             ligaName={booster.league as TLiga}
             isBought={isBought}
             isBlocked={isBlocked}
+            // userId={user.id} // Передача userId
             boosterId={booster.id} // Передача boosterId
           />
         );
