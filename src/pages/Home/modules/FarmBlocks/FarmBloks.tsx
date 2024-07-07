@@ -215,39 +215,244 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { useEffect, useState } from "react";
+// import { useDispatch  } from "react-redux";
+// import styles from "./FarmBlocks.module.scss";
+// import classNames from "classnames/bind";
+// import { selectEarthBlock, changeGrowthStage, pickWheat } from "../../../../store/reducers/growthStages";
+// import { useAppSelector } from "../../../../store";
+// import useWheatTrunctaion from "../../hooks/useWheatTrunctation";
+// import { RootState } from "../../../../store";
+// import { setUser } from "../../../../store/reducers/userSlice";
+// import axios from 'axios';
+// const cn = classNames.bind(styles);
+
+// type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Определение типа TLiga
+
+// interface FarmBlocksProps {
+//   league: TLiga;
+// }
+
+// const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
+//   const dispatch = useDispatch();
+
+//   // Собирание пшеницы
+//   useWheatTrunctaion();
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       for (let i = 1; i <= 9; i++) {
+//         dispatch(changeGrowthStage({ id: i }));
+//       }
+//     }, 10000);
+
+//     return () => clearInterval(interval);
+//   }, [dispatch]);
+
+//   return (
+//     <div className={cn("farmBlockWrap")}>
+//       <FarmBlock zIndex={9} id={1} league={league} />
+//       <FarmBlock zIndex={9} id={2} league={league} />
+//       <FarmBlock zIndex={9} id={3} league={league} />
+//       <FarmBlock zIndex={8} id={4} league={league} />
+//       <FarmBlock zIndex={7} id={5} league={league} />
+//       <FarmBlock zIndex={6} id={6} league={league} />
+//       <FarmBlock zIndex={6} id={7} league={league} />
+//       <FarmBlock zIndex={5} id={8} league={league} />
+//       <FarmBlock zIndex={4} id={9} league={league} />
+
+//       {/* Тень */}
+//       <img
+//         src="img/pages/home/earth-blocks-bg.svg"
+//         className={cn("farmBlock__shadow")}
+//         alt=""
+//       />
+//     </div>
+//   );
+// };
+
+// export default FarmBloks;
+
+// interface IFarmBlockProps {
+//   zIndex: number;
+//   id: number;
+//   league: TLiga;
+// }
+
+// const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
+//   const farmBlock = useAppSelector((state) => selectEarthBlock(state, id));
+//   const user = useAppSelector((state: RootState) => state.user.user);
+//   const dispatch = useDispatch();
+//   const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
+
+//   if (!farmBlock) return null;
+
+//   const handlePickWheat = async () => {
+//     if (farmBlock.stage !== "first") {
+//       let rewardMultiplier = 0;
+
+//     switch (farmBlock.stage) {
+//       case "second":
+//         rewardMultiplier = 1;
+//         break;
+//       case "third":
+//         rewardMultiplier = 2;
+//         break;
+//       case "fourth":
+//         rewardMultiplier = 3;
+//         break;
+//       default:
+//         return; // Ничего не делать, если стадия "first"
+//     }
+//     const reward = user ? user.coinsPerHour * rewardMultiplier : 0;
+
+//       if (user) {
+//         try {
+//           const response = await axios.patch(
+//             `https://coinfarm.club/user/${user.id}/earn/${reward}`
+//           );
+//           const updatedUser = response.data;
+
+//           // Обновление состояния пользователя и локальных монет
+//           dispatch(
+//             setUser({
+//               ...updatedUser,
+//               coins: parseFloat(updatedUser.coins),
+//               totalEarnings: parseFloat(updatedUser.totalEarnings),
+//             })
+//           );
+
+//           setLocalCoins(parseFloat(updatedUser.coins));
+//           console.log(localCoins)
+//         } catch (error) {
+//           console.error("Error:", error);
+//         }
+//       }
+//       dispatch(pickWheat({ id }));
+//     }
+//   };
+
+//   return (
+//     <div
+//       className={cn("farmBlock")}
+//       style={{ zIndex }}
+//       onClick={handlePickWheat}
+//     >
+//       <img
+//         src={`img/leagueStages/${league}.png`}
+//         className={cn("farmBlock__earth")}
+//         alt={league}
+//       />
+//       <img
+//         src={`img/growthStages/${farmBlock.stage}.png`}
+//         className={cn("farmBlock__growthStage", `_${farmBlock.stage}`)}
+//         alt="growth stage"
+//         data-id={id}
+//         data-stage={farmBlock.stage}
+//       />
+//       <img
+//         src="img/pages/home/money.svg"
+//         className={cn("farmBlock__money")}
+//         alt="money"
+//       />
+//     </div>
+//   );
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useEffect, useState } from "react";
-import { useDispatch  } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./FarmBlocks.module.scss";
 import classNames from "classnames/bind";
 import { selectEarthBlock, changeGrowthStage, pickWheat } from "../../../../store/reducers/growthStages";
-import { useAppSelector } from "../../../../store";
-import useWheatTrunctaion from "../../hooks/useWheatTrunctation";
-import { RootState } from "../../../../store";
-import { setUser } from "../../../../store/reducers/userSlice";
+import { RootState} from "../../../../store";
+import store from "../../../../store";
+import { setUser, updateGrassEarnings } from "../../../../store/reducers/userSlice";
 import axios from 'axios';
 const cn = classNames.bind(styles);
 
-type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Определение типа TLiga
+type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond";
 
 interface FarmBlocksProps {
   league: TLiga;
 }
 
-const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
+const FarmBlocks: React.FC<FarmBlocksProps> = ({ league }) => {
   const dispatch = useDispatch();
-
-  // Собирание пшеницы
-  useWheatTrunctaion();
+  const user = useSelector((state: RootState) => state.user.user);
 
   useEffect(() => {
     const interval = setInterval(() => {
       for (let i = 1; i <= 9; i++) {
-        dispatch(changeGrowthStage({ id: i }));
+        const block = selectEarthBlock(store.getState(), i);
+        if (block && block.stage !== "first") {
+          dispatch(changeGrowthStage({ id: i }));
+
+          if (user) {
+            let rewardMultiplier = 0;
+            switch (block.stage) {
+              case "second":
+                rewardMultiplier = 1;
+                break;
+              case "third":
+                rewardMultiplier = 2;
+                break;
+              case "fourth":
+                rewardMultiplier = 3;
+                break;
+              default:
+                break;
+            }
+
+            const reward = user.coinsPerHour * rewardMultiplier;
+            dispatch(updateGrassEarnings(reward));
+          }
+        }
       }
     }, 10000);
 
     return () => clearInterval(interval);
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   return (
     <div className={cn("farmBlockWrap")}>
@@ -261,7 +466,6 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
       <FarmBlock zIndex={5} id={8} league={league} />
       <FarmBlock zIndex={4} id={9} league={league} />
 
-      {/* Тень */}
       <img
         src="img/pages/home/earth-blocks-bg.svg"
         className={cn("farmBlock__shadow")}
@@ -271,7 +475,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
   );
 };
 
-export default FarmBloks;
+export default FarmBlocks;
 
 interface IFarmBlockProps {
   zIndex: number;
@@ -280,8 +484,8 @@ interface IFarmBlockProps {
 }
 
 const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
-  const farmBlock = useAppSelector((state) => selectEarthBlock(state, id));
-  const user = useAppSelector((state: RootState) => state.user.user);
+  const farmBlock = useSelector((state: RootState) => selectEarthBlock(state, id));
+  const user = useSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
   const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
 
@@ -291,20 +495,21 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
     if (farmBlock.stage !== "first") {
       let rewardMultiplier = 0;
 
-    switch (farmBlock.stage) {
-      case "second":
-        rewardMultiplier = 1;
-        break;
-      case "third":
-        rewardMultiplier = 2;
-        break;
-      case "fourth":
-        rewardMultiplier = 3;
-        break;
-      default:
-        return; // Ничего не делать, если стадия "first"
-    }
-    const reward = user ? user.coinsPerHour * rewardMultiplier : 0;
+      switch (farmBlock.stage) {
+        case "second":
+          rewardMultiplier = 1;
+          break;
+        case "third":
+          rewardMultiplier = 2;
+          break;
+        case "fourth":
+          rewardMultiplier = 3;
+          break;
+        default:
+          return;
+      }
+
+      const reward = user ? user.coinsPerHour * rewardMultiplier : 0;
 
       if (user) {
         try {
@@ -313,7 +518,6 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
           );
           const updatedUser = response.data;
 
-          // Обновление состояния пользователя и локальных монет
           dispatch(
             setUser({
               ...updatedUser,
@@ -323,7 +527,6 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
           );
 
           setLocalCoins(parseFloat(updatedUser.coins));
-          console.log(localCoins)
         } catch (error) {
           console.error("Error:", error);
         }
@@ -358,8 +561,3 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
     </div>
   );
 };
-
-
-
-
-

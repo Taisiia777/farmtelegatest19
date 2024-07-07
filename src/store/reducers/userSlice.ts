@@ -9,7 +9,8 @@ export interface UserState {
     coinsPerHour: number;
     xp: number;
     level: number;
-    totalEarnings?: number; // Добавляем новое свойство
+    totalEarnings: number; // Добавляем новое свойство
+    grassEarnings: number; // Добавляем новое свойство
 }
 
 const initialState: { user: UserState | null } = {
@@ -26,9 +27,16 @@ const userSlice = createSlice({
         clearUser(state) {
             state.user = null;
         },
+        updateGrassEarnings(state, action: PayloadAction<number>) {
+            if (state.user) {
+                state.user.grassEarnings += action.payload;
+                state.user.totalEarnings += action.payload;
+                state.user.coins += action.payload;
+            }
+        }
     },
 });
 
-export const { setUser, clearUser } = userSlice.actions;
+export const { setUser, clearUser, updateGrassEarnings } = userSlice.actions;
 
 export default userSlice.reducer;
