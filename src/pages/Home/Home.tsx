@@ -573,7 +573,7 @@ const Home = () => {
                   /> */}
                   <Liga liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
                   <Energy
-                     total={1000}
+                     total={user.coinsPerHour*3}
                      current={300}
                      onClick={() => setEnergyPopupOpen(true)}
                   />
