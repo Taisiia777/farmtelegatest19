@@ -77,17 +77,17 @@ const FreindOrSpecialBlock = ({
 }: IFreindOrSpecialBlockProps) => {
    const handleButtonClick = async () => {
       const userId = 114; // замените на актуальный ID пользователя
-      let url = "https://coinfarm.club/reward";
+      let url = "https://coinfarm.club/reward/";
 
       switch (title) {
          case "JOIN GROUP":
-            url = `/group/${userId}`;
+            url = `https://coinfarm.club/reward/group/${userId}`;
             break;
          case "JOIN CHAT":
-            url = `/chat/${userId}`;
+            url = `https://coinfarm.club/reward/chat/${userId}`;
             break;
          case "JOIN X":
-            url = `/x/${userId}`;
+            url = `https://coinfarm.club/reward/x/${userId}`;
             break;
          default:
             console.error("Unknown title:", title);
