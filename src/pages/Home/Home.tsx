@@ -98,6 +98,8 @@ const Home = () => {
    const [userBoosters, setUserBoosters] = useState<Booster[]>([]);
    const [coins, setCoins] = useState<Coin[]>([]);
    const [userCoins, setUserCoins] = useState<Coin[]>([]);
+   const [hasFirstReward, setHasFirstReward] = useState(false); // Состояние для проверки наличия награды "first"
+
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
 
@@ -408,7 +410,33 @@ const Home = () => {
       fetchUserBoosters();
     }, [user]);
 
+    useEffect(() => {
+      const fetchRewards = async () => {
+         if (user?.id) {
+            try {
+               const response = await fetch(`https://coinfarm.club/reward/${user.id}`, {
+                  method: 'GET',
+                  headers: {
+                     'Content-Type': 'application/json',
+                     'Accept': 'application/json'
+                  }
+               });
 
+               if (!response.ok) {
+                  throw new Error('Something went wrong');
+               } else {
+                  const rewards = await response.json();
+                  const hasFirstReward = rewards.some((reward: any) => reward.type === 'first');
+                  setHasFirstReward(hasFirstReward);
+               }
+            } catch (error) {
+               console.error('Error:', error);
+            }
+         }
+      };
+
+      fetchRewards();
+   }, [user]);
     const getActiveBoosterIds = (): number[] => {
       return boosters
         .filter(booster => {
@@ -976,7 +1004,7 @@ const Home = () => {
          </div>
 
          {/* Приветствие */}
-         <Greeting />
+         {!hasFirstReward && <Greeting />}
 
          {/* Ежедневный бонус */}
          <DailyBonus />

@@ -31,12 +31,12 @@ const Greeting = () => {
    async function addCoins(userId: number, amount: number) {
        alert(amount)
       try {
-          const response = await fetch(`https://coinfarm.club/user/${userId}/earn/${amount}`, {
-              method: 'PATCH',
-              headers: {
-                  'Content-Type': 'application/json',
-                  'Accept': 'application/json'
-              }
+         const response = await fetch(`https://coinfarm.club/reward/first/${userId}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            }
           });
   
           if (!response.ok) {
