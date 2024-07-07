@@ -55,7 +55,6 @@
 
 
 
-import React from "react";
 import classNames from "classnames/bind";
 import styles from "./FriendOrSpecialBlock.module.scss";
 import Button from "../Button/Button";
