@@ -389,65 +389,42 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch  } from "react-redux";
 import styles from "./FarmBlocks.module.scss";
 import classNames from "classnames/bind";
-import { selectEarthBlock, changeGrowthStage, pickWheat } from "../../../../store/reducers/growthStages";
-import { RootState} from "../../../../store";
-import store from "../../../../store";
-import { setUser, updateGrassEarnings } from "../../../../store/reducers/userSlice";
+import { selectEarthBlock, changeGrowthStage, pickWheat, selectGrassEarnings } from "../../../../store/reducers/growthStages";
+import { useAppSelector } from "../../../../store";
+import useWheatTrunctaion from "../../hooks/useWheatTrunctation";
+import { RootState } from "../../../../store";
+import { setUser } from "../../../../store/reducers/userSlice";
+import { updateGrassEarnings } from "../../../../store/reducers/userSlice";
+
 import axios from 'axios';
 const cn = classNames.bind(styles);
 
-type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond";
+type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Определение типа TLiga
 
 interface FarmBlocksProps {
   league: TLiga;
 }
 
-const FarmBlocks: React.FC<FarmBlocksProps> = ({ league }) => {
+const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
   const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.user.user);
+  const user = useAppSelector((state: RootState) => state.user.user);
+
+  // Собирание пшеницы
+  useWheatTrunctaion();
 
   useEffect(() => {
     const interval = setInterval(() => {
       for (let i = 1; i <= 9; i++) {
-        const block = selectEarthBlock(store.getState(), i);
-        if (block && block.stage !== "first") {
-          dispatch(changeGrowthStage({ id: i }));
-
-          if (user) {
-            let rewardMultiplier = 0;
-            switch (block.stage) {
-              case "second":
-                rewardMultiplier = 1;
-                break;
-              case "third":
-                rewardMultiplier = 2;
-                break;
-              case "fourth":
-                rewardMultiplier = 3;
-                break;
-              default:
-                break;
-            }
-
-            const reward = user.coinsPerHour * rewardMultiplier;
-            dispatch(updateGrassEarnings(reward));
-          }
-        }
+        dispatch(changeGrowthStage({ id: i }));
+      }
+      if (user) {
+        const grassEarnings = selectGrassEarnings(useAppSelector((state: RootState) => state), user.coinsPerHour);
+        dispatch(updateGrassEarnings(grassEarnings));
+        console.log("Новое значение прибыли: ", grassEarnings);
       }
     }, 10000);
 
@@ -466,6 +443,7 @@ const FarmBlocks: React.FC<FarmBlocksProps> = ({ league }) => {
       <FarmBlock zIndex={5} id={8} league={league} />
       <FarmBlock zIndex={4} id={9} league={league} />
 
+      {/* Тень */}
       <img
         src="img/pages/home/earth-blocks-bg.svg"
         className={cn("farmBlock__shadow")}
@@ -475,7 +453,7 @@ const FarmBlocks: React.FC<FarmBlocksProps> = ({ league }) => {
   );
 };
 
-export default FarmBlocks;
+export default FarmBloks;
 
 interface IFarmBlockProps {
   zIndex: number;
@@ -484,8 +462,8 @@ interface IFarmBlockProps {
 }
 
 const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
-  const farmBlock = useSelector((state: RootState) => selectEarthBlock(state, id));
-  const user = useSelector((state: RootState) => state.user.user);
+  const farmBlock = useAppSelector((state) => selectEarthBlock(state, id));
+  const user = useAppSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
   const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
 
@@ -495,21 +473,20 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
     if (farmBlock.stage !== "first") {
       let rewardMultiplier = 0;
 
-      switch (farmBlock.stage) {
-        case "second":
-          rewardMultiplier = 1;
-          break;
-        case "third":
-          rewardMultiplier = 2;
-          break;
-        case "fourth":
-          rewardMultiplier = 3;
-          break;
-        default:
-          return;
-      }
-
-      const reward = user ? user.coinsPerHour * rewardMultiplier : 0;
+    switch (farmBlock.stage) {
+      case "second":
+        rewardMultiplier = 1;
+        break;
+      case "third":
+        rewardMultiplier = 2;
+        break;
+      case "fourth":
+        rewardMultiplier = 3;
+        break;
+      default:
+        return; // Ничего не делать, если стадия "first"
+    }
+    const reward = user ? user.coinsPerHour * rewardMultiplier : 0;
 
       if (user) {
         try {
@@ -518,6 +495,7 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
           );
           const updatedUser = response.data;
 
+          // Обновление состояния пользователя и локальных монет
           dispatch(
             setUser({
               ...updatedUser,
@@ -527,6 +505,7 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
           );
 
           setLocalCoins(parseFloat(updatedUser.coins));
+          console.log(localCoins)
         } catch (error) {
           console.error("Error:", error);
         }
