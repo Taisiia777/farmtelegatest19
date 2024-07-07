@@ -494,16 +494,16 @@ const DailyBonus = () => {
             without missing <br /> a day
           </p>
           <div className={cn("content__grid")}>
-            <BonusBlock dayNumber={1} bonusAmount={10} currentDay={currentDay === 0} />
-            <BonusBlock dayNumber={2} bonusAmount={20} currentDay={currentDay === 1} />
-            <BonusBlock dayNumber={3} bonusAmount={50} currentDay={currentDay === 2} />
-            <BonusBlock dayNumber={4} bonusAmount={100} currentDay={currentDay === 3} />
-            <BonusBlock dayNumber={5} bonusAmount={200} currentDay={currentDay === 4} />
-            <BonusBlock dayNumber={6} bonusAmount={300} currentDay={currentDay === 5} />
-            <BonusBlock dayNumber={7} bonusAmount={500} currentDay={currentDay === 6} />
-            <BonusBlock dayNumber={8} bonusAmount={800} currentDay={currentDay === 7} />
-            <BonusBlock dayNumber={9} bonusAmount={1000} currentDay={currentDay === 8} />
-            <BonusBlock dayNumber={10} bonusAmount={2000} currentDay={currentDay === 9} />
+            <BonusBlock dayNumber={1} bonusAmount={10} currentDay={currentDay === 1} />
+            <BonusBlock dayNumber={2} bonusAmount={20} currentDay={currentDay === 2} />
+            <BonusBlock dayNumber={3} bonusAmount={50} currentDay={currentDay === 3} />
+            <BonusBlock dayNumber={4} bonusAmount={100} currentDay={currentDay === 4} />
+            <BonusBlock dayNumber={5} bonusAmount={200} currentDay={currentDay === 5} />
+            <BonusBlock dayNumber={6} bonusAmount={300} currentDay={currentDay === 6} />
+            <BonusBlock dayNumber={7} bonusAmount={500} currentDay={currentDay === 7} />
+            <BonusBlock dayNumber={8} bonusAmount={800} currentDay={currentDay === 8} />
+            <BonusBlock dayNumber={9} bonusAmount={1000} currentDay={currentDay === 9} />
+            <BonusBlock dayNumber={10} bonusAmount={2000} currentDay={currentDay === 10} />
           </div>
           <Button
             size="big"
