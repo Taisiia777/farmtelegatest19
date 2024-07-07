@@ -458,7 +458,7 @@ const Home = () => {
         const currentLeagueIndex = leagues.findIndex((league) => league.name === leagues[level].name);
         const boosterLeagueIndex = leagues.findIndex((league) => league.name === booster.league);
         const isBlocked = boosterLeagueIndex > currentLeagueIndex;
-        alert(user.id)
+        alert(JSON.stringify(user))
         return (
           <BoostBlock
             key={booster.id}
