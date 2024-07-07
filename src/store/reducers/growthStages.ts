@@ -245,6 +245,98 @@
 
 
 
+// import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+// import { TGrowthStage } from "../../types/globalTypes";
+// import { RootState } from "..";
+
+// export interface IGrowthStages {
+//   blocks: Array<{
+//     id: number;
+//     stage: TGrowthStage;
+//   }>;
+//   isFingerActive: boolean;
+// }
+
+// const initialState: IGrowthStages = {
+//   blocks: Array.from({ length: 9 }, (_, index) => ({
+//     id: index + 1,
+//     stage: "first",
+//   })),
+//   isFingerActive: true,
+// };
+
+// export const growthStagesSlice = createSlice({
+//   name: "growthStages",
+//   initialState,
+//   reducers: {
+//     pickWheat: (state, action: PayloadAction<{ id: number }>) => {
+//       const block = state.blocks.find(
+//         (block) => block.id === action.payload.id
+//       );
+
+//       if (block) {
+//         block.stage = "first";
+//         state.isFingerActive = false;
+//       }
+//     },
+//     changeGrowthStage: (state, action: PayloadAction<{ id: number }>) => {
+//       const block = state.blocks.find(
+//         (block) => block.id === action.payload.id
+//       );
+
+//       if (block) {
+//         switch (block.stage) {
+//           case "first":
+//             block.stage = "second";
+//             break;
+//           case "second":
+//             block.stage = "third";
+//             break;
+//           case "third":
+//             block.stage = "fourth";
+//             break;
+//           case "fourth":
+//             break;
+//           default:
+//             block.stage = "first";
+//             break;
+//         }
+//       }
+//     },
+//   },
+// });
+
+// export const { pickWheat, changeGrowthStage } = growthStagesSlice.actions;
+
+// export const selectEarthBlock = (state: RootState, id: number) =>
+//   state.growthStages.blocks.find((block) => block.id === id);
+
+// export const calculateGrassEarnings = (blocks: IGrowthStages['blocks'], coinsPerHour: number) => {
+//   let totalEarnings = 0;
+//   blocks.forEach(block => {
+//     switch (block.stage) {
+//       case "second":
+//         totalEarnings += coinsPerHour;
+//         break;
+//       case "third":
+//         totalEarnings += coinsPerHour * 2;
+//         break;
+//       case "fourth":
+//         totalEarnings += coinsPerHour * 3;
+//         break;
+//     }
+//   });
+//   return totalEarnings;
+// };
+
+// export default growthStagesSlice.reducer;
+
+
+
+
+
+
+
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TGrowthStage } from "../../types/globalTypes";
 import { RootState } from "..";
@@ -303,10 +395,15 @@ export const growthStagesSlice = createSlice({
         }
       }
     },
+    growAllToMax: (state) => {
+      state.blocks.forEach(block => {
+        block.stage = "fourth";
+      });
+    },
   },
 });
 
-export const { pickWheat, changeGrowthStage } = growthStagesSlice.actions;
+export const { pickWheat, changeGrowthStage, growAllToMax } = growthStagesSlice.actions;
 
 export const selectEarthBlock = (state: RootState, id: number) =>
   state.growthStages.blocks.find((block) => block.id === id);

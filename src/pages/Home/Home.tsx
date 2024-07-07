@@ -8,7 +8,7 @@ import { closeCoinBuyPopup } from "../../store/reducers/coin";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
 import { retrieveLaunchParams } from '@tma.js/sdk';
-import { calculateGrassEarnings } from "../../store/reducers/growthStages";
+import { calculateGrassEarnings, growAllToMax } from "../../store/reducers/growthStages";
 
 import classNames from "classnames/bind";
 import useWindowSize from "../../hooks/useWindowSize";
@@ -647,8 +647,12 @@ const Home = () => {
                         size={width > 380 ? "big" : "normal"}
                         isBlueBg
                         onClick={() =>
-                           buy(energyMoneyAnimRef, () =>
+                           buy(energyMoneyAnimRef, () =>{
+                              dispatch(growAllToMax());
                               setEnergyPopupOpen(false)
+
+                           }
+                             
                            )
                         }>
                         <CoinWhiteBg
