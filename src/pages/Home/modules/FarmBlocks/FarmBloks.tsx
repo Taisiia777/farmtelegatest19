@@ -244,7 +244,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
       for (let i = 1; i <= 9; i++) {
         dispatch(changeGrowthStage({ id: i }));
       }
-    }, 3000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [dispatch]);
