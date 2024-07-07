@@ -216,7 +216,7 @@
 
 
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector  } from "react-redux";
+import { useDispatch  } from "react-redux";
 import styles from "./FarmBlocks.module.scss";
 import classNames from "classnames/bind";
 import { selectEarthBlock, changeGrowthStage, pickWheat } from "../../../../store/reducers/growthStages";
