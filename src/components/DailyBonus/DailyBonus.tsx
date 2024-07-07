@@ -425,7 +425,11 @@ const DailyBonus = () => {
                 setBonusAmount(currentBonus.bonusAmount);
               }
             } else {
-              setCurrentDay(1); // Если нет записей с типом daily-reward, установить currentDay как 0
+               setCurrentDay(1); // Если нет записей с типом daily-reward, установить currentDay как 1
+               const firstBonus = bonuses.find(bonus => bonus.dayNumber === 1);
+               if (firstBonus) {
+                 setBonusAmount(firstBonus.bonusAmount);
+               }
             }
           }
         } catch (error) {
