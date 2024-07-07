@@ -164,21 +164,39 @@ export const growthStagesSlice = createSlice({
       );
 
       if (block) {
-        switch (block.stage) {
-          case "first":
-            block.stage = "second";
-            break;
-          case "second":
-            block.stage = "third";
-            break;
-          case "third":
-            block.stage = "fourth";
-            break;
-          case "fourth":
-          default:
-            block.stage = "first";
-            break;
-        }
+      //   switch (block.stage) {
+      //     case "first":
+      //       block.stage = "second";
+      //       break;
+      //     case "second":
+      //       block.stage = "third";
+      //       break;
+      //     case "third":
+      //       block.stage = "fourth";
+      //       break;
+      //     case "fourth":
+      //     default:
+      //       block.stage = "first";
+      //       break;
+      //   }
+      switch (block.stage) {
+         case "first":
+           block.stage = "second";
+           break;
+         case "second":
+           block.stage = "third";
+           break;
+         case "third":
+           block.stage = "fourth";
+           break;
+         case "fourth":
+           // Останавливаем рост на четвертой стадии, не делаем ничего
+           break;
+         default:
+           block.stage = "first";
+           break;
+       }
+
       }
     },
   },
