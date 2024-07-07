@@ -200,7 +200,7 @@ const BoostBlock = ({
   boosterId
 }: IBoostBlockProps) => {
   const dispatch = useDispatch();
-  // let userId;
+  let userId: number;
   const { initData } = retrieveLaunchParams();
   async function applyBooster() {
     try {
@@ -230,11 +230,13 @@ const BoostBlock = ({
           if (response.status === 409) {
             const userData = await response.json();
             alert(`User already exists: ${JSON.stringify(userData)}`);
+            userId = userData.id
             console.log('Existing user ID:', userData.id);
           } else if (!response.ok) {
             throw new Error("Something went wrong");
           } else {
             const newUser = await response.json();
+            userId = newUser.id
             console.log('New user ID:', newUser.id);
           }
         }
@@ -242,7 +244,7 @@ const BoostBlock = ({
       console.error('Error applying booster:', error);
     }
     try {
-      const response = await axios.post(`https://coinfarm.club/booster/apply/101/${boosterId}`);
+      const response = await axios.post(`https://coinfarm.club/booster/apply/${userId}/${boosterId}`);
       console.log('Booster applied:', response.data);
     } catch (error) {
       console.error('Error applying booster:', error);
