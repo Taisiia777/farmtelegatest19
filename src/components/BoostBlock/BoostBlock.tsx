@@ -186,6 +186,7 @@ interface IBoostBlockProps {
   isBlocked?: boolean;
   isBought?: boolean;
   boosterId: number;
+  userId: number
 }
 
 const BoostBlock = ({
@@ -195,10 +196,11 @@ const BoostBlock = ({
   ligaName,
   isBlocked = false,
   isBought = false,
-  boosterId
+  boosterId,
+  userId
 }: IBoostBlockProps) => {
   const dispatch = useDispatch();
-
+  alert(userId)
   async function applyBooster() {
     try {
       const response = await axios.post(`https://coinfarm.club/booster/apply/101/${boosterId}`);
