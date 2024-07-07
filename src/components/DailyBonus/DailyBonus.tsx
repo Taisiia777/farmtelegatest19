@@ -193,11 +193,6 @@
 
 
 
-
-
-
-
-
 // import { useAppDispatch, useAppSelector } from "../../store";
 // import { closeDailyBonus } from "../../store/reducers/dailyBonus";
 
@@ -220,19 +215,51 @@
 
 //   const [moneyAnimActive, setMoneyAnimACtive] = useState(false);
 //   const [bonusAmount, setBonusAmount] = useState(0);
-//   const [currentDay, setCurrentDay] = useState(1); // Состояние для текущего дня
+//   const [currentDay, setCurrentDay] = useState(1); 
 
 //   useEffect(() => {
-//     // Находим бонус для текущего дня
-//     const currentBonus = bonuses.find(bonus => bonus.currentDay);
-//     if (currentBonus) {
-//       setBonusAmount(currentBonus.bonusAmount);
-//       setCurrentDay(currentBonus.dayNumber); // Устанавливаем текущий день
-//     }
-//   }, []);
+//     const fetchRewards = async () => {
+//       if (user?.id) {
+//         try {
+//           const response = await fetch(`https://coinfarm.club/reward/${user.id}`, {
+//             method: 'GET',
+//             headers: {
+//               'Content-Type': 'application/json',
+//               'Accept': 'application/json'
+//             }
+//           });
+
+//           if (!response.ok) {
+//             throw new Error('Something went wrong');
+//           } else {
+//             const rewards = await response.json();
+//             const dailyRewards = rewards.filter((reward: any) => reward.type === 'daily-reward');
+//             if (dailyRewards.length > 0) {
+//               const lastDailyReward = dailyRewards[dailyRewards.length - 1];
+//               setCurrentDay(lastDailyReward.level);
+//               const currentBonus = bonuses.find(bonus => bonus.dayNumber === lastDailyReward.level);
+//               if (currentBonus) {
+//                 setBonusAmount(currentBonus.bonusAmount);
+//               }
+//             } else {
+//                setCurrentDay(1); // Если нет записей с типом daily-reward, установить currentDay как 1
+//                const firstBonus = bonuses.find(bonus => bonus.dayNumber === 1);
+//                if (firstBonus) {
+//                  setBonusAmount(firstBonus.bonusAmount);
+//                }
+//             }
+//           }
+//         } catch (error) {
+//           console.error('Error:', error);
+//         }
+//       }
+//     };
+
+//     fetchRewards();
+//   }, [user]);
 
 //   async function recieveCoins() {
-//     if (user?.id && bonusAmount > 0) {
+//     if (user?.id && bonusAmount > 0 && currentDay > 0) {
 //       try {
 //         const response = await fetch(`https://coinfarm.club/daily-reward/give/${user.id}/${currentDay}`, {
 //           method: 'POST',
@@ -262,7 +289,7 @@
 //         dispatch(closeDailyBonus());
 //       }, 500);
 //     } else {
-//       console.error("User ID not found or bonus amount is zero");
+//       console.error("User ID not found, bonus amount is zero, or current day is invalid");
 //     }
 //   }
 
@@ -288,16 +315,16 @@
 //             without missing <br /> a day
 //           </p>
 //           <div className={cn("content__grid")}>
-//             <BonusBlock dayNumber={1} bonusAmount={10} currentDay />
-//             <BonusBlock dayNumber={2} bonusAmount={20} />
-//             <BonusBlock dayNumber={3} bonusAmount={50} />
-//             <BonusBlock dayNumber={4} bonusAmount={100} />
-//             <BonusBlock dayNumber={5} bonusAmount={200} />
-//             <BonusBlock dayNumber={6} bonusAmount={300} />
-//             <BonusBlock dayNumber={7} bonusAmount={500} />
-//             <BonusBlock dayNumber={8} bonusAmount={800} />
-//             <BonusBlock dayNumber={9} bonusAmount={1000} />
-//             <BonusBlock dayNumber={10} bonusAmount={2000} />
+//             <BonusBlock dayNumber={1} bonusAmount={10} currentDay={currentDay === 1} />
+//             <BonusBlock dayNumber={2} bonusAmount={20} currentDay={currentDay === 2} />
+//             <BonusBlock dayNumber={3} bonusAmount={50} currentDay={currentDay === 3} />
+//             <BonusBlock dayNumber={4} bonusAmount={100} currentDay={currentDay === 4} />
+//             <BonusBlock dayNumber={5} bonusAmount={200} currentDay={currentDay === 5} />
+//             <BonusBlock dayNumber={6} bonusAmount={300} currentDay={currentDay === 6} />
+//             <BonusBlock dayNumber={7} bonusAmount={500} currentDay={currentDay === 7} />
+//             <BonusBlock dayNumber={8} bonusAmount={800} currentDay={currentDay === 8} />
+//             <BonusBlock dayNumber={9} bonusAmount={1000} currentDay={currentDay === 9} />
+//             <BonusBlock dayNumber={10} bonusAmount={2000} currentDay={currentDay === 10} />
 //           </div>
 //           <Button
 //             size="big"
@@ -334,7 +361,7 @@
 // }
 
 // const bonuses = [
-//   { dayNumber: 1, bonusAmount: 10, currentDay: true },
+//   { dayNumber: 1, bonusAmount: 10 },
 //   { dayNumber: 2, bonusAmount: 20 },
 //   { dayNumber: 3, bonusAmount: 50 },
 //   { dayNumber: 4, bonusAmount: 100 },
@@ -376,6 +403,8 @@
 
 
 
+
+
 import { useAppDispatch, useAppSelector } from "../../store";
 import { closeDailyBonus } from "../../store/reducers/dailyBonus";
 
@@ -398,7 +427,7 @@ const DailyBonus = () => {
 
   const [moneyAnimActive, setMoneyAnimACtive] = useState(false);
   const [bonusAmount, setBonusAmount] = useState(0);
-  const [currentDay, setCurrentDay] = useState(0); // Инициализируем currentDay как 0
+  const [currentDay, setCurrentDay] = useState(1); // Инициализируем currentDay как 1
 
   useEffect(() => {
     const fetchRewards = async () => {
@@ -419,17 +448,20 @@ const DailyBonus = () => {
             const dailyRewards = rewards.filter((reward: any) => reward.type === 'daily-reward');
             if (dailyRewards.length > 0) {
               const lastDailyReward = dailyRewards[dailyRewards.length - 1];
-              setCurrentDay(lastDailyReward.level);
-              const currentBonus = bonuses.find(bonus => bonus.dayNumber === lastDailyReward.level);
-              if (currentBonus) {
-                setBonusAmount(currentBonus.bonusAmount);
+              const nextDay = lastDailyReward.level + 1;
+              setCurrentDay(nextDay);
+              const nextBonus = bonuses.find(bonus => bonus.dayNumber === nextDay);
+              if (nextBonus) {
+                setBonusAmount(nextBonus.bonusAmount);
+              } else {
+                setBonusAmount(0); // Если бонус для следующего дня не найден, устанавливаем бонус в 0
               }
             } else {
-               setCurrentDay(1); // Если нет записей с типом daily-reward, установить currentDay как 1
-               const firstBonus = bonuses.find(bonus => bonus.dayNumber === 1);
-               if (firstBonus) {
-                 setBonusAmount(firstBonus.bonusAmount);
-               }
+              setCurrentDay(1); // Если нет записей с типом daily-reward, установить currentDay как 1
+              const firstBonus = bonuses.find(bonus => bonus.dayNumber === 1);
+              if (firstBonus) {
+                setBonusAmount(firstBonus.bonusAmount);
+              }
             }
           }
         } catch (error) {
@@ -442,7 +474,7 @@ const DailyBonus = () => {
   }, [user]);
 
   async function recieveCoins() {
-    if (user?.id && bonusAmount > 0 && currentDay > 0) {
+    if (user?.id && bonusAmount > 0) {
       try {
         const response = await fetch(`https://coinfarm.club/daily-reward/give/${user.id}/${currentDay}`, {
           method: 'POST',
@@ -472,7 +504,7 @@ const DailyBonus = () => {
         dispatch(closeDailyBonus());
       }, 500);
     } else {
-      console.error("User ID not found, bonus amount is zero, or current day is invalid");
+      console.error("User ID not found or bonus amount is zero");
     }
   }
 
