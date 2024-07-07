@@ -648,6 +648,7 @@ const Home = () => {
                         isBlueBg
                         onClick={() =>
                            buy(energyMoneyAnimRef, () =>{
+                              
                               dispatch(growAllToMax());
                               setEnergyPopupOpen(false)
 
