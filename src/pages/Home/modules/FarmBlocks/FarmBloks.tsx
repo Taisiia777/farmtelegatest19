@@ -393,7 +393,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch  } from "react-redux";
 import styles from "./FarmBlocks.module.scss";
 import classNames from "classnames/bind";
-import { selectEarthBlock, changeGrowthStage, pickWheat, selectGrassEarnings } from "../../../../store/reducers/growthStages";
+import { selectEarthBlock, changeGrowthStage, pickWheat, calculateGrassEarnings } from "../../../../store/reducers/growthStages";
 import { useAppSelector } from "../../../../store";
 import useWheatTrunctaion from "../../hooks/useWheatTrunctation";
 import { RootState } from "../../../../store";
@@ -412,8 +412,8 @@ interface FarmBlocksProps {
 const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
   const dispatch = useDispatch();
   const user = useAppSelector((state: RootState) => state.user.user);
+  const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
 
-  // Собирание пшеницы
   useWheatTrunctaion();
 
   useEffect(() => {
@@ -422,15 +422,14 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
         dispatch(changeGrowthStage({ id: i }));
       }
       if (user) {
-        const grassEarnings = selectGrassEarnings(useAppSelector((state: RootState) => state), user.coinsPerHour);
+        const grassEarnings = calculateGrassEarnings(blocks, user.coinsPerHour);
         dispatch(updateGrassEarnings(grassEarnings));
         console.log("Новое значение прибыли: ", grassEarnings);
       }
     }, 10000);
 
     return () => clearInterval(interval);
-  }, [dispatch, user]);
-
+  }, [dispatch, user, blocks]);
   return (
     <div className={cn("farmBlockWrap")}>
       <FarmBlock zIndex={9} id={1} league={league} />
