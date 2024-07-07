@@ -99,6 +99,7 @@ const Home = () => {
    const [coins, setCoins] = useState<Coin[]>([]);
    const [userCoins, setUserCoins] = useState<Coin[]>([]);
    const [hasFirstReward, setHasFirstReward] = useState(false); // Состояние для проверки наличия награды "first"
+   const [grassTotal, setGrassTotal] = useState(0);
 
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
@@ -275,11 +276,13 @@ const Home = () => {
               if (response.status === 409) {
                 const userData = await response.json();
                 alert(`User already exists: ${JSON.stringify(userData)}`);
+                setGrassTotal(userData.coinsPerHour)
                 console.log('Existing user ID:', userData.id);
               } else if (!response.ok) {
                 throw new Error("Something went wrong");
               } else {
                 const newUser = await response.json();
+                setGrassTotal(newUser.coinsPerHour)
                 dispatch(setUser(newUser));
                 console.log('New user ID:', newUser.id);
               }
@@ -573,7 +576,7 @@ const Home = () => {
                   /> */}
                   <Liga liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
                   <Energy
-                     total={user.coinsPerHour*3}
+                     total={grassTotal}
                      current={300}
                      onClick={() => setEnergyPopupOpen(true)}
                   />
