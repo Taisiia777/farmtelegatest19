@@ -288,11 +288,28 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
   if (!farmBlock) return null;
 
   const handlePickWheat = async () => {
-    if (farmBlock.stage === "fourth") {
+    if (farmBlock.stage !== "first") {
+      let rewardMultiplier = 0;
+
+    switch (farmBlock.stage) {
+      case "second":
+        rewardMultiplier = 1;
+        break;
+      case "third":
+        rewardMultiplier = 2;
+        break;
+      case "fourth":
+        rewardMultiplier = 3;
+        break;
+      default:
+        return; // Ничего не делать, если стадия "first"
+    }
+    const reward = user ? user.coinsPerHour * rewardMultiplier : 0;
+
       if (user) {
         try {
           const response = await axios.patch(
-            `https://coinfarm.club/user/${user.id}/earn/1000`
+            `https://coinfarm.club/user/${user.id}/earn/${reward}`
           );
           const updatedUser = response.data;
 
