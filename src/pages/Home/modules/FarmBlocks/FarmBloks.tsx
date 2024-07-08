@@ -548,23 +548,15 @@
 
 
 
-
-
-
-
-import React, { useEffect, useState, useRef } from "react";
-import { useDispatch  } from "react-redux";
+import React, { useEffect, useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
 import styles from "./FarmBlocks.module.scss";
 import classNames from "classnames/bind";
 import { selectEarthBlock, changeGrowthStage, pickWheat, calculateGrassEarnings } from "../../../../store/reducers/growthStages";
 import { useAppSelector } from "../../../../store";
 import useWheatTrunctaion from "../../hooks/useWheatTrunctation";
 import { RootState } from "../../../../store";
-import { setUser } from "../../../../store/reducers/userSlice";
-import { updateGrassEarnings } from "../../../../store/reducers/userSlice";
-import { useSwipeable } from "react-swipeable"; // Импортируем useSwipeable
-import store from "../../../../store";
-
+import { setUser, updateGrassEarnings } from "../../../../store/reducers/userSlice";
 import axios from 'axios';
 const cn = classNames.bind(styles);
 
@@ -578,8 +570,44 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
   const dispatch = useDispatch();
   const user = useAppSelector((state: RootState) => state.user.user);
   const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
-
+  const [touchedBlocks, setTouchedBlocks] = useState<number[]>([]);
+  console.log(touchedBlocks)
   useWheatTrunctaion();
+
+  const handleTouchStart = useCallback((e: TouchEvent) => {
+    setTouchedBlocks([]);
+  }, []);
+
+  const handleTouchMove = useCallback((e: TouchEvent) => {
+    const touches = e.touches[0];
+    const element = document.elementFromPoint(touches.clientX, touches.clientY) as HTMLElement;
+    if (element && element.dataset.id) {
+      const blockId = parseInt(element.dataset.id);
+      setTouchedBlocks(prev => {
+        if (!prev.includes(blockId)) {
+          dispatch(pickWheat({ id: blockId }));
+          return [...prev, blockId];
+        }
+        return prev;
+      });
+    }
+  }, [dispatch]);
+
+  const handleTouchEnd = useCallback(() => {
+    setTouchedBlocks([]);
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('touchstart', handleTouchStart);
+    document.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [handleTouchStart, handleTouchMove, handleTouchEnd]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -595,19 +623,12 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
 
     return () => clearInterval(interval);
   }, [dispatch, user, blocks]);
+
   return (
     <div className={cn("farmBlockWrap")}>
-      <FarmBlock zIndex={9} id={1} league={league} />
-      <FarmBlock zIndex={9} id={2} league={league} />
-      <FarmBlock zIndex={9} id={3} league={league} />
-      <FarmBlock zIndex={8} id={4} league={league} />
-      <FarmBlock zIndex={7} id={5} league={league} />
-      <FarmBlock zIndex={6} id={6} league={league} />
-      <FarmBlock zIndex={6} id={7} league={league} />
-      <FarmBlock zIndex={5} id={8} league={league} />
-      <FarmBlock zIndex={4} id={9} league={league} />
-
-      {/* Тень */}
+      {Array.from({ length: 9 }, (_, i) => (
+        <FarmBlock key={i + 1} zIndex={9 - i} id={i + 1} league={league} />
+      ))}
       <img
         src="img/pages/home/earth-blocks-bg.svg"
         className={cn("farmBlock__shadow")}
@@ -630,17 +651,14 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
   const user = useAppSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
   const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
-  const blockRef = useRef<HTMLDivElement>(null);
   console.log(localCoins)
   if (!farmBlock) return null;
 
-  const handlePickWheat = async (blockId: number) => {
-    const state = store.getState();
-    const farmBlockToPick = selectEarthBlock(state, blockId);
-    if (farmBlockToPick?.stage !== "first") {
+  const handlePickWheat = async () => {
+    if (farmBlock.stage !== "first") {
       let rewardMultiplier = 0;
 
-      switch (farmBlockToPick?.stage) {
+      switch (farmBlock.stage) {
         case "second":
           rewardMultiplier = 1;
           break;
@@ -653,7 +671,6 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
         default:
           return; // Ничего не делать, если стадия "first"
       }
-
       const reward = user ? user.coinsPerHour * rewardMultiplier : 0;
 
       if (user) {
@@ -677,45 +694,17 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
           console.error("Error:", error);
         }
       }
-      dispatch(pickWheat({ id: blockId }));
+      dispatch(pickWheat({ id }));
     }
   };
 
-  // Обработчики свайпов
-  const handlers = useSwipeable({
-    onSwiped: (eventData) => {
-      console.log("User Swiped!", eventData);
-      const startX = eventData.initial[0];
-      const startY = eventData.initial[1];
-      const endX = eventData.deltaX + startX;
-      const endY = eventData.deltaY + startY;
-
-      // Получаем все блоки и их координаты
-      const blocks = document.querySelectorAll(".farmBlock");
-      blocks.forEach((block) => {
-        const rect = block.getBoundingClientRect();
-        if (
-          rect.left < Math.max(startX, endX) &&
-          rect.right > Math.min(startX, endX) &&
-          rect.top < Math.max(startY, endY) &&
-          rect.bottom > Math.min(startY, endY)
-        ) {
-          const blockId = block.getAttribute("data-id");
-          if (blockId) {
-            handlePickWheat(parseInt(blockId, 10));
-          }
-        }
-      });
-    },
-  });
   return (
     <div
-    {...handlers} // Добавляем обработчики свайпов к блоку
-    className={cn("farmBlock")}
-    style={{ zIndex }}
-    onClick={() => handlePickWheat(id)}
-    ref={blockRef}
-    data-id={id}
+      className={cn("farmBlock")}
+      style={{ zIndex }}
+      onClick={handlePickWheat}
+      data-id={id}
+      data-stage={farmBlock.stage}
     >
       <img
         src={`img/leagueStages/${league}.png`}
@@ -726,8 +715,6 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
         src={`img/growthStages/${farmBlock.stage}.png`}
         className={cn("farmBlock__growthStage", `_${farmBlock.stage}`)}
         alt="growth stage"
-        data-id={id}
-        data-stage={farmBlock.stage}
       />
       <img
         src="img/pages/home/money.svg"
@@ -737,3 +724,4 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
     </div>
   );
 };
+
