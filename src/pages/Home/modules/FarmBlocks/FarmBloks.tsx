@@ -574,7 +574,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
   console.log(touchedBlocks)
   useWheatTrunctaion();
 
-  const handleTouchStart = useCallback((e: TouchEvent) => {
+  const handleTouchStart = useCallback(() => {
     setTouchedBlocks([]);
   }, []);
 
