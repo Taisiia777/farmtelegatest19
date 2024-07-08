@@ -222,7 +222,7 @@ const Home = () => {
                     coinsPerHour: 10,
                     xp: 0,
                     level: 0,
-                    referralCode: "98ddda07-d632-4ecb-b8a6-1b36fed2dac7", // Передаем реферальный код
+                    referralCode: "c75c4cbf-3a50-4294-bc5b-867373d72c6f", // Передаем реферальный код
                   }),
                 }
               );
