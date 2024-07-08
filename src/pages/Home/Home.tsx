@@ -202,8 +202,9 @@ const Home = () => {
         if (!response.ok) {
           throw new Error("Failed to fetch user level");
         }
-    
+        
         const data = await response.json();
+        alert(data.level)
         return data.level;
       } catch (error) {
         console.error("Error fetching user level:", error);
