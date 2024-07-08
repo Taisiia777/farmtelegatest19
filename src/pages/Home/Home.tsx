@@ -290,6 +290,7 @@ const Home = () => {
           if (success) {
             dispatch(setUser({ ...user, level: newLevel }));
             currentLevel = newLevel; // Обновляем текущий уровень после успешного обновления
+            setLevel(newLevel)
           } else {
             break; // Прерываем цикл если обновление не удалось
           }
