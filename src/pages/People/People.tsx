@@ -243,7 +243,7 @@ const People = () => {
           throw new Error('Failed to fetch referrals');
         }
         const data = await response.json();
-        setReferralCount(data.referrals.length);
+        setReferralCount(data.length);
       } catch (error) {
         console.error('Error fetching referrals:', error);
       }
