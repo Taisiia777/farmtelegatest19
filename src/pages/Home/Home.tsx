@@ -93,8 +93,7 @@ const Home = () => {
    const [nickname, setNickname] = useState('Savelii777'); // Состояние для никнейма
    // const [imgSrc, setImgSrc] = useState("img/pages/people/person.png");
    const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
-   // const [level, setLevel] = useState(user ? user.level : 0);
-   let level = 0;
+   const [level, setLevel] = useState(user ? user.level : 0);
    const [progressPercent, setProgressPercent] = useState(0);
    const [isProgressUpdating, setIsProgressUpdating] = useState(false);
    const [boosters, setBoosters] = useState<Booster[]>([]);
@@ -187,7 +186,80 @@ const Home = () => {
    }
    
 
-    
+   useEffect(() => {
+      const urlParams = new URLSearchParams(window.location.search);
+
+      let referralCode = urlParams.get('start');
+      
+      if (!referralCode && window.Telegram?.WebApp?.initData) {
+        const initData = new URLSearchParams(window.Telegram.WebApp.initData);
+        referralCode = initData.get('start');
+      }
+  
+  
+      const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
+      if (initData && initData.user) {
+        const user = initData.user;
+        const username = user.username;
+        if (username) {
+          setNickname(username);
+  
+          const createUser = async () => {
+            try {
+              const response = await fetch(
+                "https://coinfarm.club/user",
+                {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                  },
+                  body: JSON.stringify({
+                    username: username, // Используем username вместо nickname
+                    coins: 0,
+                    totalEarnings: 0,
+                    incomeMultiplier: 1,
+                    coinsPerHour: 10,
+                    xp: 0,
+                    level: 0,
+                    referralCode: "98ddda07-d632-4ecb-b8a6-1b36fed2dac7", // Передаем реферальный код
+                  }),
+                }
+              );
+  
+              if (response.status === 409) {
+                const userData = await response.json();
+                alert(`User already exists: ${JSON.stringify(userData)}`);
+                setGrassTotal(userData.coinsPerHour);
+                setLevel(userData.level)
+                console.log('Existing user ID:', userData.id);
+              } else if (!response.ok) {
+                throw new Error("Something went wrong");
+              } else {
+                const newUser = await response.json();
+                setGrassTotal(newUser.coinsPerHour);
+                setLevel(newUser.level)
+                dispatch(setUser(newUser));
+                console.log('New user ID:', newUser.id);
+              }
+            } catch (error) {
+              console.error("Error:", error);
+            }
+          };
+  
+          createUser();
+        }
+  
+        if (user.photoUrl) {
+          // setImgSrc(user.photoUrl);
+        } else {
+          console.log("Photo URL not available");
+        }
+      }
+    }, [dispatch]);
+
+
+
 
 
    const updateLeagueProgress = async () => {
@@ -256,79 +328,6 @@ const Home = () => {
     }, [localCoins]);
     
   
-
-
-
-    useEffect(() => {
-      const urlParams = new URLSearchParams(window.location.search);
-
-      let referralCode = urlParams.get('start');
-      
-      if (!referralCode && window.Telegram?.WebApp?.initData) {
-        const initData = new URLSearchParams(window.Telegram.WebApp.initData);
-        referralCode = initData.get('start');
-      }
-  
-  
-      const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
-      if (initData && initData.user) {
-        const user = initData.user;
-        const username = user.username;
-        if (username) {
-          setNickname(username);
-  
-          const createUser = async () => {
-            try {
-              const response = await fetch(
-                "https://coinfarm.club/user",
-                {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                  },
-                  body: JSON.stringify({
-                    username: username, // Используем username вместо nickname
-                    coins: 0,
-                    totalEarnings: 0,
-                    incomeMultiplier: 1,
-                    coinsPerHour: 10,
-                    xp: 0,
-                    level: 0,
-                    referralCode: "98ddda07-d632-4ecb-b8a6-1b36fed2dac7", // Передаем реферальный код
-                  }),
-                }
-              );
-  
-              if (response.status === 409) {
-                const userData = await response.json();
-                alert(`User already exists: ${JSON.stringify(userData)}`);
-                setGrassTotal(userData.coinsPerHour);
-                console.log('Existing user ID:', userData.id);
-              } else if (!response.ok) {
-                throw new Error("Something went wrong");
-              } else {
-                const newUser = await response.json();
-                setGrassTotal(newUser.coinsPerHour);
-                dispatch(setUser(newUser));
-                console.log('New user ID:', newUser.id);
-              }
-            } catch (error) {
-              console.error("Error:", error);
-            }
-          };
-  
-          createUser();
-        }
-  
-        if (user.photoUrl) {
-          // setImgSrc(user.photoUrl);
-        } else {
-          console.log("Photo URL not available");
-        }
-      }
-    }, [dispatch]);
-
 
 
 
