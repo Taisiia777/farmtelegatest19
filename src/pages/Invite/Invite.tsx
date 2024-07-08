@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 
 import { tg } from "../../constants/app";
@@ -12,11 +12,44 @@ import Button from "../../components/Button/Button";
 import classNames from "classnames/bind";
 import styles from "./Invite.module.scss";
 import { Routes } from "../../routes/routes";
+import { RootState } from "../../store";
+import { useAppSelector } from "../../store";
 const cn = classNames.bind(styles);
-
+interface User {
+   id: number;
+   username: string;
+   coins: number;
+   totalEarnings: number;
+   incomeMultiplier: number;
+   coinsPerHour: number;
+   xp: number;
+   level: number;
+ }
+ 
 const Invite = () => {
    const navigate = useNavigate();
+   const user = useAppSelector((state: RootState) => state.user.user);
+   const [friends, setFriends] = useState<User[]>([]);
+   const [referralCount, setReferralCount] = useState(0);
 
+   useEffect(() => {
+      const fetchReferrals = async () => {
+        try {
+          const response = await fetch(`https://coinfarm.club/user/${user.id}/referrals`);
+          if (!response.ok) {
+            throw new Error('Failed to fetch referrals');
+          }
+          const data: User[] = await response.json();
+          const sortedUsers = data.sort((a, b) => b.coinsPerHour - a.coinsPerHour); // Сортировка по убыванию прибыли в час
+          setFriends(sortedUsers);
+          setReferralCount(data.length);
+        } catch (error) {
+          console.error('Error fetching referrals:', error);
+        }
+      };
+    
+      fetchReferrals();
+    }, [user.id]);
    useEffect(() => {
       tg.BackButton.show();
       tg.BackButton.onClick(() => navigate(-1));
@@ -82,7 +115,7 @@ const Invite = () => {
             {/* Кол-во друзей и reload */}
             <div className={cn("invite__friends-control")}>
                <div className={cn("invite__friends-amount")}>
-                  Your friends <span>3</span>
+                  Your friends <span>{referralCount}</span>
                </div>
                <img src="img/pages/invite/reload.svg" alt="Reload" />
             </div>
@@ -91,38 +124,47 @@ const Invite = () => {
             <PopupListWrap className={cn("invite__listWrap")} isOpen={true}>
                <PopupList
                   className={cn("invite__list")}
-                  nodes={[
+                  // nodes={[
+                  //    <PersonBlock
+                  //       name="Nickname User"
+                  //       imgSrc="img/pages/people/person.png"
+                  //       earning="1 260 000"
+                  //       coinAmount="983 124"
+                  //    />,
+                  //    <PersonBlock
+                  //       name="Nickname User"
+                  //       imgSrc="img/pages/people/person.png"
+                  //       earning="1 260 000"
+                  //       coinAmount="983 124"
+                  //    />,
+                  //    <PersonBlock
+                  //       name="Nickname User"
+                  //       imgSrc="img/pages/people/person.png"
+                  //       earning="1 260 000"
+                  //       coinAmount="983 124"
+                  //    />,
+                  //    <PersonBlock
+                  //       name="Nickname User"
+                  //       imgSrc="img/pages/people/person.png"
+                  //       earning="1 260 000"
+                  //       coinAmount="983 124"
+                  //    />,
+                  //    <PersonBlock
+                  //       name="Nickname User"
+                  //       imgSrc="img/pages/people/person.png"
+                  //       earning="1 260 000"
+                  //       coinAmount="983 124"
+                  //    />,
+                  // ]}
+                  nodes={friends.map((user) => (
                      <PersonBlock
-                        name="Nickname User"
-                        imgSrc="img/pages/people/person.png"
-                        earning="1 260 000"
-                        coinAmount="983 124"
-                     />,
-                     <PersonBlock
-                        name="Nickname User"
-                        imgSrc="img/pages/people/person.png"
-                        earning="1 260 000"
-                        coinAmount="983 124"
-                     />,
-                     <PersonBlock
-                        name="Nickname User"
-                        imgSrc="img/pages/people/person.png"
-                        earning="1 260 000"
-                        coinAmount="983 124"
-                     />,
-                     <PersonBlock
-                        name="Nickname User"
-                        imgSrc="img/pages/people/person.png"
-                        earning="1 260 000"
-                        coinAmount="983 124"
-                     />,
-                     <PersonBlock
-                        name="Nickname User"
-                        imgSrc="img/pages/people/person.png"
-                        earning="1 260 000"
-                        coinAmount="983 124"
-                     />,
-                  ]}
+                       key={user.id}
+                       name={user.username}
+                       imgSrc={"img/pages/people/person.png"}
+                       earning={user.coinsPerHour.toString()}
+                       coinAmount={user.coins.toString()}
+                     />
+                   ))}
                   type="third"
                />
             </PopupListWrap>

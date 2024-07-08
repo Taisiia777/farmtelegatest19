@@ -211,6 +211,7 @@ const People = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(location.state?.label ?? "FARM FRENDS");
   const [users, setUsers] = useState<User[]>([]);
+  const [friends, setFriends] = useState<User[]>([]);
   const [referralCount, setReferralCount] = useState(0);
   const user = useAppSelector((state: RootState) => state.user.user);
 
@@ -242,7 +243,9 @@ const People = () => {
         if (!response.ok) {
           throw new Error('Failed to fetch referrals');
         }
-        const data = await response.json();
+        const data: User[] = await response.json();
+        const sortedUsers = data.sort((a, b) => b.coinsPerHour - a.coinsPerHour); // Сортировка по убыванию прибыли в час
+        setFriends(sortedUsers);
         setReferralCount(data.length);
       } catch (error) {
         console.error('Error fetching referrals:', error);
@@ -272,7 +275,7 @@ const People = () => {
           />
           {activeTab === "FARM FRENDS" && (
             <PopupList
-              nodes={users.map((user) => (
+              nodes={friends.map((user) => (
                 <PersonBlock
                   key={user.id}
                   name={user.username}
