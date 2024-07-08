@@ -102,7 +102,6 @@ const Home = () => {
    const [userCoins, setUserCoins] = useState<Coin[]>([]);
    const [hasFirstReward, setHasFirstReward] = useState(false); // Состояние для проверки наличия награды "first"
    const [grassTotal, setGrassTotal] = useState(0);
-   const [serverLevel, setServerLevel] = useState(0);
 
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
@@ -190,46 +189,10 @@ const Home = () => {
     
 
 
-   const fetchUserLevel = async (userId: number) => {
-      try {
-        const response = await fetch(`https://coinfarm.club/user/${userId}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        });
-    
-        if (!response.ok) {
-          throw new Error("Failed to fetch user level");
-        }
-    
-        const data = await response.json();
-        setServerLevel(data.level); // Устанавливаем уровень с сервера
-        return data.level;
-      } catch (error) {
-        console.error("Error fetching user level:", error);
-        return null;
-      }
-    };
-    
-    
 
-    useEffect(() => {
-      const init = async () => {
-        if (user) {
-          const userLevel = await fetchUserLevel(user.id);
-          if (userLevel !== null) {
-            setLevel(userLevel);
-            setProgressPercent((localCoins / leagues[userLevel].coinsRequired) * 100);
-          }
-        }
-      };
-    
-      init();
-    }, [user]);
-    
-    const updateLeagueProgress = async () => {
+
+
+   const updateLeagueProgress = async () => {
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
     
@@ -243,14 +206,11 @@ const Home = () => {
         if (localCoins >= nextLeague.coinsRequired) {
           const newLevel = level + 1;
           setLevel(newLevel);
-          if (newLevel > serverLevel) { // Проверка, что локальный уровень больше уровня на сервере
-            const success = await updateUserLevel(user.id, newLevel);
-            if (success) {
-              dispatch(setUser({ ...user, level: newLevel }));
-              setServerLevel(newLevel); // Обновляем уровень на сервере
-            }
+          const success = await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
+          if (success) {
+            dispatch(setUser({ ...user, level: newLevel }));
+            break; // Прерываем цикл после успешного обновления уровня
           }
-          break; // Прерываем цикл после успешного обновления уровня
         } else {
           break;
         }
@@ -259,10 +219,9 @@ const Home = () => {
       setIsProgressUpdating(false);
     };
     
-    
     const updateUserLevel = async (userId: number, newLevel: number) => {
       try {
-        const response = await fetch(`https://coinfarm.club/user/${userId}`, {
+        const response = await fetch(`https://coinfarm.club/use/${userId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
