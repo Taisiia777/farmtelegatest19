@@ -7,7 +7,7 @@ import { closeBoostBuyPopup } from "../../store/reducers/boost";
 import { closeCoinBuyPopup } from "../../store/reducers/coin";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
-import { retrieveLaunchParams } from '@tma.js/sdk';
+import { json, retrieveLaunchParams } from '@tma.js/sdk';
 import { calculateGrassEarnings, growAllToMax } from "../../store/reducers/growthStages";
 
 import classNames from "classnames/bind";
@@ -250,6 +250,8 @@ const Home = () => {
 
     useEffect(() => {
       const urlParams = new URLSearchParams(window.location.search);
+      alert(JSON.stringify(urlParams));
+
       let referralCode = urlParams.get('start');
       
       if (!referralCode && window.Telegram?.WebApp?.initData) {
@@ -257,10 +259,8 @@ const Home = () => {
         referralCode = initData.get('start');
       }
   
-      alert(referralCode);
   
       const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
-      alert(JSON.stringify(initData))
       if (initData && initData.user) {
         const user = initData.user;
         const username = user.username;
