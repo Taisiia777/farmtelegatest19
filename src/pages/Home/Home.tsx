@@ -245,14 +245,20 @@ const Home = () => {
       updateLeagueProgress();
     }, [localCoins]);
   
+
+
+
     useEffect(() => {
-      const { initData } = retrieveLaunchParams();
+      const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
+      const urlParams = new URLSearchParams(window.location.search);
+      const referralCode = urlParams.get('referralCode');
+  
       if (initData && initData.user) {
         const user = initData.user;
         const username = user.username;
         if (username) {
           setNickname(username);
-    
+  
           const createUser = async () => {
             try {
               const response = await fetch(
@@ -264,27 +270,28 @@ const Home = () => {
                     Accept: "application/json",
                   },
                   body: JSON.stringify({
-                    username: nickname,
+                    username: username, // Используем username вместо nickname
                     coins: 0,
                     totalEarnings: 0,
                     incomeMultiplier: 1,
                     coinsPerHour: 10,
                     xp: 0,
                     level: 0,
+                    referralCode: referralCode, // Передаем реферальный код
                   }),
                 }
               );
-    
+  
               if (response.status === 409) {
                 const userData = await response.json();
                 alert(`User already exists: ${JSON.stringify(userData)}`);
-                setGrassTotal(userData.coinsPerHour)
+                setGrassTotal(userData.coinsPerHour);
                 console.log('Existing user ID:', userData.id);
               } else if (!response.ok) {
                 throw new Error("Something went wrong");
               } else {
                 const newUser = await response.json();
-                setGrassTotal(newUser.coinsPerHour)
+                setGrassTotal(newUser.coinsPerHour);
                 dispatch(setUser(newUser));
                 console.log('New user ID:', newUser.id);
               }
@@ -292,17 +299,80 @@ const Home = () => {
               console.error("Error:", error);
             }
           };
-    
+  
           createUser();
         }
-    
+  
         if (user.photoUrl) {
           // setImgSrc(user.photoUrl);
         } else {
           console.log("Photo URL not available");
         }
       }
-    }, [dispatch, nickname]);
+    }, [dispatch]);
+
+
+
+
+
+   //  useEffect(() => {
+   //    const { initData } = retrieveLaunchParams();
+   //    if (initData && initData.user) {
+   //      const user = initData.user;
+   //      const username = user.username;
+   //      if (username) {
+   //        setNickname(username);
+    
+   //        const createUser = async () => {
+   //          try {
+   //            const response = await fetch(
+   //              "https://coinfarm.club/user",
+   //              {
+   //                method: "POST",
+   //                headers: {
+   //                  "Content-Type": "application/json",
+   //                  Accept: "application/json",
+   //                },
+   //                body: JSON.stringify({
+   //                  username: nickname,
+   //                  coins: 0,
+   //                  totalEarnings: 0,
+   //                  incomeMultiplier: 1,
+   //                  coinsPerHour: 10,
+   //                  xp: 0,
+   //                  level: 0,
+   //                }),
+   //              }
+   //            );
+    
+   //            if (response.status === 409) {
+   //              const userData = await response.json();
+   //              alert(`User already exists: ${JSON.stringify(userData)}`);
+   //              setGrassTotal(userData.coinsPerHour)
+   //              console.log('Existing user ID:', userData.id);
+   //            } else if (!response.ok) {
+   //              throw new Error("Something went wrong");
+   //            } else {
+   //              const newUser = await response.json();
+   //              setGrassTotal(newUser.coinsPerHour)
+   //              dispatch(setUser(newUser));
+   //              console.log('New user ID:', newUser.id);
+   //            }
+   //          } catch (error) {
+   //            console.error("Error:", error);
+   //          }
+   //        };
+    
+   //        createUser();
+   //      }
+    
+   //      if (user.photoUrl) {
+   //        // setImgSrc(user.photoUrl);
+   //      } else {
+   //        console.log("Photo URL not available");
+   //      }
+   //    }
+   //  }, [dispatch, nickname]);
   
    //  useEffect(() => {
    //    const interval = setInterval(() => {
@@ -648,7 +718,7 @@ const Home = () => {
                         isBlueBg
                         onClick={() =>
                            buy(energyMoneyAnimRef, () =>{
-                              
+
                               dispatch(growAllToMax());
                               setEnergyPopupOpen(false)
 
