@@ -188,7 +188,7 @@ const Home = () => {
 
     
 
-
+setLevel(0)
 
    const updateLeagueProgress = async () => {
       if (isProgressUpdating) return;
