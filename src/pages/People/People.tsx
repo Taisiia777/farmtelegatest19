@@ -191,7 +191,8 @@ import PopupListTabs from "../../components/PopupList/modules/PopupListTabs";
 import PopupList from "../../components/PopupList/PopupList";
 import PersonBlock from "../../components/PersonBlock/PersonBlock";
 import PopupListWrap from "../../components/PopupList/modules/PopupListWrap";
-
+import { RootState } from "../../store";
+import { useAppSelector } from "../../store";
 const cn = classNames.bind(styles);
 
 interface User {
@@ -210,6 +211,9 @@ const People = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(location.state?.label ?? "FARM FRENDS");
   const [users, setUsers] = useState<User[]>([]);
+  const [referralCount, setReferralCount] = useState(0);
+  const user = useAppSelector((state: RootState) => state.user.user);
+
 
   useEffect(() => {
     tg.BackButton.show();
@@ -231,12 +235,29 @@ const People = () => {
 
     fetchUsers();
   }, []);
+  useEffect(() => {
+    const fetchReferrals = async () => {
+      try {
+        const response = await fetch(`https://coinfarm.club/user/${user.id}/referrals`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch referrals');
+        }
+        const data = await response.json();
+        setReferralCount(data.referrals.length);
+      } catch (error) {
+        console.error('Error fetching referrals:', error);
+      }
+    };
+  
+    fetchReferrals();
+  }, [user.id]);
+  
 
   return (
     <div className={cn("wrap")}>
       <div className={cn("people")}>
-        <h2 className={`${cn("people__title")}` + " textShadow"}>4 frends</h2>
-        <Coins quantity={"1 180 000"} />
+      <h2 className={`${cn("people__title")}` + " textShadow"}>{referralCount} friends</h2>
+      <Coins quantity={"1 180 000"} />
         <div className={cn("people__invite-btn")} onClick={() => navigate(Routes.INVITE)}>
           <span className={cn("people__invite-btn-text")}> Invite freiend</span>
           <img src="img/pages/invite/btn.svg" alt="Invite friends" />
