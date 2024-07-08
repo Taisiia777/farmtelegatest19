@@ -250,7 +250,7 @@ const Home = () => {
 
     useEffect(() => {
       const urlParams = new URLSearchParams(window.location.search);
-      alert(JSON.stringify(urlParams));
+      alert(urlParams);
 
       let referralCode = urlParams.get('start');
       
