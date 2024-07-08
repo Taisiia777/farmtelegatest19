@@ -189,9 +189,42 @@ const Home = () => {
     
 
 
+   const fetchUserLevel = async (userId: number) => {
+      try {
+        const response = await fetch(`https://coinfarm.club/user/${userId}/level`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+    
+        if (!response.ok) {
+          throw new Error("Failed to fetch user level");
+        }
+    
+        const data = await response.json();
+        return data.level;
+      } catch (error) {
+        console.error("Error fetching user level:", error);
+        return null;
+      }
+    };
+    
 
-
-
+    useEffect(() => {
+      const init = async () => {
+        if (user) {
+          const userLevel = await fetchUserLevel(user.id);
+          if (userLevel !== null) {
+            setLevel(userLevel);
+            setProgressPercent((localCoins / leagues[userLevel].coinsRequired) * 100);
+          }
+        }
+      };
+    
+      init();
+    }, [user]);
    const updateLeagueProgress = async () => {
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
