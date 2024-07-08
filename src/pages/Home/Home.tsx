@@ -250,7 +250,6 @@ const Home = () => {
 
     useEffect(() => {
       const urlParams = new URLSearchParams(window.location.search);
-      alert(urlParams);
 
       let referralCode = urlParams.get('start');
       
@@ -285,7 +284,7 @@ const Home = () => {
                     coinsPerHour: 10,
                     xp: 0,
                     level: 0,
-                    referralCode: referralCode, // Передаем реферальный код
+                    referralCode: "98ddda07-d632-4ecb-b8a6-1b36fed2dac7", // Передаем реферальный код
                   }),
                 }
               );
