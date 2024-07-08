@@ -561,7 +561,7 @@
 
 
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch  } from "react-redux";
 import styles from "./FarmBlocks.module.scss";
 import classNames from "classnames/bind";
@@ -684,12 +684,22 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
       dispatch(pickWheat({ id }));
     }
   };
-
+  const handleInteraction = useCallback((e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+    // Get the element being interacted with
+    const target = e.target as HTMLElement;
+    const blockId = target.getAttribute('data-id');
+    if (blockId) {
+      handlePickWheat();
+    }
+  }, [handlePickWheat]);
   return (
     <div
-      className={cn("farmBlock")}
-      style={{ zIndex }}
-      onMouseOver={handlePickWheat}
+    className={cn("farmBlock")}
+    style={{ zIndex }}
+    data-id={id}
+    data-stage={farmBlock.stage}
+    onMouseMove={handleInteraction}
+    onTouchMove={handleInteraction}
     >
       <img
         src={`img/leagueStages/${league}.png`}
