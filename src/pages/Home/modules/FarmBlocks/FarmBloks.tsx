@@ -1116,7 +1116,7 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
   const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
   const [touchedBlocks, setTouchedBlocks] = useState<Set<number>>(new Set());
   const [harvested, setHarvested] = useState(false);
-
+  console.log(localCoins)
   if (!farmBlock) return null;
 
   const handlePickWheat = async (blockId: number) => {
