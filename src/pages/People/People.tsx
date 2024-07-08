@@ -257,7 +257,7 @@ const People = () => {
     <div className={cn("wrap")}>
       <div className={cn("people")}>
       <h2 className={`${cn("people__title")}` + " textShadow"}>{referralCount} friends</h2>
-      <Coins quantity={"1 180 000"} />
+      <Coins quantity={user.totalEarnings} />
         <div className={cn("people__invite-btn")} onClick={() => navigate(Routes.INVITE)}>
           <span className={cn("people__invite-btn-text")}> Invite freiend</span>
           <img src="img/pages/invite/btn.svg" alt="Invite friends" />

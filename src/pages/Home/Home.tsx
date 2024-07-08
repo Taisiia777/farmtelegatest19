@@ -284,7 +284,7 @@ const Home = () => {
         }
         setProgressPercent(Math.min(percent, 100));
     
-        if (localCoins >= nextLeague.coinsRequired) {
+        if (localCoins >= nextLeague.coinsRequired && nextLeague ) {
           const newLevel = currentLevel + 1;
           const success = await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
           if (success) {
