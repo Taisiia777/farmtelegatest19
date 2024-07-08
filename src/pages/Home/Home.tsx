@@ -249,10 +249,17 @@ const Home = () => {
 
 
     useEffect(() => {
-      const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
       const urlParams = new URLSearchParams(window.location.search);
-      const referralCode = urlParams.get('referralCode');
-      alert(referralCode)
+      let referralCode = urlParams.get('referralCode');
+  
+      if (!referralCode && window.Telegram?.WebApp?.initData) {
+        const initData = new URLSearchParams(window.Telegram.WebApp.initData);
+        referralCode = initData.get('referralCode');
+      }
+  
+      alert(referralCode);
+  
+      const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
       if (initData && initData.user) {
         const user = initData.user;
         const username = user.username;
