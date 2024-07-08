@@ -252,7 +252,7 @@ const Home = () => {
       const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
       const urlParams = new URLSearchParams(window.location.search);
       const referralCode = urlParams.get('referralCode');
-  
+      alert(referralCode)
       if (initData && initData.user) {
         const user = initData.user;
         const username = user.username;
