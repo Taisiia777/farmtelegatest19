@@ -693,7 +693,6 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
   const user = useAppSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
   const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
-  const [isAnimating, setIsAnimating] = useState(false);
 
   const [touchedBlocks, setTouchedBlocks] = useState<Set<number>>(new Set());
 
@@ -702,7 +701,7 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
   const handlePickWheat = async (blockId: number) => {
     if (farmBlock.stage !== "first") {
       let rewardMultiplier = 0;
-
+  
       switch (farmBlock.stage) {
         case "second":
           rewardMultiplier = 1;
@@ -716,16 +715,16 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
         default:
           return; // Ничего не делать, если стадия "first"
       }
-
+  
       const reward = user ? user.coinsPerHour * rewardMultiplier : 0;
-
+  
       if (user) {
         try {
           const response = await axios.patch(
             `https://coinfarm.club/user/${user.id}/earn/${reward}`
           );
           const updatedUser = response.data;
-
+  
           // Обновление состояния пользователя и локальных монет
           dispatch(
             setUser({
@@ -734,18 +733,27 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
               totalEarnings: parseFloat(updatedUser.totalEarnings),
             })
           );
-
+  
           setLocalCoins(parseFloat(updatedUser.coins));
-          setIsAnimating(true);
-          setTimeout(() => setIsAnimating(false), 1000);
           console.log(localCoins);
         } catch (error) {
           console.error("Error:", error);
         }
       }
+  
+      // Добавление класса _anim
+      const moneyElement = document.querySelector(`.farmBlock[data-id="${blockId}"] .farmBlock__money`);
+      if (moneyElement) {
+        moneyElement.classList.add('_anim');
+        setTimeout(() => {
+          moneyElement.classList.remove('_anim');
+        }, 400); // Убедитесь, что время совпадает с продолжительностью анимации
+      }
+  
       dispatch(pickWheat({ id: blockId }));
     }
   };
+  
 
   const handleInteraction = useCallback((e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     e.preventDefault(); // Prevent default behavior to avoid unwanted scrolling
@@ -799,9 +807,9 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
         data-id={id}
         data-stage={farmBlock.stage}
       />
-       <img
+      <img
         src="img/pages/home/money.svg"
-        className={cn("farmBlock__money", { animate: isAnimating })}
+        className={cn("farmBlock__money")}
         alt="money"
       />
     </div>
