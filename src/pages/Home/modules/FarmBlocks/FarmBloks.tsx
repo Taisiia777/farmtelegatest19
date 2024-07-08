@@ -552,7 +552,7 @@
 
 
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch  } from "react-redux";
 import styles from "./FarmBlocks.module.scss";
 import classNames from "classnames/bind";
@@ -563,6 +563,7 @@ import { RootState } from "../../../../store";
 import { setUser } from "../../../../store/reducers/userSlice";
 import { updateGrassEarnings } from "../../../../store/reducers/userSlice";
 import { useSwipeable } from "react-swipeable"; // Импортируем useSwipeable
+import store from "../../../../store";
 
 import axios from 'axios';
 const cn = classNames.bind(styles);
@@ -629,27 +630,31 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
   const user = useAppSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
   const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
-
+  const blockRef = useRef<HTMLDivElement>(null);
+  console.log(localCoins)
   if (!farmBlock) return null;
 
-  const handlePickWheat = async () => {
-    if (farmBlock.stage !== "first") {
+  const handlePickWheat = async (blockId: number) => {
+    const state = store.getState();
+    const farmBlockToPick = selectEarthBlock(state, blockId);
+    if (farmBlockToPick?.stage !== "first") {
       let rewardMultiplier = 0;
 
-    switch (farmBlock.stage) {
-      case "second":
-        rewardMultiplier = 1;
-        break;
-      case "third":
-        rewardMultiplier = 2;
-        break;
-      case "fourth":
-        rewardMultiplier = 3;
-        break;
-      default:
-        return; // Ничего не делать, если стадия "first"
-    }
-    const reward = user ? user.coinsPerHour * rewardMultiplier : 0;
+      switch (farmBlockToPick?.stage) {
+        case "second":
+          rewardMultiplier = 1;
+          break;
+        case "third":
+          rewardMultiplier = 2;
+          break;
+        case "fourth":
+          rewardMultiplier = 3;
+          break;
+        default:
+          return; // Ничего не делать, если стадия "first"
+      }
+
+      const reward = user ? user.coinsPerHour * rewardMultiplier : 0;
 
       if (user) {
         try {
@@ -668,26 +673,49 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
           );
 
           setLocalCoins(parseFloat(updatedUser.coins));
-          console.log(localCoins)
         } catch (error) {
           console.error("Error:", error);
         }
       }
-      dispatch(pickWheat({ id }));
+      dispatch(pickWheat({ id: blockId }));
     }
   };
+
+  // Обработчики свайпов
   const handlers = useSwipeable({
     onSwiped: (eventData) => {
       console.log("User Swiped!", eventData);
-      handlePickWheat(); // Обработка свайпа как нажатие
+      const startX = eventData.initial[0];
+      const startY = eventData.initial[1];
+      const endX = eventData.deltaX + startX;
+      const endY = eventData.deltaY + startY;
+
+      // Получаем все блоки и их координаты
+      const blocks = document.querySelectorAll(".farmBlock");
+      blocks.forEach((block) => {
+        const rect = block.getBoundingClientRect();
+        if (
+          rect.left < Math.max(startX, endX) &&
+          rect.right > Math.min(startX, endX) &&
+          rect.top < Math.max(startY, endY) &&
+          rect.bottom > Math.min(startY, endY)
+        ) {
+          const blockId = block.getAttribute("data-id");
+          if (blockId) {
+            handlePickWheat(parseInt(blockId, 10));
+          }
+        }
+      });
     },
   });
   return (
     <div
-      {...handlers} // Добавляем обработчики свайпов к блоку
-      className={cn("farmBlock")}
-      style={{ zIndex }}
-      onClick={handlePickWheat}
+    {...handlers} // Добавляем обработчики свайпов к блоку
+    className={cn("farmBlock")}
+    style={{ zIndex }}
+    onClick={() => handlePickWheat(id)}
+    ref={blockRef}
+    data-id={id}
     >
       <img
         src={`img/leagueStages/${league}.png`}
