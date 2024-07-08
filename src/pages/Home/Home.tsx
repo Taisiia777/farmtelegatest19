@@ -7,7 +7,7 @@ import { closeBoostBuyPopup } from "../../store/reducers/boost";
 import { closeCoinBuyPopup } from "../../store/reducers/coin";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
-import { json, retrieveLaunchParams } from '@tma.js/sdk';
+import { retrieveLaunchParams } from '@tma.js/sdk';
 import { calculateGrassEarnings, growAllToMax } from "../../store/reducers/growthStages";
 
 import classNames from "classnames/bind";
