@@ -815,19 +815,22 @@
 
 
 
-
-
 import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./FarmBlocks.module.scss";
 import classNames from "classnames/bind";
-import { selectEarthBlock, changeGrowthStage, pickWheat, calculateGrassEarnings } from "../../../../store/reducers/growthStages";
+import {
+  selectEarthBlock,
+  changeGrowthStage,
+  pickWheat,
+  calculateGrassEarnings,
+} from "../../../../store/reducers/growthStages";
 import { useAppSelector } from "../../../../store";
 import useWheatTrunctaion from "../../hooks/useWheatTrunctation";
 import { RootState } from "../../../../store";
 import { setUser } from "../../../../store/reducers/userSlice";
 import { updateGrassEarnings } from "../../../../store/reducers/userSlice";
-import axios from 'axios';
+import axios from "axios";
 
 const cn = classNames.bind(styles);
 
@@ -894,8 +897,8 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
   const user = useAppSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
   const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
-
   const [touchedBlocks, setTouchedBlocks] = useState<Set<number>>(new Set());
+  const [harvested, setHarvested] = useState(false);
 
   if (!farmBlock) return null;
 
@@ -942,37 +945,44 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
         }
       }
       dispatch(pickWheat({ id: blockId }));
+      setHarvested(true);
+      setTimeout(() => setHarvested(false), 400); // Сброс анимации после ее длительности
     }
   };
 
-  const handleInteraction = useCallback((e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
-    e.preventDefault(); // Prevent default behavior to avoid unwanted scrolling
+  const handleInteraction = useCallback(
+    (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+      e.preventDefault(); // Предотвращение стандартного поведения для предотвращения нежелательной прокрутки
 
-    // Determine the type of event
-    const eventType = e.type;
+      // Определение типа события
+      const eventType = e.type;
 
-    let target: HTMLElement | null = null;
-    if (eventType === 'mousemove' || eventType === 'touchmove') {
-      target = document.elementFromPoint(
-        (e as React.MouseEvent<HTMLDivElement>).clientX || (e as React.TouchEvent<HTMLDivElement>).touches[0].clientX,
-        (e as React.MouseEvent<HTMLDivElement>).clientY || (e as React.TouchEvent<HTMLDivElement>).touches[0].clientY
-      ) as HTMLElement;
-    }
+      let target: HTMLElement | null = null;
+      if (eventType === "mousemove" || eventType === "touchmove") {
+        target = document.elementFromPoint(
+          (e as React.MouseEvent<HTMLDivElement>).clientX ||
+            (e as React.TouchEvent<HTMLDivElement>).touches[0].clientX,
+          (e as React.MouseEvent<HTMLDivElement>).clientY ||
+            (e as React.TouchEvent<HTMLDivElement>).touches[0].clientY
+        ) as HTMLElement;
+      }
 
-    if (target) {
-      const blockId = target.getAttribute('data-id');
-      if (blockId) {
-        const id = parseInt(blockId, 10);
-        if (!touchedBlocks.has(id)) {
-          setTouchedBlocks(prev => new Set(prev).add(id));
-          handlePickWheat(id);
+      if (target) {
+        const blockId = target.getAttribute("data-id");
+        if (blockId) {
+          const id = parseInt(blockId, 10);
+          if (!touchedBlocks.has(id)) {
+            setTouchedBlocks((prev) => new Set(prev).add(id));
+            handlePickWheat(id);
+          }
         }
       }
-    }
-  }, [handlePickWheat, touchedBlocks]);
+    },
+    [handlePickWheat, touchedBlocks]
+  );
 
   const handleTouchEnd = useCallback(() => {
-    setTouchedBlocks(new Set()); // Reset touched blocks when touch ends
+    setTouchedBlocks(new Set()); // Сброс касаний при окончании взаимодействия
   }, []);
 
   return (
@@ -999,10 +1009,8 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
       />
       <img
         src="img/pages/home/money.svg"
-        className={cn("farmBlock__money")}
+        className={cn("farmBlock__money", { _anim: harvested })}
       />
     </div>
   );
 };
-
-

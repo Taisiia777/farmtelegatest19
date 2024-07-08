@@ -1,5 +1,130 @@
-@import '/src/index.scss';
+// @import '/src/index.scss';
 
+
+// .farmBlockWrap {
+//    position: absolute;
+//    top: 0;
+//    right: 0;
+//    width: 100%;
+//    height: 100%;
+// }
+
+// .farmBlock {
+//    position: absolute;
+//    width: 30%;
+//    height: 10.67%;
+
+//    &__earth {
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//       width: 100%;
+//       height: 100%;
+//       object-fit: contain;
+//    }
+
+//    &__growthStage {
+//       position: absolute;
+//       object-fit: contain;
+
+//       &._first {
+//          top: 26%;
+//          left: 40%;
+//          width: calc(24 / 129 * 100%);
+//       }
+
+//       &._second {
+//          top: -2%;
+//          left: 38%;
+//          width: calc(26 / 129 * 100%);
+//       }
+
+//       &._third {
+//          top: -40%;
+//          left: 36%;
+//          width: calc(41 / 129 * 100%);
+//       }
+
+//       &._fourth {
+//          top: -90%;
+//          left: 22%;
+//          width: calc(75 / 129 * 100%);
+//       }
+//    }
+
+//    &__money {
+//       position: absolute;
+//       top: -80%;
+//       left: 24%;
+//       width: calc(75 / 129 * 100%);
+//       opacity: 0;
+//       visibility: hidden;
+
+//       &._anim {
+//          animation: moneyDisappear 0.4s ease-in;
+//       }
+//    }
+
+//    &__shadow {
+//       position: absolute;
+//       top: 45%;
+//       left: 0%;
+//       width: 100%;
+//    }
+
+//    &:nth-child(1) {
+//       top: 45%;
+//       left: 3%;
+//    }
+
+//    &:nth-child(2) {
+//       top: 49%;
+//       left: 19.2%;
+//    }
+
+//    &:nth-child(3) {
+//       top: 52.6%;
+//       left: 35.4%;
+
+//    }
+
+//    &:nth-child(4) {
+//       top: 49.2%;
+//       left: 51.2%;
+//    }
+
+//    &:nth-child(5) {
+//       top: 45.5%;
+//       left: 66.7%;
+//    }
+
+//    &:nth-child(6) {
+//       top: 41%;
+//       left: 19.7%;
+//    }
+
+//    &:nth-child(7) {
+//       top: 45%;
+//       left: 35%;
+//    }
+
+//    &:nth-child(8) {
+//       top: 41.5%;
+//       left: 50.3%;
+//    }
+
+//    &:nth-child(9) {
+//       top: 37.5%;
+//       left: 34.3%;
+//    }
+// }
+
+
+
+
+
+
+@import '/src/index.scss';
 
 .farmBlockWrap {
    position: absolute;
@@ -85,7 +210,6 @@
    &:nth-child(3) {
       top: 52.6%;
       left: 35.4%;
-
    }
 
    &:nth-child(4) {
@@ -116,5 +240,18 @@
    &:nth-child(9) {
       top: 37.5%;
       left: 34.3%;
+   }
+}
+
+@keyframes moneyDisappear {
+   0% {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+   }
+   100% {
+      opacity: 0;
+      transform: translateY(-50px);
+      visibility: hidden;
    }
 }
