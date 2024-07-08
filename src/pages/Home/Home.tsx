@@ -189,240 +189,149 @@ const Home = () => {
     
 
 
-
-
-
    const updateLeagueProgress = async () => {
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
-    
-      while (level < leagues.length) {
-        const nextLeague = leagues[level];
-        if (!nextLeague) break;
-    
-        const percent = (localCoins / nextLeague.coinsRequired) * 100;
-        setProgressPercent(Math.min(percent, 100));
-    
-        if (localCoins >= nextLeague.coinsRequired) {
-          const newLevel = level + 1;
-          setLevel(newLevel);
-          const success = await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
-          if (success) {
+
+      let newLevel = level;
+      let newProgressPercent = 0;
+
+      for (let i = 0; i < leagues.length; i++) {
+         if (localCoins >= leagues[i].coinsRequired) {
+            newLevel = i + 1;
+            newProgressPercent = 100;
+         } else {
+            newProgressPercent = (localCoins / leagues[i].coinsRequired) * 100;
+            break;
+         }
+      }
+
+      setLevel(newLevel);
+      setProgressPercent(newProgressPercent);
+
+      if (newLevel !== user.level) {
+         const success = await updateUserLevel(user.id, newLevel);
+         if (success) {
             dispatch(setUser({ ...user, level: newLevel }));
-            break; // Прерываем цикл после успешного обновления уровня
-          }
-        } else {
-          break;
-        }
+         }
       }
-    
+
       setIsProgressUpdating(false);
-    };
+   };
     
-    const updateUserLevel = async (userId: number, newLevel: number) => {
+   const updateUserLevel = async (userId: number, newLevel: number) => {
       try {
-        const response = await fetch(`https://coinfarm.club/use/${userId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({ level: newLevel }),
-        });
-        if (!response.ok) {
-          throw new Error("Failed to update user level");
-        }
-        const updatedUser = await response.json();
-        dispatch(setUser(updatedUser));
-        return true;
+         const response = await fetch(`https://coinfarm.club/user/${userId}`, {
+            method: "PUT",
+            headers: {
+               "Content-Type": "application/json",
+               Accept: "application/json",
+            },
+            body: JSON.stringify({ level: newLevel }),
+         });
+
+         if (!response.ok) {
+            throw new Error("Failed to update user level");
+         }
+
+         const updatedUser = await response.json();
+         dispatch(setUser(updatedUser));
+         return true;
       } catch (error) {
-        console.error("Error updating user level:", error);
-        return false;
+         console.error("Error updating user level:", error);
+         return false;
       }
-    };
+   };
     
     useEffect(() => {
       updateLeagueProgress();
     }, [localCoins]);
   
 
-
-
     useEffect(() => {
+      if (user) {
+         setLocalCoins(user.coins);
+         setLevel(user.level);
+      }
+   }, [user]);
+
+
+   useEffect(() => {
       const urlParams = new URLSearchParams(window.location.search);
 
       let referralCode = urlParams.get('start');
-      
+
       if (!referralCode && window.Telegram?.WebApp?.initData) {
-        const initData = new URLSearchParams(window.Telegram.WebApp.initData);
-        referralCode = initData.get('start');
+         const initData = new URLSearchParams(window.Telegram.WebApp.initData);
+         referralCode = initData.get('start');
       }
-  
-  
+
       const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
       if (initData && initData.user) {
-        const user = initData.user;
-        const username = user.username;
-        if (username) {
-          setNickname(username);
-  
-          const createUser = async () => {
-            try {
-              const response = await fetch(
-                "https://coinfarm.club/user",
-                {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                  },
-                  body: JSON.stringify({
-                    username: username, // Используем username вместо nickname
-                    coins: 0,
-                    totalEarnings: 0,
-                    incomeMultiplier: 1,
-                    coinsPerHour: 10,
-                    xp: 0,
-                    level: 0,
-                    referralCode: "98ddda07-d632-4ecb-b8a6-1b36fed2dac7", // Передаем реферальный код
-                  }),
-                }
-              );
-  
-              if (response.status === 409) {
-                const userData = await response.json();
-                alert(`User already exists: ${JSON.stringify(userData)}`);
-                setGrassTotal(userData.coinsPerHour);
-                console.log('Existing user ID:', userData.id);
-              } else if (!response.ok) {
-                throw new Error("Something went wrong");
-              } else {
-                const newUser = await response.json();
-                setGrassTotal(newUser.coinsPerHour);
-                dispatch(setUser(newUser));
-                console.log('New user ID:', newUser.id);
-              }
-            } catch (error) {
-              console.error("Error:", error);
-            }
-          };
-  
-          createUser();
-        }
-  
-        if (user.photoUrl) {
-          // setImgSrc(user.photoUrl);
-        } else {
-          console.log("Photo URL not available");
-        }
+         const user = initData.user;
+         const username = user.username;
+         if (username) {
+            setNickname(username);
+
+            const createUser = async () => {
+               try {
+                  const response = await fetch(
+                     "https://coinfarm.club/user",
+                     {
+                        method: "POST",
+                        headers: {
+                           "Content-Type": "application/json",
+                           Accept: "application/json",
+                        },
+                        body: JSON.stringify({
+                           username: username, // Используем username вместо nickname
+                           coins: 0,
+                           totalEarnings: 0,
+                           incomeMultiplier: 1,
+                           coinsPerHour: 10,
+                           xp: 0,
+                           level: 0,
+                           referralCode: "98ddda07-d632-4ecb-b8a6-1b36fed2dac7", // Передаем реферальный код
+                        }),
+                     }
+                  );
+
+                  if (response.status === 409) {
+                     const userData = await response.json();
+                     alert(`User already exists: ${JSON.stringify(userData)}`);
+                     setGrassTotal(userData.coinsPerHour);
+                     console.log('Existing user ID:', userData.id);
+                  } else if (!response.ok) {
+                     throw new Error("Something went wrong");
+                  } else {
+                     const newUser = await response.json();
+                     setGrassTotal(newUser.coinsPerHour);
+                     dispatch(setUser(newUser));
+                     console.log('New user ID:', newUser.id);
+                  }
+               } catch (error) {
+                  console.error("Error:", error);
+               }
+            };
+
+            createUser();
+         }
+
+         if (user.photoUrl) {
+            // setImgSrc(user.photoUrl);
+         } else {
+            console.log("Photo URL not available");
+         }
       }
-    }, [dispatch]);
+   }, [dispatch]);
 
-
-
-
-
-   //  useEffect(() => {
-   //    const { initData } = retrieveLaunchParams();
-   //    if (initData && initData.user) {
-   //      const user = initData.user;
-   //      const username = user.username;
-   //      if (username) {
-   //        setNickname(username);
-    
-   //        const createUser = async () => {
-   //          try {
-   //            const response = await fetch(
-   //              "https://coinfarm.club/user",
-   //              {
-   //                method: "POST",
-   //                headers: {
-   //                  "Content-Type": "application/json",
-   //                  Accept: "application/json",
-   //                },
-   //                body: JSON.stringify({
-   //                  username: nickname,
-   //                  coins: 0,
-   //                  totalEarnings: 0,
-   //                  incomeMultiplier: 1,
-   //                  coinsPerHour: 10,
-   //                  xp: 0,
-   //                  level: 0,
-   //                }),
-   //              }
-   //            );
-    
-   //            if (response.status === 409) {
-   //              const userData = await response.json();
-   //              alert(`User already exists: ${JSON.stringify(userData)}`);
-   //              setGrassTotal(userData.coinsPerHour)
-   //              console.log('Existing user ID:', userData.id);
-   //            } else if (!response.ok) {
-   //              throw new Error("Something went wrong");
-   //            } else {
-   //              const newUser = await response.json();
-   //              setGrassTotal(newUser.coinsPerHour)
-   //              dispatch(setUser(newUser));
-   //              console.log('New user ID:', newUser.id);
-   //            }
-   //          } catch (error) {
-   //            console.error("Error:", error);
-   //          }
-   //        };
-    
-   //        createUser();
-   //      }
-    
-   //      if (user.photoUrl) {
-   //        // setImgSrc(user.photoUrl);
-   //      } else {
-   //        console.log("Photo URL not available");
-   //      }
-   //    }
-   //  }, [dispatch, nickname]);
   
-   //  useEffect(() => {
-   //    const interval = setInterval(() => {
-   //      if (user) {
-   //        const newCoins =
-   //          parseFloat(localCoins) + parseFloat(user.coinsPerHour) / 3600;
-   //        setLocalCoins(newCoins);
-  
-   //        // Отправляем обновленные данные на сервер
-   //        fetch(
-   //          `https://coinfarm.club/user/${user.id}/earn/${
-   //            user.coinsPerHour / 3600
-   //          }`,
-   //          {
-   //            method: "PATCH",
-   //            headers: {
-   //              "Content-Type": "application/json",
-   //              Accept: "application/json",
-   //            },
-   //          }
-   //        )
-   //          .then((response) => response.json())
-   //          .then((updatedUser) => {
-   //            dispatch(
-   //              setUser({
-   //                ...updatedUser,
-   //                coins: parseFloat(updatedUser.coins),
-   //                totalEarnings: parseFloat(updatedUser.totalEarnings),
-   //              })
-   //            );
-   //          })
-   //          .catch((error) => console.error("Error:", error));
-   //      }
-   //    }, 1000);
-  
-   //    return () => clearInterval(interval);
-   //  }, [localCoins, user, dispatch]);
-  
-    useEffect(() => {
+   useEffect(() => {
       if (user) {
-        setLocalCoins(parseFloat(user.coins));
+         setLocalCoins(parseFloat(user.coins));
       }
-    }, [user]);
+   }, [user]);
+
   
     const renderLeagues = () => {
       return leagues.map((league, index) => {
