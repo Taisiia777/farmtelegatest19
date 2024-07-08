@@ -191,7 +191,7 @@ const Home = () => {
 
    const fetchUserLevel = async (userId: number) => {
       try {
-        const response = await fetch(`https://coinfarm.club/user/${userId}/level`, {
+        const response = await fetch(`https://coinfarm.club/user/${userId}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
