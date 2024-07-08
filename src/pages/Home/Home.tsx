@@ -102,6 +102,7 @@ const Home = () => {
    const [userCoins, setUserCoins] = useState<Coin[]>([]);
    const [hasFirstReward, setHasFirstReward] = useState(false); // Состояние для проверки наличия награды "first"
    const [grassTotal, setGrassTotal] = useState(0);
+   const [serverLevel, setServerLevel] = useState(0);
 
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
@@ -191,7 +192,7 @@ const Home = () => {
 
    const fetchUserLevel = async (userId: number) => {
       try {
-        const response = await fetch(`https://coinfarm.club/user/${userId}`, {
+        const response = await fetch(`https://coinfarm.club/user/${userId}/level`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -202,15 +203,16 @@ const Home = () => {
         if (!response.ok) {
           throw new Error("Failed to fetch user level");
         }
-        
+    
         const data = await response.json();
-        alert(data.level)
+        setServerLevel(data.level); // Устанавливаем уровень с сервера
         return data.level;
       } catch (error) {
         console.error("Error fetching user level:", error);
         return null;
       }
     };
+    
     
 
     useEffect(() => {
@@ -226,7 +228,8 @@ const Home = () => {
     
       init();
     }, [user]);
-   const updateLeagueProgress = async () => {
+    
+    const updateLeagueProgress = async () => {
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
     
@@ -240,11 +243,14 @@ const Home = () => {
         if (localCoins >= nextLeague.coinsRequired) {
           const newLevel = level + 1;
           setLevel(newLevel);
-          const success = await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
-          if (success) {
-            dispatch(setUser({ ...user, level: newLevel }));
-            break; // Прерываем цикл после успешного обновления уровня
+          if (newLevel > serverLevel) { // Проверка, что локальный уровень больше уровня на сервере
+            const success = await updateUserLevel(user.id, newLevel);
+            if (success) {
+              dispatch(setUser({ ...user, level: newLevel }));
+              setServerLevel(newLevel); // Обновляем уровень на сервере
+            }
           }
+          break; // Прерываем цикл после успешного обновления уровня
         } else {
           break;
         }
@@ -252,6 +258,7 @@ const Home = () => {
     
       setIsProgressUpdating(false);
     };
+    
     
     const updateUserLevel = async (userId: number, newLevel: number) => {
       try {
