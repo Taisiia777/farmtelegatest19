@@ -250,11 +250,11 @@ const Home = () => {
 
     useEffect(() => {
       const urlParams = new URLSearchParams(window.location.search);
-      let referralCode = urlParams.get('referralCode');
-  
+      let referralCode = urlParams.get('start');
+      
       if (!referralCode && window.Telegram?.WebApp?.initData) {
         const initData = new URLSearchParams(window.Telegram.WebApp.initData);
-        referralCode = initData.get('referralCode');
+        referralCode = initData.get('start');
       }
   
       alert(referralCode);
