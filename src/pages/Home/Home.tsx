@@ -260,7 +260,7 @@ const Home = () => {
       alert(referralCode);
   
       const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
-      console.log(JSON.stringify(initData))
+      alert(JSON.stringify(initData))
       if (initData && initData.user) {
         const user = initData.user;
         const username = user.username;
