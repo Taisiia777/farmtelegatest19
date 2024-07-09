@@ -556,7 +556,7 @@ const Home = () => {
       return () => clearInterval(interval); // Очистка интервала при размонтировании компонента
     }, [dispatch, blocks]);
   
-    const currentGrassEarnings = calculateGrassEarnings(blocks, user.coinsPerHour);
+    const currentGrassEarnings = calculateGrassEarnings(blocks, user?.coinsPerHour);
    return (
       <>
          {/* Основной контент */}
