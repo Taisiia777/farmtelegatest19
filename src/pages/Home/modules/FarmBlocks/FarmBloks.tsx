@@ -950,58 +950,40 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
     }
   };
 
-
-  // const handleInteraction = useCallback(
-  //   (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
-
-  //     // Определение типа события
-  //     const eventType = e.type;
-
-  //     let target: HTMLElement | null = null;
-  //     if (eventType === "mousemove" || eventType === "touchmove") {
-  //       target = document.elementFromPoint(
-  //         (e as React.MouseEvent<HTMLDivElement>).clientX ||
-  //           (e as React.TouchEvent<HTMLDivElement>).touches[0].clientX,
-  //         (e as React.MouseEvent<HTMLDivElement>).clientY ||
-  //           (e as React.TouchEvent<HTMLDivElement>).touches[0].clientY
-  //       ) as HTMLElement;
-  //     }
-
-  //     if (target) {
-  //       const blockId = target.getAttribute("data-id");
-  //       if (blockId) {
-  //         const id = parseInt(blockId, 10);
-  //         if (!touchedBlocks.has(id)) {
-  //           setTouchedBlocks((prev) => new Set(prev).add(id));
-  //           handlePickWheat(id);
-  //         }
-  //       }
-  //     }
-  //   },
-  //   [handlePickWheat, touchedBlocks]
-  // );
   const handleInteraction = useCallback(
     (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
       e.preventDefault(); // Предотвращение стандартного поведения для предотвращения нежелательной прокрутки
-      console.log(touchedBlocks)
-      const clientX = (e as React.MouseEvent<HTMLDivElement>).clientX || (e as React.TouchEvent<HTMLDivElement>).touches[0].clientX;
-      const clientY = (e as React.MouseEvent<HTMLDivElement>).clientY || (e as React.TouchEvent<HTMLDivElement>).touches[0].clientY;
 
-      const elements = document.elementsFromPoint(clientX, clientY);
-      elements.forEach((element) => {
-        const blockId = element.getAttribute("data-id");
+      // Определение типа события
+      const eventType = e.type;
+
+      let target: HTMLElement | null = null;
+      if (eventType === "mousemove" || eventType === "touchmove") {
+        target = document.elementFromPoint(
+          (e as React.MouseEvent<HTMLDivElement>).clientX ||
+            (e as React.TouchEvent<HTMLDivElement>).touches[0].clientX,
+          (e as React.MouseEvent<HTMLDivElement>).clientY ||
+            (e as React.TouchEvent<HTMLDivElement>).touches[0].clientY
+        ) as HTMLElement;
+      }
+
+      if (target) {
+        const blockId = target.getAttribute("data-id");
         if (blockId) {
-          handlePickWheat(parseInt(blockId, 10));
+          const id = parseInt(blockId, 10);
+          if (!touchedBlocks.has(id)) {
+            setTouchedBlocks((prev) => new Set(prev).add(id));
+            handlePickWheat(id);
+          }
         }
-      });
+      }
     },
-    [handlePickWheat]
+    [handlePickWheat, touchedBlocks]
   );
 
   const handleTouchEnd = useCallback(() => {
     setTouchedBlocks(new Set()); // Сброс касаний при окончании взаимодействия
   }, []);
-
 
   return (
     <div
