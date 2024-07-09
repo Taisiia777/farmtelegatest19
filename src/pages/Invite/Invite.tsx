@@ -196,7 +196,7 @@ const Invite = () => {
             <GreenBg />
          </div>
 
-         {/* Кнопка закрытия страницы */}
+         {/* Кнопка закрытия страниц */}
          <img
             src="img/global/closeIcon.svg"
             onClick={() => navigate(Routes.HOME)}
