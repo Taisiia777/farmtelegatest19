@@ -8,7 +8,7 @@ import { closeCoinBuyPopup } from "../../store/reducers/coin";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
 import { retrieveLaunchParams } from '@tma.js/sdk';
-import { calculateGrassEarnings, growAllToMax } from "../../store/reducers/growthStages";
+import { calculateGrassEarnings, growAllToMax, incrementProgress, IGrowthStages } from "../../store/reducers/growthStages";
 
 import classNames from "classnames/bind";
 import useWindowSize from "../../hooks/useWindowSize";
@@ -546,8 +546,17 @@ const Home = () => {
       });
     };
     
-    const currentGrassEarnings = calculateGrassEarnings(blocks, user ? user.coinsPerHour : 0);
-
+    useEffect(() => {
+      const interval = setInterval(() => {
+        blocks.forEach((block: IGrowthStages['blocks'][number]) => {
+          dispatch(incrementProgress({ id: block.id }));
+        });
+      }, 1000); // Обновление прогресса каждую секунду
+  
+      return () => clearInterval(interval); // Очистка интервала при размонтировании компонента
+    }, [dispatch, blocks]);
+  
+    const currentGrassEarnings = calculateGrassEarnings(blocks, user.coinsPerHour);
    return (
       <>
          {/* Основной контент */}
