@@ -185,8 +185,7 @@ const Home = () => {
       }, 500);
    }
    
-
-   u  useEffect(() => {
+  useEffect(() => {
       const fetchData = async () => {
         const urlParams = new URLSearchParams(window.location.search);
         let referralCode = urlParams.get('start');
