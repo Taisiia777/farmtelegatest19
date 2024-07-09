@@ -172,7 +172,7 @@ const LigaBlock = ({ ligaName, percent, price, active }: ILigaBlockProps) => {
           <Button
             className={cn("ligaBlockInfo__btn")}
             size="small"
-            disabled={!active || isRewardClaimed}
+            disabled={active || isRewardClaimed}
             onClick={handleButtonClick}
           >
             <CoinWhiteBg iconName="BTC" size="small" />
