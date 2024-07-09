@@ -343,16 +343,24 @@ const Home = () => {
   
     const renderLeagues = () => {
       return leagues.map((league, index) => {
-        const isActive = index < level;
-        const percent = index < level ? 100 : (localCoins / league.coinsRequired) * 100;
-         console.log(progressPercent)
+        let percent;
+        if (index < level) {
+          percent = 100; // Прошедшие лиги имеют 100%
+        } else if (index === level) {
+          percent = (localCoins / league.coinsRequired) * 100; // Текущая лига рассчитывается
+        } else {
+          percent = 0; // Будущие лиги имеют 0%
+        }
+    
+        const isActive = index <= level;
+    
         return (
           <LigaBlock
             key={league.name}
             ligaName={league.name as TLiga} // Приведение типа к TLiga
             percent={percent}
             price={league.coinsRequired.toString()}
-            active={isActive}
+            active={false}
           />
         );
       });
