@@ -1036,7 +1036,7 @@
 
 
 
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./FarmBlocks.module.scss";
 import classNames from "classnames/bind";
@@ -1067,6 +1067,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
   const dispatch = useDispatch();
   const user = useAppSelector((state: RootState) => state.user.user);
   const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
+  const hasFetchedGrowthStages = useRef(false); // Добавлено для отслеживания выполнения эффекта
 
   useWheatTrunctaion();
 
@@ -1074,17 +1075,18 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
     const fetchGrowthStages = async () => {
       try {
         const response = await axios.get(`https://coinfarm.club/user/${user.id}/grass-stages`);
-        alert(JSON.stringify(response.data))
+        alert(JSON.stringify(response.data));
         dispatch(setGrowthStages(response.data)); // Добавление стадии роста
       } catch (error) {
         console.error('Failed to fetch grass growth stages:', error);
       }
     };
 
-    if (user) {
+    if (user && !hasFetchedGrowthStages.current) {
       fetchGrowthStages();
+      hasFetchedGrowthStages.current = true; // Устанавливаем, что эффект был выполнен
     }
-  }, [user]);
+  }, [user, dispatch]); // Добавлены зависимости user и dispatch
 
   useEffect(() => {
     const updateGrowthStages = async () => {
