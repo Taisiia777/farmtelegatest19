@@ -1064,7 +1064,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
         dispatch(updateGrassEarnings(grassEarnings));
         console.log('Новое значение прибыли: ', grassEarnings);
       }
-    }, 30000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [dispatch, user, blocks]);

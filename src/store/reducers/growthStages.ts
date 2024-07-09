@@ -637,7 +637,7 @@ export const selectEarthBlock = (state: RootState, id: number) =>
 export const calculateGrassEarnings = (blocks: IGrowthStages['blocks'], coinsPerHour: number) => {
   let totalEarnings = 0;
   blocks.forEach(block => {
-    const progressRatio = block.progress / 30;
+    const progressRatio = block.progress / 5;
     switch (block.stage) {
       case "first":
         totalEarnings += coinsPerHour * progressRatio / 3;
