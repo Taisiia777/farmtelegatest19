@@ -102,6 +102,7 @@ const Home = () => {
    const [userCoins, setUserCoins] = useState<Coin[]>([]);
    const [hasFirstReward, setHasFirstReward] = useState(false); // Состояние для проверки наличия награды "first"
    const [grassTotal, setGrassTotal] = useState(0);
+   const [localUser, setLocalUser] = useState(user); // Initialize with user from Redux state
 
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
@@ -185,7 +186,6 @@ const Home = () => {
       }, 500);
    }
    
-
    useEffect(() => {
       const fetchData = async () => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -200,9 +200,8 @@ const Home = () => {
         if (initData && initData.user) {
           const user = initData.user;
           const username = user.username;
-          if (username) {
-            setNickname(username);
   
+          if (username) {
             try {
               const response = await fetch(
                 "https://coinfarm.club/user",
@@ -225,20 +224,14 @@ const Home = () => {
                 }
               );
   
-              if (response.status === 409) {
+              if (response.ok) {
                 const userData = await response.json();
-                alert(`User already exists: ${JSON.stringify(userData)}`);
-                setGrassTotal(userData.coinsPerHour);
-                setLevel(userData.level);
-                console.log('Existing user ID:', userData.id);
-              } else if (!response.ok) {
-                throw new Error("Something went wrong");
+                if (userData.coins !== localUser.coins || userData.level !== localUser.level) {
+                  setLocalUser(userData);
+                  dispatch(setUser(userData));
+                }
               } else {
-                const newUser = await response.json();
-                setGrassTotal(newUser.coinsPerHour);
-                setLevel(newUser.level);
-                dispatch(setUser(newUser));
-                console.log('New user ID:', newUser.id);
+                console.error("Error fetching user data");
               }
             } catch (error) {
               console.error("Error:", error);
@@ -253,14 +246,11 @@ const Home = () => {
         }
       };
   
-      fetchData(); // Initial fetch on component mount
-  
       const interval = setInterval(fetchData, 2000); // Fetch every 2 seconds
   
       return () => clearInterval(interval); // Clean up interval on component unmount
   
-    }, [dispatch]); // Add other dependencies if needed
-
+    }, [dispatch, localUser]); // Add other dependencies if needed
 
 
 
