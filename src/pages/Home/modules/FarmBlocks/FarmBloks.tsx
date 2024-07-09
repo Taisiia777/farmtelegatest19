@@ -1828,6 +1828,13 @@
 
 
 
+
+
+
+
+
+
+
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./FarmBlocks.module.scss";
@@ -1960,14 +1967,15 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
   const farmBlock = useAppSelector((state) => selectEarthBlock(state, id));
   const user = useAppSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
-  // const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
+  const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
+  const [touchedBlocks, setTouchedBlocks] = useState<Set<number>>(new Set());
   const [harvested, setHarvested] = useState(false);
-  // const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
+  const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
   const pendingUpdates = useRef<{ [key: number]: TGrowthStage }>({}); // Хранилище для срезанных блоков
 
   if (!farmBlock) return null;
 
-  const handlePickWheat = (blockId: number) => {
+  const handlePickWheat = async (blockId: number) => {
     if (farmBlock.stage !== "first") {
       let rewardMultiplier = 0;
 
@@ -1988,21 +1996,76 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
       const reward = user ? user.coinsPerHour * rewardMultiplier : 0;
 
       if (user) {
-        dispatch(pickWheat({ id: blockId }));
+        try {
+          const response = await axios.patch(
+            `https://coinfarm.club/user/${user.id}/earn/${reward}`
+          );
+          const updatedUser = response.data;
 
-        // Сохраняем изменения в локальном хранилище
-        pendingUpdates.current[blockId] = "first";
+          // Обновление состояния пользователя и локальных монет
+          dispatch(
+            setUser({
+              ...updatedUser,
+              coins: parseFloat(updatedUser.coins),
+              totalEarnings: parseFloat(updatedUser.totalEarnings),
+            })
+          );
 
-        setHarvested(true);
-        setTimeout(() => setHarvested(false), 400); // Сброс анимации после ее длительности
+          setLocalCoins(parseFloat(updatedUser.coins));
+          console.log(localCoins);
+        } catch (error) {
+          console.error("Error:", error);
+        }
       }
+      dispatch(pickWheat({ id: blockId }));
+      try {
+        await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, {
+          stages: blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage),
+        });
+      } catch (error) {
+        console.error("Failed to update grass growth stage on server:", error);
+      }
+      pendingUpdates.current[blockId] = "first";
+
+      setHarvested(true);
+      setTimeout(() => setHarvested(false), 400); // Сброс анимации после ее длительности
+      
     }
   };
 
+  // const handleInteraction = useCallback(
+  //   (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+
+  //     // Определение типа события
+  //     const eventType = e.type;
+
+  //     let target: HTMLElement | null = null;
+  //     if (eventType === "mousemove" || eventType === "touchmove") {
+  //       target = document.elementFromPoint(
+  //         (e as React.MouseEvent<HTMLDivElement>).clientX ||
+  //           (e as React.TouchEvent<HTMLDivElement>).touches[0].clientX,
+  //         (e as React.MouseEvent<HTMLDivElement>).clientY ||
+  //           (e as React.TouchEvent<HTMLDivElement>).touches[0].clientY
+  //       ) as HTMLElement;
+  //     }
+
+  //     if (target) {
+  //       const blockId = target.getAttribute("data-id");
+  //       if (blockId) {
+  //         const id = parseInt(blockId, 10);
+  //         if (!touchedBlocks.has(id)) {
+  //           setTouchedBlocks((prev) => new Set(prev).add(id));
+  //           handlePickWheat(id);
+  //         }
+  //       }
+  //     }
+  //   },
+  //   [handlePickWheat, touchedBlocks]
+  // );
   const handleInteraction = useCallback(
     (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
       e.preventDefault(); // Предотвращение стандартного поведения для предотвращения нежелательной прокрутки
-
+      console.log(touchedBlocks)
       const clientX = (e as React.MouseEvent<HTMLDivElement>).clientX || (e as React.TouchEvent<HTMLDivElement>).touches[0].clientX;
       const clientY = (e as React.MouseEvent<HTMLDivElement>).clientY || (e as React.TouchEvent<HTMLDivElement>).touches[0].clientY;
 
@@ -2018,8 +2081,9 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
   );
 
   const handleTouchEnd = useCallback(() => {
-    // No-op for now
+    setTouchedBlocks(new Set()); // Сброс касаний при окончании взаимодействия
   }, []);
+
 
   return (
     <div
