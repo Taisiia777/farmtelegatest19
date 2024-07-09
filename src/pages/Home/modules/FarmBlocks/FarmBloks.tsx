@@ -1098,11 +1098,14 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
       }
     };
 
+    updateGrowthStages(); // Обновление стадий роста на сервере при изменении блоков
+  }, [blocks]); // Добавлена зависимость от blocks
+
+  useEffect(() => {
     const interval = setInterval(() => {
       for (let i = 1; i <= 9; i++) {
         dispatch(changeGrowthStage({ id: i })); // Изменение стадии роста для каждого блока
       }
-      updateGrowthStages(); // Обновление стадий роста на сервере
       if (user) {
         const grassEarnings = calculateGrassEarnings(blocks, user.coinsPerHour);
         dispatch(updateGrassEarnings(grassEarnings));
