@@ -102,7 +102,6 @@ const Home = () => {
    const [userCoins, setUserCoins] = useState<Coin[]>([]);
    const [hasFirstReward, setHasFirstReward] = useState(false); // Состояние для проверки наличия награды "first"
    const [grassTotal, setGrassTotal] = useState(0);
-   const [localUser, setLocalUser] = useState(user); // Initialize with user from Redux state
 
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
