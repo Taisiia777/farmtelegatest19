@@ -266,7 +266,7 @@ const FreindOrSpecialBlock = ({
       if (!userId) return;
 
       try {
-        const response = await axios.get(`https://coinfarm.club/completed-tasks/${userId}`);
+        const response = await axios.get(`https://coinfarm.club/reward/${userId}`);
         const completedTasks = response.data;
 
         const taskCompleted = completedTasks.some((task: any) => task.description === title); // Замените 'specific-type' на реальный тип задания
