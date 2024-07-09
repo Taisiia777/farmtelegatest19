@@ -1053,6 +1053,7 @@ import { RootState } from "../../../../store";
 import { setUser } from "../../../../store/reducers/userSlice";
 import { updateGrassEarnings } from "../../../../store/reducers/userSlice";
 import axios from "axios";
+import { json } from "react-router-dom";
 
 const cn = classNames.bind(styles);
 type TGrowthStage = "first" | "second" | "third" | "fourth";
@@ -1074,6 +1075,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
     const fetchGrowthStages = async () => {
       try {
         const response = await axios.get(`https://coinfarm.club/user/${user.id}/grass-stages`);
+        alert(JSON.stringify(response.data))
         dispatch(setGrowthStages(response.data)); // Добавление стадии роста
       } catch (error) {
         console.error('Failed to fetch grass growth stages:', error);
