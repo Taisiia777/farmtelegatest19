@@ -1150,6 +1150,7 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
   const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
   const [touchedBlocks, setTouchedBlocks] = useState<Set<number>>(new Set());
   const [harvested, setHarvested] = useState(false);
+  const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
 
   if (!farmBlock) return null;
 
@@ -1196,6 +1197,14 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
         }
       }
       dispatch(pickWheat({ id: blockId }));
+       // Обновляем стадию роста на сервере после срезания
+       try {
+        await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, {
+          stages: blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage),
+        });
+      } catch (error) {
+        console.error("Failed to update grass growth stage on server:", error);
+      }
       setHarvested(true);
       setTimeout(() => setHarvested(false), 400); // Сброс анимации после ее длительности
     }
