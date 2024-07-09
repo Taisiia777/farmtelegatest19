@@ -1054,7 +1054,7 @@
       };
     
       updateGrowthStages(); // Обновление стадий роста на сервере при изменении блоков
-    }, [blocks, user]); // Добавлена зависимость от user
+    }, [blocks]); // Добавлена зависимость от user
 
     useEffect(() => {
       const stageInterval = setInterval(() => {
