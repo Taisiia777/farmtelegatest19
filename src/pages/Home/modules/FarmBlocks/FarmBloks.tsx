@@ -997,7 +997,8 @@ import {
   changeGrowthStage,
   pickWheat,
   calculateGrassEarnings,
-  setGrowthStages
+  setGrowthStages,
+  incrementProgress
 } from "../../../../store/reducers/growthStages";
 import { useAppSelector } from "../../../../store";
 import useWheatTrunctaion from "../../hooks/useWheatTrunctation";
@@ -1057,6 +1058,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       for (let i = 1; i <= 9; i++) {
+        dispatch(incrementProgress({ id: i })); // Увеличиваем прогресс каждого блока
         dispatch(changeGrowthStage({ id: i })); // Изменение стадии роста для каждого блока
       }
       if (user) {
@@ -1065,7 +1067,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
         console.log('Новое значение прибыли: ', grassEarnings);
       }
     }, 5000);
-
+  
     return () => clearInterval(interval);
   }, [dispatch, user, blocks]);
 
