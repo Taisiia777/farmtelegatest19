@@ -1059,9 +1059,7 @@
 
     useEffect(() => {
       const progressInterval = setInterval(() => {
-        for (let i = 1; i <= 9; i++) {
-          dispatch(incrementProgress({ id: i })); // Увеличение прогресса для каждого блока
-        }
+        dispatch(incrementProgress()); // Увеличение прогресса для всех блоков
       }, 1000); // Обновление прогресса каждую секунду
     
       return () => {
@@ -1071,9 +1069,7 @@
     
     useEffect(() => {
       const stageInterval = setInterval(() => {
-        for (let i = 1; i <= 9; i++) {
-          dispatch(changeGrowthStage({ id: i })); // Изменение стадии роста для каждого блока
-        }
+        dispatch(changeGrowthStage()); // Изменение стадии роста для всех блоков
         if (user && blocks) {
           const grassEarnings = calculateGrassEarnings(blocks, user.coinsPerHour);
           dispatch(updateGrassEarnings(grassEarnings));
@@ -1085,7 +1081,7 @@
         clearInterval(stageInterval);
       };
     }, [dispatch, user, blocks]);
-
+    
     const handleHarvestAnimation = (blockId: number) => {
       setHarvestedBlocks((prev) => {
         const newSet = new Set(prev);

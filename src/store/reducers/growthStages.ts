@@ -579,24 +579,16 @@ export const growthStagesSlice = createSlice({
         state.isFingerActive = false;
       }
     },
-    incrementProgress: (state, action: PayloadAction<{ id: number }>) => {
-      const block = state.blocks.find(
-        (block) => block.id === action.payload.id
-      );
-
-      if (block) {
+    incrementProgress: (state) => {
+      state.blocks.forEach((block) => {
         block.progress += 1;
         if (block.progress >= 5) {
           block.progress = 0;
         }
-      }
+      });
     },
-    changeGrowthStage: (state, action: PayloadAction<{ id: number }>) => {
-      const block = state.blocks.find(
-        (block) => block.id === action.payload.id
-      );
-
-      if (block) {
+    changeGrowthStage: (state) => {
+      state.blocks.forEach((block) => {
         switch (block.stage) {
           case "first":
             block.stage = "second";
@@ -613,7 +605,7 @@ export const growthStagesSlice = createSlice({
             block.stage = "first";
             break;
         }
-      }
+      });
     },
     growAllToMax: (state) => {
       state.blocks.forEach(block => {
@@ -633,30 +625,25 @@ export const growthStagesSlice = createSlice({
 
 export const { pickWheat, incrementProgress, changeGrowthStage, growAllToMax, setGrowthStages } = growthStagesSlice.actions;
 
-
 export const selectEarthBlock = (state: RootState, id: number) =>
   state.growthStages.blocks.find((block) => block.id === id);
 
 export const calculateGrassEarnings = (blocks: IGrowthStages['blocks'], coinsPerHour: number) => {
   let totalEarnings = 0;
   blocks.forEach(block => {
-    const progressRatio = block.progress / 5;
     switch (block.stage) {
-      case "first":
-        totalEarnings += coinsPerHour * progressRatio / 3;
-        break;
       case "second":
-        totalEarnings += coinsPerHour * (1 + progressRatio / 3);
+        totalEarnings += coinsPerHour;
         break;
       case "third":
-        totalEarnings += coinsPerHour * (2 + progressRatio / 3);
+        totalEarnings += coinsPerHour * 2;
         break;
       case "fourth":
         totalEarnings += coinsPerHour * 3;
         break;
     }
   });
-  return Math.round(totalEarnings);
+  return totalEarnings;
 };
 
 export default growthStagesSlice.reducer;
