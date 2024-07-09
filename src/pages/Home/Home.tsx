@@ -353,7 +353,7 @@ const Home = () => {
             ligaName={league.name as TLiga} // Приведение типа к TLiga
             percent={percent}
             price={league.coinsRequired.toString()}
-            acitve={isActive}
+            active={isActive}
           />
         );
       });
