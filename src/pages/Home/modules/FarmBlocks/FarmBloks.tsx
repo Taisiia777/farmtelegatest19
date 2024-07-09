@@ -1059,28 +1059,31 @@
     useEffect(() => {
       const stageInterval = setInterval(() => {
         for (let i = 1; i <= 9; i++) {
-          dispatch(changeGrowthStage({ id: i }));
+          dispatch(changeGrowthStage({ id: i })); // Изменение стадии роста для каждого блока
         }
-      }, 50000);
-  
-      return () => {
-        clearInterval(stageInterval);
-      };
-    }, [dispatch]);
-  
-    useEffect(() => {
-      const earningsInterval = setInterval(() => {
         if (user && blocks) {
           const grassEarnings = calculateGrassEarnings(blocks, user.coinsPerHour);
           dispatch(updateGrassEarnings(grassEarnings));
           console.log('Новое значение прибыли: ', grassEarnings);
         }
-      }, 1000); // Обновление прибыли каждую секунду
-  
+      }, 10000); // Обновление стадий роста каждые 5 секунд
+    
       return () => {
-        clearInterval(earningsInterval);
+        clearInterval(stageInterval);
       };
     }, [dispatch, user, blocks]);
+    
+    // useEffect(() => {
+    //   const progressInterval = setInterval(() => {
+    //     for (let i = 1; i <= 9; i++) {
+    //       dispatch(incrementProgress({ id: i })); // Увеличение прогресса для каждого блока
+    //     }
+    //   }, 1000); // Обновление прогресса каждую секунду
+    
+    //   return () => {
+    //     clearInterval(progressInterval);
+    //   };
+    // }, [dispatch]);
 
     const handleHarvestAnimation = (blockId: number) => {
       setHarvestedBlocks((prev) => {
