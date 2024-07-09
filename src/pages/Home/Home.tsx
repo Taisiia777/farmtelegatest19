@@ -186,7 +186,8 @@ const Home = () => {
       }, 500);
    }
    
-   useEffect(() => {
+
+   u  useEffect(() => {
       const fetchData = async () => {
         const urlParams = new URLSearchParams(window.location.search);
         let referralCode = urlParams.get('start');
@@ -200,8 +201,9 @@ const Home = () => {
         if (initData && initData.user) {
           const user = initData.user;
           const username = user.username;
-  
           if (username) {
+            setNickname(username);
+  
             try {
               const response = await fetch(
                 "https://coinfarm.club/user",
@@ -224,14 +226,20 @@ const Home = () => {
                 }
               );
   
-              if (response.ok) {
+              if (response.status === 409) {
                 const userData = await response.json();
-                if (userData.coins !== localUser.coins || userData.level !== localUser.level) {
-                  setLocalUser(userData);
-                  dispatch(setUser(userData));
-                }
+                alert(`User already exists: ${JSON.stringify(userData)}`);
+                setGrassTotal(userData.coinsPerHour);
+                setLevel(userData.level);
+                console.log('Existing user ID:', userData.id);
+              } else if (!response.ok) {
+                throw new Error("Something went wrong");
               } else {
-                console.error("Error fetching user data");
+                const newUser = await response.json();
+                setGrassTotal(newUser.coinsPerHour);
+                setLevel(newUser.level);
+                dispatch(setUser(newUser));
+                console.log('New user ID:', newUser.id);
               }
             } catch (error) {
               console.error("Error:", error);
@@ -246,11 +254,14 @@ const Home = () => {
         }
       };
   
-      const interval = setInterval(fetchData, 2000); // Fetch every 2 seconds
+      fetchData(); // Initial fetch on component mount
+  
+      const interval = setInterval(fetchData, 5000); // Fetch every 2 seconds
   
       return () => clearInterval(interval); // Clean up interval on component unmount
   
-    }, [dispatch, localUser]); // Add other dependencies if needed
+    }, [dispatch]); // Add other dependencies if needed
+
 
 
 
