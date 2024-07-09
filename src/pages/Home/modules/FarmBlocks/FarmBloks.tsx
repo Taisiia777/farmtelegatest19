@@ -1071,7 +1071,7 @@
       return () => {
         clearInterval(stageInterval);
       };
-    }, [dispatch, user, blocks]);
+    }, [blocks]);
     
     // useEffect(() => {
     //   const progressInterval = setInterval(() => {
