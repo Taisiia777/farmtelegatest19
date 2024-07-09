@@ -272,13 +272,15 @@ const FreindOrSpecialBlock = ({
 
         const taskCompleted = completedTasks.some((task: any) => task.description === title); // Замените 'specific-type' на реальный тип задания
         setIsCompleted(taskCompleted);
+        if (taskCompleted) {
+          setButtonText("DONE");
+        }
       } catch (error) {
         console.error('Error fetching completed tasks:', error);
       }
     };
 
     fetchCompletedTasks();
-    setButtonText("DONE");
 
   }, [userId, title]);
 
