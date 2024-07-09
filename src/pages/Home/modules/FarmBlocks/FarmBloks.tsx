@@ -1041,53 +1041,28 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
     }
   }, [user, dispatch]); // Добавлены зависимости user и dispatch
 
-  // useEffect(() => {
-  //   const updateGrowthStages = async () => {
-  //     try {
-  //       const stages = blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage);
-  //       await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, { stages });
-  //     } catch (error) {
-  //       console.error('Failed to update grass growth stages:', error);
-  //     }
-  //   };
+  useEffect(() => {
+    const updateGrowthStages = async () => {
+      try {
+        const stages = blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage);
+        await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, { stages });
+      } catch (error) {
+        console.error('Failed to update grass growth stages:', error);
+      }
+    };
 
-  //   updateGrowthStages(); // Обновление стадий роста на сервере при изменении блоков
-  // }, [blocks]); // Добавлена зависимость от blocks
+    updateGrowthStages(); // Обновление стадий роста на сервере при изменении блоков
+  }, [blocks]); // Добавлена зависимость от blocks
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     for (let i = 1; i <= 9; i++) {
-  //       dispatch(changeGrowthStage({ id: i })); // Изменение стадии роста для каждого блока
-  //     }
-  //     if (user && blocks) {
-  //       const grassEarnings = calculateGrassEarnings(blocks, user.coinsPerHour);
-  //       dispatch(updateGrassEarnings(grassEarnings));
-  //       console.log('Новое значение прибыли: ', grassEarnings);
-  //     }
-  //   }, 5000);
-  
-  //   return () => clearInterval(interval);
-  // }, [dispatch, user, blocks]);
   useEffect(() => {
     const interval = setInterval(() => {
       for (let i = 1; i <= 9; i++) {
         dispatch(changeGrowthStage({ id: i })); // Изменение стадии роста для каждого блока
       }
-      if (user && user.id && blocks) {
+      if (user && blocks) {
         const grassEarnings = calculateGrassEarnings(blocks, user.coinsPerHour);
         dispatch(updateGrassEarnings(grassEarnings));
         console.log('Новое значение прибыли: ', grassEarnings);
-  
-        const updateGrowthStages = async () => {
-          try {
-            const stages = blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage);
-            await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, { stages });
-          } catch (error) {
-            console.error('Failed to update grass growth stages:', error);
-          }
-        };
-  
-        updateGrowthStages(); // Обновление стадий роста на сервере
       }
     }, 5000);
   

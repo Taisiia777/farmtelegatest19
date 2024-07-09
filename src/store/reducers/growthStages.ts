@@ -584,12 +584,12 @@ export const growthStagesSlice = createSlice({
 
       if (block) {
         block.progress += 1;
-        if (block.progress >= 30) {
+        if (block.progress >= 5) {
           block.progress = 0;
         }
       }
     },
-    changeGrowthStage: (state, action: PayloadAction<{ id: number }>) => {
+        changeGrowthStage: (state, action: PayloadAction<{ id: number }>) => {
       const block = state.blocks.find(
         (block) => block.id === action.payload.id
       );
