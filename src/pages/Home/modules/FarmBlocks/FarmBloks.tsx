@@ -1044,16 +1044,18 @@
 
     useEffect(() => {
       const updateGrowthStages = async () => {
-        try {
-          const stages = blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage);
-          await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, { stages });
-        } catch (error) {
-          console.error('Failed to update grass growth stages:', error);
+        if (user) {
+          try {
+            const stages = blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage);
+            await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, { stages });
+          } catch (error) {
+            console.error('Failed to update grass growth stages:', error);
+          }
         }
       };
-
+    
       updateGrowthStages(); // Обновление стадий роста на сервере при изменении блоков
-    }, [blocks]); // Добавлена зависимость от blocks
+    }, [blocks, user]); // Добавлена зависимость от user
 
     useEffect(() => {
       const stageInterval = setInterval(() => {
@@ -1140,9 +1142,9 @@
     if (!farmBlock) return null;
 
     const handlePickWheat = async (blockId: number) => {
-      if (farmBlock.stage !== "first") {
+      if (farmBlock.stage !== "first" && user) {
         let rewardMultiplier = 0;
-
+    
         switch (farmBlock.stage) {
           case "second":
             rewardMultiplier = 1;
@@ -1156,33 +1158,33 @@
           default:
             return; // Ничего не делать, если стадия "first"
         }
-
-        const reward = user ? user.coinsPerHour * rewardMultiplier : 0;
-
-        if (user) {
-          try {
-            const response = await axios.patch(
-              `https://coinfarm.club/user/${user.id}/earn/${reward}`
-            );
-            const updatedUser = response.data;
-
-            // Обновление состояния пользователя и локальных монет
-            dispatch(
-              setUser({
-                ...updatedUser,
-                coins: parseFloat(updatedUser.coins),
-                totalEarnings: parseFloat(updatedUser.totalEarnings),
-              })
-            );
-
-            setLocalCoins(parseFloat(updatedUser.coins));
-            console.log(localCoins);
-          } catch (error) {
-            console.error("Error:", error);
-          }
+    
+        const reward = user.coinsPerHour * rewardMultiplier;
+    
+        try {
+          const response = await axios.patch(
+            `https://coinfarm.club/user/${user.id}/earn/${reward}`
+          );
+          const updatedUser = response.data;
+    
+          // Обновление состояния пользователя и локальных монет
+          dispatch(
+            setUser({
+              ...updatedUser,
+              coins: parseFloat(updatedUser.coins),
+              totalEarnings: parseFloat(updatedUser.totalEarnings),
+            })
+          );
+    
+          setLocalCoins(parseFloat(updatedUser.coins));
+          console.log(localCoins);
+        } catch (error) {
+          console.error("Error:", error);
         }
+    
         dispatch(pickWheat({ id: blockId }));
         onHarvestAnimation(blockId);
+    
         try {
           await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, {
             stages: blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage),
