@@ -1085,20 +1085,37 @@
     //   };
     // }, [dispatch]);
 
+    // const handleHarvestAnimation = (blockId: number) => {
+    //   setHarvestedBlocks((prev) => {
+    //     const newSet = new Set(prev);
+    //     newSet.add(blockId);
+    //     setTimeout(() => {
+    //       setHarvestedBlocks((prev) => {
+    //         const newSet = new Set(prev);
+    //         newSet.delete(blockId);
+    //         return newSet;
+    //       });
+    //     }, 0);
+    //     return newSet;
+    //   });
+    // };
     const handleHarvestAnimation = (blockId: number) => {
       setHarvestedBlocks((prev) => {
         const newSet = new Set(prev);
         newSet.add(blockId);
-        setTimeout(() => {
-          setHarvestedBlocks((prev) => {
-            const newSet = new Set(prev);
-            newSet.delete(blockId);
-            return newSet;
-          });
-        }, 0);
         return newSet;
       });
+    
+      // Удалить блок после анимации
+      setTimeout(() => {
+        setHarvestedBlocks((prev) => {
+          const newSet = new Set(prev);
+          newSet.delete(blockId);
+          return newSet;
+        });
+      }, 300); // Анимация длится 0.3 секунды
     };
+    
     
     return (
       <div className={cn("farmBlockWrap")}>
