@@ -593,7 +593,7 @@ export const growthStagesSlice = createSlice({
       const block = state.blocks.find(
         (block) => block.id === action.payload.id
       );
-    
+
       if (block) {
         switch (block.stage) {
           case "first":
