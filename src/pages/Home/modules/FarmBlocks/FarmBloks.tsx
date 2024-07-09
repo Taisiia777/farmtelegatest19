@@ -1053,7 +1053,6 @@ import { RootState } from "../../../../store";
 import { setUser } from "../../../../store/reducers/userSlice";
 import { updateGrassEarnings } from "../../../../store/reducers/userSlice";
 import axios from "axios";
-import { json } from "react-router-dom";
 
 const cn = classNames.bind(styles);
 type TGrowthStage = "first" | "second" | "third" | "fourth";
