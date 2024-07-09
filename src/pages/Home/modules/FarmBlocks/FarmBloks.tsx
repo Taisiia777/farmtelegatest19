@@ -1039,7 +1039,7 @@
         fetchGrowthStages();
         hasFetchedGrowthStages.current = true; // Устанавливаем, что эффект был выполнен
       }
-    }, [user]); // Добавлены зависимости user и dispatch
+    }, [user, dispatch]); // Добавлены зависимости user и dispatch
 
     useEffect(() => {
       const updateGrowthStages = async () => {
