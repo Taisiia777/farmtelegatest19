@@ -981,7 +981,7 @@ const Home = () => {
                      nodes={[
                         <FreindOrSpecialBlock
                            imgSrc="img/global/person-btn.svg"
-                           title="1 FREIND"
+                           title="1 friend"
                            earning="20 000"
                            link="/"
                            defaultButtonText="RECEIVE"
