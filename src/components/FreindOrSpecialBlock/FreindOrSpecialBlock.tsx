@@ -260,6 +260,7 @@ const FreindOrSpecialBlock = ({
 }: IFreindOrSpecialBlockProps) => {
   const userId = useAppSelector((state: RootState) => state.user.user?.id);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [buttonText, setButtonText] = useState("GO OVER");
 
   useEffect(() => {
     const fetchCompletedTasks = async () => {
@@ -277,6 +278,8 @@ const FreindOrSpecialBlock = ({
     };
 
     fetchCompletedTasks();
+    setButtonText("DONE");
+
   }, [userId, title]);
 
   const handleButtonClick = async () => {
@@ -284,6 +287,7 @@ const FreindOrSpecialBlock = ({
       console.error("User ID is not available or task is already completed");
       return;
     }
+    setButtonText("CHECK");
 
     let url = "https://coinfarm.club/reward/";
 
@@ -337,7 +341,7 @@ const FreindOrSpecialBlock = ({
             className="textShadow_center"
             onClick={handleButtonClick}
             disabled={isCompleted}>
-            GO TO
+            {buttonText}
           </Button>
         </div>
       </div>

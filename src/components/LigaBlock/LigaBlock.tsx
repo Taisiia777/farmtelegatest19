@@ -180,7 +180,7 @@ const LigaBlock = ({ ligaName, percent, price, active }: ILigaBlockProps) => {
               className={`${cn("ligaBlockInfo__price")} textShadow`}
               style={{ fontSize: `${priceFontSize}px` }}
             >
-              +{price}
+              {price}
             </span>
           </Button>
         </div>
