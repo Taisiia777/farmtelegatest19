@@ -133,10 +133,10 @@ const Invite = () => {
                         The third level:
                         Percentage of earnings of second-level referrals: 5%
                      </p>  
-                     <div className={cn("inviteUsersBlock__coins")}>
+                     {/* <div className={cn("inviteUsersBlock__coins")}>
                         <img src="img/coins/BTC.svg" alt="BTC" />
                         <span className="textShadow_center">+60 000</span>
-                     </div>
+                     </div> */}
                   </div>
                   <img src="img/pages/invite/many-gifts.svg" alt="Gifts" />
                </div>
