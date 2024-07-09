@@ -341,12 +341,27 @@ const Home = () => {
       }
     }, [user]);
   
-    const renderLeagues = () => {
+   //  const renderLeagues = () => {
+   //    return leagues.map((league, index) => {
+   //      const isActive = index === level;
+   //      const percent = isActive
+   //        ? progressPercent
+   //        : (localCoins / league.coinsRequired) * 100;
+   //      return (
+   //        <LigaBlock
+   //          key={league.name}
+   //          ligaName={league.name as TLiga} // Приведение типа к TLiga
+   //          percent={percent}
+   //          price={league.coinsRequired.toString()}
+   //          active={isActive}
+   //        />
+   //      );
+   //    });
+   //  };
+   const renderLeagues = () => {
       return leagues.map((league, index) => {
-        const isActive = index === level;
-        const percent = isActive
-          ? progressPercent
-          : (localCoins / league.coinsRequired) * 100;
+        const isActive = index <= level; // Делаем кнопку активной для всех пройденных лиг
+        const percent = (localCoins / league.coinsRequired) * 100;
         return (
           <LigaBlock
             key={league.name}
@@ -358,7 +373,6 @@ const Home = () => {
         );
       });
     };
-
     useEffect(() => {
       const fetchBoosters = async () => {
         try {
