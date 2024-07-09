@@ -1014,10 +1014,7 @@ type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Опреде�
 interface FarmBlocksProps {
   league: TLiga;
 }
-interface Block {
-  id: number;
-  stage: TGrowthStage;
-}
+
 const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
   const dispatch = useDispatch();
   const user = useAppSelector((state: RootState) => state.user.user);
@@ -1086,23 +1083,18 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
       return newSet;
     });
   };
-  const calculateZIndex = (id: number) => {
-    const row = Math.floor((id - 1) / 3);
-    const col = (id - 1) % 3;
-    return row * 3 + col;
-  };
+  
   return (
     <div className={cn("farmBlockWrap")}>
-      {blocks.map((block: Block) => (
-        <FarmBlock
-          key={block.id}
-          zIndex={calculateZIndex(block.id)}
-          id={block.id}
-          league={league}
-          harvestedBlocks={harvestedBlocks}
-          onHarvestAnimation={handleHarvestAnimation}
-        />
-      ))}
+    <FarmBlock zIndex={9} id={1} league={league} harvestedBlocks={harvestedBlocks} onHarvestAnimation={handleHarvestAnimation} />
+    <FarmBlock zIndex={9} id={2} league={league} harvestedBlocks={harvestedBlocks} onHarvestAnimation={handleHarvestAnimation} />
+    <FarmBlock zIndex={9} id={3} league={league} harvestedBlocks={harvestedBlocks} onHarvestAnimation={handleHarvestAnimation} />
+    <FarmBlock zIndex={8} id={4} league={league} harvestedBlocks={harvestedBlocks} onHarvestAnimation={handleHarvestAnimation} />
+    <FarmBlock zIndex={7} id={5} league={league} harvestedBlocks={harvestedBlocks} onHarvestAnimation={handleHarvestAnimation} />
+    <FarmBlock zIndex={6} id={6} league={league} harvestedBlocks={harvestedBlocks} onHarvestAnimation={handleHarvestAnimation} />
+    <FarmBlock zIndex={6} id={7} league={league} harvestedBlocks={harvestedBlocks} onHarvestAnimation={handleHarvestAnimation} />
+    <FarmBlock zIndex={5} id={8} league={league} harvestedBlocks={harvestedBlocks} onHarvestAnimation={handleHarvestAnimation} />
+    <FarmBlock zIndex={4} id={9} league={league} harvestedBlocks={harvestedBlocks} onHarvestAnimation={handleHarvestAnimation} />
       <img
         src="img/pages/home/earth-blocks-bg.svg"
         className={cn("farmBlock__shadow")}
