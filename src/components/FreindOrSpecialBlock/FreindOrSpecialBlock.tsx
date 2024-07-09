@@ -269,7 +269,7 @@ const FreindOrSpecialBlock = ({
         const response = await axios.get(`https://coinfarm.club/completed-tasks/${userId}`);
         const completedTasks = response.data;
 
-        const taskCompleted = completedTasks.some((task: any) => task.title === title && task.type === 'specific-type'); // Замените 'specific-type' на реальный тип задания
+        const taskCompleted = completedTasks.some((task: any) => task.description === title); // Замените 'specific-type' на реальный тип задания
         setIsCompleted(taskCompleted);
       } catch (error) {
         console.error('Error fetching completed tasks:', error);
