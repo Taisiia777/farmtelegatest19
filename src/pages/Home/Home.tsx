@@ -360,7 +360,7 @@ const Home = () => {
    //  };
    const renderLeagues = () => {
       return leagues.map((league, index) => {
-        const isActive = index <= level;
+        const isActive = index < level;
         const percent = (localCoins / league.coinsRequired) * 100;
         console.log(progressPercent)
         return (
