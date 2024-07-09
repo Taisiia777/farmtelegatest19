@@ -1074,7 +1074,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
     const fetchGrowthStages = async () => {
       try {
         const response = await axios.get(`https://coinfarm.club/user/${user.id}/grass-stages`);
-        dispatch(setGrowthStages(response.data));
+        dispatch(setGrowthStages(response.data)); // Добавление стадии роста
       } catch (error) {
         console.error('Failed to fetch grass growth stages:', error);
       }
@@ -1097,9 +1097,9 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
 
     const interval = setInterval(() => {
       for (let i = 1; i <= 9; i++) {
-        dispatch(changeGrowthStage({ id: i }));
+        dispatch(changeGrowthStage({ id: i })); // Изменение стадии роста для каждого блока
       }
-      updateGrowthStages();
+      updateGrowthStages(); // Обновление стадий роста на сервере
       if (user) {
         const grassEarnings = calculateGrassEarnings(blocks, user.coinsPerHour);
         dispatch(updateGrassEarnings(grassEarnings));
