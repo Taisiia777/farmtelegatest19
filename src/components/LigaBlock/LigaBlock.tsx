@@ -96,18 +96,18 @@ const LigaBlock = ({ ligaName, percent, price, active }: ILigaBlockProps) => {
   useEffect(() => {
     const fetchCompletedTasks = async () => {
       if (!user?.id) return;
-
+  
       try {
         const response = await axios.get(`https://coinfarm.club/reward/${user.id}`);
         const completedTasks = response.data;
-
+  
         const rewardClaimed = completedTasks.some((task: any) => task.description === ligaName);
         setIsRewardClaimed(rewardClaimed);
       } catch (error) {
         console.error('Error fetching completed tasks:', error);
       }
     };
-
+  
     fetchCompletedTasks();
   }, [user?.id, ligaName]);
 
@@ -116,7 +116,7 @@ const LigaBlock = ({ ligaName, percent, price, active }: ILigaBlockProps) => {
       console.error('Reward already claimed or user ID is not available');
       return;
     }
-
+  
     const routeMap = {
       Wooden: 'wood',
       Silver: 'silver',
@@ -124,9 +124,9 @@ const LigaBlock = ({ ligaName, percent, price, active }: ILigaBlockProps) => {
       Fire: 'fire',
       Diamond: 'diamond'
     };
-
+  
     const route = routeMap[ligaName];
-
+  
     try {
       const response = await fetch(`https://coinfarm.club/reward/${route}/${user.id}`, {
         method: 'POST',
@@ -135,11 +135,11 @@ const LigaBlock = ({ ligaName, percent, price, active }: ILigaBlockProps) => {
           'Accept': 'application/json'
         }
       });
-
+  
       if (!response.ok) {
         throw new Error('Failed to give reward');
       }
-
+  
       const updatedUser = await response.json();
       dispatch(setUser(updatedUser)); // Обновляем пользователя в Redux
       setIsRewardClaimed(true);
@@ -147,6 +147,7 @@ const LigaBlock = ({ ligaName, percent, price, active }: ILigaBlockProps) => {
       console.error('Error giving reward:', error);
     }
   };
+  
 
   let priceFontSize;
 
@@ -169,19 +170,20 @@ const LigaBlock = ({ ligaName, percent, price, active }: ILigaBlockProps) => {
             {ligaName}
           </h3>
           <Button
-            className={cn("ligaBlockInfo__btn")}
-            size="small"
-            disabled={!active || isRewardClaimed}
-            onClick={handleButtonClick}
-          >
-            <CoinWhiteBg iconName="BTC" size="small" />
-            <span
-              className={`${cn("ligaBlockInfo__price")} textShadow`}
-              style={{ fontSize: `${priceFontSize}px` }}
-            >
-              +{price}
-            </span>
-          </Button>
+  className={cn("ligaBlockInfo__btn")}
+  size="small"
+  disabled={!active || isRewardClaimed}
+  onClick={handleButtonClick}
+>
+  <CoinWhiteBg iconName="BTC" size="small" />
+  <span
+    className={`${cn("ligaBlockInfo__price")} textShadow`}
+    style={{ fontSize: `${priceFontSize}px` }}
+  >
+    +{price}
+  </span>
+</Button>
+
         </div>
         <div className={cn("ligaBlockInfo__bottom")}>
           <img src="img/ligaBlock/percent.svg" alt="" />
