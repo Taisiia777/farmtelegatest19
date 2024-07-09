@@ -1819,6 +1819,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./FarmBlocks.module.scss";
@@ -1881,17 +1890,26 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
         const stages = blocks.map((block: { id: number, stage: TGrowthStage }) => 
           pendingUpdates.current[block.id] || block.stage
         );
-        await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, { stages });
+        const response = await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, { stages });
+        
+        // Обновляем состояние пользователя после успешного обновления стадий на сервере
+        const updatedUser = response.data;
+        dispatch(setUser({
+          ...updatedUser,
+          coins: parseFloat(updatedUser.coins),
+          totalEarnings: parseFloat(updatedUser.totalEarnings),
+        }));
+
         pendingUpdates.current = {}; // Очищаем хранилище после успешного обновления
       } catch (error) {
         console.error('Failed to update grass growth stages:', error);
       }
     };
 
-    const interval = setInterval(updateGrowthStages, 5000); // Интервал обновления в 5 секунд
+    const interval = setInterval(updateGrowthStages, 2000); // Интервал обновления в 5 секунд
 
     return () => clearInterval(interval);
-  }, [blocks, user]); // Добавлена зависимость от blocks и user
+  }, [blocks, user, dispatch]); // Добавлена зависимость от blocks и user
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -1942,14 +1960,14 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
   const farmBlock = useAppSelector((state) => selectEarthBlock(state, id));
   const user = useAppSelector((state: RootState) => state.user.user);
   const dispatch = useDispatch();
-  const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
+  // const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
   const [harvested, setHarvested] = useState(false);
-  const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
+  // const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
   const pendingUpdates = useRef<{ [key: number]: TGrowthStage }>({}); // Хранилище для срезанных блоков
-  console.log(blocks)
+
   if (!farmBlock) return null;
 
-  const handlePickWheat = async (blockId: number) => {
+  const handlePickWheat = (blockId: number) => {
     if (farmBlock.stage !== "first") {
       let rewardMultiplier = 0;
 
@@ -1970,34 +1988,14 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
       const reward = user ? user.coinsPerHour * rewardMultiplier : 0;
 
       if (user) {
-        try {
-          const response = await axios.patch(
-            `https://coinfarm.club/user/${user.id}/earn/${reward}`
-          );
-          const updatedUser = response.data;
+        dispatch(pickWheat({ id: blockId }));
 
-          // Обновление состояния пользователя и локальных монет
-          dispatch(
-            setUser({
-              ...updatedUser,
-              coins: parseFloat(updatedUser.coins),
-              totalEarnings: parseFloat(updatedUser.totalEarnings),
-            })
-          );
+        // Сохраняем изменения в локальном хранилище
+        pendingUpdates.current[blockId] = "first";
 
-          setLocalCoins(parseFloat(updatedUser.coins));
-          console.log(localCoins);
-        } catch (error) {
-          console.error("Error:", error);
-        }
+        setHarvested(true);
+        setTimeout(() => setHarvested(false), 400); // Сброс анимации после ее длительности
       }
-      dispatch(pickWheat({ id: blockId }));
-
-      // Сохраняем изменения в локальном хранилище
-      pendingUpdates.current[blockId] = "first";
-
-      setHarvested(true);
-      setTimeout(() => setHarvested(false), 400); // Сброс анимации после ее длительности
     }
   };
 
