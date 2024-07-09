@@ -998,6 +998,7 @@
     pickWheat,
     calculateGrassEarnings,
     setGrowthStages,
+    incrementProgress
   } from "../../../../store/reducers/growthStages";
   import { useAppSelector } from "../../../../store";
   import useWheatTrunctaion from "../../hooks/useWheatTrunctation";
@@ -1057,6 +1058,18 @@
     }, [blocks, user]); // Добавлена зависимость от user
 
     useEffect(() => {
+      const progressInterval = setInterval(() => {
+        for (let i = 1; i <= 9; i++) {
+          dispatch(incrementProgress({ id: i })); // Увеличение прогресса для каждого блока
+        }
+      }, 1000); // Обновление прогресса каждую секунду
+    
+      return () => {
+        clearInterval(progressInterval);
+      };
+    }, [dispatch]);
+    
+    useEffect(() => {
       const stageInterval = setInterval(() => {
         for (let i = 1; i <= 9; i++) {
           dispatch(changeGrowthStage({ id: i })); // Изменение стадии роста для каждого блока
@@ -1072,18 +1085,6 @@
         clearInterval(stageInterval);
       };
     }, [dispatch, user, blocks]);
-    
-    // useEffect(() => {
-    //   const progressInterval = setInterval(() => {
-    //     for (let i = 1; i <= 9; i++) {
-    //       dispatch(incrementProgress({ id: i })); // Увеличение прогресса для каждого блока
-    //     }
-    //   }, 1000); // Обновление прогресса каждую секунду
-    
-    //   return () => {
-    //     clearInterval(progressInterval);
-    //   };
-    // }, [dispatch]);
 
     const handleHarvestAnimation = (blockId: number) => {
       setHarvestedBlocks((prev) => {
