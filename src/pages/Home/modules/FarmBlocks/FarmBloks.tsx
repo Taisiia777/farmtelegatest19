@@ -630,6 +630,8 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
         }
       }
       dispatch(pickWheat({ id: blockId }));
+      setHarvested(true);
+      setTimeout(() => setHarvested(false), 200); // Сброс анимации после ее длительности
       try {
         await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, {
           stages: blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage),
@@ -637,9 +639,6 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
       } catch (error) {
         console.error("Failed to update grass growth stage on server:", error);
       }
-      setHarvested(true);
-      setTimeout(() => setHarvested(false), 400); // Сброс анимации после ее длительности
-      
     }
   };
 
