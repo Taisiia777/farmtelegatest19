@@ -1448,51 +1448,69 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
       }
       dispatch(pickWheat({ id: blockId }));
        // Обновляем стадию роста на сервере после срезания
-       try {
+      setHarvested(true);
+      setTimeout(() => setHarvested(false), 400); // Сброс анимации после ее длительности
+      try {
         await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, {
           stages: blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage),
         });
       } catch (error) {
         console.error("Failed to update grass growth stage on server:", error);
       }
-      setHarvested(true);
-      setTimeout(() => setHarvested(false), 400); // Сброс анимации после ее длительности
     }
   };
 
+  // const handleInteraction = useCallback(
+  //   (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+
+  //     // Определение типа события
+  //     const eventType = e.type;
+
+  //     let target: HTMLElement | null = null;
+  //     if (eventType === "mousemove" || eventType === "touchmove") {
+  //       target = document.elementFromPoint(
+  //         (e as React.MouseEvent<HTMLDivElement>).clientX ||
+  //           (e as React.TouchEvent<HTMLDivElement>).touches[0].clientX,
+  //         (e as React.MouseEvent<HTMLDivElement>).clientY ||
+  //           (e as React.TouchEvent<HTMLDivElement>).touches[0].clientY
+  //       ) as HTMLElement;
+  //     }
+
+  //     if (target) {
+  //       const blockId = target.getAttribute("data-id");
+  //       if (blockId) {
+  //         const id = parseInt(blockId, 10);
+  //         if (!touchedBlocks.has(id)) {
+  //           setTouchedBlocks((prev) => new Set(prev).add(id));
+  //           handlePickWheat(id);
+  //         }
+  //       }
+  //     }
+  //   },
+  //   [handlePickWheat, touchedBlocks]
+  // );
   const handleInteraction = useCallback(
     (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+      e.preventDefault(); // Предотвращение стандартного поведения для предотвращения нежелательной прокрутки
+      console.log(touchedBlocks)
+      const clientX = (e as React.MouseEvent<HTMLDivElement>).clientX || (e as React.TouchEvent<HTMLDivElement>).touches[0].clientX;
+      const clientY = (e as React.MouseEvent<HTMLDivElement>).clientY || (e as React.TouchEvent<HTMLDivElement>).touches[0].clientY;
 
-      // Определение типа события
-      const eventType = e.type;
-
-      let target: HTMLElement | null = null;
-      if (eventType === "mousemove" || eventType === "touchmove") {
-        target = document.elementFromPoint(
-          (e as React.MouseEvent<HTMLDivElement>).clientX ||
-            (e as React.TouchEvent<HTMLDivElement>).touches[0].clientX,
-          (e as React.MouseEvent<HTMLDivElement>).clientY ||
-            (e as React.TouchEvent<HTMLDivElement>).touches[0].clientY
-        ) as HTMLElement;
-      }
-
-      if (target) {
-        const blockId = target.getAttribute("data-id");
+      const elements = document.elementsFromPoint(clientX, clientY);
+      elements.forEach((element) => {
+        const blockId = element.getAttribute("data-id");
         if (blockId) {
-          const id = parseInt(blockId, 10);
-          if (!touchedBlocks.has(id)) {
-            setTouchedBlocks((prev) => new Set(prev).add(id));
-            handlePickWheat(id);
-          }
+          handlePickWheat(parseInt(blockId, 10));
         }
-      }
+      });
     },
-    [handlePickWheat, touchedBlocks]
+    [handlePickWheat]
   );
 
   const handleTouchEnd = useCallback(() => {
     setTouchedBlocks(new Set()); // Сброс касаний при окончании взаимодействия
   }, []);
+
 
   return (
     <div
