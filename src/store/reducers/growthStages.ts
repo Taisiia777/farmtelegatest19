@@ -594,7 +594,7 @@ export const growthStagesSlice = createSlice({
         (block) => block.id === action.payload.id
       );
 
-      if (block && block.progress === 0) {  // Переход к следующей стадии только при прогрессе 0
+      if (block ) {  // Переход к следующей стадии только при прогрессе 0
         switch (block.stage) {
           case "first":
             block.stage = "second";
