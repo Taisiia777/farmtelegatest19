@@ -1092,7 +1092,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
       {blocks.map((block: Block) => (
         <FarmBlock
           key={block.id}
-          zIndex={10 - block.id}
+          zIndex={Math.floor((block.id - 1) / 3) + (block.id % 3)} // Измененный zIndex для корректного наложения
           id={block.id}
           league={league}
           harvestedBlocks={harvestedBlocks}
