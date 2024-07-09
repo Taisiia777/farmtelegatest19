@@ -589,7 +589,7 @@ export const growthStagesSlice = createSlice({
         }
       }
     },
-        changeGrowthStage: (state, action: PayloadAction<{ id: number }>) => {
+    changeGrowthStage: (state, action: PayloadAction<{ id: number }>) => {
       const block = state.blocks.find(
         (block) => block.id === action.payload.id
       );
