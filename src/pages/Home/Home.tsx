@@ -352,8 +352,8 @@ const Home = () => {
           percent = 0; // Будущие лиги имеют 0%
         }
     
-        const isActive = index <= level;
-    
+      //   const isActive = index <= level;
+        console.log(progressPercent)
         return (
           <LigaBlock
             key={league.name}
