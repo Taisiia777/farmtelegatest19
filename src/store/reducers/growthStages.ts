@@ -572,7 +572,7 @@ export const growthStagesSlice = createSlice({
       const block = state.blocks.find(
         (block) => block.id === action.payload.id
       );
-
+    
       if (block) {
         block.stage = "first";
         block.progress = 0;  // Сброс прогресса
@@ -583,7 +583,7 @@ export const growthStagesSlice = createSlice({
       const block = state.blocks.find(
         (block) => block.id === action.payload.id
       );
-
+    
       if (block) {
         block.progress += 1;
         if (block.progress >= 5) {
@@ -595,7 +595,7 @@ export const growthStagesSlice = createSlice({
       const block = state.blocks.find(
         (block) => block.id === action.payload.id
       );
-
+    
       if (block) {
         switch (block.stage) {
           case "first":
