@@ -360,13 +360,13 @@ const Home = () => {
    //  };
    const renderLeagues = () => {
       return leagues.map((league, index) => {
-         console.log(progressPercent)
-        const isActive = index <= level; // Делаем кнопку активной для всех пройденных лиг
+        const isActive = index <= level;
         const percent = (localCoins / league.coinsRequired) * 100;
+        console.log(progressPercent)
         return (
           <LigaBlock
             key={league.name}
-            ligaName={league.name as TLiga} // Приведение типа к TLiga
+            ligaName={league.name as TLiga}
             percent={percent}
             price={league.coinsRequired.toString()}
             active={isActive}

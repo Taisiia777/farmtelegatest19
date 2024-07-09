@@ -68,7 +68,7 @@
 // };
 
 // export default LigaBlock;
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../store/reducers/userSlice';
 import { useAppSelector } from '../../store';
@@ -170,20 +170,19 @@ const LigaBlock = ({ ligaName, percent, price, active }: ILigaBlockProps) => {
             {ligaName}
           </h3>
           <Button
-  className={cn("ligaBlockInfo__btn")}
-  size="small"
-  disabled={!active || isRewardClaimed}
-  onClick={handleButtonClick}
->
-  <CoinWhiteBg iconName="BTC" size="small" />
-  <span
-    className={`${cn("ligaBlockInfo__price")} textShadow`}
-    style={{ fontSize: `${priceFontSize}px` }}
-  >
-    +{price}
-  </span>
-</Button>
-
+            className={cn("ligaBlockInfo__btn")}
+            size="small"
+            disabled={!active || isRewardClaimed}
+            onClick={handleButtonClick}
+          >
+            <CoinWhiteBg iconName="BTC" size="small" />
+            <span
+              className={`${cn("ligaBlockInfo__price")} textShadow`}
+              style={{ fontSize: `${priceFontSize}px` }}
+            >
+              +{price}
+            </span>
+          </Button>
         </div>
         <div className={cn("ligaBlockInfo__bottom")}>
           <img src="img/ligaBlock/percent.svg" alt="" />
