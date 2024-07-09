@@ -1086,13 +1086,17 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
       return newSet;
     });
   };
-
+  const calculateZIndex = (id: number) => {
+    const row = Math.floor((id - 1) / 3);
+    const col = (id - 1) % 3;
+    return row * 3 + col;
+  };
   return (
     <div className={cn("farmBlockWrap")}>
       {blocks.map((block: Block) => (
         <FarmBlock
           key={block.id}
-          zIndex={Math.floor((block.id - 1) / 3) + (block.id % 3)} // Измененный zIndex для корректного наложения
+          zIndex={calculateZIndex(block.id)}
           id={block.id}
           league={league}
           harvestedBlocks={harvestedBlocks}
