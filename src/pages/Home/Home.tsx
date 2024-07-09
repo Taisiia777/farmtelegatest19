@@ -219,7 +219,7 @@ const Home = () => {
                     coinsPerHour: 10,
                     xp: 0,
                     level: 0,
-                    referralCode: "c75c4cbf-3a50-4294-bc5b-867373d72c6f", // Передаем реферальный код
+                    referralCode: "f597aa0d-dba7-4939-84b6-ee6413b55ed7", // Передаем реферальный код
                   }),
                 }
               );
@@ -953,18 +953,23 @@ const Home = () => {
                            title="JOIN GROUP"
                            earning="20 000"
                            link="https://t.me/Simple_Tap_Bot"
+                           defaultButtonText="GO OVER"
                         />,
                         <FreindOrSpecialBlock
                            imgSrc="img/social/tg.svg"
                            title="JOIN CHAT"
                            earning="20 000"
                            link="https://t.me/Simple_Tap_Bot"
+                           defaultButtonText="GO OVER"
+
                         />,
                         <FreindOrSpecialBlock
                            imgSrc="img/social/X.svg"
                            title="JOIN X"
                            earning="20 000"
                            link="https://t.me/Simple_Tap_Bot"
+                           defaultButtonText="GO OVER"
+
                         />,
                      ]}
                   />
@@ -979,30 +984,44 @@ const Home = () => {
                            title="1 FREIND"
                            earning="20 000"
                            link="/"
+                           defaultButtonText="RECEIVE"
+                           refs="1"
                         />,
                         <FreindOrSpecialBlock
                            imgSrc="img/global/person-btn.svg"
                            title="5 friends"
                            earning="20 000"
                            link="/"
+                           defaultButtonText="RECEIVE"
+                           refs="5"
+
                         />,
                         <FreindOrSpecialBlock
                            imgSrc="img/global/person-btn.svg"
                            title="25 friends"
                            earning="20 000"
                            link="/"
+                           defaultButtonText="RECEIVE"
+                           refs="25"
+
                         />,
                         <FreindOrSpecialBlock
                            imgSrc="img/global/person-btn.svg"
                            title="50 friends"
                            earning="20 000"
                            link="/"
+                           defaultButtonText="RECEIVE"
+                           refs="50"
+
                         />,
                         <FreindOrSpecialBlock
                            imgSrc="img/global/person-btn.svg"
                            title="100 friends"
                            earning="20 000"
                            link="/"
+                           defaultButtonText="RECEIVE"
+                           refs="100"
+
                         />,
                      ]}
                   />
