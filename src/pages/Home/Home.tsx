@@ -187,24 +187,22 @@ const Home = () => {
    
 
    useEffect(() => {
-      const urlParams = new URLSearchParams(window.location.search);
-
-      let referralCode = urlParams.get('start');
-      
-      if (!referralCode && window.Telegram?.WebApp?.initData) {
-        const initData = new URLSearchParams(window.Telegram.WebApp.initData);
-        referralCode = initData.get('start');
-      }
+      const fetchData = async () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        let referralCode = urlParams.get('start');
   
+        if (!referralCode && window.Telegram?.WebApp?.initData) {
+          const initData = new URLSearchParams(window.Telegram.WebApp.initData);
+          referralCode = initData.get('start');
+        }
   
-      const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
-      if (initData && initData.user) {
-        const user = initData.user;
-        const username = user.username;
-        if (username) {
-          setNickname(username);
+        const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
+        if (initData && initData.user) {
+          const user = initData.user;
+          const username = user.username;
+          if (username) {
+            setNickname(username);
   
-          const createUser = async () => {
             try {
               const response = await fetch(
                 "https://coinfarm.club/user",
@@ -231,32 +229,37 @@ const Home = () => {
                 const userData = await response.json();
                 alert(`User already exists: ${JSON.stringify(userData)}`);
                 setGrassTotal(userData.coinsPerHour);
-                setLevel(userData.level)
+                setLevel(userData.level);
                 console.log('Existing user ID:', userData.id);
               } else if (!response.ok) {
                 throw new Error("Something went wrong");
               } else {
                 const newUser = await response.json();
                 setGrassTotal(newUser.coinsPerHour);
-                setLevel(newUser.level)
+                setLevel(newUser.level);
                 dispatch(setUser(newUser));
                 console.log('New user ID:', newUser.id);
               }
             } catch (error) {
               console.error("Error:", error);
             }
-          };
+          }
   
-          createUser();
+          if (user.photoUrl) {
+            // setImgSrc(user.photoUrl);
+          } else {
+            console.log("Photo URL not available");
+          }
         }
+      };
   
-        if (user.photoUrl) {
-          // setImgSrc(user.photoUrl);
-        } else {
-          console.log("Photo URL not available");
-        }
-      }
-    }, [dispatch]);
+      fetchData(); // Initial fetch on component mount
+  
+      const interval = setInterval(fetchData, 2000); // Fetch every 2 seconds
+  
+      return () => clearInterval(interval); // Clean up interval on component unmount
+  
+    }, [dispatch]); // Add other dependencies if needed
 
 
 

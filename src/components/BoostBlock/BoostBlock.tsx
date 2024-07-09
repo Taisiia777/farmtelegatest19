@@ -167,17 +167,16 @@
 
 
 
+
 import classNames from "classnames/bind";
 import styles from "./BoostBlock.module.scss";
 import { TBoostName, TLiga } from "../../types/globalTypes";
 import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
 import Button from "../Button/Button";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { setBoostInfo } from "../../store/reducers/boost";
 import axios from 'axios';
 import { retrieveLaunchParams } from '@tma.js/sdk';
-import { setBoostInfo } from "../../store/reducers/boost";
-import { setUser } from "../../store/reducers/userSlice";
 
 const cn = classNames.bind(styles);
 
@@ -201,66 +200,56 @@ const BoostBlock = ({
   boosterId
 }: IBoostBlockProps) => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    const applyBooster = async () => {
-      const { initData } = retrieveLaunchParams();
-      if (initData && initData.user) {
-        const user = initData.user;
-        const username = user.username;
-
-        if (!username) return;
-
-        let userId;
-
-        try {
-          const response = await fetch("https://coinfarm.club/user", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify({
-              username,
-              coins: 0,
-              totalEarnings: 0,
-              incomeMultiplier: 1,
-              coinsPerHour: 10,
-              xp: 0,
-              level: 0,
-            }),
-          });
+  let userId: number;
+  const { initData } = retrieveLaunchParams();
+  async function applyBooster() {
+    try {
+      const user = initData?.user;
+        const username = user?.username;
+        if (username) {
+          const response = await fetch(
+            "https://coinfarm.club/user",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+              body: JSON.stringify({
+                username: username,
+                coins: 0,
+                totalEarnings: 0,
+                incomeMultiplier: 1,
+                coinsPerHour: 10,
+                xp: 0,
+                level: 0,
+              }),
+            }
+          );
 
           if (response.status === 409) {
             const userData = await response.json();
-            userId = userData.id;
-          } else if (response.ok) {
-            const newUser = await response.json();
-            userId = newUser.id;
-          } else {
+            alert(`User already exists: ${JSON.stringify(userData)}`);
+            userId = userData.id
+            console.log('Existing user ID:', userData.id);
+          } else if (!response.ok) {
             throw new Error("Something went wrong");
+          } else {
+            const newUser = await response.json();
+            userId = newUser.id
+            console.log('New user ID:', newUser.id);
           }
-        } catch (error) {
-          console.error('Error fetching user data:', error);
-          return;
         }
-
-        try {
-          const response = await axios.post(`https://coinfarm.club/booster/apply/${userId}/${boosterId}`);
-          const updatedUserData = response.data;
-
-          // Dispatch the updated user data to Redux store
-          dispatch(setUser(updatedUserData));
-
-          console.log('Booster applied:', updatedUserData);
-        } catch (error) {
-          console.error('Error applying booster:', error);
-        }
-      }
-    };
-
-    applyBooster();
-  }, [dispatch, boosterId]);
+    } catch (error) {
+      console.error('Error applying booster:', error);
+    }
+    try {
+      const response = await axios.post(`https://coinfarm.club/booster/apply/${userId}/${boosterId}`);
+      console.log('Booster applied:', response.data);
+    } catch (error) {
+      console.error('Error applying booster:', error);
+    }
+  }
 
   function openBoostBuyPopup() {
     dispatch(
@@ -271,6 +260,7 @@ const BoostBlock = ({
         imgSrc: `img/boosts/${boostName}.svg`,
       })
     );
+    applyBooster();
   }
 
   let content;
