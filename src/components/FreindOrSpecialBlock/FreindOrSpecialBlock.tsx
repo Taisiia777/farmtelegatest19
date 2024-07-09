@@ -190,7 +190,7 @@ const FreindOrSpecialBlock = ({
     try {
       const response = await axios.post(url);
       console.log("Response:", response.data);
-      window.open(link);
+      window.Telegram.WebApp.openLink(link);
     } catch (error) {
       console.error("Error:", error);
     }
