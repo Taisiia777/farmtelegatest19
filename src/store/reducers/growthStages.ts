@@ -440,8 +440,6 @@
 
 
 
-
-
 // import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // import { TGrowthStage } from "../../types/globalTypes";
 // import { RootState } from "..";
@@ -541,7 +539,6 @@
 
 
 
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TGrowthStage } from "../../types/globalTypes";
 import { RootState } from "..";
@@ -550,7 +547,6 @@ export interface IGrowthStages {
   blocks: Array<{
     id: number;
     stage: TGrowthStage;
-    progress: number;  // Добавлено новое свойство для отслеживания прогресса
   }>;
   isFingerActive: boolean;
 }
@@ -559,7 +555,6 @@ const initialState: IGrowthStages = {
   blocks: Array.from({ length: 9 }, (_, index) => ({
     id: index + 1,
     stage: "first",
-    progress: 0,  // Инициализация прогресса
   })),
   isFingerActive: true,
 };
@@ -575,20 +570,15 @@ export const growthStagesSlice = createSlice({
 
       if (block) {
         block.stage = "first";
-        block.progress = 0;  // Сброс прогресса
         state.isFingerActive = false;
       }
     },
-    incrementProgress: (state) => {
-      state.blocks.forEach((block) => {
-        block.progress += 1;
-        if (block.progress >= 5) {
-          block.progress = 0;
-        }
-      });
-    },
-    changeGrowthStage: (state) => {
-      state.blocks.forEach((block) => {
+    changeGrowthStage: (state, action: PayloadAction<{ id: number }>) => {
+      const block = state.blocks.find(
+        (block) => block.id === action.payload.id
+      );
+
+      if (block) {
         switch (block.stage) {
           case "first":
             block.stage = "second";
@@ -605,25 +595,23 @@ export const growthStagesSlice = createSlice({
             block.stage = "first";
             break;
         }
-      });
+      }
     },
     growAllToMax: (state) => {
       state.blocks.forEach(block => {
         block.stage = "fourth";
-        block.progress = 0;  // Сброс прогресса
       });
     },
     setGrowthStages: (state, action: PayloadAction<TGrowthStage[]>) => {
       state.blocks = action.payload.map((stage, index) => ({
         id: index + 1,
         stage,
-        progress: 0,  // Инициализация прогресса
       }));
     },
   },
 });
 
-export const { pickWheat, incrementProgress, changeGrowthStage, growAllToMax, setGrowthStages } = growthStagesSlice.actions;
+export const { pickWheat, changeGrowthStage, growAllToMax, setGrowthStages } = growthStagesSlice.actions;
 
 export const selectEarthBlock = (state: RootState, id: number) =>
   state.growthStages.blocks.find((block) => block.id === id);
@@ -647,3 +635,6 @@ export const calculateGrassEarnings = (blocks: IGrowthStages['blocks'], coinsPer
 };
 
 export default growthStagesSlice.reducer;
+
+
+
