@@ -90,10 +90,17 @@ const Invite = () => {
                         )} + ' textShadow_center`}>
                         Invite user
                      </b>
-                     <div className={cn("inviteUsersBlock__coins")}>
+                     <p
+                        className={
+                           `${cn("inviteUsersBlock__subtitle")}` +
+                           " textShadow_center"
+                        }>
+                        Get a percentage of the invited user's earnings: 20%
+                     </p>
+                     {/* <div className={cn("inviteUsersBlock__coins")}>
                         <img src="img/coins/BTC.svg" alt="BTC" />
                         <span className="textShadow_center">+10 000</span>
-                     </div>
+                     </div> */}
                   </div>
                   <img
                      src="img/pages/invite/one-gift.svg"
@@ -115,8 +122,17 @@ const Invite = () => {
                            `${cn("inviteUsersBlock__subtitle")}` +
                            " textShadow_center"
                         }>
-                        10% from every friend earnings
+                        The second level:
+                        Percentage of earnings of referrals of the first level: 10%
                      </p>
+                     <p
+                        className={
+                           `${cn("inviteUsersBlock__subtitle")}` +
+                           " textShadow_center"
+                        }>
+                        The third level:
+                        Percentage of earnings of second-level referrals: 5%
+                     </p>  
                      <div className={cn("inviteUsersBlock__coins")}>
                         <img src="img/coins/BTC.svg" alt="BTC" />
                         <span className="textShadow_center">+60 000</span>
