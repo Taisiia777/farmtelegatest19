@@ -1039,7 +1039,7 @@
         fetchGrowthStages();
         hasFetchedGrowthStages.current = true; // Устанавливаем, что эффект был выполнен
       }
-    }, [user, dispatch]); // Добавлены зависимости user и dispatch
+    }, [user]); // Добавлены зависимости user и dispatch
 
     useEffect(() => {
       const updateGrowthStages = async () => {
@@ -1054,7 +1054,7 @@
       };
     
       updateGrowthStages(); // Обновление стадий роста на сервере при изменении блоков
-    }, [blocks]); // Добавлена зависимость от user
+    }, [blocks, user]); // Добавлена зависимость от user
 
     useEffect(() => {
       const stageInterval = setInterval(() => {
