@@ -28,7 +28,7 @@
       display: flex;
       flex-direction: column;
       gap: rem(10);
-      margin-bottom: rem(33);
+      margin-bottom: rem(23);
    }
 
    &__friends-control {
@@ -49,7 +49,7 @@
    }
 
    &__listWrap {
-      top: rem(420) !important;
+      top: rem(720) !important;
       height: 46% !important;
       animation: appear 0.4s ease-in-out;
    }
