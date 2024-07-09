@@ -653,7 +653,7 @@ export const calculateGrassEarnings = (blocks: IGrowthStages['blocks'], coinsPer
         break;
     }
   });
-  return totalEarnings;
+  return Math.round(totalEarnings);
 };
 
 export default growthStagesSlice.reducer;
