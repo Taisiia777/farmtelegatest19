@@ -1066,7 +1066,7 @@
           dispatch(updateGrassEarnings(grassEarnings));
           console.log('Новое значение прибыли: ', grassEarnings);
         }
-      }, 10000); // Обновление стадий роста каждые 5 секунд
+      }, 5000); // Обновление стадий роста каждые 5 секунд
     
       return () => {
         clearInterval(stageInterval);

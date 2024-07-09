@@ -88,7 +88,7 @@ const leagues = [
 const Home = () => {
    const dispatch = useDispatch();
    const { width } = useWindowSize();
-   const user = useAppSelector((state: RootState) => state.user.user);
+      const user = useAppSelector((state: RootState) => state.user.user);
    const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
    const [nickname, setNickname] = useState('Savelii777'); // Состояние для никнейма
    // const [imgSrc, setImgSrc] = useState("img/pages/people/person.png");
@@ -945,19 +945,19 @@ const Home = () => {
                            imgSrc="img/social/tg.svg"
                            title="JOIN GROUP"
                            earning="20 000"
-                           link="/"
+                           link="https://t.me/Simple_Tap_Bot"
                         />,
                         <FreindOrSpecialBlock
                            imgSrc="img/social/tg.svg"
                            title="JOIN CHAT"
                            earning="20 000"
-                           link="/"
+                           link="https://t.me/Simple_Tap_Bot"
                         />,
                         <FreindOrSpecialBlock
                            imgSrc="img/social/X.svg"
                            title="JOIN X"
                            earning="20 000"
-                           link="/"
+                           link="https://t.me/Simple_Tap_Bot"
                         />,
                      ]}
                   />
