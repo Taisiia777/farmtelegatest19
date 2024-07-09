@@ -1584,19 +1584,10 @@ type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Опреде�
 interface FarmBlocksProps {
   league: TLiga;
 }
-const user = useAppSelector((state: RootState) => state.user.user);
-
-const debouncedUpdateGrowthStages = useCallback(debounce(async (blocks) => {
-  try {
-    const stages = blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage);
-    await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, { stages });
-  } catch (error) {
-    console.error('Failed to update grass growth stages:', error);
-  }
-}, 1000), []);
 
 const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
   const dispatch = useDispatch();
+  const user = useAppSelector((state: RootState) => state.user.user);
   const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
   const hasFetchedGrowthStages = useRef(false); // Добавлено для отслеживания выполнения эффекта
 
@@ -1620,7 +1611,14 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
   }, [user, dispatch]); // Добавлены зависимости user и dispatch
 
   // Обновление стадий роста на сервере при изменении блоков с дебаунсом
-
+  const debouncedUpdateGrowthStages = useCallback(debounce(async (blocks) => {
+    try {
+      const stages = blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage);
+      await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, { stages });
+    } catch (error) {
+      console.error('Failed to update grass growth stages:', error);
+    }
+  }, 1000), []);
 
   useEffect(() => {
     debouncedUpdateGrowthStages(blocks);
@@ -1680,7 +1678,14 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
   const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
 
   if (!farmBlock) return null;
-
+  const debouncedUpdateGrowthStages = useCallback(debounce(async (blocks) => {
+    try {
+      const stages = blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage);
+      await axios.patch(`https://coinfarm.club/user/${user.id}/grass-stages`, { stages });
+    } catch (error) {
+      console.error('Failed to update grass growth stages:', error);
+    }
+  }, 1000), []);
   const handlePickWheat = async (blockId: number) => {
     if (farmBlock.stage !== "first") {
       let rewardMultiplier = 0;
