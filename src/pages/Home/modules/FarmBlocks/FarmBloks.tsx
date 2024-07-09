@@ -1083,7 +1083,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
     if (user) {
       fetchGrowthStages();
     }
-  }, [user, dispatch]);
+  }, []);
 
   useEffect(() => {
     const updateGrowthStages = async () => {
