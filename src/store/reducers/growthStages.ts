@@ -540,6 +540,8 @@
 // export default growthStagesSlice.reducer;
 
 
+// Redux slice
+
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TGrowthStage } from "../../types/globalTypes";
 import { RootState } from "..";
