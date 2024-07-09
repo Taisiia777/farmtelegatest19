@@ -1022,6 +1022,20 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import styles from "./FarmBlocks.module.scss";
@@ -1042,6 +1056,7 @@ import axios from "axios";
 
 const cn = classNames.bind(styles);
 type TGrowthStage = "first" | "second" | "third" | "fourth";
+
 type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Определение типа TLiga
 
 interface FarmBlocksProps {
@@ -1247,7 +1262,3 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league }) => {
     </div>
   );
 };
-
-
-
-

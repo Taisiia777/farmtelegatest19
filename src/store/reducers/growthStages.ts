@@ -437,6 +437,11 @@
 
 
 
+
+
+
+
+
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TGrowthStage } from "../../types/globalTypes";
 import { RootState } from "..";
@@ -496,28 +501,27 @@ export const growthStagesSlice = createSlice({
       }
     },
     growAllToMax: (state) => {
-            state.blocks.forEach(block => {
-              block.stage = "fourth";
-            });
-          },
+      state.blocks.forEach(block => {
+        block.stage = "fourth";
+      });
+    },
     setGrowthStages: (state, action: PayloadAction<TGrowthStage[]>) => {
       state.blocks = action.payload.map((stage, index) => ({
         id: index + 1,
         stage,
       }));
     },
-
   },
 });
 
-export const { pickWheat, changeGrowthStage, setGrowthStages, growAllToMax } = growthStagesSlice.actions;
+export const { pickWheat, changeGrowthStage, growAllToMax, setGrowthStages } = growthStagesSlice.actions;
 
 export const selectEarthBlock = (state: RootState, id: number) =>
   state.growthStages.blocks.find((block) => block.id === id);
 
 export const calculateGrassEarnings = (blocks: IGrowthStages['blocks'], coinsPerHour: number) => {
   let totalEarnings = 0;
-  blocks.forEach((block: { id: number, stage: TGrowthStage }) => {
+  blocks.forEach(block => {
     switch (block.stage) {
       case "second":
         totalEarnings += coinsPerHour;
@@ -534,3 +538,4 @@ export const calculateGrassEarnings = (blocks: IGrowthStages['blocks'], coinsPer
 };
 
 export default growthStagesSlice.reducer;
+
