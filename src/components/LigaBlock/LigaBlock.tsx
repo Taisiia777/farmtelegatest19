@@ -126,7 +126,7 @@ const LigaBlock = ({ ligaName, percent, price, active }: ILigaBlockProps) => {
     };
   
     const route = routeMap[ligaName];
-  
+    setIsRewardClaimed(true)
     try {
       const response = await fetch(`https://coinfarm.club/reward/${route}/${user.id}`, {
         method: 'POST',

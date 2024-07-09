@@ -1095,7 +1095,7 @@
             newSet.delete(blockId);
             return newSet;
           });
-        }, 200);
+        }, 0);
         return newSet;
       });
     };
