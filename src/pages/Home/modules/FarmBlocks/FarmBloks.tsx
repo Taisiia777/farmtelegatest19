@@ -1105,15 +1105,12 @@
         newSet.add(blockId);
         return newSet;
       });
-    
-      // Удалить блок после анимации
-      setTimeout(() => {
         setHarvestedBlocks((prev) => {
           const newSet = new Set(prev);
           newSet.delete(blockId);
           return newSet;
         });
-      }, 100); // Анимация длится 0.3 секунды
+      
     };
     
     
