@@ -102,6 +102,7 @@ const Home = () => {
    const [userCoins, setUserCoins] = useState<Coin[]>([]);
    const [hasFirstReward, setHasFirstReward] = useState(false); // Состояние для проверки наличия награды "first"
    const [grassTotal, setGrassTotal] = useState(0);
+   const [localUser, setLocalUser] = useState(user);
 
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
@@ -227,17 +228,27 @@ const Home = () => {
               if (response.status === 409) {
                 const userData = await response.json();
                 alert(`User already exists: ${JSON.stringify(userData)}`);
-                setGrassTotal(userData.coinsPerHour);
-                setLevel(userData.level);
-                console.log('Existing user ID:', userData.id);
+                if (userData.coinsPerHour !== localUser.coinsPerHour || userData.level !== localUser.level) {
+                  setGrassTotal(userData.coinsPerHour);
+                  setLevel(userData.level);
+                  console.log('Existing user ID:', userData.id);
+                  setLocalUser(userData);
+                  dispatch(setUser(userData));
+                }
               } else if (!response.ok) {
                 throw new Error("Something went wrong");
               } else {
                 const newUser = await response.json();
-                setGrassTotal(newUser.coinsPerHour);
-                setLevel(newUser.level);
-                dispatch(setUser(newUser));
-                console.log('New user ID:', newUser.id);
+                if (newUser.coinsPerHour !== localUser.coinsPerHour || newUser.level !== localUser.level) {
+                  setGrassTotal(newUser.coinsPerHour);
+                  setLevel(newUser.level);
+                  setLocalUser(newUser);
+                  dispatch(setUser(newUser));
+                }
+               //  setGrassTotal(newUser.coinsPerHour);
+               //  setLevel(newUser.level);
+               //  dispatch(setUser(newUser));
+               //  console.log('New user ID:', newUser.id);
               }
             } catch (error) {
               console.error("Error:", error);
