@@ -39,7 +39,7 @@ interface CoinsProps {
 
 const Coins = ({ quantity }: CoinsProps) => {
   const user = useAppSelector((state) => state.user.user);
-  const [mostExpensiveCoinName, setMostExpensiveCoinName] = useState<string>("BTC");
+  const [mostExpensiveCoinName, setMostExpensiveCoinName] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchCoins = async (userId: number) => {
@@ -67,7 +67,7 @@ const Coins = ({ quantity }: CoinsProps) => {
   return (
     <div className={cn("coins")}>
       <div className={cn("coins__video-wrap")}>
-        <img src={`video/${mostExpensiveCoinName}.gif`} alt="I'm a gif" />
+      {mostExpensiveCoinName && <img src={`video/${mostExpensiveCoinName}.gif`} alt="I'm a gif" />}
       </div>
       <span className="textShadow">{quantity}</span>
     </div>
