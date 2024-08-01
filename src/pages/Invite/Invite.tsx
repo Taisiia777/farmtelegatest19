@@ -201,16 +201,16 @@ const Invite = () => {
           <div className={cn("inviteUsersBlock")}>
             <div className={cn("inviteUsersBlock__left")}>
               <b className={`${cn("inviteUsersBlock__title")}` + ' textShadow_center'}>
-              {t('invite_descr1')}
+              {t('invite_1')}
               </b>
               <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center"}>
-              {t('invite_descr2')}
+              {t('invite_2')}
               </p>
               <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center"}>
-              {t('invite_descr3')}
+              {t('invite_3')}
               </p>
               <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center"}>
-              {t('invite_descr4')}
+              {t('invite_4')}
               </p>
             </div>
             <img src="img/pages/invite/many-gifts.svg" alt="Gifts" />
