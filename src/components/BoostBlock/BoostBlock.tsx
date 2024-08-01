@@ -175,7 +175,9 @@ import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
 import Button from "../Button/Button";
 import { useDispatch } from "react-redux";
 import { setBoostInfo } from "../../store/reducers/boost";
-
+import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 const cn = classNames.bind(styles);
 
@@ -207,7 +209,17 @@ const BoostBlock = ({
   // let userId: number;
   // const { initData } = retrieveLaunchParams();
   const boosterPrice = parseInt(price.replace(/\D/g, ''), 10); // Преобразуем цену в число
-
+  const { t } = useTranslation();
+  useEffect(() => {
+    const initData = window.Telegram.WebApp.initDataUnsafe;
+    const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
+    
+    if (['en', 'ru', 'ukr'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
+      i18n.changeLanguage(userLanguage);
+    } else {
+      i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
+    }
+  }, []);
   // async function applyBooster() {
   //   try {
   //     const user = initData?.user;
@@ -287,7 +299,7 @@ const BoostBlock = ({
             />
             <div className={cn("boost__info", "boostInfo")}>
               <h3 className={`${cn("boostInfo__name")}` + " textShadow"}>
-              {capitalizeFirstLetter(boostNameNew)}
+              {capitalizeFirstLetter(t(`${boostNameNew.toLocaleLowerCase()}`))}
               </h3>
               <div className={cn("boostInfo__index")}>
                 <img
@@ -328,7 +340,7 @@ const BoostBlock = ({
           />
           <div className={cn("boost__info", "boostInfo")}>
             <h3 className={`${cn("boostInfo__name")}` + " textShadow"}>
-            {capitalizeFirstLetter(boostNameNew)}
+            {capitalizeFirstLetter(t(`${boostNameNew.toLocaleLowerCase()}`))}
             </h3>
             <div className={cn("boostInfo__index")}>
               {/* <img
@@ -365,7 +377,7 @@ const BoostBlock = ({
           />
           <div className={cn("boost__info", "boostInfo")}>
             <h3 className={`${cn("boostInfo__name")}` + " textShadow"}>
-            {capitalizeFirstLetter(boostNameNew)}
+            {capitalizeFirstLetter(t(`${boostNameNew.toLocaleLowerCase()}`))}
             </h3>
             <div className={cn("boostInfo__index")}>
               {/* <img
