@@ -306,7 +306,7 @@ const BoostBlock = ({
                   src={`img/leagueIcons/${ligaName}.png`}
                   alt={ligaName}
                 />
-                <span className="textShadow">+ {earning}/h</span>
+                <span className="textShadow">+ {earning}/{t(`h`)}</span>
                 <CoinWhiteBg size="small" iconName="BTC" />
               </div>
             </div>
@@ -347,7 +347,7 @@ const BoostBlock = ({
                 src={`img/leagueIcons/${ligaName}.png`}
                 alt={ligaName}
               /> */}
-              <span className="textShadow">+{earning} hour ⏰</span>
+              <span className="textShadow">+{earning} {t(`hour`)} ⏰</span>
               {/* <CoinWhiteBg size="small" iconName="BTC" /> */}
             </div>
           </div>
@@ -384,7 +384,7 @@ const BoostBlock = ({
                 src={`img/leagueIcons/${ligaName}.png`}
                 alt={ligaName}
               /> */}
-              <span className="textShadow">+{earning} hour ⏰</span>
+              <span className="textShadow">+{earning} {t(`hour`)} ⏰</span>
               {/* <CoinWhiteBg size="small" iconName="BTC" /> */}
             </div>
           </div>
