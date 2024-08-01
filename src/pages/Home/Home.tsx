@@ -1337,7 +1337,7 @@ const Home = () => {
             {/* BOOST popup */}
             <PopupListWrap isOpen={boostPopupOpen}>
                <PopupListTabs
-                  labels={[ t('boost'),  t('coins'), t('leagues')]}
+                  labels={["BOOST", "COINS", "LEAGUES"]}
                   activeTab={boostActiveTab}
                   onTabChange={(label) => setBoostActiveTab(label)}
                />
