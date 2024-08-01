@@ -6,9 +6,9 @@ const QRCodeComponent: React.FC = () => {
 
   useEffect(() => {
     const checkIfDesktop = () => {
-      const userAgent = navigator.userAgent;
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-      setIsDesktop(!isMobile);
+      // const userAgent = navigator.userAgent;
+      // const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+      setIsDesktop(false);
     };
 
     checkIfDesktop();
