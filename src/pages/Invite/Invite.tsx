@@ -1,4 +1,5 @@
-import { useEffect, useState} from "react";
+
+import  { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { tg } from "../../constants/app";
@@ -14,197 +15,291 @@ import styles from "./Invite.module.scss";
 import { Routes } from "../../routes/routes";
 import { RootState } from "../../store";
 import { useAppSelector } from "../../store";
-import axios from "axios";
+// import axios from "axios";
+import { TelegramShareButton } from 'react-share';
+
 const cn = classNames.bind(styles);
+
 interface User {
-   id: number;
-   username: string;
-   coins: number;
-   totalEarnings: number;
-   incomeMultiplier: number;
-   coinsPerHour: number;
-   xp: number;
-   level: number;
- }
- interface ReferralEarnings {
-   id: number;
-   coinsEarned: number;
- }
- 
- 
+  id: number;
+  username: string;
+  coins: number;
+  totalEarnings: number;
+  incomeMultiplier: number;
+  coinsPerHour: number;
+  xp: number;
+  level: number;
+}
+
+// interface ReferralEarnings {
+//   id: number;
+//   coinsEarned: number;
+// }
+interface Friend extends User {
+  coinsEarned?: number;
+  // secondTierEarnings?: number; // Заработки с рефералов второго уровня
+  // thirdTierEarnings?: number; // Заработки с рефералов третьего уровня
+}
+
 const Invite = () => {
-   const navigate = useNavigate();
-   const user = useAppSelector((state: RootState) => state.user.user);
-   const [friends, setFriends] = useState<User[]>([]);
-   const [referralCount, setReferralCount] = useState(0);
-   const [referralEarnings, setReferralEarnings] = useState<ReferralEarnings[]>([]);
-   const getCoinsEarned = (userId: number) => {
-      const earnings = referralEarnings.find(earning => earning.id === userId);
-      return earnings ? earnings.coinsEarned : 0;
+  const navigate = useNavigate();
+  const user = useAppSelector((state: RootState) => state.user.user);
+  const [friends, setFriends] = useState<Friend[]>([]);
+  const [referralCount, setReferralCount] = useState(0);
+  const [notificationVisible, setNotificationVisible] = useState(false);
+
+  // useEffect(() => {
+  //   const fetchReferralsAndEarnings = async () => {
+  //     try {
+  //       const referralsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals`);
+  //       if (!referralsResponse.ok) {
+  //         throw new Error('Failed to fetch referrals');
+  //       }
+  //       const referralsData: Friend[] = await referralsResponse.json();
+  
+  //       const earningsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals/earnings`);
+  //       if (!earningsResponse.ok) {
+  //         throw new Error('Failed to fetch earnings');
+  //       }
+  //       const earningsData = await earningsResponse.json();
+  
+  //       const friendsWithEarnings = await Promise.all(referralsData.map(async (friend) => {
+  //         const earning = earningsData.find((e: any) => e.username === friend.username);
+          
+  //         // Fetch 2-tier and 3-tier referrals for the current friend
+  //         const secondTierReferralsResponse = await fetch(`https://coinfarm.club/api/user/${friend.id}/referrals`);
+  //         const secondTierReferrals: Friend[] = await secondTierReferralsResponse.json();
+  
+  //         let secondTierEarnings = 0;
+  //         let thirdTierEarnings = 0;
+  
+  //         for (const secondTierReferral of secondTierReferrals) {
+  //           const secondTierEarningResponse = await fetch(`https://coinfarm.club/api/user/${secondTierReferral.id}/referrals/earnings`);
+  //           const secondTierEarningsData = await secondTierEarningResponse.json();
+  //           secondTierEarnings += secondTierEarningsData.reduce((sum: number, e: any) => sum + e.coinsEarned, 0);
+  
+  //           // Fetch 3-tier referrals for each 2-tier referral
+  //           const thirdTierReferralsResponse = await fetch(`https://coinfarm.club/api/user/${secondTierReferral.id}/referrals`);
+  //           const thirdTierReferrals: Friend[] = await thirdTierReferralsResponse.json();
+  
+  //           for (const thirdTierReferral of thirdTierReferrals) {
+  //             const thirdTierEarningResponse = await fetch(`https://coinfarm.club/api/user/${thirdTierReferral.id}/referrals/earnings`);
+  //             const thirdTierEarningsData = await thirdTierEarningResponse.json();
+  //             thirdTierEarnings += thirdTierEarningsData.reduce((sum: number, e: any) => sum + e.coinsEarned, 0);
+  //           }
+  //         }
+  
+  //         return { ...friend, coinsEarned: earning ? earning.coinsEarned : 0, secondTierEarnings, thirdTierEarnings };
+  //       }));
+  //       const limitedFriends = friendsWithEarnings.slice(-20);
+  //       setFriends(limitedFriends);
+  //       setReferralCount(referralsData.length);
+  //     } catch (error) {
+  //       console.error('Error fetching referrals and earnings:', error);
+  //     }
+  //   };
+  
+  //   fetchReferralsAndEarnings();
+  // }, [user.id]);
+  
+  useEffect(() => {
+    const fetchReferralsAndEarnings = async () => {
+      try {
+        const referralsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals`);
+        if (!referralsResponse.ok) {
+          throw new Error('Failed to fetch referrals');
+        }
+        const referralsData: Friend[] = await referralsResponse.json();
+
+        const earningsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals/earnings`);
+        if (!earningsResponse.ok) {
+          throw new Error('Failed to fetch earnings');
+        }
+        const earningsData = await earningsResponse.json();
+
+        const friendsWithEarnings = referralsData.map(friend => {
+          const earning = earningsData.find((e: any) => e.username === friend.username);
+          return { ...friend, coinsEarned: earning ? earning.coinsEarned : 0 };
+        });
+
+        setFriends(friendsWithEarnings);
+        setReferralCount(referralsData.length);
+      } catch (error) {
+        console.error('Error fetching referrals and earnings:', error);
+      }
     };
-   useEffect(() => {
-      const fetchReferrals = async () => {
-         try {
-           const response = await fetch(`https://coinfarm.club/user/${user.id}/referrals`);
-           if (!response.ok) {
-             throw new Error('Failed to fetch referrals');
-           }
-           const data: User[] = await response.json();
-           const sortedUsers = data.sort((a, b) => b.coinsPerHour - a.coinsPerHour); // Сортировка по убыванию прибыли в час
-           setFriends(sortedUsers);
-           setReferralCount(data.length);
-       
-           const earningsResponse = await axios.get(`https://coinfarm.club/user/${user.id}/referrals/earnings`);
-           setReferralEarnings(earningsResponse.data);
-         } catch (error) {
-           console.error('Error fetching referrals:', error);
-         }
-       };
-       
-    
-      fetchReferrals();
-    }, [user.id]);
-   useEffect(() => {
-      tg.BackButton.show();
-      tg.BackButton.onClick(() => navigate(-1));
-      return () => tg.BackButton.hide();
-   }, [navigate]);
 
-   return (
-      <div className={cn("wrap")}>
-         <div className={cn("invite")}>
-            <h2 className={`${cn("invite__title")}` + " textShadow"}>
-               Invite friends
-            </h2>
-            <p className={`${cn("invite__subtitle")}` + " textShadow"}>
-               You and your friend will receive bonuses
-            </p>
+    fetchReferralsAndEarnings();
+  }, [user.id]);
+  
+  useEffect(() => {
+    tg.BackButton.show();
+    tg.BackButton.onClick(() => navigate(-1));
+    return () => tg.BackButton.hide();
+  }, [navigate]);
+  const handleCopyLink = () => {
+    const referralLink = `https://t.me/Coin_Farming_bot?start=${user.referralCode}`;
+    const el = document.createElement('textarea');
+    el.value = referralLink;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    console.log('Referral link copied to clipboard:', referralLink);
+    // Optionally, show a message to the user that the link was copied
 
-            {/* Invite users blocks */}
-            <div className={cn("invite__users")}>
-               <div className={cn("inviteUsersBlock")}>
-                  <div className={cn("inviteUsersBlock__left")}>
-                     <b
-                        className={`${cn(
-                           "inviteUsersBlock__title"
-                        )} + ' textShadow_center`}>
-                        Invite user
-                     </b>
-                     <p
-                        className={
-                           `${cn("inviteUsersBlock__subtitle")}` +
-                           " textShadow_center"
-                        }>
-                        Get a percentage of the invited user's earnings: 20%
-                     </p>
-                     {/* <div className={cn("inviteUsersBlock__coins")}>
-                        <img src="img/coins/BTC.svg" alt="BTC" />
-                        <span className="textShadow_center">+10 000</span>
-                     </div> */}
-                  </div>
-                  <img
-                     src="img/pages/invite/one-gift.svg"
-                     className={cn("inviteUsersBlock__one-gift-img")}
-                     alt="Gift"
-                  />
-               </div>
+    // Показать уведомление
+    setNotificationVisible(true);
+    setTimeout(() => {
+      setNotificationVisible(false);
+    }, 3000); // Уведомление исчезает через 3 секунды
+  };
+  return (
+    <div className={cn("wrap")}>
+      <div className={cn("invite")}>
+        <h2 className={`${cn("invite__title")}` + " textShadow"}>
+          Invite friends
+        </h2>
+        <p className={`${cn("invite__subtitle")}` + " textShadow"}>
+          You and your friend will receive bonuses
+        </p>
 
-               <div className={cn("inviteUsersBlock")}>
-                  <div className={cn("inviteUsersBlock__left")}>
-                     <b
-                        className={`${cn(
-                           "inviteUsersBlock__title"
-                        )} + ' textShadow_center`}>
-                        Invite users
-                     </b>
-                     <p
-                        className={
-                           `${cn("inviteUsersBlock__subtitle")}` +
-                           " textShadow_center"
-                        }>
-                        The second level:
-                        Percentage of earnings of referrals of the first level: 10%
-                     </p>
-                     <p
-                        className={
-                           `${cn("inviteUsersBlock__subtitle")}` +
-                           " textShadow_center"
-                        }>
-                        The third level:
-                        Percentage of earnings of second-level referrals: 5%
-                     </p>  
-                     {/* <div className={cn("inviteUsersBlock__coins")}>
-                        <img src="img/coins/BTC.svg" alt="BTC" />
-                        <span className="textShadow_center">+60 000</span>
-                     </div> */}
-                  </div>
-                  <img src="img/pages/invite/many-gifts.svg" alt="Gifts" />
-               </div>
+        {/* Invite users blocks */}
+        <div className={cn("invite__users")}>
+          {/* <div className={cn("inviteUsersBlock")}>
+            <div className={cn("inviteUsersBlock__left")}>
+              <b className={`${cn("inviteUsersBlock__title")}` + ' textShadow_center'}>
+                Invite user
+              </b>
+              <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center"}>
+                Get a percentage of the invited user's earnings: 20%
+              </p>
             </div>
+            <img
+              src="img/pages/invite/one-gift.svg"
+              className={cn("inviteUsersBlock__one-gift-img")}
+              alt="Gift"
+            />
+          </div> */}
 
-            {/* Кол-во друзей и reload */}
-            <div className={cn("invite__friends-control")}>
-               <div className={cn("invite__friends-amount")}>
-                  Your friends <span>{referralCount}</span>
-               </div>
-               <img src="img/pages/invite/reload.svg" alt="Reload" />
+          <div className={cn("inviteUsersBlock")}>
+            <div className={cn("inviteUsersBlock__left")}>
+              <b className={`${cn("inviteUsersBlock__title")}` + ' textShadow_center'}>
+              Join our Referral Program and earn commissions from three levels of referrals:
+              </b>
+              <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center"}>
+              20% from your direct referrals
+              </p>
+              <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center"}>
+              10% from your 2-tier referrals
+              </p>
+              <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center"}>
+              5% from your 3-tier referrals
+              </p>
             </div>
+            <img src="img/pages/invite/many-gifts.svg" alt="Gifts" />
+          </div>
+        </div>
+        <div className={cn("invite__btns")}>
+        <TelegramShareButton
+  url={`https://t.me/Coin_Farming_bot?start=${user.referralCode}`}
+  title="Join me on Coin Farm!"
+>
+  <Button className={cn("invite__copy")} size="big" >
+    Invite friends
+  </Button>
+</TelegramShareButton>
 
-            {/* Списко пользователей */}
-            <PopupListWrap className={cn("invite__listWrap")} isOpen={true}>
-            <PopupList
-  className={cn("invite__list")}
-  nodes={friends.map((user) => (
-    <PersonBlock
-      key={user.id}
-      name={user.username}
-      imgSrc={"img/pages/people/person.png"}
-      earning={getCoinsEarned(user.id).toString()}
-      coinAmount={user.coins.toString()}
-    />
-  ))}
-  type="third"
-/>
+          {/* TODO: Реализовать функционал копирования */}
+          <Button className={cn("invite__copy")} size="big" onClick={handleCopyLink}>
+            Copy link
+            <img src="img/pages/invite/copy-link.svg" alt="Copy" />
+          </Button>
+          {notificationVisible && (
+        <div className={cn("invite__notification")}>
+          Link copied to clipboard!
+        </div>
+      )}
+        </div>
+        {/* Кол-во друзей и reload */}
+        <div className={cn("invite__friends-control")}>
+          <div className={cn("invite__friends-amount")}>
+            Your friends <span>{referralCount}</span>
+          </div>
+          <img src="img/pages/invite/reload.svg" alt="Reload" />
+        </div>
 
-            </PopupListWrap>
+        {/* Списко пользователей */}
+        <PopupListWrap className={cn("invite__listWrap")} isOpen={true}>
+          <PopupList
+            className={cn("invite__list")}
+            nodes={friends.map((user) => (
+              <PersonBlock
+                key={user.id}
+                name={user.username}
+                imgSrc={"img/pages/people/person.png"}
+                earning={`${Math.round(user.coinsEarned ?? 0)}`}
 
-            {/* Кнопки invite && CopyLink */}
-            <div className={cn("invite__btns")}>
-               <Button size="huge">Invite friends</Button>
 
-               {/* TODO: Реализовать функционал копирования */}
-               <Button className={cn("invite__copy")} size="huge">
-                  Copy link
-                  <img src="img/pages/invite/copy-link.svg" alt="Copy" />
-               </Button>
-            </div>
+                // earning={`1st: ${Math.round(user.coinsEarned ?? 0)}, 2nd: ${Math.round(user.secondTierEarnings ?? 0)}, 3rd: ${Math.round(user.thirdTierEarnings ?? 0)}`}
+                // coinAmount={Math.round(user.totalEarnings).toString()}
+                coinAmount={''}
+              />
+            ))}
+            type="third"
+          />
+        </PopupListWrap>
 
-            {/* Звезды на заднем фоне */}
-            <div className={cn("bg-elements")}>
-               <img src="img/pages/people/star.svg" alt="star" />
-               <img src="img/pages/people/star.svg" alt="star" />
-               <img src="img/pages/people/star.svg" alt="star" />
-               <img src="img/pages/people/star.svg" alt="star" />
-               <img src="img/pages/people/star.svg" alt="star" />
-               <img src="img/pages/people/star.svg" alt="star" />
-               <img src="img/pages/people/star.svg" alt="star" />
-               <img src="img/pages/people/star.svg" alt="star" />
-               <img src="img/pages/people/star.svg" alt="star" />
-               <img src="img/pages/people/star.svg" alt="star" />
-               <img src="img/pages/people/star.svg" alt="star" />
-            </div>
-            <GreenBg />
-         </div>
+        {/* <div className={cn("invite__btns")}>
+        <TelegramShareButton
+  url={`https://t.me/Coin_Farming_bot?start=${user.referralCode}`}
+  title="Join me on Coin Farm!"
+>
+  <Button className={cn("invite__copy")} size="big" >
+    Invite friends
+  </Button>
+</TelegramShareButton>
 
-         {/* Кнопка закрытия страниц */}
-         <img
-            src="img/global/closeIcon.svg"
-            onClick={() => navigate(Routes.HOME)}
-            className={cn("close")}
-            alt="Close"
-         />
+          <Button className={cn("invite__copy")} size="big" onClick={handleCopyLink}>
+            Copy link
+            <img src="img/pages/invite/copy-link.svg" alt="Copy" />
+          </Button>
+          {notificationVisible && (
+        <div className={cn("invite__notification")}>
+          Link copied to clipboard!
+        </div>
+      )}
+        </div> */}
+
+        {/* Звезды на заднем фоне */}
+        <div className={cn("bg-elements")}>
+          <img src="img/pages/people/star.svg" alt="star" />
+          <img src="img/pages/people/star.svg" alt="star" />
+          <img src="img/pages/people/star.svg" alt="star" />
+          <img src="img/pages/people/star.svg" alt="star" />
+          <img src="img/pages/people/star.svg" alt="star" />
+          <img src="img/pages/people/star.svg" alt="star" />
+          <img src="img/pages/people/star.svg" alt="star" />
+          <img src="img/pages/people/star.svg" alt="star" />
+          <img src="img/pages/people/star.svg" alt="star" />
+          <img src="img/pages/people/star.svg" alt="star" />
+          <img src="img/pages/people/star.svg" alt="star" />
+        </div>
+        <GreenBg />
       </div>
-   );
+
+      {/* Кнопка закрытия страниц */}
+      <img
+        src="img/global/closeIcon.svg"
+        onClick={() => navigate(Routes.HOME)}
+        className={cn("close")}
+        alt="Close"
+      />
+    </div>
+  );
 };
 
 export default Invite;

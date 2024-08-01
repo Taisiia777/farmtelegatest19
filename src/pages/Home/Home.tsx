@@ -1,4 +1,5 @@
 import { RefObject, useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch} from "react-redux";
 import { setUser } from "../../store/reducers/userSlice";
 import { RootState } from "../../store";
@@ -9,9 +10,17 @@ import { useOutsideClick } from "../../hooks/useOutsideClick";
 import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
 import { retrieveLaunchParams } from '@tma.js/sdk';
 import { calculateGrassEarnings, growAllToMax, } from "../../store/reducers/growthStages";
-
+import axios from "axios";
 import classNames from "classnames/bind";
 import useWindowSize from "../../hooks/useWindowSize";
+import { setUserCoins1 } from '../../store/reducers/userCoinsSlice';
+import RainAnimation from './modules/RainAnimation';
+import QRCodeComponent from './QRCodeComponent';
+// import useWheatTrunctaion from "./hooks/useWheatTrunctation";
+// import {useHarvestAllWheat} from "./hooks/useHarvestAllWheat";
+import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
+// import Clouds from "./modules/Clouds";
 const cn = classNames.bind(styles);
 
 import Coins from "./modules/Coins";
@@ -34,18 +43,32 @@ import LigaBlock from "../../components/LigaBlock/LigaBlock";
 import FreindOrSpecialBlock from "../../components/FreindOrSpecialBlock/FreindOrSpecialBlock";
 import Greeting from "../../components/Greeting/Greeting";
 import DailyBonus from "../../components/DailyBonus/DailyBonus";
+// import { set } from "lodash";
 
-type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond"; // Определение типа TLiga
+type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond" ; // Определение типа TLiga
 type TBoostName = 'mill' | 'drone' | 'minicar' | 'car-2' | 'car-3';
+type TGrowthStage = "first" | "second" | "third" | "fourth";
+
 type TCoin =
-   | "BTC"
-   | "ETHerium"
-   | "Binance"
+   | "Bitcoin"
+   | "Ethereum"
+   | "BNB"
    | "Cardano"
    | "Solana"
-   | "XRP"
+   | "Ripple"
    | "Polkadot"
-   | "TON";
+   | "Ton";
+
+interface Task {
+    id: number;
+    description: string;
+    type: string;
+    rewardAmount: number;
+    imgSrc: string;
+    link: string;
+  }
+
+  
 interface Booster {
    id: number;
    name: TBoostName;
@@ -61,34 +84,41 @@ interface Booster {
    hourlyIncome: number;
  }
 
+ type Reward = {
+   id: number;
+   description: string;
+   type: string;
+   amount: number;
+   level: number | null;
+   coins: number | null;
+ };
  
- 
-//  interface User {
-//    id: number;
-//    username: string;
-//    coins: number;
-//    totalEarnings: number;
-//    incomeMultiplier: number;
-//    coinsPerHour: number;
-//    xp: number;
-//    level: number;
-//    activeBoosters: Booster[];
-//  }
 
-const leagues = [
-   { name: "Wooden", coinsRequired: 5000 },
-   { name: "Silver", coinsRequired: 25000 },
-   { name: "Gold", coinsRequired: 100000 },
-   { name: "Fire", coinsRequired: 1000000 },
-   { name: "Diamond", coinsRequired: 2500000 },
- ];
 
+// const leagues = [
+//    { name: "Wooden", coinsRequired: 50000, coinsTo: 0 },
+//    { name: "Silver", coinsRequired: 500000,  coinsTo: 50000  },
+//    { name: "Gold", coinsRequired: 5000000, coinsTo: 500000  },
+//    { name: "Fire", coinsRequired: 10000000, coinsTo: 5000000  },
+//    { name: "Diamond", coinsRequired: 10000000, coinsTo: 10000000  },
+//  ];
+
+ const leagues = [
+  { name: "Wooden", referralsRequired: 3, referralsTo: 0, harvest: 1 },
+  { name: "Silver", referralsRequired: 10, referralsTo: 3, harvest: 1.5 },
+  { name: "Gold", referralsRequired: 50, referralsTo: 10, harvest: 2 },
+  { name: "Fire", referralsRequired: 200, referralsTo: 50, harvest: 3 },
+  { name: "Diamond", referralsRequired: 1000, referralsTo: 200, harvest: 4 },
+  { name: "Ruby", referralsRequired: 1001, referralsTo: 1000, harvest: 5 },
+];
 
 
 const Home = () => {
+  const navigate = useNavigate();
+
    const dispatch = useDispatch();
    const { width } = useWindowSize();
-      const user = useAppSelector((state: RootState) => state.user.user);
+    const user = useAppSelector((state: RootState) => state.user.user);
    const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
    const [nickname, setNickname] = useState('Savelii777'); // Состояние для никнейма
    // const [imgSrc, setImgSrc] = useState("img/pages/people/person.png");
@@ -100,21 +130,44 @@ const Home = () => {
    const [userBoosters, setUserBoosters] = useState<Booster[]>([]);
    const [coins, setCoins] = useState<Coin[]>([]);
    const [userCoins, setUserCoins] = useState<Coin[]>([]);
-   const [hasFirstReward, setHasFirstReward] = useState(false); // Состояние для проверки наличия награды "first"
+   const [hasFirstReward, setHasFirstReward] = useState(true); // Состояние для проверки наличия награды "first"
    const [grassTotal, setGrassTotal] = useState(0);
+   const [rewards, setRewards] = useState<Reward[]>([]);
+   const [isRain, setIsRain] = useState(true); // Состояние для проверки наличия награды "first"
+   const [multiplier, setMultiplier] = useState(0); // Состояние для проверки наличия награды "first"
+   const [mostExpensiveCoinName, setMostExpensiveCoinName] = useState<string | null>(null);
+   let initialGrassEarnings = calculateGrassEarnings(blocks, user?.coinsPerHour, user?.incomeMultiplier);
+   const [currentGrassEarnings, setCurrentGrassEarnings] = useState(initialGrassEarnings);
+   const [displayEarnings, setDisplayEarnings] = useState(0);
+   const [userXp, setUserXp] = useState(0); // Состояние для проверки наличия награды "first"
+   const [isXpFetched, setIsXpFetched] = useState(false);
+   const [isRainAnim, setIsRainAnim] = useState(false);
+   const [currentRainProgress, setCurrentRainProgress] = useState(0);
+   const [isFetchedRewards, setIsFetchedRewards] = useState(false);
+   const [isFetchedRewards1, setIsFetchedRewards1] = useState(false);
+   const [tasks, setTasks] = useState<Task[]>([]);
+   const [rainInterval, setRainInterval] = useState(0);
+   const lastUpdateRef = useRef(Date.now());
+   const [showQRCode, setShowQRCode] = useState(false);
 
+  // useWheatTrunctaion();
+  // useHarvestAllWheat()
+  console.log(mostExpensiveCoinName)
+   console.log(rewards)
+   console.log(currentGrassEarnings)
+   console.log(userXp)
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
 
    // Состояние попапов приветсвия
-   const isGreetingOpen = useAppSelector((state) => state.greeting.isOpen);
+  //  const isGreetingOpen = useAppSelector((state) => state.greeting.isOpen);
 
-   // Состояние попапа бонуса
-   const isDailyBonusOpen = useAppSelector((state) => state.dailyBonus.isOpen);
+  //  // Состояние попапа бонуса
+  //  const isDailyBonusOpen = useAppSelector((state) => state.dailyBonus.isOpen);
 
-   const isFingerActve = useAppSelector(
-      (state) => state.growthStages.isFingerActive
-   );
+  //  const isFingerActve = useAppSelector(
+  //     (state) => state.growthStages.isFingerActive
+  //  );
 
    // Energy popup
    const [energyPopupOpen, setEnergyPopupOpen] = useState(false);
@@ -123,7 +176,7 @@ const Home = () => {
       ["#energy"]
    );
    const energyMoneyAnimRef = useRef<HTMLImageElement>(null);
-
+   console.log(energyMoneyAnimRef)
    // Buy Boost popup
    const boostState = useAppSelector((state) => state.boost);
    const boostBuyRef = useOutsideClick(
@@ -131,11 +184,14 @@ const Home = () => {
       ["#buyBoost"]
    );
 
+ 
+
    // Boost popup
    const [boostPopupOpen, setBoostPopupOpen] = useState(false);
+   
    const boostRef = useOutsideClick(
       () => setBoostPopupOpen(false),
-      ["#menu", "#tabs", "#popup"]
+      ["#menu", "#tabs", "#popup", "#energy"]
    );
    useClosePopupByTgButton({
       isOpen: boostPopupOpen,
@@ -145,6 +201,18 @@ const Home = () => {
    // Активный таб в boost popup
    const [boostActiveTab, setBoostActiveTab] = useState("BOOST");
 
+   const openCoinPopup =  () => {
+    setBoostActiveTab("COINS")
+  };
+  const openBoostPopup =  () => {
+    setBoostActiveTab("BOOST")
+  };
+  const openLeaguePopup =  () => {
+    setBoostActiveTab("LEAGUES")
+  };
+  const openSpecialPopup =  () => {
+    setEarnActiveTab("TASKS")
+  };
    // Earn popup
    const [earnPopupOpen, setEarnPopupOpen] = useState(false);
    const earnRef = useOutsideClick(
@@ -173,10 +241,12 @@ const Home = () => {
 
    // Показываем палец подсказку только когда попапы приветсвия и бонуса прошли.
    // А также только когда первый раз собирает
-   const canShowFinger = !isGreetingOpen && !isDailyBonusOpen && isFingerActve;
+  //  const canShowFinger = !isGreetingOpen && !isDailyBonusOpen && isFingerActve;
+  const [canShowFinger, setCanShowFinger] = useState(true);
 
    // Осуществляет покупку в попапе и делает анимацию монет
    function buy(ref: RefObject<HTMLImageElement>, callback: () => void) {
+
       ref.current?.classList.add("moneyAnim");
 
       setTimeout(() => {
@@ -184,60 +254,94 @@ const Home = () => {
          callback();
       }, 500);
    }
-   
+
+   useEffect(() => {
+    const checkIfDesktop = () => {
+      // const userAgent = navigator.userAgent;
+      // const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+      setShowQRCode(false);
+    };
+  
+    checkIfDesktop();
+  }, []);
+  
+
+   const fetchUserReferralsCount = async (userId: number) => {
+    try {
+      const response = await fetch(`https://coinfarm.club/api/user/${userId}/referrals`);
+      const data = await response.json();
+      return data.length;
+    } catch (error) {
+      console.error('Error fetching user referrals:', error);
+      return 0;
+    }
+  };
+
+  const { t } = useTranslation();
   useEffect(() => {
+    i18n.changeLanguage('en'); 
+    // const initData = window.Telegram.WebApp.initDataUnsafe;
+    // const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
+    
+    // if (['en', 'ru', 'ukr'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
+    //   i18n.changeLanguage(userLanguage);
+    // } else {
+    //   i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
+    // }
+  }, []);
+
+
+   useEffect(() => {
       const fetchData = async () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        let referralCode = urlParams.get('start');
-  
-        if (!referralCode && window.Telegram?.WebApp?.initData) {
-          const initData = new URLSearchParams(window.Telegram.WebApp.initData);
-          referralCode = initData.get('start');
-        }
-  
+       
         const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
         if (initData && initData.user) {
           const user = initData.user;
           const username = user.username;
+         const userId = user.id;
+
+           
+         const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
+         const data = response.data;
+         let referralCode = data.referral_code;
           if (username) {
             setNickname(username);
-  
+            
             try {
-              const response = await fetch(
-                "https://coinfarm.club/user",
+              const response = await axios.post(
+                "https://coinfarm.club/api/user",
                 {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                    Accept: "application/json",
-                  },
-                  body: JSON.stringify({
-                    username: username, // Используем username вместо nickname
-                    coins: 0,
-                    totalEarnings: 0,
-                    incomeMultiplier: 1,
-                    coinsPerHour: 10,
-                    xp: 0,
-                    level: 0,
-                    referralCode: "f597aa0d-dba7-4939-84b6-ee6413b55ed7", // Передаем реферальный код
-                  }),
+                  username: username,
+                  coins: 0,
+                  totalEarnings: 0,
+                  incomeMultiplier: 1,
+                  coinsPerHour: 1000,
+                  xp: 1000,
+                  level: 0,
+                  referralCode: referralCode,
                 }
               );
-  
+
+
               if (response.status === 409) {
-                const userData = await response.json();
+                const userData =  response.data;
                 alert(`User already exists: ${JSON.stringify(userData)}`);
-                setGrassTotal(userData.coinsPerHour);
+                const userLeagueIndex = userData ? userData.level : 0;
+                const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
+                const calculatedInHour = userData?.coinsPerHour * userHarvestMultiplier;
+                setGrassTotal(calculatedInHour);
                 setLevel(userData.level);
-                console.log('Existing user ID:', userData.id);
-              } else if (!response.ok) {
-                throw new Error("Something went wrong");
-              } else {
-                const newUser = await response.json();
-                setGrassTotal(newUser.coinsPerHour);
+                setMultiplier(userData.incomeMultiplier)
+               
+              }else {
+                const newUser =  response.data;
+                const userLeagueIndex = newUser ? newUser.level : 0;
+                const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
+                const calculatedInHour = newUser?.coinsPerHour * userHarvestMultiplier;
+                setGrassTotal(calculatedInHour);
                 setLevel(newUser.level);
                 dispatch(setUser(newUser));
-                console.log('New user ID:', newUser.id);
+                setMultiplier(newUser.incomeMultiplier)                
               }
             } catch (error) {
               console.error("Error:", error);
@@ -247,15 +351,14 @@ const Home = () => {
           if (user.photoUrl) {
             // setImgSrc(user.photoUrl);
           } else {
-            console.log("Photo URL not available");
           }
         }
       };
   
       fetchData(); // Initial fetch on component mount
   
-      const interval = setInterval(fetchData, 3000); // Fetch every 2 seconds
-  
+      const interval = setInterval(fetchData, 2000); // Fetch every 2 seconds
+      
       return () => clearInterval(interval); // Clean up interval on component unmount
   
     }, [dispatch]); // Add other dependencies if needed
@@ -264,10 +367,34 @@ const Home = () => {
 
 
 
-   const updateLeagueProgress = async () => {
+    useEffect(() => {
+      const updateOnlineStatus = async () => {
+         let userId = user?.id
+        try {
+          await axios.post('https://coinfarm.club/api/user/online', { userId });
+        } catch (error) {
+          console.error('Error updating online status:', error);
+        }
+      };
+  
+     
+  
+      updateOnlineStatus();
+      const intervalId = setInterval(() => {
+        updateOnlineStatus();
+      }, 10000); // Обновление каждые 60 секунд
+  
+      return () => clearInterval(intervalId);
+    }, []);
+
+
+
+  
+   const updateLeagueProgress = async () => { 
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
-    
+      const userReferrals = await fetchUserReferralsCount(user.id);
+
       // Фиксируем текущий уровень лиги, чтобы не понижать
       let currentLevel = level;
     
@@ -282,15 +409,15 @@ const Home = () => {
           percent = 100;
         } else {
           // Рассчитываем прогресс для текущей лиги
-          percent = (localCoins / nextLeague.coinsRequired) * 100;
+          percent = (userReferrals / nextLeague.referralsRequired) * 100;
         }
         setProgressPercent(Math.min(percent, 100));
     
-        if (localCoins >= nextLeague.coinsRequired &&  localCoins < 2500000) {
+        if (userReferrals >= nextLeague.referralsRequired && currentLevel != 5 ) {
           const newLevel = currentLevel + 1;
-          const success = await updateUserLevel(user.id, newLevel); // Обновляем уровень на сервере
+          const success = await updateUserLevel(user.id, newLevel, user?.incomeMultiplier * leagues[newLevel].harvest ); // Обновляем уровень на сервере
           if (success) {
-            dispatch(setUser({ ...user, level: newLevel }));
+            dispatch(setUser({ ...user, level: newLevel, incomeMultiplier: user?.incomeMultiplier}));
             currentLevel = newLevel; // Обновляем текущий уровень после успешного обновления
             setLevel(newLevel)
           } else {
@@ -304,9 +431,10 @@ const Home = () => {
       setIsProgressUpdating(false);
     };
     
-    const updateUserLevel = async (userId: number, newLevel: number) => {
+    const updateUserLevel = async (userId: number, newLevel: number, harvest: number) => {
+      console.log(harvest)
       try {
-        const response = await fetch(`https://coinfarm.club/user/${userId}`, {
+        const response = await fetch(`https://coinfarm.club/api/user/${userId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -340,6 +468,8 @@ const Home = () => {
         setLocalCoins(parseFloat(user.coins));
       }
     }, [user]);
+
+
   
     const renderLeagues = () => {
       return leagues.map((league, index) => {
@@ -347,20 +477,21 @@ const Home = () => {
         if (index < level) {
           percent = 100; // Прошедшие лиги имеют 100%
         } else if (index === level) {
-          percent = (localCoins / league.coinsRequired) * 100; // Текущая лига рассчитывается
+          percent = (localCoins / league.referralsRequired) * 100; // Текущая лига рассчитывается
         } else {
           percent = 0; // Будущие лиги имеют 0%
         }
     
-      //   const isActive = index <= level;
+        const isActive = index <= level;
         console.log(progressPercent)
         return (
           <LigaBlock
             key={league.name}
             ligaName={league.name as TLiga} // Приведение типа к TLiga
             percent={percent}
-            price={league.coinsRequired.toString()}
-            active={false}
+            price={league.referralsTo.toString()}
+            active={isActive}
+            harvest={league.harvest}
           />
         );
       });
@@ -369,7 +500,7 @@ const Home = () => {
     useEffect(() => {
       const fetchBoosters = async () => {
         try {
-          const response = await fetch("https://coinfarm.club/booster");
+          const response = await fetch("https://coinfarm.club/api/booster");
           const data = await response.json();
           setBoosters(data);
         } catch (error) {
@@ -380,7 +511,7 @@ const Home = () => {
       const fetchUserBoosters = async () => {
         if (user) {
           try {
-            const response = await fetch(`https://coinfarm.club/user/${user.id}/boosters`);
+            const response = await fetch(`https://coinfarm.club/api/user/${user.id}/boosters`);
             const data = await response.json();
             setUserBoosters(data);
           } catch (error) {
@@ -390,7 +521,7 @@ const Home = () => {
       };
       const fetchCoins = async () => {
          try {
-           const response = await fetch("https://coinfarm.club/coin");
+           const response = await fetch("https://coinfarm.club/api/coin");
            const data = await response.json();
            setCoins(data);
          } catch (error) {
@@ -401,9 +532,15 @@ const Home = () => {
        const fetchUserCoins = async () => {
          if (user) {
            try {
-             const response = await fetch(`https://coinfarm.club/user/${user.id}/coins`);
+             const response = await fetch(`https://coinfarm.club/api/user/${user.id}/coins`);
              const data = await response.json();
              setUserCoins(data);
+             dispatch(setUserCoins1(data)); 
+             const mostExpensiveCoin = data.reduce((max:any, coin:Coin) => coin.cost > max.cost ? coin : max, coins[0]);
+     
+             // Обновить состояние с именем самой дорогой монеты
+             setMostExpensiveCoinName(mostExpensiveCoin.name);          
+
            } catch (error) {
              console.error("Error fetching user boosters:", error);
            }
@@ -418,9 +555,9 @@ const Home = () => {
 
     useEffect(() => {
       const fetchRewards = async () => {
-         if (user?.id) {
+         if (user?.id && !isFetchedRewards) {
             try {
-               const response = await fetch(`https://coinfarm.club/reward/${user.id}`, {
+               const response = await fetch(`https://coinfarm.club/api/reward/${user.id}`, {
                   method: 'GET',
                   headers: {
                      'Content-Type': 'application/json',
@@ -432,7 +569,9 @@ const Home = () => {
                   throw new Error('Something went wrong');
                } else {
                   const rewards = await response.json();
+                  // dispatch(setUserRewards1(rewards));
                   const hasFirstReward = rewards.some((reward: any) => reward.type === 'first');
+                  setIsFetchedRewards(true)
                   setHasFirstReward(hasFirstReward);
                }
             } catch (error) {
@@ -440,71 +579,87 @@ const Home = () => {
             }
          }
       };
-
-      fetchRewards();
+   fetchRewards()
+      
    }, [user]);
     const getActiveBoosterIds = (): number[] => {
       return boosters
         .filter(booster => {
           const isBought = userBoosters.some(userBooster => userBooster.id === booster.id);
-          const currentLeagueIndex = leagues.findIndex(league => league.name === leagues[level].name);
-          const boosterLeagueIndex = leagues.findIndex(league => league.name === booster.league);
-          const isBlocked = boosterLeagueIndex > currentLeagueIndex;
-    
+          // const currentLeagueIndex = leagues.findIndex(league => league.name === leagues[level].name);
+          // const boosterLeagueIndex = leagues.findIndex(league => league.name === booster.league);
+          // const isBlocked = boosterLeagueIndex > currentLeagueIndex;
+          const isBlocked = false;
           return isBought && !isBlocked;
         })
         .map(booster => booster.id);
     };
 
-   // const renderBoosters = () => {
-   //    return boosters.map((booster) => {
-   //      // Проверка, куплен ли бустер пользователем
-   //      const isBought = userBoosters.some((userBooster) => userBooster.id === booster.id);
-   //      // Проверка, доступен ли бустер для текущей или предыдущих лиг
-   //      const currentLeagueIndex = leagues.findIndex((league) => league.name === leagues[level].name);
-   //      const boosterLeagueIndex = leagues.findIndex((league) => league.name === booster.league);
-   //      const isBlocked = boosterLeagueIndex > currentLeagueIndex;
-    
-   //      return (
-   //        <BoostBlock
-   //          key={booster.id}
-   //          boostName={booster.name}
-   //          earning={booster.yieldIncrease.toString()}
-   //          price={booster.cost.toString()}
-   //          ligaName={booster.league as TLiga}
-   //          isBought={isBought}
-   //          isBlocked={isBlocked}
-   //        />
-   //      );
-   //    });
-   //  };
-    
 
-
-
-   const renderBoosters = () => {
+   async function applyBooster() {
+      try {
+        
+          if (user) {
+               const response = await axios.post(`https://coinfarm.club/api/booster/apply/${user.id}/${boostState.info.boosterId}`);
+               console.log('Booster applied:', response.data);
+         
+          }
+      } catch (error) {
+        console.error('Error applying booster:', error);
+      }
       
-      return boosters.map((booster) => {
+    }
+    const boosterNames = [
+      'Energy Mill',
+      'Crop Master',
+      'Robo Rover',
+      'Harvester Pro',
+      'Super Drone'
+    ];
+   const renderBoosters = () => {
+    const sortedBoosters = boosters.sort((a, b) => a.id - b.id);
+
+      return sortedBoosters.map((booster, index) => {
          
         // Проверка, куплен ли бустер пользователем
         const isBought = userBoosters.some((userBooster) => userBooster.id === booster.id);
         // Проверка, доступен ли бустер для текущей или предыдущих лиг
-        const currentLeagueIndex = leagues.findIndex((league) => league.name === leagues[level].name);
-        const boosterLeagueIndex = leagues.findIndex((league) => league.name === booster.league);
-        const isBlocked = boosterLeagueIndex > currentLeagueIndex;
-        return (
-          <BoostBlock
-            key={booster.id}
-            boostName={booster.name}
-            earning={booster.yieldIncrease.toString()}
-            price={booster.cost.toString()}
-            ligaName={booster.league as TLiga}
-            isBought={isBought}
-            isBlocked={isBlocked}
-            // userId={user.id} // Передача userId
-            boosterId={booster.id} // Передача boosterId
-          />
-        );
+        // const currentLeagueIndex = leagues.findIndex((league) => league.name === leagues[level].name);
+        // const boosterLeagueIndex = leagues.findIndex((league) => league.name === booster.league);
+        // const isBlocked = boosterLeagueIndex > currentLeagueIndex;
+        const isBlocked = false
+        if(user){
+         return (
+            <BoostBlock
+              key={booster.id}
+              boostName={booster.name}
+              boostNameNew={boosterNames[index]}
+              earning={booster.yieldIncrease.toString()}
+              price={booster.cost.toString()}
+              ligaName={booster.league as TLiga}
+              isBought={isBought}
+              isBlocked={isBlocked}
+              userCoins={user.coins} // Передача количества монет пользователя
+              boosterId={booster.id} // Передача boosterId
+            />
+          );
+        }else{
+         return (
+            <BoostBlock
+              key={booster.id}
+              boostName={booster.name}
+              boostNameNew={boosterNames[index]}
+              earning={booster.yieldIncrease.toString()}
+              price={booster.cost.toString()}
+              ligaName={booster.league as TLiga}
+              isBought={isBought}
+              isBlocked={isBlocked}
+              userCoins={0} // Передача количества монет пользователя
+              boosterId={booster.id} // Передача boosterId
+            />
+          );
+        }
+        
       });
     };
     
@@ -515,31 +670,32 @@ const Home = () => {
 
 
     
-   //  const renderCoins = () => {
-   //    return coins.map((coin) => {
-   //      // Проверка, куплена ли монета пользователем
-   //      const isBought = userCoins.some((userCoin) => userCoin.id === coin.id);
-   //      const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
-    
-   //      return (
-   //        <CoinBlock
-   //          key={coin.id}
-   //          coinName={coin.name}
-   //          earning={coin.hourlyIncome.toString()}
-   //          price={coin.cost.toString()}
-   //          isBought={isBought}
-   //          isBlocked={isBlocked}
-   //        />
-   //      );
-   //    });
-   //  };
-
+   async function giveCoin() {
+      try {
+        const response = await axios.post(`https://coinfarm.club/api/coin/give/${user.id}/${coinState.info.coinId}`);
+        console.log('Coin given:', response.data);
+      } catch (error) {
+        console.error('Error giving coin:', error);
+      }
+    }
    const renderCoins = () => {
-      return coins.map((coin) => {
+      const getMostExpensiveCoin = (userCoins: Coin[]) => {
+         if (userCoins.length === 0) return null;
+       
+         return userCoins.reduce((maxCoin, currentCoin) => {
+           return currentCoin.cost > maxCoin.cost ? currentCoin : maxCoin;
+         });
+       };
+       const mostExpensiveCoin = getMostExpensiveCoin(userCoins);
+       const sortedCoins = [...coins].sort((a, b) => a.id - b.id);
+      return sortedCoins.map((coin, index) => {
         // Проверка, куплена ли монета пользователем
         const isBought = userCoins.some((userCoin) => userCoin.id === coin.id);
+        const isActive =  mostExpensiveCoin ? mostExpensiveCoin.id === coin.id : false;
         const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
-    
+        const hourlyIncome = 1000 + index * 100;
+       
+        if(user){
         return (
           <CoinBlock
             key={coin.id}
@@ -549,34 +705,398 @@ const Home = () => {
             isBought={isBought}
             isBlocked={isBlocked}
             userId={user.id} // Передача userId
+            userCoins={user.coins} // Передача количества монет пользователя
             coinId={coin.id} // Передача coinId
+            isActive={isActive}
+            mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
           />
         );
+      }else{
+         <CoinBlock
+            key={coin.id}
+            coinName={coin.name}
+            earning={hourlyIncome.toString()}
+            price={coin.cost.toString()}
+            isBought={isBought}
+            isBlocked={isBlocked}
+            userId={user.id} // Передача userId
+            userCoins={0} // Передача количества монет пользователя
+            coinId={coin.id} // Передача coinId
+            mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
+          />
+      }
       });
     };
+    const updateCoins = async (amount: number) => {
+      if (user) {
+        try {
+          const response = await axios.patch(
+            `https://coinfarm.club/api/user/${user.id}/earn/${amount}`
+          );
+          const updatedUser = response.data;
+          // Обновление состояния пользователя
+          dispatch(
+            setUser({
+              ...updatedUser,
+              coins: parseFloat(updatedUser.coins),
+              totalEarnings: parseFloat(updatedUser.totalEarnings),
+            })
+          );
     
-   //  useEffect(() => {
-   //    const interval = setInterval(() => {
-   //      blocks.forEach((block: IGrowthStages['blocks'][number]) => {
-   //        dispatch(incrementProgress({ id: block.id }));
-   //      });
-   //    }, 1000); // Обновление прогресса каждую секунду
+          console.log("Coins updated successfully:", updatedUser); // Лог успешного обновления монет
+        } catch (error) {
+          console.error("Error updating user coins:", error);
+        }
+      } else {
+        console.log("No user or amount is zero"); // Лог для отладки
+      }
+    };
+    
+    const getNonFirstStageCount = (blocks: { id: number; stage: TGrowthStage }[]) => {
+      return blocks.filter(block => block.stage !== "first").length;
+    };
+    
+    // useEffect(() => {
+    //   const handleHarvest = (event: Event) => {
+    //     const customEvent = event as CustomEvent<number>;
+    //     const harvestedCount = customEvent.detail;
+    
+    //     // Получить количество блоков с несрезанными стадиями
+    //     const nonFirstStageCount = getNonFirstStageCount(blocks);
+    
+    //     console.log("Non-first stage count:", nonFirstStageCount);
+    //     console.log("Current grass earnings:", currentGrassEarnings);
+    //     console.log("Harvested count:", harvestedCount);
+    
+    //     if (nonFirstStageCount > 0) {
+    //       let totalDecrementAmount = 0;
+    //       let newGrassEarnings = currentGrassEarnings;
+    
+    //       for (let i = 0; i < harvestedCount; i++) {
+    //         const decrementAmount = newGrassEarnings / nonFirstStageCount;
+    //         console.log("Decrement amount:", decrementAmount);
+    
+    //         totalDecrementAmount += decrementAmount;
+    //         newGrassEarnings = Math.max(newGrassEarnings - decrementAmount, 0);
+    //       }
+    
+    //       setCurrentGrassEarnings(newGrassEarnings);
+    //       setDisplayEarnings(prev => {
+    //         const newDecrementAmount = (prev / nonFirstStageCount) * harvestedCount;
+    //         const newEarnings = Math.max(Math.round(prev - newDecrementAmount), 0);
+    //         updateCoins(newDecrementAmount);  // Начислить монеты пользователю
+    //         return newEarnings;
+    //       });
+    
+    //       console.log("Final current grass earnings:", newGrassEarnings);
+    //       console.log("Total decrement amount:", totalDecrementAmount);
+    //     } else {
+    //       // // Если все блоки имеют стадию "first", установим значения в ноль
+    //       // setCurrentGrassEarnings(0);
+    //       // setDisplayEarnings(0);
+    //       setDisplayEarnings(prev => {
+    //         const currentEarnings = prev;
+    //         updateCoins(currentEarnings);  // Начислить текущее значение прогресбара пользователю
+    //         setCurrentGrassEarnings(0);
+    //         return 0;
+    //       });
+    //     }
+    //   };
+    
+    //   document.addEventListener("harvest", handleHarvest);
+    
+    //   return () => {
+    //     document.removeEventListener("harvest", handleHarvest);
+    //   };
+    // }, [blocks, currentGrassEarnings, user]);
+    
+
+    
+    useEffect(() => {
+      const handleHarvest = (event: Event) => {
+        const customEvent = event as CustomEvent<number>;
+        const harvestedCount = customEvent.detail;
+    
+        // Получить количество блоков с несрезанными стадиями
+        const nonFirstStageCount = getNonFirstStageCount(blocks);
+    
+        console.log("Non-first stage count:", nonFirstStageCount);
+        console.log("Current grass earnings:", currentGrassEarnings);
+        console.log("Harvested count:", harvestedCount);
+        setCanShowFinger(false)
+        if (nonFirstStageCount > 0) {
+          let totalDecrementAmount = 0;
+          let newGrassEarnings = currentGrassEarnings;
+    
+          for (let i = 0; i < harvestedCount; i++) {
+            const decrementAmount = newGrassEarnings / nonFirstStageCount;
+            console.log("Decrement amount:", decrementAmount);
+    
+            totalDecrementAmount += decrementAmount;
+            newGrassEarnings = Math.max(newGrassEarnings - decrementAmount, 0);
+          }
+    
+          setCurrentGrassEarnings(newGrassEarnings);
+          setDisplayEarnings(prev => {
+            let newDecrementAmount = 0;
+            let newEarnings = prev;
+            for (let i = 0; i < harvestedCount; i++) {
+              const decrementAmount = newEarnings / nonFirstStageCount;
+              newDecrementAmount += decrementAmount;
+              newEarnings = Math.max(Math.round(newEarnings - decrementAmount), 0);
+            }
+            updateCoins(newDecrementAmount);  // Начислить монеты пользователю
+            return newEarnings;
+          });
+    
+          console.log("Final current grass earnings:", newGrassEarnings);
+          console.log("Total decrement amount:", totalDecrementAmount);
+        } else {
+          // Если все блоки имеют стадию "first", начисляем текущее значение прогресбара пользователю и сбрасываем его в ноль
+          setDisplayEarnings(prev => {
+            const currentEarnings = prev;
+            updateCoins(currentEarnings);  // Начислить текущее значение прогресбара пользователю
+            setCurrentGrassEarnings(0);
+            return 0;
+          });
+        }
+      };
+    
+      document.addEventListener("harvest", handleHarvest);
+    
+      return () => {
+        document.removeEventListener("harvest", handleHarvest);
+      };
+    }, [blocks, currentGrassEarnings, user]);
+    
+    
+    
   
-   //    return () => clearInterval(interval); // Очистка интервала при размонтировании компонента
-   //  }, [dispatch, blocks]);
+
+    
+    const updateXP = async (amount: number) => {
+      try {
+        await axios.patch(`https://coinfarm.club/api/user/${user?.id}/xp/${amount}`);
+      } catch (error) {
+        console.error('Error updating XP:', error);
+      }
+    };
   
-    const currentGrassEarnings = calculateGrassEarnings(blocks, user?.coinsPerHour);
+    // Этот useEffect устанавливает начальное значение displayEarnings из user.xp при первом рендере
+    useEffect(() => {
+      if (user?.xp && !isXpFetched) {
+        setTimeout(() => {
+          setDisplayEarnings(user.xp);
+          setIsXpFetched(true);
+        }, 100); // Задержка, имитирующая время отображения алерта
+       
+      }
+    }, [blocks, navigate]);
+  
+    // useEffect(() => {
+    //   const interval = setInterval(() => {
+    //     setDisplayEarnings(prev => prev + (user?.coinsPerHour / 7200 || 0));
+    //   }, 1000);
+  
+    //   return () => clearInterval(interval);
+    // }, [user?.coinsPerHour]);
+  
+    // useEffect(() => {
+    //   const interval = setInterval(() => {
+    //     setDisplayEarnings(prevDisplayEarnings => {
+    //       const earningsIncrement = user?.coinsPerHour / 7200 || 0;
+    //       const newDisplayEarnings = prevDisplayEarnings + earningsIncrement;
+    
+    //       const maxEarnings = user?.coinsPerHour * user?.incomeMultiplier;
+    
+    //       if (newDisplayEarnings <= maxEarnings) {
+    //         updateXP(newDisplayEarnings);
+    //         setUserXp(newDisplayEarnings);
+    //         return newDisplayEarnings;
+    //       } else {
+    //         updateXP(maxEarnings);
+    //         setUserXp(maxEarnings);
+    //         return maxEarnings;
+    //       }
+    //     });
+    //   }, 1000);
+    
+    //   return () => clearInterval(interval);
+    // }, [user?.coinsPerHour, user?.incomeMultiplier]);
+    
+
+    useEffect(() => {
+      const handleVisibilityChange = () => {
+        if (!document.hidden) {
+          lastUpdateRef.current = Date.now();
+        }
+      };
+  
+      document.addEventListener('visibilitychange', handleVisibilityChange);
+  
+      const interval = setInterval(() => {
+        const now = Date.now();
+        const elapsed = (now - lastUpdateRef.current) / 1000; // время в секундах
+        lastUpdateRef.current = now;
+        const userLeagueIndex = user ? user.level : 0;
+        const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
+        const calculatedInHour = user?.coinsPerHour * userHarvestMultiplier;
+        setDisplayEarnings(prevDisplayEarnings => {
+          const earningsIncrement = (calculatedInHour / 3600 || 0) * elapsed;
+          const newDisplayEarnings = prevDisplayEarnings + earningsIncrement;
+          const maxEarnings = calculatedInHour * user?.incomeMultiplier;
+  
+          if (newDisplayEarnings <= maxEarnings) {
+            updateXP(newDisplayEarnings);
+            setUserXp(newDisplayEarnings);
+            return newDisplayEarnings;
+          } else {
+            updateXP(maxEarnings);
+            setUserXp(maxEarnings);
+            return maxEarnings;
+          }
+        });
+      }, 1000);
+  
+      return () => {
+        clearInterval(interval);
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
+      };
+    }, [user?.coinsPerHour, user?.incomeMultiplier]);
+  
+    useEffect(() => {
+      if (user?.id && !isFetchedRewards1) {
+        const fetchRewards = async () => {
+    try {
+      const response = await axios.get(`https://coinfarm.club/api/reward/${user?.id}`);
+      setRewards(response.data);
+      checkRainReward(response.data);
+      console.log("check rain");
+      setIsFetchedRewards1(true)
+    } catch (error) {
+      console.error('Error fetching rewards:', error);
+    }
+  };
+
+      fetchRewards();
+}
+    }, [user]); // Depend on location and user ID
+
+    useEffect(() => {
+      // if (energyPopupOpen) {
+        // Step 1: Fetch rewards data
+        axios.get(`https://coinfarm.club/api/reward/${user?.id}`)
+          .then(response => {
+            setRewards(response.data);
+            checkRainReward(response.data);
+            console.log("check rain")
+          })
+          .catch(error => {
+            console.error('Error fetching rewards:', error);
+          });
+      // }
+    }, [user]);
+
+    
+    const checkRainReward = (rewards: Reward[]) => {
+      const rainRewards = rewards.filter(reward => reward.type === 'rain');
+      const car2Boost = userBoosters.find(boost => boost.name === 'mill');
+      setRainInterval(car2Boost ? 12 : 6); // Установите интервал на 12 часов, если бустер car-2 активен
+    
+      if (rainRewards.length > 0) {
+        const latestRainReward = rainRewards[rainRewards.length - 1];
+        const rewardTime = new Date(latestRainReward.description);
+        const currentTime = new Date();
+        const timeDifference = (currentTime.getTime() - rewardTime.getTime()) / (1000 * 60 * 60); // in hours
+    
+        // Устанавливаем прогресс до следующего дождя
+        setCurrentRainProgress(timeDifference);
+    
+        // Шаг 3: Проверка разницы во времени
+        if (timeDifference > rainInterval) {
+          setIsRain(true);
+        } else {
+          setIsRain(false);
+        }
+      } else {
+        setIsRain(true);
+        setCurrentRainProgress(rainInterval); // Если нет наград за дождь, то дождь доступен
+      }
+    };
+    
+
+  
+    const handleRainReward = async () => {
+      try {
+      //   const userId = 'yourUserId'; // Replace with actual user ID
+        const response = await axios.post(`https://coinfarm.club/api/reward/rain/${user?.id}`);
+         console.log(response)
+         const userLeagueIndex = user ? user.level : 0;
+         const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
+         const calculatedInHour = user?.coinsPerHour * userHarvestMultiplier;
+          setCurrentGrassEarnings(calculatedInHour*user?.incomeMultiplier);
+          setDisplayEarnings(calculatedInHour*user?.incomeMultiplier);
+          dispatch(growAllToMax());
+          setEnergyPopupOpen(false);
+          setIsRainAnim(true);
+          setTimeout(() => setIsRainAnim(false), 5000);
+        } catch (error) {
+        console.error('Error sending rain reward request:', error);
+      }
+    };
+    useEffect(() => {
+      const fetchTasks = async () => {
+        try {
+          const response = await axios.get('https://coinfarm.club/api/reward/');
+          setTasks(response.data);
+        } catch (error) {
+          console.error('Error fetching tasks:', error);
+        }
+      };
+    
+      fetchTasks();
+    }, []);
+    
+
    return (
       <>
+       <QRCodeComponent />
+       {!showQRCode && (
+ <>
+
+ {/* { isRain && <Clouds
+ onClick={() => setEnergyPopupOpen(true)}
+ />}
+
+  { isRainAnim && <Clouds 
+  onClick={() => setEnergyPopupOpen(true)}
+  />} */}
+          {isRainAnim && <RainAnimation />}
+          {!energyPopupOpen && !isPopupOpen && <Energy 
+            hours={user?.incomeMultiplier}
+           total={rainInterval}
+           current={currentRainProgress}
+           onClick={() => setEnergyPopupOpen(true)}
+           onClickProgresbar={() => console.log('kkk')}
+           version={1}
+           inHour={user?.coinsPerHour}
+           isRain={!isRain}
+           onClickProgresbarHarvest={
+            () => {
+              console.log('jjj')
+            }
+           }
+          /> }
+          
          {/* Основной контент */}
          <div className={cn("wrap", isLoading && "_hidden")}>
-            <div className={cn("top")}>
+            <div className={cn("top")} style={{zIndex:'2'}}>
                <Account
                   // nickname="dimamrkv"
-                  nickname={nickname}
+                  nickname={nickname.toUpperCase()}
                   // imgSrc={imgSrc}
                   />
-               <Coins quantity={user?.coins} />
+               <Coins quantity={Math.round(user?.coins || 0).toString()} />
             </div>
 
             {!isPopupOpen && (
@@ -586,15 +1106,47 @@ const Home = () => {
                      liga="Diamond"
                      onLigaOpen={() => setEarnPopupOpen(true)}
                   /> */}
-                  <Liga liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
+                  <Liga onClick={() => {setBoostPopupOpen(true)
+                    openLeaguePopup()
+                  }} liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
                   <Energy
-                     total={grassTotal*3*9}
-                     current={currentGrassEarnings}
-                     onClick={() => setEnergyPopupOpen(true)}
+                     total={grassTotal*multiplier}
+                     hours={user?.incomeMultiplier}
+                     current={displayEarnings<=grassTotal*multiplier? Math.round(displayEarnings) : grassTotal*multiplier}
+                     onClickProgresbarHarvest={
+                      () => {
+                        setBoostPopupOpen(true);
+                        openCoinPopup()
+                      }
+                     }
+                     onClick={() => {
+                      () => {
+                        setBoostPopupOpen(true);
+                        openBoostPopup()
+                      }
+                    }}
+                    onClickProgresbar={
+                      () => {
+                        setBoostPopupOpen(true);
+                        openBoostPopup()
+
+                      }
+                    }
+                    inHour={user?.coinsPerHour}
+                     version={0}
+                     isRain={!isRain}
+
                   />
                   <Menu
-                     onBoostOpen={() => setBoostPopupOpen(true)}
-                     onEarnOpen={() => setEarnPopupOpen(true)}
+                     onBoostOpen={() => {setBoostPopupOpen(true)
+                      openBoostPopup()
+                     }}
+                     onEarnOpen={() => {setEarnPopupOpen(true)
+                      openSpecialPopup()
+                     }}
+                     onCoinsOpen={() => {
+                      setBoostPopupOpen(true)
+                      openCoinPopup()}}
                   />
                </div>
             )}
@@ -619,72 +1171,67 @@ const Home = () => {
 
             {/* Rain popup */}
             <Popup
-               borderlabel="Rain"
-               isBlueBg
-               isOpen={energyPopupOpen}
-               onClose={() => setEnergyPopupOpen(false)}
-               ref={energyRef}>
-               <div className={cn("popup__body")}>
-                  {/* Молнии на заднем фоне */}
-                  <div className={cn("popup__bg-drops")}>
-                     <img src="img/pages/home/energy/drop.svg" />
-                     <img src="img/pages/home/energy/drop.svg" />
-                     <img src="img/pages/home/energy/drop.svg" />
-                     <img src="img/pages/home/energy/drop.svg" />
-                     <img src="img/pages/home/energy/drop.svg" />
-                     <img src="img/pages/home/energy/drop.svg" />
-                     <img src="img/pages/home/energy/drop.svg" />
-                     <img src="img/pages/home/energy/drop.svg" />
-                     <img src="img/pages/home/energy/drop.svg" />
-                  </div>
+      borderlabel={t('rain')}
+      isBlueBg
+      isOpen={energyPopupOpen}
+      onClose={() => setEnergyPopupOpen(false)}
+      ref={energyRef}
+    >
+      <div className={cn("popup__body")}>
+        <div className={cn("popup__bg-drops")}>
+          <img src="img/pages/home/energy/drop.svg" alt="drop" />
+          <img src="img/pages/home/energy/drop.svg" alt="drop" />
+          <img src="img/pages/home/energy/drop.svg" alt="drop" />
+          <img src="img/pages/home/energy/drop.svg" alt="drop" />
+          <img src="img/pages/home/energy/drop.svg" alt="drop" />
+          <img src="img/pages/home/energy/drop.svg" alt="drop" />
+          <img src="img/pages/home/energy/drop.svg" alt="drop" />
+          <img src="img/pages/home/energy/drop.svg" alt="drop" />
+          <img src="img/pages/home/energy/drop.svg" alt="drop" />
+        </div>
+          
+        <img
+          src="img/pages/home/energy/dark-clouds.svg"
+          className={cn("popup__icon")}
+          alt="energy"
+        />
 
-                  {/* Иконка туч */}
-                  <img
-                     src="img/pages/home/energy/clouds.svg"
-                     className={cn("popup__icon")}
-                     alt="energy"
-                  />
+        <p className={cn("popup__desc") + " textShadow"}>
+          {/* Activate rain to instantly grow your crops to their maximum
+          yield without waiting! Collect your fully grown harvest
+          immediately! */}
+          {t('rain_descr')}
+        </p>
 
-                  <p className={cn("popup__desc") + " textShadow"}>
-                     Activate rain to instantly grow your crops to their maximum
-                     yield without waiting! Collect your fully grown harvest
-                     immediately!
-                  </p>
-
-                  <div className={cn("popup__bottom")}>
-                     <Button
-                        className={cn("popup__btn")}
-                        size={width > 380 ? "big" : "normal"}
-                        isBlueBg
-                        onClick={() =>
-                           buy(energyMoneyAnimRef, () =>{
-
-                              dispatch(growAllToMax());
-                              setEnergyPopupOpen(false)
-
-                           }
-                             
-                           )
-                        }>
-                        <CoinWhiteBg
-                           iconName="BTC"
-                           className={cn("popup__btn-coin")}
-                           size={width > 380 ? "normall" : "small"}
-                        />
-                        <span className="textShadow">10 000</span>
-                     </Button>
-                     <img
-                        src="img/pages/home/money.svg"
-                        className={cn("popup__money-anim")}
-                        ref={energyMoneyAnimRef}
-                     />
-                  </div>
-               </div>
-            </Popup>
+        <div className={cn("popup__bottom")}>
+        {!isRain ? (
+            <Button
+            className={cn("popup__btn")}
+            size={width > 380 ? "big" : "normal"}
+            isBlueBg
+            disabled
+          >
+           
+            <span className="textShadow">Rain</span>
+          </Button>
+          ) : (
+            <Button
+            className={cn("popup__btn1")}
+            size={width > 380 ? "big" : "normal"}
+            onClick={handleRainReward}
+          >
+          
+            <span className="textShadow">Rain</span>
+          </Button>
+          )}
+         
+        </div>
+      </div>
+    </Popup>
 
             {/* Boost popup */}
             <Popup
-               borderlabel={boostState.info.name}
+               borderlabel={boostState.info.boostNameNew} // Используем новое имя бустера
                isOpen={boostState.isOpen}
                onClose={() => dispatch(closeBoostBuyPopup())}
                ref={boostBuyRef}>
@@ -705,29 +1252,30 @@ const Home = () => {
 
                   <div className={cn("popup__bottom")}>
                      <div className={cn("popup__earning")}>
-                        <span>+{boostState.info.earning}/h</span>
-                        <img
-                           src="img/pages/home/energy/energy.svg"
-                           alt="energy"
-                        />
+                        <span>+{boostState.info.earning} hour ⏰</span>
+                       
                      </div>
 
                      <Button
                         className={cn("popup__btn")}
                         size={width > 380 ? "big" : "normal"}
-                        onClick={() =>
+                        onClick={() =>{
+                           applyBooster()
                            buy(boostMoneyAnimRef, () =>
                               dispatch(closeBoostBuyPopup())
                            )
+                        }
+                           
                         }>
                         <CoinWhiteBg
-                           iconName="BTC"
+                           iconName="Bitcoin"
                            size={width > 380 ? "normall" : "small"}
                         />
                         <span>{boostState.info.price}</span>
                      </Button>
                      <img
-                        src="img/pages/home/money.svg"
+                        // src={`img/pages/home/${mostExpensiveCoinName}/money.svg`}
+                        src={`img/pages/home/money1.svg`}
                         className={cn("popup__money-anim")}
                         ref={boostMoneyAnimRef}
                      />
@@ -758,29 +1306,28 @@ const Home = () => {
 
                   <div className={cn("popup__bottom")}>
                      <div className={cn("popup__earning")}>
-                        <span>+{coinState.info.earning}/h</span>
-                        <img
-                           src="img/pages/home/energy/energy.svg"
-                           alt="energy"
-                        />
+                        <span>+{coinState.info.earning} / 1h</span>
                      </div>
 
                      <Button
                         className={cn("popup__btn")}
                         size={width > 380 ? "big" : "normal"}
-                        onClick={() =>
+                        onClick={() =>{
+                           giveCoin()
                            buy(coinMoneyAnimRef, () =>
                               dispatch(closeCoinBuyPopup())
                            )
+                        }
                         }>
                         <CoinWhiteBg
-                           iconName="BTC"
+                           iconName="Bitcoin"
                            size={width > 380 ? "normall" : "small"}
                         />
                         <span>{coinState.info.price}</span>
                      </Button>
                      <img
-                        src="img/pages/home/money.svg"
+                        // src={`img/pages/home/${mostExpensiveCoinName}/money.svg`}
+                        src={`img/pages/home/money1.svg`}
                         className={cn("popup__money-anim")}
                         ref={coinMoneyAnimRef}
                      />
@@ -791,160 +1338,64 @@ const Home = () => {
             {/* BOOST popup */}
             <PopupListWrap isOpen={boostPopupOpen}>
                <PopupListTabs
-                  labels={["BOOST", "COINS"]}
+                  labels={["BOOST", "COINS", "LEAGUES"]}
                   activeTab={boostActiveTab}
                   onTabChange={(label) => setBoostActiveTab(label)}
                />
-               {boostActiveTab === "BOOST"  ? (
-                  // <PopupList
-                  //    ref={boostRef}
-                  //    nodes={[
-                  //       <BoostBlock
-                  //          boostName="mill"
-                  //          earning={"500"}
-                  //          price="10 000"
-                  //          ligaName="Wooden"
-                  //       />,
-                  //       <BoostBlock
-                  //          boostName="drone"
-                  //          earning={"500"}
-                  //          price="15 000"
-                  //          ligaName="Silver"
-                  //          isBought
-                  //       />,
-                  //       <BoostBlock
-                  //          boostName="minicar"
-                  //          earning={"500"}
-                  //          price="30 000"
-                  //          ligaName="Gold"
-                  //          isBlocked
-                  //       />,
-                  //       <BoostBlock
-                  //          boostName="car-2"
-                  //          earning={"500"}
-                  //          price="40 000"
-                  //          ligaName="Fire"
-                  //          isBlocked
-                  //       />,
-                  //       <BoostBlock
-                  //          boostName="car-3"
-                  //          earning={"500"}
-                  //          price="70 000"
-                  //          ligaName="Diamond"
-                  //          isBlocked
-                  //       />,
-                  //    ]}
-                  // />
+               {/* {boostActiveTab === "BOOST"  ? (
                   <PopupList ref={boostRef} nodes={renderBoosters()} />
-
                ) : (
                   <PopupList ref={boostRef} nodes={renderCoins()} />
-
-                  // <PopupList
-                  //    ref={boostRef}
-                  //    nodes={[
-                  //       <CoinBlock
-                  //          coinName="BTC"
-                  //          earning="200"
-                  //          price="10 000"
-                  //          isBought
-                  //          isActive
-                  //       />,
-                  //       <CoinBlock
-                  //          coinName="Polkadot"
-                  //          earning="500"
-                  //          price="15 000"
-                  //          isBought
-                  //       />,
-                  //       <CoinBlock
-                  //          coinName="TON"
-                  //          earning="700"
-                  //          price="20 000"
-                  //          isBlocked
-                  //       />,
-                  //       <CoinBlock
-                  //          coinName="Binance"
-                  //          earning="1 000"
-                  //          price="30 000"
-                  //       />,
-                  //       <CoinBlock
-                  //          coinName="Polkadot"
-                  //          earning="2 000"
-                  //          price="35 000"
-                  //       />,
-                  //       <CoinBlock
-                  //          coinName="Solana"
-                  //          earning="5 000"
-                  //          price="50 000"
-                  //       />,
-                  //       <CoinBlock
-                  //          coinName="ETHerium"
-                  //          earning="10 000"
-                  //          price="40 000"
-                  //       />,
-                  //       <CoinBlock
-                  //          coinName="XRP"
-                  //          earning="20 000"
-                  //          price="80 000"
-                  //       />,
-                  //    ]}
-                  // />
-               )}
-            </PopupListWrap>
-
-            {/* EARN popup */}
-            <PopupListWrap isOpen={earnPopupOpen}>
-               <PopupListTabs
-                  labelClassName={cn("earn__label")}
-                  labels={["SPECIAL", "LEAGUES", "FRIENDS TASKS"]}
-                  activeTab={earnActiveTab}
-                  onTabChange={(label) => setEarnActiveTab(label)}
-               />
-            {earnActiveTab === "LEAGUES" && (
+               )} */}
+               
+               {boostActiveTab === "BOOST" && (
+               <PopupList ref={boostRef} nodes={renderBoosters()} />
+            )}
+              {boostActiveTab === "COINS" && (
+               <PopupList ref={boostRef} nodes={renderCoins()} />
+            )}
+                   {boostActiveTab === "LEAGUES" && (
                <PopupList
                   ref={earnRef}
                   nodes={renderLeagues()}
                />
             )}
-               {/* {earnActiveTab === "LEAGUES" && (
-                  <PopupList
-                     ref={earnRef}
-                     nodes={[
-                        <LigaBlock
-                           ligaName="Wooden"
-                           percent={100}
-                           price="5 000"
-                           acitve={true}
-                        />,
-                        <LigaBlock
-                           ligaName="Silver"
-                           percent={0}
-                           price="25 000"
-                           acitve={false}
-                        />,
-                        <LigaBlock
-                           ligaName="Gold"
-                           percent={20}
-                           price="100 000"
-                           acitve={false}
-                        />,
-                        <LigaBlock
-                           ligaName="Fire"
-                           percent={10}
-                           price="1 000 000"
-                           acitve={false}
-                        />,
-                        <LigaBlock
-                           ligaName="Diamond"
-                           percent={5}
-                           price="2 500 000"
-                           acitve={false}
-                        />,
-                     ]}
-                  />
-               )} */}
+              
+            </PopupListWrap>
 
-               {earnActiveTab === "SPECIAL" && (
+
+            {/* EARN popup */}
+            <PopupListWrap isOpen={earnPopupOpen}>
+               <PopupListTabs
+                  labelClassName={cn("earn__label")}
+                  labels={["TASKS"]}
+                  activeTab={earnActiveTab}
+                  onTabChange={(label) => setEarnActiveTab(label)}
+               />
+            {/* {earnActiveTab === "LEAGUES" && (
+               <PopupList
+                  ref={earnRef}
+                  nodes={renderLeagues()}
+               />
+            )} */}
+              
+{earnActiveTab === "TASKS" && (
+  <PopupList
+    ref={earnRef}
+    nodes={tasks.map(task => (
+      <FreindOrSpecialBlock
+        key={task.id}
+        imgSrc={task.imgSrc}
+        title={task.description}
+        earning={task.rewardAmount.toString()}
+        link={task.link}
+        defaultButtonText="Join"
+      />
+    ))}
+  />
+)}
+
+               {/* {earnActiveTab === "SPECIAL" && (
                   <PopupList
                      ref={earnRef}
                      nodes={[
@@ -973,25 +1424,25 @@ const Home = () => {
                         />,
                      ]}
                   />
-               )}
+               )} */}
 
-               {earnActiveTab === "FRIENDS TASKS" && (
+               {/* {earnActiveTab === "FRIENDS TASKS" && (
                   <PopupList
                      ref={earnRef}
                      nodes={[
                         <FreindOrSpecialBlock
                            imgSrc="img/global/person-btn.svg"
                            title="1 friend"
-                           earning="20 000"
-                           link="/"
+                           earning="x1.5 harvest"
+                           link=""
                            defaultButtonText="RECEIVE"
                            refs="1"
                         />,
                         <FreindOrSpecialBlock
                            imgSrc="img/global/person-btn.svg"
                            title="5 friends"
-                           earning="20 000"
-                           link="/"
+                           earning="x2 harvest"
+                           link=""
                            defaultButtonText="RECEIVE"
                            refs="5"
 
@@ -999,8 +1450,8 @@ const Home = () => {
                         <FreindOrSpecialBlock
                            imgSrc="img/global/person-btn.svg"
                            title="25 friends"
-                           earning="20 000"
-                           link="/"
+                           earning="x3 harvest"
+                           link=""
                            defaultButtonText="RECEIVE"
                            refs="25"
 
@@ -1008,8 +1459,8 @@ const Home = () => {
                         <FreindOrSpecialBlock
                            imgSrc="img/global/person-btn.svg"
                            title="50 friends"
-                           earning="20 000"
-                           link="/"
+                           earning="x4 harvest"
+                           link=""
                            defaultButtonText="RECEIVE"
                            refs="50"
 
@@ -1017,15 +1468,15 @@ const Home = () => {
                         <FreindOrSpecialBlock
                            imgSrc="img/global/person-btn.svg"
                            title="100 friends"
-                           earning="20 000"
-                           link="/"
+                           earning="x5 harvest"
+                           link=""
                            defaultButtonText="RECEIVE"
                            refs="100"
 
                         />,
                      ]}
                   />
-               )}
+               )} */}
             </PopupListWrap>
 
             {/* Иконка close, которая закрывает попапы с вариантом списка (<PopupListWrap />) */}
@@ -1048,6 +1499,9 @@ const Home = () => {
          {/* Ежедневный бонус */}
          <DailyBonus />
       </>
+          )}
+      </>
+
    );
 };
 

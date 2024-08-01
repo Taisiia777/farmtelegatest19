@@ -1,5 +1,84 @@
-import { useEffect } from "react";
+// import { useEffect, useState } from "react";
+// import { useAppDispatch } from "../../../store";
+// import { pickWheat } from "../../../store/reducers/growthStages";
 
+// import classNames from "classnames/bind";
+// import styles from "../modules/FarmBlocks/FarmBlocks.module.scss";
+// import { TGrowthStage } from "../../../types/globalTypes";
+// const cn = classNames.bind(styles);
+
+// export default function useWheatTrunctaion() {
+//   const dispatch = useAppDispatch();
+//   const [harvestedBlocks, setHarvestedBlocks] = useState<{
+//     id: number;
+//     stage: TGrowthStage;
+//   }[]>([]);
+
+//   function detectTrunctation(e: TouchEvent) {
+//     const xPos = e.touches[0].pageX;
+//     const yPos = e.touches[0].pageY - 100;
+//     const target = document.elementFromPoint(xPos, yPos);
+
+//     if (target && target.closest("#growthStageImg")) {
+//       const farmBlockStage = target.getAttribute("data-stage") as TGrowthStage;
+
+//       if (farmBlockStage !== "first") {
+//         const growthStageImgID = target.getAttribute("data-id");
+//         const moneyAnimation = target.nextElementSibling;
+
+//         if (moneyAnimation) {
+//           moneyAnimation.classList.add(cn("_anim"));
+//           setTimeout(() => {
+//             moneyAnimation.classList.remove(cn("_anim"));
+//           }, 500);
+//         }
+
+//         if (
+//           growthStageImgID &&
+//           !harvestedBlocks.some((block) => block.id === +growthStageImgID)
+//         ) {
+//           setHarvestedBlocks((prev) => [
+//             ...prev,
+//             { id: +growthStageImgID, stage: farmBlockStage },
+//           ]);
+//           dispatch(pickWheat({ id: +growthStageImgID }));
+//         }
+//       }
+//     }
+//   }
+
+ 
+//   useEffect(() => {
+//     const handleTouchEnd = () => {
+//       console.log("Touch end detected"); // Лог для проверки события конца тача
+//       const harvestedCount = harvestedBlocks.length;
+  
+//       if (harvestedCount > 0) {
+//         // Генерация события "harvest" для пересчета earnings
+//         const event = new CustomEvent("harvest", { detail: harvestedCount });
+//         document.dispatchEvent(event);
+  
+//         // Очистка harvestedBlocks после срезания
+//         setHarvestedBlocks([]);
+//       }
+//     };
+  
+//     document.addEventListener("touchmove", detectTrunctation);
+//     document.addEventListener("touchend", handleTouchEnd);
+  
+//     return () => {
+//       document.removeEventListener("touchmove", detectTrunctation);
+//       document.removeEventListener("touchend", handleTouchEnd);
+//     };
+//   }, [harvestedBlocks]); // Добавляем зависимости
+  
+//   return null; // Хук не рендерит ничего, поэтому возвращаем null
+// }
+
+
+
+
+import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../../store";
 import { pickWheat } from "../../../store/reducers/growthStages";
 
@@ -8,52 +87,71 @@ import styles from "../modules/FarmBlocks/FarmBlocks.module.scss";
 import { TGrowthStage } from "../../../types/globalTypes";
 const cn = classNames.bind(styles);
 
-// Замечает при touchmove пересечение с пшеницой и собирает ее
 export default function useWheatTrunctaion() {
-   const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
+  const [harvestedBlocks, setHarvestedBlocks] = useState<{
+    id: number;
+    stage: TGrowthStage;
+  }[]>([]);
 
-   function detectTrunctation(e: TouchEvent) {
-      const xPos = e.touches[0].pageX;
+  function detectTrunctation(e: TouchEvent) {
+    const xPos = e.touches[0].pageX;
+    const yPos = e.touches[0].pageY - 100;
+    const target = document.elementFromPoint(xPos, yPos);
 
-      // Вычитаем 100 у "pageY", так как мы в "App" компоненте
-      // добавляли 100px у body, в целью отключения закрытия tg при скролле вниз
-      const yPos = e.touches[0].pageY - 100;
+    if (target && target.closest("#growthStageImg")) {
+      const farmBlockStage = target.getAttribute("data-stage") as TGrowthStage;
 
-      const target = document.elementFromPoint(xPos, yPos);
+      if (farmBlockStage !== "first") {
+        const growthStageImgID = target.getAttribute("data-id");
+        const moneyAnimation = target.nextElementSibling;
 
-      // Если target это картинка самой пшеницы
-      if (target && target.closest("#growthStageImg")) {
-         const farmBlockStage = target.getAttribute(
-            "data-stage"
-         ) as TGrowthStage;
+        if (moneyAnimation) {
+          moneyAnimation.classList.add(cn("_anim"));
+          setTimeout(() => {
+            moneyAnimation.classList.remove(cn("_anim"));
+          }, 500);
+        }
 
-         // Мы можем собирать пшеницу, только когда она в последней стадии,
-         // то есть выросла
-         if (farmBlockStage === "fourth") {
-            const growthStageImgID = target.getAttribute("data-id");
-
-            // Этот монеты, которые будут анимировано исчезать
-            const moneyAnimation = target.nextElementSibling;
-
-            // Применяем анимацию
-            if (moneyAnimation) {
-               moneyAnimation.classList.add(cn("_anim"));
-
-               setTimeout(() => {
-                  moneyAnimation.classList.remove(cn("_anim"));
-               }, 500);
-            }
-
-            // Сбрасываем стадию на начальное зерно
-            if (growthStageImgID)
-               dispatch(pickWheat({ id: +growthStageImgID }));
-         }
+        if (
+          growthStageImgID &&
+          !harvestedBlocks.some((block) => block.id === +growthStageImgID)
+        ) {
+          setHarvestedBlocks((prev) => [
+            ...prev,
+            { id: +growthStageImgID, stage: farmBlockStage },
+          ]);
+          dispatch(pickWheat({ id: +growthStageImgID }));
+          window.Telegram.WebApp.HapticFeedback.impactOccurred('medium');
+        }
       }
-   }
+    }
+  }
 
-   useEffect(() => {
-      document.addEventListener("touchmove", detectTrunctation);
-
-      return () => document.removeEventListener("touchmove", detectTrunctation);
-   });
+ 
+  useEffect(() => {
+    const handleTouchEnd = () => {
+      console.log("Touch end detected"); // Лог для проверки события конца тача
+      const harvestedCount = harvestedBlocks.length;
+  
+      if (harvestedCount > 0) {
+        // Генерация события "harvest" для пересчета earnings
+        const event = new CustomEvent("harvest", { detail: harvestedCount });
+        document.dispatchEvent(event);
+  
+        // Очистка harvestedBlocks после срезания
+        setHarvestedBlocks([]);
+      }
+    };
+  
+    document.addEventListener("touchmove", detectTrunctation);
+    document.addEventListener("touchend", handleTouchEnd);
+  
+    return () => {
+      document.removeEventListener("touchmove", detectTrunctation);
+      document.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, [harvestedBlocks]); // Добавляем зависимости
+  
+  return null; // Хук не рендерит ничего, поэтому возвращаем null
 }

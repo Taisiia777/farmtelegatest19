@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
 import styles from "./Popup.module.scss";
 import { ForwardedRef, ReactNode, forwardRef } from "react";
+
 const cn = classNames.bind(styles);
 
 interface IPopupProps {

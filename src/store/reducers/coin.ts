@@ -6,15 +6,18 @@ export interface ICoinState {
       name: TCoin;
       earning: string;
       price: string;
+      coinId: number
+
    };
    isOpen: boolean;
 }
 
 const initialState: ICoinState = {
    info: {
-      name: "BTC",
+      name: "Bitcoin",
       earning: "",
       price: "",
+      coinId: 0
    },
    isOpen: false,
 };
@@ -29,6 +32,7 @@ export const coinSlice = createSlice({
             name: TCoin;
             earning: string;
             price: string;
+            coinId: number
          }>
       ) => {
          state.info = action.payload;

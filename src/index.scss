@@ -19,16 +19,45 @@
 }
 
 @import './scss/variables.scss';
+* {
+   -webkit-tap-highlight-color: transparent; /* Убирает черные обводки на устройствах с сенсорными экранами */
+   -webkit-focus-ring-color: transparent; /* Убирает фокусные обводки в Safari */
+   outline: none;
+ }
+ 
+ *:focus {
+   -webkit-tap-highlight-color: transparent; /* Убирает черные обводки на устройствах с сенсорными экранами */
+   -webkit-focus-ring-color: transparent; /* Убирает фокусные обводки в Safari */
+   outline: none;
+ }
+
+ button:focus-visible {
+   -webkit-tap-highlight-color: transparent; /* Убирает черные обводки на устройствах с сенсорными экранами */
+   -webkit-focus-ring-color: transparent; /* Убирает фокусные обводки в Safari */
+   outline: none; /* Убирает стандартную обводку */
+ }
 
 body {
    font-family: $mainFont;
    font-size: rem(50);
    font-weight: 700;
    color: #fff;
+   overflow: hidden;
+   touch-action: none; /* Отключает жесты прокрутки и зумирования */
+   user-select: none; /* Отключает выделение текста */
+   -webkit-user-select: none; /* Отключает выделение текста в Safari */
+   -ms-touch-action: none; /* Отключает жесты на устройствах с Windows */
+   -ms-content-zooming: none; /* Отключает зумирование в IE на Windows */
 }
 
 html {
    height: 100%;
+   overflow: hidden;
+   touch-action: none; /* Отключает жесты прокрутки и зумирования */
+   user-select: none; /* Отключает выделение текста */
+   -webkit-user-select: none; /* Отключает выделение текста в Safari */
+   -ms-touch-action: none; /* Отключает жесты на устройствах с Windows */
+   -ms-content-zooming: none; /* Отключает зумирование в IE на Windows */
 }
 
 @import './scss/globalStyles.scss'

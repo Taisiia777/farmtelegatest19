@@ -11,7 +11,7 @@ const Coins = ({ quantity }: CoinsProps) => {
    return (
       <div className={`${cn("coins")}` + " textShadow"}>
          <CoinWhiteBg size="huge" />
-         <span>{quantity} B</span>
+         <span>{quantity}</span>
       </div>
    );
 };

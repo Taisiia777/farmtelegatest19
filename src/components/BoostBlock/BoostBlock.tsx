@@ -175,19 +175,21 @@ import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
 import Button from "../Button/Button";
 import { useDispatch } from "react-redux";
 import { setBoostInfo } from "../../store/reducers/boost";
-import axios from 'axios';
-import { retrieveLaunchParams } from '@tma.js/sdk';
+
 
 const cn = classNames.bind(styles);
 
 interface IBoostBlockProps {
   boostName: TBoostName;
+  boostNameNew: string;
+
   price: string;
   earning: string;
   ligaName: TLiga;
   isBlocked?: boolean;
   isBought?: boolean;
   boosterId: number;
+  userCoins: number; // Добавляем количество монет пользователя
 }
 
 const BoostBlock = ({
@@ -197,87 +199,95 @@ const BoostBlock = ({
   ligaName,
   isBlocked = false,
   isBought = false,
-  boosterId
+  boosterId,
+  userCoins,
+  boostNameNew
 }: IBoostBlockProps) => {
   const dispatch = useDispatch();
-  let userId: number;
-  const { initData } = retrieveLaunchParams();
-  async function applyBooster() {
-    try {
-      const user = initData?.user;
-        const username = user?.username;
-        if (username) {
-          const response = await fetch(
-            "https://coinfarm.club/user",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-              },
-              body: JSON.stringify({
-                username: username,
-                coins: 0,
-                totalEarnings: 0,
-                incomeMultiplier: 1,
-                coinsPerHour: 10,
-                xp: 0,
-                level: 0,
-              }),
-            }
-          );
+  // let userId: number;
+  // const { initData } = retrieveLaunchParams();
+  const boosterPrice = parseInt(price.replace(/\D/g, ''), 10); // Преобразуем цену в число
 
-          if (response.status === 409) {
-            const userData = await response.json();
-            alert(`User already exists: ${JSON.stringify(userData)}`);
-            userId = userData.id
-            console.log('Existing user ID:', userData.id);
-          } else if (!response.ok) {
-            throw new Error("Something went wrong");
-          } else {
-            const newUser = await response.json();
-            userId = newUser.id
-            console.log('New user ID:', newUser.id);
-          }
-        }
-    } catch (error) {
-      console.error('Error applying booster:', error);
-    }
-    try {
-      const response = await axios.post(`https://coinfarm.club/booster/apply/${userId}/${boosterId}`);
-      console.log('Booster applied:', response.data);
-    } catch (error) {
-      console.error('Error applying booster:', error);
-    }
-  }
+  // async function applyBooster() {
+  //   try {
+  //     const user = initData?.user;
+  //       const username = user?.username;
+  //       if (username) {
+  //         const response = await fetch(
+  //           "https://coinfarm.club/api/user",
+  //           { 
+  //             method: "POST",
+  //             headers: {
+  //               "Content-Type": "application/json",
+  //               Accept: "application/json",
+  //             },
+  //             body: JSON.stringify({
+  //               username: username,
+  //               coins: 0,
+  //               totalEarnings: 0,
+  //               incomeMultiplier: 1,
+  //               coinsPerHour: 10,
+  //               xp: 0,
+  //               level: 0,
+  //             }),
+  //           }
+  //         );
+
+  //         if (response.status === 409) {
+  //           const userData = await response.json();
+  //           alert(`User already exists: ${JSON.stringify(userData)}`);
+  //           userId = userData.id
+  //           console.log('Existing user ID:', userData.id);
+  //         } else if (!response.ok) {
+  //           throw new Error("Something went wrong");
+  //         } else {
+  //           const newUser = await response.json();
+  //           userId = newUser.id
+  //           console.log('New user ID:', newUser.id);
+  //         }
+  //       }
+  //   } catch (error) {
+  //     console.error('Error applying booster:', error);
+  //   }
+  //   try {
+  //     const response = await axios.post(`https://coinfarm.club/api/booster/apply/${userId}/${boosterId}`);
+  //     console.log('Booster applied:', response.data);
+  //   } catch (error) {
+  //     console.error('Error applying booster:', error);
+  //   }
+  // }
 
   function openBoostBuyPopup() {
     dispatch(
       setBoostInfo({
+        boostNameNew,
         earning,
         price,
         name: boostName,
-        imgSrc: `img/boosts/${boostName}.svg`,
+        imgSrc: `img/boosts/${boostNameNew}1.svg`,
+        boosterId: boosterId
       })
     );
-    applyBooster();
+    // applyBooster();
   }
-
+  const canAfford = userCoins >= boosterPrice; // Проверяем, хватает ли монет
   let content;
-
+  const capitalizeFirstLetter = (string: string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
   if (isBlocked) {
     content = (
       <>
         <div className={cn("boost", '_blur')}>
           <div className={cn("boost__left")}>
             <img
-              src={`img/boosts/${boostName}.svg`}
+              src={`img/boosts/${boostNameNew}.svg`}
               className={cn("boost__img")}
               alt={boostName}
             />
             <div className={cn("boost__info", "boostInfo")}>
               <h3 className={`${cn("boostInfo__name")}` + " textShadow"}>
-                {boostName}
+              {capitalizeFirstLetter(boostNameNew)}
               </h3>
               <div className={cn("boostInfo__index")}>
                 <img
@@ -312,21 +322,21 @@ const BoostBlock = ({
       <div className={cn("boost")}>
         <div className={cn("boost__left")}>
           <img
-            src={`img/boosts/${boostName}.svg`}
+            src={`img/boosts/${boostNameNew}.svg`}
             className={cn("boost__img")}
             alt={boostName}
           />
           <div className={cn("boost__info", "boostInfo")}>
             <h3 className={`${cn("boostInfo__name")}` + " textShadow"}>
-              {boostName}
+            {capitalizeFirstLetter(boostNameNew)}
             </h3>
             <div className={cn("boostInfo__index")}>
-              <img
+              {/* <img
                 src={`img/leagueIcons/${ligaName}.png`}
                 alt={ligaName}
-              />
-              <span className="textShadow">+ {earning}/h</span>
-              <CoinWhiteBg size="small" iconName="BTC" />
+              /> */}
+              <span className="textShadow">+{earning} hour ⏰</span>
+              {/* <CoinWhiteBg size="small" iconName="BTC" /> */}
             </div>
           </div>
         </div>
@@ -349,33 +359,51 @@ const BoostBlock = ({
       <div className={cn("boost")}>
         <div className={cn("boost__left")}>
           <img
-            src={`img/boosts/${boostName}.svg`}
+            src={`img/boosts/${boostNameNew}.svg`}
             className={cn("boost__img")}
             alt={boostName}
           />
           <div className={cn("boost__info", "boostInfo")}>
             <h3 className={`${cn("boostInfo__name")}` + " textShadow"}>
-              {boostName}
+            {capitalizeFirstLetter(boostNameNew)}
             </h3>
             <div className={cn("boostInfo__index")}>
-              <img
+              {/* <img
                 src={`img/leagueIcons/${ligaName}.png`}
                 alt={ligaName}
-              />
-              <span className="textShadow">+ {earning}/h</span>
-              <CoinWhiteBg size="small" iconName="BTC" />
+              /> */}
+              <span className="textShadow">+{earning} hour ⏰</span>
+              {/* <CoinWhiteBg size="small" iconName="BTC" /> */}
             </div>
           </div>
         </div>
 
         <div className={cn("boost__right")} id="buyBoost">
-          <Button
+          {/* <Button
+            className={cn("boost__price")}
+            onClick={openBoostBuyPopup}
+            disabled={!canAfford} // Делаем кнопку неактивной, если монет недостаточно
+          >
+            <CoinWhiteBg size="small" iconName="BTC" />
+            <span className="textShadow">{price}</span>
+          </Button> */}
+          {canAfford ? (
+            <Button
             className={cn("boost__price")}
             onClick={openBoostBuyPopup}
           >
             <CoinWhiteBg size="small" iconName="BTC" />
             <span className="textShadow">{price}</span>
           </Button>
+          ) : (
+            <Button
+            className={cn("boost__price")}
+            disabled={!canAfford} // Делаем кнопку неактивной, если монет недостаточно
+          >
+            <CoinWhiteBg size="small" iconName="BTC" />
+            <span className="textShadow">{price}</span>
+          </Button>
+          )}
         </div>
       </div>
     );

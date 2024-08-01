@@ -23,11 +23,12 @@ interface BoostsProps {
 
 const Boosts: React.FC<BoostsProps> = ({ activeBoosterIds }) => {
   const boosters = [
-    { id: 1, src: "img/boosts/mill-shadow.svg", className: "boosts__mill" },
-    { id: 2, src: "img/boosts/drone.svg", className: "boosts__drone" },
-    { id: 3, src: "img/boosts/mini-car-shadow.svg", className: "boosts__mini-car" },
-    { id: 4, src: "img/boosts/car-2-shadow.svg", className: "boosts__car-2" },
-    { id: 5, src: "img/boosts/car-3-shadow.svg", className: "boosts__car-3" }
+    { id: 3, src: "img/boosts/Robo Rover.svg", className: "boosts__car-2" },
+    { id: 4, src: "img/boosts/Harvester Pro.svg", className: "boosts__car-3" },
+    { id: 2, src: "img/boosts/Crop Master.svg", className: "boosts__mini-car" },
+    { id: 1, src: "img/boosts/Energy Mill.svg", className: "boosts__mill" },
+    { id: 5, src: "img/boosts/Super Drone.svg", className: "boosts__drone" },
+
   ];
 
   return (

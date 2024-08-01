@@ -8,11 +8,11 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   background-color: #fff;
+   // background-color: #fff;
    width: rem(32);
    height: rem(32);
    border-radius: 100%;
-   box-shadow: rem(0) rem(1.4) rgba($color: #000, $alpha: 0.5);
+   // box-shadow: rem(0) rem(1.4) rgba($color: #000, $alpha: 0.5);
 
 
    &._huge {
@@ -21,10 +21,10 @@
    }
 
    &._small {
-      width: rem(20);
-      height: rem(20);
+      width: rem(22);
+      height: rem(22);
 
-      box-shadow: rem(0) rem(0.7) rgba($color: #000, $alpha: 0.5);
+      // box-shadow: rem(0) rem(0.7) rgba($color: #000, $alpha: 0.5);
 
       img {
          width: 75%;

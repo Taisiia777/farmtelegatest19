@@ -8,7 +8,7 @@ import greetingSlice from './reducers/greeting';
 import preloaderSlice from './reducers/preloader';
 import dailyBonus from './reducers/dailyBonus';
 import userSlice from './reducers/userSlice'; // Импортируем тип UserState
-
+import userCoinsReducer from './reducers/userCoinsSlice'; // Импорт типа состояния
 const store = configureStore({
   reducer: {
     growthStages: growthStagesSlice,
@@ -18,6 +18,7 @@ const store = configureStore({
     preloader: preloaderSlice,
     dailyBonus,
     user: userSlice,
+    userCoins: userCoinsReducer,
   },
 });
 

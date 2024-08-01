@@ -44,6 +44,7 @@
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+
 export interface UserState {
     id: number;
     username: string;
@@ -54,6 +55,7 @@ export interface UserState {
     level: number;
     totalEarnings?: number;
     grassEarnings?: number; // Добавляем новое свойство
+    coinsArray?: any; // Убедитесь, что coinsArray определен как массив Coin[]
 }
 
 const initialState: { user: UserState | null } = {
@@ -81,10 +83,4 @@ const userSlice = createSlice({
 export const { setUser, clearUser, updateGrassEarnings } = userSlice.actions;
 
 export default userSlice.reducer;
-
-
-
-
-
-
 

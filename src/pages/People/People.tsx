@@ -1,183 +1,3 @@
-// import { useEffect, useState } from "react";
-// import { useLocation, useNavigate } from "react-router-dom";
-
-// import styles from "./People.module.scss";
-// import classNames from "classnames/bind";
-// const cn = classNames.bind(styles);
-
-// import { tg } from "../../constants/app";
-// import { Routes } from "../../routes/routes";
-
-// import GreenBg from "../../components/GreenBg/GreenBg";
-// import Coins from "./modules/Coins";
-// import PopupListTabs from "../../components/PopupList/modules/PopupListTabs";
-// import PopupList from "../../components/PopupList/PopupList";
-// import PersonBlock from "../../components/PersonBlock/PersonBlock";
-// import PopupListWrap from "../../components/PopupList/modules/PopupListWrap";
-
-// const People = () => {
-//    const location = useLocation();
-//    const navigate = useNavigate();
-
-//    const [activeTab, setActiveTab] = useState(
-//       location.state?.label ?? "FARM FRENDS"
-//    );
-
-//    useEffect(() => {
-//       tg.BackButton.show();
-//       tg.BackButton.onClick(() => navigate(-1));
-//       return () => tg.BackButton.hide();
-//    }, [navigate]);
-
-//    return (
-//       <div className={cn("wrap")}>
-//          <div className={cn("people")}>
-//             <h2 className={`${cn("people__title")}` + " textShadow"}>
-//                4 frends
-//             </h2>
-//             <Coins quantity={"1 180 000"} />
-//             <div
-//                className={cn("people__invite-btn")}
-//                onClick={() => navigate(Routes.INVITE)}>
-//                <span className={cn("people__invite-btn-text")}>
-//                   {" "}
-//                   Invite freiend
-//                </span>
-//                <img src="img/pages/invite/btn.svg" alt="Invite friends" />
-//             </div>
-
-//             {/* Списко пользователей */}
-//             <PopupListWrap className={cn("people__list")} isOpen={true}>
-//                <PopupListTabs
-//                   labels={["FARM FRENDS", "LEADERBOARD"]}
-//                   activeTab={activeTab}
-//                   onTabChange={(label) => setActiveTab(label)}
-//                   labelClassName={cn("people__list-tab-label")}
-//                />
-//                {activeTab === "FARM FRENDS" && (
-//                   <PopupList
-//                      nodes={[
-//                         <PersonBlock
-//                            name="Nickname User"
-//                            imgSrc="img/pages/people/person.png"
-//                            earning="1 260 000"
-//                            coinAmount="983 124"
-//                         />,
-//                         <PersonBlock
-//                            name="Nickname User"
-//                            imgSrc="img/pages/people/person.png"
-//                            earning="1 260 000"
-//                            coinAmount="983 124"
-//                         />,
-//                         <PersonBlock
-//                            name="Nickname User"
-//                            imgSrc="img/pages/people/person.png"
-//                            earning="1 260 000"
-//                            coinAmount="983 124"
-//                         />,
-//                         <PersonBlock
-//                            name="Nickname User"
-//                            imgSrc="img/pages/people/person.png"
-//                            earning="1 260 000"
-//                            coinAmount="983 124"
-//                         />,
-//                         <PersonBlock
-//                            name="Nickname User"
-//                            imgSrc="img/pages/people/person.png"
-//                            earning="1 260 000"
-//                            coinAmount="983 124"
-//                         />,
-//                      ]}
-//                      type="second"
-//                   />
-//                )}
-
-//                {activeTab === "LEADERBOARD" && (
-//                   <PopupList
-//                      nodes={[
-//                         <PersonBlock
-//                            name="Nickname User"
-//                            imgSrc="img/pages/people/person.png"
-//                            earning="1 260 000"
-//                            coinAmount="983 124"
-//                            inviteMode
-//                            rating={1}
-//                         />,
-//                         <PersonBlock
-//                            name="Nickname User"
-//                            imgSrc="img/pages/people/person.png"
-//                            earning="1 260 000"
-//                            coinAmount="983 124"
-//                            inviteMode
-//                            rating={2}
-//                         />,
-//                         <PersonBlock
-//                            name="Nickname User"
-//                            imgSrc="img/pages/people/person.png"
-//                            earning="1 260 000"
-//                            coinAmount="983 124"
-//                            inviteMode
-//                            rating={3}
-//                         />,
-//                         <PersonBlock
-//                            name="Nickname User"
-//                            imgSrc="img/pages/people/person.png"
-//                            earning="1 260 000"
-//                            coinAmount="983 124"
-//                            inviteMode
-//                            rating={4}
-//                         />,
-//                         <PersonBlock
-//                            name="Nickname User"
-//                            imgSrc="img/pages/people/person.png"
-//                            earning="1 260 000"
-//                            coinAmount="983 124"
-//                            inviteMode
-//                            rating={5}
-//                         />,
-//                      ]}
-//                      type="second"
-//                   />
-//                )}
-//             </PopupListWrap>
-
-//             {/* Звезды на заднем фоне */}
-//             <div className={cn("bg-elements")}>
-//                <img src="img/pages/people/star.svg" alt="star" />
-//                <img src="img/pages/people/star.svg" alt="star" />
-//                <img src="img/pages/people/star.svg" alt="star" />
-//                <img src="img/pages/people/star.svg" alt="star" />
-//                <img src="img/pages/people/star.svg" alt="star" />
-//                <img src="img/pages/people/star.svg" alt="star" />
-//                <img src="img/pages/people/star.svg" alt="star" />
-//                <img src="img/pages/people/star.svg" alt="star" />
-//                <img src="img/pages/people/star.svg" alt="star" />
-//                <img src="img/pages/people/star.svg" alt="star" />
-//                <img src="img/pages/people/star.svg" alt="star" />
-//             </div>
-//             <GreenBg />
-//          </div>
-
-//          {/* Кнопка закрытия страницы */}
-//          <img
-//             src="img/global/closeIcon.svg"
-//             onClick={() => navigate(Routes.HOME)}
-//             className={cn("close")}
-//             alt="Close"
-//          />
-//       </div>
-//    );
-// };
-
-// export default People;
-
-
-
-
-
-
-
-
 
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -205,13 +25,15 @@ interface User {
   xp: number;
   level: number;
 }
-
+interface Friend extends User {
+  coinsEarned?: number;
+}
 const People = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(location.state?.label ?? "FARM FRENDS");
   const [users, setUsers] = useState<User[]>([]);
-  const [friends, setFriends] = useState<User[]>([]);
+  const [friends, setFriends] = useState<Friend[]>([]);
   const [referralCount, setReferralCount] = useState(0);
   const user = useAppSelector((state: RootState) => state.user.user);
 
@@ -225,9 +47,9 @@ const People = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('https://coinfarm.club/user/'); // Замените на реальный URL API
+        const response = await fetch('https://coinfarm.club/api/user/'); // Замените на реальный URL API
         const data: User[] = await response.json();
-        const sortedUsers = data.sort((a, b) => b.coinsPerHour - a.coinsPerHour); // Сортировка по убыванию прибыли в час
+        const sortedUsers = data.sort((a, b) => b.totalEarnings - a.totalEarnings); // Сортировка по убыванию прибыли в час
         setUsers(sortedUsers);
       } catch (error) {
         console.error('Failed to fetch users', error);
@@ -237,30 +59,43 @@ const People = () => {
     fetchUsers();
   }, []);
   useEffect(() => {
-    const fetchReferrals = async () => {
+    const fetchReferralsAndEarnings = async () => {
       try {
-        const response = await fetch(`https://coinfarm.club/user/${user.id}/referrals`);
-        if (!response.ok) {
+        const referralsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals`);
+        if (!referralsResponse.ok) {
           throw new Error('Failed to fetch referrals');
         }
-        const data: User[] = await response.json();
-        const sortedUsers = data.sort((a, b) => b.coinsPerHour - a.coinsPerHour); // Сортировка по убыванию прибыли в час
-        setFriends(sortedUsers);
-        setReferralCount(data.length);
+        const referralsData: Friend[] = await referralsResponse.json();
+
+        const earningsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals/earnings`);
+        if (!earningsResponse.ok) {
+          throw new Error('Failed to fetch earnings');
+        }
+        const earningsData = await earningsResponse.json();
+
+        const friendsWithEarnings = referralsData.map(friend => {
+          const earning = earningsData.find((e: any) => e.username === friend.username);
+          return { ...friend, coinsEarned: earning ? earning.coinsEarned : 0 };
+        });
+
+        setFriends(friendsWithEarnings);
+        setReferralCount(referralsData.length);
       } catch (error) {
-        console.error('Error fetching referrals:', error);
+        console.error('Error fetching referrals and earnings:', error);
       }
     };
-  
-    fetchReferrals();
+
+    fetchReferralsAndEarnings();
   }, [user.id]);
+
+  
   
 
   return (
     <div className={cn("wrap")}>
       <div className={cn("people")}>
       <h2 className={`${cn("people__title")}` + " textShadow"}>{referralCount} friends</h2>
-      <Coins quantity={user.totalEarnings} />
+      <Coins quantity={Math.round(user.totalEarnings).toString()} />
         <div className={cn("people__invite-btn")} onClick={() => navigate(Routes.INVITE)}>
           <span className={cn("people__invite-btn-text")}> Invite freiend</span>
           <img src="img/pages/invite/btn.svg" alt="Invite friends" />
@@ -280,8 +115,8 @@ const People = () => {
                   key={user.id}
                   name={user.username}
                   imgSrc={"img/pages/people/person.png"}
-                  earning={user.coinsPerHour.toString()}
-                  coinAmount={user.coins.toString()}
+                  earning={Math.round((user?.coinsEarned ?? 0)).toString()}
+                  coinAmount={Math.round(user.totalEarnings).toString()}
                 />
               ))}
               type="second"
@@ -290,13 +125,13 @@ const People = () => {
 
           {activeTab === "LEADERBOARD" && (
             <PopupList
-              nodes={users.map((user, index) => (
-                <PersonBlock
+            nodes={users.slice(0, 100).map((user, index) => (
+              <PersonBlock
                   key={user.id}
                   name={user.username}
                   imgSrc={"img/pages/people/person.png"}
                   earning={user.coinsPerHour.toString()}
-                  coinAmount={user.coins.toString()}
+                  coinAmount={Math.round(user.totalEarnings).toString()}
                   inviteMode
                   rating={index + 1}
                 />

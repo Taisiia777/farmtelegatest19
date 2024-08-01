@@ -69,4 +69,16 @@
    &__link {
       font-size: rem(20);
    }
+   &__money-anim {
+      position: absolute;
+      bottom: 4%;
+      left: 35%;
+
+      opacity: 0;
+      visibility: hidden;
+
+      &._acitve {
+         animation: moneyDisappear 0.4s ease-in;
+      }
+   }
 }

@@ -158,7 +158,6 @@ import styles from "./CoinBlock.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCoinIfno } from "../../store/reducers/coin";
-import axios from 'axios';
 
 const cn = classNames.bind(styles);
 
@@ -171,6 +170,8 @@ interface ICoinBlockProps {
   isActive?: boolean;
   userId: number;
   coinId: number;
+  userCoins: number;
+  mostExpensiveCoinId: number
 }
 
 const CoinBlock = ({
@@ -182,18 +183,14 @@ const CoinBlock = ({
   isActive = false,
   userId,
   coinId,
+  userCoins,
+  mostExpensiveCoinId
 }: ICoinBlockProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  async function giveCoin() {
-    try {
-      const response = await axios.post(`https://coinfarm.club/coin/give/${userId}/${coinId}`);
-      console.log('Coin given:', response.data);
-    } catch (error) {
-      console.error('Error giving coin:', error);
-    }
-  }
+  const coinPrice = parseInt(price.replace(/\D/g, ''), 10); // Преобразуем цену в число
+console.log(userId)
+ 
 
   function openCoinBuyPopup() {
     dispatch(
@@ -201,11 +198,12 @@ const CoinBlock = ({
         earning,
         price,
         name: coinName,
+        coinId: coinId
       })
     );
-    giveCoin();
+    // giveCoin();
   }
-
+  const canAfford = userCoins >= coinPrice && coinId <= mostExpensiveCoinId + 1; // Проверяем, хватает ли монет
   let content;
 
   if (isBought) {
@@ -214,14 +212,14 @@ const CoinBlock = ({
         <div className={cn("coinBlock__left")}>
           <img
             className={cn("coinBlock__coin")}
-            src={`video/${coinName}.gif`}
+            src={coinName? `video/${coinName}.gif` : `video/Bitcoin.gif`}
             alt=""
           />
           <div className={cn("coinBlock__info")}>
             <h3 className="textShadow">{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
-              <span>+{earning}</span>
-              <img src="img/pages/home/energy/energy.svg" alt="Energy" />
+              <span>{coinName==="Bitcoin"? 1000 : earning} / h</span>
+              {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
             </div>
           </div>
         </div>
@@ -254,14 +252,14 @@ const CoinBlock = ({
         <div className={cn("coinBlock__left")}>
           <img
             className={cn("coinBlock__coin")}
-            src={`video/${coinName}.gif`}
+            src={coinName? `video/${coinName}.gif`: `video/Bitcoin.gif`}
             alt=""
           />
           <div className={cn("coinBlock__info")}>
             <h3 className="textShadow">{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
-              <span>+{earning}</span>
-              <img src="img/pages/home/energy/energy.svg" alt="Energy" />
+            <span>{earning} / h</span>
+            {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
             </div>
           </div>
         </div>
@@ -288,25 +286,42 @@ const CoinBlock = ({
         <div className={cn("coinBlock__left")}>
           <img
             className={cn("coinBlock__coin")}
-            src={`video/${coinName}.gif`}
+            src={coinName ? `video/${coinName}.gif` :  `video/Bitcoin.gif`}
             alt=""
           />
           <div className={cn("coinBlock__info")}>
             <h3 className="textShadow">{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
-              <span>+{earning}</span>
-              <img src="img/pages/home/energy/energy.svg" alt="Energy" />
+              <span>{earning} / h </span>
+              {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
             </div>
           </div>
         </div>
         <div className={cn("coinBlock__right")} id="buyCoin">
-          <Button
+          {/* <Button
             className={cn("coinBlock__price")}
             onClick={openCoinBuyPopup}
           >
             <CoinWhiteBg size="small" iconName={"BTC"} />
             <span>{price}</span>
+          </Button> */}
+          {canAfford ? (
+            <Button
+            className={cn("coinBlock__price")}
+            onClick={openCoinBuyPopup}
+          >
+            <CoinWhiteBg size="small" iconName={"Bitcoin"} />
+            <span>{price}</span>
           </Button>
+          ) : (
+            <Button
+            className={cn("coinBlock__price")}
+            disabled={!canAfford} // Делаем кнопку неактивной, если монет недостаточно
+          >
+            <CoinWhiteBg size="small" iconName={"Bitcoin"} />
+            <span>{price}</span>
+          </Button>
+          )}
         </div>
       </div>
     );

@@ -21,3 +21,13 @@ export const dailyBonusSlice = createSlice({
 export const { closeDailyBonus } = dailyBonusSlice.actions;
 
 export default dailyBonusSlice.reducer;
+
+
+
+
+
+
+
+
+
+

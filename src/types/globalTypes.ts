@@ -1,14 +1,14 @@
 export type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond";
 
 export type TCoin =
-   | "BTC"
-   | "ETHerium"
-   | "Binance"
+   | "Bitcoin"
+   | "Ethereum"
+   | "BNB"
    | "Cardano"
    | "Solana"
-   | "XRP"
+   | "Ripple"
    | "Polkadot"
-   | "TON";
+   | "Ton";
 
 export type TBoostName = "mill" | "minicar" | "car-2" | "car-3" | "drone";
 

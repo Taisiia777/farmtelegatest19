@@ -10,8 +10,8 @@ interface CoinsProps {
 const Coins = ({ quantity }: CoinsProps) => {
    return (
       <div className={`${cn("coins")}` + " textShadow"}>
-         <CoinWhiteBg iconName="BTC" size="small" />
-         <span>{quantity} B</span>
+         <CoinWhiteBg iconName="Bitcoin" size="small" />
+         <span>{quantity}</span>
       </div>
    );
 };

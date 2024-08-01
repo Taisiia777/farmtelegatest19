@@ -519,21 +519,29 @@ export const { pickWheat, changeGrowthStage, growAllToMax, setGrowthStages } = g
 export const selectEarthBlock = (state: RootState, id: number) =>
   state.growthStages.blocks.find((block) => block.id === id);
 
-export const calculateGrassEarnings = (blocks: IGrowthStages['blocks'], coinsPerHour: number) => {
+export const calculateGrassEarnings = (blocks: IGrowthStages['blocks'], coinsPerHour: number, incomeMultiplier: number) => {
   let totalEarnings = 0;
+  const rewardMultiplier = {
+    "second": 0.3,
+    "third": 0.7,
+    "fourth": 1.0
+  };
+  
   blocks.forEach(block => {
     switch (block.stage) {
       case "second":
-        totalEarnings += coinsPerHour;
+        totalEarnings += ((coinsPerHour / 9) * rewardMultiplier["second"]) * incomeMultiplier;
         break;
       case "third":
-        totalEarnings += coinsPerHour * 2;
+        totalEarnings += ((coinsPerHour / 9) * rewardMultiplier["third"]) * incomeMultiplier;
         break;
       case "fourth":
-        totalEarnings += coinsPerHour * 3;
+        totalEarnings += ((coinsPerHour / 9) * rewardMultiplier["fourth"])* incomeMultiplier;
         break;
     }
   });
+ 
+
   return totalEarnings;
 };
 

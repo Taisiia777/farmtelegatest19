@@ -6,11 +6,12 @@ interface BorderBlockProps {
    label: string;
    number: string;
    imgSrc: string;
+   onClick: () => void;
 }
 
-const BorderBlock = ({ label, number, imgSrc }: BorderBlockProps) => {
+const BorderBlock = ({ label, number, imgSrc, onClick }: BorderBlockProps) => {
    return (
-      <div className={cn("borderBlock")}>
+      <div className={cn("borderBlock")} onClick={onClick}>
          {/* Label в бордере */}
          <img
             src="img/global/popup-border.svg"
