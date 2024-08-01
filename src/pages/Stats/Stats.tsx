@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import { tg } from "../../constants/app";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "../../routes/routes";
+import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
 const cn = classNames.bind(styles);
 
 const Stats = () => {
@@ -26,7 +28,17 @@ const Stats = () => {
       return () => tg.BackButton.hide();
    }, [navigate]);
 
-
+   const { t } = useTranslation();
+   useEffect(() => {
+     const initData = window.Telegram.WebApp.initDataUnsafe;
+     const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
+     
+     if (['en', 'ru', 'ukr'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
+       i18n.changeLanguage(userLanguage);
+     } else {
+       i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
+     }
+   }, []);
    // useEffect(() => {
    
    //    const fetchOnlineUsersCount = async (): Promise<void> => {
@@ -121,27 +133,27 @@ const Stats = () => {
       <>
          <div className={cn("stats")}>
             <small className={cn("stats__top-label")}>
-               Total money in game
+               {t('total_money')}
             </small>
             <Coins quantity={Math.round(user?.totalEarnings || 0)} />
 
             <div className={cn("stats__body")}>
                <BorderBlock
-                  label="Online"
+                  label={t('online')}
                   imgSrc="img/pages/stats/star.svg"
                   // number={onlineUsersCount.toString()} 
                   number={456+onlineUsersCount+''} 
                   onClick={() => console.log('kkk')}
                />
                <BorderBlock
-                  label="Daily users"
+                  label={t('daily_users')}
                   imgSrc="img/pages/stats/rubin.svg"
                   // number={recentlyOnlineUsersCount.toLocaleString()} 
                   number={7890+recentlyOnlineUsersCount+''} 
                   onClick={() => console.log('kkk')}
                />
                <BorderBlock
-                  label="Total players"
+                  label={t('total_players')}
                   imgSrc="img/pages/stats/medal.svg"
                   // number={totalPlayers.toLocaleString()} 
                   number={654321 + totalPlayers + ''} 
