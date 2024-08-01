@@ -158,7 +158,9 @@ import styles from "./CoinBlock.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCoinIfno } from "../../store/reducers/coin";
-
+import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react'
 const cn = classNames.bind(styles);
 
 interface ICoinBlockProps {
@@ -229,7 +231,7 @@ console.log(userId)
           <div className={cn("coinBlock__info")}>
             <h3 className="textShadow">{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
-              <span>{coinName==="Bitcoin"? 1000 : earning} / h</span>
+              <span>{coinName==="Bitcoin"? 1000 : earning} / {t(`h`)}</span>
               {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
             </div>
           </div>
@@ -269,7 +271,7 @@ console.log(userId)
           <div className={cn("coinBlock__info")}>
             <h3 className="textShadow">{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
-            <span>{earning} / h</span>
+            <span>{earning} / {t(`h`)}</span>
             {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
             </div>
           </div>
