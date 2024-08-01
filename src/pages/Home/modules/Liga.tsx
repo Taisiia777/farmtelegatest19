@@ -4,6 +4,9 @@ import classNames from "classnames/bind";
 import styles from "../Home.module.scss";
 import { RootState } from "../../../store";
 import { useAppSelector } from "../../../store";
+import i18n from '../../../i18n';
+import { useTranslation } from 'react-i18next';
+import { useEffect } from "react";
 const cn = classNames.bind(styles);
 
 interface LigaProps {
@@ -24,10 +27,21 @@ const Liga = ({ liga, onLigaOpen, onClick }: LigaProps) => {
    const user = useAppSelector((state: RootState) => state.user.user);
    const userLeagueIndex = user ? user.level : 0;
    const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
+   const { t } = useTranslation();
+   useEffect(() => {
+     const initData = window.Telegram.WebApp.initDataUnsafe;
+     const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
+     
+     if (['en', 'ru', 'ukr'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
+       i18n.changeLanguage(userLanguage);
+     } else {
+       i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
+     }
+   }, []);
    return (
       <div style={{position:"absolute", top: "-66vh", left: "50%", transform: "translateX(-50%)", zIndex:"1"}} className={cn("liga")} onClick={onLigaOpen} id="league">
          <img src={`img/leagueIcons/${liga}.png`} alt="Wooden" />
-         <span className="textShadow">{liga} league (x{userHarvestMultiplier})</span>
+         <span className="textShadow"> {t(`${liga.toLocaleLowerCase()}`)}  {t(`leagues`)} (x{userHarvestMultiplier})</span>
          <img onClick={onClick} style={{display: 'flex',  width:'22px', height:'22px'}} src={`img/leagueIcons/Plus.svg`} alt="plus" />
       </div>
    );
