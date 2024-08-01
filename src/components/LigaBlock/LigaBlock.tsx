@@ -75,7 +75,9 @@ import Button from '../Button/Button';
 // import CoinWhiteBg from '../CoinWhiteBg/CoinWhiteBg';
 import { useNavigate } from "react-router-dom";
 import { Routes } from "../../routes/routes";
-
+import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 const cn = classNames.bind(styles);
 type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond" | "Ruby"; // Определение типа TLiga
 
@@ -146,7 +148,17 @@ const LigaBlock = ({ ligaName, percent, price, active, harvest }: ILigaBlockProp
   //     console.error('Error giving reward:', error);
   //   }
   // };
-  
+  const { t } = useTranslation();
+  useEffect(() => {
+    const initData = window.Telegram.WebApp.initDataUnsafe;
+    const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
+    
+    if (['en', 'ru', 'ukr'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
+      i18n.changeLanguage(userLanguage);
+    } else {
+      i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
+    }
+  }, []);
   const navigate = useNavigate();
 
   let priceFontSize;
@@ -167,7 +179,7 @@ const LigaBlock = ({ ligaName, percent, price, active, harvest }: ILigaBlockProp
       <div className={cn("ligaBlock__info", "ligaBlockInfo")}>
         <div className={cn("ligaBlockInfo__top")}>
           <h3 style={{display: "flex", flexDirection: "column"}} className={`${cn("ligaBlockInfo__ligaName")} textShadow`}>
-            {ligaName}
+          {t(`${ligaName.toLocaleLowerCase}`)}
             <span style={{fontSize: "14px"}}>x {harvest} harvest</span>
           </h3>
           {active ? (
