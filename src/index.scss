@@ -2,18 +2,32 @@
 @import './scss/null.scss';
 
 // Подключаем шрифты
+// @font-face {
+//    font-family: 'Berlin';
+//    font-display: swap;
+//    src: url("fonts/BRLNSR.woff2") format("woff2");
+//    font-weight: 400;
+//    font-style: normal;
+// }
+
+// @font-face {
+//    font-family: 'Berlin';
+//    font-display: swap;
+//    src: url("fonts/BRLNSB.woff2") format("woff2");
+//    font-weight: 700;
+//    font-style: normal;
+// }
 @font-face {
-   font-family: 'Berlin';
+   font-family: 'Yanone Kaffeesatz';
    font-display: swap;
-   src: url("fonts/BRLNSR.woff2") format("woff2");
+   src: url('https://fonts.gstatic.com/s/yanonekaffeesatz/v17/3y976aknfjLm_3lMKjiMgmUUYBs8uGr6JA.woff2') format('woff2');
    font-weight: 400;
    font-style: normal;
 }
-
 @font-face {
-   font-family: 'Berlin';
+   font-family: 'Yanone Kaffeesatz';
    font-display: swap;
-   src: url("fonts/BRLNSB.woff2") format("woff2");
+   src: url('https://fonts.gstatic.com/s/yanonekaffeesatz/v17/3y976aknfjLm_3lMKjiMgmUUYBs8uGr6JA.woff2') format('woff2');
    font-weight: 700;
    font-style: normal;
 }
@@ -38,7 +52,7 @@
  }
 
 body {
-   font-family: $mainFont;
+   font-family: 'Yanone Kaffeesatz';
    font-size: rem(50);
    font-weight: 700;
    color: #fff;
