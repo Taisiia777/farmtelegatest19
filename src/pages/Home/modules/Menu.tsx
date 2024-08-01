@@ -18,15 +18,14 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
    // const harvestAllWheat = useHarvestAllWheat();
    const { t } = useTranslation();
    useEffect(() => {
-     i18n.changeLanguage('en'); 
-     // const initData = window.Telegram.WebApp.initDataUnsafe;
-     // const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
+     const initData = window.Telegram.WebApp.initDataUnsafe;
+     const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
      
-     // if (['en', 'ru', 'ukr'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
-     //   i18n.changeLanguage(userLanguage);
-     // } else {
-     //   i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
-     // }
+     if (['en', 'ru', 'ukr'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
+       i18n.changeLanguage(userLanguage);
+     } else {
+       i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
+     }
    }, []);
    const navigate = useNavigate();
    return (

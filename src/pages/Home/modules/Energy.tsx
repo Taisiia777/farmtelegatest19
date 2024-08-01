@@ -46,15 +46,14 @@ interface Coin {
 const Energy = ({ total, current, onClick, onClickProgresbar, onClickProgresbarHarvest, version, inHour, isRain, hours, iconName  }: EnergyProps) => {
   const { t } = useTranslation();
   useEffect(() => {
-    i18n.changeLanguage('en'); 
-    // const initData = window.Telegram.WebApp.initDataUnsafe;
-    // const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
+    const initData = window.Telegram.WebApp.initDataUnsafe;
+    const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
     
-    // if (['en', 'ru', 'ukr'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
-    //   i18n.changeLanguage(userLanguage);
-    // } else {
-    //   i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
-    // }
+    if (['en', 'ru', 'ukr'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
+      i18n.changeLanguage(userLanguage);
+    } else {
+      i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
+    }
   }, []);
    const progressPercentage = (current / total) * 100;
    const containerStyle: React.CSSProperties = version === 1 
