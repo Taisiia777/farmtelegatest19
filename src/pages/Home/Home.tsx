@@ -1230,7 +1230,7 @@ const Home = () => {
 
             {/* Boost popup */}
             <Popup
-               borderlabel={(`${boostState.info.boostNameNewt.toLocaleLowerCase()}`)} // Используем новое имя бустера
+               borderlabel={t(`${boostState.info.boostNameNew.toLocaleLowerCase()}`)} // Используем новое имя бустера
                isOpen={boostState.isOpen}
                onClose={() => dispatch(closeBoostBuyPopup())}
                ref={boostBuyRef}>
