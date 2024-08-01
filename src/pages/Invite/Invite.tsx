@@ -15,6 +15,8 @@ import styles from "./Invite.module.scss";
 import { Routes } from "../../routes/routes";
 import { RootState } from "../../store";
 import { useAppSelector } from "../../store";
+import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
 // import axios from "axios";
 import { TelegramShareButton } from 'react-share';
 
@@ -47,7 +49,17 @@ const Invite = () => {
   const [friends, setFriends] = useState<Friend[]>([]);
   const [referralCount, setReferralCount] = useState(0);
   const [notificationVisible, setNotificationVisible] = useState(false);
-
+  const { t } = useTranslation();
+  useEffect(() => {
+    const initData = window.Telegram.WebApp.initDataUnsafe;
+    const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
+    
+    if (['en', 'ru', 'ukr'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
+      i18n.changeLanguage(userLanguage);
+    } else {
+      i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
+    }
+  }, []);
   // useEffect(() => {
   //   const fetchReferralsAndEarnings = async () => {
   //     try {
@@ -161,10 +173,11 @@ const Invite = () => {
     <div className={cn("wrap")}>
       <div className={cn("invite")}>
         <h2 className={`${cn("invite__title")}` + " textShadow"}>
-          Invite friends
+        {t('invite_friends')}
         </h2>
         <p className={`${cn("invite__subtitle")}` + " textShadow"}>
-          You and your friend will receive bonuses
+        {t('invite_descr')}
+
         </p>
 
         {/* Invite users blocks */}
@@ -188,16 +201,16 @@ const Invite = () => {
           <div className={cn("inviteUsersBlock")}>
             <div className={cn("inviteUsersBlock__left")}>
               <b className={`${cn("inviteUsersBlock__title")}` + ' textShadow_center'}>
-              Join our Referral Program and earn commissions from three levels of referrals:
+              {t('invite_descr1')}
               </b>
               <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center"}>
-              20% from your direct referrals
+              {t('invite_descr2')}
               </p>
               <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center"}>
-              10% from your 2-tier referrals
+              {t('invite_descr3')}
               </p>
               <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center"}>
-              5% from your 3-tier referrals
+              {t('invite_descr4')}
               </p>
             </div>
             <img src="img/pages/invite/many-gifts.svg" alt="Gifts" />
@@ -209,25 +222,25 @@ const Invite = () => {
   title="Join me on Coin Farm!"
 >
   <Button className={cn("invite__copy")} size="big" >
-    Invite friends
+    {t('invite_friends')}
   </Button>
 </TelegramShareButton>
 
           {/* TODO: Реализовать функционал копирования */}
           <Button className={cn("invite__copy")} size="big" onClick={handleCopyLink}>
-            Copy link
+          {t('copy_link')}
             <img src="img/pages/invite/copy-link.svg" alt="Copy" />
           </Button>
           {notificationVisible && (
         <div className={cn("invite__notification")}>
-          Link copied to clipboard!
+          {t('link_copied')}
         </div>
       )}
         </div>
         {/* Кол-во друзей и reload */}
         <div className={cn("invite__friends-control")}>
           <div className={cn("invite__friends-amount")}>
-            Your friends <span>{referralCount}</span>
+          {t('your_friends')} <span>{referralCount}</span>
           </div>
           <img src="img/pages/invite/reload.svg" alt="Reload" />
         </div>

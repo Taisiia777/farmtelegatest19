@@ -13,6 +13,8 @@ import PersonBlock from "../../components/PersonBlock/PersonBlock";
 import PopupListWrap from "../../components/PopupList/modules/PopupListWrap";
 import { RootState } from "../../store";
 import { useAppSelector } from "../../store";
+import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
 const cn = classNames.bind(styles);
 
 interface User {
@@ -36,7 +38,17 @@ const People = () => {
   const [friends, setFriends] = useState<Friend[]>([]);
   const [referralCount, setReferralCount] = useState(0);
   const user = useAppSelector((state: RootState) => state.user.user);
-
+  const { t } = useTranslation();
+  useEffect(() => {
+    const initData = window.Telegram.WebApp.initDataUnsafe;
+    const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
+    
+    if (['en', 'ru', 'ukr'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
+      i18n.changeLanguage(userLanguage);
+    } else {
+      i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
+    }
+  }, []);
 
   useEffect(() => {
     tg.BackButton.show();
@@ -94,10 +106,10 @@ const People = () => {
   return (
     <div className={cn("wrap")}>
       <div className={cn("people")}>
-      <h2 className={`${cn("people__title")}` + " textShadow"}>{referralCount} friends</h2>
+      <h2 className={`${cn("people__title")}` + " textShadow"}>{referralCount} {t('friends')}</h2>
       <Coins quantity={Math.round(user.totalEarnings).toString()} />
         <div className={cn("people__invite-btn")} onClick={() => navigate(Routes.INVITE)}>
-          <span className={cn("people__invite-btn-text")}> Invite freiend</span>
+          <span className={cn("people__invite-btn-text")}> {t('invite_frirnd')}</span>
           <img src="img/pages/invite/btn.svg" alt="Invite friends" />
         </div>
 
