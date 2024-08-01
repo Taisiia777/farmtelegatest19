@@ -2,7 +2,8 @@
 
 .wrap {
    height: max-content;
-   overflow: scroll;
+   overflow-y: auto; /* Добавляем вертикальный скролл */
+   overflow-x: hidden; /* Убираем горизонтальный скролл, если не нужен */
 }
 
 .invite {
