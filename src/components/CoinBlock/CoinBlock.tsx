@@ -158,9 +158,7 @@ import styles from "./CoinBlock.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCoinIfno } from "../../store/reducers/coin";
-import i18n from '../../i18n';
-import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
+
 const cn = classNames.bind(styles);
 
 interface ICoinBlockProps {
@@ -191,17 +189,7 @@ const CoinBlock = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const coinPrice = parseInt(price.replace(/\D/g, ''), 10); // Преобразуем цену в число
-  const { t } = useTranslation();
-  useEffect(() => {
-    const initData = window.Telegram.WebApp.initDataUnsafe;
-    const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
-    
-    if (['en', 'ru', 'ukr'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
-      i18n.changeLanguage(userLanguage);
-    } else {
-      i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
-    }
-  }, []);
+  
 console.log(userId)
  
 
@@ -229,7 +217,7 @@ console.log(userId)
             alt=""
           />
           <div className={cn("coinBlock__info")}>
-            <h3 className="textShadow">{t(`${coinName.toLocaleLowerCase()}`)}</h3>
+            <h3 className="textShadow">{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
               <span>{coinName==="Bitcoin"? 1000 : earning} / h</span>
               {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
@@ -269,7 +257,7 @@ console.log(userId)
             alt=""
           />
           <div className={cn("coinBlock__info")}>
-            <h3 className="textShadow">{t(`${coinName.toLocaleLowerCase()}`)}</h3>
+            <h3 className="textShadow">{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
             <span>{earning} / h</span>
             {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
@@ -303,7 +291,7 @@ console.log(userId)
             alt=""
           />
           <div className={cn("coinBlock__info")}>
-            <h3 className="textShadow">{t(`${coinName.toLocaleLowerCase()}`)}</h3>
+            <h3 className="textShadow">{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
               <span>{earning} / h </span>
               {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
