@@ -305,7 +305,7 @@ console.log(userId)
           <div className={cn("coinBlock__info")}>
             <h3 className="textShadow">{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
-              <span>{earning} / h </span>
+              <span>{earning} / {t(`h`)}</span>
               {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
             </div>
           </div>

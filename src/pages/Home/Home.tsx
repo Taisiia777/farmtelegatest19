@@ -1211,7 +1211,7 @@ const Home = () => {
             disabled
           >
            
-            <span className="textShadow">Rain</span>
+            <span className="textShadow">{t('rain')}</span>
           </Button>
           ) : (
             <Button
@@ -1220,7 +1220,7 @@ const Home = () => {
             onClick={handleRainReward}
           >
           
-            <span className="textShadow">Rain</span>
+            <span className="textShadow">{t('rain')}</span>
           </Button>
           )}
          
@@ -1251,7 +1251,7 @@ const Home = () => {
 
                   <div className={cn("popup__bottom")}>
                      <div className={cn("popup__earning")}>
-                        <span>+{boostState.info.earning} hour ⏰</span>
+                        <span>+{boostState.info.earning} {t('hour')} ⏰</span>
                        
                      </div>
 
@@ -1305,7 +1305,7 @@ const Home = () => {
 
                   <div className={cn("popup__bottom")}>
                      <div className={cn("popup__earning")}>
-                        <span>+{coinState.info.earning} / 1h</span>
+                        <span>+{coinState.info.earning} / 1{t('h')}</span>
                      </div>
 
                      <Button
