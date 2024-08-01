@@ -179,8 +179,8 @@ const LigaBlock = ({ ligaName, percent, price, active, harvest }: ILigaBlockProp
       <div className={cn("ligaBlock__info", "ligaBlockInfo")}>
         <div className={cn("ligaBlockInfo__top")}>
           <h3 style={{display: "flex", flexDirection: "column"}} className={`${cn("ligaBlockInfo__ligaName")} textShadow`}>
-          {t(`${ligaName.toLocaleLowerCase}`)}
-            <span style={{fontSize: "14px"}}>x {harvest} harvest</span>
+          {t(`${ligaName.toLocaleLowerCase()}`)}
+          <span style={{fontSize: "14px"}}>x {harvest} {t(`harvest`)}</span>
           </h3>
           {active ? (
    <img
