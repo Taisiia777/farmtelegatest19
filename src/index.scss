@@ -2,21 +2,40 @@
 @import './scss/null.scss';
 
 // Подключаем шрифты
+// @font-face {
+//    font-family: 'Berlin';
+//    font-display: swap;
+//    src: url("fonts/BRLNSR.woff2") format("woff2");
+//    font-weight: 400;
+//    font-style: normal;
+// }
+
+// @font-face {
+//    font-family: 'Berlin';
+//    font-display: swap;
+//    src: url("fonts/BRLNSB.woff2") format("woff2");
+//    font-weight: 700;
+//    font-style: normal;
+// }
+
+
 @font-face {
-   font-family: 'Berlin';
+   font-family: 'PT Sans';
    font-display: swap;
-   src: url("fonts/BRLNSR.woff2") format("woff2");
+   src: url('https://fonts.gstatic.com/s/ptsans/v10/jizaRExUiTo99u79D0aMVT-mvpA.woff2') format('woff2');
    font-weight: 400;
    font-style: normal;
 }
 
 @font-face {
-   font-family: 'Berlin';
+   font-family: 'PT Sans';
    font-display: swap;
-   src: url("fonts/BRLNSB.woff2") format("woff2");
+   src: url('https://fonts.gstatic.com/s/ptsans/v10/jizaRExUiTo99u79D0aMVT-mvpA.woff2') format('woff2');
    font-weight: 700;
    font-style: normal;
 }
+
+
 
 @import './scss/variables.scss';
 * {
@@ -38,7 +57,7 @@
  }
 
 body {
-   font-family: $mainFont;
+   font-family: 'PT Sans';
    font-size: rem(50);
    font-weight: 700;
    color: #fff;
