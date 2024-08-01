@@ -10,7 +10,7 @@ const resources = {
   ru: {
     translation: ru
   },
-  ukr: {
+  uk: {
     translation: ukr
   },
   // Добавьте другие языки по необходимости
