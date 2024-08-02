@@ -249,7 +249,7 @@ const Invite = () => {
         </div>
       )}
         </div>
-        <div className={cn("invite__btns")}>
+        <div className={cn("invite__btns")} style={{marginTop:'20px'}}>
           <b className={`${cn("inviteUsersBlock__title")}` + ' textShadow_center'}>
             Total: 1 level: {Math.round(totalEarningsFirstTier)} 2 level: {Math.round(totalEarningsSecondTier)} 3 level: {Math.round(totalEarningsThirdTier)} <br />
             Overall Total: {Math.round(totalEarnings)}
