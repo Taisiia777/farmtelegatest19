@@ -134,7 +134,7 @@ const Preloader = () => {
       // Запустить таймер на 5 секунд, после чего скрыть заставку
       const timer = setTimeout(() => {
          dispatch(loadingToggle(false));
-      }, 10000);
+      }, 5000);
 
       // Очистить таймер при размонтировании компонента
       return () => clearTimeout(timer);
