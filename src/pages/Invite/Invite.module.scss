@@ -32,7 +32,6 @@
    }
 
    &__friends-control {
-      margin-top: 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -50,8 +49,8 @@
    }
 
    &__listWrap {
-      top: rem(480) !important;
-      height: max-content !important;
+      top: rem(420) !important;
+      height: 46% !important;
       animation: appear 0.4s ease-in-out;
    }
 
@@ -60,12 +59,11 @@
    }
 
    &__btns {
-      position: relative;
+      position: fixed;
       z-index: 200;
-      margin-top: 20px;
-      // bottom: rem(15);
-      // left: rem(16);
-      // right: rem(16);
+      bottom: rem(15);
+      left: rem(16);
+      right: rem(16);
 
       max-width: rem(400);
       margin: 0 auto;
@@ -81,27 +79,12 @@
          font-size: rem(21);
       }
    }
-   &__notification {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #1d2024;
-      color: #fff;
-      padding: 10px 20px;
-      border-radius: 5px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      opacity: 0.6;
-      z-index: 1000;
-      transition: opacity 0.3s ease;
-   }
 
    &__copy {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 80%;
-      font-size: 16px;
    }
 }
 
