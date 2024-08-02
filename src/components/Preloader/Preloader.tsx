@@ -79,7 +79,6 @@ interface Friend extends User {
 // Функция для выполнения запроса на получение рефералов
 const fetchReferralsAndEarnings = async (userId: number) => {
    console.log(userId)
-   const dispatch = useAppDispatch();
   const referralsResponse = await fetch(`https://coinfarm.club/api/user/${560}/referrals`);
   if (!referralsResponse.ok) {
     throw new Error('Failed to fetch referrals');
@@ -117,7 +116,6 @@ const fetchReferralsAndEarnings = async (userId: number) => {
         thirdTierEarnings += thirdTierEarningsData.reduce((sum: number, e: Earning) => sum + e.coinsEarned, 0);
       }
     }
-    dispatch(loadingToggle(false));
 
     return { ...friend, coinsEarned: earning ? earning.coinsEarned : 0, secondTierEarnings, thirdTierEarnings };
   }));
@@ -133,8 +131,14 @@ const Preloader = () => {
       // Установить состояние загрузки в true при первом рендере
       dispatch(loadingToggle(true));
 
-     
-   }, []);
+      // Запустить таймер на 5 секунд, после чего скрыть заставку
+      const timer = setTimeout(() => {
+         dispatch(loadingToggle(false));
+      }, 10000);
+
+      // Очистить таймер при размонтировании компонента
+      return () => clearTimeout(timer);
+   }, [dispatch]);
    useEffect(() => {
       const fetchUserData = async () => {
          const { initData } = retrieveLaunchParams();
