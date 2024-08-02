@@ -42,8 +42,7 @@ body {
    font-size: rem(50);
    font-weight: 700;
    color: #fff;
-   overflow-y: auto !important; /* Включаем вертикальную прокрутку */
-   overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+   overflow: hidden;
    touch-action: none; /* Отключает жесты прокрутки и зумирования */
    user-select: none; /* Отключает выделение текста */
    -webkit-user-select: none; /* Отключает выделение текста в Safari */
@@ -53,8 +52,7 @@ body {
 
 html {
    height: 100%;
-   overflow-y: auto !important; /* Включаем вертикальную прокрутку */
-   overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+   overflow: hidden;
    touch-action: none; /* Отключает жесты прокрутки и зумирования */
    user-select: none; /* Отключает выделение текста */
    -webkit-user-select: none; /* Отключает выделение текста в Safari */

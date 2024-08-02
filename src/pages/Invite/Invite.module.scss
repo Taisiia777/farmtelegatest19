@@ -1,7 +1,7 @@
 @import '/src/index.scss';
 
 .wrap {
-   height: 100dvh;
+   height: auto !important;
    overflow: hidden;
 }
 
@@ -32,6 +32,7 @@
    }
 
    &__friends-control {
+      margin-top: 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -49,22 +50,23 @@
    }
 
    &__listWrap {
-      top: rem(420) !important;
-      height: auto; /* Убираем фиксированную высоту, чтобы контейнер расширялся в зависимости от содержимого */
-      overflow: hidden; /* Убираем прокрутку */
+      top: rem(480) !important;
+      height: auto !important;
+      animation: appear 0.4s ease-in-out;
    }
 
    &__list {
-      height: auto; /* Убираем ограничения на высоту */
+      height: auto !important;
       padding: 0 rem(16) rem(80) rem(16) !important;
    }
 
    &__btns {
-      position: fixed;
+      position: relative;
       z-index: 200;
-      bottom: rem(15);
-      left: rem(16);
-      right: rem(16);
+      margin-top: 20px;
+      // bottom: rem(15);
+      // left: rem(16);
+      // right: rem(16);
 
       max-width: rem(400);
       margin: 0 auto;
@@ -80,12 +82,27 @@
          font-size: rem(21);
       }
    }
+   &__notification {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #1d2024;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      opacity: 0.6;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+   }
 
    &__copy {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 80%;
+      font-size: 16px;
    }
 }
 
