@@ -246,7 +246,7 @@ const Invite = () => {
         </div>
 
         {/* Списко пользователей */}
-        <ul className={cn("invite__listWrap")}>
+       
   <PopupList
     className={cn("invite__list")}
     nodes={new Array(10).fill(friends).flat().map((user, index) => (
@@ -260,7 +260,7 @@ const Invite = () => {
     ))}
     type="third"
   />
-</ul>
+
 
         {/* <PopupListWrap className={cn("invite__listWrap")} isOpen={true}>
           <PopupList
