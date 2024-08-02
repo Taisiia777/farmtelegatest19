@@ -290,7 +290,7 @@ const Home = () => {
         // Применяем стили на основе языка
         const htmlElement = document.documentElement;
         if (userLanguage !== 'en') {
-          htmlElement.style.fontSize = '0.2em';
+          htmlElement.style.fontSize = '0.8em';
         } else {
           htmlElement.style.fontSize = '1em';
         }
