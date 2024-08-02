@@ -42,7 +42,8 @@ body {
    font-size: rem(50);
    font-weight: 700;
    color: #fff;
-   overflow: hidden;
+   overflow-y: auto !important; /* Включаем вертикальную прокрутку */
+   overflow-x: hidden; /* Убираем горизонтальную прокрутку */
    touch-action: none; /* Отключает жесты прокрутки и зумирования */
    user-select: none; /* Отключает выделение текста */
    -webkit-user-select: none; /* Отключает выделение текста в Safari */
@@ -52,20 +53,14 @@ body {
 
 html {
    height: 100%;
-   overflow: hidden;
+   overflow-y: auto !important; /* Включаем вертикальную прокрутку */
+   overflow-x: hidden; /* Убираем горизонтальную прокрутку */
    touch-action: none; /* Отключает жесты прокрутки и зумирования */
    user-select: none; /* Отключает выделение текста */
    -webkit-user-select: none; /* Отключает выделение текста в Safari */
    -ms-touch-action: none; /* Отключает жесты на устройствах с Windows */
    -ms-content-zooming: none; /* Отключает зумирование в IE на Windows */
 }
-.invite__listWrap {
-   overflow-y: auto !important; /* Включаем вертикальную прокрутку */
-   overflow-x: hidden; /* Убираем горизонтальную прокрутку */
-}
 
-.invite__list {
-   overflow-y: auto !important; /* Включаем вертикальную прокрутку */
-}
 
 @import './scss/globalStyles.scss'
