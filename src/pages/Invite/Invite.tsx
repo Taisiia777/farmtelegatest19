@@ -245,10 +245,25 @@ const Invite = () => {
           <img src="img/pages/invite/reload.svg" alt="Reload" />
         </div>
 
+        <PopupList
+  className={cn("invite__list")}
+  nodes={friends.flatMap((user) =>
+    Array(100).fill(null).map((_, index) => (
+      <PersonBlock
+        key={`${user.id}-${index}`}  // уникальный ключ для каждого повторения
+        name={user.username}
+        imgSrc={"img/pages/people/person.png"}
+        earning={`${Math.round(user.coinsEarned ?? 0)}`}
+        coinAmount={''}
+      />
+    ))
+  )}
+  type="third"
+/>
 
 
 
-          <PopupList
+          {/* <PopupList
             className={cn("invite__list")}
             nodes={friends.map((user) => (
               <PersonBlock
@@ -264,7 +279,7 @@ const Invite = () => {
               />
             ))}
             type="third"
-          />
+          /> */}
 
         {/* <div className={cn("invite__btns")}>
         <TelegramShareButton
