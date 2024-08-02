@@ -62,7 +62,8 @@ import {
  
  import { tg } from "./constants/app";
  import { Routes } from "./routes/routes";
- 
+ import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+
  import Home from "./pages/Home/Home";
  import Stats from "./pages/Stats/Stats";
  import People from "./pages/People/People";
@@ -105,6 +106,8 @@ import {
  
  const App = () => {
    // Чтобы tg не закрывался когда делаем touchmove вниз
+   const queryClient = new QueryClient();
+
    useEffect(() => {
      const overflow = 100;
      document.body.style.overflowY = "hidden";
@@ -121,8 +124,11 @@ import {
  
    return (
      <>
-       <RedirectToTelegram />
-       <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RedirectToTelegram />
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+      
      </>
    );
  };

@@ -18,6 +18,8 @@ import { useAppSelector } from "../../store";
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
 // import axios from "axios";
+import { useOutletContext } from 'react-router-dom';
+
 import { TelegramShareButton } from 'react-share';
 
 const cn = classNames.bind(styles);
@@ -31,6 +33,9 @@ interface User {
   coinsPerHour: number;
   xp: number;
   level: number;
+}
+interface OutletContext {
+  friends: Friend[];
 }
 
 // interface ReferralEarnings {
@@ -46,8 +51,10 @@ interface Friend extends User {
 const Invite = () => {
   const navigate = useNavigate();
   const user = useAppSelector((state: RootState) => state.user.user);
-  const [friends, setFriends] = useState<Friend[]>([]);
-  const [referralCount, setReferralCount] = useState(0);
+  // const [friends, setFriends] = useState<Friend[]>([]);
+  const { friends } = useOutletContext<OutletContext>();
+
+  // const [referralCount, setReferralCount] = useState(0);
   const [notificationVisible, setNotificationVisible] = useState(false);
   const { t } = useTranslation();
   useEffect(() => {
@@ -60,59 +67,60 @@ const Invite = () => {
       i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
     }
   }, []);
-  useEffect(() => {
-    const fetchReferralsAndEarnings = async () => {
-      try {
-        const referralsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals`);
-        if (!referralsResponse.ok) {
-          throw new Error('Failed to fetch referrals');
-        }
-        const referralsData: Friend[] = await referralsResponse.json();
+
+  // useEffect(() => {
+  //   const fetchReferralsAndEarnings = async () => {
+  //     try {
+  //       const referralsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals`);
+  //       if (!referralsResponse.ok) {
+  //         throw new Error('Failed to fetch referrals');
+  //       }
+  //       const referralsData: Friend[] = await referralsResponse.json();
   
-        const earningsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals/earnings`);
-        if (!earningsResponse.ok) {
-          throw new Error('Failed to fetch earnings');
-        }
-        const earningsData = await earningsResponse.json();
+  //       const earningsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals/earnings`);
+  //       if (!earningsResponse.ok) {
+  //         throw new Error('Failed to fetch earnings');
+  //       }
+  //       const earningsData = await earningsResponse.json();
   
-        const friendsWithEarnings = await Promise.all(referralsData.map(async (friend) => {
-          const earning = earningsData.find((e: any) => e.username === friend.username);
+  //       const friendsWithEarnings = await Promise.all(referralsData.map(async (friend) => {
+  //         const earning = earningsData.find((e: any) => e.username === friend.username);
           
-          // Fetch 2-tier and 3-tier referrals for the current friend
-          const secondTierReferralsResponse = await fetch(`https://coinfarm.club/api/user/${friend.id}/referrals`);
-          const secondTierReferrals: Friend[] = await secondTierReferralsResponse.json();
+  //         // Fetch 2-tier and 3-tier referrals for the current friend
+  //         const secondTierReferralsResponse = await fetch(`https://coinfarm.club/api/user/${friend.id}/referrals`);
+  //         const secondTierReferrals: Friend[] = await secondTierReferralsResponse.json();
   
-          let secondTierEarnings = 0;
-          let thirdTierEarnings = 0;
+  //         let secondTierEarnings = 0;
+  //         let thirdTierEarnings = 0;
   
-          for (const secondTierReferral of secondTierReferrals) {
-            const secondTierEarningResponse = await fetch(`https://coinfarm.club/api/user/${secondTierReferral.id}/referrals/earnings`);
-            const secondTierEarningsData = await secondTierEarningResponse.json();
-            secondTierEarnings += secondTierEarningsData.reduce((sum: number, e: any) => sum + e.coinsEarned, 0);
+  //         for (const secondTierReferral of secondTierReferrals) {
+  //           const secondTierEarningResponse = await fetch(`https://coinfarm.club/api/user/${secondTierReferral.id}/referrals/earnings`);
+  //           const secondTierEarningsData = await secondTierEarningResponse.json();
+  //           secondTierEarnings += secondTierEarningsData.reduce((sum: number, e: any) => sum + e.coinsEarned, 0);
   
-            // Fetch 3-tier referrals for each 2-tier referral
-            const thirdTierReferralsResponse = await fetch(`https://coinfarm.club/api/user/${secondTierReferral.id}/referrals`);
-            const thirdTierReferrals: Friend[] = await thirdTierReferralsResponse.json();
+  //           // Fetch 3-tier referrals for each 2-tier referral
+  //           const thirdTierReferralsResponse = await fetch(`https://coinfarm.club/api/user/${secondTierReferral.id}/referrals`);
+  //           const thirdTierReferrals: Friend[] = await thirdTierReferralsResponse.json();
   
-            for (const thirdTierReferral of thirdTierReferrals) {
-              const thirdTierEarningResponse = await fetch(`https://coinfarm.club/api/user/${thirdTierReferral.id}/referrals/earnings`);
-              const thirdTierEarningsData = await thirdTierEarningResponse.json();
-              thirdTierEarnings += thirdTierEarningsData.reduce((sum: number, e: any) => sum + e.coinsEarned, 0);
-            }
-          }
+  //           for (const thirdTierReferral of thirdTierReferrals) {
+  //             const thirdTierEarningResponse = await fetch(`https://coinfarm.club/api/user/${thirdTierReferral.id}/referrals/earnings`);
+  //             const thirdTierEarningsData = await thirdTierEarningResponse.json();
+  //             thirdTierEarnings += thirdTierEarningsData.reduce((sum: number, e: any) => sum + e.coinsEarned, 0);
+  //           }
+  //         }
   
-          return { ...friend, coinsEarned: earning ? earning.coinsEarned : 0, secondTierEarnings, thirdTierEarnings };
-        }));
-        const limitedFriends = friendsWithEarnings.slice(-100);
-        setFriends(limitedFriends);
-        setReferralCount(referralsData.length);
-      } catch (error) {
-        console.error('Error fetching referrals and earnings:', error);
-      }
-    };
+  //         return { ...friend, coinsEarned: earning ? earning.coinsEarned : 0, secondTierEarnings, thirdTierEarnings };
+  //       }));
+  //       const limitedFriends = friendsWithEarnings.slice(-100);
+  //       setFriends(limitedFriends);
+  //       setReferralCount(referralsData.length);
+  //     } catch (error) {
+  //       console.error('Error fetching referrals and earnings:', error);
+  //     }
+  //   };
   
-    fetchReferralsAndEarnings();
-  }, [user.id]);
+  //   fetchReferralsAndEarnings();
+  // }, [user.id]);
   
   // useEffect(() => {
   //   const fetchReferralsAndEarnings = async () => {
@@ -240,7 +248,7 @@ const Invite = () => {
         {/* Кол-во друзей и reload */}
         <div className={cn("invite__friends-control")}>
           <div className={cn("invite__friends-amount")}>
-          {t('your_friends')} <span>{referralCount}</span>
+          {t('your_friends')} <span>{friends.length}</span>
           </div>
           <img src="img/pages/invite/reload.svg" alt="Reload" />
         </div>
