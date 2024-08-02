@@ -297,10 +297,9 @@ const Home = () => {
 
    useEffect(() => {
       const fetchData = async () => {
-        const isLoading1 = useAppSelector((state) => state.preloader.isLodaing);
-
+       
         const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
-        if (initData && initData.user && !isLoading1) {
+        if (initData && initData.user) {
           const user = initData.user;
           const username = user.username;
          const userId = user.id;

@@ -130,7 +130,7 @@ const Preloader = () => {
    useEffect(() => {
       // Установить состояние загрузки в true при первом рендере
       dispatch(loadingToggle(true));
-
+      console.log(user.level)
       // Запустить таймер на 5 секунд, после чего скрыть заставку
       const timer = setTimeout(() => {
          dispatch(loadingToggle(false));
