@@ -1,13 +1,5 @@
 @import '/src/index.scss';
-body {
-   overflow-y: auto; /* Добавляем вертикальный скролл */
-   overflow-x: hidden; /* Убираем горизонтальный скролл, если не нужен */
-}
-html {
-   overflow-y: auto; /* Добавляем вертикальный скролл */
-   overflow-x: hidden; /* Убираем горизонтальный скролл, если не нужен */
 
-}
 .wrap {
    border: 1px solid red;
    height:200vh;

@@ -59,5 +59,13 @@ html {
    -ms-touch-action: none; /* Отключает жесты на устройствах с Windows */
    -ms-content-zooming: none; /* Отключает зумирование в IE на Windows */
 }
+.invite__listWrap {
+   overflow-y: auto !important; /* Включаем вертикальную прокрутку */
+   overflow-x: hidden; /* Убираем горизонтальную прокрутку */
+}
+
+.invite__list {
+   overflow-y: auto !important; /* Включаем вертикальную прокрутку */
+}
 
 @import './scss/globalStyles.scss'
