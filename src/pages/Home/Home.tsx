@@ -280,7 +280,7 @@ const Home = () => {
   const { t } = useTranslation();
   useEffect(() => {
     const initData = window.Telegram.WebApp.initDataUnsafe;
-    const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
+    const userLanguage =  'en'; // Получаем язык пользователя
     
     if (['en', 'ru', 'uk'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
       i18n.changeLanguage(userLanguage);
