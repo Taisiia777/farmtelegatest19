@@ -1,7 +1,7 @@
 @import '/src/index.scss';
 
 .wrap {
-   height: 2000px !important;
+   height: auto !important;
    overflow: hidden;
 }
 
@@ -51,12 +51,12 @@
 
    &__listWrap {
       top: rem(480) !important;
-      height: 2000px !important;
+      height: auto !important;
       animation: appear 0.4s ease-in-out;
    }
 
    &__list {
-      height: 2000px !important;
+      height: auto !important;
       padding: 0 rem(16) rem(80) rem(16) !important;
    }
 
