@@ -289,7 +289,11 @@ const Preloader = () => {
    const dispatch = useAppDispatch();
    const isLoading = useAppSelector((state: RootState) => state.preloader.isLodaing);
    const user = useAppSelector((state: RootState) => state.user.user);
-
+   useEffect(() => {
+      setTimeout(() => {
+         dispatch(loadingToggle(false));
+      }, 5000);
+   });
    useEffect(() => {
       const fetchUserData = async () => {
          const { initData } = retrieveLaunchParams();

@@ -1,8 +1,18 @@
 @import '/src/index.scss';
 
+body{
+   overflow-y: auto !important;
+   overflow-x: hidden !important;
+}
+html{
+      overflow-y: auto !important;
+   overflow-x: hidden !important;
+}
 .wrap {
    height: auto !important;
-   overflow: hidden;
+   // overflow: hidden;
+      overflow-y: auto !important;
+   overflow-x: hidden !important;
 }
 
 .invite {
