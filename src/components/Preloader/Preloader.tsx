@@ -42,10 +42,13 @@ import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
 import { loadingToggle } from "../../store/reducers/preloader";
-import { useQuery} from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import styles from "./Preloader.module.scss";
 import classNames from "classnames/bind";
 import logo from "../../../public/img/pages/home/pig.png"; // Путь к вашему логотипу
+import { setUser } from "../../store/reducers/userSlice";
+import { retrieveLaunchParams } from '@tma.js/sdk';
+import axios from "axios";
 
 const cn = classNames.bind(styles);
 
@@ -58,20 +61,18 @@ interface User {
    coinsPerHour: number;
    xp: number;
    level: number;
- }
- interface Earning {
+}
+
+interface Earning {
    username: string;
    coinsEarned: number;
- }
- // interface ReferralEarnings {
- //   id: number;
- //   coinsEarned: number;
- // }
- interface Friend extends User {
+}
+
+interface Friend extends User {
    coinsEarned?: number;
-   secondTierEarnings?: number; // Заработки с рефералов второго уровня
-   thirdTierEarnings?: number; // Заработки с рефералов третьего уровня
- }
+   secondTierEarnings?: number;
+   thirdTierEarnings?: number;
+}
 // Функция для выполнения запроса на получение рефералов
 const fetchReferralsAndEarnings = async (userId: number) => {
   const referralsResponse = await fetch(`https://coinfarm.club/api/user/${userId}/referrals`);
@@ -120,33 +121,75 @@ const fetchReferralsAndEarnings = async (userId: number) => {
 
 const Preloader = () => {
    const dispatch = useAppDispatch();
-   const isLodaing = useAppSelector((state) => state.preloader.isLodaing);
-   const user = useAppSelector((state:RootState) => state.user.user);
-
-   const { data: friends, isLoading } = useQuery({
-      queryKey: ['referrals', user.id],
-      queryFn: () =>
-        fetchReferralsAndEarnings(user.id)
-          .then((data) => {
-            dispatch(loadingToggle(false)); // Отключаем прелоудер после загрузки данных
-            return data;
-          })
-          .catch((error) => {
-            console.error('Error fetching referrals and earnings:', error);
-            dispatch(loadingToggle(false)); // Отключаем прелоудер, даже если произошла ошибка
-            throw error; // Re-throw the error so it gets handled by React Query's error handling
-          })
-    });
+   const isLoading = useAppSelector((state: RootState) => state.preloader.isLodaing);
+   const user = useAppSelector((state: RootState) => state.user.user);
 
    useEffect(() => {
-      if (isLoading) {
+      const fetchUserData = async () => {
+         const { initData } = retrieveLaunchParams();
+         if (initData && initData.user) {
+            const user = initData.user;
+            const username = user.username;
+            const userId = user.id;
+
+            try {
+               const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
+               const data = response.data;
+               let referralCode = data.referral_code;
+
+               const userResponse = await axios.post(
+                  "https://coinfarm.club/api/user",
+                  {
+                     username: username,
+                     coins: 0,
+                     totalEarnings: 0,
+                     incomeMultiplier: 1,
+                     coinsPerHour: 1000,
+                     xp: 1000,
+                     level: 0,
+                     referralCode: referralCode,
+                  }
+               );
+
+               if (userResponse.status === 409) {
+                  const userData = userResponse.data;
+                  alert(`User already exists: ${JSON.stringify(userData)}`);
+               } else {
+                  const newUser = userResponse.data;
+                  dispatch(setUser(newUser));
+               }
+            } catch (error) {
+               console.error("Error:", error);
+            }
+         }
+      };
+
+      fetchUserData();
+   }, [dispatch]);
+
+   const { data: friends, isLoading: isQueryLoading } = useQuery({
+      queryKey: ['referrals', user.id],
+      queryFn: () =>
+         fetchReferralsAndEarnings(user.id)
+            .then((data) => {
+               dispatch(loadingToggle(false));
+               return data;
+            })
+            .catch((error) => {
+               console.error('Error fetching referrals and earnings:', error);
+               dispatch(loadingToggle(false));
+               throw error;
+            })
+   });
+
+   useEffect(() => {
+      if (isQueryLoading) {
          dispatch(loadingToggle(true));
       }
-   }, [isLoading, dispatch]);
-
+   }, [isQueryLoading, dispatch]);
    return (
       <>
-         {isLodaing && (
+         {isLoading && (
             <div className={cn("wrap")}>
                <div className={cn("preloader")}>
                   <img src={logo} alt="Logo" className={cn("logo")} />
