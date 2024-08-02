@@ -248,9 +248,7 @@ const Invite = () => {
         {/* Кол-во друзей и reload */}
         <div className={cn("invite__friends-control")}>
           <div className={cn("invite__friends-amount")}>
-          {/* {t('your_friends')} <span>{friends.length}</span> */}
-          {t('your_friends')} <span>1000</span>
-
+          {t('your_friends')} <span>{friends.length}</span>
           </div>
           <img src="img/pages/invite/reload.svg" alt="Reload" />
         </div>
