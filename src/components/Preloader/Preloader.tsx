@@ -134,7 +134,7 @@ const Preloader = () => {
       dispatch(loadingToggle(true));
 
      
-   }, [dispatch]);
+   }, []);
    useEffect(() => {
       const fetchUserData = async () => {
          const { initData } = retrieveLaunchParams();
