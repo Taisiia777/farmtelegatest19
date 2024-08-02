@@ -10,6 +10,8 @@ interface IPersonBlockRefProps {
    name: string;
    coinAmount: string;
    earning: string;
+   earning2: string;
+   earning3: string;
    rating?: number;
 }
 
@@ -19,6 +21,8 @@ const PersonBlockRef = ({
    name,
    coinAmount,
    earning,
+   earning2,
+   earning3,
    rating,
 }: IPersonBlockRefProps) => {
    console.log(imgSrc)
@@ -41,7 +45,15 @@ const PersonBlockRef = ({
     <CoinWhiteBg iconName="Bitcoin" size="small" />
     <span className="textShadow">{coinAmount}</span>
   </div>
-) : null}
+) : 
+<><div className={cn("person__coins-amount")}>
+<CoinWhiteBg iconName="Bitcoin" size="small" />
+<span className="textShadow">{earning2}</span>
+</div><div className={cn("person__coins-amount")}>
+<CoinWhiteBg iconName="Bitcoin" size="small" />
+<span className="textShadow">{earning3}</span>
+</div></>
+}
                {/* <div className={cn("person__coins-amount")}>
                   <CoinWhiteBg iconName="Bitcoin" size="small" />
                   <span className="textShadow">{coinAmount}</span>

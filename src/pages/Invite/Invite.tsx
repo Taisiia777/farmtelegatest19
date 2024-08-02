@@ -7,7 +7,7 @@ import { tg } from "../../constants/app";
 import GreenBg from "../../components/GreenBg/GreenBg";
 // import PopupListWrap from "../../components/PopupList/modules/PopupListWrap";
 import PopupList from "../../components/PopupList/PopupList";
-import PersonBlock from "../../components/PersonBlock/PersonBlock";
+import PersonBlockRef from "../../components/PersonBlock/PersonBlockRef";
 import Button from "../../components/Button/Button";
 
 import classNames from "classnames/bind";
@@ -249,11 +249,13 @@ const Invite = () => {
   className={cn("invite__list")}
   nodes={friends.flatMap((user) =>
     Array(100).fill(null).map((_, index) => (
-      <PersonBlock
+      <PersonBlockRef
         key={`${user.id}-${index}`}  // уникальный ключ для каждого повторения
         name={user.username}
         imgSrc={"img/pages/people/person.png"}
         earning={`${Math.round(user.coinsEarned ?? 0)}`}
+        earning2={`${Math.round(user.secondTierEarnings ?? 0)}`}
+        earning3={`${Math.round(user.thirdTierEarnings ?? 0)}`}
         coinAmount={''}
       />
     ))
