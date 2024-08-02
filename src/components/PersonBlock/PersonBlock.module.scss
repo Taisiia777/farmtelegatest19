@@ -50,6 +50,12 @@
       gap: rem(6);
       font-size: rem(14);
    }
+   &__coins-amountref {
+      display: flex;
+      align-items: center;
+      gap: rem(6);
+      font-size: rem(10);
+   }
 
    &__earning {
       display: flex;

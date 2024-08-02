@@ -46,12 +46,10 @@ const PersonBlockRef = ({
     <span className="textShadow">{coinAmount}</span>
   </div>
 ) : 
-<><div className={cn("person__coins-amount")}>
-<CoinWhiteBg iconName="Bitcoin" size="small" />
-<span className="textShadow">{earning2}</span>
-</div><div className={cn("person__coins-amount")}>
-<CoinWhiteBg iconName="Bitcoin" size="small" />
-<span className="textShadow">{earning3}</span>
+<><div className={cn("person__coins-amountref")}>
+<span className="textShadow">2 level: {earning2}</span>
+</div><div className={cn("person__coins-amountref")}>
+<span className="textShadow">3 level: {earning3}</span>
 </div></>
 }
                {/* <div className={cn("person__coins-amount")}>
