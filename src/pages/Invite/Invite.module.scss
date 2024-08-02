@@ -1,10 +1,8 @@
 @import '/src/index.scss';
 
 .wrap {
-   border: 1px solid red;
-   height:200vh;
-   overflow-y: auto !important; /* Добавляем вертикальный скролл */
-   overflow-x: hidden; /* Убираем горизонтальный скролл, если не нужен */
+   height: 100dvh;
+   overflow: hidden;
 }
 
 .invite {
@@ -55,14 +53,10 @@
       top: rem(480) !important;
       height: max-content !important;
       animation: appear 0.4s ease-in-out;
-      border: 1px solid green
    }
 
    &__list {
       padding: 0 rem(16) rem(80) rem(16) !important;
-      height: max-content;
-      border: 1px solid purple
-
    }
 
    &__btns {
