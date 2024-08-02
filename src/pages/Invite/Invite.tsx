@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { tg } from "../../constants/app";
 
 import GreenBg from "../../components/GreenBg/GreenBg";
-import PopupListWrap from "../../components/PopupList/modules/PopupListWrap";
+// import PopupListWrap from "../../components/PopupList/modules/PopupListWrap";
 import PopupList from "../../components/PopupList/PopupList";
 import PersonBlock from "../../components/PersonBlock/PersonBlock";
 import Button from "../../components/Button/Button";
