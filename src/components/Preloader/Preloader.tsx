@@ -287,7 +287,7 @@ const fetchReferralsAndEarnings = async (userId: number) => {
 
 const Preloader = () => {
    const dispatch = useAppDispatch();
-   const isLoading = useAppSelector((state: RootState) => state.preloader.isLodaing);
+   const isLoading = useAppSelector((state) => state.preloader.isLodaing);
    const user = useAppSelector((state: RootState) => state.user.user);
    useEffect(() => {
       setTimeout(() => {
