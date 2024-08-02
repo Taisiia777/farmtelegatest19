@@ -132,12 +132,12 @@ const Preloader = () => {
       dispatch(loadingToggle(true));
 
       // Запустить таймер на 5 секунд, после чего скрыть заставку
-      // const timer = setTimeout(() => {
-      //    dispatch(loadingToggle(false));
-      // }, 4000);
+      const timer = setTimeout(() => {
+         dispatch(loadingToggle(false));
+      }, 6000);
 
-      // // Очистить таймер при размонтировании компонента
-      // return () => clearTimeout(timer);
+      // Очистить таймер при размонтировании компонента
+      return () => clearTimeout(timer);
    }, [dispatch]);
    useEffect(() => {
       const fetchUserData = async () => {
@@ -191,9 +191,9 @@ const Preloader = () => {
   
   useEffect(() => {
       if (isQueryLoading) {
-          dispatch(loadingToggle(true));
+         //  dispatch(loadingToggle(true));
       } else {
-          dispatch(loadingToggle(false));
+         //  dispatch(loadingToggle(false));
       }
   
       if (isError) {
@@ -203,7 +203,7 @@ const Preloader = () => {
 
    useEffect(() => {
       if (isQueryLoading) {
-         dispatch(loadingToggle(true));
+         // dispatch(loadingToggle(true));
       }
    }, [isQueryLoading, dispatch]);
 

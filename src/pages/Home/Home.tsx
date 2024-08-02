@@ -149,7 +149,7 @@ const Home = () => {
    const [rainInterval, setRainInterval] = useState(0);
    const lastUpdateRef = useRef(Date.now());
    const [showQRCode, setShowQRCode] = useState(false);
-    
+
   // useWheatTrunctaion();
   // useHarvestAllWheat()
   console.log(mostExpensiveCoinName)
@@ -287,7 +287,11 @@ const Home = () => {
     } else {
       i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
     }
-   
+    // if (userLanguage !== 'en') {
+    //   document.body.style.fontSize = '0.6em';
+    // } else {
+    //   document.body.style.fontSize = '1em';
+    // }
   }, []);
 
 
@@ -295,7 +299,7 @@ const Home = () => {
       const fetchData = async () => {
        
         const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
-        if (initData && initData.user) {
+        if (initData && initData.user && !isLoading) {
           const user = initData.user;
           const username = user.username;
          const userId = user.id;
