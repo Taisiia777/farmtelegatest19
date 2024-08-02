@@ -50,11 +50,12 @@
 
    &__listWrap {
       top: rem(420) !important;
-      height: max-content !important;
-      animation: appear 0.4s ease-in-out;
+      height: auto; /* Убираем фиксированную высоту, чтобы контейнер расширялся в зависимости от содержимого */
+      overflow: hidden; /* Убираем прокрутку */
    }
 
    &__list {
+      height: auto; /* Убираем ограничения на высоту */
       padding: 0 rem(16) rem(80) rem(16) !important;
    }
 
