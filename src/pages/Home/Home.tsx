@@ -15,7 +15,7 @@ import classNames from "classnames/bind";
 import useWindowSize from "../../hooks/useWindowSize";
 import { setUserCoins1 } from '../../store/reducers/userCoinsSlice';
 import RainAnimation from './modules/RainAnimation';
-// import QRCodeComponent from './QRCodeComponent';
+import QRCodeComponent from './QRCodeComponent';
 // import useWheatTrunctaion from "./hooks/useWheatTrunctation";
 // import {useHarvestAllWheat} from "./hooks/useHarvestAllWheat";
 import i18n from '../../i18n';
@@ -149,7 +149,7 @@ const Home = () => {
    const [rainInterval, setRainInterval] = useState(0);
    const lastUpdateRef = useRef(Date.now());
    const [showQRCode, setShowQRCode] = useState(false);
-    console.log(showQRCode)
+    
   // useWheatTrunctaion();
   // useHarvestAllWheat()
   console.log(mostExpensiveCoinName)
@@ -1060,8 +1060,8 @@ const Home = () => {
 
    return (
       <>
-       {/* <QRCodeComponent /> */}
-       {true && (
+       <QRCodeComponent />
+       {!showQRCode && (
  <>
 
  {/* { isRain && <Clouds
