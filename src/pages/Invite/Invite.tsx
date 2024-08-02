@@ -245,7 +245,7 @@ const Invite = () => {
           <img src="img/pages/invite/reload.svg" alt="Reload" />
         </div>
 
-        <PopupList
+        {/* <PopupList
   className={cn("invite__list")}
   nodes={friends.flatMap((user) =>
     Array(100).fill(null).map((_, index) => (
@@ -261,19 +261,20 @@ const Invite = () => {
     ))
   )}
   type="third"
-/>
+/> */}
 
 
 
-          {/* <PopupList
+          <PopupList
             className={cn("invite__list")}
             nodes={friends.map((user) => (
-              <PersonBlock
+              <PersonBlockRef
                 key={user.id}
                 name={user.username}
                 imgSrc={"img/pages/people/person.png"}
                 earning={`${Math.round(user.coinsEarned ?? 0)}`}
-
+                earning2={`${Math.round(user.secondTierEarnings ?? 0)}`}
+                earning3={`${Math.round(user.thirdTierEarnings ?? 0)}`}
 
                 // earning={`1st: ${Math.round(user.coinsEarned ?? 0)}, 2nd: ${Math.round(user.secondTierEarnings ?? 0)}, 3rd: ${Math.round(user.thirdTierEarnings ?? 0)}`}
                 // coinAmount={Math.round(user.totalEarnings).toString()}
@@ -281,7 +282,7 @@ const Invite = () => {
               />
             ))}
             type="third"
-          /> */}
+          />
 
         {/* <div className={cn("invite__btns")}>
         <TelegramShareButton
