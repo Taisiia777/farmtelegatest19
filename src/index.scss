@@ -94,9 +94,7 @@ body {
    -ms-touch-action: none; /* Отключает жесты на устройствах с Windows */
    -ms-content-zooming: none; /* Отключает зумирование в IE на Windows */
 }
-body:lang(ru), body:lang(uk), body *:lang(ru), body *:lang(uk) {
-   font-size: 0.9em; /* Задайте необходимый коэффициент уменьшения */
-}
+
 html {
    height: 100%;
    // overflow: hidden;

@@ -287,6 +287,13 @@ const Home = () => {
     } else {
       i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
     }
+        // Применяем стили на основе языка
+        const htmlElement = document.documentElement;
+        if (userLanguage !== 'en') {
+          htmlElement.style.fontSize = '0.2em';
+        } else {
+          htmlElement.style.fontSize = '1em';
+        }
   }, []);
 
 
