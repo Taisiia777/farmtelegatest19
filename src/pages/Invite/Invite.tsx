@@ -177,6 +177,10 @@ const Invite = () => {
       setNotificationVisible(false);
     }, 3000); // Уведомление исчезает через 3 секунды
   };
+  const totalEarningsFirstTier = friends.reduce((sum, friend) => sum + (friend.coinsEarned || 0), 0);
+  const totalEarningsSecondTier = friends.reduce((sum, friend) => sum + (friend.secondTierEarnings || 0), 0);
+  const totalEarningsThirdTier = friends.reduce((sum, friend) => sum + (friend.thirdTierEarnings || 0), 0);
+  const totalEarnings = totalEarningsFirstTier + totalEarningsSecondTier + totalEarningsThirdTier;
   return (
     <div className={cn("wrap")}>
       <div className={cn("invite")}>
@@ -244,6 +248,12 @@ const Invite = () => {
           {t('link_copied')}
         </div>
       )}
+        </div>
+        <div className={cn("invite__btns")}>
+          <b className={`${cn("inviteUsersBlock__title")}` + ' textShadow_center'}>
+            Total: 1 level: {totalEarningsFirstTier} 2 level: {totalEarningsSecondTier} 3 level: {totalEarningsThirdTier} <br />
+            Overall Total: {totalEarnings}
+          </b>
         </div>
         {/* Кол-во друзей и reload */}
         <div className={cn("invite__friends-control")}>
