@@ -59,18 +59,18 @@
 // }
 // Подключаем шрифт PT Sans для кириллицы
 @font-face {
-   font-family: 'PT Sans';
+   font-family: 'Roboto';
    font-display: swap;
-   src: url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+   src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
    font-weight: 400;
    font-style: normal;
    unicode-range: U+0400-04FF; /* Кириллица */
 }
 
 @font-face {
-   font-family: 'PT Sans';
+   font-family: 'Roboto';
    font-display: swap;
-   src: url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap');
+   src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
    font-weight: 700;
    font-style: normal;
    unicode-range: U+0400-04FF; /* Кириллица */
@@ -96,7 +96,7 @@
  }
 
 body {
-   font-family: 'Berlin', 'PT Sans', sans-serif;
+   font-family: 'Berlin', 'Roboto', sans-serif;
 
    // font-family: $mainFont;
    font-size: rem(50);
