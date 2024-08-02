@@ -251,8 +251,8 @@ const Invite = () => {
         </div>
         <div className={cn("invite__btns")}>
           <b className={`${cn("inviteUsersBlock__title")}` + ' textShadow_center'}>
-            Total: 1 level: {totalEarningsFirstTier} 2 level: {totalEarningsSecondTier} 3 level: {totalEarningsThirdTier} <br />
-            Overall Total: {totalEarnings}
+            Total: 1 level: {Math.round(totalEarningsFirstTier)} 2 level: {Math.round(totalEarningsSecondTier)} 3 level: {Math.round(totalEarningsThirdTier)} <br />
+            Overall Total: {Math.round(totalEarnings)}
           </b>
         </div>
         {/* Кол-во друзей и reload */}
