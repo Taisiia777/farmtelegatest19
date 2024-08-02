@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 @import './scss/mixins.scss';
 @import './scss/null.scss';
 
@@ -38,7 +39,7 @@
  }
 
 body {
-   font-family: $mainFont;
+   font-family: 'Roboto', sans-serif;
    font-size: rem(50);
    font-weight: 700;
    color: #fff;
