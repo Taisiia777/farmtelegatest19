@@ -94,7 +94,10 @@ body {
    -ms-touch-action: none; /* Отключает жесты на устройствах с Windows */
    -ms-content-zooming: none; /* Отключает зумирование в IE на Windows */
 }
-
+// Уменьшаем размер шрифта для кириллицы
+body:lang(ru), body *:lang(ru) {
+   font-size: 0.7em; /* Задайте необходимый коэффициент уменьшения */
+}
 html {
    height: 100%;
    // overflow: hidden;
