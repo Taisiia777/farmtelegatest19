@@ -288,7 +288,7 @@ const Home = () => {
       i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
     }
     if (userLanguage !== 'en') {
-      document.body.style.fontSize = '0.8em';
+      document.body.style.fontSize = '0.6em';
     } else {
       document.body.style.fontSize = '1em';
     }

@@ -39,42 +39,25 @@
    unicode-range: U+0020-007F; /* Латиница и цифры */
 }
 
-// // Подключаем шрифт Montserrat для кириллицы
-// @font-face {
-//    font-family: 'Montserrat';
-//    font-display: swap;
-//    src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-//    font-weight: 400;
-//    font-style: normal;
-//    unicode-range: U+0400-04FF; /* Кириллица */
-// }
-
-// @font-face {
-//    font-family: 'Montserrat';
-//    font-display: swap;
-//    src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-//    font-weight: 700;
-//    font-style: normal;
-//    unicode-range: U+0400-04FF; /* Кириллица */
-// }
-// Подключаем шрифт PT Sans для кириллицы
+// Подключаем шрифт Montserrat для кириллицы
 @font-face {
-   font-family: 'Roboto';
+   font-family: 'Montserrat';
    font-display: swap;
-   src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+   src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
    font-weight: 400;
    font-style: normal;
    unicode-range: U+0400-04FF; /* Кириллица */
 }
 
 @font-face {
-   font-family: 'Roboto';
+   font-family: 'Montserrat';
    font-display: swap;
-   src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+   src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
    font-weight: 700;
    font-style: normal;
    unicode-range: U+0400-04FF; /* Кириллица */
 }
+
 
 @import './scss/variables.scss';
 * {
@@ -96,7 +79,7 @@
  }
 
 body {
-   font-family: 'Berlin', 'Roboto', sans-serif;
+   font-family: 'Berlin', 'Montserrat', sans-serif;
 
    // font-family: $mainFont;
    font-size: rem(50);
