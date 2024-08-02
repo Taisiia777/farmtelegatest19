@@ -197,8 +197,6 @@ interface Friend extends User {
 
 // Функция для выполнения запроса на получение рефералов и заработка
 const fetchReferralsAndEarnings = async (userId: number) => {
-   const dispatch = useAppDispatch();
-
   const referralsResponse = await fetch(`https://coinfarm.club/api/user/${userId}/referrals`);
   if (!referralsResponse.ok) {
     throw new Error('Failed to fetch referrals');
@@ -239,7 +237,6 @@ const fetchReferralsAndEarnings = async (userId: number) => {
 
     return { ...friend, coinsEarned: earning ? earning.coinsEarned : 0, secondTierEarnings, thirdTierEarnings };
   }));
-  dispatch(loadingToggle(false));
 
   return friendsWithEarnings;
 };
@@ -297,6 +294,7 @@ const Preloader = () => {
       const initialize = async () => {
          try {
             await fetchData(dispatch);
+            dispatch(loadingToggle(false));
          } catch (error) {
             console.error('Error initializing user data:', error);
             dispatch(loadingToggle(false));
