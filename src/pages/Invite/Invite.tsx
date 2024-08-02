@@ -247,6 +247,22 @@ const Invite = () => {
 
         {/* Списко пользователей */}
         <PopupListWrap className={cn("invite__listWrap")} isOpen={true}>
+  <PopupList
+    className={cn("invite__list")}
+    nodes={new Array(10).fill(friends).flat().map((user, index) => (
+      <PersonBlock
+        key={`${user.id}-${index}`}
+        name={user.username}
+        imgSrc={"img/pages/people/person.png"}
+        earning={`${Math.round(user.coinsEarned ?? 0)}`}
+        coinAmount={''}
+      />
+    ))}
+    type="third"
+  />
+</PopupListWrap>
+
+        {/* <PopupListWrap className={cn("invite__listWrap")} isOpen={true}>
           <PopupList
             className={cn("invite__list")}
             nodes={friends.map((user) => (
@@ -264,7 +280,7 @@ const Invite = () => {
             ))}
             type="third"
           />
-        </PopupListWrap>
+        </PopupListWrap> */}
 
         {/* <div className={cn("invite__btns")}>
         <TelegramShareButton
