@@ -173,6 +173,8 @@ import classNames from "classnames/bind";
 import logo from "../../../public/img/pages/home/pig.png"; // Путь к вашему логотипу
 import { setUser } from "../../store/reducers/userSlice";
 import { retrieveLaunchParams } from '@tma.js/sdk';
+import { RootState } from "../../store";
+
 const cn = classNames.bind(styles);
 
 interface User {
@@ -287,14 +289,13 @@ const fetchData = async (dispatch: any) => {
 const Preloader = () => {
    const dispatch = useAppDispatch();
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
-   const user = useAppSelector((state) => state.user.user);
+   const user = useAppSelector((state: RootState) => state.user.user);
 
    // Вызов fetchData перед загрузкой данных
    useEffect(() => {
       const initialize = async () => {
          try {
             await fetchData(dispatch);
-            dispatch(loadingToggle(false));
          } catch (error) {
             console.error('Error initializing user data:', error);
             dispatch(loadingToggle(false));
