@@ -157,7 +157,6 @@ const Home = () => {
    console.log(currentGrassEarnings)
    console.log(userXp)
    // Состояние прелоудера
-   const isLoading = useAppSelector((state) => state.preloader.isLodaing);
 
    // Состояние попапов приветсвия
   //  const isGreetingOpen = useAppSelector((state) => state.greeting.isOpen);
@@ -297,7 +296,8 @@ const Home = () => {
 
    useEffect(() => {
       const fetchData = async () => {
-       
+        const isLoading = useAppSelector((state) => state.preloader.isLodaing);
+
         const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
         if (initData && initData.user && !isLoading) {
           const user = initData.user;
