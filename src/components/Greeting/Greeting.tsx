@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import classNames from "classnames/bind";
 import styles from "./Greeting.module.scss";
@@ -11,7 +11,8 @@ import { RootState } from "../../store";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { updateGrassEarnings } from "../../store/reducers/userSlice";
-
+import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
 const cn = classNames.bind(styles);
 
 const Greeting = () => {
@@ -86,7 +87,56 @@ const Greeting = () => {
       }, 500);
    }
    
-
+   const { t } = useTranslation();
+   useEffect(() => {
+     const initData = window.Telegram.WebApp.initDataUnsafe;
+     const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
+     
+     if (['en', 'ru', 'uk'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
+       i18n.changeLanguage(userLanguage);
+     } else {
+       i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
+     }
+     if (userLanguage !== 'en') {
+ 
+     document.querySelectorAll('.textMenu').forEach(element => {
+       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+         element.style.fontSize = '14px';
+         element.style.fontWeight = '700';
+       }
+     });
+     document.querySelectorAll('.textMenu2').forEach(element => {
+       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+         element.style.fontSize = '18px';
+         element.style.fontWeight = '700';
+       }
+     });
+     document.querySelectorAll('.textMenu1').forEach(element => {
+        if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+          element.style.fontSize = '13px';
+          element.style.fontWeight = '700';
+        }
+      });
+      document.querySelectorAll('.textInvite').forEach(element => {
+       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+         element.style.fontSize = '20px';
+         element.style.fontWeight = '700';
+       }
+     });
+     document.querySelectorAll('.textInvite1').forEach(element => {
+       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+         element.style.fontSize = '15px';
+         element.style.fontWeight = '400';
+       }
+     });
+     document.querySelectorAll('.textInvite2').forEach(element => {
+       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+         element.style.fontSize = '12px';
+         element.style.fontWeight = '700';
+       }
+     });
+   }
+   }, []);
    return (
       <div className={cn("greeting", !isLoading && isOpen && "_active")}>
          {/* Introduction */}
@@ -100,7 +150,7 @@ const Greeting = () => {
 
                {/* Надпись на popup-border */}
                <strong className={cn("greeting__label", "_first")}>
-                  Introduction
+               {t('introduction')}
                </strong>
 
                {/* Иконка next */}
@@ -118,8 +168,7 @@ const Greeting = () => {
                      className={cn("content__person-img", "_first")}
                   />
                   <p className={cn("content__text", "_first")}>
-                     Welcome to Happy Coin Farm – the unique game where you grow
-                     digital coins and earn real money!
+                  {t('greeting1')}
                   </p>
                </div>
             </div>
@@ -136,7 +185,7 @@ const Greeting = () => {
 
                {/* Надпись на popup-border */}
                <strong className={cn("greeting__label", "_second")}>
-                  Game Advantages
+                  {t('game advantages')}
                </strong>
 
                {/* Иконка next */}
@@ -154,9 +203,7 @@ const Greeting = () => {
                      className={cn("content__person-img", "_second")}
                   />
                   <p className={cn("content__text", "_second")}>
-                     Upgrade your farm, buy boosts, enhance your coins, and
-                     harvest crops. Check in EVERY HOUR to collect your money
-                     harvest!
+                  {t('greeting2')}
                   </p>
                </div>
             </div>
@@ -173,7 +220,7 @@ const Greeting = () => {
 
                {/* Надпись на popup-border */}
                <strong className={cn("greeting__label", "_third")}>
-                  Launch on Exchanges
+                  {t('launch on exchanges')}
                </strong>
 
                {/* Иконка next */}
@@ -191,8 +238,7 @@ const Greeting = () => {
                      className={cn("content__person-img", "_third")}
                   />
                   <p className={cn("content__text", "_third")}>
-                     Soon, we’re launching on Crypto.com, <br /> Bybit, OKX, and
-                     WhiteBit. Start earning now!
+                  {t('greeting3')}
                   </p>
                </div>
             </div>
@@ -209,7 +255,7 @@ const Greeting = () => {
 
                {/* Надпись на popup-border */}
                <strong className={cn("greeting__label", "_fourth")}>
-                  Welcome bonus
+               {t('welcome bonus')}
                </strong>
 
                {/* Контент */}
@@ -220,8 +266,7 @@ const Greeting = () => {
                   />
                   <div className={cn("content__flex")}>
                      <p className={cn("content__text", "_fourth")}>
-                        Here's our welcome bonus for you! Enjoy <br /> X coins
-                        right now. Play and earn!
+                     {t('greeting4')}
                      </p>
                      <div className={cn("content__end-btn-wrap")}>
                         <Button
