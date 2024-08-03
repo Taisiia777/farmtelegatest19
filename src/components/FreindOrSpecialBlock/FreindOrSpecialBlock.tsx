@@ -547,7 +547,8 @@ import axios from 'axios';
 import { useAppSelector } from '../../store'; // Adjust the path as necessary
 import { RootState } from '../../store'; // Adjust the path as necessary
 import { useState, useEffect } from 'react';
-
+import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
 const cn = classNames.bind(styles);
 
 interface IFreindOrSpecialBlockProps {
@@ -584,7 +585,35 @@ const FreindOrSpecialBlock = ({
     value: number;
     cost: number;
   }
-
+  const { t } = useTranslation();
+  useEffect(() => {
+    const initData = window.Telegram.WebApp.initDataUnsafe;
+    const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
+    
+    if (['en', 'ru', 'uk'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
+      i18n.changeLanguage(userLanguage);
+    } else {
+      i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
+    }
+    document.querySelectorAll('.textMenu').forEach(element => {
+      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+        element.style.fontSize = '14px';
+        element.style.fontWeight = '700';
+      }
+    });
+    document.querySelectorAll('.textMenu2').forEach(element => {
+      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+        element.style.fontSize = '18px';
+        element.style.fontWeight = '700';
+      }
+    });
+    document.querySelectorAll('.textMenu1').forEach(element => {
+       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+         element.style.fontSize = '13px';
+         element.style.fontWeight = '700';
+       }
+     });
+  }, []);
   const coins = useAppSelector((state: RootState) => state.userCoins.coins);
   
   useEffect(() => {
@@ -606,13 +635,13 @@ const FreindOrSpecialBlock = ({
           const taskCompleted = completedTasks.some((task: any) => task.description === title && task.type === "socials" && task.isReciebed);
           setIsCompleted(taskCompleted);
           if (taskCompleted) {
-            setButtonText("DONE");
+            setButtonText(t('done'));
           } else {
             const taskPending = completedTasks.some((task: any) => task.description === title && task.type === "socials" && !task.isReciebed);
             if (taskPending) {
               const pendingTask = completedTasks.find((task: any) => task.description === title && task.type === "socials" && !task.isReciebed);
               setRewardId(pendingTask.id); // Сохраняем ID награды
-              setButtonText("CHECK");
+              setButtonText(t('check'));
               setIsReciebed(false);
             }
           }

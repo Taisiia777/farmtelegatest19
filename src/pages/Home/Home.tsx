@@ -1405,7 +1405,7 @@ const Home = () => {
         title={task.description}
         earning={task.rewardAmount.toString()}
         link={task.link}
-        defaultButtonText="Join"
+        defaultButtonText={t('join')}
       />
     ))}
   />
