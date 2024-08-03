@@ -43,7 +43,7 @@ const Popup = forwardRef(
               element.style.fontWeight = '700';
             }
           });
-          setLabelStyle({ fontSize: '14px' });
+          setLabelStyle({ fontSize: '14px', top: '20%' });
        }
         
       }, []);
