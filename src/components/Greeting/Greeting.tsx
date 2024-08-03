@@ -137,7 +137,7 @@ const Greeting = () => {
        });
        document.querySelectorAll('.textInvite3').forEach(element => {
         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-          element.style.fontSize = '15px';
+          element.style.fontSize = '18px';
           element.style.fontWeight = '700';
         }
       });
