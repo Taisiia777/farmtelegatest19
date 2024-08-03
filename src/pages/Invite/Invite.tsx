@@ -83,6 +83,18 @@ const Invite = () => {
          element.style.fontWeight = '700';
        }
      });
+     document.querySelectorAll('.textInvite').forEach(element => {
+      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+        element.style.fontSize = '20px';
+        element.style.fontWeight = '700';
+      }
+    });
+    document.querySelectorAll('.textInvite1').forEach(element => {
+      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+        element.style.fontSize = '15px';
+        element.style.fontWeight = '400';
+      }
+    });
   }, []);
 
   // useEffect(() => {
@@ -199,10 +211,10 @@ const Invite = () => {
   return (
     <div className={cn("wrap")}>
       <div className={cn("invite")}>
-        <h2 className={`${cn("invite__title")}` + " textShadow textMenu1"}>
+        <h2 className={`${cn("invite__title")}` + " textShadow textInvite"}>
         {t('invite_friends')}
         </h2>
-        <p className={`${cn("invite__subtitle")}` + " textShadow textMenu1"}>
+        <p className={`${cn("invite__subtitle")}` + " textShadow textInvite1"}>
         {t('invite_descr')}
 
         </p>
@@ -230,13 +242,13 @@ const Invite = () => {
               <b className={`${cn("inviteUsersBlock__title")}` + ' textShadow_center textMenu1'}>
               {t('invite_1')}
               </b>
-              <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center textMenu1"}>
+              <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center textInvite1"}>
               {t('invite_2')}
               </p>
-              <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center textMenu1"}>
+              <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center textInvite1"}>
               {t('invite_3')}
               </p>
-              <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center textMenu1"}>
+              <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center textInvite1"}>
               {t('invite_4')}
               </p>
             </div>
