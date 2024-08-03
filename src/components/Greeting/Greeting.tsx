@@ -167,7 +167,7 @@ const Greeting = () => {
                      src="img/greeting/first.png"
                      className={cn("content__person-img", "_first")}
                   />
-                  <p className={cn("content__text", "_first textInvite2")}>
+                  <p className={cn("content__text", "_first")}>
                   {t('greeting1')}
                   </p>
                </div>
@@ -202,7 +202,7 @@ const Greeting = () => {
                      src="img/greeting/second.png"
                      className={cn("content__person-img", "_second")}
                   />
-                  <p className={cn("content__text", "_second textInvite2")}>
+                  <p className={cn("content__text", "_second")}>
                   {t('greeting2')}
                   </p>
                </div>
@@ -237,7 +237,7 @@ const Greeting = () => {
                      src="img/greeting/third.png"
                      className={cn("content__person-img", "_third")}
                   />
-                  <p className={cn("content__text", "_third textInvite2")}>
+                  <p className={cn("content__text", "_third")}>
                   {t('greeting3')}
                   </p>
                </div>
@@ -265,7 +265,7 @@ const Greeting = () => {
                      className={cn("content__person-img", "_fourth")}
                   />
                   <div className={cn("content__flex")}>
-                     <p className={cn("content__text", "_fourth textInvite2")}>
+                     <p className={cn("content__text", "_fourth")}>
                      {t('greeting4')}
                      </p>
                      <div className={cn("content__end-btn-wrap")}>
