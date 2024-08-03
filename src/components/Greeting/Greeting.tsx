@@ -97,69 +97,83 @@ const Greeting = () => {
      } else {
        i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
      }
-     if (userLanguage !== 'en') {
  
-     document.querySelectorAll('.textMenu').forEach(element => {
-       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-         element.style.fontSize = '14px';
-         element.style.fontWeight = '700';
-       }
-     });
-     document.querySelectorAll('.textMenu2').forEach(element => {
-       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-         element.style.fontSize = '18px';
-         element.style.fontWeight = '700';
-       }
-     });
-     document.querySelectorAll('.textMenu1').forEach(element => {
+   const applyStyles = () => {
+      document.querySelectorAll('.textMenu').forEach(element => {
+         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+           element.style.fontSize = '14px';
+           element.style.fontWeight = '700';
+         }
+       });
+       document.querySelectorAll('.textMenu2').forEach(element => {
+         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+           element.style.fontSize = '18px';
+           element.style.fontWeight = '700';
+         }
+       });
+       document.querySelectorAll('.textMenu1').forEach(element => {
+          if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+            element.style.fontSize = '13px';
+            element.style.fontWeight = '700';
+          }
+        });
+        document.querySelectorAll('.textInvite').forEach(element => {
+         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+           element.style.fontSize = '20px';
+           element.style.fontWeight = '700';
+         }
+       });
+       document.querySelectorAll('.textInvite1').forEach(element => {
+         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+           element.style.fontSize = '15px';
+           element.style.fontWeight = '400';
+         }
+       });
+       document.querySelectorAll('.textInvite2').forEach(element => {
+         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+           element.style.fontSize = '12px';
+           element.style.fontWeight = '700';
+         }
+       });
+       document.querySelectorAll('.textInvite3').forEach(element => {
         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-          element.style.fontSize = '13px';
+          element.style.fontSize = '10px';
           element.style.fontWeight = '700';
         }
       });
-      document.querySelectorAll('.textInvite').forEach(element => {
-       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-         element.style.fontSize = '20px';
-         element.style.fontWeight = '700';
-       }
-     });
-     document.querySelectorAll('.textInvite1').forEach(element => {
-       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-         element.style.fontSize = '15px';
-         element.style.fontWeight = '400';
-       }
-     });
-     document.querySelectorAll('.textInvite2').forEach(element => {
-       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-         element.style.fontSize = '12px';
-         element.style.fontWeight = '700';
-       }
-     });
-     document.querySelectorAll('.textInvite3').forEach(element => {
-      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-        element.style.fontSize = '10px';
-        element.style.fontWeight = '700';
-      }
-    });
-    document.querySelectorAll('.textInvite4').forEach(element => {
-      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-        element.style.fontSize = '10px';
-        element.style.fontWeight = '700';
-      }
-    });
-    document.querySelectorAll('.textInvite5').forEach(element => {
-      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-        element.style.fontSize = '14px';
-        element.style.fontWeight = '700';
-      }
-    });
-    document.querySelectorAll('.textInvite6').forEach(element => {
-      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-        element.style.fontSize = '10px';
-        element.style.fontWeight = '700';
-      }
-    });
-   }
+      document.querySelectorAll('.textInvite4').forEach(element => {
+        if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+          element.style.fontSize = '10px';
+          element.style.fontWeight = '700';
+        }
+      });
+      document.querySelectorAll('.textInvite5').forEach(element => {
+        if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+          element.style.fontSize = '14px';
+          element.style.fontWeight = '700';
+        }
+      });
+      document.querySelectorAll('.textInvite6').forEach(element => {
+        if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+          element.style.fontSize = '10px';
+          element.style.fontWeight = '700';
+        }
+      });
+      // Добавьте остальные стили аналогичным образом
+    };
+    if (userLanguage !== 'en') {
+ 
+      applyStyles();
+
+    }
+  
+    // Перезапуск применения стилей при изменении количества элементов
+    const observer = new MutationObserver(applyStyles);
+    observer.observe(document.body, { childList: true, subtree: true });
+  
+    return () => {
+      observer.disconnect();
+    };
    }, []);
    return (
       <div className={cn("greeting", !isLoading && isOpen && "_active")}>
