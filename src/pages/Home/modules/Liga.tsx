@@ -37,6 +37,7 @@ const Liga = ({ liga, onLigaOpen, onClick }: LigaProps) => {
      } else {
        i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
      }
+     
    }, []);
    return (
       <div style={{position:"absolute", top: "-66vh", left: "50%", transform: "translateX(-50%)", zIndex:"1"}} className={cn("liga")} onClick={onLigaOpen} id="league">
