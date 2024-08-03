@@ -55,10 +55,12 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
      }
      const rootElement = document.documentElement;
     
-    if (['ru', 'uk'].includes(userLanguage)) {
-      rootElement.style.fontSize = '14px !important'; // Меньший размер шрифта для языков отличных от английского
-      rootElement.style.fontWeight = '900 !important'; // Более жирный шрифт
-    } 
+
+     if (['ru', 'uk'].includes(userLanguage)) {
+       rootElement.classList.add('font-ru-uk');
+     } else {
+       rootElement.classList.remove('font-ru-uk');
+     }
      
    }, []);
    const navigate = useNavigate();
