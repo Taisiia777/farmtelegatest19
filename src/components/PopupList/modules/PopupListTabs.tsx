@@ -28,6 +28,15 @@ const PopupListTabs = ({
      } else {
        i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
      }
+     if (userLanguage !== 'en') {
+      // Применяем стили ко всем элементам
+      document.querySelectorAll('.textMenu').forEach(element => {
+        if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+          element.style.fontSize = '10px';
+          element.style.fontWeight = '900';
+        }
+      });
+    }
    }, []);
    console.log(labelClassName)
    return (
@@ -38,7 +47,7 @@ const PopupListTabs = ({
                   className={cn("tabs__item", activeTab === label && "_active")}
                   onClick={() => onTabChange(label)}
                   key={label}>
-<span style={{ height: labels.length === 3 ? '20%' : '73%', top: labels.length === 3 ? '40%' : '0', fontSize: labels.length === 3 ? '15px' : '20px' }}>{t(`${label.toLocaleLowerCase()}`)}</span>
+<span className="textMenu" style={{ height: labels.length === 3 ? '20%' : '73%', top: labels.length === 3 ? '40%' : '0', fontSize: labels.length === 3 ? '15px' : '20px' }}>{t(`${label.toLocaleLowerCase()}`)}</span>
 <img src="img/global/border-block/label.svg" alt={label} />
                </li>
             ))}
