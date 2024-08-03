@@ -55,7 +55,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
      }
      if (userLanguage !== 'en') {
       // Применяем стили ко всем элементам
-      document.querySelectorAll('*').forEach(element => {
+      document.querySelectorAll('span').forEach(element => {
         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
           element.style.fontSize = '30rem';
           element.style.fontWeight = '700';
