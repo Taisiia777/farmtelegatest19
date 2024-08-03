@@ -1,18 +1,18 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './en.json';
-// import ru from './ru.json';
-// import ukr from './ukr.json';
+import ru from './ru.json';
+import ukr from './ukr.json';
 const resources = {
   en: {
     translation: en
   },
-  // ru: {
-  //   translation: ru
-  // },
-  // uk: {
-  //   translation: ukr
-  // },
+  ru: {
+    translation: ru
+  },
+  uk: {
+    translation: ukr
+  },
   // Добавьте другие языки по необходимости
 };
 
