@@ -137,7 +137,7 @@ const Greeting = () => {
      });
      document.querySelectorAll('.textInvite3').forEach(element => {
       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-        element.style.fontSize = '16px';
+        element.style.fontSize = '16px !important';
         element.style.fontWeight = '700';
       }
     });
@@ -226,7 +226,7 @@ const Greeting = () => {
                      src="img/greeting/second.png"
                      className={cn("content__person-img", "_second")}
                   />
-                  <p className={`${cn("content__text", "_second")}` + ' textInvite4'}>
+                  <p className={`${cn("content__text", "_second")}` + ' textInvite3'}>
                   {t('greeting2')}
                   </p>
                </div>
@@ -261,7 +261,7 @@ const Greeting = () => {
                      src="img/greeting/third.png"
                      className={cn("content__person-img", "_third")}
                   />
-                  <p className={`${cn("content__text", "_third")}` + ' textInvite5'}>
+                  <p className={`${cn("content__text", "_third")}` + ' textInvite3'}>
                   {t('greeting3')}
                   </p>
                </div>
@@ -289,7 +289,7 @@ const Greeting = () => {
                      className={cn("content__person-img", "_fourth")}
                   />
                   <div className={cn("content__flex")}>
-                  <p className={`${cn("content__text", "_fourth")}` + ' textInvite6'}>
+                  <p className={`${cn("content__text", "_fourth")}` + ' textInvite3'}>
                      {t('greeting4')}
                      </p>
                      <div className={cn("content__end-btn-wrap")}>
