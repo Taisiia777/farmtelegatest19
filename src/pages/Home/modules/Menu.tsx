@@ -118,7 +118,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
                   </li>
                   <li onClick={() => onEarnOpen()}>
                      <img src="img/pages/home/menu/Stats.svg" alt="Stats" />
-                     <span className="textShadow textMenu">{t('earn')}</span>
+                     <span style={{fontWeight: '900'}} className="textShadow textMenu">{t('earn')}</span>
                   </li>
                   <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "20px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Stats1.svg" alt="Stats" />
