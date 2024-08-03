@@ -294,7 +294,7 @@ const Home = () => {
     // }
     document.querySelectorAll('.textMenu').forEach(element => {
       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-        element.style.fontSize = '10px';
+        element.style.fontSize = '14px';
         element.style.fontWeight = '700';
       }
     });
