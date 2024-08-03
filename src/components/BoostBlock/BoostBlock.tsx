@@ -219,6 +219,18 @@ const BoostBlock = ({
     } else {
       i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
     }
+    document.querySelectorAll('.textMenu').forEach(element => {
+      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+        element.style.fontSize = '14px';
+        element.style.fontWeight = '700';
+      }
+    });
+    document.querySelectorAll('.textMenu1').forEach(element => {
+       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+         element.style.fontSize = '13px';
+         element.style.fontWeight = '700';
+       }
+     });
   }, []);
   // async function applyBooster() {
   //   try {
@@ -298,7 +310,7 @@ const BoostBlock = ({
               alt={boostName}
             />
             <div className={cn("boost__info", "boostInfo")}>
-              <h3 className={`${cn("boostInfo__name")}` + " textShadow"}>
+              <h3 className={`${cn("boostInfo__name")}` + " textShadow textMenu"}>
               {capitalizeFirstLetter(t(`${boostNameNew.toLocaleLowerCase()}`))}
               </h3>
               <div className={cn("boostInfo__index")}>
@@ -339,7 +351,7 @@ const BoostBlock = ({
             alt={boostName}
           />
           <div className={cn("boost__info", "boostInfo")}>
-            <h3 className={`${cn("boostInfo__name")}` + " textShadow"}>
+            <h3 className={`${cn("boostInfo__name")}` + " textShadow textMenu"}>
             {capitalizeFirstLetter(t(`${boostNameNew.toLocaleLowerCase()}`))}
             </h3>
             <div className={cn("boostInfo__index")}>
@@ -376,7 +388,7 @@ const BoostBlock = ({
             alt={boostName}
           />
           <div className={cn("boost__info", "boostInfo")}>
-            <h3 className={`${cn("boostInfo__name")}` + " textShadow"}>
+            <h3 className={`${cn("boostInfo__name")}` + " textShadow textMenu"}>
             {capitalizeFirstLetter(t(`${boostNameNew.toLocaleLowerCase()}`))}
             </h3>
             <div className={cn("boostInfo__index")}>
