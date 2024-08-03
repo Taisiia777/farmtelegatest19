@@ -6,33 +6,33 @@ import { Routes } from "../../../routes/routes";
 import i18n from '../../../i18n';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from "react";
-import { useOutletContext } from 'react-router-dom';
+// import { useOutletContext } from 'react-router-dom';
 
 const cn = classNames.bind(styles);
 
-interface User {
-   id: number;
-   username: string;
-   coins: number;
-   totalEarnings: number;
-   incomeMultiplier: number;
-   coinsPerHour: number;
-   xp: number;
-   level: number;
- }
- interface OutletContext {
-   friends: Friend[];
- }
+// interface User {
+//    id: number;
+//    username: string;
+//    coins: number;
+//    totalEarnings: number;
+//    incomeMultiplier: number;
+//    coinsPerHour: number;
+//    xp: number;
+//    level: number;
+//  }
+//  interface OutletContext {
+//    friends: Friend[];
+//  }
  
  // interface ReferralEarnings {
  //   id: number;
  //   coinsEarned: number;
  // }
- interface Friend extends User {
-   coinsEarned?: number;
-   secondTierEarnings?: number; // Заработки с рефералов второго уровня
-   thirdTierEarnings?: number; // Заработки с рефералов третьего уровня
- }
+//  interface Friend extends User {
+//    coinsEarned?: number;
+//    secondTierEarnings?: number; // Заработки с рефералов второго уровня
+//    thirdTierEarnings?: number; // Заработки с рефералов третьего уровня
+//  }
 interface IMenuProps {
    onBoostOpen: () => void;
    onEarnOpen: () => void;
@@ -40,7 +40,7 @@ interface IMenuProps {
 }
 
 const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
-   const { friends } = useOutletContext<OutletContext>();
+   // const { friends } = useOutletContext<OutletContext>();
 
    // const harvestAllWheat = useHarvestAllWheat();
    const { t } = useTranslation();
@@ -71,7 +71,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
      
    }, []);
    const navigate = useNavigate();
-   const isFrensDisabled = !friends || friends.length === 0;
+   // const isFrensDisabled = !friends || friends.length === 0;
    return (
       <>
          <div className={cn("menu")} id="menu">
@@ -115,9 +115,11 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
                      <span className="textShadow">{t('frens')}</span>
                   </li> */}
                    <li
-                     onClick={() => !isFrensDisabled && navigate(Routes.INVITE)}
-                     className={cn({ 'disabled': isFrensDisabled })} // Добавляем класс для отключенной кнопки
-                     style={isFrensDisabled ? { pointerEvents: 'none', opacity: 0.5 } : {}}
+                     // onClick={() => !isFrensDisabled && navigate(Routes.INVITE)}
+                     onClick={() => navigate(Routes.INVITE)}
+
+                     // className={cn({ 'disabled': isFrensDisabled })} // Добавляем класс для отключенной кнопки
+                     // style={isFrensDisabled ? { pointerEvents: 'none', opacity: 0.5 } : {}}
                   >
                      <img src="img/pages/home/menu/Top.svg" alt="Top" />
                      <span className="textShadow textMenu1">{t('frens')}</span>
