@@ -55,7 +55,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
      }
      if (userLanguage !== 'en') {
       // Применяем стили ко всем элементам
-      document.querySelectorAll('.textShadow').forEach(element => {
+      document.querySelectorAll('.textMenu').forEach(element => {
         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
           element.style.fontSize = '14px';
           element.style.fontWeight = '700';
@@ -82,11 +82,11 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
              
                   <li  onClick={() => onCoinsOpen()}>
                   <img src="img/pages/home/menu/Earn.svg" alt="Earn" />
-                     <span className="textShadow">{t('coins')}</span>
+                     <span className="textShadow textMenu">{t('coins')}</span>
                   </li>
                   <li onClick={() => onBoostOpen()}>
                      <img src="img/pages/home/menu/Boost.svg" alt="Boost" />
-                     <span className="textShadow">{t('boost')}</span>
+                     <span className="textShadow textMenu">{t('boost')}</span>
                   </li>
                   {/* <li onClick={harvestAllWheat}> */}
                   <li >
@@ -114,19 +114,19 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
                      style={isFrensDisabled ? { pointerEvents: 'none', opacity: 0.5 } : {}}
                   >
                      <img src="img/pages/home/menu/Top.svg" alt="Top" />
-                     <span className="textShadow">{t('frens')}</span>
+                     <span className="textShadow textMenu">{t('frens')}</span>
                   </li>
                   <li onClick={() => onEarnOpen()}>
                      <img src="img/pages/home/menu/Stats.svg" alt="Stats" />
-                     <span className="textShadow">{t('earn')}</span>
+                     <span className="textShadow textMenu">{t('earn')}</span>
                   </li>
                   <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "20px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Stats1.svg" alt="Stats" />
-                     <span className="textShadow">{t('stats')}</span>
+                     <span className="textShadow textMenu">{t('stats')}</span>
                   </li>
                   <li onClick={() => window.Telegram.WebApp.openLink('https://t.me/+JznU1FxTemM5NjY8')} style={{position:"absolute", top: "-85vh", left: "20px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Chat.svg" alt="Stats" />
-                     <span className="textShadow">{t('chat')}</span>
+                     <span className="textShadow textMenu">{t('chat')}</span>
                   </li>
                </ul>
             </div>
