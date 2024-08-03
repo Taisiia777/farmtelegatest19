@@ -53,14 +53,15 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
      } else {
        i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
      }
-     const rootElement = document.documentElement;
-    
-
-     if (['ru', 'uk'].includes(userLanguage)) {
-       rootElement.classList.add('font-ru-uk');
-     } else {
-       rootElement.classList.remove('font-ru-uk');
-     }
+     if (userLanguage !== 'en') {
+      // Применяем стили ко всем элементам
+      document.querySelectorAll('*').forEach(element => {
+        if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+          element.style.fontSize = '30rem';
+          element.style.fontWeight = '700';
+        }
+      });
+    }
      
    }, []);
    const navigate = useNavigate();
