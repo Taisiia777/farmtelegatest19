@@ -141,6 +141,24 @@ const Greeting = () => {
         element.style.fontWeight = '700';
       }
     });
+    document.querySelectorAll('.textInvite4').forEach(element => {
+      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+        element.style.fontSize = '10px';
+        element.style.fontWeight = '700';
+      }
+    });
+    document.querySelectorAll('.textInvite5').forEach(element => {
+      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+        element.style.fontSize = '14px';
+        element.style.fontWeight = '700';
+      }
+    });
+    document.querySelectorAll('.textInvite6').forEach(element => {
+      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+        element.style.fontSize = '10px';
+        element.style.fontWeight = '700';
+      }
+    });
    }
    }, []);
    return (
@@ -208,7 +226,7 @@ const Greeting = () => {
                      src="img/greeting/second.png"
                      className={cn("content__person-img", "_second")}
                   />
-                  <p className={`${cn("content__text", "_second")}` + ' textInvite3'}>
+                  <p className={`${cn("content__text", "_second")}` + ' textInvite4'}>
                   {t('greeting2')}
                   </p>
                </div>
@@ -243,7 +261,7 @@ const Greeting = () => {
                      src="img/greeting/third.png"
                      className={cn("content__person-img", "_third")}
                   />
-                  <p className={`${cn("content__text", "_third")}` + ' textInvite3'}>
+                  <p className={`${cn("content__text", "_third")}` + ' textInvite5'}>
                   {t('greeting3')}
                   </p>
                </div>
@@ -271,7 +289,7 @@ const Greeting = () => {
                      className={cn("content__person-img", "_fourth")}
                   />
                   <div className={cn("content__flex")}>
-                  <p className={`${cn("content__text", "_fourth")}` + ' textInvite3'}>
+                  <p className={`${cn("content__text", "_fourth")}` + ' textInvite6'}>
                      {t('greeting4')}
                      </p>
                      <div className={cn("content__end-btn-wrap")}>
