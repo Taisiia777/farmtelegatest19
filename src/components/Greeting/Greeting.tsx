@@ -149,7 +149,7 @@ const Greeting = () => {
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("greeting__label", "_first textInvite2")}>
+               <strong className={cn("greeting__label", "_first")}>
                {t('introduction')}
                </strong>
 
@@ -184,7 +184,7 @@ const Greeting = () => {
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("greeting__label", "_second textInvite2")}>
+               <strong className={cn("greeting__label", "_second")}>
                   {t('game advantages')}
                </strong>
 
@@ -219,7 +219,7 @@ const Greeting = () => {
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("greeting__label", "_third textInvite2")}>
+               <strong className={cn("greeting__label", "_third")}>
                   {t('launch on exchanges')}
                </strong>
 
@@ -254,7 +254,7 @@ const Greeting = () => {
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("greeting__label", "_fourth textInvite2")}>
+               <strong className={cn("greeting__label", "_fourth")}>
                {t('welcome bonus')}
                </strong>
 
