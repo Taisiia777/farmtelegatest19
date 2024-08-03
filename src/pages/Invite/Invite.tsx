@@ -95,6 +95,12 @@ const Invite = () => {
         element.style.fontWeight = '400';
       }
     });
+    document.querySelectorAll('.textInvite2').forEach(element => {
+      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+        element.style.fontSize = '10px !important';
+        element.style.fontWeight = '700';
+      }
+    });
   }, []);
 
   // useEffect(() => {
@@ -260,13 +266,13 @@ const Invite = () => {
   url={`https://t.me/Coin_Farming_bot?start=${user.referralCode}`}
   title="Join me on Coin Farm!"
 >
-  <Button className={`${cn("invite__copy")}`+ "textInvite1"} size="big" >
+  <Button className={`${cn("invite__copy")}`+ "textInvite2"} size="big" >
     {t('invite_friends')}
   </Button>
 </TelegramShareButton>
 
           {/* TODO: Реализовать функционал копирования */}
-          <Button className={`${cn("invite__copy")}`+ "textInvite1"} size="big" onClick={handleCopyLink}>
+          <Button className={`${cn("invite__copy")}`+ "textInvite2"} size="big" onClick={handleCopyLink}>
           {t('copy_link')}
             <img src="img/pages/invite/copy-link.svg" alt="Copy" />
           </Button>
