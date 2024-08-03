@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import styles from "./Popup.module.scss";
 import { ForwardedRef, ReactNode, forwardRef } from "react";
 import i18n from '../../i18n';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 const cn = classNames.bind(styles);
 
 interface IPopupProps {
@@ -18,6 +18,8 @@ const Popup = forwardRef(
       { isOpen, children, onClose, borderlabel, isBlueBg = false }: IPopupProps,
       ref: ForwardedRef<HTMLDivElement>
    ) => {
+      const [labelStyle, setLabelStyle] = useState<React.CSSProperties>({});
+
       useEffect(() => {
         const initData = window.Telegram.WebApp.initDataUnsafe;
         const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
@@ -41,10 +43,7 @@ const Popup = forwardRef(
               element.style.fontWeight = '700';
             }
           });
-          const labelElement = document.querySelector(`.${cn("popup__label")}`);
-          if (labelElement instanceof HTMLElement) {
-             labelElement.style.fontSize = '14px';
-          }
+          setLabelStyle({ fontSize: '14px' });
        }
         
       }, []);
@@ -63,7 +62,7 @@ const Popup = forwardRef(
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("popup__label")}>{borderlabel}</strong>
+               <strong className={cn("popup__label")} style={labelStyle}>{borderlabel}</strong>
 
                {/* Иконка закрытия попапа */}
                <img
