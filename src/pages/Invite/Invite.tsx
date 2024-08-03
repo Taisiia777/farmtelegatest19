@@ -97,7 +97,7 @@ const Invite = () => {
     });
     document.querySelectorAll('.textInvite2').forEach(element => {
       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-        element.style.fontSize = '5px !important';
+        element.style.fontSize = '5px';
         element.style.fontWeight = '700';
       }
     });
