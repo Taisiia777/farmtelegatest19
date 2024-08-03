@@ -292,6 +292,8 @@ const Home = () => {
     // } else {
     //   document.body.style.fontSize = '1em';
     // }
+     if (userLanguage !== 'en') {
+   
     document.querySelectorAll('.textMenu').forEach(element => {
       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
         element.style.fontSize = '14px';
@@ -304,6 +306,7 @@ const Home = () => {
          element.style.fontWeight = '700';
        }
      });
+    }
   }, []);
 
 

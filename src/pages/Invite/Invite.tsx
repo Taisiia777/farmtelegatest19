@@ -65,6 +65,8 @@ const Invite = () => {
     } else {
       i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
     }
+    if (userLanguage !== 'en') {
+
     document.querySelectorAll('.textMenu').forEach(element => {
       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
         element.style.fontSize = '14px';
@@ -101,6 +103,7 @@ const Invite = () => {
         element.style.fontWeight = '700';
       }
     });
+  }
   }, []);
 
   // useEffect(() => {
