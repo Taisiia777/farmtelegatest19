@@ -53,6 +53,18 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
      } else {
        i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
      }
+     if (userLanguage !== 'en') {
+      // Меняем стили для всех элементов текста
+      const allTextElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, div');
+
+      allTextElements.forEach(element => {
+        if (element instanceof HTMLElement) {
+          element.style.fontSize = '14px'; // Уменьшенный размер шрифта
+          element.style.fontWeight = '900'; // Жирный шрифт
+        }
+      });
+    }
+     
    }, []);
    const navigate = useNavigate();
    const isFrensDisabled = !friends || friends.length === 0;
