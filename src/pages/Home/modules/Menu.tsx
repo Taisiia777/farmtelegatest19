@@ -122,11 +122,11 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
                   </li>
                   <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "20px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Stats1.svg" alt="Stats" />
-                     <span className="textShadow textMenu">{t('stats')}</span>
+                     <span className="textShadow">{t('stats')}</span>
                   </li>
                   <li onClick={() => window.Telegram.WebApp.openLink('https://t.me/+JznU1FxTemM5NjY8')} style={{position:"absolute", top: "-85vh", left: "20px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Chat.svg" alt="Stats" />
-                     <span className="textShadow textMenu">{t('chat')}</span>
+                     <span className="textShadow">{t('chat')}</span>
                   </li>
                </ul>
             </div>
