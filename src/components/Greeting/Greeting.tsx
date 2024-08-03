@@ -149,7 +149,7 @@ const Greeting = () => {
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("greeting__label", "_first")}>
+               <strong className={cn("greeting__label", "_first textInvite2")}>
                {t('introduction')}
                </strong>
 
@@ -167,7 +167,7 @@ const Greeting = () => {
                      src="img/greeting/first.png"
                      className={cn("content__person-img", "_first")}
                   />
-                  <p className={cn("content__text", "_first")}>
+                  <p className={cn("content__text", "_first textInvite2")}>
                   {t('greeting1')}
                   </p>
                </div>
@@ -184,7 +184,7 @@ const Greeting = () => {
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("greeting__label", "_second")}>
+               <strong className={cn("greeting__label", "_second textInvite2")}>
                   {t('game advantages')}
                </strong>
 
@@ -202,7 +202,7 @@ const Greeting = () => {
                      src="img/greeting/second.png"
                      className={cn("content__person-img", "_second")}
                   />
-                  <p className={cn("content__text", "_second")}>
+                  <p className={cn("content__text", "_second textInvite2")}>
                   {t('greeting2')}
                   </p>
                </div>
@@ -219,7 +219,7 @@ const Greeting = () => {
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("greeting__label", "_third")}>
+               <strong className={cn("greeting__label", "_third textInvite2")}>
                   {t('launch on exchanges')}
                </strong>
 
@@ -237,7 +237,7 @@ const Greeting = () => {
                      src="img/greeting/third.png"
                      className={cn("content__person-img", "_third")}
                   />
-                  <p className={cn("content__text", "_third")}>
+                  <p className={cn("content__text", "_third textInvite2")}>
                   {t('greeting3')}
                   </p>
                </div>
@@ -254,7 +254,7 @@ const Greeting = () => {
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("greeting__label", "_fourth")}>
+               <strong className={cn("greeting__label", "_fourth textInvite2")}>
                {t('welcome bonus')}
                </strong>
 
@@ -265,7 +265,7 @@ const Greeting = () => {
                      className={cn("content__person-img", "_fourth")}
                   />
                   <div className={cn("content__flex")}>
-                     <p className={cn("content__text", "_fourth")}>
+                     <p className={cn("content__text", "_fourth textInvite2")}>
                      {t('greeting4')}
                      </p>
                      <div className={cn("content__end-btn-wrap")}>
