@@ -5,7 +5,7 @@ import { Routes } from "../../../routes/routes";
 // import { useHarvestAllWheat } from "../hooks/useHarvestAllWheat";
 import i18n from '../../../i18n';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { useOutletContext } from 'react-router-dom';
 
 const cn = classNames.bind(styles);
@@ -41,7 +41,6 @@ interface IMenuProps {
 
 const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
    const { friends } = useOutletContext<OutletContext>();
-   const textRef = useRef<HTMLSpanElement>(null);
 
    // const harvestAllWheat = useHarvestAllWheat();
    const { t } = useTranslation();
@@ -54,10 +53,12 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
      } else {
        i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
      }
-     if (userLanguage !== 'en' && textRef.current) {
-      textRef.current.style.fontSize = '14px'; // Уменьшенный размер шрифта
-      textRef.current.style.fontWeight = '900'; // Жирный шрифт
-    }
+     const rootElement = document.documentElement;
+    
+    if (['ru', 'uk'].includes(userLanguage)) {
+      rootElement.style.fontSize = '14px !important'; // Меньший размер шрифта для языков отличных от английского
+      rootElement.style.fontWeight = '900 !important'; // Более жирный шрифт
+    } 
      
    }, []);
    const navigate = useNavigate();
@@ -78,11 +79,11 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
              
                   <li  onClick={() => onCoinsOpen()}>
                   <img src="img/pages/home/menu/Earn.svg" alt="Earn" />
-                     <span ref={textRef} className="textShadow">{t('coins')}</span>
+                     <span className="textShadow">{t('coins')}</span>
                   </li>
                   <li onClick={() => onBoostOpen()}>
                      <img src="img/pages/home/menu/Boost.svg" alt="Boost" />
-                     <span ref={textRef} className="textShadow">{t('boost')}</span>
+                     <span className="textShadow">{t('boost')}</span>
                   </li>
                   {/* <li onClick={harvestAllWheat}> */}
                   <li >
@@ -110,19 +111,19 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
                      style={isFrensDisabled ? { pointerEvents: 'none', opacity: 0.5 } : {}}
                   >
                      <img src="img/pages/home/menu/Top.svg" alt="Top" />
-                     <span ref={textRef} className="textShadow">{t('frens')}</span>
+                     <span className="textShadow">{t('frens')}</span>
                   </li>
                   <li onClick={() => onEarnOpen()}>
                      <img src="img/pages/home/menu/Stats.svg" alt="Stats" />
-                     <span ref={textRef} className="textShadow">{t('earn')}</span>
+                     <span className="textShadow">{t('earn')}</span>
                   </li>
                   <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "20px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Stats1.svg" alt="Stats" />
-                     <span ref={textRef} className="textShadow">{t('stats')}</span>
+                     <span className="textShadow">{t('stats')}</span>
                   </li>
                   <li onClick={() => window.Telegram.WebApp.openLink('https://t.me/+JznU1FxTemM5NjY8')} style={{position:"absolute", top: "-85vh", left: "20px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Chat.svg" alt="Stats" />
-                     <span ref={textRef} className="textShadow">{t('chat')}</span>
+                     <span className="textShadow">{t('chat')}</span>
                   </li>
                </ul>
             </div>
