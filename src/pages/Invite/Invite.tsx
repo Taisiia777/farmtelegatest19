@@ -284,7 +284,7 @@ const Invite = () => {
         </div>
         <div className={cn("invite__btns")} style={{marginTop:'20px'}}>
           <b className={`${cn("inviteUsersBlock__title")}` + ' textShadow_center'}>
-            Overall Total: {Math.round(totalEarnings)}
+          {t('total')} {Math.round(totalEarnings)}
           </b>
         </div>
         {/* Кол-во друзей и reload */}
