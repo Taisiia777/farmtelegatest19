@@ -292,6 +292,12 @@ const Home = () => {
     // } else {
     //   document.body.style.fontSize = '1em';
     // }
+    document.querySelectorAll('.textMenu').forEach(element => {
+      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+        element.style.fontSize = '24px';
+        element.style.fontWeight = '700';
+      }
+    });
   }, []);
 
 
