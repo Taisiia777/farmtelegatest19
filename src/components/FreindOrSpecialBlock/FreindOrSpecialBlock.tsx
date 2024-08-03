@@ -672,14 +672,14 @@ const FreindOrSpecialBlock = ({
       return;
     }
 
-    setButtonText("CHECK");
+    setButtonText(t('check'));
 
     try {
       // Если награда уже существует, обновляем её статус
       if (rewardId) {
         await axios.patch(`https://coinfarm.club/api/reward/${rewardId}/${userId}`, { isReciebed: true });
         setIsReciebed(true);
-        setButtonText("DONE");
+        setButtonText(t('done'));
         setMoneyAnimACtive(true);
         setTimeout(() => {
           setMoneyAnimACtive(false);
@@ -691,7 +691,7 @@ const FreindOrSpecialBlock = ({
         const response = await axios.post(url);
         console.log("Response:", response.data);
         setIsCompleted(true);
-        setButtonText("CHECK");
+        setButtonText(t('check'));
         
         if (link) {
           window.Telegram.WebApp.openLink(link);
@@ -736,7 +736,7 @@ const FreindOrSpecialBlock = ({
             <Button
               className="textShadow_center"
               disabled={isButtonDisabled}>
-              {`${isCompleted ? "DONE" : buttonText}`}
+              {`${isCompleted ? t('done') : buttonText}`}
             </Button>
           ) : (
             <Button
