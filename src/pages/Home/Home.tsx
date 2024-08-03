@@ -298,6 +298,12 @@ const Home = () => {
         element.style.fontWeight = '700';
       }
     });
+    document.querySelectorAll('.textMenu1').forEach(element => {
+       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+         element.style.fontSize = '13px';
+         element.style.fontWeight = '700';
+       }
+     });
   }, []);
 
 

@@ -61,6 +61,12 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
           element.style.fontWeight = '700';
         }
       });
+      document.querySelectorAll('.textMenu1').forEach(element => {
+         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+           element.style.fontSize = '13px';
+           element.style.fontWeight = '700';
+         }
+       });
     }
      
    }, []);
@@ -82,11 +88,11 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
              
                   <li  onClick={() => onCoinsOpen()}>
                   <img src="img/pages/home/menu/Earn.svg" alt="Earn" />
-                     <span className="textShadow textMenu">{t('coins')}</span>
+                     <span className="textShadow textMenu1">{t('coins')}</span>
                   </li>
                   <li onClick={() => onBoostOpen()}>
                      <img src="img/pages/home/menu/Boost.svg" alt="Boost" />
-                     <span className="textShadow textMenu">{t('boost')}</span>
+                     <span className="textShadow textMenu1">{t('boost')}</span>
                   </li>
                   {/* <li onClick={harvestAllWheat}> */}
                   <li >
@@ -114,11 +120,11 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
                      style={isFrensDisabled ? { pointerEvents: 'none', opacity: 0.5 } : {}}
                   >
                      <img src="img/pages/home/menu/Top.svg" alt="Top" />
-                     <span className="textShadow textMenu">{t('frens')}</span>
+                     <span className="textShadow textMenu1">{t('frens')}</span>
                   </li>
                   <li onClick={() => onEarnOpen()}>
                      <img src="img/pages/home/menu/Stats.svg" alt="Stats" />
-                     <span className="textShadow textMenu">{t('earn')}</span>
+                     <span className="textShadow textMenu1">{t('earn')}</span>
                   </li>
                   <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "20px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Stats1.svg" alt="Stats" />

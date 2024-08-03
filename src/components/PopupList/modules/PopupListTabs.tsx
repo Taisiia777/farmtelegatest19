@@ -31,11 +31,17 @@ const PopupListTabs = ({
      if (userLanguage !== 'en') {
       // Применяем стили ко всем элементам
       document.querySelectorAll('.textMenu').forEach(element => {
-        if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-          element.style.fontSize = '14px';
-          element.style.fontWeight = '700';
-        }
-      });
+         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+           element.style.fontSize = '14px';
+           element.style.fontWeight = '700';
+         }
+       });
+       document.querySelectorAll('.textMenu1').forEach(element => {
+          if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+            element.style.fontSize = '13px';
+            element.style.fontWeight = '700';
+          }
+        });
     }
    }, []);
    console.log(labelClassName)
