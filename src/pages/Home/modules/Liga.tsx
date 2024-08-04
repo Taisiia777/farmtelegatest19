@@ -41,7 +41,7 @@ const Liga = ({ liga, onLigaOpen, onClick }: LigaProps) => {
  
       document.querySelectorAll('.textLiga').forEach(element => {
          if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-           element.style.fontSize = '10px';
+           element.style.fontSize = '12px';
            element.style.fontWeight = '700';
          }
        });

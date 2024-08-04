@@ -153,12 +153,12 @@ const Guide = () => {
           element.style.fontWeight = '700';
         }
       });
-      document.querySelectorAll('.textInvite6').forEach(element => {
-        if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-          element.style.fontSize = '10px';
-          element.style.fontWeight = '700';
-        }
-      });
+         document.querySelectorAll('.textInvite6').forEach(element => {
+         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+            element.style.fontSize = '10px';
+            element.style.fontWeight = '700';
+         }
+         });
       // Добавьте остальные стили аналогичным образом
     };
     if (userLanguage !== 'en') {

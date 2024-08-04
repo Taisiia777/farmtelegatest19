@@ -42,6 +42,7 @@ import Account from "./modules/Account";
 import LigaBlock from "../../components/LigaBlock/LigaBlock";
 import FreindOrSpecialBlock from "../../components/FreindOrSpecialBlock/FreindOrSpecialBlock";
 import Greeting from "../../components/Greeting/Greeting";
+import Guide from "../../components/Guide/Guide";
 import DailyBonus from "../../components/DailyBonus/DailyBonus";
 // import { set } from "lodash";
 
@@ -149,6 +150,7 @@ const Home = () => {
    const [rainInterval, setRainInterval] = useState(0);
    const lastUpdateRef = useRef(Date.now());
    const [showQRCode, setShowQRCode] = useState(false);
+   const [showGuide, setShowGuide] = useState(false);
 
   // useWheatTrunctaion();
   // useHarvestAllWheat()
@@ -842,7 +844,11 @@ const Home = () => {
         console.log("Non-first stage count:", nonFirstStageCount);
         console.log("Current grass earnings:", currentGrassEarnings);
         console.log("Harvested count:", harvestedCount);
-        setCanShowFinger(false)
+        setCanShowFinger(false);
+        if(user?.totalEarnings <= 3000){
+          setShowGuide(true);
+        }
+
         if (nonFirstStageCount > 0) {
           let totalDecrementAmount = 0;
           let newGrassEarnings = currentGrassEarnings;
@@ -1514,7 +1520,7 @@ const Home = () => {
 
          {/* Приветствие */}
          {!hasFirstReward && <Greeting />}
-
+         {showGuide && <Guide />}
          {/* Ежедневный бонус */}
          <DailyBonus />
       </>

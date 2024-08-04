@@ -142,7 +142,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
                      <img src="img/pages/home/menu/Chat.svg" alt="Stats" />
                      <span className="textShadow">{t('chat')}</span>
                   </li>
-                  <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", right: "10px", zIndex:"1"}}>
+                  <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", right: "5px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Guide.svg" alt="Stats" />
                   </li>
                </ul>
