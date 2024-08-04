@@ -37,12 +37,21 @@ const Liga = ({ liga, onLigaOpen, onClick }: LigaProps) => {
      } else {
        i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
      }
-     
+     if (userLanguage !== 'en') {
+ 
+      document.querySelectorAll('.textILiga').forEach(element => {
+         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+           element.style.fontSize = '10px';
+           element.style.fontWeight = '700';
+         }
+       });
+
+    }
    }, []);
    return (
       <div style={{position:"absolute", top: "-66vh", left: "50%", transform: "translateX(-50%)", zIndex:"1"}} className={cn("liga")} onClick={onLigaOpen} id="league">
          <img src={`img/leagueIcons/${liga}.png`} alt="Wooden" />
-         <span className="textShadow"> {t(`${liga.toLocaleLowerCase()}`)}  {t(`league`)} (x{userHarvestMultiplier})</span>
+         <span className="textShadow textLiga"> {t(`${liga.toLocaleLowerCase()}`)}  {t(`league`)} (x{userHarvestMultiplier})</span>
          <img onClick={onClick} style={{display: 'flex',  width:'22px', height:'22px'}} src={`img/leagueIcons/Plus.svg`} alt="plus" />
       </div>
    );
