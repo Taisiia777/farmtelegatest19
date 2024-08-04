@@ -79,12 +79,12 @@ const Guide = () => {
    // }
 
    function fihish() {
-      coinMoneyAnimRef.current?.classList.add("moneyAnim");
+      // coinMoneyAnimRef.current?.classList.add("moneyAnim");
 
-      setTimeout(() => {
-         coinMoneyAnimRef.current?.classList.remove("moneyAnim");
+      // setTimeout(() => {
+      //    coinMoneyAnimRef.current?.classList.remove("moneyAnim");
          dispatch(finishGreeting());
-      }, 500);
+      // }, 500);
    }
    
    const { t } = useTranslation();
