@@ -6,7 +6,7 @@ import { Routes } from "../../../routes/routes";
 import i18n from '../../../i18n';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from "react";
-import Greeting from "../../../components/Greeting/Greeting";
+import Guide from "../../../components/Guide/Guide";
 
 // import { useOutletContext } from 'react-router-dom';
 
@@ -79,7 +79,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
    // const isFrensDisabled = !friends || friends.length === 0;
    return (
       <>
-         {showGreeting && <Greeting />}
+         {showGreeting && <Guide />}
          <div className={cn("menu")} id="menu">
             {/* Border */}
             <img

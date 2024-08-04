@@ -1,0 +1,205 @@
+@import '/src/index.scss';
+
+.greeting {
+   position: fixed;
+   z-index: 1000;
+   top: 0;
+   left: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 100%;
+   opacity: 0;
+   visibility: hidden;
+   background-color: transparent;
+   transition: all 0.4s ease-in-out;
+
+   &._active {
+      opacity: 1;
+      visibility: visible;
+      background-color: rgba(0, 0, 0, 0.5);
+   }
+
+   &._active &__body {
+      transform: none;
+   }
+
+   &__body {
+      position: relative;
+      border-radius: rem(20);
+      margin: 0 rem(10);
+
+      transform: translateY(100%);
+      transition: all 0.4s ease-in-out;
+
+      animation: change-popup 0.5s ease-in;
+   }
+
+   &__border {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+   }
+
+   &__label {
+      position: absolute;
+      transform: translateX(-50%);
+      text-wrap: nowrap;
+
+
+      &._first {
+         top: 3%;
+         left: 51%;
+         font-size: rem(28);
+
+         @media screen and (max-width:em(390)) {
+            font-size: rem(26);
+         }
+      }
+
+      &._second {
+         top: 4%;
+         left: 51%;
+         font-size: rem(19);
+
+         @media screen and (max-width:em(390)) {
+            font-size: rem(17);
+         }
+      }
+
+      &._third {
+         top: 4%;
+         left: 51%;
+         font-size: rem(17);
+
+         @media screen and (max-width:em(390)) {
+            font-size: rem(15);
+         }
+      }
+
+      &._fourth {
+         top: 4%;
+         left: 51%;
+         font-size: rem(20);
+
+         @media screen and (max-width:em(390)) {
+            font-size: rem(18);
+         }
+      }
+   }
+
+   &__next {
+      position: absolute;
+      z-index: 10;
+      bottom: 0;
+      right: -2%;
+
+      @media screen and (max-width:em(380)) {
+         width: rem(60);
+         object-fit: contain;
+      }
+   }
+}
+
+.content {
+   position: absolute;
+   top: 4%;
+   left: 3%;
+   right: 3%;
+   bottom: 8%;
+
+   &__person-img {
+      position: absolute;
+      top: 16%;
+
+      &._first {
+         object-fit: contain;
+         width: 69%;
+         left: -18%;
+      }
+
+      &._second {
+         object-fit: contain;
+         width: 64%;
+         top: 19%;
+         left: -15%;
+      }
+
+      &._third {
+         object-fit: contain;
+         width: 80%;
+         top: 9%;
+         left: -28%;
+      }
+
+      &._fourth {
+         object-fit: contain;
+         width: 78%;
+         top: 13%;
+         left: -20%;
+      }
+   }
+
+   &__text {
+      text-align: center;
+      font-size: clamp(1.313rem, 0.034rem + 5.45vw, 1.5rem);
+      text-shadow: 0 rem(4) rem(2) rgba(0, 0, 0, 0.25);
+      line-height: 1.3;
+      margin-left: auto;
+      padding-right: 2%;
+      text-wrap: pretty;
+
+      &._first {
+         padding-top: 15%;
+         max-width: 61%;
+      }
+
+      &._second {
+         padding-top: 13%;
+         max-width: 64%;
+      }
+
+      &._third {
+         padding-top: 20%;
+         max-width: 68%;
+      }
+   }
+
+   &__flex {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: rem(3);
+
+      padding-top: 13%;
+      max-width: 48%;
+      margin-left: auto;
+   }
+
+
+   &__end-btn {
+      display: flex;
+      align-items: center;
+      gap: rem(10);
+      font-size: rem(24);
+   }
+
+   &__money-anim {
+      position: absolute;
+      bottom: 5%;
+      right: 5%;
+      opacity: 0;
+      visibility: hidden;
+   }
+}
+
+@keyframes change-popup {
+   0% {
+      opacity: 0;
+   }
+
+   100% {
+      opacity: 1;
+   }
+}
