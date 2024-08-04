@@ -5,7 +5,9 @@ import { Routes } from "../../../routes/routes";
 // import { useHarvestAllWheat } from "../hooks/useHarvestAllWheat";
 import i18n from '../../../i18n';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Greeting from "../../../components/Greeting/Greeting";
+
 // import { useOutletContext } from 'react-router-dom';
 
 const cn = classNames.bind(styles);
@@ -41,7 +43,10 @@ interface IMenuProps {
 
 const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
    // const { friends } = useOutletContext<OutletContext>();
-
+   const [showGreeting, setShowGreeting] = useState(false);
+   const handleGuideClick = () => {
+      setShowGreeting(true);
+  };
    // const harvestAllWheat = useHarvestAllWheat();
    const { t } = useTranslation();
    useEffect(() => {
@@ -74,6 +79,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
    // const isFrensDisabled = !friends || friends.length === 0;
    return (
       <>
+         {showGreeting && <Greeting />}
          <div className={cn("menu")} id="menu">
             {/* Border */}
             <img
@@ -136,7 +142,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
                      <img src="img/pages/home/menu/Chat.svg" alt="Stats" />
                      <span className="textShadow">{t('chat')}</span>
                   </li>
-                  <li onClick={() => onEarnOpen()} style={{position:"absolute", top: "-10vh", right: "10px", zIndex:"1"}}>
+                  <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", right: "10px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Guide.svg" alt="Stats" />
                   </li>
                </ul>
