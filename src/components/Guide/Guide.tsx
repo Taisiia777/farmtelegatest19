@@ -6,11 +6,11 @@ import styles from "./Guide.module.scss";
 // import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { finishGreeting } from "../../store/reducers/greeting";
-import { setUser } from "../../store/reducers/userSlice";
-import { RootState } from "../../store";
-import { useSelector } from "react-redux";
-import axios from "axios";
-import { updateGrassEarnings } from "../../store/reducers/userSlice";
+// import { setUser } from "../../store/reducers/userSlice";
+// import { RootState } from "../../store";
+// import { useSelector } from "react-redux";
+// import axios from "axios";
+// import { updateGrassEarnings } from "../../store/reducers/userSlice";
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
 const cn = classNames.bind(styles);
@@ -21,53 +21,53 @@ const Guide = () => {
 
    // Состояние прелоудреа
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
-   const user = useSelector((state: RootState) => state.user.user);
+   // const user = useSelector((state: RootState) => state.user.user);
 
    const [step, setStep] = useState(1);
 
    const coinMoneyAnimRef = useRef<HTMLImageElement>(null);
-   const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
+   // const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
 
    function goNext() {
       setStep((prev) => prev + 1);
    }
-   async function addCoins(userId: number, amount: number) {   
-      console.log(`пользователь ${JSON.stringify(user)} количество ${amount}`)
-      try {
-         const response = await axios.post(
-            `https://coinfarm.club/api/reward/first/${userId}`
-          ); 
-          console.log(response)
-          const response1 = await axios.patch(
-            `https://coinfarm.club/api/user/${userId}/earn/${amount}`
-          );
-          const updatedUser = response1.data;
-          // Обновление состояния пользователя и локальных монет
-          dispatch(
-            setUser({
-              ...updatedUser,
-              coins: updatedUser.coins,
-              totalEarnings: updatedUser.totalEarnings,
-            })
-          );
-          setLocalCoins(2000)
-          dispatch(updateGrassEarnings(0));
+//    async function addCoins(userId: number, amount: number) {   
+//       console.log(`пользователь ${JSON.stringify(user)} количество ${amount}`)
+//       try {
+//          const response = await axios.post(
+//             `https://coinfarm.club/api/reward/first/${userId}`
+//           ); 
+//           console.log(response)
+//           const response1 = await axios.patch(
+//             `https://coinfarm.club/api/user/${userId}/earn/${amount}`
+//           );
+//           const updatedUser = response1.data;
+//           // Обновление состояния пользователя и локальных монет
+//           dispatch(
+//             setUser({
+//               ...updatedUser,
+//               coins: updatedUser.coins,
+//               totalEarnings: updatedUser.totalEarnings,
+//             })
+//           );
+//           setLocalCoins(2000)
+//           dispatch(updateGrassEarnings(0));
 
-          console.log(localCoins)
-            //   const updatedUser = await response.json();
-            //   // Преобразование значений coins и totalEarnings в числа
-            //   console.log(`updated user ${JSON.stringify(updatedUser)}`)
-            //   dispatch(setUser({
-            //       ...updatedUser,
-            //       coins: Number(updatedUser.coins),
-            //       totalEarnings: Number(updatedUser.totalEarnings)
-            //   })); // Обновляем данные пользователя в Redux
+//           console.log(localCoins)
+//             //   const updatedUser = await response.json();
+//             //   // Преобразование значений coins и totalEarnings в числа
+//             //   console.log(`updated user ${JSON.stringify(updatedUser)}`)
+//             //   dispatch(setUser({
+//             //       ...updatedUser,
+//             //       coins: Number(updatedUser.coins),
+//             //       totalEarnings: Number(updatedUser.totalEarnings)
+//             //   })); // Обновляем данные пользователя в Redux
               
           
-      } catch (error) {
-          console.error('Error:', error);
-      }
-  }
+//       } catch (error) {
+//           console.error('Error:', error);
+//       }
+//   }
   
    // function handleAddCoins() {
    //    if (user?.id) {
