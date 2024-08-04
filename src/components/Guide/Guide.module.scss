@@ -144,7 +144,7 @@
          object-fit: contain;
          width: 40%;
          top: 18%;
-         left: -10%;
+         left: 0%;
       }
    }
 
@@ -159,16 +159,16 @@
 
       &._first {
          padding-top: 15%;
-         max-width: 61%;
+         max-width: 50%;
       }
 
       &._second {
-         padding-top: 13%;
-         max-width: 64%;
+         padding-top: 15%;
+         max-width: 45%;
       }
 
       &._third {
-         padding-top: 20%;
+         padding-top: 15%;
          max-width: 68%;
       }
    }
