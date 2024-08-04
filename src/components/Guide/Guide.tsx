@@ -237,7 +237,7 @@ const Guide = () => {
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
                   <img
-                     src="img/greeting/second.png"
+                     src="img/guide/second.png"
                      className={cn("content__person-img", "_second")}
                   />
                   <p className={`${cn("content__text", "_second")}` + ' textInvite3'}>
@@ -272,7 +272,7 @@ const Guide = () => {
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
                   <img
-                     src="img/greeting/third.png"
+                     src="img/guide/third.png"
                      className={cn("content__person-img", "_third")}
                   />
                   <p className={`${cn("content__text", "_third")}` + ' textInvite3'}>
@@ -299,7 +299,7 @@ const Guide = () => {
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
                   <img
-                     src="img/greeting/fourth.png"
+                     src="img/guide/fourth.png"
                      className={cn("content__person-img", "_fourth")}
                   />
                   <div className={cn("content__flex")}>
@@ -339,7 +339,7 @@ const Guide = () => {
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
                   <img
-                     src="img/greeting/fourth.png"
+                     src="img/guide/fifth.png"
                      className={cn("content__person-img", "_fourth")}
                   />
                   <div className={cn("content__flex")}>
@@ -379,7 +379,7 @@ const Guide = () => {
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
                   <img
-                     src="img/greeting/fourth.png"
+                     src="img/guide/six.png"
                      className={cn("content__person-img", "_fourth")}
                   />
                   <div className={cn("content__flex")}>
