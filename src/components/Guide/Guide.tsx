@@ -222,7 +222,7 @@ const Guide = () => {
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("greeting__label", "_second")}>
+               <strong className={cn("greeting__label", "_first")}>
                   {t('instruction')}
                </strong>
 
@@ -257,7 +257,7 @@ const Guide = () => {
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("greeting__label", "_third")}>
+               <strong className={cn("greeting__label", "_first")}>
                   {t('instruction')}
                </strong>
 
@@ -292,7 +292,7 @@ const Guide = () => {
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("greeting__label", "_fourth")}>
+               <strong className={cn("greeting__label", "_first")}>
                {t('instruction')}
                </strong>
                   {/* Иконка next */}
@@ -338,7 +338,7 @@ const Guide = () => {
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("greeting__label", "_fourth")}>
+               <strong className={cn("greeting__label", "_first")}>
                {t('instruction')}
                </strong>
 {/* Иконка next */}
@@ -384,7 +384,7 @@ const Guide = () => {
                />
 
                {/* Надпись на popup-border */}
-               <strong className={cn("greeting__label", "_fourth")}>
+               <strong className={cn("greeting__label", "_first")}>
                {t('instruction')}
                </strong>
 {/* Иконка next */}
