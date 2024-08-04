@@ -2,8 +2,8 @@ import { useRef, useState, useEffect } from "react";
 
 import classNames from "classnames/bind";
 import styles from "./Guide.module.scss";
-import Button from "../Button/Button";
-import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
+// import Button from "../Button/Button";
+// import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { finishGreeting } from "../../store/reducers/greeting";
 import { setUser } from "../../store/reducers/userSlice";
@@ -69,14 +69,14 @@ const Guide = () => {
       }
   }
   
-   function handleAddCoins() {
-      if (user?.id) {
-         addCoins(user.id, 0);
-         fihish();
-      } else {
-         console.error("User ID not found");
-      }
-   }
+   // function handleAddCoins() {
+   //    if (user?.id) {
+   //       addCoins(user.id, 0);
+   //       fihish();
+   //    } else {
+   //       console.error("User ID not found");
+   //    }
+   // }
 
    function fihish() {
       coinMoneyAnimRef.current?.classList.add("moneyAnim");
@@ -392,7 +392,7 @@ const Guide = () => {
                   src="img/global/next-btn.svg"
                   className={cn("greeting__next")}
                   alt="Далее"
-                  onClick={goNext}
+                  onClick={fihish}
                />
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
