@@ -295,7 +295,13 @@ const Guide = () => {
                <strong className={cn("greeting__label", "_fourth")}>
                {t('instruction')}
                </strong>
-
+                  {/* Иконка next */}
+                  <img
+                  src="img/global/next-btn.svg"
+                  className={cn("greeting__next")}
+                  alt="Далее"
+                  onClick={goNext}
+               />
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
                   <img
@@ -306,14 +312,14 @@ const Guide = () => {
                   <p className={`${cn("content__text", "_fourth")}` + ' textInvite3'}>
                   {t('guide4')}
                      </p>
-                     <div className={cn("content__end-btn-wrap")}>
+                     {/* <div className={cn("content__end-btn-wrap")}>
                         <Button
                            className={cn("content__end-btn")}
                            onClick={handleAddCoins}>
                            <CoinWhiteBg size="small" />
                            <span className="textShadow">+2000</span>
                         </Button>
-                     </div>
+                     </div> */}
                      <img
                         src="img/pages/home/money1.svg"
                         className={cn("content__money-anim")}
@@ -335,7 +341,13 @@ const Guide = () => {
                <strong className={cn("greeting__label", "_fourth")}>
                {t('instruction')}
                </strong>
-
+{/* Иконка next */}
+<img
+                  src="img/global/next-btn.svg"
+                  className={cn("greeting__next")}
+                  alt="Далее"
+                  onClick={goNext}
+               />
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
                   <img
@@ -346,14 +358,14 @@ const Guide = () => {
                   <p className={`${cn("content__text", "_fourth")}` + ' textInvite3'}>
                   {t('guide5')}
                      </p>
-                     <div className={cn("content__end-btn-wrap")}>
+                     {/* <div className={cn("content__end-btn-wrap")}>
                         <Button
                            className={cn("content__end-btn")}
                            onClick={handleAddCoins}>
                            <CoinWhiteBg size="small" />
                            <span className="textShadow">+2000</span>
                         </Button>
-                     </div>
+                     </div> */}
                      <img
                         src="img/pages/home/money1.svg"
                         className={cn("content__money-anim")}
@@ -375,7 +387,13 @@ const Guide = () => {
                <strong className={cn("greeting__label", "_fourth")}>
                {t('instruction')}
                </strong>
-
+{/* Иконка next */}
+<img
+                  src="img/global/next-btn.svg"
+                  className={cn("greeting__next")}
+                  alt="Далее"
+                  onClick={goNext}
+               />
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
                   <img
@@ -386,14 +404,14 @@ const Guide = () => {
                   <p className={`${cn("content__text", "_fourth")}` + ' textInvite3'}>
                   {t('guide6')}
                      </p>
-                     <div className={cn("content__end-btn-wrap")}>
+                     {/* <div className={cn("content__end-btn-wrap")}>
                         <Button
                            className={cn("content__end-btn")}
                            onClick={handleAddCoins}>
                            <CoinWhiteBg size="small" />
                            <span className="textShadow">+2000</span>
                         </Button>
-                     </div>
+                     </div> */}
                      <img
                         src="img/pages/home/money1.svg"
                         className={cn("content__money-anim")}
