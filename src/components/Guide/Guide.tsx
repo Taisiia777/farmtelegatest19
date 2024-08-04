@@ -398,7 +398,7 @@ const Guide = () => {
                <div className={cn("greeting__content", "content")}>
                   <img
                      src="img/guide/six.png"
-                     className={cn("content__person-img", "_fourth")}
+                     className={cn("content__person-img", "_fifth")}
                   />
                   <div className={cn("content__flex")}>
                   <p className={`${cn("content__text", "_fourth")}` + ' textInvite3'}>

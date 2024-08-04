@@ -117,13 +117,13 @@
          object-fit: contain;
          width: 60%;
          left: -18%;
-         top: 25%
+         top: 20%
       }
 
       &._second {
          object-fit: contain;
          width: 60%;
-         top: 25%;
+         top: 20%;
          left: -8%;
       }
 
@@ -137,6 +137,12 @@
       &._fourth {
          object-fit: contain;
          width: 60%;
+         top: 18%;
+         left: -10%;
+      }
+      &._fifth {
+         object-fit: contain;
+         width: 40%;
          top: 18%;
          left: -10%;
       }
