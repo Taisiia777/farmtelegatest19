@@ -4,7 +4,7 @@ import classNames from "classnames/bind";
 import styles from "./Guide.module.scss";
 // import Button from "../Button/Button";
 // import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
-import { useAppDispatch } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store";
 import { finishGreeting } from "../../store/reducers/greeting";
 // import { setUser } from "../../store/reducers/userSlice";
 // import { RootState } from "../../store";
@@ -19,8 +19,8 @@ const Guide = () => {
    const dispatch = useAppDispatch();
    // const isOpen = useAppSelector((state) => state.greeting.isOpen);
 
-   // // Состояние прелоудреа
-   // const isLoading = useAppSelector((state) => state.preloader.isLodaing);
+   // Состояние прелоудреа
+   const isLoading = useAppSelector((state) => state.preloader.isLodaing);
    // const user = useSelector((state: RootState) => state.user.user);
 
    const [step, setStep] = useState(1);
@@ -176,7 +176,7 @@ const Guide = () => {
     };
    }, []);
    return (
-      <div className={cn("greeting", "_active")} style={{zIndex: '100'}}>
+      <div className={cn("greeting", !isLoading && "_active")} style={{zIndex: '100'}}>
          {/* Introduction */}
          {step === 1 && (
             <div className={cn("greeting__body", "_first")}>
