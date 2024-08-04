@@ -115,29 +115,30 @@
 
       &._first {
          object-fit: contain;
-         width: 50%;
+         width: 60%;
          left: -18%;
+         top: 25%
       }
 
       &._second {
          object-fit: contain;
-         width: 50%;
-         top: 19%;
-         left: -15%;
+         width: 60%;
+         top: 25%;
+         left: -8%;
       }
 
       &._third {
          object-fit: contain;
-         width: 50%;
-         top: 9%;
-         left: -28%;
+         width: 60%;
+         top: 16%;
+         left: -10%;
       }
 
       &._fourth {
          object-fit: contain;
-         width: 50%;
-         top: 13%;
-         left: -20%;
+         width: 60%;
+         top: 18%;
+         left: -10%;
       }
    }
 
