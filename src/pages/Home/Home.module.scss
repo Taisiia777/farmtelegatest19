@@ -156,7 +156,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
+      width: 90%;
       height: 100%;
    }
    &__board1 {
@@ -200,11 +200,11 @@
    &__progressBar {
       position: absolute;
       top: 0;
-      left: -6%;
+      left: 2%;
       right: 0;
       height: 100%;
       width: 30%;
-      max-width: 98%;
+      max-width: 85%;
       min-width: 0%;
       border-radius: rem(10);
       background: linear-gradient(#FFF34A 20%, #FF7C18 85%, #FFC000 100%);
