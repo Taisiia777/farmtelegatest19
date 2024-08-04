@@ -176,7 +176,7 @@ const Guide = () => {
     };
    }, []);
    return (
-      <div className={cn("greeting", !isLoading && isOpen && "_active")}>
+      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}}>
          {/* Introduction */}
          {step === 1 && (
             <div className={cn("greeting__body", "_first")}>
