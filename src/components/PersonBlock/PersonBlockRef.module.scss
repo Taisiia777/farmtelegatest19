@@ -1,32 +1,5 @@
 @import '/src/index.scss';
-body {
-    font-family: 'Berlin', 'Montserrat', sans-serif;
- 
-    // font-family: $mainFont;
-    font-size: rem(50);
-    font-weight: 700;
-    color: #fff;
-    // overflow: hidden !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    touch-action: none; /* Отключает жесты прокрутки и зумирования */
-    user-select: none; /* Отключает выделение текста */
-    -webkit-user-select: none; /* Отключает выделение текста в Safari */
-    -ms-touch-action: none; /* Отключает жесты на устройствах с Windows */
-    -ms-content-zooming: none; /* Отключает зумирование в IE на Windows */
- }
- 
- html {
-    height: 100%;
-    // overflow: hidden !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    touch-action: none; /* Отключает жесты прокрутки и зумирования */
-    user-select: none; /* Отключает выделение текста */
-    -webkit-user-select: none; /* Отключает выделение текста в Safari */
-    -ms-touch-action: none; /* Отключает жесты на устройствах с Windows */
-    -ms-content-zooming: none; /* Отключает зумирование в IE на Windows */
- }
+
 .person {
    height: 93%;
    display: flex;
