@@ -7,7 +7,7 @@ import { tg } from "../../constants/app";
 import GreenBg from "../../components/GreenBg/GreenBg";
 // import PopupListWrap from "../../components/PopupList/modules/PopupListWrap";
 import PopupList from "../../components/PopupList/PopupList";
-import PersonBlock from "../../components/PersonBlock/PersonBlock";
+import PersonBlockRef from "../../components/PersonBlock/PersonBlockRef";
 import Button from "../../components/Button/Button";
 
 import classNames from "classnames/bind";
@@ -311,7 +311,7 @@ const Invite = () => {
           <PopupList
             className={cn("invite__list")}
             nodes={friends.map((user) => (
-              <PersonBlock
+              <PersonBlockRef
                 key={user.id}
                 name={user.username}
                 imgSrc={"img/pages/people/person.png"}
