@@ -18,7 +18,7 @@ import { useAppSelector } from "../../store";
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
 // import axios from "axios";
-// import { useOutletContext } from 'react-router-dom';
+import { useOutletContext } from 'react-router-dom';
 
 import { TelegramShareButton } from 'react-share';
 
@@ -34,9 +34,9 @@ interface User {
   xp: number;
   level: number;
 }
-// interface OutletContext {
-//   friends: Friend[];
-// }
+interface OutletContext {
+  friends: Friend[];
+}
 
 // interface ReferralEarnings {
 //   id: number;
@@ -51,8 +51,8 @@ interface Friend extends User {
 const Invite = () => {
   const navigate = useNavigate();
   const user = useAppSelector((state: RootState) => state.user.user);
-  const [friends, setFriends] = useState<Friend[]>([]);
-  // const { friends } = useOutletContext<OutletContext>();
+  // const [friends, setFriends] = useState<Friend[]>([]);
+  const { friends } = useOutletContext<OutletContext>();
 
   const [notificationVisible, setNotificationVisible] = useState(false);
   const { t } = useTranslation();
@@ -167,34 +167,34 @@ const Invite = () => {
   //   fetchReferralsAndEarnings();
   // }, [user.id]);
   
-  useEffect(() => {
-    const fetchReferralsAndEarnings = async () => {
-      try {
-        const referralsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals`);
-        if (!referralsResponse.ok) {
-          throw new Error('Failed to fetch referrals');
-        }
-        const referralsData: Friend[] = await referralsResponse.json();
+  // useEffect(() => {
+  //   const fetchReferralsAndEarnings = async () => {
+  //     try {
+  //       const referralsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals`);
+  //       if (!referralsResponse.ok) {
+  //         throw new Error('Failed to fetch referrals');
+  //       }
+  //       const referralsData: Friend[] = await referralsResponse.json();
 
-        const earningsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals/earnings`);
-        if (!earningsResponse.ok) {
-          throw new Error('Failed to fetch earnings');
-        }
-        const earningsData = await earningsResponse.json();
+  //       const earningsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals/earnings`);
+  //       if (!earningsResponse.ok) {
+  //         throw new Error('Failed to fetch earnings');
+  //       }
+  //       const earningsData = await earningsResponse.json();
 
-        const friendsWithEarnings = referralsData.map(friend => {
-          const earning = earningsData.find((e: any) => e.username === friend.username);
-          return { ...friend, coinsEarned: earning ? earning.coinsEarned : 0 };
-        });
+  //       const friendsWithEarnings = referralsData.map(friend => {
+  //         const earning = earningsData.find((e: any) => e.username === friend.username);
+  //         return { ...friend, coinsEarned: earning ? earning.coinsEarned : 0 };
+  //       });
 
-        setFriends(friendsWithEarnings);
-      } catch (error) {
-        console.error('Error fetching referrals and earnings:', error);
-      }
-    };
+  //       setFriends(friendsWithEarnings);
+  //     } catch (error) {
+  //       console.error('Error fetching referrals and earnings:', error);
+  //     }
+  //   };
 
-    fetchReferralsAndEarnings();
-  }, [user.id]);
+  //   fetchReferralsAndEarnings();
+  // }, [user.id]);
   
   useEffect(() => {
     tg.BackButton.show();

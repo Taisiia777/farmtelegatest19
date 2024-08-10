@@ -79,13 +79,13 @@ interface Friend extends User {
 // Функция для выполнения запроса на получение рефералов
 const fetchReferralsAndEarnings = async (userId: number) => {
    console.log(userId)
-  const referralsResponse = await fetch(`https://coinfarm.club/api/user/${userId}/referrals`);
+  const referralsResponse = await fetch(`https://coinfarm.club/api/user/560/referrals`);
   if (!referralsResponse.ok) {
     throw new Error('Failed to fetch referrals');
   }
   const referralsData = await referralsResponse.json();
 
-  const earningsResponse = await fetch(`https://coinfarm.club/api/user/${userId}/referrals/earnings`);
+  const earningsResponse = await fetch(`https://coinfarm.club/api/user/560/referrals/earnings`);
   if (!earningsResponse.ok) {
     throw new Error('Failed to fetch earnings');
   }
@@ -94,30 +94,30 @@ const fetchReferralsAndEarnings = async (userId: number) => {
   const friendsWithEarnings = await Promise.all(referralsData.map(async (friend: Friend) => {
     const earning = earningsData.find((e: Earning) => e.username === friend.username);
     
-    // Fetch 2-tier and 3-tier referrals for the current friend
-    const secondTierReferralsResponse = await fetch(`https://coinfarm.club/api/user/${friend.id}/referrals`);
-    const secondTierReferrals = await secondTierReferralsResponse.json();
+   //  // Fetch 2-tier and 3-tier referrals for the current friend
+   //  const secondTierReferralsResponse = await fetch(`https://coinfarm.club/api/user/${friend.id}/referrals`);
+   //  const secondTierReferrals = await secondTierReferralsResponse.json();
 
-    let secondTierEarnings = 0;
-    let thirdTierEarnings = 0;
+   //  let secondTierEarnings = 0;
+   //  let thirdTierEarnings = 0;
 
-    for (const secondTierReferral of secondTierReferrals) {
-      const secondTierEarningResponse = await fetch(`https://coinfarm.club/api/user/${secondTierReferral.id}/referrals/earnings`);
-      const secondTierEarningsData = await secondTierEarningResponse.json();
-      secondTierEarnings += secondTierEarningsData.reduce((sum: number, e: Earning) => sum + e.coinsEarned, 0);
+   //  for (const secondTierReferral of secondTierReferrals) {
+   //    const secondTierEarningResponse = await fetch(`https://coinfarm.club/api/user/${secondTierReferral.id}/referrals/earnings`);
+   //    const secondTierEarningsData = await secondTierEarningResponse.json();
+   //    secondTierEarnings += secondTierEarningsData.reduce((sum: number, e: Earning) => sum + e.coinsEarned, 0);
 
-      // Fetch 3-tier referrals for each 2-tier referral
-      const thirdTierReferralsResponse = await fetch(`https://coinfarm.club/api/user/${secondTierReferral.id}/referrals`);
-      const thirdTierReferrals = await thirdTierReferralsResponse.json();
+   //    // Fetch 3-tier referrals for each 2-tier referral
+   //    const thirdTierReferralsResponse = await fetch(`https://coinfarm.club/api/user/${secondTierReferral.id}/referrals`);
+   //    const thirdTierReferrals = await thirdTierReferralsResponse.json();
 
-      for (const thirdTierReferral of thirdTierReferrals) {
-        const thirdTierEarningResponse = await fetch(`https://coinfarm.club/api/user/${thirdTierReferral.id}/referrals/earnings`);
-        const thirdTierEarningsData = await thirdTierEarningResponse.json();
-        thirdTierEarnings += thirdTierEarningsData.reduce((sum: number, e: Earning) => sum + e.coinsEarned, 0);
-      }
-    }
+   //    for (const thirdTierReferral of thirdTierReferrals) {
+   //      const thirdTierEarningResponse = await fetch(`https://coinfarm.club/api/user/${thirdTierReferral.id}/referrals/earnings`);
+   //      const thirdTierEarningsData = await thirdTierEarningResponse.json();
+   //      thirdTierEarnings += thirdTierEarningsData.reduce((sum: number, e: Earning) => sum + e.coinsEarned, 0);
+   //    }
+   //  }
 
-    return { ...friend, coinsEarned: earning ? earning.coinsEarned : 0, secondTierEarnings, thirdTierEarnings };
+    return { ...friend, coinsEarned: earning ? earning.coinsEarned : 0};
   }));
 
   return friendsWithEarnings;
