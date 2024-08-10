@@ -627,7 +627,31 @@ const FreindOrSpecialBlock = ({
       setLastCoin(mostExpensiveCoin);
     }
   }, [coins]);
+  const fetchCompletedTasks = async () => {
+    if (user?.id && !isFetchedRewards) {
+      try {
+        const response = await axios.get(`https://coinfarm.club/api/reward/${userId}`);
+        const completedTasks = response.data;
 
+        const taskCompleted = completedTasks.some((task: any) => task.description === title && task.type === "socials" && task.isReciebed);
+        setIsCompleted(taskCompleted);
+        if (taskCompleted) {
+          setButtonText(t('done'));
+        } else {
+          const taskPending = completedTasks.some((task: any) => task.description === title && task.type === "socials" && !task.isReciebed);
+          if (taskPending) {
+            const pendingTask = completedTasks.find((task: any) => task.description === title && task.type === "socials" && !task.isReciebed);
+            setRewardId(pendingTask.id); // Сохраняем ID награды
+            setButtonText(t('check'));
+            setIsReciebed(false);
+          }
+        }
+        setIsFetchedRewards(true);
+      } catch (error) {
+        console.error('Error fetching completed tasks:', error);
+      }
+    }
+  };
   useEffect(() => {
     const fetchCompletedTasks = async () => {
       if (user?.id && !isFetchedRewards) {
@@ -668,7 +692,21 @@ const FreindOrSpecialBlock = ({
     fetchReferralCount();
     fetchCompletedTasks();
   }, [userId, title, refs]);
-
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        // Перепроверка статуса задачи при возвращении в приложение
+        fetchCompletedTasks();
+      }
+    };
+  
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+  
   const handleButtonClick = async () => {
     if (!userId || isCompleted) {
       console.error("User ID is not available or task is already completed");

@@ -5,6 +5,9 @@ import growthStagesSlice from './reducers/growthStages';
 import boostSlice from './reducers/boost';
 import coinSlice from './reducers/coin';
 import greetingSlice from './reducers/greeting';
+import guideSlice from './reducers/guide';
+import guide1Slice from './reducers/guide1';
+
 import preloaderSlice from './reducers/preloader';
 import dailyBonus from './reducers/dailyBonus';
 import userSlice from './reducers/userSlice'; // Импортируем тип UserState
@@ -15,6 +18,8 @@ const store = configureStore({
     boost: boostSlice,
     coin: coinSlice,
     greeting: greetingSlice,
+    guide: guideSlice,
+    guide1: guide1Slice,
     preloader: preloaderSlice,
     dailyBonus,
     user: userSlice,

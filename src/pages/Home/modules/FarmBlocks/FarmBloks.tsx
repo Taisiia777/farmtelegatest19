@@ -40,8 +40,18 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
   useEffect(() => {
     const fetchGrowthStages = async () => {
       try {
-        const response = await axios.get(`https://coinfarm.club/api/user/${user.id}/grass-stages`);
-        dispatch(setGrowthStages(response.data)); // Добавление стадии роста
+        // const response = await axios.get(`https://coinfarm.club/api/user/${user.id}/grass-stages`);
+        dispatch(setGrowthStages([
+          "fourth",
+          "fourth",
+          "fourth",
+          "fourth",
+          "fourth",
+          "fourth",
+          "fourth",
+          "fourth",
+          "fourth"
+      ])); // Добавление стадии роста
       } catch (error) {
         console.error('Failed to fetch grass growth stages:', error);
       }

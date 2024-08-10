@@ -45,6 +45,7 @@
     "join": "join",
     "done": "done",
     "check": "check",
+    "checking": "checking",
     "total_money": "Total money in game",
     "online": "online",
     "daily_users": "Daily users",

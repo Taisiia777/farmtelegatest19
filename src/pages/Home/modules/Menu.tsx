@@ -5,9 +5,9 @@ import { Routes } from "../../../routes/routes";
 // import { useHarvestAllWheat } from "../hooks/useHarvestAllWheat";
 import i18n from '../../../i18n';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from "react";
-import Guide from "../../../components/Guide/Guide";
-
+import { useEffect } from "react";
+import { useAppDispatch } from "../../../store";
+import { openGuide1 } from "../../../store/reducers/guide1";
 // import { useOutletContext } from 'react-router-dom';
 
 const cn = classNames.bind(styles);
@@ -43,9 +43,10 @@ interface IMenuProps {
 
 const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
    // const { friends } = useOutletContext<OutletContext>();
-   const [showGreeting, setShowGreeting] = useState(false);
+   const dispatch = useAppDispatch();
+
    const handleGuideClick = () => {
-      setShowGreeting(true);
+      dispatch(openGuide1());
   };
    // const harvestAllWheat = useHarvestAllWheat();
    const { t } = useTranslation();
@@ -79,13 +80,14 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
    // const isFrensDisabled = !friends || friends.length === 0;
    return (
       <>
-         {showGreeting && <Guide />}
+         
          <div className={cn("menu")} id="menu">
             {/* Border */}
             <img
                src="img/pages/home/menu/border.svg"
                className={cn("menu__border")}
                alt="border"
+               style={{position:"absolute", top:"-8%"}}
             />
 
             {/* Menu elements */}
@@ -123,7 +125,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
                    <li
                      // onClick={() => !isFrensDisabled && navigate(Routes.INVITE)}
                      onClick={() => navigate(Routes.INVITE)}
-
+                     
                      // className={cn({ 'disabled': isFrensDisabled })} // Добавляем класс для отключенной кнопки
                      // style={isFrensDisabled ? { pointerEvents: 'none', opacity: 0.5 } : {}}
                   >
@@ -135,11 +137,11 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
                      <span className="textShadow textMenu1">{t('earn')}</span>
                   </li>
                   <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/Stats1.svg" alt="Stats" />
+                     <img src="img/pages/home/menu/Stats2.png" alt="Stats" style={{height:"54px", width: "50px"}}/>
                      <span className="textShadow">{t('stats')}</span>
                   </li>
                   <li onClick={() => window.Telegram.WebApp.openLink('https://t.me/+JznU1FxTemM5NjY8')} style={{position:"absolute", top: "-85vh", left: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/Chat.svg" alt="Stats" />
+                     <img src="img/pages/home/menu/Chat1.png" alt="Stats" style={{height:"54px", width: "50px"}}/>
                      <span className="textShadow">{t('chat')}</span>
                   </li>
                   <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", right: "5px", zIndex:"1"}}>

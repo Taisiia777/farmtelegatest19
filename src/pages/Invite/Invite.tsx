@@ -104,6 +104,13 @@ const Invite = () => {
       }
     });
   }
+  // Сохраняем начальную позицию прокрутки
+  const initialScrollPosition = window.scrollY;
+
+  // Возвращаем позицию прокрутки в начальную точку при размонтировании компонента
+  return () => {
+    window.scrollTo(0, initialScrollPosition);
+  };
   }, []);
 
   // useEffect(() => {

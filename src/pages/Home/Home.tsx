@@ -16,6 +16,7 @@ import useWindowSize from "../../hooks/useWindowSize";
 import { setUserCoins1 } from '../../store/reducers/userCoinsSlice';
 import RainAnimation from './modules/RainAnimation';
 import QRCodeComponent from './QRCodeComponent';
+import { openGuide } from "../../store/reducers/guide";
 // import useWheatTrunctaion from "./hooks/useWheatTrunctation";
 // import {useHarvestAllWheat} from "./hooks/useHarvestAllWheat";
 import i18n from '../../i18n';
@@ -43,6 +44,8 @@ import LigaBlock from "../../components/LigaBlock/LigaBlock";
 import FreindOrSpecialBlock from "../../components/FreindOrSpecialBlock/FreindOrSpecialBlock";
 import Greeting from "../../components/Greeting/Greeting";
 import Guide from "../../components/Guide/Guide";
+import Guide1 from "../../components/Guide1/Guide1";
+
 import DailyBonus from "../../components/DailyBonus/DailyBonus";
 // import { set } from "lodash";
 
@@ -281,6 +284,7 @@ const Home = () => {
 
   const { t } = useTranslation();
   useEffect(() => {
+    
     const initData = window.Telegram.WebApp.initDataUnsafe;
     const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
     
@@ -308,20 +312,27 @@ const Home = () => {
          element.style.fontWeight = '700';
        }
      });
+     document.querySelectorAll('.textRain').forEach(element => {
+      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+        element.style.fontSize = '13px';
+        element.style.fontWeight = '700';
+      }
+    });
     }
   }, []);
 
-
+  
    useEffect(() => {
       const fetchData = async () => {
        
         const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
         if (initData && initData.user) {
           const user = initData.user;
-          const username = user.username;
+          // const username = user.username;
+          let username = user.username || `guest_${user.id}`; // Используем guest_{user.id} если нет username
+
          const userId = user.id;
 
-           
          const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
          const data = response.data;
          let referralCode = data.referral_code;
@@ -384,6 +395,8 @@ const Home = () => {
   
     }, [dispatch]); // Add other dependencies if needed
 
+
+    
 
 
 
@@ -831,7 +844,30 @@ const Home = () => {
     //   };
     // }, [blocks, currentGrassEarnings, user]);
     
-
+    useEffect(() => {
+      const handleHarvest = () => {
+        // Когда происходит событие "harvest", очищаем таймер
+        clearTimeout(timer);
+      };
+  
+      // Запускаем таймер на 10 секунд при первой загрузке компонента
+      const timer = setTimeout(() => {
+        if(user?.totalEarnings <= 3000 && !showGuide){
+          dispatch(openGuide());
+          setShowGuide(true);
+        }
+    
+      }, 10000); // 10 секунд бездействия
+  
+      // Добавляем обработчик события "harvest"
+      document.addEventListener("harvest", handleHarvest);
+  
+      // Очищаем таймер и обработчик события при размонтировании компонента
+      return () => {
+        clearTimeout(timer);
+        document.removeEventListener("harvest", handleHarvest);
+      };
+    }, []);
     
     useEffect(() => {
       const handleHarvest = (event: Event) => {
@@ -845,7 +881,8 @@ const Home = () => {
         console.log("Current grass earnings:", currentGrassEarnings);
         console.log("Harvested count:", harvestedCount);
         setCanShowFinger(false);
-        if(user?.totalEarnings <= 3000){
+        if(user?.totalEarnings <= 3000 && !showGuide){
+          dispatch(openGuide());
           setShowGuide(true);
         }
 
@@ -876,6 +913,7 @@ const Home = () => {
     
           console.log("Final current grass earnings:", newGrassEarnings);
           console.log("Total decrement amount:", totalDecrementAmount);
+          
         } else {
           // Если все блоки имеют стадию "first", начисляем текущее значение прогресбара пользователю и сбрасываем его в ноль
           setDisplayEarnings(prev => {
@@ -1221,7 +1259,7 @@ const Home = () => {
           alt="energy"
         />
 
-        <p className={cn("popup__desc") + " textShadow"}>
+        <p className={cn("popup__desc") + " textShadow textRain"}>
           {/* Activate rain to instantly grow your crops to their maximum
           yield without waiting! Collect your fully grown harvest
           immediately! */}
@@ -1521,6 +1559,8 @@ const Home = () => {
          {/* Приветствие */}
          {!hasFirstReward && <Greeting />}
          {showGuide && <Guide />}
+         <Guide1 />
+
          {/* Ежедневный бонус */}
          <DailyBonus />
       </>

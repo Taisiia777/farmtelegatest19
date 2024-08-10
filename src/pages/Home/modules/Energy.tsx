@@ -164,7 +164,7 @@ const Energy = ({ total, current, onClick, onClickProgresbar, onClickProgresbarH
          {/* Иконка энергии */}
          {version === 1 && (
           <img
-          src="img/pages/home/energy/progresbarCloud.svg"
+          src="img/pages/home/energy/progresbarCloud.png"
           className={cn("energy__icon", { shake: !isRain })}
           alt="Energy"
        />

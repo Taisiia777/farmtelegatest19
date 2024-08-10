@@ -136,7 +136,10 @@ const Stats = () => {
                {t('total_money')}
             </small>
             <Coins quantity={Math.round(user?.totalEarnings || 0)} />
-
+            <div className={cn("stats__invite-btn")} onClick={() => navigate(Routes.PEOPLE)}>
+          <span className={cn("stats__invite-btn-text")}> {t('stats')}</span>
+          <img src="img/pages/invite/btn.svg" alt="Invite friends" />
+        </div>
             <div className={cn("stats__body")}>
                <BorderBlock
                   label={t('online')}
