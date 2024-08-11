@@ -38,14 +38,9 @@ interface OutletContext {
   friends: Friend[];
 }
 
-// interface ReferralEarnings {
-//   id: number;
-//   coinsEarned: number;
-// }
+
 interface Friend extends User {
   coinsEarned?: number;
-  // secondTierEarnings?: number; // Заработки с рефералов второго уровня
-  // thirdTierEarnings?: number; // Заработки с рефералов третьего уровня
 }
 
 const Invite = () => {

@@ -15,6 +15,8 @@ import { RootState } from "../../store";
 import { useAppSelector } from "../../store";
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
+import { useOutletContext } from 'react-router-dom';
+
 const cn = classNames.bind(styles);
 
 interface User {
@@ -27,6 +29,11 @@ interface User {
   xp: number;
   level: number;
 }
+interface OutletContext {
+  friends: Friend[];
+}
+
+
 interface Friend extends User {
   coinsEarned?: number;
 }
@@ -35,9 +42,8 @@ const People = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(location.state?.label ?? "FARM FRENDS");
   const [users, setUsers] = useState<User[]>([]);
-  const [friends, setFriends] = useState<Friend[]>([]);
-  const [referralCount, setReferralCount] = useState(0);
   const user = useAppSelector((state: RootState) => state.user.user);
+  const { friends } = useOutletContext<OutletContext>();
   const { t } = useTranslation();
   useEffect(() => {
     const initData = window.Telegram.WebApp.initDataUnsafe;
@@ -70,35 +76,35 @@ const People = () => {
 
     fetchUsers();
   }, []);
-  useEffect(() => {
-    const fetchReferralsAndEarnings = async () => {
-      try {
-        const referralsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals`);
-        if (!referralsResponse.ok) {
-          throw new Error('Failed to fetch referrals');
-        }
-        const referralsData: Friend[] = await referralsResponse.json();
+  // useEffect(() => {
+  //   const fetchReferralsAndEarnings = async () => {
+  //     try {
+  //       const referralsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals`);
+  //       if (!referralsResponse.ok) {
+  //         throw new Error('Failed to fetch referrals');
+  //       }
+  //       const referralsData: Friend[] = await referralsResponse.json();
 
-        const earningsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals/earnings`);
-        if (!earningsResponse.ok) {
-          throw new Error('Failed to fetch earnings');
-        }
-        const earningsData = await earningsResponse.json();
+  //       const earningsResponse = await fetch(`https://coinfarm.club/api/user/${user.id}/referrals/earnings`);
+  //       if (!earningsResponse.ok) {
+  //         throw new Error('Failed to fetch earnings');
+  //       }
+  //       const earningsData = await earningsResponse.json();
 
-        const friendsWithEarnings = referralsData.map(friend => {
-          const earning = earningsData.find((e: any) => e.username === friend.username);
-          return { ...friend, coinsEarned: earning ? earning.coinsEarned : 0 };
-        });
+  //       const friendsWithEarnings = referralsData.map(friend => {
+  //         const earning = earningsData.find((e: any) => e.username === friend.username);
+  //         return { ...friend, coinsEarned: earning ? earning.coinsEarned : 0 };
+  //       });
 
-        setFriends(friendsWithEarnings);
-        setReferralCount(referralsData.length);
-      } catch (error) {
-        console.error('Error fetching referrals and earnings:', error);
-      }
-    };
+  //       setFriends(friendsWithEarnings);
+  //       setReferralCount(referralsData.length);
+  //     } catch (error) {
+  //       console.error('Error fetching referrals and earnings:', error);
+  //     }
+  //   };
 
-    fetchReferralsAndEarnings();
-  }, [user.id]);
+  //   fetchReferralsAndEarnings();
+  // }, [user.id]);
 
   
   
@@ -106,7 +112,7 @@ const People = () => {
   return (
     <div className={cn("wrap")}>
       <div className={cn("people")}>
-      <h2 className={`${cn("people__title")}` + " textShadow"}>{referralCount} {t('friends')}</h2>
+      <h2 className={`${cn("people__title")}` + " textShadow"}>{friends.length} {t('friends')}</h2>
       <Coins quantity={Math.round(user.totalEarnings).toString()} />
         <div className={cn("people__invite-btn")} onClick={() => navigate(Routes.INVITE)}>
           <span className={cn("people__invite-btn-text")}> {t('invite_frirnd')}</span>

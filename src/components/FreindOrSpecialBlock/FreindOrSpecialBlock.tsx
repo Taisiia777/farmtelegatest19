@@ -549,6 +549,7 @@ import { RootState } from '../../store'; // Adjust the path as necessary
 import { useState, useEffect } from 'react';
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
+import { useOutletContext } from 'react-router-dom';
 const cn = classNames.bind(styles);
 
 interface IFreindOrSpecialBlockProps {
@@ -571,19 +572,38 @@ const FreindOrSpecialBlock = ({
   const userId = useAppSelector((state: RootState) => state.user.user?.id);
   const [isCompleted, setIsCompleted] = useState(false);
   const [buttonText, setButtonText] = useState(defaultButtonText);
-  const [referralCount, setReferralCount] = useState<number>(0);
+  // const [referralCount, setReferralCount] = useState<number>(0);
   const [moneyAnimActive, setMoneyAnimACtive] = useState(false);
   const user = useAppSelector((state: RootState) => state.user.user);
   const [lastCoin, setLastCoin] = useState<Coin | null>(null);
   const [isFetchedRewards, setIsFetchedRewards] = useState(false);
   const [isReciebed, setIsReciebed] = useState<boolean | null>(null); // Добавлено новое состояние
   const [rewardId, setRewardId] = useState<number | null>(null); // Добавлено состояние для хранения ID награды
+  const { friends } = useOutletContext<OutletContext>();
 
   console.log(lastCoin, isReciebed)
   interface Coin {
     name: string;
     value: number;
     cost: number;
+  }
+  interface User {
+    id: number;
+    username: string;
+    coins: number;
+    totalEarnings: number;
+    incomeMultiplier: number;
+    coinsPerHour: number;
+    xp: number;
+    level: number;
+  }
+  interface OutletContext {
+    friends: Friend[];
+  }
+  
+  
+  interface Friend extends User {
+    coinsEarned?: number;
   }
   const { t } = useTranslation();
   useEffect(() => {
@@ -679,17 +699,17 @@ const FreindOrSpecialBlock = ({
       }
     };
 
-    const fetchReferralCount = async () => {
-      if (!userId) return;
-      try {
-        const response = await axios.get(`https://coinfarm.club/api/user/${userId}/referrals/`);
-        setReferralCount(response.data.length);
-      } catch (error) {
-        console.error('Error fetching referral count:', error);
-      }
-    };
+    // const fetchReferralCount = async () => {
+    //   if (!userId) return;
+    //   try {
+    //     const response = await axios.get(`https://coinfarm.club/api/user/${userId}/referrals/`);
+    //     setReferralCount(response.data.length);
+    //   } catch (error) {
+    //     console.error('Error fetching referral count:', error);
+    //   }
+    // };
 
-    fetchReferralCount();
+    // fetchReferralCount();
     fetchCompletedTasks();
   }, [userId, title, refs]);
   useEffect(() => {
@@ -750,7 +770,7 @@ const FreindOrSpecialBlock = ({
   };
 
   const requiredRefs = refs ? parseInt(refs, 10) : 0;
-  const isButtonDisabled = isCompleted || (refs ? requiredRefs > referralCount : false);
+  const isButtonDisabled = isCompleted || (refs ? requiredRefs > friends.length : false);
 
   return (
     <div className={cn("block")}>

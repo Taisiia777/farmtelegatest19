@@ -180,13 +180,13 @@ const Guide = () => {
    }, []);
    const guideRef = useRef<HTMLDivElement>(null);
 
-   useOutsideClick(() => dispatch(finishGuide()), [guideRef, "#guide", "#guide1"]);
+   useOutsideClick(() => dispatch(finishGuide()), [guideRef]);
 
    return (
-      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}} id="guide" ref={guideRef}>
+      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}} >
          {/* Introduction */}
          {step === 1 && (
-            <div className={cn("greeting__body", "_first")}>
+            <div className={cn("greeting__body", "_first")} ref={guideRef}>
                {/* Popup border */}
                <img
                   src="img/global/popup-border.svg"
@@ -221,7 +221,7 @@ const Guide = () => {
 
          {/* Game Advantages */}
          {step === 2 && (
-            <div className={cn("greeting__body", "_second")}>
+            <div className={cn("greeting__body", "_second")} ref={guideRef}>
                {/* Popup border */}
                <img
                   src="img/global/popup-border.svg"
@@ -256,7 +256,7 @@ const Guide = () => {
 
          {/* Game Advantages */}
          {step === 3 && (
-            <div className={cn("greeting__body", "_third")}>
+            <div className={cn("greeting__body", "_third")} ref={guideRef}>
                {/* Popup border */}
                <img
                   src="img/global/popup-border.svg"
@@ -291,7 +291,7 @@ const Guide = () => {
 
          {/* Welcome bonus */}
          {step === 4 && (
-            <div className={cn("greeting__body", "_fourth")}>
+            <div className={cn("greeting__body", "_fourth")} ref={guideRef}>
                {/* Popup border */}
                <img
                   src="img/global/popup-border.svg"
@@ -337,7 +337,7 @@ const Guide = () => {
             </div>
          )}
                   {step === 5 && (
-            <div className={cn("greeting__body", "_fourth")}>
+            <div className={cn("greeting__body", "_fourth")} ref={guideRef}>
                {/* Popup border */}
                <img
                   src="img/global/popup-border.svg"
@@ -383,7 +383,7 @@ const Guide = () => {
             </div>
          )}
                            {step === 6 && (
-            <div className={cn("greeting__body", "_fourth")}>
+            <div className={cn("greeting__body", "_fourth")} ref={guideRef}>
                {/* Popup border */}
                <img
                   src="img/global/popup-border.svg"

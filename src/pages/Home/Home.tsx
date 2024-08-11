@@ -17,6 +17,8 @@ import { setUserCoins1 } from '../../store/reducers/userCoinsSlice';
 import RainAnimation from './modules/RainAnimation';
 import QRCodeComponent from './QRCodeComponent';
 import { openGuide } from "../../store/reducers/guide";
+import { useOutletContext } from 'react-router-dom';
+
 // import useWheatTrunctaion from "./hooks/useWheatTrunctation";
 // import {useHarvestAllWheat} from "./hooks/useHarvestAllWheat";
 import i18n from '../../i18n';
@@ -97,15 +99,26 @@ interface Booster {
    coins: number | null;
  };
  
+ interface User {
+  id: number;
+  username: string;
+  coins: number;
+  totalEarnings: number;
+  incomeMultiplier: number;
+  coinsPerHour: number;
+  xp: number;
+  level: number;
+}
+interface OutletContext {
+  friends: Friend[];
+}
 
 
-// const leagues = [
-//    { name: "Wooden", coinsRequired: 50000, coinsTo: 0 },
-//    { name: "Silver", coinsRequired: 500000,  coinsTo: 50000  },
-//    { name: "Gold", coinsRequired: 5000000, coinsTo: 500000  },
-//    { name: "Fire", coinsRequired: 10000000, coinsTo: 5000000  },
-//    { name: "Diamond", coinsRequired: 10000000, coinsTo: 10000000  },
-//  ];
+interface Friend extends User {
+  coinsEarned?: number;
+}
+
+
 
  const leagues = [
   { name: "Wooden", referralsRequired: 3, referralsTo: 0, harvest: 1 },
@@ -124,7 +137,7 @@ const Home = () => {
    const { width } = useWindowSize();
     const user = useAppSelector((state: RootState) => state.user.user);
    const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
-   const [nickname, setNickname] = useState('Savelii777'); // Состояние для никнейма
+   const [nickname, setNickname] = useState(''); // Состояние для никнейма
    // const [imgSrc, setImgSrc] = useState("img/pages/people/person.png");
    const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
    const [level, setLevel] = useState(user ? user.level : 0);
@@ -154,6 +167,7 @@ const Home = () => {
    const lastUpdateRef = useRef(Date.now());
    const [showQRCode, setShowQRCode] = useState(false);
    const [showGuide, setShowGuide] = useState(false);
+   const { friends } = useOutletContext<OutletContext>();
 
   // useWheatTrunctaion();
   // useHarvestAllWheat()
@@ -272,16 +286,16 @@ const Home = () => {
   }, []);
   
 
-   const fetchUserReferralsCount = async (userId: number) => {
-    try {
-      const response = await fetch(`https://coinfarm.club/api/user/${userId}/referrals`);
-      const data = await response.json();
-      return data.length;
-    } catch (error) {
-      console.error('Error fetching user referrals:', error);
-      return 0;
-    }
-  };
+  //  const fetchUserReferralsCount = async (userId: number) => {
+  //   try {
+  //     const response = await fetch(`https://coinfarm.club/api/user/${userId}/referrals`);
+  //     const data = await response.json();
+  //     return data.length;
+  //   } catch (error) {
+  //     console.error('Error fetching user referrals:', error);
+  //     return 0;
+  //   }
+  // };
 
   const { t } = useTranslation();
   useEffect(() => {
@@ -428,7 +442,8 @@ const Home = () => {
    const updateLeagueProgress = async () => { 
       if (isProgressUpdating) return;
       setIsProgressUpdating(true);
-      const userReferrals = await fetchUserReferralsCount(user.id);
+      // const userReferrals = await fetchUserReferralsCount(user.id);
+      const userReferrals = friends.length;
 
       // Фиксируем текущий уровень лиги, чтобы не понижать
       let currentLevel = level;
