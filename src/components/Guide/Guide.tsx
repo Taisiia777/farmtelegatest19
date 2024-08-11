@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, ForwardedRef, forwardRef } from "react";
 
 import classNames from "classnames/bind";
 import styles from "./Guide.module.scss";
@@ -14,8 +14,10 @@ import { finishGuide } from "../../store/reducers/guide";
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
 const cn = classNames.bind(styles);
-
-const Guide = () => {
+interface IGuideRefProps {
+   ref: ForwardedRef<HTMLDivElement>
+}
+const Guide = forwardRef(({ ref }: IGuideRefProps) => {
    const dispatch = useAppDispatch();
    const isOpen = useAppSelector((state) => state.guide.isOpen);
 
@@ -177,7 +179,7 @@ const Guide = () => {
     };
    }, []);
    return (
-      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}}>
+      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}} id="guide" ref={ref}>
          {/* Introduction */}
          {step === 1 && (
             <div className={cn("greeting__body", "_first")}>
@@ -424,6 +426,6 @@ const Guide = () => {
          )}
       </div>
    );
-};
+})
 
 export default Guide;

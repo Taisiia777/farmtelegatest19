@@ -310,7 +310,7 @@ const Invite = () => {
 
         <PopupList
   className={cn("invite__list")}
-  nodes={friends.slice(-50).map((user) => (  // Используем slice(-50) для отображения последних 50 элементов
+  nodes={friends.slice(-100).reverse().map((user) => (  // Используем slice(-100) и reverse() для отображения последних 100 элементов реверсивно
     <PersonBlockRef
       key={user.id}
       name={user.username}
@@ -321,6 +321,7 @@ const Invite = () => {
   ))}
   type="third"
 />
+
 
  
         {/* Звезды на заднем фоне */}
