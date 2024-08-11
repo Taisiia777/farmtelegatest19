@@ -118,9 +118,10 @@ console.log(lastCoin)
             const lastRewardDate = new Date(lastDailyReward.description);
             const now = new Date();
             // const diffInMinutes = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60 * 60 * 24);
-            const diffInMinutes = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60 * 60 * 24);
+            const diffInMinutes = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60);
 
-            if (diffInMinutes >= 1 && diffInMinutes < 2) {
+            // if (diffInMinutes >= 1 && diffInMinutes < 2) {
+            if (diffInMinutes >= 1 ) {
 
               setIsDaily(true);
               let nextDay = lastDailyReward.level + 1;
