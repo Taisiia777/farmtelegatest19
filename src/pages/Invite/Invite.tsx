@@ -308,19 +308,19 @@ const Invite = () => {
 
 
 
-          <PopupList
-            className={cn("invite__list")}
-            nodes={friends.map((user) => (
-              <PersonBlockRef
-                key={user.id}
-                name={user.username}
-                imgSrc={"img/pages/people/person.png"}
-                earning={`${Math.round(user.coinsEarned ?? 0)}`}
-                coinAmount={''}
-              />
-            ))}
-            type="third"
-          />
+        <PopupList
+  className={cn("invite__list")}
+  nodes={friends.slice(-50).map((user) => (  // Используем slice(-50) для отображения последних 50 элементов
+    <PersonBlockRef
+      key={user.id}
+      name={user.username}
+      imgSrc={"img/pages/people/person.png"}
+      earning={`${Math.round(user.coinsEarned ?? 0)}`}
+      coinAmount={''}
+    />
+  ))}
+  type="third"
+/>
 
  
         {/* Звезды на заднем фоне */}
