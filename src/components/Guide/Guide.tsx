@@ -11,7 +11,7 @@ import { finishGuide } from "../../store/reducers/guide";
 // import { useSelector } from "react-redux";
 // import axios from "axios";
 // import { updateGrassEarnings } from "../../store/reducers/userSlice";
-import useOutsideClick from '../../hooks/useOutsideClick'; // Импортируйте ваш хук
+import useOutsideClick from '../../pages/Home/hooks/useOutsideClickGuide'; // Импортируйте ваш хук
 
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';

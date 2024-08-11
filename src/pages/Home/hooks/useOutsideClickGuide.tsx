@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 
-function useOutsideClick(callback: () => void, refs: Array<string | HTMLElement>) {
+function useOutsideClick(callback: () => void, refs: Array<React.RefObject<HTMLElement> | string>) {
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (
-        refs.every(ref => {
-          const element = typeof ref === 'string' ? document.querySelector(ref) : ref;
-          return element && !element.contains(event.target as Node);
-        })
-      ) {
+      const isOutsideClick = refs.every(ref => {
+        const element = typeof ref === 'string' ? document.querySelector(ref) : ref.current;
+        return element && !element.contains(event.target as Node);
+      });
+
+      if (isOutsideClick) {
         callback();
       }
     }

@@ -1,23 +1,39 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
-function useOutsideClick(callback: () => void, refs: Array<React.RefObject<HTMLElement> | string>) {
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      const isOutsideClick = refs.every(ref => {
-        const element = typeof ref === 'string' ? document.querySelector(ref) : ref.current;
-        return element && !element.contains(event.target as Node);
-      });
+export const useOutsideClick = (callback: () => void, ids?: string[]) => {
+   const ref = useRef<any>(null);
 
-      if (isOutsideClick) {
-        callback();
-      }
-    }
+   useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+         let canProceed = true;
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [callback, refs]);
-}
+         const target = event.target as HTMLElement;
 
-export default useOutsideClick;
+         if (ids && ids.length > 0) {
+            for (let i = 0; i < ids.length; i++) {
+               const id = ids[i];
+
+               if (target.closest(id)) {
+                  canProceed = false;
+               }
+            }
+         }
+
+         if (
+            ref.current &&
+            !ref.current.contains(event.target as Node) &&
+            canProceed
+         ) {
+            callback();
+         }
+      };
+
+      document.addEventListener("click", handleClickOutside);
+
+      return () => {
+         document.removeEventListener("click", handleClickOutside);
+      };
+   }, [callback, ids]);
+
+   return ref;
+};

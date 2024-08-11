@@ -47,7 +47,6 @@ import Guide from "../../components/Guide/Guide";
 import Guide1 from "../../components/Guide1/Guide1";
 
 import DailyBonus from "../../components/DailyBonus/DailyBonus";
-import { finishGuide1 } from "../../store/reducers/guide1";
 // import { set } from "lodash";
 
 type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond" ; // Определение типа TLiga
@@ -199,11 +198,7 @@ const Home = () => {
       () => setBoostPopupOpen(false),
       ["#menu", "#tabs", "#popup", "#energy"]
    );
-   const guideRef = useOutsideClick(
-    () =>  dispatch(finishGuide1()),
-    ["#guide", "#guide1"]
- );
-
+   
    useClosePopupByTgButton({
       isOpen: boostPopupOpen,
       closePopup: () => setBoostPopupOpen(false),
@@ -1564,8 +1559,8 @@ const Home = () => {
 
          {/* Приветствие */}
          {!hasFirstReward && <Greeting />}
-         {showGuide && <Guide  ref={guideRef}/>}
-         <Guide1 ref={guideRef}/>
+         {showGuide && <Guide />}
+         <Guide1 />
 
          {/* Ежедневный бонус */}
          <DailyBonus />
