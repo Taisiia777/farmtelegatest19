@@ -61,7 +61,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
       fetchGrowthStages();
       hasFetchedGrowthStages.current = true; // Устанавливаем, что эффект был выполнен
     }
-  }, [user, dispatch]); // Добавлены зависимости user и dispatch
+  }, []); // Добавлены зависимости user и dispatch
 
   useEffect(() => {
     const updateGrowthStages = async () => {
