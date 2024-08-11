@@ -32,15 +32,15 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
   const dispatch = useDispatch();
   const user = useAppSelector((state: RootState) => state.user.user);
   const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
-  const hasFetchedGrowthStages = useRef(false); // Добавлено для отслеживания выполнения эффекта
+  const hasSetGrowthStages = useRef(false); // Флаг для отслеживания установки стадии роста
   const [harvestedBlocks, setHarvestedBlocks] = useState<Set<number>>(new Set());
 
   useWheatTrunctaion();
 
+
   useEffect(() => {
     const fetchGrowthStages = async () => {
       try {
-        // const response = await axios.get(`https://coinfarm.club/api/user/${user.id}/grass-stages`);
         dispatch(setGrowthStages([
           "fourth",
           "fourth",
@@ -51,17 +51,17 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
           "fourth",
           "fourth",
           "fourth"
-      ])); // Добавление стадии роста
+        ]));
       } catch (error) {
-        console.error('Failed to fetch grass growth stages:', error);
+        console.error('Failed to set grass growth stages:', error);
       }
     };
 
-    if (user && !hasFetchedGrowthStages.current) {
+    if (user && !hasSetGrowthStages.current) {
       fetchGrowthStages();
-      hasFetchedGrowthStages.current = true; // Устанавливаем, что эффект был выполнен
+      hasSetGrowthStages.current = true; // Устанавливаем флаг, чтобы больше не выполнять
     }
-  }, []); // Добавлены зависимости user и dispatch
+  }, [user, dispatch]);
 
   useEffect(() => {
     const updateGrowthStages = async () => {

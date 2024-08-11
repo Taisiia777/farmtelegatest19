@@ -54,6 +54,13 @@ const People = () => {
     } else {
       i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
     }
+      // Сохраняем начальную позицию прокрутки
+  const initialScrollPosition = window.scrollY;
+
+  // Возвращаем позицию прокрутки в начальную точку при размонтировании компонента
+  return () => {
+    window.scrollTo(0, initialScrollPosition);
+  };
   }, []);
 
   useEffect(() => {
