@@ -183,7 +183,7 @@ const Guide1 = () => {
    useOutsideClick(() => dispatch(finishGuide1()), [guideRef, "#guide", "#guide1"]);
 
    return (
-      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}} id="guide" ref={guideRef}>
+      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100', border: '1px solid red'}} id="guide" ref={guideRef} >
          {/* Introduction */}
          {step === 1 && (
             <div className={cn("greeting__body", "_first")}>
