@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch  } from "react-redux";
 import styles from "./FarmBlocks.module.scss";
 import classNames from "classnames/bind";
@@ -7,7 +7,7 @@ import {
   changeGrowthStage,
   // pickWheat,
   calculateGrassEarnings,
-  setGrowthStages,
+  // setGrowthStages,
 } from "../../../../store/reducers/growthStages";
 import { useAppSelector } from "../../../../store";
 import useWheatTrunctaion from "../../hooks/useWheatTrunctation";
@@ -32,36 +32,36 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
   const dispatch = useDispatch();
   const user = useAppSelector((state: RootState) => state.user.user);
   const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
-  const hasSetGrowthStages = useRef(false); // Флаг для отслеживания установки стадии роста
+  // const hasSetGrowthStages = useRef(false); // Флаг для отслеживания установки стадии роста
   const [harvestedBlocks, setHarvestedBlocks] = useState<Set<number>>(new Set());
 
   useWheatTrunctaion();
 
 
-  useEffect(() => {
-    const fetchGrowthStages = async () => {
-      try {
-        dispatch(setGrowthStages([
-          "fourth",
-          "fourth",
-          "fourth",
-          "fourth",
-          "fourth",
-          "fourth",
-          "fourth",
-          "fourth",
-          "fourth"
-        ]));
-      } catch (error) {
-        console.error('Failed to set grass growth stages:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchGrowthStages = async () => {
+  //     try {
+  //       dispatch(setGrowthStages([
+  //         "fourth",
+  //         "fourth",
+  //         "fourth",
+  //         "fourth",
+  //         "fourth",
+  //         "fourth",
+  //         "fourth",
+  //         "fourth",
+  //         "fourth"
+  //       ]));
+  //     } catch (error) {
+  //       console.error('Failed to set grass growth stages:', error);
+  //     }
+  //   };
 
-    if (user && !hasSetGrowthStages.current) {
-      fetchGrowthStages();
-      hasSetGrowthStages.current = true; // Устанавливаем флаг, чтобы больше не выполнять
-    }
-  }, [user, dispatch]);
+  //   if (user && !hasSetGrowthStages.current) {
+  //     fetchGrowthStages();
+  //     hasSetGrowthStages.current = true; // Устанавливаем флаг, чтобы больше не выполнять
+  //   }
+  // }, [user, dispatch]);
 
   useEffect(() => {
     const updateGrowthStages = async () => {

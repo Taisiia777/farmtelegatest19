@@ -18,7 +18,9 @@ import RainAnimation from './modules/RainAnimation';
 import QRCodeComponent from './QRCodeComponent';
 import { openGuide } from "../../store/reducers/guide";
 import { useOutletContext } from 'react-router-dom';
-
+import {
+  setGrowthStages,
+} from "../../store/reducers/growthStages";
 // import useWheatTrunctaion from "./hooks/useWheatTrunctation";
 // import {useHarvestAllWheat} from "./hooks/useHarvestAllWheat";
 import i18n from '../../i18n';
@@ -263,7 +265,29 @@ const Home = () => {
    // А также только когда первый раз собирает
   //  const canShowFinger = !isGreetingOpen && !isDailyBonusOpen && isFingerActve;
   const [canShowFinger, setCanShowFinger] = useState(true);
+  useEffect(() => {
+    const fetchGrowthStages = async () => {
+      try {
+        dispatch(setGrowthStages([
+          "fourth",
+          "fourth",
+          "fourth",
+          "fourth",
+          "fourth",
+          "fourth",
+          "fourth",
+          "fourth",
+          "fourth"
+        ]));
+      } catch (error) {
+        console.error('Failed to set grass growth stages:', error);
+      }
+    };
 
+    if (user && canShowFinger) {
+      fetchGrowthStages();
+    }
+  }, [user, dispatch]);
    // Осуществляет покупку в попапе и делает анимацию монет
    function buy(ref: RefObject<HTMLImageElement>, callback: () => void) {
 
@@ -527,7 +551,7 @@ const Home = () => {
         if (index < level) {
           percent = 100; // Прошедшие лиги имеют 100%
         } else if (index === level) {
-          percent = (localCoins / league.referralsRequired) * 100; // Текущая лига рассчитывается
+          percent = (friends.length / league.referralsRequired) * 100; // Текущая лига рассчитывается
         } else {
           percent = 0; // Будущие лиги имеют 0%
         }
