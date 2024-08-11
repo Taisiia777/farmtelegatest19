@@ -524,9 +524,9 @@ const Home = () => {
     const renderLeagues = () => {
       return leagues.map((league, index) => {
         let percent;
-        if (index < level) {
+        if (index <= level) {
           percent = 100; // Прошедшие лиги имеют 100%
-        } else if (index === level) {
+        } else if (index+1 === level) {
           percent = (friends.length / league.referralsRequired) * 100; // Текущая лига рассчитывается
         } else {
           percent = 0; // Будущие лиги имеют 0%
