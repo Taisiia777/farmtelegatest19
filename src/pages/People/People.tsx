@@ -128,13 +128,14 @@ const People = () => {
           />
           {activeTab === "FARM FRENDS" && (
             <PopupList
-              nodes={friends.map((user) => (
+            nodes={friends.slice(-100).reverse().map((user) => ( 
                 <PersonBlock
                   key={user.id}
                   name={user.username}
                   imgSrc={"img/pages/people/person.png"}
                   earning={Math.round((user?.coinsEarned ?? 0)).toString()}
                   coinAmount={Math.round(user.totalEarnings).toString()}
+                  inviteMode
                 />
               ))}
               type="second"
