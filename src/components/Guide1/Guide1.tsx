@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, ForwardedRef, forwardRef } from "react";
+import { useRef, useState, useEffect} from "react";
 
 import classNames from "classnames/bind";
 import styles from "./Guide.module.scss";
@@ -11,13 +11,13 @@ import { finishGuide1 } from "../../store/reducers/guide1";
 // import { useSelector } from "react-redux";
 // import axios from "axios";
 // import { updateGrassEarnings } from "../../store/reducers/userSlice";
+import useOutsideClick from '../../hooks/useOutsideClick'; // Импортируйте ваш хук
+
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
 const cn = classNames.bind(styles);
-interface IGuide1RefProps {
-   ref: ForwardedRef<HTMLDivElement>
-}
-const Guide1 = forwardRef(({ ref }: IGuide1RefProps) => {
+
+const Guide1 = () => {
    const dispatch = useAppDispatch();
    const isOpen = useAppSelector((state) => state.guide1.isOpen);
 
@@ -178,8 +178,12 @@ const Guide1 = forwardRef(({ ref }: IGuide1RefProps) => {
       observer.disconnect();
     };
    }, []);
+   const guideRef = useRef<HTMLDivElement>(null);
+
+   useOutsideClick(() => dispatch(finishGuide1()), [guideRef, "#guide", "#guide1"]);
+
    return (
-      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}} id="guide1" ref={ref}>
+      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}} id="guide" ref={guideRef}>
          {/* Introduction */}
          {step === 1 && (
             <div className={cn("greeting__body", "_first")}>
@@ -427,6 +431,6 @@ const Guide1 = forwardRef(({ ref }: IGuide1RefProps) => {
       </div>
    );
 }
-)
+
 
 export default Guide1;
