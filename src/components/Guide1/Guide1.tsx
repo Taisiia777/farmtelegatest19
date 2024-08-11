@@ -11,7 +11,7 @@ import { finishGuide1 } from "../../store/reducers/guide1";
 // import { useSelector } from "react-redux";
 // import axios from "axios";
 // import { updateGrassEarnings } from "../../store/reducers/userSlice";
-import useOutsideClick from '../../pages/Home/hooks/useOutsideClickGuide'; // Импортируйте ваш хук
+import useOutsideClick from '../../pages/Home/hooks/useOutsideClick'; // Импортируйте ваш хук
 
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
@@ -180,13 +180,13 @@ const Guide1 = () => {
    }, []);
    const guideRef = useRef<HTMLDivElement>(null);
 
-   useOutsideClick(() => dispatch(finishGuide1()), [guideRef, "#guide"]);
+   useOutsideClick(() => dispatch(finishGuide1()), [guideRef]);
 
    return (
-      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}}  ref={guideRef} >
+      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}}   >
          {/* Introduction */}
          {step === 1 && (
-            <div className={cn("greeting__body", "_first")} id="guide">
+            <div className={cn("greeting__body", "_first")} ref={guideRef}>
                {/* Popup border */}
                <img
                   src="img/global/popup-border.svg"
@@ -221,7 +221,7 @@ const Guide1 = () => {
 
          {/* Game Advantages */}
          {step === 2 && (
-            <div className={cn("greeting__body", "_second")} id="guide"> 
+            <div className={cn("greeting__body", "_second")} ref={guideRef}> 
                {/* Popup border */}
                <img
                   src="img/global/popup-border.svg"
@@ -256,7 +256,7 @@ const Guide1 = () => {
 
          {/* Game Advantages */}
          {step === 3 && (
-            <div className={cn("greeting__body", "_third")} id="guide">
+            <div className={cn("greeting__body", "_third")} ref={guideRef}>
                {/* Popup border */}
                <img
                   src="img/global/popup-border.svg"
@@ -291,7 +291,7 @@ const Guide1 = () => {
 
          {/* Welcome bonus */}
          {step === 4 && (
-            <div className={cn("greeting__body", "_fourth")} id="guide">
+            <div className={cn("greeting__body", "_fourth")} ref={guideRef}>
                {/* Popup border */}
                <img
                   src="img/global/popup-border.svg"
@@ -337,7 +337,7 @@ const Guide1 = () => {
             </div>
          )}
                   {step === 5 && (
-            <div className={cn("greeting__body", "_fourth")} id="guide">
+            <div className={cn("greeting__body", "_fourth")} ref={guideRef}>
                {/* Popup border */}
                <img
                   src="img/global/popup-border.svg"
@@ -383,7 +383,7 @@ const Guide1 = () => {
             </div>
          )}
                            {step === 6 && (
-            <div className={cn("greeting__body", "_fourth")} id="guide">
+            <div className={cn("greeting__body", "_fourth")} ref={guideRef}>
                {/* Popup border */}
                <img
                   src="img/global/popup-border.svg"
