@@ -136,11 +136,10 @@ console.log(lastCoin)
                 setBonusAmount(0); // Если бонус для следующего дня не найден, устанавливаем бонус в 0
               }
             }
-            if(diffInMinutes >= 2){
-              setCurrentDay(1);
-              setBonusAmount(bonuses.find(bonus => bonus.dayNumber === 1)?.bonusAmount || 0);
-            }
-            // Если прошло больше 24 часов, сбрасываем день на первый
+            // if(diffInMinutes >= 2){
+            //   setCurrentDay(1);
+            //   setBonusAmount(bonuses.find(bonus => bonus.dayNumber === 1)?.bonusAmount || 0);
+            // }
             
 
 
