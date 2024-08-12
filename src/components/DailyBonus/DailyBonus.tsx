@@ -117,11 +117,9 @@ console.log(lastCoin)
             const lastDailyReward = dailyRewards[dailyRewards.length - 1];
             const lastRewardDate = new Date(lastDailyReward.description);
             const now = new Date();
-            // const diffInMinutes = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60 * 60 * 24);
-            const diffInMinutes = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60);
+            const diffInMinutes = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60 * 60 * 24);
 
-            // if (diffInMinutes >= 1 && diffInMinutes < 2) {
-            if (diffInMinutes >= 1 ) {
+            if (diffInMinutes >= 1 && diffInMinutes < 2) {
 
               setIsDaily(true);
               let nextDay = lastDailyReward.level + 1;
@@ -136,10 +134,10 @@ console.log(lastCoin)
                 setBonusAmount(0); // Если бонус для следующего дня не найден, устанавливаем бонус в 0
               }
             }
-            // if(diffInMinutes >= 2){
-            //   setCurrentDay(1);
-            //   setBonusAmount(bonuses.find(bonus => bonus.dayNumber === 1)?.bonusAmount || 0);
-            // }
+            if(diffInMinutes >= 2){
+              setCurrentDay(1);
+              setBonusAmount(bonuses.find(bonus => bonus.dayNumber === 1)?.bonusAmount || 0);
+            }
             
 
 

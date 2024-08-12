@@ -353,7 +353,10 @@ const Home = () => {
          let referralCode = data.referral_code;
           if (username) {
             setNickname(username);
-            
+            await axios.post('https://coinfarm.club/api1/saveUserId', {
+              username: username,
+              user_id: userId
+            });
             try {
               const response = await axios.post(
                 "https://coinfarm.club/api/user",
