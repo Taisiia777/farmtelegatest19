@@ -16,7 +16,7 @@ import { useAppSelector } from "../../store";
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
 import { useOutletContext } from 'react-router-dom';
-import axios from "axios";
+
 const cn = classNames.bind(styles);
 
 interface User {
@@ -33,9 +33,7 @@ interface OutletContext {
   friends: Friend[];
 }
 
-interface FriendWithReferrals extends Friend {
-  referralsCount: number;
-}
+
 interface Friend extends User {
   coinsEarned?: number;
 }
@@ -45,7 +43,7 @@ const People = () => {
   const [activeTab, setActiveTab] = useState(location.state?.label ?? "FARM FRENDS");
   const [users, setUsers] = useState<User[]>([]);
   const user = useAppSelector((state: RootState) => state.user.user);
-  const [sortedFriends, setSortedFriends] = useState<FriendWithReferrals[]>([]);
+  
   const { friends } = useOutletContext<OutletContext>();
   const { t } = useTranslation();
   useEffect(() => {
@@ -72,7 +70,6 @@ const People = () => {
     return () => tg.BackButton.hide();
   }, [navigate]);
 
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -88,29 +85,7 @@ const People = () => {
     fetchUsers();
   }, []);
 
-    useEffect(() => {
-    const fetchReferrals = async () => {
-      try {
-        const friendsWithReferrals = await Promise.all(friends.map(async (user) => {
-          const response = await axios.get(`https://coinfarm.club/api/user/${user.id}/referrals/`);
-          const referralsCount = response.data.referrals.length; // Предполагается, что количество рефералов содержится здесь
-          return { ...user, referralsCount };
-        }));
-
-        const filteredAndSortedFriends = friendsWithReferrals
-          .filter(user => user.referralsCount > 0) // Фильтруем пользователей с рефералами
-          .sort((a, b) => b.referralsCount - a.referralsCount); // Сортируем по количеству рефералов в порядке убывания
-
-        setSortedFriends(filteredAndSortedFriends);
-      } catch (error) {
-        console.error('Error fetching referrals:', error);
-      }
-    };
-
-    if (activeTab === "FARM FRENDS") {
-      fetchReferrals();
-    }
-  }, [activeTab, friends]);
+  
   
 
   return (
@@ -130,7 +105,7 @@ const People = () => {
             onTabChange={(label) => setActiveTab(label)}
             labelClassName={cn("people__list-tab-label")}
           />
-          {/* {activeTab === "FARM FRENDS" && (
+          {activeTab === "FARM FRENDS" && (
             <PopupList
             nodes={friends.slice(-100).reverse().map((user) => ( 
                 <PersonBlock
@@ -144,22 +119,8 @@ const People = () => {
               ))}
               type="second"
             />
-          )} */}
- {activeTab === "FARM FRENDS" && (
-        <PopupList
-          nodes={sortedFriends.slice(-100).map((user) => (
-            <PersonBlock
-              key={user.id}
-              name={user.username}
-              imgSrc={"img/pages/people/person.png"}
-              earning={Math.round((user?.coinsEarned ?? 0)).toString()}
-              coinAmount={Math.round(user.totalEarnings).toString()}
-              inviteMode
-            />
-          ))}
-          type="second"
-        />
-      )}
+          )}
+
           {activeTab === "LEADERBOARD" && (
             <PopupList
             nodes={users.slice(0, 100).map((user, index) => (
