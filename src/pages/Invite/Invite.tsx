@@ -342,6 +342,7 @@ const Invite = () => {
         onClick={() => navigate(Routes.HOME)}
         className={cn("close")}
         alt="Close"
+        style={{zIndex:'999 !important'}}
       />
     </div>
   );
