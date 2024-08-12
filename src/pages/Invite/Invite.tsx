@@ -216,9 +216,9 @@ const Invite = () => {
       setNotificationVisible(false);
     }, 3000); // Уведомление исчезает через 3 секунды
   };
-  const totalEarningsFirstTier = friends.reduce((sum, friend) => sum + (friend.coinsEarned || 0), 0);
+  // const totalEarningsFirstTier = friends.reduce((sum, friend) => sum + (friend.coinsEarned || 0), 0);
 
-  const totalEarnings = totalEarningsFirstTier
+  // const totalEarnings = totalEarningsFirstTier
   return (
     <div className={cn("wrap")}>
       <div className={cn("invite")}>
@@ -287,11 +287,11 @@ const Invite = () => {
         </div>
       )}
         </div>
-        <div className={cn("invite__btns")} style={{marginTop:'20px'}}>
+        {/* <div className={cn("invite__btns")} style={{marginTop:'20px'}}>
           <b className={`${cn("inviteUsersBlock__title")}` + ' textShadow_center'}>
           {t('total')} {Math.round(totalEarnings)}
           </b>
-        </div>
+        </div> */}
         {/* Кол-во друзей и reload */}
         <div className={cn("invite__friends-control")}>
           <div className={cn("invite__friends-amount")}>

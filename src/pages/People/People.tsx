@@ -46,6 +46,8 @@ const People = () => {
   
   const { friends } = useOutletContext<OutletContext>();
   const { t } = useTranslation();
+  const currentLanguage = i18n.language;
+
   useEffect(() => {
     const initData = window.Telegram.WebApp.initDataUnsafe;
     const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
@@ -86,12 +88,25 @@ const People = () => {
   }, []);
 
   
-  
+  // Функция для определения правильной формы слова "друг"
+  const getFriendsLabel = (count: number) => {
+    if (count % 10 === 1 && count % 100 !== 11) {
+      return "друг";
+    } else if (count % 10 >= 2 && count % 10 <= 4 && (count % 100 < 10 || count % 100 >= 20)) {
+      return "друга";
+    } else {
+      return "друзей";
+    }
+  };
+  const friendsLabel = currentLanguage === 'ru' ? getFriendsLabel(friends.length) : t('friends');
 
   return (
     <div className={cn("wrap")}>
       <div className={cn("people")}>
-      <h2 className={`${cn("people__title")}` + " textShadow"}>{friends.length} {t('friends')}</h2>
+      {/* <h2 className={`${cn("people__title")}` + " textShadow"}>{friends.length} {t('friends')}</h2> */}
+      <h2 className={`${cn("people__title")}` + " textShadow"}>
+      {friends.length} {friendsLabel}
+      </h2>
       <Coins quantity={Math.round(user.totalEarnings).toString()} />
         <div className={cn("people__invite-btn")} onClick={() => navigate(Routes.INVITE)}>
           <span className={cn("people__invite-btn-text")}> {t('invite_frirnd')}</span>
