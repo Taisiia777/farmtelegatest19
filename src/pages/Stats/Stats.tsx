@@ -1,8 +1,8 @@
 import GreenBg from "../../components/GreenBg/GreenBg";
 import BorderBlock from "./modules/BorderBlock";
-import Coins from "./modules/Coins";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+// import Coins from "./modules/Coins";
+// import { useSelector } from "react-redux";
+// import { RootState } from "../../store";
 import classNames from "classnames/bind";
 import styles from "./Stats.module.scss";
 import { useEffect, useState } from "react";
@@ -15,7 +15,7 @@ const cn = classNames.bind(styles);
 
 const Stats = () => {
    const navigate = useNavigate();
-   const user = useSelector((state: RootState) => state.user.user);
+   // const user = useSelector((state: RootState) => state.user.user);
    const [totalPlayers, setTotalPlayers] = useState(0);
    const [onlineUsersCount, setOnlineUsersCount] = useState(0);
    const [recentlyOnlineUsersCount, setRecentlyOnlineUsersCount] = useState<number>(0);
@@ -132,10 +132,10 @@ const Stats = () => {
    return (
       <>
          <div className={cn("stats")}>
-            <small className={cn("stats__top-label")}>
+            {/* <small className={cn("stats__top-label")}>
                {t('total_money')}
             </small>
-            <Coins quantity={Math.round(user?.totalEarnings || 0)} />
+            <Coins quantity={Math.round(user?.totalEarnings || 0)} /> */}
             <div className={cn("stats__invite-btn")} onClick={() => navigate(Routes.PEOPLE)}>
           <span className={cn("stats__invite-btn-text")}> {t('stats')}</span>
           <img src="img/pages/invite/btn.svg" alt="Invite friends" />
