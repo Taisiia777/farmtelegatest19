@@ -230,8 +230,8 @@ const Wheel = () => {
             </div>
          )}
 {step === 2 && (
-            <div className={cn("greeting__body", "_first")} ref={wheelRef}>
-               <div className={cn("greeting__body", "_first")} ref={wheelRef}>
+            <div style={{display: 'flex', flexDirection:'column', width: '100%', height:'100%', position:'relative'}} ref={wheelRef}>
+               <div className={cn("greeting__body", "_first")} >
         <img src="img/global/popup-border.svg" className={cn("greeting__border")} />
         <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>
           {t('wheel_title')}
@@ -243,7 +243,7 @@ const Wheel = () => {
               spinning: isSpinning,
               stopping: isStopping
             })}
-            ref={wheelRef}
+            
           >
             <img src="img/pages/home/menu/Wheel.png" alt="Wheel" />
           </div>
