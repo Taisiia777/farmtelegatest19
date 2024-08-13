@@ -231,15 +231,16 @@
 //  }
 
 .wheel {
-   top: 0;
-   left: 0;
    position: absolute;
-   display: flex;
-   justify-content: center;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%); /* Центрирование всего элемента по обеим осям */
+   transform-origin: center; /* Центр вращения */
    width: 100vw;
    height: 100vh;
-   border: 1px solid red;
-   transform: translate(-50%, -50%);
-   transform-origin: center; /* Центр вращения */
+   display: flex;
+   justify-content: center; /* Центрирование по оси X */
+   align-items: flex-start; /* Элементы внутри будут располагаться сверху */
    transition: transform 5s cubic-bezier(0.25, 0.1, 0.25, 1); /* Анимация вращения */
+   border: 1px solid red; /* Для наглядности */
 }
