@@ -19,12 +19,28 @@ const Wheel = () => {
    // Состояние прелоудреа
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
    // const user = useSelector((state: RootState) => state.user.user);
-
+   const [isSpinning, setIsSpinning] = useState(false);
+   const [isStopping, setIsStopping] = useState(false);
    const [step, setStep] = useState(1);
 
    // const coinMoneyAnimRef = useRef<HTMLImageElement>(null);
    // const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
-
+   const spin = () => {
+      setIsSpinning(true);
+      setIsStopping(false);
+  
+      // Вращение на несколько секунд
+      setTimeout(() => {
+        setIsSpinning(false);
+        setIsStopping(true);
+  
+        // Завершение после окончания анимации
+        setTimeout(() => {
+          setIsStopping(false);
+          dispatch(finishWheel());
+        }, 3000); // Время замедления вращения
+      }, 3000); // Время активного вращения
+    };
    function goNext() {
       setStep((prev) => prev + 1);
    }
@@ -213,37 +229,46 @@ const Wheel = () => {
                </div>
             </div>
          )}
-{step === 1 && (
+{step === 2 && (
             <div className={cn("greeting__body", "_first")} ref={wheelRef}>
-               {/* Popup border */}
-               <img
-                  src="img/global/popup-border.svg"
-                  className={cn("greeting__border")}
+               <div className={cn("greeting__body", "_first")} ref={wheelRef}>
+        <img src="img/global/popup-border.svg" className={cn("greeting__border")} />
+        <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>
+          {t('wheel_title')}
+        </strong>
+
+        <div className={cn("content__person-img", "_first")}>
+          <div
+            className={cn("wheel", {
+              spinning: isSpinning,
+              stopping: isStopping
+            })}
+            ref={wheelRef}
+          >
+            <img src="img/pages/home/menu/Wheel.png" alt="Wheel" />
+          </div>
+        </div>
+
+        <img src="img/global/spin.png" className={cn("greeting__next")} alt="Spin" onClick={spin} />
+        <img src="img/global/next-btn.svg" className={cn("greeting__next")} alt="Finish" onClick={fihish} />
+      </div>
+               {/* <img
+                     src="img/pages/home/menu/Wheel.png"
+                     className={cn("content__person-img", "_first")}
+                  />
+                                 <img
+                  src="img/global/spin.png"
+                  className={cn("greeting__next")}
+                  alt="Далее"
+                  onClick={spin}
                />
-
-               {/* Надпись на popup-border */}
-               <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>
-               {t('wheel_title')}
-               </strong>
-
-               {/* Иконка next */}
-               <img
+                                                <img
                   src="img/global/next-btn.svg"
                   className={cn("greeting__next")}
                   alt="Далее"
                   onClick={fihish}
-               />
-
-               {/* Контент */}
-               <div className={cn("greeting__content", "content")}>
-                  <img
-                     src="img/pages/home/menu/Wheel.png"
-                     className={cn("content__person-img", "_first")}
-                  />
-                  <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
-                  {t('wheel')}
-                  </p>
-               </div>
+               /> */}
+               
             </div>
          )}
         

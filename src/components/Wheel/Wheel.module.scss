@@ -112,7 +112,14 @@
    &__person-img {
       position: absolute;
       top: 16%;
-
+      &.wheel {
+         object-fit: contain;
+         width: 100%;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+      }
       &._first {
          object-fit: contain;
          width: 60%;
@@ -210,3 +217,22 @@
       opacity: 1;
    }
 }
+@keyframes spin {
+   from {
+     transform: rotate(0deg);
+   }
+   to {
+     transform: rotate(360deg);
+   }
+ }
+ 
+ .wheel {
+   &.spinning {
+     animation: spin 3s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+   }
+ 
+   &.stopping {
+     animation: spin 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+     transform: rotate(720deg);
+   }
+ }
