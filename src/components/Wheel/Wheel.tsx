@@ -227,10 +227,7 @@ const Wheel = () => {
 {step === 2 && (
             <div style={{display: 'flex', flexDirection:'column', width: '100%', height:'100%', position:'relative'}} ref={wheelRef}>
                <div className={cn("greeting__body", "_first")} >
-        <img src="img/global/popup-border.svg" className={cn("greeting__border")} />
-        <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>
-          {t('wheel_title')}
-        </strong>
+
 
         <div className={cn("content__person-img", "_first")}>
           <div
