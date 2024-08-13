@@ -19,28 +19,23 @@ const Wheel = () => {
    // Состояние прелоудреа
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
    // const user = useSelector((state: RootState) => state.user.user);
+   const [rotation, setRotation] = useState(0);
    const [isSpinning, setIsSpinning] = useState(false);
-   const [isStopping, setIsStopping] = useState(false);
    const [step, setStep] = useState(1);
 
    // const coinMoneyAnimRef = useRef<HTMLImageElement>(null);
    // const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
    const spin = () => {
+      const randomAngle = Math.floor(Math.random() * 360) + 720; // Генерация случайного угла с добавлением полного вращения (2 оборота)
       setIsSpinning(true);
-      setIsStopping(false);
+      setRotation(randomAngle);
   
-      // Вращение на несколько секунд
       setTimeout(() => {
         setIsSpinning(false);
-        setIsStopping(true);
-  
-        // Завершение после окончания анимации
-        setTimeout(() => {
-          setIsStopping(false);
-          dispatch(finishWheel());
-        }, 3000); // Время замедления вращения
-      }, 3000); // Время активного вращения
+        dispatch(finishWheel());
+      }, 5000); // Время завершения анимации
     };
+  
    function goNext() {
       setStep((prev) => prev + 1);
    }
@@ -239,10 +234,11 @@ const Wheel = () => {
 
         <div className={cn("content__person-img", "_first")}>
           <div
-            className={cn("wheel", {
-              spinning: isSpinning,
-              stopping: isStopping
-            })}
+            className={cn("wheel", { spinning: isSpinning })}
+            style={{
+              transform: `rotate(${rotation}deg)`,
+              transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",
+            }}
             
           >
             <img src="img/pages/home/menu/Wheel.png" alt="Wheel" />
