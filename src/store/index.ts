@@ -6,6 +6,7 @@ import boostSlice from './reducers/boost';
 import coinSlice from './reducers/coin';
 import greetingSlice from './reducers/greeting';
 import guideSlice from './reducers/guide';
+import wheelSlice from './reducers/wheel';
 import guide1Slice from './reducers/guide1';
 
 import preloaderSlice from './reducers/preloader';
@@ -20,6 +21,7 @@ const store = configureStore({
     greeting: greetingSlice,
     guide: guideSlice,
     guide1: guide1Slice,
+    wheel: wheelSlice,
     preloader: preloaderSlice,
     dailyBonus,
     user: userSlice,

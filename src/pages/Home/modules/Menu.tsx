@@ -8,6 +8,8 @@ import { useTranslation } from 'react-i18next';
 import { useEffect } from "react";
 import { useAppDispatch } from "../../../store";
 import { openGuide1 } from "../../../store/reducers/guide1";
+import { openWheel } from "../../../store/reducers/wheel";
+
 // import { useOutletContext } from 'react-router-dom';
 
 const cn = classNames.bind(styles);
@@ -48,6 +50,10 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
    const handleGuideClick = () => {
       dispatch(openGuide1());
   };
+  const handleWheelClick = () => {
+   dispatch(openWheel());
+};
+  
    // const harvestAllWheat = useHarvestAllWheat();
    const { t } = useTranslation();
    useEffect(() => {
@@ -144,9 +150,8 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
                      <img src="img/pages/home/menu/Chat1.png" alt="Stats" style={{height:"54px", width: "50px"}}/>
                      <span className="textShadow">{t('chat')}</span>
                   </li>
-                  <li onClick={() => window.Telegram.WebApp.openLink('https://t.me/+JznU1FxTemM5NjY8')} style={{position:"absolute", top: "-75vh", left: "20px", zIndex:"1"}}>
+                  <li onClick={handleWheelClick} style={{position:"absolute", top: "-75vh", left: "20px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Wheel.png" alt="Stats" style={{height:"54px", width: "50px"}}/>
-                     <span className="textShadow">{t('chat')}</span>
                   </li>
                   <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", right: "5px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Guide.svg" alt="Stats" />
