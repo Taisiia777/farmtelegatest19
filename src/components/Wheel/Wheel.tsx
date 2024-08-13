@@ -239,7 +239,7 @@ const Wheel = () => {
          //   }}
             
           >
-            <img src="img/pages/home/menu/Wheel.png" style={{width: '400px', position: 'absolute', top: '25%', left: '50%', transform: `translate(-25%, -50%) rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
+            <img src="img/pages/home/menu/Wheel.png" style={{width: '400px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
           </div>
         </div>
 
