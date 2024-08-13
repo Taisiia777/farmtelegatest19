@@ -14,7 +14,7 @@ const cn = classNames.bind(styles);
 
 const Wheel = () => {
    const dispatch = useAppDispatch();
-   const isOpen = useAppSelector((state) => state.guide.isOpen);
+   const isOpen = useAppSelector((state) => state.wheel.isOpen);
 
    // Состояние прелоудреа
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
