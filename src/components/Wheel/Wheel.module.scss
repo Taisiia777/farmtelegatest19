@@ -232,9 +232,8 @@
 
 .wheel {
    position: absolute;
-   top: 50%;
-   left: 25%;
-   transform: translate(-25%, -50%); /* Центрирование всего элемента по обеим осям */
+   top: 100%;
+   left: 100%;
    width: 100vw;
    height: 100vh;
    display: flex;
