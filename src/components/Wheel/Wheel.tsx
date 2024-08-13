@@ -239,8 +239,8 @@ const Wheel = () => {
          //   }}
             
           >
-            <img src="img/pages/home/menu/Wheel.png" style={{width: '350px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
-            <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '100px', marginTop: '600px'}} alt="Spin" onClick={spin} />
+            <img src="img/pages/home/menu/Wheel.png" style={{width: '350px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center", border: '1px solid red' }} alt="Wheel" />
+            <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '100px', margin: '430px auto auto auto'}} alt="Spin" onClick={spin} />
 
           </div>
         </div>
