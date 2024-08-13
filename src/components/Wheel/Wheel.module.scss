@@ -113,9 +113,11 @@
       position: absolute;
       top: 16%;
       &.wheel {
-         object-fit: contain;
+         display: flex;
+         align-items: center;
+         justify-content: center;
          width: 100%;
-         
+         border: 1px solid red;
          position: absolute;
          top: 50%;
          left: 50%;
