@@ -234,11 +234,12 @@ const Wheel = () => {
 
         <div className={cn("content__person-img", "_first")}>
           <div
-            className={cn("wheel", { spinning: isSpinning })}
-            style={{
-              transform: `rotate(${rotation}deg)`,
-              transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",
-            }}
+           className={cn("wheel", { spinning: isSpinning })}
+           style={{
+             transform: `rotate(${rotation}deg)`,
+             transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",
+             transformOrigin: "center", // Центр вращения
+           }}
             
           >
             <img src="img/pages/home/menu/Wheel.png" alt="Wheel" />

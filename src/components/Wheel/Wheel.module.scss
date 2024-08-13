@@ -119,6 +119,8 @@
          top: 50%;
          left: 50%;
          transform: translate(-50%, -50%);
+         transform-origin: center; /* Центр вращения */
+         transition: transform 5s cubic-bezier(0.25, 0.1, 0.25, 1); /* Анимация вращения */
       }
       &._first {
          object-fit: contain;
@@ -217,22 +219,22 @@
       opacity: 1;
    }
 }
-@keyframes spin {
-   from {
-     transform: rotate(0deg);
-   }
-   to {
-     transform: rotate(360deg);
-   }
- }
+// @keyframes spin {
+//    from {
+//      transform: rotate(0deg);
+//    }
+//    to {
+//      transform: rotate(360deg);
+//    }
+//  }
  
- .wheel {
-   &.spinning {
-     animation: spin 3s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
-   }
+//  .wheel {
+//    &.spinning {
+//      animation: spin 3s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+//    }
  
-   &.stopping {
-     animation: spin 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-     transform: rotate(720deg);
-   }
- }
+//    &.stopping {
+//      animation: spin 3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+//      transform: rotate(720deg);
+//    }
+//  }
