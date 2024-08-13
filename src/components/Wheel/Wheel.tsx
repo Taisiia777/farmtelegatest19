@@ -239,11 +239,11 @@ const Wheel = () => {
            }}
             
           >
-            <img src="img/pages/home/menu/Wheel.png" style={{width: '400px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}} alt="Wheel" />
+            <img src="img/pages/home/menu/Wheel.png" style={{width: '400px', position: 'absolute', top: '25%', left: '50%', transform: 'translate(-25%, -50%)'}} alt="Wheel" />
           </div>
         </div>
 
-        <img src="img/global/spin.png" className={cn("greeting__next")} alt="Spin" onClick={spin} />
+        <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '30px', position: 'absolute', top: '70%', left: '50%', transform: 'translate(-50%)'}} alt="Spin" onClick={spin} />
         <img src="img/global/next-btn.svg" className={cn("greeting__next")} alt="Finish" onClick={fihish} />
       </div>
                {/* <img
