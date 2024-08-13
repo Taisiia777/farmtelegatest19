@@ -115,6 +115,7 @@
       &.wheel {
          object-fit: contain;
          width: 100%;
+         max-width: 400px;
          position: absolute;
          top: 50%;
          left: 50%;
