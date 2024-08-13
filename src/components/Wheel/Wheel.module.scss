@@ -235,12 +235,10 @@
    top: 50%;
    left: 25%;
    transform: translate(-25%, -50%); /* Центрирование всего элемента по обеим осям */
-   transform-origin: center; /* Центр вращения */
    width: 100vw;
    height: 100vh;
    display: flex;
    justify-content: center; /* Центрирование по оси X */
    align-items: flex-start; /* Элементы внутри будут располагаться сверху */
-   transition: transform 5s cubic-bezier(0.25, 0.1, 0.25, 1); /* Анимация вращения */
    border: 1px solid red; /* Для наглядности */
 }
