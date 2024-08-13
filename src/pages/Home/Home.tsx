@@ -47,6 +47,7 @@ import FreindOrSpecialBlock from "../../components/FreindOrSpecialBlock/FreindOr
 import Greeting from "../../components/Greeting/Greeting";
 import Guide from "../../components/Guide/Guide";
 import Guide1 from "../../components/Guide1/Guide1";
+import Wheel from "../../components/Wheel/Wheel";
 
 import DailyBonus from "../../components/DailyBonus/DailyBonus";
 // import { set } from "lodash";
@@ -1579,7 +1580,7 @@ const Home = () => {
          {!hasFirstReward && <Greeting />}
          {showGuide && <Guide />}
          <Guide1 />
-
+        <Wheel />
          {/* Ежедневный бонус */}
          <DailyBonus />
       </>
