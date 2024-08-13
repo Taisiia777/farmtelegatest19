@@ -112,17 +112,7 @@
    &__person-img {
       position: absolute;
       top: 16%;
-      &.wheel {
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         width: 100%;
-         height: 100%;
-         border: 1px solid red;
-         transform: translate(-50%, -50%);
-         transform-origin: center; /* Центр вращения */
-         transition: transform 5s cubic-bezier(0.25, 0.1, 0.25, 1); /* Анимация вращения */
-      }
+
       &._first {
          object-fit: contain;
          width: 60%;
@@ -239,3 +229,16 @@
 //      transform: rotate(720deg);
 //    }
 //  }
+
+&.wheel {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 100%;
+   border: 1px solid red;
+   transform: translate(-50%, -50%);
+   transform-origin: center; /* Центр вращения */
+   transition: transform 5s cubic-bezier(0.25, 0.1, 0.25, 1); /* Анимация вращения */
+}
