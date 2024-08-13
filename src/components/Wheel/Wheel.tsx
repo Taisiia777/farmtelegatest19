@@ -239,7 +239,7 @@ const Wheel = () => {
            }}
             
           >
-            <img src="img/pages/home/menu/Wheel.png" style={{width: '400px'}} alt="Wheel" />
+            {/* <img src="img/pages/home/menu/Wheel.png" style={{width: '400px'}} alt="Wheel" /> */}
           </div>
         </div>
 
