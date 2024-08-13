@@ -243,7 +243,7 @@ const Wheel = () => {
           </div>
         </div>
 
-        <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '100px', marginTop: '800px'}} alt="Spin" onClick={spin} />
+        <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '100px', marginTop: '600px'}} alt="Spin" onClick={spin} />
         <img src="img/global/next-btn.svg" className={cn("greeting__next")} alt="Finish" onClick={fihish} />
       </div>
                {/* <img
