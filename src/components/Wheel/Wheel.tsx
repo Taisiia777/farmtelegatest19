@@ -225,11 +225,11 @@ const Wheel = () => {
             </div>
          )}
 {step === 2 && (
-            <div style={{display: 'flex', flexDirection:'column', width: '100%', height:'100%', position:'relative'}} ref={wheelRef}>
+            <div style={{display: 'flex', flexDirection:'column', width: '100%', height:'100%', position:'relative'}}>
                <div className={cn("greeting__body", "_first")} >
 
 
-        <div className={cn("content__person-img", "_first")}>
+        <div className={cn("content__person-img", "_first")} ref={wheelRef}>
           <div
            className={cn("wheel", { spinning: isSpinning })}
            style={{
@@ -239,7 +239,7 @@ const Wheel = () => {
            }}
             
           >
-            {/* <img src="img/pages/home/menu/Wheel.png" style={{width: '400px'}} alt="Wheel" /> */}
+            <img src="img/pages/home/menu/Wheel.png" style={{width: '400px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)'}} alt="Wheel" />
           </div>
         </div>
 
