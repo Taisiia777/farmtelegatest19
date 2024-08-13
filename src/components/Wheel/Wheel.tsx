@@ -26,13 +26,13 @@ const Wheel = () => {
    // const coinMoneyAnimRef = useRef<HTMLImageElement>(null);
    // const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
    const spin = () => {
-      const randomAngle = Math.floor(Math.random() * 360) + 720; // Генерация случайного угла с добавлением полного вращения (2 оборота)
+      const randomAngle = Math.floor(Math.random() * 360) + 3600; // Генерация случайного угла с добавлением полного вращения (2 оборота)
       setIsSpinning(true);
       setRotation(randomAngle);
   
       setTimeout(() => {
         setIsSpinning(false);
-        dispatch(finishWheel());
+      //   dispatch(finishWheel());
       }, 5000); // Время завершения анимации
     };
   
@@ -243,7 +243,7 @@ const Wheel = () => {
           </div>
         </div>
 
-        <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '30px', position: 'absolute', top: '70%', left: '50%', transform: 'translate(-50%)'}} alt="Spin" onClick={spin} />
+        <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '100px', marginTop: '800px'}} alt="Spin" onClick={spin} />
         <img src="img/global/next-btn.svg" className={cn("greeting__next")} alt="Finish" onClick={fihish} />
       </div>
                {/* <img
