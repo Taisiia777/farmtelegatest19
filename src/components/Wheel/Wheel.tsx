@@ -234,7 +234,7 @@ const spin = () => {
                <div className={cn("greeting__content", "content")}>
                   <img
                      src="img/pages/home/menu/Wheel.png"
-                     className={cn("content__person-img", "_first1")}
+                     className={cn("content__person-img", "_first2")}
                   />
                   <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
                   {t('wheel')}
