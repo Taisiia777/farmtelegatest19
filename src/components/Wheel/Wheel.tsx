@@ -27,7 +27,6 @@ const Wheel = () => {
    const [step, setStep] = useState(1);
    const user = useAppSelector((state: RootState) => state.user.user);
 
-   const userId = user.id; // ID пользователя, замените на реальный
 
    const sectors = [
        { name: "Sector 1", weight: 91, reward: 1000 },
@@ -59,7 +58,7 @@ const Wheel = () => {
 const giveUserReward = async (reward: number) => {
     try {
         if (reward > 0) {
-            const response = await axios.patch(`https://coinfarm.club/api/user/${userId}/earn/${reward}`);
+            const response = await axios.patch(`https://coinfarm.club/api/user/${user.id}/earn/${reward}`);
             console.log(`Reward given: ${reward} coins`, response.data);
         } else if (reward === 0) {
             console.log("Special sector, no coins given.");
