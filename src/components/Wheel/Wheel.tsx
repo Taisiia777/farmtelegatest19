@@ -66,6 +66,7 @@ const spin = () => {
 
     setTimeout(() => {
         setIsSpinning(false);
+        setStep(3);
         setRotation(0);
 
         // dispatch(finishWheel());
@@ -75,52 +76,7 @@ const spin = () => {
    function goNext() {
       setStep((prev) => prev + 1);
    }
-//    async function addCoins(userId: number, amount: number) {   
-//       console.log(`пользователь ${JSON.stringify(user)} количество ${amount}`)
-//       try {
-//          const response = await axios.post(
-//             `https://coinfarm.club/api/reward/first/${userId}`
-//           ); 
-//           console.log(response)
-//           const response1 = await axios.patch(
-//             `https://coinfarm.club/api/user/${userId}/earn/${amount}`
-//           );
-//           const updatedUser = response1.data;
-//           // Обновление состояния пользователя и локальных монет
-//           dispatch(
-//             setUser({
-//               ...updatedUser,
-//               coins: updatedUser.coins,
-//               totalEarnings: updatedUser.totalEarnings,
-//             })
-//           );
-//           setLocalCoins(2000)
-//           dispatch(updateGrassEarnings(0));
 
-//           console.log(localCoins)
-//             //   const updatedUser = await response.json();
-//             //   // Преобразование значений coins и totalEarnings в числа
-//             //   console.log(`updated user ${JSON.stringify(updatedUser)}`)
-//             //   dispatch(setUser({
-//             //       ...updatedUser,
-//             //       coins: Number(updatedUser.coins),
-//             //       totalEarnings: Number(updatedUser.totalEarnings)
-//             //   })); // Обновляем данные пользователя в Redux
-              
-          
-//       } catch (error) {
-//           console.error('Error:', error);
-//       }
-//   }
-  
-   // function handleAddCoins() {
-   //    if (user?.id) {
-   //       addCoins(user.id, 0);
-   //       fihish();
-   //    } else {
-   //       console.error("User ID not found");
-   //    }
-   // }
 
    function fihish() {
       // coinMoneyAnimRef.current?.classList.add("moneyAnim");
@@ -284,23 +240,40 @@ const spin = () => {
         {/* <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '100px', marginTop: '600px'}} alt="Spin" onClick={spin} /> */}
         <img src="img/global/next-btn.svg" className={cn("greeting__next")} alt="Finish" onClick={fihish} />
       </div>
-               {/* <img
-                     src="img/pages/home/menu/Wheel.png"
-                     className={cn("content__person-img", "_first")}
-                  />
-                                 <img
-                  src="img/global/spin.png"
-                  className={cn("greeting__next")}
-                  alt="Далее"
-                  onClick={spin}
+             
+            </div>
+         )}
+          {step === 3 && (
+            <div className={cn("greeting__body", "_first")} ref={wheelRef}>
+               {/* Popup border */}
+               <img
+                  src="img/global/popup-border.svg"
+                  className={cn("greeting__border")}
                />
-                                                <img
+
+               {/* Надпись на popup-border */}
+               <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>
+               {t('wheel_title')}
+               </strong>
+
+               {/* Иконка next */}
+               <img
                   src="img/global/next-btn.svg"
                   className={cn("greeting__next")}
                   alt="Далее"
-                  onClick={fihish}
-               /> */}
-               
+                  onClick={()=>{setStep(2)}}
+               />
+
+               {/* Контент */}
+               <div className={cn("greeting__content", "content")}>
+                  <img
+                     src="img/pages/home/menu/Wheel.png"
+                     className={cn("content__person-img", "_first")}
+                  />
+                  <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
+                  {t('wheel')}
+                  </p>
+               </div>
             </div>
          )}
         
