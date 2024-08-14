@@ -25,17 +25,58 @@ const Wheel = () => {
 
    // const coinMoneyAnimRef = useRef<HTMLImageElement>(null);
    // const [localCoins, setLocalCoins] = useState(user ? user.coins : 0);
-   const spin = () => {
-      const randomAngle = Math.floor(Math.random() * 360) + 3600; // Генерация случайного угла с добавлением полного вращения (2 оборота)
-      setIsSpinning(true);
-      setRotation(prevRotation => prevRotation + randomAngle); // Добавляем новый угол к текущему углу
+  //  const spin = () => {
+  //     const randomAngle = Math.floor(Math.random() * 360) + 3600; // Генерация случайного угла с добавлением полного вращения (2 оборота)
+  //     setIsSpinning(true);
+  //     setRotation(prevRotation => prevRotation + randomAngle); // Добавляем новый угол к текущему углу
   
-      setTimeout(() => {
-        setIsSpinning(false);
-      //   dispatch(finishWheel());
-      }, 5000); // Время завершения анимации
-    };
+  //     setTimeout(() => {
+  //       setIsSpinning(false);
+  //     //   dispatch(finishWheel());
+  //     }, 5000); // Время завершения анимации
+  //   };
+  const sectors = [
+    { name: "Sector 1", weight: 91 },
+    { name: "Sector 2", weight: 1 },
+    { name: "Sector 3", weight: 1 },
+    { name: "Sector 4", weight: 1 },
+    { name: "Sector 5", weight: 1 },
+    { name: "Sector 6", weight: 1 },
+    { name: "Sector 7", weight: 1 },
+    { name: "Sector 8", weight: 1 },
+    { name: "Sector 9", weight: 1 },
+    { name: "Sector 10", weight: 1 }
+  ];
   
+  const spin = () => {
+    const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
+    const random = Math.random() * totalWeight;
+  
+    let currentWeight = 0;
+    let selectedSector = sectors[0];
+  
+    for (let i = 0; i < sectors.length; i++) {
+      currentWeight += sectors[i].weight;
+      if (random <= currentWeight) {
+        selectedSector = sectors[i];
+        break;
+      }
+    }
+  
+    const sectorIndex = sectors.indexOf(selectedSector);
+    const sectorAngle = 360 / sectors.length;
+    const randomAngle = sectorIndex * sectorAngle + (sectorAngle / 2); // Угол до середины сектора
+    const spins = Math.floor(Math.random() * 3) + 5; // Генерация случайного количества оборотов (от 5 до 7)
+    const finalAngle = spins * 360 + randomAngle; // Общее число углов для вращения
+  
+    setIsSpinning(true);
+    setRotation(finalAngle);
+  
+    setTimeout(() => {
+      setIsSpinning(false);
+      // dispatch(finishWheel());
+    }, 5000); // Время завершения анимации
+  };
    function goNext() {
       setStep((prev) => prev + 1);
    }
