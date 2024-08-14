@@ -36,37 +36,36 @@ const Wheel = () => {
     { name: "Sector 10", weight: 1 }
   ];
   
-  const spin = () => {
+  const getRandomSector = () => {
     const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
     const random = Math.random() * totalWeight;
 
     let currentWeight = 0;
-    let selectedSector = sectors[0];
-
     for (let i = 0; i < sectors.length; i++) {
-       currentWeight += sectors[i].weight;
-       if (random <= currentWeight) {
-          selectedSector = sectors[i];
-          break;
-       }
+        currentWeight += sectors[i].weight;
+        if (random <= currentWeight) {
+            return i;
+        }
     }
+    return 0; // если что-то пойдет не так
+};
 
-    const sectorIndex = sectors.indexOf(selectedSector);
+const spin = () => {
+    const sectorIndex = getRandomSector();
     const sectorAngle = 360 / sectors.length;
-    const sectorOffset = Math.random() * sectorAngle; // случайное смещение внутри сектора
-    const targetAngle = sectorIndex * sectorAngle + sectorOffset; // целевой угол
+    const targetAngle = sectorIndex * sectorAngle + sectorAngle / 2;
 
     const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-    const finalAngle = rotation + spins * 360 + targetAngle; // добавляем текущий угол вращения
+    const finalAngle = rotation + spins * 360 + targetAngle;
 
     setIsSpinning(true);
     setRotation(finalAngle);
 
     setTimeout(() => {
-       setIsSpinning(false);
-       // dispatch(finishWheel());
+        setIsSpinning(false);
+        // dispatch(finishWheel());
     }, 5000); // Время завершения анимации
- };
+};
 
    function goNext() {
       setStep((prev) => prev + 1);
