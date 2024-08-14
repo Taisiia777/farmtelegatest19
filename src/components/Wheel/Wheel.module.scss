@@ -121,9 +121,15 @@
       }
       &._first1 {
          object-fit: contain;
-         width: 60%;
+         width: 55%;
          left: 0%;
          top: 10%
+      }
+      &._first2 {
+         object-fit: contain;
+         width: 70%;
+         left: -5%;
+         top: 17%
       }
       &._second {
          object-fit: contain;
