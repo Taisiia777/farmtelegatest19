@@ -36,6 +36,7 @@ const Wheel = () => {
     { name: "Sector 10", weight: 1 }
   ];
   
+   
   const getRandomSector = () => {
     const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
     const random = Math.random() * totalWeight;
@@ -51,6 +52,8 @@ const Wheel = () => {
 };
 
 const spin = () => {
+    if (isSpinning) return; // Предотвращает повторный запуск спина во время текущего
+
     const sectorIndex = getRandomSector();
     const sectorAngle = 360 / sectors.length;
     const targetAngle = sectorIndex * sectorAngle + sectorAngle / 2;
