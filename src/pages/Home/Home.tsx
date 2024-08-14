@@ -339,6 +339,8 @@ const Home = () => {
 
   
    useEffect(() => {
+    let hasFetchedReferralCode = false;
+    let hasSavedUserId = false;
       const fetchData = async () => {
        
         const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
@@ -346,18 +348,23 @@ const Home = () => {
           const user = initData.user;
           // const username = user.username;
           let username = user.username || `guest_${user.id}`; // Используем guest_{user.id} если нет username
-
+          let referralCode;
          const userId = user.id;
+         if (!hasFetchedReferralCode) {
 
          const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
          const data = response.data;
-         let referralCode = data.referral_code;
+         referralCode = data.referral_code;
+         }
           if (username) {
             setNickname(username);
+            if (!hasSavedUserId) {
+
             await axios.post('https://coinfarm.club/api1/saveUserId', {
               username: username,
               user_id: userId
             });
+          }
             try {
               const response = await axios.post(
                 "https://coinfarm.club/api/user",
