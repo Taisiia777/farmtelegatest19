@@ -28,7 +28,7 @@ const Wheel = () => {
    const spin = () => {
       const randomAngle = Math.floor(Math.random() * 360) + 3600; // Генерация случайного угла с добавлением полного вращения (2 оборота)
       setIsSpinning(true);
-      setRotation(randomAngle);
+      setRotation(prevRotation => prevRotation + randomAngle); // Добавляем новый угол к текущему углу
   
       setTimeout(() => {
         setIsSpinning(false);
