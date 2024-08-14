@@ -66,6 +66,8 @@ const spin = () => {
 
     setTimeout(() => {
         setIsSpinning(false);
+        setRotation(0);
+
         // dispatch(finishWheel());
     }, 5000); // Время завершения анимации
 };
