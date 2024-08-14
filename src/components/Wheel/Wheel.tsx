@@ -11,6 +11,8 @@ import useOutsideClick from '../../pages/Home/hooks/useOutsideClick'; // Имп�
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
 import axios from "axios";
+import { RootState } from "../../store";
+
 const cn = classNames.bind(styles);
 
 const Wheel = () => {
@@ -23,7 +25,9 @@ const Wheel = () => {
    const [rotation, setRotation] = useState(0);
    const [isSpinning, setIsSpinning] = useState(false);
    const [step, setStep] = useState(1);
-   const userId = 2405; // ID пользователя, замените на реальный
+   const user = useAppSelector((state: RootState) => state.user.user);
+
+   const userId = user.id; // ID пользователя, замените на реальный
 
    const sectors = [
        { name: "Sector 1", weight: 91, reward: 1000 },
