@@ -10,6 +10,7 @@ import useOutsideClick from '../../pages/Home/hooks/useOutsideClick'; // Имп�
 
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
+import axios from "axios";
 const cn = classNames.bind(styles);
 
 const Wheel = () => {
@@ -22,22 +23,22 @@ const Wheel = () => {
    const [rotation, setRotation] = useState(0);
    const [isSpinning, setIsSpinning] = useState(false);
    const [step, setStep] = useState(1);
+   const userId = 2405; // ID пользователя, замените на реальный
 
-  const sectors = [
-    { name: "Sector 1", weight: 91 },
-    { name: "Sector 2", weight: 1 },
-    { name: "Sector 3", weight: 1 },
-    { name: "Sector 4", weight: 1 },
-    { name: "Sector 5", weight: 1 },
-    { name: "Sector 6", weight: 1 },
-    { name: "Sector 7", weight: 1 },
-    { name: "Sector 8", weight: 1 },
-    { name: "Sector 9", weight: 1 },
-    { name: "Sector 10", weight: 1 }
-  ];
+   const sectors = [
+       { name: "Sector 1", weight: 91, reward: 1000 },
+       { name: "Sector 2", weight: 1, reward: 3000 },
+       { name: "Sector 3", weight: 1, reward: 5000 },
+       { name: "Sector 4", weight: 1, reward: 10000 },
+       { name: "Sector 5", weight: 1, reward: 25000 },
+       { name: "Sector 6", weight: 1, reward: 100000 },
+       { name: "Sector 7", weight: 1, reward: 500000 },
+       { name: "Sector 8", weight: 1, reward: 0 }, // "Еще одно вращение"
+       { name: "Sector 9", weight: 1, reward: 0 }, // "100$"
+       { name: "Sector 10", weight: 1, reward: 0 } // "0"
+   ];
   
-   
-  const getRandomSector = () => {
+   const getRandomSector = () => {
     const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
     const random = Math.random() * totalWeight;
 
@@ -49,6 +50,19 @@ const Wheel = () => {
         }
     }
     return 0; // если что-то пойдет не так
+};
+
+const giveUserReward = async (reward: number) => {
+    try {
+        if (reward > 0) {
+            const response = await axios.patch(`https://coinfarm.club/api/user/${userId}/earn/${reward}`);
+            console.log(`Reward given: ${reward} coins`, response.data);
+        } else if (reward === 0) {
+            console.log("Special sector, no coins given.");
+        }
+    } catch (error) {
+        console.error('Error awarding coins:', error);
+    }
 };
 
 const spin = () => {
@@ -69,10 +83,22 @@ const spin = () => {
         setStep(3);
         setRotation(0);
 
+        const selectedSector = sectors[sectorIndex];
+        console.log(`Selected sector: ${selectedSector.name}, Reward: ${selectedSector.reward}`);
+
+        // Если сектор не является "Еще одно вращение" или "100$", выдать награду
+        if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 9") {
+            giveUserReward(selectedSector.reward);
+        } else if (selectedSector.name === "Sector 8") {
+            spin(); // Повторное вращение
+        } else if (selectedSector.name === "Sector 9") {
+            console.log("User wins $100");
+            // Здесь может быть логика для выдачи $100, если необходимо
+        }
+
         // dispatch(finishWheel());
     }, 5000); // Время завершения анимации
 };
-
    function goNext() {
       setStep((prev) => prev + 1);
    }
