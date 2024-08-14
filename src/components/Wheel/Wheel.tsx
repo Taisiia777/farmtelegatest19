@@ -257,7 +257,7 @@ const spin = () => {
          //   }}
             
           >
-            <img src="img/pages/home/menu/Wheel.png" style={{width: '389px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center", border: '1px solid red' }} alt="Wheel" />
+            <img src="img/pages/home/menu/Wheel.png" style={{width: '389px', display:'flex', marginTop: '50px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center", border: '1px solid red' }} alt="Wheel" />
             <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '80px', position: 'absolute', top: '70vh', left: '45vw'}} alt="Spin" onClick={spin} />
 
           </div>
