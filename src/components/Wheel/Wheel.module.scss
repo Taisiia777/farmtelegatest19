@@ -119,7 +119,12 @@
          left: -18%;
          top: 20%
       }
-
+      &._first1 {
+         object-fit: contain;
+         width: 60%;
+         left: 5%;
+         top: 20%
+      }
       &._second {
          object-fit: contain;
          width: 60%;
