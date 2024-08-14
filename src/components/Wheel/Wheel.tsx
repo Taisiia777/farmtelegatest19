@@ -279,7 +279,7 @@ const spin = () => {
 
                {/* Надпись на popup-border */}
                <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>
-               {t('wheel_title')}
+               {t('wheel_rew_title')}
                </strong>
 
                {/* Иконка next */}
@@ -293,11 +293,11 @@ const spin = () => {
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
                   <img
-                     src="img/pages/home/menu/Wheel.png"
+                     src="img/pages/home/menu/Reward.png"
                      className={cn("content__person-img", "_first")}
                   />
                   <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
-                  {t('wheel')}
+                  {t('wheel_reward')}
                   </p>
                </div>
             </div>
