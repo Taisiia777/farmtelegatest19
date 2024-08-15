@@ -26,20 +26,18 @@ const Wheel = () => {
    const [isSpinning, setIsSpinning] = useState(false);
    const [step, setStep] = useState(1);
    const user = useAppSelector((state: RootState) => state.user.user);
-
+  
 
    const sectors = [
-       { name: "Sector 1", weight: 91, reward: 1000 },
-       { name: "Sector 2", weight: 1, reward: 3000 },
-       { name: "Sector 3", weight: 1, reward: 5000 },
-       { name: "Sector 4", weight: 1, reward: 10000 },
-       { name: "Sector 5", weight: 1, reward: 25000 },
-       { name: "Sector 6", weight: 1, reward: 100000 },
-       { name: "Sector 7", weight: 1, reward: 500000 },
-       { name: "Sector 8", weight: 1, reward: 0 }, // "Еще одно вращение"
-       { name: "Sector 9", weight: 1, reward: 0 }, // "100$"
-       { name: "Sector 10", weight: 1, reward: 0 } // "0"
-   ];
+    { name: "Sector 1", weight: 25, reward: 1000 }, // Самая высокая вероятность
+    { name: "Sector 2", weight: 20, reward: 5000 },
+    { name: "Sector 3", weight: 10, reward: 10000 },
+    { name: "Sector 4", weight: 5, reward: 25000 },
+    { name: "Sector 5", weight: 4.9, reward: 100000 },
+    { name: "Sector 6", weight: 0.1, reward: 500000 }, 
+    { name: "Sector 7", weight: 20, reward: 0 }, // Высокая вероятность
+    { name: "Sector 8", weight: 15, reward: 0 }, // Высокая вероятность
+];
   
    const getRandomSector = () => {
     const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
@@ -73,11 +71,16 @@ const spin = () => {
 
     const sectorIndex = getRandomSector();
     const sectorAngle = 360 / sectors.length;
-    const targetAngle = sectorIndex * sectorAngle + sectorAngle / 2;
+    // const targetAngle = sectorIndex * sectorAngle + sectorAngle / 2;
 
-    const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-    const finalAngle = rotation + spins * 360 + targetAngle;
+    // const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+    // const finalAngle = rotation + spins * 360 + targetAngle;
+// Добавляем случайное смещение внутри угла сектора
+const randomOffset = Math.random() * sectorAngle;
+const targetAngle = sectorIndex * sectorAngle + randomOffset;
 
+const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+const finalAngle = rotation + spins * 360 + targetAngle;
     setIsSpinning(true);
     setRotation(finalAngle);
 
