@@ -208,7 +208,7 @@ const spin = () => {
     };
 
     fetchUserData();
- }, [dispatch]);
+ }, []);
   setTimeout(() => {
       setIsSpinning(false);
 
