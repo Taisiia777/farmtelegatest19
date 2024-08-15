@@ -41,9 +41,10 @@ interface IMenuProps {
    onBoostOpen: () => void;
    onEarnOpen: () => void;
    onCoinsOpen: () => void;
+   onGamesOpen: () => void;
 }
 
-const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
+const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) => {
    // const { friends } = useOutletContext<OutletContext>();
    const dispatch = useAppDispatch();
 
@@ -111,7 +112,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen}: IMenuProps) => {
                   {/* <li onClick={harvestAllWheat}> */}
                   <li >
 
-                     <img src="img/pages/home/menu/Farm.png" alt="Farm" style={{width: "107px", height:"88px"}} onClick={() => onEarnOpen()}/>
+                     <img src="img/pages/home/menu/Farm.png" alt="Farm" style={{width: "107px", height:"88px"}} onClick={() => onGamesOpen()}/>
                      <img src="img/pages/home/menu/wheat.svg" alt="" />
                   </li>
                   {/* <li

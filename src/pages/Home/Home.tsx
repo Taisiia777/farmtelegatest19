@@ -234,8 +234,13 @@ const Home = () => {
   const openSpecialPopup =  () => {
     setEarnActiveTab("TASKS")
   };
+  const openGamesPopup =  () => {
+    setGamesActiveTab("GAMES")
+  };
    // Earn popup
    const [earnPopupOpen, setEarnPopupOpen] = useState(false);
+   const [gamesPopupOpen, setGamesPopupOpen] = useState(false);
+
    const earnRef = useOutsideClick(
       () => setEarnPopupOpen(false),
       ["#menu", "#tabs", "#popup"]
@@ -247,6 +252,7 @@ const Home = () => {
 
    // Активный таб в boost popup
    const [earnActiveTab, setEarnActiveTab] = useState("LEAGUES");
+   const [gamesActiveTab, setGamesActiveTab] = useState("GAMES");
 
    // buyCoin popup
    const coinState = useAppSelector((state) => state.coin);
@@ -1234,6 +1240,10 @@ const Home = () => {
                      onEarnOpen={() => {setEarnPopupOpen(true)
                       openSpecialPopup()
                      }}
+                     onGamesOpen={()=>{
+                      setGamesPopupOpen(true)
+                      openGamesPopup()
+                     }}
                      onCoinsOpen={() => {
                       setBoostPopupOpen(true)
                       openCoinPopup()}}
@@ -1567,6 +1577,35 @@ const Home = () => {
                      ]}
                   />
                )} */}
+            </PopupListWrap>
+
+                        {/* GAMES popup */}
+                        <PopupListWrap isOpen={gamesPopupOpen}>
+               <PopupListTabs
+                  labelClassName={cn("earn__label")}
+                  labels={["GAMES"]}
+                  activeTab={gamesActiveTab}
+                  onTabChange={(label) => setGamesActiveTab(label)}
+               />
+
+              
+{earnActiveTab === "GAMES" && (
+  <PopupList
+    ref={earnRef}
+    nodes={tasks.map(task => (
+      <FreindOrSpecialBlock
+        key={task.id}
+        imgSrc={task.imgSrc}
+        title={task.description}
+        earning={task.rewardAmount.toString()}
+        link={task.link}
+        defaultButtonText={t('join')}
+      />
+    ))}
+  />
+)}
+
+
             </PopupListWrap>
 
             {/* Иконка close, которая закрывает попапы с вариантом списка (<PopupListWrap />) */}
