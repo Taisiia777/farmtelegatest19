@@ -1618,12 +1618,13 @@ const Home = () => {
             </PopupListWrap>
 
             {/* Иконка close, которая закрывает попапы с вариантом списка (<PopupListWrap />) */}
-            {(boostPopupOpen || earnPopupOpen) && (
+            {(boostPopupOpen || earnPopupOpen || gamesPopupOpen) && (
                <img
                   src="img/global/closeIcon.svg"
                   onClick={() => {
                      setBoostPopupOpen(false);
                      setEarnPopupOpen(false);
+                     setGamesPopupOpen(false);
                   }}
                   className={cn("close")}
                   alt="Close"
