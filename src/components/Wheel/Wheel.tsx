@@ -28,82 +28,157 @@ const Wheel = () => {
    const user = useAppSelector((state: RootState) => state.user.user);
   
 
-   const sectors = [
-    { name: "Sector 1", weight: 25, reward: 1000 }, // Самая высокая вероятность
-    { name: "Sector 2", weight: 20, reward: 5000 },
-    { name: "Sector 3", weight: 10, reward: 10000 },
-    { name: "Sector 4", weight: 5, reward: 25000 },
-    { name: "Sector 5", weight: 4.9, reward: 100000 },
-    { name: "Sector 6", weight: 0.1, reward: 500000 }, 
-    { name: "Sector 7", weight: 20, reward: 0 }, // Высокая вероятность
-    { name: "Sector 8", weight: 15, reward: 0 }, // Высокая вероятность
-];
+//    const sectors = [
+//     { name: "Sector 1", weight: 25, reward: 1000 }, // Самая высокая вероятность
+//     { name: "Sector 2", weight: 20, reward: 5000 },
+//     { name: "Sector 3", weight: 10, reward: 10000 },
+//     { name: "Sector 4", weight: 5, reward: 25000 },
+//     { name: "Sector 5", weight: 4.9, reward: 100000 },
+//     { name: "Sector 6", weight: 0.1, reward: 500000 }, 
+//     { name: "Sector 7", weight: 20, reward: 0 }, // Высокая вероятность
+//     { name: "Sector 8", weight: 15, reward: 0 }, // Высокая вероятность
+// ];
   
-   const getRandomSector = () => {
-    const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
-    const random = Math.random() * totalWeight;
+//    const getRandomSector = () => {
+//     const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
+//     const random = Math.random() * totalWeight;
 
-    let currentWeight = 0;
-    for (let i = 0; i < sectors.length; i++) {
-        currentWeight += sectors[i].weight;
-        if (random <= currentWeight) {
-            return i;
-        }
-    }
-    return 0; // если что-то пойдет не так
+//     let currentWeight = 0;
+//     for (let i = 0; i < sectors.length; i++) {
+//         currentWeight += sectors[i].weight;
+//         if (random <= currentWeight) {
+//             return i;
+//         }
+//     }
+//     return 0; // если что-то пойдет не так
+// };
+
+// const giveUserReward = async (reward: number) => {
+//     try {
+//         if (reward > 0) {
+//             const response = await axios.patch(`https://coinfarm.club/api/user/${user.id}/earn/${reward}`);
+//             console.log(`Reward given: ${reward} coins`, response.data);
+//         } else if (reward === 0) {
+//             console.log("Special sector, no coins given.");
+//         }
+//     } catch (error) {
+//         console.error('Error awarding coins:', error);
+//     }
+// };
+
+// const spin = () => {
+//     if (isSpinning) return; // Предотвращает повторный запуск спина во время текущего
+
+//     const sectorIndex = getRandomSector();
+//     const sectorAngle = 360 / sectors.length;
+//     // const targetAngle = sectorIndex * sectorAngle + sectorAngle / 2;
+
+//     // const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+//     // const finalAngle = rotation + spins * 360 + targetAngle;
+// // Добавляем случайное смещение внутри угла сектора
+// const randomOffset = Math.random() * sectorAngle;
+// const targetAngle = sectorIndex * sectorAngle + randomOffset;
+
+// const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+// const finalAngle = rotation + spins * 360 + targetAngle;
+//     setIsSpinning(true);
+//     setRotation(finalAngle);
+
+//     setTimeout(() => {
+//         setIsSpinning(false);
+//         setStep(3);
+//         setRotation(0);
+
+//         const selectedSector = sectors[sectorIndex];
+//         console.log(`Selected sector: ${selectedSector.name}, Reward: ${selectedSector.reward}`);
+
+//         // Если сектор не является "Еще одно вращение" или "100$", выдать награду
+//         if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 9") {
+//             giveUserReward(selectedSector.reward);
+//         } else if (selectedSector.name === "Sector 8") {
+//             spin(); // Повторное вращение
+//         } else if (selectedSector.name === "Sector 9") {
+//             console.log("User wins $100");
+//             // Здесь может быть логика для выдачи $100, если необходимо
+//         }
+
+//         // dispatch(finishWheel());
+//     }, 5000); // Время завершения анимации
+// };
+const sectors = [
+  { name: "Sector 1", weight: 25, reward: 1000 },
+  { name: "Sector 2", weight: 20, reward: 5000 },
+  { name: "Sector 3", weight: 10, reward: 10000 },
+  { name: "Sector 4", weight: 5, reward: 25000 },
+  { name: "Sector 5", weight: 4.9, reward: 100000 },
+  { name: "Sector 6", weight: 0.1, reward: 500000 },
+  { name: "Sector 7", weight: 20, reward: 0 },
+  { name: "Sector 8", weight: 15, reward: 0 }, // "Еще одно вращение"
+];
+
+const getRandomSector = () => {
+  const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
+  const random = Math.random() * totalWeight;
+
+  let currentWeight = 0;
+  for (let i = 0; i < sectors.length; i++) {
+      currentWeight += sectors[i].weight;
+      if (random <= currentWeight) {
+          return i;
+      }
+  }
+  return 0; // если что-то пойдет не так
 };
 
 const giveUserReward = async (reward: number) => {
-    try {
-        if (reward > 0) {
-            const response = await axios.patch(`https://coinfarm.club/api/user/${user.id}/earn/${reward}`);
-            console.log(`Reward given: ${reward} coins`, response.data);
-        } else if (reward === 0) {
-            console.log("Special sector, no coins given.");
-        }
-    } catch (error) {
-        console.error('Error awarding coins:', error);
-    }
+  try {
+      if (reward > 0) {
+          const response = await axios.patch(`https://coinfarm.club/api/user/${user.id}/earn/${reward}`);
+          console.log(`Reward given: ${reward} coins`, response.data);
+      } else if (reward === 0) {
+          console.log("Special sector, no coins given.");
+      }
+  } catch (error) {
+      console.error('Error awarding coins:', error);
+  }
 };
 
 const spin = () => {
-    if (isSpinning) return; // Предотвращает повторный запуск спина во время текущего
+  if (isSpinning) return; // Предотвращает повторный запуск спина во время текущего
 
-    const sectorIndex = getRandomSector();
-    const sectorAngle = 360 / sectors.length;
-    // const targetAngle = sectorIndex * sectorAngle + sectorAngle / 2;
+  const sectorIndex = getRandomSector();
+  const sectorAngle = 360 / sectors.length;
 
-    // const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-    // const finalAngle = rotation + spins * 360 + targetAngle;
-// Добавляем случайное смещение внутри угла сектора
-const randomOffset = Math.random() * sectorAngle;
-const targetAngle = sectorIndex * sectorAngle + randomOffset;
+  // Добавляем случайное смещение внутри угла сектора, но внутри его границ
+  const randomOffset = Math.random() * sectorAngle;
+  const targetAngle = sectorIndex * sectorAngle + randomOffset;
 
-const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-const finalAngle = rotation + spins * 360 + targetAngle;
-    setIsSpinning(true);
-    setRotation(finalAngle);
+  const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+  const finalAngle = rotation + spins * 360 + targetAngle;
 
-    setTimeout(() => {
-        setIsSpinning(false);
-        setStep(3);
-        setRotation(0);
+  setIsSpinning(true);
+  setRotation(finalAngle);
 
-        const selectedSector = sectors[sectorIndex];
-        console.log(`Selected sector: ${selectedSector.name}, Reward: ${selectedSector.reward}`);
+  setTimeout(() => {
+      setIsSpinning(false);
+      setStep(3);
 
-        // Если сектор не является "Еще одно вращение" или "100$", выдать награду
-        if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 9") {
-            giveUserReward(selectedSector.reward);
-        } else if (selectedSector.name === "Sector 8") {
-            spin(); // Повторное вращение
-        } else if (selectedSector.name === "Sector 9") {
-            console.log("User wins $100");
-            // Здесь может быть логика для выдачи $100, если необходимо
-        }
+      const selectedSector = sectors[sectorIndex];
+      console.log(`Selected sector: ${selectedSector.name}, Reward: ${selectedSector.reward}`);
 
-        // dispatch(finishWheel());
-    }, 5000); // Время завершения анимации
+      // Если сектор не является "Еще одно вращение" или "100$", выдать награду
+      if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 9") {
+          giveUserReward(selectedSector.reward);
+      } else if (selectedSector.name === "Sector 8") {
+          spin(); // Повторное вращение
+      } else if (selectedSector.name === "Sector 9") {
+          console.log("User wins $100");
+          // Здесь может быть логика для выдачи $100, если необходимо
+      }
+
+      // Сброс вращения для следующего спина
+      setRotation(rotation + spins * 360 + targetAngle);
+  }, 5000); // Время завершения анимации
 };
    function goNext() {
       setStep((prev) => prev + 1);
