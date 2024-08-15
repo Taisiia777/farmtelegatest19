@@ -341,10 +341,10 @@ const spin = () => {
          //     transformOrigin: "center", // Центр вращения
          //   }}
             
-          > <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px'}}>
+          > <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '106px', height: '47px', position: 'absolute', top: '0px', left: '14px'}}>
             0 SPINS
           </p>
-          <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '180px', height: '47px', position: 'absolute', top: '20px', left: '130px'}}>
+          <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '180px', height: '47px', position: 'absolute', top: '0px', left: '130px'}}>
             MORE SPINS
           </p>
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px'}} alt="Spin"  />
