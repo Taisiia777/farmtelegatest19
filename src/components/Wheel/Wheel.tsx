@@ -144,23 +144,21 @@ const spin = () => {
     const selectedSector = sectors[winningIndex];
 
     // Обработка выбранного сектора
-    if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 7") {
+    if (selectedSector.name !== "Sector 8") {
       setReward(selectedSector.reward);
       giveUserReward(selectedSector.reward);
-    } else if (selectedSector.name === "Sector 8") {
-      spin(); // Повторное вращение
-    } else if (selectedSector.name === "Sector 7") {
-      console.log("User wins $100");
-      // Здесь может быть логика для выдачи $100, если необходимо
-    }
-
-    // Анимация конфетти и переход к следующему шагу
+          // Анимация конфетти и переход к следующему шагу
     setShowConfetti(true);
     setTimeout(() => {
       setShowConfetti(false); // Скрыть конфетти через 2 секунды
       setStep(3);
       setRotation(0);
     }, 3000);
+    } else if (selectedSector.name === "Sector 8") {
+      spin(); // Повторное вращение
+    }
+
+
 
   }, 5000); // Время завершения анимации
 };
