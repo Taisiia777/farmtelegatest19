@@ -175,7 +175,7 @@ const spin = () => {
       const winningIndex = Math.floor(finalRotation / sectorAngle);
       const selectedSector = sectors[winningIndex];
 
-      alert(`Selected sector: ${selectedSector.name}, Reward: ${selectedSector.reward}`);
+      // alert(`Selected sector: ${selectedSector.name}, Reward: ${selectedSector.reward}`);
 
       // Если сектор не является "Еще одно вращение" или "100$", выдать награду
       if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 7") {
@@ -370,7 +370,7 @@ const spin = () => {
             <img src="img/pages/home/menu/WheelBorder.png" style={{width: '389px', display:'flex',  zIndex:'10',  position:'absolute', top: '100px'}} alt="Wheel" />
 
             <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '122px', height: '46px', position: 'absolute', top: '70vh',  left: '50%', transform: 'translateX(-50%)'}} alt="Spin"  />
-            <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '122px', height: '5px', position: 'absolute', top: '70vh', zIndex:'11', border: '1px solid red'}} onClick={spin}>
+            <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '122px', height: '20px', position: 'absolute', top: '65vh', zIndex:'11', border: '1px solid red'}} onClick={spin}>
           {t('spin')}
           </p>
           </div>
