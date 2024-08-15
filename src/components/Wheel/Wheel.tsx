@@ -163,7 +163,6 @@ const spin = () => {
 
   setTimeout(() => {
       setIsSpinning(false);
-      setStep(3);
 
       // Вычисляем сектор на основе угла, на который указывает указатель
       const finalRotation = finalAngle % 360;
@@ -186,8 +185,10 @@ const spin = () => {
       setShowConfetti(true);
       setTimeout(() => {
         setShowConfetti(false); // Скрыть конфетти через 2 секунды
+        setStep(3);
+        setRotation(0);
       }, 2000);
-      setRotation(0);
+
   }, 5000); // Время завершения анимации
 };
 
