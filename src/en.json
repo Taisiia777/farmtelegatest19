@@ -73,7 +73,9 @@
     "wheel": "Win FarmCoins or money in our games and competitions",
     "wheel_title": "Try your luck",
     "wheel_reward":"Congratulations! You have won ",
-    "wheel_rew_title":"Your reward"
-
+    "wheel_rew_title":"Your reward",
+    "spins": "SPINS",
+    "more_spins": "MORE SPINS",
+    "spin": "SPIN"
 
   }

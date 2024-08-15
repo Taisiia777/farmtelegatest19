@@ -13,12 +13,15 @@ import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
 import axios from "axios";
 import { RootState } from "../../store";
+import { useNavigate } from "react-router-dom";
+import { Routes } from "../../routes/routes";
 
 const cn = classNames.bind(styles);
 
 const Wheel = () => {
    const dispatch = useAppDispatch();
    const isOpen = useAppSelector((state) => state.wheel.isOpen);
+   const navigate = useNavigate();
 
    // Состояние прелоудреа
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
@@ -356,18 +359,20 @@ const spin = () => {
          //   }}
             
           > <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '106px', height: '20px', position: 'absolute', top: '-27px', left: '14px', zIndex:'11'}}>
-            {spins} SPINS
+            {spins} {t('spins')}
           </p>
           <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '180px', height: '20px', position: 'absolute', top: '-27px', left: '130px', zIndex:'11'}}>
-            MORE SPINS
+          {t('more_spins')}
           </p>
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px', zIndex:'10'}} alt="Spin"  />
-            <img src="img/pages/home/menu/MoreSpins.png" className={cn("greeting__next")} style={{width: '180px', height: '47px', position: 'absolute', top: '20px', left: '130px', zIndex:'10'}} alt="Spin"  />
+            <img src="img/pages/home/menu/MoreSpins.png" onClick={() => navigate(Routes.INVITE)} className={cn("greeting__next")} style={{width: '180px', height: '47px', position: 'absolute', top: '20px', left: '130px', zIndex:'10'}} alt="Spin"  />
             <img src="img/pages/home/menu/WheelCenter.png" style={{width: '280px', display:'flex', zIndex:'11', position:'absolute', top: '155px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
             <img src="img/pages/home/menu/WheelBorder.png" style={{width: '389px', display:'flex',  zIndex:'10',  position:'absolute', top: '100px'}} alt="Wheel" />
 
-            <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '122px', height: '46px', position: 'absolute', top: '70vh', left: '40vw'}} alt="Spin" onClick={spin} />
-
+            <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '122px', height: '46px', position: 'absolute', top: '70vh', }} alt="Spin" onClick={spin} />
+            <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '122px', height: '20px', position: 'absolute', top: '70vh', zIndex:'11'}}>
+          {t('spin')}
+          </p>
           </div>
         </div>
 
