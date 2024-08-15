@@ -35,83 +35,6 @@ const Wheel = () => {
    const [reward, setReward] = useState(0);
 
 
-//    const sectors = [
-//     { name: "Sector 1", weight: 25, reward: 1000 }, // Самая высокая вероятность
-//     { name: "Sector 2", weight: 20, reward: 5000 },
-//     { name: "Sector 3", weight: 10, reward: 10000 },
-//     { name: "Sector 4", weight: 5, reward: 25000 },
-//     { name: "Sector 5", weight: 4.9, reward: 100000 },
-//     { name: "Sector 6", weight: 0.1, reward: 500000 }, 
-//     { name: "Sector 7", weight: 20, reward: 0 }, // Высокая вероятность
-//     { name: "Sector 8", weight: 15, reward: 0 }, // Высокая вероятность
-// ];
-  
-//    const getRandomSector = () => {
-//     const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
-//     const random = Math.random() * totalWeight;
-
-//     let currentWeight = 0;
-//     for (let i = 0; i < sectors.length; i++) {
-//         currentWeight += sectors[i].weight;
-//         if (random <= currentWeight) {
-//             return i;
-//         }
-//     }
-//     return 0; // если что-то пойдет не так
-// };
-
-// const giveUserReward = async (reward: number) => {
-//     try {
-//         if (reward > 0) {
-//             const response = await axios.patch(`https://coinfarm.club/api/user/${user.id}/earn/${reward}`);
-//             console.log(`Reward given: ${reward} coins`, response.data);
-//         } else if (reward === 0) {
-//             console.log("Special sector, no coins given.");
-//         }
-//     } catch (error) {
-//         console.error('Error awarding coins:', error);
-//     }
-// };
-
-// const spin = () => {
-//     if (isSpinning) return; // Предотвращает повторный запуск спина во время текущего
-
-//     const sectorIndex = getRandomSector();
-//     const sectorAngle = 360 / sectors.length;
-//     // const targetAngle = sectorIndex * sectorAngle + sectorAngle / 2;
-
-//     // const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-//     // const finalAngle = rotation + spins * 360 + targetAngle;
-// // Добавляем случайное смещение внутри угла сектора
-// const randomOffset = Math.random() * sectorAngle;
-// const targetAngle = sectorIndex * sectorAngle + randomOffset;
-
-// const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-// const finalAngle = rotation + spins * 360 + targetAngle;
-//     setIsSpinning(true);
-//     setRotation(finalAngle);
-
-//     setTimeout(() => {
-//         setIsSpinning(false);
-//         setStep(3);
-//         setRotation(0);
-
-//         const selectedSector = sectors[sectorIndex];
-//         console.log(`Selected sector: ${selectedSector.name}, Reward: ${selectedSector.reward}`);
-
-//         // Если сектор не является "Еще одно вращение" или "100$", выдать награду
-//         if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 9") {
-//             giveUserReward(selectedSector.reward);
-//         } else if (selectedSector.name === "Sector 8") {
-//             spin(); // Повторное вращение
-//         } else if (selectedSector.name === "Sector 9") {
-//             console.log("User wins $100");
-//             // Здесь может быть логика для выдачи $100, если необходимо
-//         }
-
-//         // dispatch(finishWheel());
-//     }, 5000); // Время завершения анимации
-// };
 const sectors = [
   { name: "Sector 1", weight: 25, reward: 1000 },
   { name: "Sector 2", weight: 20, reward: 5000 },
@@ -150,14 +73,62 @@ const giveUserReward = async (reward: number) => {
   }
 };
 
+// const spin = () => {
+//   setSpins((prev: number) => prev - 1)
+//   if (isSpinning) return; // Предотвращает повторный запуск спина во время текущего
+
+//   const sectorIndex = getRandomSector();
+//   const sectorAngle = 360 / sectors.length;
+
+//   // Добавляем случайное смещение внутри угла сектора, но внутри его границ
+//   const randomOffset = Math.random() * sectorAngle;
+//   const targetAngle = sectorIndex * sectorAngle + randomOffset;
+
+//   const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+//   const finalAngle = spins * 360 + targetAngle;
+
+//   setIsSpinning(true);
+//   setRotation(finalAngle);
+
+//   setTimeout(() => {
+//       setIsSpinning(false);
+
+//       // Вычисляем сектор на основе угла, на который указывает указатель
+//       const finalRotation = finalAngle % 360;
+//       const winningIndex = Math.floor(finalRotation / sectorAngle);
+//       const selectedSector = sectors[winningIndex];
+
+//       // alert(`Selected sector: ${selectedSector.name}, Reward: ${selectedSector.reward}`);
+
+//       // Если сектор не является "Еще одно вращение" или "100$", выдать награду
+//       if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 7") {
+//           setReward(selectedSector.reward)
+//           giveUserReward(selectedSector.reward);
+//       } else if (selectedSector.name === "Sector 8") {
+//           spin(); // Повторное вращение
+//       } else if (selectedSector.name === "Sector 7") {
+//           console.log("User wins $100");
+//           // Здесь может быть логика для выдачи $100, если необходимо
+//       }
+
+//       // Сброс вращения для следующего спина
+//       setShowConfetti(true);
+//       setTimeout(() => {
+//         setShowConfetti(false); // Скрыть конфетти через 2 секунды
+//         setStep(3);
+//         setRotation(0);
+//       }, 3000);
+
+//   }, 5000); // Время завершения анимации
+// };
 const spin = () => {
-  setSpins((prev: number) => prev - 1)
-  if (isSpinning) return; // Предотвращает повторный запуск спина во время текущего
+  setSpins((prev: number) => prev - 1);
+  if (isSpinning) return;
 
   const sectorIndex = getRandomSector();
   const sectorAngle = 360 / sectors.length;
-
-  // Добавляем случайное смещение внутри угла сектора, но внутри его границ
+  
+  // Добавляем случайное смещение внутри угла сектора
   const randomOffset = Math.random() * sectorAngle;
   const targetAngle = sectorIndex * sectorAngle + randomOffset;
 
@@ -168,36 +139,36 @@ const spin = () => {
   setRotation(finalAngle);
 
   setTimeout(() => {
-      setIsSpinning(false);
+    setIsSpinning(false);
 
-      // Вычисляем сектор на основе угла, на который указывает указатель
-      const finalRotation = finalAngle % 360;
-      const winningIndex = Math.floor(finalRotation / sectorAngle);
-      const selectedSector = sectors[winningIndex];
+    const finalRotation = finalAngle % 360;
+    const winningIndex = Math.floor(finalRotation / sectorAngle);
 
-      // alert(`Selected sector: ${selectedSector.name}, Reward: ${selectedSector.reward}`);
+    // Коррекция для последнего сектора
+    const adjustedWinningIndex = (winningIndex === sectors.length) ? 0 : winningIndex;
+    const selectedSector = sectors[adjustedWinningIndex];
 
-      // Если сектор не является "Еще одно вращение" или "100$", выдать награду
-      if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 7") {
-          setReward(selectedSector.reward)
-          giveUserReward(selectedSector.reward);
-      } else if (selectedSector.name === "Sector 8") {
-          spin(); // Повторное вращение
-      } else if (selectedSector.name === "Sector 7") {
-          console.log("User wins $100");
-          // Здесь может быть логика для выдачи $100, если необходимо
-      }
+    // Действия в зависимости от выбранного сектора
+    if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 7") {
+      setReward(selectedSector.reward);
+      giveUserReward(selectedSector.reward);
+    } else if (selectedSector.name === "Sector 8") {
+      spin(); // Повторное вращение
+    } else if (selectedSector.name === "Sector 7") {
+      console.log("User wins $100");
+    }
 
-      // Сброс вращения для следующего спина
-      setShowConfetti(true);
-      setTimeout(() => {
-        setShowConfetti(false); // Скрыть конфетти через 2 секунды
-        setStep(3);
-        setRotation(0);
-      }, 3000);
+    // Анимация конфетти и переход к следующему шагу
+    setShowConfetti(true);
+    setTimeout(() => {
+      setShowConfetti(false); // Скрыть конфетти через 2 секунды
+      setStep(3);
+      setRotation(0);
+    }, 3000);
 
-  }, 5000); // Время завершения анимации
+  }, 5000);
 };
+
 
    function goNext() {
       setStep((prev) => prev + 1);
@@ -270,13 +241,13 @@ const spin = () => {
       });
       document.querySelectorAll('.textWheel').forEach(element => {
         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-          element.style.fontSize = '14px';
+          element.style.fontSize = '12px';
           element.style.fontWeight = '700';
         }
       });
       document.querySelectorAll('.textWheel1').forEach(element => {
         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-          element.style.fontSize = '12px';
+          element.style.fontSize = '10px';
           element.style.fontWeight = '700';
         }
       });
@@ -370,10 +341,10 @@ const spin = () => {
          //     transformOrigin: "center", // Центр вращения
          //   }}
             
-          > <p className={`${cn("content__text", "_first")}` + ' textWheel'} style={{width: '95px', height: '20px', position: 'absolute', top: '-27px', left: '18px', zIndex:'11'}}>
+          > <p className={`${cn("content__text", "_first")}` + ' textWheel'} style={{width: '106px', height: '20px', position: 'absolute', top: '-27px', left: '14px', zIndex:'11'}}>
             {spins} {t('spins')}
           </p>
-          <p className={`${cn("content__text", "_first")}` + ' textWheel1'} onClick={() => navigate(Routes.INVITE)} style={{width: '165px', height: '20px', position: 'absolute', top: '-27px', left: '140px', zIndex:'11'}}>
+          <p className={`${cn("content__text", "_first")}` + ' textWheel1'} onClick={() => navigate(Routes.INVITE)} style={{width: '180px', height: '20px', position: 'absolute', top: '-27px', left: '130px', zIndex:'11'}}>
           {t('more_spins')}
           </p>
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px', zIndex:'10'}} alt="Spin"  />
