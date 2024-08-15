@@ -154,7 +154,7 @@ const spin = () => {
   const targetAngle = sectorIndex * sectorAngle + randomOffset;
 
   const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-  const finalAngle = rotation + spins * 360 + targetAngle;
+  const finalAngle = spins * 360 + targetAngle;
 
   setIsSpinning(true);
   setRotation(finalAngle);
@@ -163,7 +163,11 @@ const spin = () => {
       setIsSpinning(false);
       setStep(3);
 
-      const selectedSector = sectors[sectorIndex];
+      // Вычисляем сектор на основе угла, на который указывает указатель
+      const finalRotation = finalAngle % 360;
+      const winningIndex = Math.floor(finalRotation / sectorAngle);
+      const selectedSector = sectors[winningIndex];
+
       alert(`Selected sector: ${selectedSector.name}, Reward: ${selectedSector.reward}`);
 
       // Если сектор не является "Еще одно вращение" или "100$", выдать награду
@@ -338,10 +342,12 @@ const spin = () => {
          //   }}
             
           >
+            <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px'}} alt="Spin"  />
+            <img src="img/pages/home/menu/MoreSpins.png" className={cn("greeting__next")} style={{width: '180px', height: '47px', position: 'absolute', top: '20px', left: '130px'}} alt="Spin"  />
             <img src="img/pages/home/menu/WheelCenter.png" style={{width: '280px', display:'flex', zIndex:'11', position:'absolute', top: '155px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center", border: '1px solid red' }} alt="Wheel" />
             <img src="img/pages/home/menu/WheelBorder.png" style={{width: '389px', display:'flex',  zIndex:'10',  position:'absolute', top: '100px'}} alt="Wheel" />
 
-            <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '80px', position: 'absolute', top: '70vh', left: '45vw'}} alt="Spin" onClick={spin} />
+            <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '122px', height: '46px', position: 'absolute', top: '70vh', left: '40vw'}} alt="Spin" onClick={spin} />
 
           </div>
         </div>
