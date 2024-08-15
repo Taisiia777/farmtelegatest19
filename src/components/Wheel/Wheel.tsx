@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import { finishWheel } from "../../store/reducers/wheel";
 
 import useOutsideClick from '../../pages/Home/hooks/useOutsideClick'; // Импортируйте ваш хук
+import Confetti from "./Confetti"; 
 
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
@@ -26,7 +27,8 @@ const Wheel = () => {
    const [isSpinning, setIsSpinning] = useState(false);
    const [step, setStep] = useState(1);
    const user = useAppSelector((state: RootState) => state.user.user);
-  
+   const [showConfetti, setShowConfetti] = useState(false);
+
 
 //    const sectors = [
 //     { name: "Sector 1", weight: 25, reward: 1000 }, // Самая высокая вероятность
@@ -181,9 +183,14 @@ const spin = () => {
       }
 
       // Сброс вращения для следующего спина
+      setShowConfetti(true);
+      setTimeout(() => {
+        setShowConfetti(false); // Скрыть конфетти через 2 секунды
+      }, 2000);
       setRotation(0);
   }, 5000); // Время завершения анимации
 };
+
    function goNext() {
       setStep((prev) => prev + 1);
    }
@@ -329,6 +336,8 @@ const spin = () => {
          )}
 {step === 2 && (
             <div style={{display: 'flex', flexDirection:'column', width: '100%', height:'100%', position:'relative'}}>
+                    {showConfetti && <Confetti />}
+
                <div className={cn("greeting__body", "_first")} >
 
 
@@ -341,10 +350,10 @@ const spin = () => {
          //     transformOrigin: "center", // Центр вращения
          //   }}
             
-          > <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '106px', height: '20px', position: 'absolute', top: '-20px', left: '14px', zIndex:'11'}}>
+          > <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '106px', height: '20px', position: 'absolute', top: '-30px', left: '14px', zIndex:'11'}}>
             0 SPINS
           </p>
-          <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '180px', height: '20px', position: 'absolute', top: '-20px', left: '130px', zIndex:'11'}}>
+          <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '180px', height: '20px', position: 'absolute', top: '-30px', left: '130px', zIndex:'11'}}>
             MORE SPINS
           </p>
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px', zIndex:'10'}} alt="Spin"  />
