@@ -43,7 +43,7 @@ import Boosts from "./modules/Boosts/Boosts";
 import Account from "./modules/Account";
 import LigaBlock from "../../components/LigaBlock/LigaBlock";
 import FreindOrSpecialBlock from "../../components/FreindOrSpecialBlock/FreindOrSpecialBlock";
-import GamesBlock from "../../components/GamesBlock/GamesBlock";
+// import GamesBlock from "../../components/GamesBlock/GamesBlock";
 
 import Greeting from "../../components/Greeting/Greeting";
 import Guide from "../../components/Guide/Guide";
@@ -1599,16 +1599,14 @@ const Home = () => {
                />
 
               
+{gamesActiveTab === "GAMES" && (
   <PopupList ref={gamesRef} 
-  nodes={ [<GamesBlock
-    key={1}  // Убедитесь, что переменная `task` определена или замените ее на нужные данные
-    imgSrc={'img/pages/home/menu/Wheel.png'}
-    title={t('wheel_of_fortune')}
-    defaultButtonText={t('play')}
-  />]}
+  nodes={ [
+    <div>jjj</div>
+  ]}
   />
    
-
+)}
 
 
             </PopupListWrap>
