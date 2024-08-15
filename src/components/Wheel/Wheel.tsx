@@ -28,7 +28,7 @@ const Wheel = () => {
    const [step, setStep] = useState(1);
    const user = useAppSelector((state: RootState) => state.user.user);
    const [showConfetti, setShowConfetti] = useState(false);
-   const [spins, setSpins] = useState(user.level + 1);
+   const [spins, setSpins] = useState(user?.level + 1);
 
 
 //    const sectors = [
