@@ -123,14 +123,12 @@ const giveUserReward = async (reward: number) => {
 // };
 const spin = () => {
   setSpins((prev: number) => prev - 1);
-  if (isSpinning) return;
+  if (isSpinning) return; // Предотвращает повторный запуск спина во время текущего
 
   const sectorIndex = getRandomSector();
-  const sectorAngle = 360 / sectors.length;
-  
-  // Добавляем случайное смещение внутри угла сектора
-  const randomOffset = Math.random() * sectorAngle;
-  const targetAngle = sectorIndex * sectorAngle + randomOffset;
+  const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
+
+  const targetAngle = sectorIndex * sectorAngle;
 
   const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
   const finalAngle = spins * 360 + targetAngle;
@@ -143,12 +141,9 @@ const spin = () => {
 
     const finalRotation = finalAngle % 360;
     const winningIndex = Math.floor(finalRotation / sectorAngle);
+    const selectedSector = sectors[winningIndex];
 
-    // Коррекция для последнего сектора
-    const adjustedWinningIndex = (winningIndex === sectors.length) ? 0 : winningIndex;
-    const selectedSector = sectors[adjustedWinningIndex];
-
-    // Действия в зависимости от выбранного сектора
+    // Обработка выбранного сектора
     if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 7") {
       setReward(selectedSector.reward);
       giveUserReward(selectedSector.reward);
@@ -156,6 +151,7 @@ const spin = () => {
       spin(); // Повторное вращение
     } else if (selectedSector.name === "Sector 7") {
       console.log("User wins $100");
+      // Здесь может быть логика для выдачи $100, если необходимо
     }
 
     // Анимация конфетти и переход к следующему шагу
@@ -166,7 +162,7 @@ const spin = () => {
       setRotation(0);
     }, 3000);
 
-  }, 5000);
+  }, 5000); // Время завершения анимации
 };
 
 
