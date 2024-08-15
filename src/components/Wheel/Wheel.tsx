@@ -361,7 +361,7 @@ const spin = () => {
           </p>
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px', zIndex:'10'}} alt="Spin"  />
             <img src="img/pages/home/menu/MoreSpins.png" className={cn("greeting__next")} style={{width: '180px', height: '47px', position: 'absolute', top: '20px', left: '130px', zIndex:'10'}} alt="Spin"  />
-            <img src="img/pages/home/menu/WheelCenter.png" style={{width: '280px', display:'flex', zIndex:'11', position:'absolute', top: '155px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center", border: '1px solid red' }} alt="Wheel" />
+            <img src="img/pages/home/menu/WheelCenter.png" style={{width: '280px', display:'flex', zIndex:'11', position:'absolute', top: '155px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
             <img src="img/pages/home/menu/WheelBorder.png" style={{width: '389px', display:'flex',  zIndex:'10',  position:'absolute', top: '100px'}} alt="Wheel" />
 
             <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '122px', height: '46px', position: 'absolute', top: '70vh', left: '40vw'}} alt="Spin" onClick={spin} />
