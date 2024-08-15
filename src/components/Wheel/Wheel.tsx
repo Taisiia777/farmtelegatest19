@@ -5,7 +5,8 @@ import styles from "./Wheel.module.scss";
 
 import { useAppDispatch, useAppSelector } from "../../store";
 import { finishWheel } from "../../store/reducers/wheel";
-
+import { setUser } from "../../store/reducers/userSlice";
+import { retrieveLaunchParams } from '@tma.js/sdk';
 import useOutsideClick from '../../pages/Home/hooks/useOutsideClick'; // Импортируйте ваш хук
 import Confetti from "./Confetti"; 
 
@@ -28,7 +29,7 @@ const Wheel = () => {
    const [step, setStep] = useState(1);
    const user = useAppSelector((state: RootState) => state.user.user);
    const [showConfetti, setShowConfetti] = useState(false);
-   const [spins, setSpins] = useState(user?.level + 1);
+   const [spins, setSpins] = useState(0);
 
 
 //    const sectors = [
@@ -162,7 +163,52 @@ const spin = () => {
 
   setIsSpinning(true);
   setRotation(finalAngle);
+  useEffect(() => {
+    const fetchUserData = async () => {
+       const { initData } = retrieveLaunchParams();
+       if (initData && initData.user) {
+          const user = initData.user;
+          const username = user.username;
+          const userId = user.id;
 
+          try {
+             const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
+             const data = response.data;
+             let referralCode = data.referral_code;
+
+             const userResponse = await axios.post(
+                "https://coinfarm.club/api/user",
+                {
+                   username: username,
+                   coins: 0,
+                   totalEarnings: 0,
+                   incomeMultiplier: 1,
+                   coinsPerHour: 1000,
+                   xp: 1000,
+                   level: 0,
+                   referralCode: referralCode,
+                }
+             );
+
+             if (userResponse.status === 409) {
+                const userData = userResponse.data;
+                alert(`User already exists: ${JSON.stringify(userData)}`);
+                setSpins(userData.level + 1)
+
+                dispatch(setUser(userData)); // Устанавливаем уже существующего пользователя
+             } else {
+                const newUser = userResponse.data;
+                dispatch(setUser(newUser));
+                setSpins(newUser.level + 1)
+             }
+          } catch (error) {
+             console.error("Error:", error);
+          }
+       }
+    };
+
+    fetchUserData();
+ }, [dispatch]);
   setTimeout(() => {
       setIsSpinning(false);
 
