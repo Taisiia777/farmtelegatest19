@@ -18,7 +18,6 @@ import RainAnimation from './modules/RainAnimation';
 import QRCodeComponent from './QRCodeComponent';
 import { openGuide } from "../../store/reducers/guide";
 import { useOutletContext } from 'react-router-dom';
-
 // import useWheatTrunctaion from "./hooks/useWheatTrunctation";
 // import {useHarvestAllWheat} from "./hooks/useHarvestAllWheat";
 import i18n from '../../i18n';
@@ -44,6 +43,8 @@ import Boosts from "./modules/Boosts/Boosts";
 import Account from "./modules/Account";
 import LigaBlock from "../../components/LigaBlock/LigaBlock";
 import FreindOrSpecialBlock from "../../components/FreindOrSpecialBlock/FreindOrSpecialBlock";
+import GamesBlock from "../../components/GamesBlock/GamesBlock";
+
 import Greeting from "../../components/Greeting/Greeting";
 import Guide from "../../components/Guide/Guide";
 import Guide1 from "../../components/Guide1/Guide1";
@@ -1599,19 +1600,15 @@ const Home = () => {
 
               
 {earnActiveTab === "GAMES" && (
-  <PopupList
-    ref={gamesRef}
-    nodes={tasks.map(task => (
-      <FreindOrSpecialBlock
-        key={task.id}
-        imgSrc={task.imgSrc}
-        title={task.description}
-        earning={task.rewardAmount.toString()}
-        link={task.link}
-        defaultButtonText={t('join')}
-      />
-    ))}
+  <PopupList ref={gamesRef} 
+  nodes={ [<GamesBlock
+    key={1}  // Убедитесь, что переменная `task` определена или замените ее на нужные данные
+    imgSrc={'img/pages/home/menu/Wheel.png'}
+    title={t('wheel_of_fortune')}
+    defaultButtonText={t('play')}
+  />]}
   />
+   
 )}
 
 
