@@ -250,6 +250,15 @@ const Home = () => {
       closePopup: () => setEarnPopupOpen(false),
    });
 
+   const gamesRef = useOutsideClick(
+    () => setGamesPopupOpen(false),
+    ["#menu", "#tabs", "#popup"]
+ );
+ useClosePopupByTgButton({
+    isOpen: gamesPopupOpen,
+    closePopup: () => setGamesPopupOpen(false),
+ });
+
    // Активный таб в boost popup
    const [earnActiveTab, setEarnActiveTab] = useState("LEAGUES");
    const [gamesActiveTab, setGamesActiveTab] = useState("GAMES");
@@ -1591,7 +1600,7 @@ const Home = () => {
               
 {earnActiveTab === "GAMES" && (
   <PopupList
-    ref={earnRef}
+    ref={gamesRef}
     nodes={tasks.map(task => (
       <FreindOrSpecialBlock
         key={task.id}
