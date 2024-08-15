@@ -29,6 +29,7 @@ const Wheel = () => {
    const user = useAppSelector((state: RootState) => state.user.user);
    const [showConfetti, setShowConfetti] = useState(false);
    const [spins, setSpins] = useState(0);
+   const [reward, setReward] = useState(0);
 
 
 //    const sectors = [
@@ -153,16 +154,12 @@ const spin = () => {
   const sectorIndex = getRandomSector();
   const sectorAngle = 360 / sectors.length;
 
-    const targetAngle = sectorIndex * sectorAngle + sectorAngle / 2;
+  // Добавляем случайное смещение внутри угла сектора, но внутри его границ
+  const randomOffset = Math.random() * sectorAngle;
+  const targetAngle = sectorIndex * sectorAngle + randomOffset;
 
-    const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-    const finalAngle = rotation + spins * 360 + targetAngle;
-  // // Добавляем случайное смещение внутри угла сектора, но внутри его границ
-  // const randomOffset = Math.random() * sectorAngle;
-  // const targetAngle = sectorIndex * sectorAngle + randomOffset;
-
-  // const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-  // const finalAngle = spins * 360 + targetAngle;
+  const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+  const finalAngle = spins * 360 + targetAngle;
 
   setIsSpinning(true);
   setRotation(finalAngle);
@@ -179,6 +176,7 @@ const spin = () => {
 
       // Если сектор не является "Еще одно вращение" или "100$", выдать награду
       if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 7") {
+          setReward(selectedSector.reward)
           giveUserReward(selectedSector.reward);
       } else if (selectedSector.name === "Sector 8") {
           spin(); // Повторное вращение
@@ -407,7 +405,7 @@ const spin = () => {
                      className={cn("content__person-img", "_first1")}
                   />
                   <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
-                  {t('wheel_reward')}
+                  {t('wheel_reward')} {reward} FarmCoins
                   </p>
                </div>
             </div>
