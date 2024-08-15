@@ -5,8 +5,7 @@ import styles from "./Wheel.module.scss";
 
 import { useAppDispatch, useAppSelector } from "../../store";
 import { finishWheel } from "../../store/reducers/wheel";
-import { setUser } from "../../store/reducers/userSlice";
-import { retrieveLaunchParams } from '@tma.js/sdk';
+
 import useOutsideClick from '../../pages/Home/hooks/useOutsideClick'; // Импортируйте ваш хук
 import Confetti from "./Confetti"; 
 
@@ -163,52 +162,7 @@ const spin = () => {
 
   setIsSpinning(true);
   setRotation(finalAngle);
-  useEffect(() => {
-    const fetchUserData = async () => {
-       const { initData } = retrieveLaunchParams();
-       if (initData && initData.user) {
-          const user = initData.user;
-          const username = user.username;
-          const userId = user.id;
 
-          try {
-             const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
-             const data = response.data;
-             let referralCode = data.referral_code;
-
-             const userResponse = await axios.post(
-                "https://coinfarm.club/api/user",
-                {
-                   username: username,
-                   coins: 0,
-                   totalEarnings: 0,
-                   incomeMultiplier: 1,
-                   coinsPerHour: 1000,
-                   xp: 1000,
-                   level: 0,
-                   referralCode: referralCode,
-                }
-             );
-
-             if (userResponse.status === 409) {
-                const userData = userResponse.data;
-                alert(`User already exists: ${JSON.stringify(userData)}`);
-                setSpins(userData.level + 1)
-
-                dispatch(setUser(userData)); // Устанавливаем уже существующего пользователя
-             } else {
-                const newUser = userResponse.data;
-                dispatch(setUser(newUser));
-                setSpins(newUser.level + 1)
-             }
-          } catch (error) {
-             console.error("Error:", error);
-          }
-       }
-    };
-
-    fetchUserData();
- }, []);
   setTimeout(() => {
       setIsSpinning(false);
 
@@ -399,10 +353,10 @@ const spin = () => {
          //     transformOrigin: "center", // Центр вращения
          //   }}
             
-          > <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '106px', height: '20px', position: 'absolute', top: '-25px', left: '14px', zIndex:'11'}}>
+          > <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '106px', height: '20px', position: 'absolute', top: '-27px', left: '14px', zIndex:'11'}}>
             {spins} SPINS
           </p>
-          <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '180px', height: '20px', position: 'absolute', top: '-25px', left: '130px', zIndex:'11'}}>
+          <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '180px', height: '20px', position: 'absolute', top: '-27px', left: '130px', zIndex:'11'}}>
             MORE SPINS
           </p>
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px', zIndex:'10'}} alt="Spin"  />
