@@ -268,6 +268,18 @@ const spin = () => {
           element.style.fontWeight = '700';
         }
       });
+      document.querySelectorAll('.textWheel').forEach(element => {
+        if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+          element.style.fontSize = '14px';
+          element.style.fontWeight = '700';
+        }
+      });
+      document.querySelectorAll('.textWheel1').forEach(element => {
+        if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+          element.style.fontSize = '12px';
+          element.style.fontWeight = '700';
+        }
+      });
       document.querySelectorAll('.textInvite4').forEach(element => {
         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
           element.style.fontSize = '10px';
@@ -358,14 +370,14 @@ const spin = () => {
          //     transformOrigin: "center", // Центр вращения
          //   }}
             
-          > <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '106px', height: '20px', position: 'absolute', top: '-27px', left: '14px', zIndex:'11'}}>
+          > <p className={`${cn("content__text", "_first")}` + ' textWheel'} style={{width: '106px', height: '20px', position: 'absolute', top: '-27px', left: '14px', zIndex:'11'}}>
             {spins} {t('spins')}
           </p>
-          <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '180px', height: '20px', position: 'absolute', top: '-27px', left: '130px', zIndex:'11'}}>
+          <p className={`${cn("content__text", "_first")}` + ' textWheel1'} onClick={() => navigate(Routes.INVITE)} style={{width: '180px', height: '20px', position: 'absolute', top: '-27px', left: '130px', zIndex:'11'}}>
           {t('more_spins')}
           </p>
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px', zIndex:'10'}} alt="Spin"  />
-            <img src="img/pages/home/menu/MoreSpins.png" onClick={() => navigate(Routes.INVITE)} className={cn("greeting__next")} style={{width: '180px', height: '47px', position: 'absolute', top: '20px', left: '130px', zIndex:'10'}} alt="Spin"  />
+            <img src="img/pages/home/menu/MoreSpins.png" className={cn("greeting__next")} style={{width: '180px', height: '47px', position: 'absolute', top: '20px', left: '130px', zIndex:'10'}} alt="Spin"  />
             <img src="img/pages/home/menu/WheelCenter.png" style={{width: '280px', display:'flex', zIndex:'11', position:'absolute', top: '155px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
             <img src="img/pages/home/menu/WheelBorder.png" style={{width: '389px', display:'flex',  zIndex:'10',  position:'absolute', top: '100px'}} alt="Wheel" />
 
