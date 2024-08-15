@@ -153,12 +153,16 @@ const spin = () => {
   const sectorIndex = getRandomSector();
   const sectorAngle = 360 / sectors.length;
 
-  // Добавляем случайное смещение внутри угла сектора, но внутри его границ
-  const randomOffset = Math.random() * sectorAngle;
-  const targetAngle = sectorIndex * sectorAngle + randomOffset;
+    const targetAngle = sectorIndex * sectorAngle + sectorAngle / 2;
 
-  const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-  const finalAngle = spins * 360 + targetAngle;
+    const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+    const finalAngle = rotation + spins * 360 + targetAngle;
+  // // Добавляем случайное смещение внутри угла сектора, но внутри его границ
+  // const randomOffset = Math.random() * sectorAngle;
+  // const targetAngle = sectorIndex * sectorAngle + randomOffset;
+
+  // const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+  // const finalAngle = spins * 360 + targetAngle;
 
   setIsSpinning(true);
   setRotation(finalAngle);
