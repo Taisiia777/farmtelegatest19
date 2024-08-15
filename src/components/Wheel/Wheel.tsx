@@ -28,6 +28,7 @@ const Wheel = () => {
    const [step, setStep] = useState(1);
    const user = useAppSelector((state: RootState) => state.user.user);
    const [showConfetti, setShowConfetti] = useState(false);
+   const [spins, setSpins] = useState(user.level + 1);
 
 
 //    const sectors = [
@@ -146,6 +147,7 @@ const giveUserReward = async (reward: number) => {
 };
 
 const spin = () => {
+  setSpins((prev: number) => prev - 1)
   if (isSpinning) return; // Предотвращает повторный запуск спина во время текущего
 
   const sectorIndex = getRandomSector();
@@ -351,10 +353,10 @@ const spin = () => {
          //     transformOrigin: "center", // Центр вращения
          //   }}
             
-          > <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '106px', height: '20px', position: 'absolute', top: '-30px', left: '14px', zIndex:'11'}}>
-            0 SPINS
+          > <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '106px', height: '20px', position: 'absolute', top: '-25px', left: '14px', zIndex:'11'}}>
+            {spins} SPINS
           </p>
-          <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '180px', height: '20px', position: 'absolute', top: '-30px', left: '130px', zIndex:'11'}}>
+          <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '180px', height: '20px', position: 'absolute', top: '-25px', left: '130px', zIndex:'11'}}>
             MORE SPINS
           </p>
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px', zIndex:'10'}} alt="Spin"  />
