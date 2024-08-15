@@ -2,7 +2,7 @@
 
 
 import classNames from 'classnames/bind';
-import styles from './FriendOrSpecialBlock.module.scss';
+import styles from './GamesBlock.module.scss';
 import Button from '../Button/Button';
 import { useState, useEffect } from 'react';
 import i18n from '../../i18n';
