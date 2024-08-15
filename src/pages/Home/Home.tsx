@@ -1599,7 +1599,7 @@ const Home = () => {
                />
 
               
-{earnActiveTab === "GAMES" && (
+{gamesActiveTab === "GAMES" && (
   <PopupList ref={gamesRef} 
   nodes={ [<GamesBlock
     key={1}  // Убедитесь, что переменная `task` определена или замените ее на нужные данные
