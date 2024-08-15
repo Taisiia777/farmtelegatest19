@@ -164,20 +164,20 @@ const spin = () => {
       setStep(3);
 
       const selectedSector = sectors[sectorIndex];
-      console.log(`Selected sector: ${selectedSector.name}, Reward: ${selectedSector.reward}`);
+      alert(`Selected sector: ${selectedSector.name}, Reward: ${selectedSector.reward}`);
 
       // Если сектор не является "Еще одно вращение" или "100$", выдать награду
-      if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 9") {
+      if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 7") {
           giveUserReward(selectedSector.reward);
       } else if (selectedSector.name === "Sector 8") {
           spin(); // Повторное вращение
-      } else if (selectedSector.name === "Sector 9") {
+      } else if (selectedSector.name === "Sector 7") {
           console.log("User wins $100");
           // Здесь может быть логика для выдачи $100, если необходимо
       }
 
       // Сброс вращения для следующего спина
-      setRotation(rotation + spins * 360 + targetAngle);
+      setRotation(0);
   }, 5000); // Время завершения анимации
 };
    function goNext() {
