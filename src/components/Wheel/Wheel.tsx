@@ -370,10 +370,10 @@ const spin = () => {
          //     transformOrigin: "center", // Центр вращения
          //   }}
             
-          > <p className={`${cn("content__text", "_first")}` + ' textWheel'} style={{width: '106px', height: '20px', position: 'absolute', top: '-27px', left: '14px', zIndex:'11'}}>
+          > <p className={`${cn("content__text", "_first")}` + ' textWheel'} style={{width: '95px', height: '20px', position: 'absolute', top: '-27px', left: '18px', zIndex:'11'}}>
             {spins} {t('spins')}
           </p>
-          <p className={`${cn("content__text", "_first")}` + ' textWheel1'} onClick={() => navigate(Routes.INVITE)} style={{width: '180px', height: '20px', position: 'absolute', top: '-27px', left: '130px', zIndex:'11'}}>
+          <p className={`${cn("content__text", "_first")}` + ' textWheel1'} onClick={() => navigate(Routes.INVITE)} style={{width: '165px', height: '20px', position: 'absolute', top: '-27px', left: '140px', zIndex:'11'}}>
           {t('more_spins')}
           </p>
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px', zIndex:'10'}} alt="Spin"  />
