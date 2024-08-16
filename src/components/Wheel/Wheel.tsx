@@ -183,12 +183,19 @@ const giveUserReward = async (reward: number) => {
       console.error('Error awarding coins:', error);
   }
 };
+const sendSpinUpdateRequest = async (userId: number, spins: number) => {
+  try {
+    const response = await axios.post(`https://coinfarm.club/api/reward/rain/${userId}/${spins}`);
+    console.log("Spin update response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error updating spin:", error);
+    throw error;
+  }
+};
 
-const spin = async() => {
+const spin = () => {
   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
-  const user = useAppSelector((state: RootState) => state.user.user);
-  const response = await axios.post(`https://coinfarm.club/api/reward/rain/${user?.id}/${spins}`);
-  console.log("Spin update response:", response.data);
   const sectorIndex = getRandomSector();
   const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
   const targetAngle = sectorIndex * sectorAngle;
@@ -438,7 +445,9 @@ const spin = async() => {
   alt="Spin"
   onClick={() => {
     if (spins > 0 && !isSpinning && !showConfetti) {
+      const user = useAppSelector((state: RootState) => state.user.user);
       spin();
+      sendSpinUpdateRequest(user.id, spins)
     }
   }}
 />
