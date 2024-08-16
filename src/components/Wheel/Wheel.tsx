@@ -133,9 +133,10 @@ const getRandomSector = () => {
   const random = Math.random() * totalWeight;
 
   let currentWeight = 0;
-  for (let i = 1; i < sectors.length; i++) {
+  for (let i = 0; i < sectors.length; i++) {
     currentWeight += sectors[i].weight;
     if (random <= currentWeight) {
+      alert(i)
       return i;
     }
   }
@@ -237,7 +238,7 @@ const spin = () => {
 
     // const finalRotation = finalAngle % 360; // Нормализуем угол в пределах 0-360
     const winningIndex = sectorIndex; // Поскольку сектор был выбран заранее, просто используем его индекс
-    const selectedSector = sectors[winningIndex-1];
+    const selectedSector = sectors[winningIndex];
 
     // Устанавливаем награду и выдаем её пользователю
     setReward(selectedSector.reward);
@@ -245,6 +246,7 @@ const spin = () => {
 
     // Обрабатываем результат вращения
     if (selectedSector.name !== "Sector 8") {
+      alert(selectedSector.name)
       setShowConfetti(true);
       setTimeout(() => {
         setShowConfetti(false);
