@@ -184,82 +184,86 @@ const giveUserReward = async (reward: number) => {
   }
 };
 
-// const spin = () => {
-//   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
-
-//   const sectorIndex = getRandomSector();
-//   const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
-//   const targetAngle = sectorIndex * sectorAngle;
-//   const spinsCount = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-//   const finalAngle = spinsCount * 360 + targetAngle;
-
-//   setSpins(prev => prev - 1);
-//   setIsSpinning(true);
-//   setRotation(finalAngle);
-
-//   setTimeout(() => {
-//     setIsSpinning(false);
-//     const finalRotation = finalAngle % 360;
-//     const winningIndex = Math.floor(finalRotation / sectorAngle);
-//     const selectedSector = sectors[winningIndex];
-
-//     if (selectedSector.name !== "Sector 8") {
-//       setReward(selectedSector.reward);
-//       giveUserReward(selectedSector.reward);
-//       setShowConfetti(true);
-//       setTimeout(() => {
-//         setShowConfetti(false);
-//         setStep(3);
-//         setRotation(0);
-//       }, 2000);
-//     } else if (selectedSector.name === "Sector 8") {
-//       spin(); // Повторное вращение
-//     }
-//   }, 5000);
-// };
-
-const spin = async () => {
-  if (isSpinning || spins <= 0) return; // Предотвращает запуск спина, если идет спин или спинов 0
+const spin = async() => {
+  if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
   const user = useAppSelector((state: RootState) => state.user.user);
 
     // Делаем POST-запрос для обновления спинов
     const response = await axios.post(`https://coinfarm.club/api/reward/rain/${user?.id}/${spins}`);
     console.log("Spin update response:", response.data);
-    
-    // Обновляем количество спинов
-    setSpins((prev: number) => prev - 1);
+  const sectorIndex = getRandomSector();
+  const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
+  const targetAngle = sectorIndex * sectorAngle;
+  const spinsCount = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+  const finalAngle = spinsCount * 360 + targetAngle;
 
-    const sectorIndex = getRandomSector();
-    const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
-    const targetAngle = sectorIndex * sectorAngle;
-    const spinsCount = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-    const finalAngle = spinsCount * 360 + targetAngle;
+  setSpins(prev => prev - 1);
+  setIsSpinning(true);
+  setRotation(finalAngle);
 
-    setIsSpinning(true);
-    setRotation(finalAngle);
+  setTimeout(() => {
+    setIsSpinning(false);
+    const finalRotation = finalAngle % 360;
+    const winningIndex = Math.floor(finalRotation / sectorAngle);
+    const selectedSector = sectors[winningIndex];
 
-    setTimeout(() => {
-      setIsSpinning(false);
-
-      const finalRotation = finalAngle % 360;
-      const winningIndex = Math.floor(finalRotation / sectorAngle);
-      const selectedSector = sectors[winningIndex];
-
-      if (selectedSector.name !== "Sector 8") {
-        setReward(selectedSector.reward);
-        giveUserReward(selectedSector.reward);
-        setShowConfetti(true);
-        setTimeout(() => {
-          setShowConfetti(false); // Скрыть конфетти через 2 секунды
-          setStep(3);
-          setRotation(0);
-        }, 3000);
-      } else if (selectedSector.name === "Sector 8") {
-        spin(); // Повторное вращение
-      }
-    }, 5000); // Время завершения анимации
-  
+    if (selectedSector.name !== "Sector 8") {
+      setReward(selectedSector.reward);
+      giveUserReward(selectedSector.reward);
+      setShowConfetti(true);
+      setTimeout(() => {
+        setShowConfetti(false);
+        setStep(3);
+        setRotation(0);
+      }, 2000);
+    } else if (selectedSector.name === "Sector 8") {
+      spin(); // Повторное вращение
+    }
+  }, 5000);
 };
+
+// const spin = async () => {
+//   if (isSpinning || spins <= 0) return; // Предотвращает запуск спина, если идет спин или спинов 0
+//   const user = useAppSelector((state: RootState) => state.user.user);
+
+//     // Делаем POST-запрос для обновления спинов
+//     const response = await axios.post(`https://coinfarm.club/api/reward/rain/${user?.id}/${spins}`);
+//     console.log("Spin update response:", response.data);
+    
+//     // Обновляем количество спинов
+//     setSpins((prev: number) => prev - 1);
+
+//     const sectorIndex = getRandomSector();
+//     const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
+//     const targetAngle = sectorIndex * sectorAngle;
+//     const spinsCount = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+//     const finalAngle = spinsCount * 360 + targetAngle;
+
+//     setIsSpinning(true);
+//     setRotation(finalAngle);
+
+//     setTimeout(() => {
+//       setIsSpinning(false);
+
+//       const finalRotation = finalAngle % 360;
+//       const winningIndex = Math.floor(finalRotation / sectorAngle);
+//       const selectedSector = sectors[winningIndex];
+
+//       if (selectedSector.name !== "Sector 8") {
+//         setReward(selectedSector.reward);
+//         giveUserReward(selectedSector.reward);
+//         setShowConfetti(true);
+//         setTimeout(() => {
+//           setShowConfetti(false); // Скрыть конфетти через 2 секунды
+//           setStep(3);
+//           setRotation(0);
+//         }, 3000);
+//       } else if (selectedSector.name === "Sector 8") {
+//         spin(); // Повторное вращение
+//       }
+//     }, 5000); // Время завершения анимации
+  
+// };
 
 
    function goNext() {
