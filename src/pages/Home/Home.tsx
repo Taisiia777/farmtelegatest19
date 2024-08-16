@@ -206,6 +206,7 @@ const Home = () => {
    );
 
  
+   const { t } = useTranslation();
 
    // Boost popup
    const [boostPopupOpen, setBoostPopupOpen] = useState(false);
@@ -262,7 +263,7 @@ const Home = () => {
 
    // Активный таб в boost popup
    const [earnActiveTab, setEarnActiveTab] = useState("LEAGUES");
-   const [gamesActiveTab, setGamesActiveTab] = useState("GAMES");
+   const [gamesActiveTab, setGamesActiveTab] = useState(t("games"));
 
    // buyCoin popup
    const coinState = useAppSelector((state) => state.coin);
@@ -274,7 +275,7 @@ const Home = () => {
 
    // True если хотя бы один попап открыт
    // но кроме попапа Energy!
-   const isPopupOpen = boostPopupOpen || earnPopupOpen;
+   const isPopupOpen = boostPopupOpen || earnPopupOpen || gamesPopupOpen;
 
    // Показываем палец подсказку только когда попапы приветсвия и бонуса прошли.
    // А также только когда первый раз собирает
@@ -314,7 +315,6 @@ const Home = () => {
   //   }
   // };
 
-  const { t } = useTranslation();
   useEffect(() => {
     
     const initData = window.Telegram.WebApp.initDataUnsafe;
@@ -1605,7 +1605,6 @@ const Home = () => {
     nodes={[
       <GamesBlock
         imgSrc='img/pages/home/menu/Wheel.png'
-        link="https://vercel.com/saveliis-projects-fbade47d/farmtelegatest3/deployments"
         title={t('wheel_of_fortune')}
         buttonText={t('play')}
       />

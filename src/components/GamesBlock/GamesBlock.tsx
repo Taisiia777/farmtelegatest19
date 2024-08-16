@@ -102,21 +102,26 @@
 import classNames from "classnames/bind";
 import styles from "./GamesBlock.module.scss";
 import Button from "../Button/Button";
+import { useAppDispatch } from "../../store";
+import { openWheel } from "../../store/reducers/wheel";
 const cn = classNames.bind(styles);
 
 interface IGamesBlockProps {
    imgSrc: string;
-   link: string;
    title: string;
    buttonText: string;
 }
 
 const GamesBlock = ({
    imgSrc,
-   link,
    title,
    buttonText
 }: IGamesBlockProps) => {
+  const dispatch = useAppDispatch();
+
+  const handleWheelClick = () => {
+    dispatch(openWheel());
+ };
    return (
       <div className={cn("block")}>
          <div className={cn("block__inner")}>
@@ -136,7 +141,7 @@ const GamesBlock = ({
             <div className={cn("block__link")}>
                <Button
                   className="textShadow_center"
-                  onClick={() => window.open(link)}>
+                  onClick={handleWheelClick}>
                   {buttonText}
                </Button>
             </div>
