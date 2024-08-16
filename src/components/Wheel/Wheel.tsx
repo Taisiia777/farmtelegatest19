@@ -154,7 +154,10 @@ useEffect(() => {
 
   fetchUserData();
 }, [dispatch]);
-
+useEffect(() => {
+  const user = useAppSelector((state: RootState) => state.user.user);
+  sendSpinUpdateRequest(user.id, spins)
+}, [isSpinning]);
 const getRandomSector = () => {
   const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
   const random = Math.random() * totalWeight;
@@ -446,9 +449,7 @@ const spin = () => {
   alt="Spin"
   onClick={() => {
     if (spins > 0 && !isSpinning && !showConfetti) {
-      const user = useAppSelector((state: RootState) => state.user.user);
       spin();
-      sendSpinUpdateRequest(user.id, spins)
     }
   }}
 />
