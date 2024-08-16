@@ -446,7 +446,7 @@ const spin = () => {
           </p>
           <p className={`${cn("content__text", "_first")}` + ' textWheel1'}
   onClick={() => {
-    if (!isSpinning && spins === 0) {
+    if (!isSpinning) {
       navigate(Routes.INVITE);
     }
   }}
