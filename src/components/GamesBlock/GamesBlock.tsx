@@ -102,21 +102,20 @@
 import classNames from "classnames/bind";
 import styles from "./GamesBlock.module.scss";
 import Button from "../Button/Button";
-import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
 const cn = classNames.bind(styles);
 
 interface IGamesBlockProps {
    imgSrc: string;
-   earning: string;
    link: string;
    title: string;
+   buttonText: string;
 }
 
 const GamesBlock = ({
    imgSrc,
-   earning,
    link,
    title,
+   buttonText
 }: IGamesBlockProps) => {
    return (
       <div className={cn("block")}>
@@ -132,18 +131,13 @@ const GamesBlock = ({
                      className={`${cn("block__title")}` + " textShadow_center"}>
                      {title}
                   </strong>
-                  <div className={cn("block__earning")}>
-                     <span className="textShadow_center">+{earning}</span>
-                     <CoinWhiteBg size="small" />
-                     {/* <img src="img/coins/BTC.svg" /> */}
-                  </div>
                </div>
             </div>
             <div className={cn("block__link")}>
                <Button
                   className="textShadow_center"
                   onClick={() => window.open(link)}>
-                  GO TO
+                  {buttonText}
                </Button>
             </div>
          </div>

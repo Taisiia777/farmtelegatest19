@@ -1593,21 +1593,21 @@ const Home = () => {
                         <PopupListWrap isOpen={gamesPopupOpen}>
                <PopupListTabs
                   labelClassName={cn("earn__label")}
-                  labels={["GAMES"]}
+                  labels={[t("games")]}
                   activeTab={gamesActiveTab}
                   onTabChange={(label) => setGamesActiveTab(label)}
                />
 
               
-{gamesActiveTab === "GAMES" && (
+{gamesActiveTab === t("games") && (
   <PopupList 
     ref={gamesRef} 
     nodes={[
       <GamesBlock
         imgSrc='img/pages/home/menu/Wheel.png'
-        earning="20000"
         link="https://vercel.com/saveliis-projects-fbade47d/farmtelegatest3/deployments"
         title={t('wheel_of_fortune')}
+        buttonText={t('play')}
       />
 
     ]} 
