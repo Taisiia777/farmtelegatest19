@@ -257,3 +257,6 @@
    right: 2%;
    z-index: 14;
 }
+.greeting__next.disabled {
+   pointer-events: none;
+ }

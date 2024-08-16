@@ -46,51 +46,98 @@ const sectors = [
   { name: "Sector 7", weight: 20, reward: 0 },
   { name: "Sector 8", weight: 15, reward: 0 }, // "Еще одно вращение"
 ];
+// useEffect(() => {
+//   const fetchUserData = async () => {
+//      const { initData } = retrieveLaunchParams();
+//      if (initData && initData.user) {
+//         const user = initData.user;
+//         const username = user.username;
+//         const userId = user.id;
+
+//         try {
+//            const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
+//            const data = response.data;
+//            let referralCode = data.referral_code;
+
+//            const userResponse = await axios.post(
+//               "https://coinfarm.club/api/user",
+//               {
+//                  username: username,
+//                  coins: 0,
+//                  totalEarnings: 0,
+//                  incomeMultiplier: 1,
+//                  coinsPerHour: 1000,
+//                  xp: 1000,
+//                  level: 0,
+//                  referralCode: referralCode,
+//               }
+//            );
+
+//            if (userResponse.status === 409) {
+//               const userData = userResponse.data;
+//               alert(`User already exists: ${JSON.stringify(userData)}`);
+//               setSpins(userData.level + 1)
+//               dispatch(setUser(userData)); // Устанавливаем уже существующего пользователя
+//            } else {
+//               const newUser = userResponse.data;
+//               setSpins(newUser.level + 1)
+//               dispatch(setUser(newUser));
+//            }
+//         } catch (error) {
+//            console.error("Error:", error);
+//         }
+//      }
+//   };
+
+//   fetchUserData();
+// }, [dispatch]);
 useEffect(() => {
   const fetchUserData = async () => {
-     const { initData } = retrieveLaunchParams();
-     if (initData && initData.user) {
-        const user = initData.user;
-        const username = user.username;
-        const userId = user.id;
+    const { initData } = retrieveLaunchParams();
+    if (initData && initData.user) {
+      const user = initData.user;
+      const userId = user.id;
 
-        try {
-           const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
-           const data = response.data;
-           let referralCode = data.referral_code;
+      try {
+        const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
+        const data = response.data;
+        let referralCode = data.referral_code;
 
-           const userResponse = await axios.post(
-              "https://coinfarm.club/api/user",
-              {
-                 username: username,
-                 coins: 0,
-                 totalEarnings: 0,
-                 incomeMultiplier: 1,
-                 coinsPerHour: 1000,
-                 xp: 1000,
-                 level: 0,
-                 referralCode: referralCode,
-              }
-           );
+        const userResponse = await axios.post(
+          "https://coinfarm.club/api/user",
+          {
+            username: user.username,
+            coins: 0,
+            totalEarnings: 0,
+            incomeMultiplier: 1,
+            coinsPerHour: 1000,
+            xp: 1000,
+            level: 0,
+            referralCode: referralCode,
+          }
+        );
 
-           if (userResponse.status === 409) {
-              const userData = userResponse.data;
-              alert(`User already exists: ${JSON.stringify(userData)}`);
-              setSpins(userData.level)
-              dispatch(setUser(userData)); // Устанавливаем уже существующего пользователя
-           } else {
-              const newUser = userResponse.data;
-              setSpins(newUser.level)
-              dispatch(setUser(newUser));
-           }
-        } catch (error) {
-           console.error("Error:", error);
+        const userData = userResponse.status === 409 ? userResponse.data : userResponse.data;
+        dispatch(setUser(userData));
+
+        // Получение наград пользователя с типом "wheel"
+        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userId}`);
+        const rewards = rewardsResponse.data.filter((reward: any) => reward.type === 'wheel');
+        
+        if (rewards.length === 0 || (Date.now() - new Date(rewards[rewards.length - 1].receivedAt).getTime()) > 12 * 60 * 60 * 1000) {
+          setSpins(userData.level + 1);
+        } else {
+          setSpins(0);
         }
-     }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
   };
 
   fetchUserData();
 }, [dispatch]);
+
 const getRandomSector = () => {
   const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
   const random = Math.random() * totalWeight;
@@ -120,47 +167,80 @@ const giveUserReward = async (reward: number) => {
   }
 };
 
-
 const spin = () => {
-  setSpins((prev: number) => prev - 1);
-  if (isSpinning) return; // Предотвращает повторный запуск спина во время текущего
+  if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
 
   const sectorIndex = getRandomSector();
   const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
-
   const targetAngle = sectorIndex * sectorAngle;
+  const spinsCount = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+  const finalAngle = spinsCount * 360 + targetAngle;
 
-  const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-  const finalAngle = spins * 360 + targetAngle;
-
+  setSpins(prev => prev - 1);
   setIsSpinning(true);
   setRotation(finalAngle);
 
   setTimeout(() => {
     setIsSpinning(false);
-
     const finalRotation = finalAngle % 360;
     const winningIndex = Math.floor(finalRotation / sectorAngle);
     const selectedSector = sectors[winningIndex];
 
-    // Обработка выбранного сектора
     if (selectedSector.name !== "Sector 8") {
       setReward(selectedSector.reward);
       giveUserReward(selectedSector.reward);
-    setShowConfetti(true);
-    setTimeout(() => {
-      setShowConfetti(false); // Скрыть конфетти через 2 секунды
-      setStep(3);
-      setRotation(0);
-    }, 3000);
+      setShowConfetti(true);
+      setTimeout(() => {
+        setShowConfetti(false);
+        setStep(3);
+        setRotation(0);
+      }, 2000);
     } else if (selectedSector.name === "Sector 8") {
       spin(); // Повторное вращение
     }
-
-
-
-  }, 5000); // Время завершения анимации
+  }, 5000);
 };
+
+// const spin = () => {
+//   setSpins((prev: number) => prev - 1);
+//   if (isSpinning) return; // Предотвращает повторный запуск спина во время текущего
+
+//   const sectorIndex = getRandomSector();
+//   const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
+
+//   const targetAngle = sectorIndex * sectorAngle;
+
+//   const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+//   const finalAngle = spins * 360 + targetAngle;
+
+//   setIsSpinning(true);
+//   setRotation(finalAngle);
+
+//   setTimeout(() => {
+//     setIsSpinning(false);
+
+//     const finalRotation = finalAngle % 360;
+//     const winningIndex = Math.floor(finalRotation / sectorAngle);
+//     const selectedSector = sectors[winningIndex];
+
+//     // Обработка выбранного сектора
+//     if (selectedSector.name !== "Sector 8") {
+//       setReward(selectedSector.reward);
+//       giveUserReward(selectedSector.reward);
+//     setShowConfetti(true);
+//     setTimeout(() => {
+//       setShowConfetti(false); // Скрыть конфетти через 2 секунды
+//       setStep(3);
+//       setRotation(0);
+//     }, 3000);
+//     } else if (selectedSector.name === "Sector 8") {
+//       spin(); // Повторное вращение
+//     }
+
+
+
+//   }, 5000); // Время завершения анимации
+// };
 
 
    function goNext() {
@@ -283,7 +363,7 @@ const spin = () => {
 
    return (
       <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}} >
-            {(isOpen) && (
+            {isOpen && !isSpinning && (
                <img
                   src="img/global/closeIcon.svg"
                   onClick={() => {
@@ -347,15 +427,43 @@ const spin = () => {
           > <p className={`${cn("content__text", "_first")}` + ' textWheel'} style={{width: '106px', height: '20px', position: 'absolute', top: '-25px', left: '14px', zIndex:'11'}}>
             {spins} {t('spins')}
           </p>
-          <p className={`${cn("content__text", "_first")}` + ' textWheel1'} onClick={() => navigate(Routes.INVITE)} style={{width: '180px', height: '20px', position: 'absolute', top: '-22px', left: '130px', zIndex:'11'}}>
-          {t('more_spins')}
-          </p>
+          <p className={`${cn("content__text", "_first")}` + ' textWheel1'}
+  onClick={() => {
+    if (!isSpinning && spins === 0) {
+      navigate(Routes.INVITE);
+    }
+  }}
+  style={{ width: '180px', height: '20px', position: 'absolute', top: '-22px', left: '130px', zIndex: '11' }}>
+  {t('more_spins')}
+</p>
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px', zIndex:'10'}} alt="Spin"  />
             <img src="img/pages/home/menu/MoreSpins.png" className={cn("greeting__next")} style={{width: '180px', height: '47px', position: 'absolute', top: '20px', left: '130px', zIndex:'10'}} alt="Spin"  />
             <img src="img/pages/home/menu/WheelCenter.png" style={{width: '280px', display:'flex', zIndex:'11', position:'absolute', top: '155px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
             <img src="img/pages/home/menu/WheelBorder.png" style={{width: '389px', display:'flex',  zIndex:'10',  position:'absolute', top: '100px'}} alt="Wheel" />
 
-            <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '122px', height: '46px', position: 'absolute', top: '70vh',  left: '50%', transform: 'translateX(-50%)'}} alt="Spin"  />
+            {/* <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '122px', height: '46px', position: 'absolute', top: '70vh',  left: '50%', transform: 'translateX(-50%)'}} alt="Spin"  /> */}
+            
+            <img
+  src="img/global/spin.png"
+  className={cn("greeting__next", { disabled: spins <= 0 || isSpinning })} // Добавляем условный класс
+  style={{
+    width: '122px',
+    height: '46px',
+    position: 'absolute',
+    top: '70vh',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    cursor: spins <= 0 || isSpinning ? 'not-allowed' : 'pointer', // Смена курсора
+    opacity: spins <= 0 || isSpinning ? 0.5 : 1, // Смена прозрачности для визуального эффекта
+  }}
+  alt="Spin"
+  onClick={() => {
+    if (spins > 0 && !isSpinning) {
+      spin();
+    }
+  }}
+/>
+
             <p className={`${cn("content__text", "_first")}` + ' textInvite3'} style={{width: '122px', height: '20px', position: 'absolute', top: '63.5vh', zIndex:'11', }} onClick={spin}>
           {t('spin')}
           </p>
