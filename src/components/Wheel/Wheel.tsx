@@ -36,26 +36,17 @@ const Wheel = () => {
    const [reward, setReward] = useState(0);
 
 
-// const sectors = [
-//   { name: "Sector 1", weight: 25, reward: 1000 },
-//   { name: "Sector 2", weight: 20, reward: 5000 },
-//   { name: "Sector 3", weight: 10, reward: 10000 },
-//   { name: "Sector 4", weight: 5, reward: 25000 },
-//   { name: "Sector 5", weight: 4.9, reward: 100000 },
-//   { name: "Sector 6", weight: 0.1, reward: 500000 },
-//   { name: "Sector 7", weight: 20, reward: 0 },
-//   { name: "Sector 8", weight: 15, reward: 0 }, // "Еще одно вращение"
-// ];
 const sectors = [
-  { name: "Sector 1", weight: 12.5, reward: 1000 },
-  { name: "Sector 2", weight: 12.5, reward: 5000 },
-  { name: "Sector 3", weight: 12.5, reward: 10000 },
-  { name: "Sector 4", weight: 12.5, reward: 25000 },
-  { name: "Sector 5", weight: 12.5, reward: 100000 },
-  { name: "Sector 6", weight: 12.5, reward: 500000 },
-  { name: "Sector 7", weight: 12.5, reward: 0 },
-  { name: "Sector 8", weight: 12.5, reward: 0 }, // "Еще одно вращение"
+  { name: "Sector 1", weight: 25, reward: 1000 },
+  { name: "Sector 2", weight: 20, reward: 5000 },
+  { name: "Sector 3", weight: 10, reward: 10000 },
+  { name: "Sector 4", weight: 5, reward: 25000 },
+  { name: "Sector 5", weight: 4.9, reward: 100000 },
+  { name: "Sector 6", weight: 0.1, reward: 500000 },
+  { name: "Sector 7", weight: 20, reward: 0 },
+  { name: "Sector 8", weight: 15, reward: 0 }, // "Еще одно вращение"
 ];
+
 
 useEffect(() => {
   const fetchUserData = async () => {
@@ -237,13 +228,9 @@ const spin = () => {
     setIsSpinning(false);
 
     const finalRotation = finalAngle % 360;
-    const adjustedRotation = (finalRotation + sectorAngle / 2) % 360; // Смещение для более точного попадания в сектор
-
-    // Компенсация начальной позиции колеса
-    const initialRotationOffset = sectorAngle / 2; // Если колесо стартует с середины первого сектора
-    const adjustedRotationWithOffset = (adjustedRotation + initialRotationOffset) % 360;
-
-    const winningIndex = Math.floor(adjustedRotationWithOffset / sectorAngle);
+    
+    // Убираем избыточное смещение и просто делим на секторный угол
+    const winningIndex = Math.floor(finalRotation / sectorAngle);
     const selectedSector = sectors[winningIndex];
 
     // Устанавливаем награду и выдаем её пользователю
