@@ -1600,7 +1600,7 @@ const Home = () => {
                />
 
               
-{gamesActiveTab === t("games") && (
+{gamesActiveTab !== t("games") && (
   <PopupList 
     ref={gamesRef} 
     nodes={[
