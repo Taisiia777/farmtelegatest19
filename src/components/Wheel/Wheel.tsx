@@ -184,13 +184,12 @@ const giveUserReward = async (reward: number) => {
   }
 };
 
-const spin = async() => {
+const spin = () => {
   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
   const user = useAppSelector((state: RootState) => state.user.user);
 
     // Делаем POST-запрос для обновления спинов
-    const response = await axios.post(`https://coinfarm.club/api/reward/rain/${user?.id}/${spins}`);
-    console.log("Spin update response:", response.data);
+  axios.post(`https://coinfarm.club/api/reward/rain/${user?.id}/${spins}`);
   const sectorIndex = getRandomSector();
   const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
   const targetAngle = sectorIndex * sectorAngle;
