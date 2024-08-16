@@ -38,13 +38,13 @@ const Wheel = () => {
 
 const sectors = [
   { name: "Sector 1", weight: 25, reward: 1000 },
-  { name: "Sector 2", weight: 20, reward: 5000 },
-  { name: "Sector 3", weight: 10, reward: 10000 },
-  { name: "Sector 4", weight: 5, reward: 25000 },
-  { name: "Sector 5", weight: 4.9, reward: 100000 },
-  { name: "Sector 6", weight: 0.1, reward: 500000 },
+  { name: "Sector 8", weight: 15, reward: 0 },
   { name: "Sector 7", weight: 20, reward: 0 },
-  { name: "Sector 8", weight: 15, reward: 0 }, // "Еще одно вращение"
+  { name: "Sector 6", weight: 0.1, reward: 500000 },
+  { name: "Sector 5", weight: 4.9, reward: 100000 },
+  { name: "Sector 4", weight: 5, reward: 25000 },
+  { name: "Sector 3", weight: 10, reward: 10000 },
+  { name: "Sector 2", weight: 20, reward: 5000 }, // "Еще одно вращение"
 ];
 
 
