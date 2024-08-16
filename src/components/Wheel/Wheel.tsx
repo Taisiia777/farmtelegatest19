@@ -46,7 +46,6 @@ const sectors = [
   { name: "Sector 7", weight: 20, reward: 0 },
   { name: "Sector 8", weight: 15, reward: 0 }, // "Еще одно вращение"
 ];
-const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
 
 useEffect(() => {
   const fetchUserData = async () => {
@@ -214,6 +213,7 @@ const spin = () => {
   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
 
   const sectorIndex = getRandomSector();
+  const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
   const targetAngle = sectorIndex * sectorAngle; // Угол для выбранного сектора
 
   const spinsCount = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
@@ -227,7 +227,8 @@ const spin = () => {
     setIsSpinning(false);
 
     const finalRotation = finalAngle % 360;
-    const winningIndex = Math.floor(finalRotation / sectorAngle);
+    const adjustedRotation = (finalRotation + sectorAngle / 2) % 360; // Смещение для более точного попадания в сектор
+    const winningIndex = Math.floor(adjustedRotation / sectorAngle);
     const selectedSector = sectors[winningIndex];
 
     // Устанавливаем награду и выдаем её пользователю
