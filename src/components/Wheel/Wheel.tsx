@@ -216,28 +216,34 @@ const spin = () => {
   const sectorIndex = getRandomSector();
   const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
   const baseAngle = 337.5; // Начальный угол первого сектора
-  const targetAngle = (baseAngle + sectorIndex * sectorAngle) % 360; // Угол для выбранного сектора с учетом смещения
 
-  const spinsCount = Math.floor(Math.random() * 3) + 5; // Случайное количество оборотов от 5 до 7
+  // Вычисляем конечный угол для выбранного сектора
+  const targetAngle = (baseAngle + sectorIndex * sectorAngle) % 360;
+
+  // Случайное количество оборотов (от 5 до 7)
+  const spinsCount = Math.floor(Math.random() * 3) + 5;
+
+  // Конечный угол вращения (множим на количество оборотов и добавляем целевой угол)
   const finalAngle = spinsCount * 360 + targetAngle;
 
+  // Устанавливаем состояние для анимации вращения
   setSpins(prev => prev - 1);
   setIsSpinning(true);
   setRotation(finalAngle);
 
+  // Завершаем вращение и определяем выигрышный сектор
   setTimeout(() => {
     setIsSpinning(false);
 
-    const finalRotation = (finalAngle + 360) % 360; // Нормализуем угол в пределах 0-360
-    const adjustedRotation = (finalRotation + sectorAngle / 2) % 360; // Смещение для более точного попадания в сектор
-    const winningIndex = Math.floor((adjustedRotation - baseAngle + 360) % 360 / sectorAngle); // Вычисляем выигрышный сектор с учетом начального угла
-
+    // const finalRotation = finalAngle % 360; // Нормализуем угол в пределах 0-360
+    const winningIndex = sectorIndex; // Поскольку сектор был выбран заранее, просто используем его индекс
     const selectedSector = sectors[winningIndex];
 
     // Устанавливаем награду и выдаем её пользователю
     setReward(selectedSector.reward);
     giveUserReward(selectedSector.reward);
 
+    // Обрабатываем результат вращения
     if (selectedSector.name !== "Sector 8") {
       setShowConfetti(true);
       setTimeout(() => {
