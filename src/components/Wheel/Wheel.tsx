@@ -47,105 +47,44 @@ const sectors = [
   { name: "Sector 8", weight: 15, reward: 0 }, // "Еще одно вращение"
 ];
 
-useEffect(() => {
-  const fetchUserData = async () => {
-    const { initData } = retrieveLaunchParams();
-    if (initData && initData.user) {
-      const user = initData.user;
-      const userId = user.id;
-
-      try {
-        const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
-        const data = response.data;
-        let referralCode = data.referral_code;
-
-        const userResponse = await axios.post(
-          "https://coinfarm.club/api/user",
-          {
-            username: user.username,
-            coins: 0,
-            totalEarnings: 0,
-            incomeMultiplier: 1,
-            coinsPerHour: 1000,
-            xp: 1000,
-            level: 0,
-            referralCode: referralCode,
-          }
-        );
-
-        const userData = userResponse.status === 409 ? userResponse.data : userResponse.data;
-        dispatch(setUser(userData));
-        alert(JSON.stringify(userResponse.data))
-        // Получение наград пользователя с типом "wheel"
-        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userResponse.data.id}`);
-        const rewards = rewardsResponse.data.filter((reward: any) => reward.type === 'wheel');
-        
-        if (rewards.length === 0 || (Date.now() - new Date(rewards[rewards.length - 1].receivedAt).getTime()) > 12 * 60 * 60 * 1000) {
-          setSpins(userData.level + 1);
-        } else {
-          setSpins(0);
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    }
-  };
-
-  fetchUserData();
-}, [dispatch]);
 // useEffect(() => {
 //   const fetchUserData = async () => {
 //     const { initData } = retrieveLaunchParams();
 //     if (initData && initData.user) {
 //       const user = initData.user;
-//       const username = user.username;
 //       const userId = user.id;
 
 //       try {
 //         const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
 //         const data = response.data;
-//         const referralCode = data.referral_code;
+//         let referralCode = data.referral_code;
 
-//         // Получаем информацию о пользователе
-//         const userResponse = await axios.post("https://coinfarm.club/api/user", {
-//           username: username,
-//           coins: 0,
-//           totalEarnings: 0,
-//           incomeMultiplier: 1,
-//           coinsPerHour: 1000,
-//           xp: 1000,
-//           level: 0,
-//           referralCode: referralCode,
-//         });
-
-//         let userData;
-//         if (userResponse.status === 409) {
-//           userData = userResponse.data;
-//           alert(`User already exists: ${JSON.stringify(userData)}`);
-//         } else {
-//           userData = userResponse.data;
-//         }
-        
-//         // Получаем награды пользователя
-//         const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
-//         const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "wheel");
-
-//         if (wheelRewards.length > 0) {
-//           const lastReward = wheelRewards[wheelRewards.length - 1];
-//           const lastRewardDate = new Date(lastReward.createdAt);
-//           const now = new Date();
-//           const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60 * 60);
-
-//           if (hoursSinceLastReward > 12) {
-//             setSpins(userData.level + 1); // Обновляем количество спинов
-//           } else {
-//             setSpins(lastReward.amount); // Устанавливаем количество спинов по последней награде
+//         const userResponse = await axios.post(
+//           "https://coinfarm.club/api/user",
+//           {
+//             username: user.username,
+//             coins: 0,
+//             totalEarnings: 0,
+//             incomeMultiplier: 1,
+//             coinsPerHour: 1000,
+//             xp: 1000,
+//             level: 0,
+//             referralCode: referralCode,
 //           }
-//         } else {
-//           setSpins(userData.level + 1); // Устанавливаем спины, если нет наград
-//         }
+//         );
 
+//         const userData = userResponse.status === 409 ? userResponse.data : userResponse.data;
 //         dispatch(setUser(userData));
+//         alert(JSON.stringify(userResponse.data))
+//         // Получение наград пользователя с типом "wheel"
+//         const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userResponse.data.id}`);
+//         const rewards = rewardsResponse.data.filter((reward: any) => reward.type === 'wheel');
+        
+//         if (rewards.length === 0 || (Date.now() - new Date(rewards[rewards.length - 1].receivedAt).getTime()) > 12 * 60 * 60 * 1000) {
+//           setSpins(userData.level + 1);
+//         } else {
+//           setSpins(0);
+//         }
 //       } catch (error) {
 //         console.error("Error:", error);
 //       }
@@ -155,8 +94,69 @@ useEffect(() => {
 //   fetchUserData();
 // }, [dispatch]);
 useEffect(() => {
-  const user = useAppSelector((state: RootState) => state.user.user);
-  sendSpinUpdateRequest(user.id, spins)
+  const fetchUserData = async () => {
+    const { initData } = retrieveLaunchParams();
+    if (initData && initData.user) {
+      const user = initData.user;
+      const username = user.username;
+      const userId = user.id;
+
+      try {
+        const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
+        const data = response.data;
+        const referralCode = data.referral_code;
+
+        // Получаем информацию о пользователе
+        const userResponse = await axios.post("https://coinfarm.club/api/user", {
+          username: username,
+          coins: 0,
+          totalEarnings: 0,
+          incomeMultiplier: 1,
+          coinsPerHour: 1000,
+          xp: 1000,
+          level: 0,
+          referralCode: referralCode,
+        });
+
+        let userData;
+        if (userResponse.status === 409) {
+          userData = userResponse.data;
+          alert(`User already exists: ${JSON.stringify(userData)}`);
+        } else {
+          userData = userResponse.data;
+        }
+        
+        // Получаем награды пользователя
+        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/2405`);
+        const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "wheel");
+
+        if (wheelRewards.length > 0) {
+          const lastReward = wheelRewards[wheelRewards.length - 1];
+          const lastRewardDate = new Date(lastReward.createdAt);
+          const now = new Date();
+          const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60 * 60);
+
+          if (hoursSinceLastReward > 12) {
+            setSpins(userData.level + 1); // Обновляем количество спинов
+          } else {
+            setSpins(lastReward.amount); // Устанавливаем количество спинов по последней награде
+          }
+        } else {
+          setSpins(userData.level + 1); // Устанавливаем спины, если нет наград
+        }
+
+        dispatch(setUser(userData));
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  };
+
+  fetchUserData();
+}, [dispatch]);
+useEffect(() => {
+  // const user = useAppSelector((state: RootState) => state.user.user);
+  sendSpinUpdateRequest(2405, spins)
 }, [isSpinning]);
 const getRandomSector = () => {
   const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
