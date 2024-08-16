@@ -43,7 +43,7 @@ import Boosts from "./modules/Boosts/Boosts";
 import Account from "./modules/Account";
 import LigaBlock from "../../components/LigaBlock/LigaBlock";
 import FreindOrSpecialBlock from "../../components/FreindOrSpecialBlock/FreindOrSpecialBlock";
-// import GamesBlock from "../../components/GamesBlock/GamesBlock";
+import GamesBlock from "../../components/GamesBlock/GamesBlock";
 
 import Greeting from "../../components/Greeting/Greeting";
 import Guide from "../../components/Guide/Guide";
@@ -1603,19 +1603,13 @@ const Home = () => {
   <PopupList 
     ref={gamesRef} 
     nodes={[
-      // <GamesBlock
-      //   imgSrc='img/pages/home/menu/Wheel.png'
-      //   title={t('wheel_of_fortune')}
-      //   defaultButtonText={t('play')}
-      // />
-      <FreindOrSpecialBlock
+      <GamesBlock
         key='1'
-        imgSrc="img/pages/home/menu/Wheel.png"
-        title="jjjj"
-        earning="20000"
-        link="img/pages/home/menu/Wheel.png"
-        defaultButtonText={t('join')}
+        imgSrc='img/pages/home/menu/Wheel.png'
+        title={t('wheel_of_fortune')}
+        defaultButtonText={t('play')}
       />
+
     ]} 
   />
 )}
