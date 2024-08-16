@@ -1600,16 +1600,17 @@ const Home = () => {
 
               
 {gamesActiveTab === "GAMES" && (
-  <PopupList ref={gamesRef} 
-  nodes={ [<GamesBlock
-    imgSrc='img/pages/home/menu/Wheel.png'
-    title={t('wheel_of_fortune')}
-    defaultButtonText={t('play')}
-  />]}
+  <PopupList 
+    ref={gamesRef} 
+    nodes={[
+      <GamesBlock
+        imgSrc='img/pages/home/menu/Wheel.png'
+        title={t('wheel_of_fortune')}
+        defaultButtonText={t('play')}
+      />
+    ]} 
   />
-   
 )}
-
 
             </PopupListWrap>
 
