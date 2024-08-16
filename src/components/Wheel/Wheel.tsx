@@ -467,7 +467,7 @@ const spin = async () => {
             
             <img
   src="img/global/spin.png"
-  className={cn("greeting__next", { disabled: spins <= 0 || isSpinning || showConfetti })} // Добавляем условный класс
+  className={cn("greeting__next", { disabled: spins <= 0 || isSpinning })} // Добавляем условный класс
   style={{
     width: '122px',
     height: '46px',
@@ -475,12 +475,12 @@ const spin = async () => {
     top: '70vh',
     left: '50%',
     transform: 'translateX(-50%)',
-    cursor: spins <= 0 || isSpinning || showConfetti ? 'not-allowed' : 'pointer', // Смена курсора
-    opacity: spins <= 0 || isSpinning || showConfetti ? 0.5 : 1, // Смена прозрачности для визуального эффекта
+    cursor: spins <= 0 || isSpinning ? 'not-allowed' : 'pointer', // Смена курсора
+    opacity: spins <= 0 || isSpinning ? 0.5 : 1, // Смена прозрачности для визуального эффекта
   }}
   alt="Spin"
   onClick={() => {
-    if (spins > 0 && !isSpinning && !showConfetti) {
+    if (spins > 0 && !isSpinning) {
       spin();
     }
   }}
