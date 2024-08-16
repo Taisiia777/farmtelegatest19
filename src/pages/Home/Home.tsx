@@ -1603,10 +1603,18 @@ const Home = () => {
   <PopupList 
     ref={gamesRef} 
     nodes={[
-      <GamesBlock
-        imgSrc='img/pages/home/menu/Wheel.png'
-        title={t('wheel_of_fortune')}
-        defaultButtonText={t('play')}
+      // <GamesBlock
+      //   imgSrc='img/pages/home/menu/Wheel.png'
+      //   title={t('wheel_of_fortune')}
+      //   defaultButtonText={t('play')}
+      // />
+      <FreindOrSpecialBlock
+        key='1'
+        imgSrc="img/pages/home/menu/Wheel.png"
+        title="jjjj"
+        earning="20000"
+        link="img/pages/home/menu/Wheel.png"
+        defaultButtonText={t('join')}
       />
     ]} 
   />
