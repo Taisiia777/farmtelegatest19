@@ -187,6 +187,7 @@ const sendSpinUpdateRequest = async (userId: number, spins: number) => {
   try {
     const response = await axios.post(`https://coinfarm.club/api/reward/rain/${userId}/${spins}`);
     console.log("Spin update response:", response.data);
+    alert(JSON.stringify(response.data))
     return response.data;
   } catch (error) {
     console.error("Error updating spin:", error);
