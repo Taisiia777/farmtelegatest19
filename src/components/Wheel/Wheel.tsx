@@ -215,10 +215,10 @@ const spin = () => {
 
   const sectorIndex = getRandomSector();
   const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
-  const baseAngle = -22.5; // Начальное смещение для первого сектора
-  const targetAngle = sectorIndex * sectorAngle + baseAngle; // Учитываем смещение при вычислении угла
+  const baseAngle = 337.5; // Начальный угол первого сектора
+  const targetAngle = (baseAngle + sectorIndex * sectorAngle) % 360; // Угол для выбранного сектора с учетом смещения
 
-  const spinsCount = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+  const spinsCount = Math.floor(Math.random() * 3) + 5; // Случайное количество оборотов от 5 до 7
   const finalAngle = spinsCount * 360 + targetAngle;
 
   setSpins(prev => prev - 1);
@@ -230,7 +230,8 @@ const spin = () => {
 
     const finalRotation = (finalAngle + 360) % 360; // Нормализуем угол в пределах 0-360
     const adjustedRotation = (finalRotation + sectorAngle / 2) % 360; // Смещение для более точного попадания в сектор
-    const winningIndex = Math.floor((adjustedRotation - baseAngle + 360) % 360 / sectorAngle); // Вычисляем выигрышный сектор с учетом начального смещения
+    const winningIndex = Math.floor((adjustedRotation - baseAngle + 360) % 360 / sectorAngle); // Вычисляем выигрышный сектор с учетом начального угла
+
     const selectedSector = sectors[winningIndex];
 
     // Устанавливаем награду и выдаем её пользователю
