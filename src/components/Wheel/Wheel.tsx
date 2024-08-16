@@ -237,7 +237,7 @@ const spin = () => {
 
     // const finalRotation = finalAngle % 360; // Нормализуем угол в пределах 0-360
     const winningIndex = sectorIndex; // Поскольку сектор был выбран заранее, просто используем его индекс
-    const selectedSector = sectors[winningIndex];
+    const selectedSector = sectors[winningIndex-1];
 
     // Устанавливаем награду и выдаем её пользователю
     setReward(selectedSector.reward);
