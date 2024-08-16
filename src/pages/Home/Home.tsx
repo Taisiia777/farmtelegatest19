@@ -1604,10 +1604,10 @@ const Home = () => {
     ref={gamesRef} 
     nodes={[
       <GamesBlock
-        key='1'
-        imgSrc='img/pages/home/menu/Wheel.png'
-        title={t('wheel_of_fortune')}
-        defaultButtonText={t('play')}
+        key="1"
+        imgSrc="img/pages/home/menu/Wheel.png"
+        title="sssss"
+        defaultButtonText="dddd"
       />
 
     ]} 
