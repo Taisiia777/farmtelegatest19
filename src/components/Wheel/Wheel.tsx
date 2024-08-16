@@ -47,105 +47,44 @@ const sectors = [
   { name: "Sector 8", weight: 15, reward: 0 }, // "Еще одно вращение"
 ];
 
-// useEffect(() => {
-//   const fetchUserData = async () => {
-//     const { initData } = retrieveLaunchParams();
-//     if (initData && initData.user) {
-//       const user = initData.user;
-//       const userId = user.id;
-
-//       try {
-//         const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
-//         const data = response.data;
-//         let referralCode = data.referral_code;
-
-//         const userResponse = await axios.post(
-//           "https://coinfarm.club/api/user",
-//           {
-//             username: user.username,
-//             coins: 0,
-//             totalEarnings: 0,
-//             incomeMultiplier: 1,
-//             coinsPerHour: 1000,
-//             xp: 1000,
-//             level: 0,
-//             referralCode: referralCode,
-//           }
-//         );
-
-//         const userData = userResponse.status === 409 ? userResponse.data : userResponse.data;
-//         dispatch(setUser(userData));
-
-//         // Получение наград пользователя с типом "wheel"
-//         const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userId}`);
-//         const rewards = rewardsResponse.data.filter((reward: any) => reward.type === 'wheel');
-        
-//         if (rewards.length === 0 || (Date.now() - new Date(rewards[rewards.length - 1].receivedAt).getTime()) > 12 * 60 * 60 * 1000) {
-//           setSpins(userData.level + 1);
-//         } else {
-//           setSpins(0);
-//         }
-//       } catch (error) {
-//         console.error("Error:", error);
-//       }
-//     }
-//   };
-
-//   fetchUserData();
-// }, [dispatch]);
 useEffect(() => {
   const fetchUserData = async () => {
     const { initData } = retrieveLaunchParams();
     if (initData && initData.user) {
       const user = initData.user;
-      const username = user.username;
       const userId = user.id;
 
       try {
         const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
         const data = response.data;
-        const referralCode = data.referral_code;
+        let referralCode = data.referral_code;
 
-        // Получаем информацию о пользователе
-        const userResponse = await axios.post("https://coinfarm.club/api/user", {
-          username: username,
-          coins: 0,
-          totalEarnings: 0,
-          incomeMultiplier: 1,
-          coinsPerHour: 1000,
-          xp: 1000,
-          level: 0,
-          referralCode: referralCode,
-        });
-
-        let userData;
-        if (userResponse.status === 409) {
-          userData = userResponse.data;
-          alert(`User already exists: ${JSON.stringify(userData)}`);
-        } else {
-          userData = userResponse.data;
-        }
-
-        // Получаем награды пользователя
-        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userId}`);
-        const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "wheel");
-
-        if (wheelRewards.length > 0) {
-          const lastReward = wheelRewards[wheelRewards.length - 1];
-          const lastRewardDate = new Date(lastReward.createdAt);
-          const now = new Date();
-          const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60 * 60);
-
-          if (hoursSinceLastReward > 12) {
-            setSpins(userData.level + 1); // Обновляем количество спинов
-          } else {
-            setSpins(lastReward.amount); // Устанавливаем количество спинов по последней награде
+        const userResponse = await axios.post(
+          "https://coinfarm.club/api/user",
+          {
+            username: user.username,
+            coins: 0,
+            totalEarnings: 0,
+            incomeMultiplier: 1,
+            coinsPerHour: 1000,
+            xp: 1000,
+            level: 0,
+            referralCode: referralCode,
           }
-        } else {
-          setSpins(userData.level + 1); // Устанавливаем спины, если нет наград
-        }
+        );
 
+        const userData = userResponse.status === 409 ? userResponse.data : userResponse.data;
         dispatch(setUser(userData));
+
+        // Получение наград пользователя с типом "wheel"
+        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userId}`);
+        const rewards = rewardsResponse.data.filter((reward: any) => reward.type === 'wheel');
+        
+        if (rewards.length === 0 || (Date.now() - new Date(rewards[rewards.length - 1].receivedAt).getTime()) > 12 * 60 * 60 * 1000) {
+          setSpins(userData.level + 1);
+        } else {
+          setSpins(0);
+        }
       } catch (error) {
         console.error("Error:", error);
       }
@@ -186,10 +125,7 @@ const giveUserReward = async (reward: number) => {
 
 const spin = () => {
   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
-  const user = useAppSelector((state: RootState) => state.user.user);
 
-    // Делаем POST-запрос для обновления спинов
-  axios.post(`https://coinfarm.club/api/reward/rain/${user?.id}/${spins}`);
   const sectorIndex = getRandomSector();
   const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
   const targetAngle = sectorIndex * sectorAngle;
@@ -221,48 +157,6 @@ const spin = () => {
   }, 5000);
 };
 
-// const spin = async () => {
-//   if (isSpinning || spins <= 0) return; // Предотвращает запуск спина, если идет спин или спинов 0
-//   const user = useAppSelector((state: RootState) => state.user.user);
-
-//     // Делаем POST-запрос для обновления спинов
-//     const response = await axios.post(`https://coinfarm.club/api/reward/rain/${user?.id}/${spins}`);
-//     console.log("Spin update response:", response.data);
-    
-//     // Обновляем количество спинов
-//     setSpins((prev: number) => prev - 1);
-
-//     const sectorIndex = getRandomSector();
-//     const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
-//     const targetAngle = sectorIndex * sectorAngle;
-//     const spinsCount = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-//     const finalAngle = spinsCount * 360 + targetAngle;
-
-//     setIsSpinning(true);
-//     setRotation(finalAngle);
-
-//     setTimeout(() => {
-//       setIsSpinning(false);
-
-//       const finalRotation = finalAngle % 360;
-//       const winningIndex = Math.floor(finalRotation / sectorAngle);
-//       const selectedSector = sectors[winningIndex];
-
-//       if (selectedSector.name !== "Sector 8") {
-//         setReward(selectedSector.reward);
-//         giveUserReward(selectedSector.reward);
-//         setShowConfetti(true);
-//         setTimeout(() => {
-//           setShowConfetti(false); // Скрыть конфетти через 2 секунды
-//           setStep(3);
-//           setRotation(0);
-//         }, 3000);
-//       } else if (selectedSector.name === "Sector 8") {
-//         spin(); // Повторное вращение
-//       }
-//     }, 5000); // Время завершения анимации
-  
-// };
 
 
    function goNext() {
