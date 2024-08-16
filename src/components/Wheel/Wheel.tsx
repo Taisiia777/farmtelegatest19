@@ -212,12 +212,14 @@ const sendSpinUpdateRequest = async (userId: number, spins: number) => {
 const spin = () => {
   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
 
-  const sectorIndex = getRandomSector();
+  const sectorIndex = getRandomSector(); // Случайный сектор
   const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
-  const targetAngle = sectorIndex * sectorAngle; // Угол для выбранного сектора
+
+  // Рассчитываем угол, на котором должно остановиться колесо
+  const targetAngle = sectorIndex * sectorAngle;
 
   const spinsCount = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-  const finalAngle = spinsCount * 360 + targetAngle;
+  const finalAngle = spinsCount * 360 + targetAngle; // Устанавливаем окончательный угол для выбранного сектора
 
   setSpins(prev => prev - 1);
   setIsSpinning(true);
@@ -226,9 +228,9 @@ const spin = () => {
   setTimeout(() => {
     setIsSpinning(false);
 
+    // Рассчитываем выигрышный сектор
     const finalRotation = finalAngle % 360;
-    const adjustedRotation = (finalRotation + sectorAngle / 2) % 360; // Смещение для более точного попадания в сектор
-    const winningIndex = Math.floor(adjustedRotation / sectorAngle);
+    const winningIndex = Math.floor(finalRotation / sectorAngle); // Сектор, на котором остановилось колесо
     const selectedSector = sectors[winningIndex];
 
     // Устанавливаем награду и выдаем её пользователю
@@ -253,6 +255,7 @@ const spin = () => {
     }
   }, 5000);
 };
+
    function goNext() {
       setStep((prev) => prev + 1);
    }
