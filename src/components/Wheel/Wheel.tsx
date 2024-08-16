@@ -46,53 +46,8 @@ const sectors = [
   { name: "Sector 7", weight: 20, reward: 0 },
   { name: "Sector 8", weight: 15, reward: 0 }, // "Еще одно вращение"
 ];
+const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
 
-// useEffect(() => {
-//   const fetchUserData = async () => {
-//     const { initData } = retrieveLaunchParams();
-//     if (initData && initData.user) {
-//       const user = initData.user;
-//       const userId = user.id;
-
-//       try {
-//         const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
-//         const data = response.data;
-//         let referralCode = data.referral_code;
-
-//         const userResponse = await axios.post(
-//           "https://coinfarm.club/api/user",
-//           {
-//             username: user.username,
-//             coins: 0,
-//             totalEarnings: 0,
-//             incomeMultiplier: 1,
-//             coinsPerHour: 1000,
-//             xp: 1000,
-//             level: 0,
-//             referralCode: referralCode,
-//           }
-//         );
-
-//         const userData = userResponse.status === 409 ? userResponse.data : userResponse.data;
-//         dispatch(setUser(userData));
-//         alert(JSON.stringify(userResponse.data))
-//         // Получение наград пользователя с типом "wheel"
-//         const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userResponse.data.id}`);
-//         const rewards = rewardsResponse.data.filter((reward: any) => reward.type === 'wheel');
-        
-//         if (rewards.length === 0 || (Date.now() - new Date(rewards[rewards.length - 1].receivedAt).getTime()) > 12 * 60 * 60 * 1000) {
-//           setSpins(userData.level + 1);
-//         } else {
-//           setSpins(0);
-//         }
-//       } catch (error) {
-//         console.error("Error:", error);
-//       }
-//     }
-//   };
-
-//   fetchUserData();
-// }, [dispatch]);
 useEffect(() => {
   const fetchUserData = async () => {
     const { initData } = retrieveLaunchParams();
@@ -160,20 +115,32 @@ useEffect(() => {
     sendSpinUpdateRequest(2405, spins)
   }
 }, [isSpinning]);
+// const getRandomSector = () => {
+//   const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
+//   const random = Math.random() * totalWeight;
+
+//   let currentWeight = 0;
+//   for (let i = 0; i < sectors.length; i++) {
+//       currentWeight += sectors[i].weight;
+//       if (random <= currentWeight) {
+//           return i;
+//       }
+//   }
+//   return 0; // если что-то пойдет не так
+// };
 const getRandomSector = () => {
   const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
   const random = Math.random() * totalWeight;
 
   let currentWeight = 0;
   for (let i = 0; i < sectors.length; i++) {
-      currentWeight += sectors[i].weight;
-      if (random <= currentWeight) {
-          return i;
-      }
+    currentWeight += sectors[i].weight;
+    if (random <= currentWeight) {
+      return i;
+    }
   }
   return 0; // если что-то пойдет не так
 };
-
 const giveUserReward = async (reward: number) => {
   const user = useAppSelector((state: RootState) => state.user.user);
 
@@ -200,10 +167,10 @@ const sendSpinUpdateRequest = async (userId: number, spins: number) => {
   }
 };
 
+
 // const spin = () => {
 //   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
 //   const sectorIndex = getRandomSector();
-//   const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
 //   const targetAngle = sectorIndex * sectorAngle;
 //   const spinsCount = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
 //   const finalAngle = spinsCount * 360 + targetAngle;
@@ -214,13 +181,18 @@ const sendSpinUpdateRequest = async (userId: number, spins: number) => {
 
 //   setTimeout(() => {
 //     setIsSpinning(false);
+
+//     // Получаем финальный угол вращения
 //     const finalRotation = finalAngle % 360;
+//     // Определяем сектор на основе конечного угла
 //     const winningIndex = Math.floor(finalRotation / sectorAngle);
 //     const selectedSector = sectors[winningIndex];
 
+//     // Устанавливаем награду и выдаем её пользователю
+//     setReward(selectedSector.reward);
+//     giveUserReward(selectedSector.reward);
+
 //     if (selectedSector.name !== "Sector 8") {
-//       setReward(selectedSector.reward);
-//       giveUserReward(selectedSector.reward);
 //       setShowConfetti(true);
 //       setTimeout(() => {
 //         setShowConfetti(false);
@@ -235,28 +207,18 @@ const sendSpinUpdateRequest = async (userId: number, spins: number) => {
 //         setShowConfetti(false);
 //         setRotation(0);
 //       }, 2000);
-//       spin(); // Повторное вращение
 //     }
 //   }, 5000);
 // };
-
 const spin = () => {
   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
 
   const sectorIndex = getRandomSector();
-  const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
+  const targetAngle = sectorIndex * sectorAngle; // Угол для выбранного сектора
 
-  // Рассчитываем целевой угол с учетом случайного смещения внутри сектора
-  const randomOffset = Math.random() * sectorAngle;
-  const targetAngle = sectorIndex * sectorAngle + randomOffset;
-  
-  // Рассчитываем количество полных оборотов
   const spinsCount = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-  
-  // Итоговый угол вращения
   const finalAngle = spinsCount * 360 + targetAngle;
 
-  // Запускаем анимацию вращения
   setSpins(prev => prev - 1);
   setIsSpinning(true);
   setRotation(finalAngle);
@@ -264,7 +226,6 @@ const spin = () => {
   setTimeout(() => {
     setIsSpinning(false);
 
-    // После окончания вращения рассчитываем финальный угол и сектор
     const finalRotation = finalAngle % 360;
     const winningIndex = Math.floor(finalRotation / sectorAngle);
     const selectedSector = sectors[winningIndex];
@@ -291,8 +252,6 @@ const spin = () => {
     }
   }, 5000);
 };
-
-
    function goNext() {
       setStep((prev) => prev + 1);
    }
