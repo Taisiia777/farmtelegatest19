@@ -221,7 +221,7 @@ const spin = () => {
   const targetAngle = (baseAngle + sectorIndex * sectorAngle) % 360;
 
   // Случайное количество оборотов (от 5 до 7)
-  const spinsCount = Math.floor(Math.random() * 3) + 5;
+  const spinsCount = 1;
 
   // Конечный угол вращения (множим на количество оборотов и добавляем целевой угол)
   const finalAngle = spinsCount * 360 + targetAngle;
