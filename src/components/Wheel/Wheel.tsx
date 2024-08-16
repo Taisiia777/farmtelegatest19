@@ -204,8 +204,6 @@ const spin = () => {
   const finalAngle = spinsCount * 360 + targetAngle;
 
   setSpins(prev => prev - 1);
-  const user = useAppSelector((state: RootState) => state.user.user);
-  sendSpinUpdateRequest(user.id, spins)
   setIsSpinning(true);
   setRotation(finalAngle);
 
@@ -448,7 +446,9 @@ const spin = () => {
   alt="Spin"
   onClick={() => {
     if (spins > 0 && !isSpinning && !showConfetti) {
+      const user = useAppSelector((state: RootState) => state.user.user);
       spin();
+      sendSpinUpdateRequest(user.id, spins)
     }
   }}
 />
