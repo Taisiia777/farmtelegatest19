@@ -76,9 +76,11 @@ useEffect(() => {
            if (userResponse.status === 409) {
               const userData = userResponse.data;
               alert(`User already exists: ${JSON.stringify(userData)}`);
+              setSpins(userData.level)
               dispatch(setUser(userData)); // Устанавливаем уже существующего пользователя
            } else {
               const newUser = userResponse.data;
+              setSpins(newUser.level)
               dispatch(setUser(newUser));
            }
         } catch (error) {
@@ -88,7 +90,7 @@ useEffect(() => {
   };
 
   fetchUserData();
-}, []);
+}, [dispatch]);
 const getRandomSector = () => {
   const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
   const random = Math.random() * totalWeight;
@@ -180,8 +182,6 @@ const spin = () => {
    useEffect(() => {
      const initData = window.Telegram.WebApp.initDataUnsafe;
      const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
-     const user = useAppSelector((state: RootState) => state.user.user);
-     setSpins(user.level)
      if (['en', 'ru', 'uk'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
        i18n.changeLanguage(userLanguage);
      } else {
