@@ -242,12 +242,21 @@ const sendSpinUpdateRequest = async (userId: number, spins: number) => {
 
 const spin = () => {
   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
+
   const sectorIndex = getRandomSector();
   const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
-  const targetAngle = sectorIndex * sectorAngle;
+
+  // Рассчитываем целевой угол с учетом случайного смещения внутри сектора
+  const randomOffset = Math.random() * sectorAngle;
+  const targetAngle = sectorIndex * sectorAngle + randomOffset;
+  
+  // Рассчитываем количество полных оборотов
   const spinsCount = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
+  
+  // Итоговый угол вращения
   const finalAngle = spinsCount * 360 + targetAngle;
 
+  // Запускаем анимацию вращения
   setSpins(prev => prev - 1);
   setIsSpinning(true);
   setRotation(finalAngle);
@@ -255,9 +264,8 @@ const spin = () => {
   setTimeout(() => {
     setIsSpinning(false);
 
-    // Получаем финальный угол вращения
+    // После окончания вращения рассчитываем финальный угол и сектор
     const finalRotation = finalAngle % 360;
-    // Определяем сектор на основе конечного угла
     const winningIndex = Math.floor(finalRotation / sectorAngle);
     const selectedSector = sectors[winningIndex];
 
@@ -283,6 +291,7 @@ const spin = () => {
     }
   }, 5000);
 };
+
 
    function goNext() {
       setStep((prev) => prev + 1);
