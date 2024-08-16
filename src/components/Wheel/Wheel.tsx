@@ -133,7 +133,7 @@ const getRandomSector = () => {
   const random = Math.random() * totalWeight;
 
   let currentWeight = 0;
-  for (let i = 0; i < sectors.length; i++) {
+  for (let i = 1; i < sectors.length; i++) {
     currentWeight += sectors[i].weight;
     if (random <= currentWeight) {
       return i;
@@ -215,13 +215,13 @@ const spin = () => {
 
   const sectorIndex = getRandomSector();
   const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
-  const baseAngle = 337.5; // Начальный угол первого сектора
+  const baseAngle = 0; // Начальный угол первого сектора
 
   // Вычисляем конечный угол для выбранного сектора
   const targetAngle = (baseAngle + sectorIndex * sectorAngle) % 360;
 
   // Случайное количество оборотов (от 5 до 7)
-  const spinsCount = 1;
+  const spinsCount = Math.floor(Math.random() * 3) + 5;
 
   // Конечный угол вращения (множим на количество оборотов и добавляем целевой угол)
   const finalAngle = spinsCount * 360 + targetAngle;
