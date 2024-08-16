@@ -228,8 +228,8 @@ const spin = () => {
     setIsSpinning(false);
 
     const finalRotation = finalAngle % 360;
-    
-    // Убираем избыточное смещение и просто делим на секторный угол
+
+    // Используем прямой расчет без дополнительных смещений
     const winningIndex = Math.floor(finalRotation / sectorAngle);
     const selectedSector = sectors[winningIndex];
 
@@ -255,6 +255,7 @@ const spin = () => {
     }
   }, 5000);
 };
+
 
 
    function goNext() {
