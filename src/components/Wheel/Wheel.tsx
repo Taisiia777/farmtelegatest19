@@ -127,7 +127,7 @@ useEffect(() => {
         }
 
         // Получаем награды пользователя
-        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userId}`);
+        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
         const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "wheel");
 
         if (wheelRewards.length > 0) {
