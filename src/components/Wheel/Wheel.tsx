@@ -25,7 +25,6 @@ const Wheel = () => {
 
    // Состояние прелоудреа
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
-   // const user = useSelector((state: RootState) => state.user.user);
    const [rotation, setRotation] = useState(0);
    const [isSpinning, setIsSpinning] = useState(false);
    const [step, setStep] = useState(1);
@@ -73,54 +72,7 @@ const giveUserReward = async (reward: number) => {
   }
 };
 
-// const spin = () => {
-//   setSpins((prev: number) => prev - 1)
-//   if (isSpinning) return; // Предотвращает повторный запуск спина во время текущего
 
-//   const sectorIndex = getRandomSector();
-//   const sectorAngle = 360 / sectors.length;
-
-//   // Добавляем случайное смещение внутри угла сектора, но внутри его границ
-//   const randomOffset = Math.random() * sectorAngle;
-//   const targetAngle = sectorIndex * sectorAngle + randomOffset;
-
-//   const spins = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-//   const finalAngle = spins * 360 + targetAngle;
-
-//   setIsSpinning(true);
-//   setRotation(finalAngle);
-
-//   setTimeout(() => {
-//       setIsSpinning(false);
-
-//       // Вычисляем сектор на основе угла, на который указывает указатель
-//       const finalRotation = finalAngle % 360;
-//       const winningIndex = Math.floor(finalRotation / sectorAngle);
-//       const selectedSector = sectors[winningIndex];
-
-//       // alert(`Selected sector: ${selectedSector.name}, Reward: ${selectedSector.reward}`);
-
-//       // Если сектор не является "Еще одно вращение" или "100$", выдать награду
-//       if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 7") {
-//           setReward(selectedSector.reward)
-//           giveUserReward(selectedSector.reward);
-//       } else if (selectedSector.name === "Sector 8") {
-//           spin(); // Повторное вращение
-//       } else if (selectedSector.name === "Sector 7") {
-//           console.log("User wins $100");
-//           // Здесь может быть логика для выдачи $100, если необходимо
-//       }
-
-//       // Сброс вращения для следующего спина
-//       setShowConfetti(true);
-//       setTimeout(() => {
-//         setShowConfetti(false); // Скрыть конфетти через 2 секунды
-//         setStep(3);
-//         setRotation(0);
-//       }, 3000);
-
-//   }, 5000); // Время завершения анимации
-// };
 const spin = () => {
   setSpins((prev: number) => prev - 1);
   if (isSpinning) return; // Предотвращает повторный запуск спина во время текущего
@@ -182,7 +134,7 @@ const spin = () => {
    useEffect(() => {
      const initData = window.Telegram.WebApp.initDataUnsafe;
      const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
-     
+     setSpins(user.level)
      if (['en', 'ru', 'uk'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
        i18n.changeLanguage(userLanguage);
      } else {
