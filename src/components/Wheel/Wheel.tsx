@@ -12,6 +12,9 @@ import Confetti from "./Confetti";
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
 import axios from "axios";
+import { setUser } from "../../store/reducers/userSlice";
+import { retrieveLaunchParams } from '@tma.js/sdk';
+
 import { RootState } from "../../store";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "../../routes/routes";
@@ -28,7 +31,6 @@ const Wheel = () => {
    const [rotation, setRotation] = useState(0);
    const [isSpinning, setIsSpinning] = useState(false);
    const [step, setStep] = useState(1);
-   const user = useAppSelector((state: RootState) => state.user.user);
    const [showConfetti, setShowConfetti] = useState(false);
    const [spins, setSpins] = useState(0);
    const [reward, setReward] = useState(0);
@@ -44,7 +46,49 @@ const sectors = [
   { name: "Sector 7", weight: 20, reward: 0 },
   { name: "Sector 8", weight: 15, reward: 0 }, // "Еще одно вращение"
 ];
+useEffect(() => {
+  const fetchUserData = async () => {
+     const { initData } = retrieveLaunchParams();
+     if (initData && initData.user) {
+        const user = initData.user;
+        const username = user.username;
+        const userId = user.id;
 
+        try {
+           const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
+           const data = response.data;
+           let referralCode = data.referral_code;
+
+           const userResponse = await axios.post(
+              "https://coinfarm.club/api/user",
+              {
+                 username: username,
+                 coins: 0,
+                 totalEarnings: 0,
+                 incomeMultiplier: 1,
+                 coinsPerHour: 1000,
+                 xp: 1000,
+                 level: 0,
+                 referralCode: referralCode,
+              }
+           );
+
+           if (userResponse.status === 409) {
+              const userData = userResponse.data;
+              alert(`User already exists: ${JSON.stringify(userData)}`);
+              dispatch(setUser(userData)); // Устанавливаем уже существующего пользователя
+           } else {
+              const newUser = userResponse.data;
+              dispatch(setUser(newUser));
+           }
+        } catch (error) {
+           console.error("Error:", error);
+        }
+     }
+  };
+
+  fetchUserData();
+}, []);
 const getRandomSector = () => {
   const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
   const random = Math.random() * totalWeight;
@@ -60,6 +104,8 @@ const getRandomSector = () => {
 };
 
 const giveUserReward = async (reward: number) => {
+  const user = useAppSelector((state: RootState) => state.user.user);
+
   try {
       if (reward > 0) {
           const response = await axios.patch(`https://coinfarm.club/api/user/${user.id}/earn/${reward}`);
@@ -134,6 +180,7 @@ const spin = () => {
    useEffect(() => {
      const initData = window.Telegram.WebApp.initDataUnsafe;
      const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
+     const user = useAppSelector((state: RootState) => state.user.user);
      setSpins(user.level)
      if (['en', 'ru', 'uk'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
        i18n.changeLanguage(userLanguage);
