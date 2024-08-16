@@ -75,9 +75,9 @@ useEffect(() => {
 
         const userData = userResponse.status === 409 ? userResponse.data : userResponse.data;
         dispatch(setUser(userData));
-
+        alert(JSON.stringify(userResponse.data))
         // Получение наград пользователя с типом "wheel"
-        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userId}`);
+        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userResponse.data.id}`);
         const rewards = rewardsResponse.data.filter((reward: any) => reward.type === 'wheel');
         
         if (rewards.length === 0 || (Date.now() - new Date(rewards[rewards.length - 1].receivedAt).getTime()) > 12 * 60 * 60 * 1000) {
