@@ -284,6 +284,17 @@ const spin = () => {
 
    return (
       <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}} >
+            {(isOpen) && (
+               <img
+                  src="img/global/closeIcon.svg"
+                  onClick={() => {
+                    setStep(1)
+                    dispatch(finishWheel());
+                  }}
+                  className={cn("close")}
+                  alt="Close"
+               />
+            )}
          {/* Introduction */}
          {step === 1 && (
             <div className={cn("greeting__body", "_first")} ref={wheelRef}>

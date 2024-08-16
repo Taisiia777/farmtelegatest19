@@ -251,3 +251,9 @@
    justify-content: center; /* Центрирование по оси X */
    align-items: flex-start; /* Элементы внутри будут располагаться сверху */
 }
+.close {
+   position: absolute;
+   top: 3%;
+   right: 3%;
+   z-index: 14;
+}

@@ -18,8 +18,6 @@ import RainAnimation from './modules/RainAnimation';
 import QRCodeComponent from './QRCodeComponent';
 import { openGuide } from "../../store/reducers/guide";
 import { useOutletContext } from 'react-router-dom';
-import { finishWheel } from "../../store/reducers/wheel";
-
 // import useWheatTrunctaion from "./hooks/useWheatTrunctation";
 // import {useHarvestAllWheat} from "./hooks/useHarvestAllWheat";
 import i18n from '../../i18n';
@@ -242,7 +240,7 @@ const Home = () => {
     setGamesActiveTab("GAMES")
   };
    // Earn popup
-   const isOpenWheel = useAppSelector((state) => state.wheel.isOpen);
+   
    const [earnPopupOpen, setEarnPopupOpen] = useState(false);
    const [gamesPopupOpen, setGamesPopupOpen] = useState(false);
 
@@ -1619,14 +1617,13 @@ const Home = () => {
             </PopupListWrap>
 
             {/* Иконка close, которая закрывает попапы с вариантом списка (<PopupListWrap />) */}
-            {(boostPopupOpen || earnPopupOpen || gamesPopupOpen || isOpenWheel) && (
+            {(boostPopupOpen || earnPopupOpen || gamesPopupOpen) && (
                <img
                   src="img/global/closeIcon.svg"
                   onClick={() => {
                      setBoostPopupOpen(false);
                      setEarnPopupOpen(false);
                      setGamesPopupOpen(false);
-                     dispatch(finishWheel());
                   }}
                   className={cn("close")}
                   alt="Close"
