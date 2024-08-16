@@ -156,7 +156,9 @@ useEffect(() => {
 }, [dispatch]);
 useEffect(() => {
   // const user = useAppSelector((state: RootState) => state.user.user);
-  sendSpinUpdateRequest(2405, spins)
+  if(isSpinning){
+    sendSpinUpdateRequest(2405, spins)
+  }
 }, [isSpinning]);
 const getRandomSector = () => {
   const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
