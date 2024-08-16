@@ -74,15 +74,11 @@ useEffect(() => {
         });
 
         let userData;
-        if (userResponse.status === 409) {
-          userData = userResponse.data;
-          alert(`User already exists: ${JSON.stringify(userData)}`);
-        } else {
-          userData = userResponse.data;
-        }
+        userData = userResponse.data;
+
         
         // Получаем награды пользователя
-        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/2405`);
+        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
         const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "wheel");
 
         if (wheelRewards.length > 0) {
@@ -136,7 +132,6 @@ const getRandomSector = () => {
   for (let i = 0; i < sectors.length; i++) {
     currentWeight += sectors[i].weight;
     if (random <= currentWeight) {
-      alert(i)
       return i;
     }
   }
@@ -160,7 +155,6 @@ const sendSpinUpdateRequest = async (userId: number, spins: number) => {
   try {
     const response = await axios.post(`https://coinfarm.club/api/reward/wheel/${userId}/${spins}`);
     console.log("Spin update response:", response.data);
-    alert(JSON.stringify(response.data))
     return response.data;
   } catch (error) {
     console.error("Error updating spin:", error);
@@ -246,7 +240,6 @@ const spin = () => {
 
     // Обрабатываем результат вращения
     if (selectedSector.name !== "Sector 8") {
-      alert(selectedSector.name)
       setShowConfetti(true);
       setTimeout(() => {
         setShowConfetti(false);
