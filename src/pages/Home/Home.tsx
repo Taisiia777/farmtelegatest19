@@ -1604,10 +1604,10 @@ const Home = () => {
     ref={gamesRef} 
     nodes={[
       <GamesBlock
-        key="1"
-        imgSrc="img/pages/home/menu/Wheel.png"
-        title="sssss"
-        defaultButtonText="dddd"
+        imgSrc='img/pages/home/menu/Wheel.png'
+        earning="20000"
+        link="https://vercel.com/saveliis-projects-fbade47d/farmtelegatest3/deployments"
+        title={t('wheel_of_fortune')}
       />
 
     ]} 
