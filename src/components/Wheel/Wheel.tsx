@@ -121,28 +121,32 @@ useEffect(() => {
         let userData;
         if (userResponse.status === 409) {
           userData = userResponse.data;
+          alert(`User already exists: ${JSON.stringify(userData)}`);
         } else {
           userData = userResponse.data;
         }
 
-        // Получаем награды пользователя
-        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userResponse.data.id}`);
-        const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "wheel");
+        if(user){
+  const user = useAppSelector((state: RootState) => state.user.user);
+ const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${user.id}`);
+ const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "wheel");
 
-        if (wheelRewards.length > 0) {
-          const lastReward = wheelRewards[wheelRewards.length - 1];
-          const lastRewardDate = new Date(lastReward.createdAt);
-          const now = new Date();
-          const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60 * 60);
+ if (wheelRewards.length > 0) {
+   const lastReward = wheelRewards[wheelRewards.length - 1];
+   const lastRewardDate = new Date(lastReward.createdAt);
+   const now = new Date();
+   const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60 * 60);
 
-          if (hoursSinceLastReward > 12) {
-            setSpins(userData.level + 1); // Обновляем количество спинов
-          } else {
-            setSpins(lastReward.amount); // Устанавливаем количество спинов по последней награде
-          }
-        } else {
-          setSpins(userData.level + 1); // Устанавливаем спины, если нет наград
+   if (hoursSinceLastReward > 12) {
+     setSpins(user.level + 1); // Обновляем количество спинов
+   } else {
+     setSpins(lastReward.amount); // Устанавливаем количество спинов по последней награде
+   }
+ } else {
+   setSpins(user.level + 1); // Устанавливаем спины, если нет наград
+ }
         }
+       
 
         dispatch(setUser(userData));
       } catch (error) {
