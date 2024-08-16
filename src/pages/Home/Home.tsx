@@ -43,7 +43,7 @@ import Boosts from "./modules/Boosts/Boosts";
 import Account from "./modules/Account";
 import LigaBlock from "../../components/LigaBlock/LigaBlock";
 import FreindOrSpecialBlock from "../../components/FreindOrSpecialBlock/FreindOrSpecialBlock";
-import GamesBlock from "../../components/GamesBlock/GamesBlock";
+// import GamesBlock from "../../components/GamesBlock/GamesBlock";
 
 import Greeting from "../../components/Greeting/Greeting";
 import Guide from "../../components/Guide/Guide";
