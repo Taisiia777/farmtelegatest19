@@ -219,7 +219,7 @@ const spin = () => {
   const baseAngle = 0; // Начальный угол первого сектора
 
   // Вычисляем конечный угол для выбранного сектора
-  const targetAngle = (baseAngle + ((sectorIndex+1) * sectorAngle)) % 360;
+  const targetAngle = (baseAngle + ((sectorIndex+2) * sectorAngle)) % 360;
 
   // Случайное количество оборотов (от 5 до 7)
   const spinsCount = 5;
