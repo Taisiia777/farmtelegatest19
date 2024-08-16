@@ -227,7 +227,14 @@ const spin = () => {
         setStep(3);
         setRotation(0);
       }, 2000);
-    } else if (selectedSector.name === "Sector 8") {
+    } else {
+      setReward(0);
+      setSpins(prev => prev + 1);
+      setShowConfetti(true);
+      setTimeout(() => {
+        setShowConfetti(false);
+        setRotation(0);
+      }, 2000);
       spin(); // Повторное вращение
     }
   }, 5000);
