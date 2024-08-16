@@ -1594,7 +1594,7 @@ const Home = () => {
                <PopupListTabs
                   labelClassName={cn("earn__label")}
                   labels={[t("games")]}
-                  activeTab={gamesActiveTab}
+                  activeTab={t("games")}
                   onTabChange={(label) => setGamesActiveTab(label)}
                />
 
