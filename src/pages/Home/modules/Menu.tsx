@@ -124,7 +124,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                      <img src="img/pages/home/menu/Farm21.png" alt="Farm" style={{width: "85px", height:"85px"}} />
                      {isReady && (
     <img 
-      src="img/pages/home/menu/ready.png" 
+      src="img/pages/home/menu/ready.svg" 
       alt="Ready" 
       style={{ display: 'flex', position: 'absolute', top: '-4px', right:'3px', width: "20px", height:"20px", zIndex:'3' }} 
     />
