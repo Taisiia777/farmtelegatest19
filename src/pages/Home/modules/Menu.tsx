@@ -80,6 +80,12 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
            element.style.fontWeight = '700';
          }
        });
+       document.querySelectorAll('.textMenu2').forEach(element => {
+         if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+           element.style.fontSize = '16px';
+           element.style.fontWeight = '700';
+         }
+       });
     }
      
    }, []);
@@ -113,7 +119,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                   <li onClick={() => onGamesOpen()}>
 
                      <img src="img/pages/home/menu/Farm21.png" alt="Farm" style={{width: "85px", height:"85px", border: '1px solid red'}} />
-                     <span className="textShadow textMenu1" style={{zIndex:'3', display: 'flex', position: 'absolute', bottom:'5px'
+                     <span className="textShadow textMenu1" style={{zIndex:'3', display: 'flex', position: 'absolute', bottom:'3px'
                      }}>{t('apps')}</span>
 
                   </li>
