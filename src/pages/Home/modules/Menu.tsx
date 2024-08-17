@@ -112,8 +112,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                   {/* <li onClick={harvestAllWheat}> */}
                   <li onClick={() => onGamesOpen()}>
 
-                     <img src="img/pages/home/menu/Farm.png" alt="Farm" style={{width: "107px", height:"88px"}} />
-                     <img src="img/pages/home/menu/wheat.svg" alt="" />
+                     <img src="img/pages/home/menu/Farm.png" alt="Farm" style={{width: "85px", height:"85px"}} />
                      <span className="textShadow textMenu1">{t('apps')}</span>
 
                   </li>
