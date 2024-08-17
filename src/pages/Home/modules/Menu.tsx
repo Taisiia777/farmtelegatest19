@@ -2,6 +2,8 @@ import classNames from "classnames/bind";
 import styles from "../Home.module.scss";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "../../../routes/routes";
+import { useAppSelector } from "../../../store";
+
 // import { useHarvestAllWheat } from "../hooks/useHarvestAllWheat";
 import i18n from '../../../i18n';
 import { useTranslation } from 'react-i18next';
@@ -47,6 +49,7 @@ interface IMenuProps {
 const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) => {
    // const { friends } = useOutletContext<OutletContext>();
    const dispatch = useAppDispatch();
+   const isReady = useAppSelector((state) => state.wheel.isReady);
 
    const handleGuideClick = () => {
       dispatch(openGuide1());
@@ -118,7 +121,14 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                   {/* <li onClick={harvestAllWheat}> */}
                   <li onClick={() => onGamesOpen()}>
 
-                     <img src="img/pages/home/menu/Farm21.png" alt="Farm" style={{width: "85px", height:"85px", border: '1px solid red'}} />
+                     <img src="img/pages/home/menu/Farm21.png" alt="Farm" style={{width: "85px", height:"85px"}} />
+                     {isReady && (
+    <img 
+      src="img/pages/home/menu/ready.png" 
+      alt="Ready" 
+      style={{ display: 'flex', position: 'absolute', top: '-4px', right:'3px', width: "20px", height:"20px", zIndex:'3' }} 
+    />
+  )}
                      <span className="textShadow textMenu1" style={{zIndex:'3', display: 'flex', position: 'absolute', bottom:'3px'
                      }}>{t('apps')}</span>
 

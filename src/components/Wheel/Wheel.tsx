@@ -4,7 +4,7 @@ import classNames from "classnames/bind";
 import styles from "./Wheel.module.scss";
 
 import { useAppDispatch, useAppSelector } from "../../store";
-import { finishWheel } from "../../store/reducers/wheel";
+import { finishWheel, ready, unready } from "../../store/reducers/wheel";
 
 import useOutsideClick from '../../pages/Home/hooks/useOutsideClick'; // Импортируйте ваш хук
 import Confetti from "./Confetti"; 
@@ -89,11 +89,19 @@ useEffect(() => {
 
           if (hoursSinceLastReward > 12) {
             setSpins(userData.level + 1); // Обновляем количество спинов
+            dispatch(ready());
           } else {
             setSpins(lastReward.amount); // Устанавливаем количество спинов по последней награде
+            if(lastReward.amount = 0)
+            {
+              dispatch(unready());
+            } else {
+              dispatch(ready());
+            }
           }
         } else {
           setSpins(userData.level + 1); // Устанавливаем спины, если нет наград
+          dispatch(ready());
         }
 
         dispatch(setUser(userData));
@@ -239,14 +247,14 @@ const spin = () => {
     giveUserReward(selectedSector.reward);
 
     // Обрабатываем результат вращения
-    if (selectedSector.name !== "Sector 8") {
+    if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 7") {
       setShowConfetti(true);
       setTimeout(() => {
         setShowConfetti(false);
         setStep(3);
         setRotation(0);
       }, 2000);
-    } else {
+    } else if(selectedSector.name === "Sector 8") {
       setReward(0);
       setSpins(prev => prev + 1);
       setShowConfetti(true);
@@ -254,6 +262,9 @@ const spin = () => {
         setShowConfetti(false);
         setRotation(0);
       }, 2000);
+    } else if (selectedSector.name === "Sector 7"){
+      setReward(0);
+      setRotation(0);
     }
   }, 5000);
 };
