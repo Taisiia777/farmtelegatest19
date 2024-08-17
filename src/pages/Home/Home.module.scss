@@ -293,14 +293,14 @@
          }
 
          &:nth-child(3) {
-            transform: translateY(rem(-15));
+            transform: translateY(rem(-5));
 
-            & img:last-child {
-               position: absolute;
-               top: 17%;
-               left: 50%;
-               transform: translateX(-50%);
-            }
+            // & img:last-child {
+            //    position: absolute;
+            //    top: 17%;
+            //    left: 50%;
+            //    transform: translateX(-50%);
+            // }
          }
 
          &:nth-child(4) {
