@@ -228,7 +228,8 @@ const People = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(location.state?.label ?? "FARM FRENDS");
-  const [users, setUsers] = useState<User[]>([]);
+  const [usersByReferrals, setUsersByReferrals] = useState<User[]>([]);
+  const [usersByEarnings, setUsersByEarnings] = useState<User[]>([]);
   const user = useAppSelector((state: RootState) => state.user.user);
   const { t } = useTranslation();
   const currentLanguage = i18n.language;
@@ -280,10 +281,12 @@ const People = () => {
           referralsCount: referralCounts[user.id] || 0,
         }));
 
-        // Сортируем пользователей по убыванию количества рефералов
-        const sortedUsers = usersWithReferrals.sort((a, b) => (b.referralsCount || 0) - (a.referralsCount || 0));
+        // Сортируем пользователей по убыванию количества рефералов и по общим заработкам
+        const sortedByReferrals = [...usersWithReferrals].sort((a, b) => (b.referralsCount || 0) - (a.referralsCount || 0));
+        const sortedByEarnings = [...usersWithReferrals].sort((a, b) => b.totalEarnings - a.totalEarnings);
 
-        setUsers(sortedUsers);
+        setUsersByReferrals(sortedByReferrals);
+        setUsersByEarnings(sortedByEarnings);
       } catch (error) {
         console.error('Failed to fetch users or referrals', error);
       }
@@ -301,7 +304,7 @@ const People = () => {
       return "друзей";
     }
   };
-  const friendsLabel = currentLanguage === 'ru' ? getFriendsLabel(users.length) : t('friends');
+  const friendsLabel = currentLanguage === 'ru' ? getFriendsLabel(friends.length) : t('friends');
 
   return (
     <div className={cn("wrap")}>
@@ -324,13 +327,13 @@ const People = () => {
           />
           {activeTab === "FARM FRENDS" && (
             <PopupList
-              nodes={users.slice(0, 100).map((user, index) => (
+              nodes={usersByReferrals.slice(0, 100).map((user, index) => (
                 <PersonBlock
                   key={user.id}
                   name={user.username}
                   imgSrc={"img/pages/people/person.png"}
                   earning={(user.referralsCount || 0).toString()} // Отображаем количество рефералов
-                  coinAmount={Math.round(user.totalEarnings).toString()}
+                  coinAmount={(user.referralsCount || 0).toString()}
                   inviteMode
                   rating={index + 1}
                 />
@@ -341,7 +344,7 @@ const People = () => {
 
           {activeTab === "LEADERBOARD" && (
             <PopupList
-              nodes={users.slice(0, 100).map((user, index) => (
+              nodes={usersByEarnings.slice(0, 100).map((user, index) => (
                 <PersonBlock
                   key={user.id}
                   name={user.username}
@@ -384,3 +387,4 @@ const People = () => {
 };
 
 export default People;
+
