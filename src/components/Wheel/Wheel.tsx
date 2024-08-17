@@ -479,7 +479,7 @@ const spin = () => {
     height: '46px',
     position: 'absolute',
     top: '70vh',
-    left: '48%',
+    left: '49%',
     transform: 'translateX(-50%)',
     cursor: spins <= 0 || isSpinning || showConfetti ? 'not-allowed' : 'pointer', // Смена курсора
     opacity: spins <= 0 || isSpinning || showConfetti ? 0.5 : 1, // Смена прозрачности для визуального эффекта
