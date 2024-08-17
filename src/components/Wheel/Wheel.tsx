@@ -475,7 +475,7 @@ const spin = () => {
   src="img/global/spin.png"
   className={cn("greeting__next", { disabled: spins <= 0 || isSpinning || showConfetti })} // Добавляем условный класс
   style={{
-    width: '122px',
+    width: '115px',
     height: '46px',
     position: 'absolute',
     top: '70vh',
