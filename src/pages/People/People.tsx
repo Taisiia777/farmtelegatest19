@@ -282,7 +282,10 @@ const People = () => {
         }));
 
         // Сортируем пользователей по убыванию количества рефералов и по общим заработкам
-        const sortedByReferrals = [...usersWithReferrals].sort((a, b) => (b.referralsCount || 0) - (a.referralsCount || 0));
+        const sortedByReferrals = [...usersWithReferrals]
+        .filter(user => (user.referralsCount || 0) > 0)  // Оставляем только тех, у кого больше 0 рефералов
+        .sort((a, b) => (b.referralsCount || 0) - (a.referralsCount || 0));
+      
         const sortedByEarnings = [...usersWithReferrals].sort((a, b) => b.totalEarnings - a.totalEarnings);
 
         setUsersByReferrals(sortedByReferrals);
