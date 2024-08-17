@@ -114,6 +114,8 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
 
                      <img src="img/pages/home/menu/Farm.png" alt="Farm" style={{width: "107px", height:"88px"}} />
                      <img src="img/pages/home/menu/wheat.svg" alt="" />
+                     <span className="textShadow textMenu1">{t('apps')}</span>
+
                   </li>
                   {/* <li
                 
