@@ -184,8 +184,6 @@
 // export default People;
 
 
-
-
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./People.module.scss";
@@ -202,7 +200,6 @@ import { RootState } from "../../store";
 import { useAppSelector } from "../../store";
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
-import { useOutletContext } from 'react-router-dom';
 
 const cn = classNames.bind(styles);
 
@@ -218,13 +215,8 @@ interface User {
   referralsCount?: number; // Добавляем поле для количества рефералов
 }
 
-interface OutletContext {
-  friends: Friend[];
-}
 
-interface Friend extends User {
-  coinsEarned?: number;
-}
+
 
 const People = () => {
   const location = useLocation();
@@ -232,7 +224,6 @@ const People = () => {
   const [activeTab, setActiveTab] = useState(location.state?.label ?? "FARM FRENDS");
   const [users, setUsers] = useState<User[]>([]);
   const user = useAppSelector((state: RootState) => state.user.user);
-  const { friends } = useOutletContext<OutletContext>();
   const { t } = useTranslation();
   const currentLanguage = i18n.language;
 
@@ -303,13 +294,13 @@ const People = () => {
       return "друзей";
     }
   };
-  const friendsLabel = currentLanguage === 'ru' ? getFriendsLabel(friends.length) : t('friends');
+  const friendsLabel = currentLanguage === 'ru' ? getFriendsLabel(users.length) : t('friends');
 
   return (
     <div className={cn("wrap")}>
       <div className={cn("people")}>
         <h2 className={`${cn("people__title")}` + " textShadow"}>
-          {friends.length} {friendsLabel}
+          {users.length} {friendsLabel}
         </h2>
         <Coins quantity={Math.round(user.totalEarnings).toString()} />
         <div className={cn("people__invite-btn")} onClick={() => navigate(Routes.INVITE)}>
@@ -326,14 +317,15 @@ const People = () => {
           />
           {activeTab === "FARM FRENDS" && (
             <PopupList
-              nodes={friends.slice(-100).reverse().map((user) => (
+              nodes={users.slice(0, 100).map((user, index) => (
                 <PersonBlock
                   key={user.id}
                   name={user.username}
                   imgSrc={"img/pages/people/person.png"}
-                  earning={Math.round((user?.coinsEarned ?? 0)).toString()}
+                  earning={(user.referralsCount || 0).toString()} // Отображаем количество рефералов
                   coinAmount={Math.round(user.totalEarnings).toString()}
                   inviteMode
+                  rating={index + 1}
                 />
               ))}
               type="second"
@@ -347,7 +339,7 @@ const People = () => {
                   key={user.id}
                   name={user.username}
                   imgSrc={"img/pages/people/person.png"}
-                  earning={(user.referralsCount || 0).toString()} // Отображаем количество рефералов
+                  earning={user.coinsPerHour.toString()} // Отображаем прибыль в час
                   coinAmount={Math.round(user.totalEarnings).toString()}
                   inviteMode
                   rating={index + 1}
