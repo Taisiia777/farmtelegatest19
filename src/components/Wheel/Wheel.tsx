@@ -92,7 +92,7 @@ useEffect(() => {
             dispatch(ready());
           } else {
             setSpins(lastReward.amount); // Устанавливаем количество спинов по последней награде
-            if(lastReward.amount = 0)
+            if(!lastReward.amount)
             {
               dispatch(unready());
             } else {
