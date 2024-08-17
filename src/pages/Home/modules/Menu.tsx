@@ -113,7 +113,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                   <li onClick={() => onGamesOpen()}>
 
                      <img src="img/pages/home/menu/Farm21.png" alt="Farm" style={{width: "85px", height:"85px", border: '1px solid red'}} />
-                     <span className="textShadow textMenu1" style={{zIndex:'3', display: 'flex', position: 'absolute'
+                     <span className="textShadow textMenu1" style={{zIndex:'3', display: 'flex', position: 'absolute', bottom:'0'
                      }}>{t('apps')}</span>
 
                   </li>
