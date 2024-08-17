@@ -200,6 +200,7 @@ import { RootState } from "../../store";
 import { useAppSelector } from "../../store";
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
+import { useOutletContext } from 'react-router-dom';
 
 const cn = classNames.bind(styles);
 
@@ -215,8 +216,13 @@ interface User {
   referralsCount?: number; // Добавляем поле для количества рефералов
 }
 
+interface OutletContext {
+  friends: Friend[];
+}
 
-
+interface Friend extends User {
+  coinsEarned?: number;
+}
 
 const People = () => {
   const location = useLocation();
@@ -226,6 +232,7 @@ const People = () => {
   const user = useAppSelector((state: RootState) => state.user.user);
   const { t } = useTranslation();
   const currentLanguage = i18n.language;
+  const { friends } = useOutletContext<OutletContext>();
 
   useEffect(() => {
     const initData = window.Telegram.WebApp.initDataUnsafe;
@@ -300,7 +307,7 @@ const People = () => {
     <div className={cn("wrap")}>
       <div className={cn("people")}>
         <h2 className={`${cn("people__title")}` + " textShadow"}>
-          {users.length} {friendsLabel}
+          {friends.length} {friendsLabel}
         </h2>
         <Coins quantity={Math.round(user.totalEarnings).toString()} />
         <div className={cn("people__invite-btn")} onClick={() => navigate(Routes.INVITE)}>
