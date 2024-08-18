@@ -70,9 +70,11 @@ console.log(userId)
   const canAfford = userCoins >= coinPrice && coinId <= mostExpensiveCoinId + 1; // Проверяем, хватает ли монет
   let content;
 
-  const persentNumber = parseFloat(perсent); // Convert the percentage string to a number
+  // const persentNumber = parseFloat(perсent); // Convert the percentage string to a number
 
-  if (isBought && persentNumber >= 100) {
+  // if (isBought && persentNumber >= 100) {
+    if (isBought) {
+
     content = (
       <div className={cn("coinBlock")}>
         <div className={cn("coinBlock__left")}>
@@ -205,17 +207,7 @@ console.log(userId)
           </Button>
           )}
         </div>
-        <div className={cn("ligaBlockInfo__bottom")} style={{display: 'flex', position:'absolute', top:'65%', width: '70%',  left: '24%'}}>
-          <img src="img/ligaBlock/percent.svg" alt="" style={{}}/>
-          <div className={cn("ligaBlockInfo__percentWrap")}>
-         
-            <div
-              className={cn("ligaBlockInfo__percent")}
-              style={{ left:'2%',  width: `${perсent}%` }}
-            ></div>
-          
-          </div>
-        </div>
+
       </div>
     );
   }
