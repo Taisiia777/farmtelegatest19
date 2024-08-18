@@ -107,3 +107,76 @@
       padding-right: rem(10);
    }
 }
+
+
+
+.ligaBlock {
+   display: flex;
+   align-items: center;
+   gap: rem(15);
+   padding: 0 rem(20);
+   height: 100%;
+
+   &__info {
+      flex: 1 1 auto;
+   }
+
+   &__ligaImg {
+      width: rem(55);
+      object-fit: contain;
+   }
+
+}
+
+.ligaBlockInfo {
+   display: flex;
+   flex-direction: column;
+   gap: rem(17);
+
+   &__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+
+   &__ligaName {
+      font-size: rem(20);
+   }
+
+   &__btn {
+      display: flex;
+      align-items: center;
+      gap: rem(4);
+   }
+
+   &__bottom {
+      position: relative;
+      height: rem(19);
+
+      &>img {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+      }
+   }
+
+   &__percentWrap {
+      position: absolute;
+      top: rem(2.5);
+      bottom: rem(3.3);
+      left: rem(3);
+      right: rem(3);
+   }
+
+   &__percent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-width: 100%;
+      background: linear-gradient(#FFF34A 20%, #FF7C18 85%, #FFC000 100%);
+      border-radius: rem(20);
+   }
+}
