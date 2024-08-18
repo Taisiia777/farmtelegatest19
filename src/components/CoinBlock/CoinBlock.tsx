@@ -262,7 +262,7 @@ console.log(userId)
             />
           )}
         </div>
-        <div className={cn("ligaBlockInfo__bottom")} style={{display: 'flex', position:'absolute', top:'65%', width: '65%',  left: '0'}}>
+        <div className={cn("ligaBlockInfo__bottom")} style={{display: 'flex', position:'absolute', top:'65%', width: '65%',  left: '30%'}}>
           <img src="img/ligaBlock/percent.svg" alt="" style={{}}/>
           <div className={cn("ligaBlockInfo__percentWrap")}>
          
