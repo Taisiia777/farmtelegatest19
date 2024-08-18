@@ -436,9 +436,9 @@ const Home = () => {
   
       fetchData(); // Initial fetch on component mount
   
-      const interval = setInterval(fetchData, 10000); // Fetch every 2 seconds
+      // const interval = setInterval(fetchData, 2000); // Fetch every 2 seconds
       
-      return () => clearInterval(interval); // Clean up interval on component unmount
+      // return () => clearInterval(interval); // Clean up interval on component unmount
   
     }, [dispatch]); // Add other dependencies if needed
 
