@@ -257,17 +257,6 @@ console.log(userId)
             />
           )}
         </div>
-        <div className={cn("ligaBlockInfo__bottom")}>
-          <img src="img/ligaBlock/percent.svg" alt="" />
-          <div className={cn("ligaBlockInfo__percentWrap")}>
-         
-            <div
-              className={cn("ligaBlockInfo__percent")}
-              style={{ width: `5%` }}
-            ></div>
-          
-          </div>
-        </div>
       </div>
     );
   } else if (isBlocked) {
@@ -300,17 +289,6 @@ console.log(userId)
               src="img/global/person-btn.svg"
               alt="Invite"
             />
-          </div>
-        </div>
-        <div className={cn("ligaBlockInfo__bottom")}>
-          <img src="img/ligaBlock/percent.svg" alt="" />
-          <div className={cn("ligaBlockInfo__percentWrap")}>
-         
-            <div
-              className={cn("ligaBlockInfo__percent")}
-              style={{ width: `5%` }}
-            ></div>
-          
           </div>
         </div>
       </div>
@@ -358,17 +336,7 @@ console.log(userId)
           </Button>
           )}
         </div>
-        <div className={cn("ligaBlockInfo__bottom")}>
-          <img src="img/ligaBlock/percent.svg" alt="" />
-          <div className={cn("ligaBlockInfo__percentWrap")}>
-         
-            <div
-              className={cn("ligaBlockInfo__percent")}
-              style={{ width: `5%` }}
-            ></div>
-          
-          </div>
-        </div>
+        
       </div>
     );
   }
