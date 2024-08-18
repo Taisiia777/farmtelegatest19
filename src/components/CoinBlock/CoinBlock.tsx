@@ -231,14 +231,14 @@ console.log(userId)
           <div className={cn("coinBlock__info")}>
             <h3 className="textShadow" style={{display: 'flex', position:'absolute', top:'20%',}}>{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
-              <span style={{display: 'flex', position:'absolute', top:'50%',}}>level 1</span>
+              <span style={{display: 'flex', position:'absolute', top:'50%', border:'1px solid red'}}>level 1</span>
               
             </div>
             {/* <div className={cn("coinBlock__earning")}>
               <span>{coinName==="Bitcoin"? 1000 : earning} / {t(`h`)}</span>
               <img src="img/coins/FarmCoin.svg" alt="Energy" />
             </div> */}
-            <div className={cn("ligaBlockInfo__bottom")} style={{display: 'flex', position:'absolute', top:'80%',}}>
+            <div className={cn("ligaBlockInfo__bottom")} style={{display: 'flex', position:'absolute', top:'80%', width: '50%'}}>
           <img src="img/ligaBlock/percent.svg" alt="" />
           <div className={cn("ligaBlockInfo__percentWrap")}>
          
