@@ -218,31 +218,59 @@ console.log(userId)
   }
   const canAfford = userCoins >= coinPrice && coinId <= mostExpensiveCoinId + 1; // Проверяем, хватает ли монет
   let content;
-  console.log(isActive)
+
   if (isBought) {
     content = (
       <div className={cn("coinBlock")}>
         <div className={cn("coinBlock__left")}>
           <img
             className={cn("coinBlock__coin")}
-            src={coinName ? `video/${coinName}.gif` : `video/Bitcoin.gif`}
+            src={coinName? `video/${coinName}.gif` : `video/Bitcoin.gif`}
             alt=""
           />
           <div className={cn("coinBlock__info")}>
             <h3 className="textShadow">{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
-              <span>{coinName === "Bitcoin" ? "1000" : earning} / {t(`h`)}</span>
+              <span>level 1</span>
+              
             </div>
-            <div className={cn("coinBlock__progress")}>
-              <div
-                className={cn("coinBlock__progressBar")}
-                style={{ width: '50%' }} // Adjust width dynamically based on progress
-              ></div>
-            </div>
+            {/* <div className={cn("coinBlock__earning")}>
+              <span>{coinName==="Bitcoin"? 1000 : earning} / {t(`h`)}</span>
+              <img src="img/coins/FarmCoin.svg" alt="Energy" />
+            </div> */}
+            <div className={cn("ligaBlockInfo__bottom")}>
+          <img src="img/ligaBlock/percent.svg" alt="" />
+          <div className={cn("ligaBlockInfo__percentWrap")}>
+         
+            <div
+              className={cn("ligaBlockInfo__percent")}
+              style={{ width: `5%` }}
+            ></div>
+          
           </div>
         </div>
-        <div className={cn("coinBlock__right")}>
-          <button className={cn("coinBlock__upgradeButton")}>Upgrade</button>
+          </div>
+        </div>
+        <div
+          className={cn("coinBlock__right")}
+          style={{
+            height: "45px",
+            paddingRight: "23.5px",
+          }}
+        >
+          {isActive ? (
+            <img
+              src="img/global/checkbox/green.svg"
+              className={cn("boost__checkbox")}
+              alt="Bought"
+            />
+          ) : (
+            <img
+              src="img/global/checkbox/grey.svg"
+              className={cn("boost__checkbox")}
+              alt="Bought"
+            />
+          )}
         </div>
       </div>
     );
