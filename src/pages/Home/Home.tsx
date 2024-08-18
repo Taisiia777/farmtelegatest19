@@ -56,7 +56,11 @@ import DailyBonus from "../../components/DailyBonus/DailyBonus";
 type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond" ; // Определение типа TLiga
 type TBoostName = 'mill' | 'drone' | 'minicar' | 'car-2' | 'car-3';
 type TGrowthStage = "first" | "second" | "third" | "fourth";
-
+interface UserCoin {
+  id: number;
+  name: string;
+  // Add other properties if necessary
+}
 type TCoin =
    | "Bitcoin"
    | "Ethereum"
@@ -756,6 +760,12 @@ const Home = () => {
         console.error('Error giving coin:', error);
       }
     }
+    const calculatePercent = (userCoins: UserCoin[] , coin: Coin) => {
+      const coinTypeCount = userCoins.filter(userCoin => userCoin.name === coin.name).length;
+      const totalCoins = 20 + coinTypeCount * 5; // Assuming total is 20 + arithmetic progression
+      return (coinTypeCount / totalCoins) * 100;
+    };
+    
    const renderCoins = () => {
       const getMostExpensiveCoin = (userCoins: Coin[]) => {
          if (userCoins.length === 0) return null;
@@ -772,7 +782,8 @@ const Home = () => {
         const isActive =  mostExpensiveCoin ? mostExpensiveCoin.id === coin.id : false;
         const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
         const hourlyIncome = 1000 + index * 100;
-       
+        const percent = calculatePercent(userCoins, coin);
+
         if(user){
         return (
           <CoinBlock
@@ -787,6 +798,8 @@ const Home = () => {
             coinId={coin.id} // Передача coinId
             isActive={isActive}
             mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
+            perсent={percent.toFixed(2)} // Passing calculated percentage
+
           />
         );
       }else{
@@ -801,6 +814,8 @@ const Home = () => {
             userCoins={0} // Передача количества монет пользователя
             coinId={coin.id} // Передача coinId
             mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
+            perсent={percent.toFixed(2)} // Passing calculated percentage
+
           />
       }
       });
