@@ -231,7 +231,7 @@ console.log(userId)
           <div className={cn("coinBlock__info")}>
             <h3 className="textShadow">{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
-              <span>level 1</span>
+              <span style={{display: 'flex', position:'absolute', top:'50%',}}>level 1</span>
               
             </div>
             {/* <div className={cn("coinBlock__earning")}>
