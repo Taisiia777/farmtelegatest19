@@ -70,7 +70,9 @@ console.log(userId)
   const canAfford = userCoins >= coinPrice && coinId <= mostExpensiveCoinId + 1; // Проверяем, хватает ли монет
   let content;
 
-  if (isBought) {
+  const persentNumber = parseFloat(perсent); // Convert the percentage string to a number
+
+  if (isBought && persentNumber >= 100) {
     content = (
       <div className={cn("coinBlock")}>
         <div className={cn("coinBlock__left")}>
