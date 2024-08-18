@@ -268,7 +268,7 @@ console.log(userId)
          
             <div
               className={cn("ligaBlockInfo__percent")}
-              style={{  width: `50%` }}
+              style={{ left:'3%',  width: `50%` }}
             ></div>
           
           </div>
