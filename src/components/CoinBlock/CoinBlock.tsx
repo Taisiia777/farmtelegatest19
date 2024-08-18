@@ -238,12 +238,12 @@ console.log(userId)
               <span>{coinName==="Bitcoin"? 1000 : earning} / {t(`h`)}</span>
               <img src="img/coins/FarmCoin.svg" alt="Energy" />
             </div> */}
-            <div className={cn("coinBlock__bottom")} >
+            <div className={cn("ligaBlockInfo__bottom")} style={{display: 'flex', position:'absolute', top:'80%',}}>
           <img src="img/ligaBlock/percent.svg" alt="" />
-          <div className={cn("coinBlock__percentWrap")}>
+          <div className={cn("ligaBlockInfo__percentWrap")}>
          
             <div
-              className={cn("coinBlock__percent")}
+              className={cn("ligaBlockInfo__percent")}
               style={{  width: `50%` }}
             ></div>
           
