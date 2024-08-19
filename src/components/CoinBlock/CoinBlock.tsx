@@ -59,6 +59,7 @@ console.log(userId)
  
 
   function openCoinBuyPopup() {
+    alert('2')
     dispatch(
       setCoinIfno({
         earning,
@@ -92,7 +93,7 @@ console.log(userId)
           <div className={cn("coinBlock__info")}>
             <h3 className="textShadow" style={{display: 'flex', position:'absolute', top:'20%',}}>{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
-              <span style={{display: 'flex', position:'absolute', top:'50%', border:'1px solid red', width:'100px'}}>level {level}</span>
+              <span style={{display: 'flex', position:'absolute', top:'50%', width:'100px'}}>level {level}</span>
               
             </div>
             {/* <div className={cn("coinBlock__earning")}>
