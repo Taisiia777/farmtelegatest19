@@ -439,7 +439,7 @@ const Home = () => {
       
       // return () => clearInterval(interval); // Clean up interval on component unmount
   
-    }, [dispatch]); // Add other dependencies if needed
+    }, []); // Add other dependencies if needed
 
 
     
@@ -636,7 +636,7 @@ const Home = () => {
       fetchUserBoosters();
       setIsFetchedBosstCoins(true)
        }
-    }, [user]);
+    }, [user, dispatch, coinState, boostState]);
 
     useEffect(() => {
       const fetchRewards = async () => {
@@ -760,6 +760,7 @@ const Home = () => {
    async function giveCoin() {
       try {
         const response = await axios.post(`https://coinfarm.club/api/coin/give/${user.id}/${coinState.info.coinId}`);
+
         dispatch(setUser({ ...user, coins: user.coins - coinState.info.price, coinsPerHour: coinState.info.earning}));
 
         console.log('Coin given:', response.data);
