@@ -1019,6 +1019,7 @@ const Home = () => {
     useEffect(() => {
       if (user?.xp && !isXpFetched) {
         setTimeout(() => {
+          alert(user.xp)
           setDisplayEarnings(user.xp);
           setIsXpFetched(true);
         }, 100); // Задержка, имитирующая время отображения алерта
