@@ -251,10 +251,8 @@ console.log(lastCoin)
   //   }
   // }
   async function recieveCoins() {
-    alert('1')
 
     if (user?.id && bonusAmount > 0) {
-      alert('2')
         await fetch(`https://coinfarm.club/api/daily-reward/give/${user.id}/${currentDay}`, {
           method: 'POST',
           headers: {
@@ -265,9 +263,10 @@ console.log(lastCoin)
   
 
           
-          alert('3')
           dispatch(setUser({
-            ...user
+            ...user,
+            coins: user.coins + 1000,
+            totalEarnings: user.totalEarnings + 1000
           })); // Обновляем данные пользователя в Redux
 
   
