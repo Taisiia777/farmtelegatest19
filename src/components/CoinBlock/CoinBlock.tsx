@@ -58,17 +58,31 @@ const CoinBlock = ({
 console.log(userId)
  
 
+  // function openCoinBuyPopup() {
+  //   dispatch(
+  //     setCoinIfno({
+  //       earning,
+  //       price,
+  //       name: coinName,
+  //       coinId: coinId
+  //     })
+  //   );
+  //   // giveCoin();
+  // }
   function openCoinBuyPopup() {
-    alert('2')
+    // Если монета куплена, рассчитываем цену с учетом уровня
+    const calculatedPrice = isBought 
+      ? Math.round(coinPrice * Math.pow(1.1, levelNumber - 1)) 
+      : coinPrice;
+  
     dispatch(
       setCoinIfno({
         earning,
-        price,
+        price: calculatedPrice.toString(),  // Передаем рассчитанную цену в виде строки
         name: coinName,
         coinId: coinId
       })
     );
-    // giveCoin();
   }
   const canAfford = userCoins >= coinPrice && coinId <= mostExpensiveCoinId + 1; // Проверяем, хватает ли монет
   const levelNumber = parseInt(level, 10); // Парсинг строки в число с основанием 10 (десятичная система)

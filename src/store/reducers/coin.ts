@@ -36,12 +36,10 @@ export const coinSlice = createSlice({
          }>
       ) => {
          state.info = action.payload;
-         alert("open")
 
          state.isOpen = true;
       },
       closeCoinBuyPopup: (state) => {
-         alert("close")
          state.isOpen = false;
       },
    },
