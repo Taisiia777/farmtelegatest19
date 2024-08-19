@@ -54,7 +54,7 @@ export interface UserState {
     xp: number;
     level: number;
     totalEarnings?: number;
-    grassEarnings: number; // Добавляем новое свойство
+    grassEarnings?: number; // Добавляем новое свойство
     coinsArray?: any; // Убедитесь, что coinsArray определен как массив Coin[]
 }
 

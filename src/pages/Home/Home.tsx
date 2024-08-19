@@ -1023,6 +1023,7 @@ const Home = () => {
         setTimeout(() => {
           setDisplayEarnings(user.xp);
           setIsXpFetched(true);
+          alert('2')
         }, 100); // Задержка, имитирующая время отображения алерта
        
       }
