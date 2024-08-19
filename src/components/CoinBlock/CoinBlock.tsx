@@ -71,6 +71,7 @@ console.log(userId)
   }
   const canAfford = userCoins >= coinPrice && coinId <= mostExpensiveCoinId + 1; // Проверяем, хватает ли монет
   const levelNumber = parseInt(level, 10); // Парсинг строки в число с основанием 10 (десятичная система)
+  const percentNumber = parseInt(perсent, 10); // Парсинг строки в число с основанием 10 (десятичная система)
 
   const canUpdate = userCoins >= coinPrice * Math.pow(1.1, levelNumber - 1);  
   let content;
@@ -108,13 +109,16 @@ console.log(userId)
             paddingRight: "23.5px",
           }}
         >
-                    {canUpdate ? (
+          { isActive ? (
+
+            <>
+                                {canUpdate && percentNumber <= 100 ? (
             <Button
             className={cn("coinBlock__price")}
             onClick={openCoinBuyPopup}
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-            <span>{coinPrice * Math.pow(1.1, levelNumber - 1)}</span>
+            <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber - 1))}</span>
           </Button>
           ) : (
             <Button
@@ -122,10 +126,15 @@ console.log(userId)
             disabled={!canUpdate} // Делаем кнопку неактивной, если монет недостаточно
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-            <span>{coinPrice * Math.pow(1.1, levelNumber - 1)}</span>
+            <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber - 1))}</span>
           </Button>
           )}
-          {isActive ? (
+            
+            </>
+
+          ): (
+            <>
+            {percentNumber >= 100 ? (
             <img
               src="img/global/checkbox/green.svg"
               className={cn("boost__checkbox")}
@@ -138,6 +147,12 @@ console.log(userId)
               alt="Bought"
             />
           )}
+            </>
+          )
+            
+          }
+
+
         </div>
         <div className={cn("ligaBlockInfo__bottom")} style={{display: 'flex', position:'absolute', top:'65%', width: '70%',  left: '24%'}}>
           <img src="img/ligaBlock/percent.svg" alt="" style={{}}/>
