@@ -664,7 +664,7 @@ const Home = () => {
       };
    fetchRewards()
       
-   }, [user]);
+   }, []);
     const getActiveBoosterIds = (): number[] => {
       return boosters
         .filter(booster => {
@@ -1047,7 +1047,7 @@ const Home = () => {
             console.error('Error fetching rewards:', error);
           });
       // }
-    }, [user]);
+    }, []);
 
     
     const checkRainReward = (rewards: Reward[]) => {
