@@ -112,7 +112,7 @@ console.log(userId)
         >
           { isActive ? (
 
-            <>
+            <div id="buyCoin1">
                                 {canUpdate && percentNumber <= 100 ? (
             <Button
             className={cn("coinBlock__price")}
@@ -131,7 +131,7 @@ console.log(userId)
           </Button>
           )}
             
-            </>
+            </div>
 
           ): (
             <>
@@ -142,11 +142,12 @@ console.log(userId)
               alt="Bought"
             />
           ) : (
-            <>
+            <div id="buyCoin2">
             {canUpdate && percentNumber <= 100 ? (
 <Button
 className={cn("coinBlock__price")}
 onClick={openCoinBuyPopup}
+
 >
 <CoinWhiteBg size="small" iconName={"Bitcoin"} />
 <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber - 1))}</span>
@@ -161,7 +162,7 @@ disabled={!canUpdate} // Делаем кнопку неактивной, есл�
 </Button>
 )}
 
-</>
+</div>
           )}
             </>
           )

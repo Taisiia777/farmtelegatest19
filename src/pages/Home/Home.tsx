@@ -274,7 +274,7 @@ const Home = () => {
    const coinMoneyAnimRef = useRef<HTMLImageElement>(null);
    const coinBuyRef = useOutsideClick(
       () => dispatch(closeCoinBuyPopup()),
-      ["#buyCoin"]
+      ["#buyCoin", "#buyCoin1", "#buyCoin2"]
    );
 
    // True если хотя бы один попап открыт
