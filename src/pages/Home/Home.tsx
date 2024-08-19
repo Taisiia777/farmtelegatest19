@@ -1099,6 +1099,7 @@ const Home = () => {
           dispatch(growAllToMax());
           setEnergyPopupOpen(false);
           setIsRainAnim(true);
+          setIsFetchedRewards1(false)
           setTimeout(() => setIsRainAnim(false), 5000);
         } catch (error) {
         console.error('Error sending rain reward request:', error);
