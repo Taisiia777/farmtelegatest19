@@ -169,6 +169,7 @@ const Home = () => {
    const [currentRainProgress, setCurrentRainProgress] = useState(0);
    const [isFetchedRewards, setIsFetchedRewards] = useState(false);
    const [isFetchedRewards1, setIsFetchedRewards1] = useState(false);
+   const [isFetchedBosstCoins, setIsFetchedBosstCoins] = useState(false);
    const [tasks, setTasks] = useState<Task[]>([]);
    const [rainInterval, setRainInterval] = useState(0);
    const lastUpdateRef = useRef(Date.now());
@@ -581,6 +582,7 @@ const Home = () => {
     };
  
     useEffect(() => {
+      
       const fetchBoosters = async () => {
         try {
           const response = await fetch("https://coinfarm.club/api/booster");
@@ -629,12 +631,15 @@ const Home = () => {
            }
          }
        };
-     
+       if (user?.id && !isFetchedBosstCoins) {
+
        fetchCoins();
        fetchUserCoins();
       fetchBoosters();
       fetchUserBoosters();
-    }, []);
+      setIsFetchedBosstCoins(true)
+       }
+    }, [user]);
 
     useEffect(() => {
       const fetchRewards = async () => {
