@@ -1,5 +1,5 @@
 import { RefObject, useRef, useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch} from "react-redux";
 import { setUser } from "../../store/reducers/userSlice";
 import { RootState } from "../../store";
@@ -138,7 +138,7 @@ interface Friend extends User {
 
 
 const Home = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
    const dispatch = useDispatch();
    const { width } = useWindowSize();
@@ -164,7 +164,7 @@ const Home = () => {
    const [currentGrassEarnings, setCurrentGrassEarnings] = useState(initialGrassEarnings);
    const [displayEarnings, setDisplayEarnings] = useState(0);
    const [userXp, setUserXp] = useState(0); // Состояние для проверки наличия награды "first"
-  //  const [isXpFetched, setIsXpFetched] = useState(false);
+   const [isXpFetched, setIsXpFetched] = useState(false);
    const [isRainAnim, setIsRainAnim] = useState(false);
    const [currentRainProgress, setCurrentRainProgress] = useState(0);
    const [isFetchedRewards, setIsFetchedRewards] = useState(false);
@@ -959,7 +959,12 @@ const Home = () => {
           }
     
           setCurrentGrassEarnings(newGrassEarnings);
-          
+          dispatch(setUser({
+            ...user,
+            xp: newGrassEarnings,
+            grassEarnings: newGrassEarnings
+          })); // Обновляем данные пользователя в Redux
+          alert(JSON.stringify(user.xp))
           setDisplayEarnings(prev => {
             let newDecrementAmount = 0;
             let newEarnings = prev;
@@ -974,11 +979,7 @@ const Home = () => {
     
           console.log("Final current grass earnings:", newGrassEarnings);
           console.log("Total decrement amount:", totalDecrementAmount);
-          dispatch(setUser({
-            ...user,
-            xp: newGrassEarnings,
-            grassEarnings: newGrassEarnings
-          })); // Обновляем данные пользователя в Redux
+         
         } else {
           // Если все блоки имеют стадию "first", начисляем текущее значение прогресбара пользователю и сбрасываем его в ноль
           dispatch(setUser({
@@ -1016,16 +1017,16 @@ const Home = () => {
     };
   
     // Этот useEffect устанавливает начальное значение displayEarnings из user.xp при первом рендере
-    // useEffect(() => {
-    //   if (user?.xp && !isXpFetched) {
-    //     setTimeout(() => {
-    //       alert(user.xp)
-    //       setDisplayEarnings(user.xp);
-    //       setIsXpFetched(true);
-    //     }, 100); // Задержка, имитирующая время отображения алерта
+    useEffect(() => {
+      if (user?.xp && !isXpFetched) {
+        setTimeout(() => {
+          alert(user.xp)
+          setDisplayEarnings(user.xp);
+          setIsXpFetched(true);
+        }, 100); // Задержка, имитирующая время отображения алерта
        
-    //   }
-    // }, [blocks, navigate]);
+      }
+    }, [blocks, navigate]);
   
     // useEffect(() => {
     //   const interval = setInterval(() => {
