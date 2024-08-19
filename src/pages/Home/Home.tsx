@@ -829,14 +829,13 @@ const Home = () => {
           );
           const updatedUser = response.data;
           // Обновление состояния пользователя
-          dispatch(
-            setUser({
-              ...updatedUser,
-              coins: parseFloat(updatedUser.coins),
-              totalEarnings: parseFloat(updatedUser.totalEarnings),
-            })
-          );
-          alert(updatedUser.xp)
+          // dispatch(
+          //   setUser({
+          //     ...updatedUser,
+          //     coins: parseFloat(updatedUser.coins),
+          //     totalEarnings: parseFloat(updatedUser.totalEarnings),
+          //   })
+          // );
           console.log("Coins updated successfully:", updatedUser); // Лог успешного обновления монет
         } catch (error) {
           console.error("Error updating user coins:", error);
@@ -959,6 +958,7 @@ const Home = () => {
           }
     
           setCurrentGrassEarnings(newGrassEarnings);
+          alert(newGrassEarnings)
           setDisplayEarnings(prev => {
             let newDecrementAmount = 0;
             let newEarnings = prev;
