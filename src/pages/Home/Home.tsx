@@ -821,7 +821,7 @@ const Home = () => {
             isBought={isBought}
             isBlocked={isBlocked}
             userId={user.id} // Передача userId
-            userCoins={0} // Передача количества монет пользователя
+            userCoins={0} // Передача количества монет пользователяs
             coinId={coin.id} // Передача coinId
             mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
             perсent={percent.toFixed(2)} // Passing calculated percentage
