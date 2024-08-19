@@ -394,7 +394,7 @@ const Home = () => {
                   coins: 0,
                   totalEarnings: 0,
                   incomeMultiplier: 1,
-                  coinsPerHour: 1000,
+                  coinsPerHour: 0,
                   xp: 1000,
                   level: 0,
                   referralCode: referralCode,
