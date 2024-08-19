@@ -959,6 +959,11 @@ const Home = () => {
           }
     
           setCurrentGrassEarnings(newGrassEarnings);
+          dispatch(setUser({
+            ...user,
+            xp: newGrassEarnings,
+            grassEarnings: newGrassEarnings
+          })); // Обновляем данные пользователя в Redux
           setDisplayEarnings(prev => {
             let newDecrementAmount = 0;
             let newEarnings = prev;
@@ -966,11 +971,6 @@ const Home = () => {
               const decrementAmount = newEarnings / nonFirstStageCount;
               newDecrementAmount += decrementAmount;
               newEarnings = Math.max(Math.round(newEarnings - decrementAmount), 0);
-              dispatch(setUser({
-                ...user,
-                xp: newDecrementAmount,
-                grassEarnings: newEarnings
-              })); // Обновляем данные пользователя в Redux
             }
             updateCoins(newDecrementAmount);  // Начислить монеты пользователю
             return newEarnings;
@@ -981,15 +981,15 @@ const Home = () => {
           
         } else {
           // Если все блоки имеют стадию "first", начисляем текущее значение прогресбара пользователю и сбрасываем его в ноль
+          dispatch(setUser({
+            ...user,
+            xp: 0,
+            grassEarnings: 0
+          })); // Обновляем данные пользователя в Redux
           setDisplayEarnings(prev => {
             const currentEarnings = prev;
             updateCoins(currentEarnings);  // Начислить текущее значение прогресбара пользователю
             setCurrentGrassEarnings(0);
-            dispatch(setUser({
-              ...user,
-              xp: 0,
-              grassEarnings: 0
-            })); // Обновляем данные пользователя в Redux
             return 0;
           });
         }
