@@ -959,11 +959,7 @@ const Home = () => {
           }
     
           setCurrentGrassEarnings(newGrassEarnings);
-          dispatch(setUser({
-            ...user,
-            xp: newGrassEarnings,
-            grassEarnings: newGrassEarnings
-          })); // Обновляем данные пользователя в Redux
+          
           setDisplayEarnings(prev => {
             let newDecrementAmount = 0;
             let newEarnings = prev;
@@ -978,7 +974,11 @@ const Home = () => {
     
           console.log("Final current grass earnings:", newGrassEarnings);
           console.log("Total decrement amount:", totalDecrementAmount);
-          
+          dispatch(setUser({
+            ...user,
+            xp: newGrassEarnings,
+            grassEarnings: newGrassEarnings
+          })); // Обновляем данные пользователя в Redux
         } else {
           // Если все блоки имеют стадию "first", начисляем текущее значение прогресбара пользователю и сбрасываем его в ноль
           dispatch(setUser({
