@@ -836,7 +836,7 @@ const Home = () => {
               totalEarnings: parseFloat(updatedUser.totalEarnings),
             })
           );
-    
+          alert(updatedUser.xp)
           console.log("Coins updated successfully:", updatedUser); // Лог успешного обновления монет
         } catch (error) {
           console.error("Error updating user coins:", error);
