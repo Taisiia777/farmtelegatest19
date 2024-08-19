@@ -125,7 +125,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
         dispatch(updateGrassEarnings(grassEarnings));
         
         console.log('Новое значение прибыли: ', grassEarnings);
-      }, (1000 * 60) / 45);
+      }, (1000 * 60) / 3);
 
       const overallStageInterval = setInterval(() => {
         // Обновляем стадию роста всех блоков одновременно до текущей стадии
@@ -134,7 +134,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
             dispatch(changeGrowthStage({ id: block.id }));
           }
         });
-      }, (1000 * 60) / 5);
+      }, (1000 * 60));
 
       return () => {
         clearInterval(blockInterval);
