@@ -824,7 +824,8 @@ const Home = () => {
     const updateCoins = async (amount: number) => {
       if (user) {
         try {
-          updateXP(user.xp-amount)
+          await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${user.xp-amount}`);
+
           const response = await axios.patch(
             `https://coinfarm.club/api/user/${user.id}/earn/${amount}`
           );
