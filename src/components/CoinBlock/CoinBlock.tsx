@@ -70,6 +70,9 @@ console.log(userId)
     // giveCoin();
   }
   const canAfford = userCoins >= coinPrice && coinId <= mostExpensiveCoinId + 1; // Проверяем, хватает ли монет
+  const levelNumber = parseInt(level, 10); // Парсинг строки в число с основанием 10 (десятичная система)
+
+  const canUpdate = userCoins >= coinPrice * Math.pow(1.1, levelNumber - 1);  
   let content;
 
   // const persentNumber = parseFloat(perсent); // Convert the percentage string to a number
@@ -105,6 +108,23 @@ console.log(userId)
             paddingRight: "23.5px",
           }}
         >
+                    {canUpdate ? (
+            <Button
+            className={cn("coinBlock__price")}
+            onClick={openCoinBuyPopup}
+          >
+            <CoinWhiteBg size="small" iconName={"Bitcoin"} />
+            <span>{coinPrice * Math.pow(1.1, levelNumber - 1)}</span>
+          </Button>
+          ) : (
+            <Button
+            className={cn("coinBlock__price")}
+            disabled={!canUpdate} // Делаем кнопку неактивной, если монет недостаточно
+          >
+            <CoinWhiteBg size="small" iconName={"Bitcoin"} />
+            <span>{coinPrice * Math.pow(1.1, levelNumber - 1)}</span>
+          </Button>
+          )}
           {isActive ? (
             <img
               src="img/global/checkbox/green.svg"
