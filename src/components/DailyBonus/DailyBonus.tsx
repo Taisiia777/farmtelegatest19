@@ -261,16 +261,15 @@ console.log(lastCoin)
           }
         });
   
-        if (!response.ok) {
-          throw new Error('Something went wrong');
-        } else {
+
           const updatedUser = await response.json();
+          alert(JSON.stringify(updatedUser))
           dispatch(setUser({
-            ...updatedUser,
+            ...user,
             coins: Number(updatedUser.coins),
             totalEarnings: Number(updatedUser.totalEarnings)
           })); // Обновляем данные пользователя в Redux
-        }
+
   
         // Обновляем currentDay для следующего бонуса
         let nextDay = currentDay + 1;
