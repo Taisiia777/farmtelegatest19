@@ -166,14 +166,15 @@ const Home = () => {
    const [currentRainProgress, setCurrentRainProgress] = useState(0);
    const [isFetchedRewards, setIsFetchedRewards] = useState(false);
    const [isFetchedRewards1, setIsFetchedRewards1] = useState(false);
-   const [isFetchedBosstCoins, setIsFetchedBosstCoins] = useState(false);
    const [tasks, setTasks] = useState<Task[]>([]);
    const [rainInterval, setRainInterval] = useState(0);
    const lastUpdateRef = useRef(Date.now());
   //  const [showQRCode, setShowQRCode] = useState(false);
    const [showGuide, setShowGuide] = useState(false);
    const { friends } = useOutletContext<OutletContext>();
-
+   const [isBoosterPurchased, setIsBoosterPurchased] = useState(false);
+   const [isCoinPurchased, setIsCoinPurchased] = useState(false);
+   
   // useWheatTrunctaion();
   // useHarvestAllWheat()
   console.log(mostExpensiveCoinName)
@@ -410,7 +411,7 @@ const Home = () => {
                 setGrassTotal(calculatedInHour);
                 setLevel(userData.level);
                 setMultiplier(userData.incomeMultiplier)
-               
+                setIsBoosterPurchased(!isBoosterPurchased)
               }else {
                 const newUser =  response.data;
                 const userLeagueIndex = newUser ? newUser.level : 0;
@@ -419,7 +420,9 @@ const Home = () => {
                 setGrassTotal(calculatedInHour);
                 setLevel(newUser.level);
                 dispatch(setUser(newUser));
-                setMultiplier(newUser.incomeMultiplier)                
+                setMultiplier(newUser.incomeMultiplier)   
+                setIsBoosterPurchased(!isBoosterPurchased)
+             
               }
             } catch (error) {
               console.error("Error:", error);
@@ -442,8 +445,8 @@ const Home = () => {
     }, []); // Add other dependencies if needed
 
 
-    
 
+    
 
 
 
@@ -628,15 +631,15 @@ const Home = () => {
            }
          }
        };
-       if (user?.id && !isFetchedBosstCoins) {
+       if (user?.id) {
 
        fetchCoins();
        fetchUserCoins();
       fetchBoosters();
       fetchUserBoosters();
-      setIsFetchedBosstCoins(true)
+      setIsCoinPurchased(!isCoinPurchased)
        }
-    }, [user, dispatch, coinState, boostState]);
+    }, [isCoinPurchased, isBoosterPurchased]);
 
     useEffect(() => {
       const fetchRewards = async () => {
@@ -689,7 +692,7 @@ const Home = () => {
                dispatch(setUser({ ...user, coins: user.coins - boostState.info.price, incomeMultiplier: user.incomeMultiplier + boostState.info.earning}));
                setMultiplier(user.incomeMultiplier + boostState.info.earning);
                console.log('Booster applied:', response.data);
-         
+              setIsBoosterPurchased(!isBoosterPurchased)
           }
       } catch (error) {
         console.error('Error applying booster:', error);
@@ -762,6 +765,7 @@ const Home = () => {
         const response = await axios.post(`https://coinfarm.club/api/coin/give/${user.id}/${coinState.info.coinId}`);
 
         dispatch(setUser({ ...user, coins: user.coins - coinState.info.price, coinsPerHour: coinState.info.earning}));
+        setIsCoinPurchased(!isCoinPurchased)
 
         console.log('Coin given:', response.data);
       } catch (error) {
