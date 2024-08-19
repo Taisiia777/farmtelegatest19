@@ -801,7 +801,7 @@ const Home = () => {
             isActive={isActive}
             mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
             perсent={percent.toFixed(2)} // Passing calculated percentage
-            level={coin.level}
+            level={coin.level.toString()}
 
           />
         );
@@ -818,7 +818,7 @@ const Home = () => {
             coinId={coin.id} // Передача coinId
             mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
             perсent={percent.toFixed(2)} // Passing calculated percentage
-            level={coin.level}
+            level={coin.level.toString()}
 
           />
       }

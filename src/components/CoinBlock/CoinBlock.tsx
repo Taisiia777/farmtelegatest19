@@ -24,7 +24,7 @@ interface ICoinBlockProps {
   userCoins: number;
   mostExpensiveCoinId: number;
   perсent: string;
-  level: number
+  level: string
 }
 
 const CoinBlock = ({
