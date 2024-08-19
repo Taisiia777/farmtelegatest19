@@ -831,6 +831,11 @@ const Home = () => {
       }
       });
     };
+    useEffect(() => {
+      // Здесь вызывается функция для ререндеринга монет
+      renderCoins();
+    }, [coinState]);
+    
     const updateCoins = async (amount: number) => {
       if (user) {
         try {
