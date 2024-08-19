@@ -80,7 +80,8 @@ console.log(userId)
         earning,
         price: calculatedPrice.toString(),  // Передаем рассчитанную цену в виде строки
         name: coinName,
-        coinId: coinId
+        coinId: coinId,
+        level: levelNumber
       })
     );
   }
