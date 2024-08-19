@@ -966,14 +966,14 @@ const Home = () => {
               const decrementAmount = newEarnings / nonFirstStageCount;
               newDecrementAmount += decrementAmount;
               newEarnings = Math.max(Math.round(newEarnings - decrementAmount), 0);
+              dispatch(setUser({
+                ...user,
+                xp: newDecrementAmount,
+                grassEarnings: newEarnings
+              })); // Обновляем данные пользователя в Redux
+              alert(JSON.stringify(user))
             }
             updateCoins(newDecrementAmount);  // Начислить монеты пользователю
-            dispatch(setUser({
-              ...user,
-              xp: newDecrementAmount,
-              grassEarnings: newDecrementAmount
-            })); // Обновляем данные пользователя в Redux
-            alert(JSON.stringify(user))
             return newEarnings;
           });
     
