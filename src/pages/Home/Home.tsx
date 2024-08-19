@@ -971,6 +971,7 @@ const Home = () => {
               ...user,
               xp: newDecrementAmount,
             })); // Обновляем данные пользователя в Redux
+            alert(JSON.stringify(user))
             return newEarnings;
           });
     
@@ -987,6 +988,7 @@ const Home = () => {
               ...user,
               xp: 0,
             })); // Обновляем данные пользователя в Redux
+            alert(JSON.stringify(user))
             return 0;
           });
         }
