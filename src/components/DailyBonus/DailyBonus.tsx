@@ -255,7 +255,6 @@ console.log(lastCoin)
 
     if (user?.id && bonusAmount > 0) {
       alert('2')
-      try {
         const response = await fetch(`https://coinfarm.club/api/daily-reward/give/${user.id}/${currentDay}`, {
           method: 'POST',
           headers: {
@@ -266,7 +265,7 @@ console.log(lastCoin)
   
 
           const updatedUser = await response.json();
-          alert(JSON.stringify(updatedUser))
+          alert('3')
           dispatch(setUser({
             ...user,
             coins: Number(updatedUser.coins),
@@ -287,9 +286,7 @@ console.log(lastCoin)
           setBonusAmount(0); // Если бонус для следующего дня не найден, устанавливаем бонус в 0
   
         }
-      } catch (error) {
-        console.error('Error:', error);
-      }
+      
   
       setMoneyAnimACtive(true);
       setTimeout(() => {
