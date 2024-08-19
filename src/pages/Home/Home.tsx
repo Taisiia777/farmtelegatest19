@@ -785,7 +785,7 @@ const Home = () => {
         const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
         const hourlyIncome = 1000 + index * 100;
         const percent = 50;
-
+        alert(JSON.stringify(coin))
         if(user){
         return (
           <CoinBlock
@@ -801,7 +801,7 @@ const Home = () => {
             isActive={isActive}
             mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
             perсent={percent.toFixed(2)} // Passing calculated percentage
-            level={coin.level.toString()}
+            level={'1'}
 
           />
         );
@@ -818,7 +818,7 @@ const Home = () => {
             coinId={coin.id} // Передача coinId
             mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
             perсent={percent.toFixed(2)} // Passing calculated percentage
-            level={coin.level.toString()}
+            level={'1'}
 
           />
       }
