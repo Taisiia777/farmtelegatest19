@@ -58,26 +58,39 @@ const CoinBlock = ({
 console.log(userId)
  
 
+
   // function openCoinBuyPopup() {
+  //   // Если монета куплена, рассчитываем цену с учетом уровня
+  //   const calculatedPrice = isBought 
+  //     ? Math.round(coinPrice * Math.pow(1.1, levelNumber)) 
+  //     : coinPrice;
+  
   //   dispatch(
   //     setCoinIfno({
   //       earning,
-  //       price,
+  //       price: calculatedPrice.toString(),  // Передаем рассчитанную цену в виде строки
   //       name: coinName,
-  //       coinId: coinId
+  //       coinId: coinId,
+  //       level: levelNumber
   //     })
   //   );
-  //   // giveCoin();
   // }
   function openCoinBuyPopup() {
-    // Если монета куплена, рассчитываем цену с учетом уровня
+    // Рассчитываем уровень дохода на основе уровня монеты
+    const baseEarning = parseInt(earning.replace(/\D/g, ''), 10); // Преобразуем доход в число
+  
+    // Если монета куплена, рассчитываем цену и доход с учетом уровня
     const calculatedPrice = isBought 
-      ? Math.round(coinPrice * Math.pow(1.1, levelNumber - 1)) 
+      ? Math.round(coinPrice * Math.pow(1.1, levelNumber)) 
       : coinPrice;
+  
+    const calculatedEarning = isBought
+      ? Math.round(baseEarning * Math.pow(1.1, levelNumber)) 
+      : baseEarning;
   
     dispatch(
       setCoinIfno({
-        earning,
+        earning: calculatedEarning.toString(),  // Передаем рассчитанный доход в виде строки
         price: calculatedPrice.toString(),  // Передаем рассчитанную цену в виде строки
         name: coinName,
         coinId: coinId,
@@ -85,6 +98,7 @@ console.log(userId)
       })
     );
   }
+  
   const canAfford = userCoins >= coinPrice && coinId <= mostExpensiveCoinId + 1; // Проверяем, хватает ли монет
   const levelNumber = parseInt(level, 10); // Парсинг строки в число с основанием 10 (десятичная система)
   const percentNumber = parseInt(perсent, 10); // Парсинг строки в число с основанием 10 (десятичная система)
