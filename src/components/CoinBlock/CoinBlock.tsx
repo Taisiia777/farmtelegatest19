@@ -141,11 +141,26 @@ console.log(userId)
               alt="Bought"
             />
           ) : (
-            <img
-              src="img/global/checkbox/grey.svg"
-              className={cn("boost__checkbox")}
-              alt="Bought"
-            />
+            <>
+            {canUpdate && percentNumber <= 100 ? (
+<Button
+className={cn("coinBlock__price")}
+onClick={openCoinBuyPopup}
+>
+<CoinWhiteBg size="small" iconName={"Bitcoin"} />
+<span>{Math.round(coinPrice * Math.pow(1.1, levelNumber - 1))}</span>
+</Button>
+) : (
+<Button
+className={cn("coinBlock__price")}
+disabled={!canUpdate} // Делаем кнопку неактивной, если монет недостаточно
+>
+<CoinWhiteBg size="small" iconName={"Bitcoin"} />
+<span>{Math.round(coinPrice * Math.pow(1.1, levelNumber - 1))}</span>
+</Button>
+)}
+
+</>
           )}
             </>
           )
