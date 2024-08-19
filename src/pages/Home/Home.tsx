@@ -169,6 +169,7 @@ const Home = () => {
    const [currentRainProgress, setCurrentRainProgress] = useState(0);
    const [isFetchedRewards, setIsFetchedRewards] = useState(false);
    const [isFetchedRewards1, setIsFetchedRewards1] = useState(false);
+   const [isFetchedRainRewards1, setIsFetchedRainRewards1] = useState(false);
    const [isFetchedBosstCoins, setIsFetchedBosstCoins] = useState(false);
    const [tasks, setTasks] = useState<Task[]>([]);
    const [rainInterval, setRainInterval] = useState(0);
@@ -1042,7 +1043,7 @@ const Home = () => {
     useEffect(() => {
       // if (energyPopupOpen) {
         // Step 1: Fetch rewards data
-        if (user?.id && !isFetchedRewards1) {
+        if (user?.id && !isFetchedRainRewards1) {
 
         axios.get(`https://coinfarm.club/api/reward/${user?.id}`)
           .then(response => {
@@ -1053,6 +1054,7 @@ const Home = () => {
           .catch(error => {
             console.error('Error fetching rewards:', error);
           });
+          setIsFetchedRainRewards1(true)
         }
       // }
     }, [user]);
