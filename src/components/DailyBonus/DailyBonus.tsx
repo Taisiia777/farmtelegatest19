@@ -92,7 +92,7 @@ console.log(lastCoin)
     };
 
     fetchRewards();
- }, [user]);
+ }, []);
  useEffect(() => {
   const fetchRewards = async () => {
     if (user?.id && !isFetchedRewards1) {

@@ -634,7 +634,7 @@ const Home = () => {
        fetchUserCoins();
       fetchBoosters();
       fetchUserBoosters();
-    }, [user]);
+    }, []);
 
     useEffect(() => {
       const fetchRewards = async () => {
@@ -1032,7 +1032,7 @@ const Home = () => {
 
       fetchRewards();
 }
-    }, [user]); // Depend on location and user ID
+    }, []); // Depend on location and user ID
 
     useEffect(() => {
       // if (energyPopupOpen) {
