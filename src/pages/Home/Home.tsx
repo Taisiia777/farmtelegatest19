@@ -757,6 +757,8 @@ const Home = () => {
    async function giveCoin() {
       try {
         const response = await axios.post(`https://coinfarm.club/api/coin/give/${user.id}/${coinState.info.coinId}`);
+        dispatch(setUser({ ...user, coins: user.coins - coinState.info.price}));
+
         console.log('Coin given:', response.data);
       } catch (error) {
         console.error('Error giving coin:', error);
