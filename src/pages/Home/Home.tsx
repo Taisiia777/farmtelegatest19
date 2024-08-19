@@ -775,6 +775,7 @@ const Home = () => {
            return currentCoin.cost > maxCoin.cost ? currentCoin : maxCoin;
          });
        };
+       alert(JSON.stringify(userCoins))
        const mostExpensiveCoin = getMostExpensiveCoin(userCoins);
        const sortedCoins = [...coins].sort((a, b) => a.id - b.id);
       return sortedCoins.map((coin, index) => {
