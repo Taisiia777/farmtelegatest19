@@ -634,7 +634,7 @@ const Home = () => {
        fetchUserCoins();
       fetchBoosters();
       fetchUserBoosters();
-    }, [user]);
+    }, [dispatch]);
 
     useEffect(() => {
       const fetchRewards = async () => {
@@ -852,59 +852,7 @@ const Home = () => {
       return blocks.filter(block => block.stage !== "first").length;
     };
     
-    // useEffect(() => {
-    //   const handleHarvest = (event: Event) => {
-    //     const customEvent = event as CustomEvent<number>;
-    //     const harvestedCount = customEvent.detail;
-    
-    //     // Получить количество блоков с несрезанными стадиями
-    //     const nonFirstStageCount = getNonFirstStageCount(blocks);
-    
-    //     console.log("Non-first stage count:", nonFirstStageCount);
-    //     console.log("Current grass earnings:", currentGrassEarnings);
-    //     console.log("Harvested count:", harvestedCount);
-    
-    //     if (nonFirstStageCount > 0) {
-    //       let totalDecrementAmount = 0;
-    //       let newGrassEarnings = currentGrassEarnings;
-    
-    //       for (let i = 0; i < harvestedCount; i++) {
-    //         const decrementAmount = newGrassEarnings / nonFirstStageCount;
-    //         console.log("Decrement amount:", decrementAmount);
-    
-    //         totalDecrementAmount += decrementAmount;
-    //         newGrassEarnings = Math.max(newGrassEarnings - decrementAmount, 0);
-    //       }
-    
-    //       setCurrentGrassEarnings(newGrassEarnings);
-    //       setDisplayEarnings(prev => {
-    //         const newDecrementAmount = (prev / nonFirstStageCount) * harvestedCount;
-    //         const newEarnings = Math.max(Math.round(prev - newDecrementAmount), 0);
-    //         updateCoins(newDecrementAmount);  // Начислить монеты пользователю
-    //         return newEarnings;
-    //       });
-    
-    //       console.log("Final current grass earnings:", newGrassEarnings);
-    //       console.log("Total decrement amount:", totalDecrementAmount);
-    //     } else {
-    //       // // Если все блоки имеют стадию "first", установим значения в ноль
-    //       // setCurrentGrassEarnings(0);
-    //       // setDisplayEarnings(0);
-    //       setDisplayEarnings(prev => {
-    //         const currentEarnings = prev;
-    //         updateCoins(currentEarnings);  // Начислить текущее значение прогресбара пользователю
-    //         setCurrentGrassEarnings(0);
-    //         return 0;
-    //       });
-    //     }
-    //   };
-    
-    //   document.addEventListener("harvest", handleHarvest);
-    
-    //   return () => {
-    //     document.removeEventListener("harvest", handleHarvest);
-    //   };
-    // }, [blocks, currentGrassEarnings, user]);
+
     
     useEffect(() => {
       const handleHarvest = () => {
@@ -1011,7 +959,6 @@ const Home = () => {
     useEffect(() => {
       if (user?.xp && !isXpFetched) {
         setTimeout(() => {
-          alert(user.xp)
           setDisplayEarnings(user.xp);
           setIsXpFetched(true);
         }, 100); // Задержка, имитирующая время отображения алерта
@@ -1019,36 +966,6 @@ const Home = () => {
       }
     }, [blocks, navigate]);
   
-    // useEffect(() => {
-    //   const interval = setInterval(() => {
-    //     setDisplayEarnings(prev => prev + (user?.coinsPerHour / 7200 || 0));
-    //   }, 1000);
-  
-    //   return () => clearInterval(interval);
-    // }, [user?.coinsPerHour]);
-  
-    // useEffect(() => {
-    //   const interval = setInterval(() => {
-    //     setDisplayEarnings(prevDisplayEarnings => {
-    //       const earningsIncrement = user?.coinsPerHour / 7200 || 0;
-    //       const newDisplayEarnings = prevDisplayEarnings + earningsIncrement;
-    
-    //       const maxEarnings = user?.coinsPerHour * user?.incomeMultiplier;
-    
-    //       if (newDisplayEarnings <= maxEarnings) {
-    //         updateXP(newDisplayEarnings);
-    //         setUserXp(newDisplayEarnings);
-    //         return newDisplayEarnings;
-    //       } else {
-    //         updateXP(maxEarnings);
-    //         setUserXp(maxEarnings);
-    //         return maxEarnings;
-    //       }
-    //     });
-    //   }, 1000);
-    
-    //   return () => clearInterval(interval);
-    // }, [user?.coinsPerHour, user?.incomeMultiplier]);
     
 
     useEffect(() => {
