@@ -90,6 +90,7 @@ interface Booster {
    name: TCoin;
    cost: number;
    hourlyIncome: number;
+   level: number
  }
 
  type Reward = {
@@ -775,7 +776,6 @@ const Home = () => {
            return currentCoin.cost > maxCoin.cost ? currentCoin : maxCoin;
          });
        };
-       alert(JSON.stringify(userCoins))
        const mostExpensiveCoin = getMostExpensiveCoin(userCoins);
        const sortedCoins = [...coins].sort((a, b) => a.id - b.id);
       return sortedCoins.map((coin, index) => {
@@ -801,6 +801,7 @@ const Home = () => {
             isActive={isActive}
             mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
             perсent={percent.toFixed(2)} // Passing calculated percentage
+            level={coin.level}
 
           />
         );
@@ -817,6 +818,7 @@ const Home = () => {
             coinId={coin.id} // Передача coinId
             mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
             perсent={percent.toFixed(2)} // Passing calculated percentage
+            level={coin.level}
 
           />
       }

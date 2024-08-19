@@ -24,6 +24,7 @@ interface ICoinBlockProps {
   userCoins: number;
   mostExpensiveCoinId: number;
   perсent: string;
+  level: number
 }
 
 const CoinBlock = ({
@@ -37,7 +38,8 @@ const CoinBlock = ({
   coinId,
   userCoins,
   mostExpensiveCoinId,
-  perсent
+  perсent,
+  level
 }: ICoinBlockProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -86,7 +88,7 @@ console.log(userId)
           <div className={cn("coinBlock__info")}>
             <h3 className="textShadow" style={{display: 'flex', position:'absolute', top:'20%',}}>{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
-              <span style={{display: 'flex', position:'absolute', top:'50%', border:'1px solid red', width:'100px'}}>level 1</span>
+              <span style={{display: 'flex', position:'absolute', top:'50%', border:'1px solid red', width:'100px'}}>level {level}</span>
               
             </div>
             {/* <div className={cn("coinBlock__earning")}>
