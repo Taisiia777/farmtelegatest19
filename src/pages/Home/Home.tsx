@@ -1042,6 +1042,8 @@ const Home = () => {
     useEffect(() => {
       // if (energyPopupOpen) {
         // Step 1: Fetch rewards data
+        if (user?.id && !isFetchedRewards1) {
+
         axios.get(`https://coinfarm.club/api/reward/${user?.id}`)
           .then(response => {
             setRewards(response.data);
@@ -1051,6 +1053,7 @@ const Home = () => {
           .catch(error => {
             console.error('Error fetching rewards:', error);
           });
+        }
       // }
     }, [user]);
 
