@@ -958,7 +958,6 @@ const Home = () => {
           }
     
           setCurrentGrassEarnings(newGrassEarnings);
-          alert(newGrassEarnings)
           setDisplayEarnings(prev => {
             let newDecrementAmount = 0;
             let newEarnings = prev;
@@ -968,6 +967,8 @@ const Home = () => {
               newEarnings = Math.max(Math.round(newEarnings - decrementAmount), 0);
             }
             updateCoins(newDecrementAmount);  // Начислить монеты пользователю
+            alert(newGrassEarnings)
+
             return newEarnings;
           });
     
