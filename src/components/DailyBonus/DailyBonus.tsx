@@ -82,6 +82,7 @@ console.log(lastCoin)
              } else {
                 const rewards = await response.json();
                 const hasFirstReward = rewards.some((reward: any) => reward.type === 'first');
+                dispatch(setUser({ ...user, coins: user.coins+2000, totalEarnings: user.totalEarnings+2000}));
                 setHasFirstReward(hasFirstReward);
                 setIsFetchedRewards(true)
              }
