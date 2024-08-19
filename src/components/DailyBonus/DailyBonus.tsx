@@ -251,7 +251,10 @@ console.log(lastCoin)
   //   }
   // }
   async function recieveCoins() {
+    alert('1')
+
     if (user?.id && bonusAmount > 0) {
+      alert('2')
       try {
         const response = await fetch(`https://coinfarm.club/api/daily-reward/give/${user.id}/${currentDay}`, {
           method: 'POST',
