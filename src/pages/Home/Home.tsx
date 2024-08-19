@@ -684,7 +684,7 @@ const Home = () => {
         
           if (user) {
                const response = await axios.post(`https://coinfarm.club/api/booster/apply/${user.id}/${boostState.info.boosterId}`);
-               dispatch({...user, coins: user.coins - boostState.info.price})
+               dispatch(setUser({ ...user, coins: user.coins - boostState.info.price}));
                console.log('Booster applied:', response.data);
          
           }
