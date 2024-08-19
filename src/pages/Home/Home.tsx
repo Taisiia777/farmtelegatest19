@@ -971,7 +971,6 @@ const Home = () => {
                 xp: newDecrementAmount,
                 grassEarnings: newEarnings
               })); // Обновляем данные пользователя в Redux
-              alert(JSON.stringify(user))
             }
             updateCoins(newDecrementAmount);  // Начислить монеты пользователю
             return newEarnings;
@@ -991,7 +990,6 @@ const Home = () => {
               xp: 0,
               grassEarnings: 0
             })); // Обновляем данные пользователя в Redux
-            alert(JSON.stringify(user))
             return 0;
           });
         }
@@ -1023,7 +1021,6 @@ const Home = () => {
         setTimeout(() => {
           setDisplayEarnings(user.xp);
           setIsXpFetched(true);
-          alert('2')
         }, 100); // Задержка, имитирующая время отображения алерта
        
       }
