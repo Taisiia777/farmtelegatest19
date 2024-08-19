@@ -787,16 +787,21 @@ const Home = () => {
         const userCoin = userCoins.find((userCoin) => userCoin.id === coin.id);
         const isBought = userCoins.some((userCoin) => userCoin.id === coin.id);
         const isActive =  mostExpensiveCoin ? mostExpensiveCoin.id === coin.id : false;
-        const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
         const hourlyIncome = 1000 + index * 100;
-        // Вычисляем количество уровней для текущей монеты
-    const totalLevels = 20 + index * 5; // 20 уровней для первой монеты, +5 за каждую следующую
+// Вычисляем количество уровней для текущей монеты
+const totalLevels = 20 + index * 5;
+const level = userCoin ? userCoin.level : 1;
+const percent = (level / totalLevels) * 100;
 
-    // Если монета куплена, получаем её уровень, иначе 1 по умолчанию
-    const level = userCoin ? userCoin.level : 1;
+// Проверяем, достиг ли предыдущий коин максимального уровня
+const previousCoin = sortedCoins[index - 1];
+const previousUserCoin = userCoins.find((userCoin) => userCoin.id === previousCoin?.id);
+const previousLevel = previousUserCoin ? previousUserCoin.level : 1;
+const previousTotalLevels = 20 + (index - 1) * 5;
+const previousMaxed = previousUserCoin && previousLevel >= previousTotalLevels;
 
-    // Вычисляем процент достижения
-    const percent = (level / totalLevels) * 100;
+// Блокируем монету, если предыдущая монета не достигла максимального уровня
+const isBlocked = index > 0 && !previousMaxed;
         if(user){
         return (
           <CoinBlock
