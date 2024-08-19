@@ -265,8 +265,8 @@ console.log(lastCoin)
           
           dispatch(setUser({
             ...user,
-            coins: user.coins + 1000,
-            totalEarnings: user.totalEarnings + 1000
+            coins: user.coins + bonusAmount,
+            totalEarnings: user.totalEarnings + bonusAmount
           })); // Обновляем данные пользователя в Redux
 
   
