@@ -1078,7 +1078,7 @@ const Home = () => {
             return maxEarnings;
           }
         });
-      }, 1000);
+      }, 3000);
   
       return () => {
         clearInterval(interval);
