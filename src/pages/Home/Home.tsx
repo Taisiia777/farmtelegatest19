@@ -441,7 +441,7 @@ const Home = () => {
       
       // return () => clearInterval(interval); // Clean up interval on component unmount
   
-    }, [user, dispatch]); // Add other dependencies if needed
+    }, [ dispatch]); // Add other dependencies if needed
 
 
     
