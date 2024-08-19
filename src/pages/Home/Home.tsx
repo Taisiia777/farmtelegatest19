@@ -824,18 +824,20 @@ const Home = () => {
     const updateCoins = async (amount: number) => {
       if (user) {
         try {
+          updateXP(user.xp-amount)
           const response = await axios.patch(
             `https://coinfarm.club/api/user/${user.id}/earn/${amount}`
           );
+          
           const updatedUser = response.data;
           // Обновление состояния пользователя
-          // dispatch(
-          //   setUser({
-          //     ...updatedUser,
-          //     coins: parseFloat(updatedUser.coins),
-          //     totalEarnings: parseFloat(updatedUser.totalEarnings),
-          //   })
-          // );
+          dispatch(
+            setUser({
+              ...updatedUser,
+              coins: parseFloat(updatedUser.coins),
+              totalEarnings: parseFloat(updatedUser.totalEarnings),
+            })
+          );
           console.log("Coins updated successfully:", updatedUser); // Лог успешного обновления монет
         } catch (error) {
           console.error("Error updating user coins:", error);
@@ -967,8 +969,6 @@ const Home = () => {
               newEarnings = Math.max(Math.round(newEarnings - decrementAmount), 0);
             }
             updateCoins(newDecrementAmount);  // Начислить монеты пользователю
-            alert(newGrassEarnings)
-
             return newEarnings;
           });
     
