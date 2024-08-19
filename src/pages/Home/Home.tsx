@@ -970,6 +970,7 @@ const Home = () => {
             dispatch(setUser({
               ...user,
               xp: newDecrementAmount,
+              grassEarnings: newDecrementAmount
             })); // Обновляем данные пользователя в Redux
             alert(JSON.stringify(user))
             return newEarnings;
@@ -987,6 +988,7 @@ const Home = () => {
             dispatch(setUser({
               ...user,
               xp: 0,
+              grassEarnings: 0
             })); // Обновляем данные пользователя в Redux
             alert(JSON.stringify(user))
             return 0;
