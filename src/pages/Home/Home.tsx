@@ -94,6 +94,7 @@ interface Booster {
    name: TCoin;
    cost: number;
    hourlyIncome: number;
+   level: number
  }
 
  type Reward = {
