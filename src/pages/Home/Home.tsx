@@ -114,6 +114,7 @@ interface Booster {
   coinsPerHour: number;
   xp: number;
   level: number;
+  grassEarnings: number
 }
 interface OutletContext {
   friends: Friend[];
