@@ -780,12 +780,19 @@ const Home = () => {
        const sortedCoins = [...coins].sort((a, b) => a.id - b.id);
       return sortedCoins.map((coin, index) => {
         // Проверка, куплена ли монета пользователем
+        const userCoin = userCoins.find((userCoin) => userCoin.id === coin.id);
         const isBought = userCoins.some((userCoin) => userCoin.id === coin.id);
         const isActive =  mostExpensiveCoin ? mostExpensiveCoin.id === coin.id : false;
         const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
         const hourlyIncome = 1000 + index * 100;
-        const percent = 50;
-        alert(JSON.stringify(coin))
+        // Вычисляем количество уровней для текущей монеты
+    const totalLevels = 20 + index * 5; // 20 уровней для первой монеты, +5 за каждую следующую
+
+    // Если монета куплена, получаем её уровень, иначе 1 по умолчанию
+    const level = userCoin ? userCoin.level : 1;
+
+    // Вычисляем процент достижения
+    const percent = (level / totalLevels) * 100;
         if(user){
         return (
           <CoinBlock
@@ -801,7 +808,7 @@ const Home = () => {
             isActive={isActive}
             mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
             perсent={percent.toFixed(2)} // Passing calculated percentage
-            level={'1'}
+            level={level.toString()}
 
           />
         );
@@ -818,7 +825,7 @@ const Home = () => {
             coinId={coin.id} // Передача coinId
             mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
             perсent={percent.toFixed(2)} // Passing calculated percentage
-            level={'1'}
+            level={level.toString()}
 
           />
       }
