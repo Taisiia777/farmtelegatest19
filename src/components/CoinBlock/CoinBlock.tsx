@@ -103,7 +103,7 @@ console.log(userId)
   const levelNumber = parseInt(level, 10); // Парсинг строки в число с основанием 10 (десятичная система)
   const percentNumber = parseInt(perсent, 10); // Парсинг строки в число с основанием 10 (десятичная система)
 
-  const canUpdate = userCoins >= coinPrice * Math.pow(1.1, levelNumber - 1);  
+  const canUpdate = userCoins >= coinPrice * Math.pow(1.1, levelNumber);  
   let content;
 
   // const persentNumber = parseFloat(perсent); // Convert the percentage string to a number
@@ -148,7 +148,7 @@ console.log(userId)
             onClick={openCoinBuyPopup}
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-            <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber - 1))}</span>
+            <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber))}</span>
           </Button>
           ) : (
             <Button
@@ -156,7 +156,7 @@ console.log(userId)
             disabled={!canUpdate} // Делаем кнопку неактивной, если монет недостаточно
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-            <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber - 1))}</span>
+            <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber))}</span>
           </Button>
           )}
             
@@ -179,7 +179,7 @@ onClick={openCoinBuyPopup}
 
 >
 <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-<span>{Math.round(coinPrice * Math.pow(1.1, levelNumber - 1))}</span>
+<span>{Math.round(coinPrice * Math.pow(1.1, levelNumber))}</span>
 </Button>
 ) : (
 <Button
@@ -187,7 +187,7 @@ className={cn("coinBlock__price")}
 disabled={!canUpdate} // Делаем кнопку неактивной, если монет недостаточно
 >
 <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-<span>{Math.round(coinPrice * Math.pow(1.1, levelNumber - 1))}</span>
+<span>{Math.round(coinPrice * Math.pow(1.1, levelNumber))}</span>
 </Button>
 )}
 

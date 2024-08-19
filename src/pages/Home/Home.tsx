@@ -834,7 +834,7 @@ const Home = () => {
     useEffect(() => {
       // Здесь вызывается функция для ререндеринга монет
       renderCoins();
-    }, [user]);
+    }, [user, coins, coinState]);
     
     const updateCoins = async (amount: number) => {
       if (user) {
