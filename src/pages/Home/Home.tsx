@@ -967,6 +967,10 @@ const Home = () => {
               newEarnings = Math.max(Math.round(newEarnings - decrementAmount), 0);
             }
             updateCoins(newDecrementAmount);  // Начислить монеты пользователю
+            dispatch(setUser({
+              ...user,
+              xp: newDecrementAmount,
+            })); // Обновляем данные пользователя в Redux
             return newEarnings;
           });
     
@@ -979,6 +983,10 @@ const Home = () => {
             const currentEarnings = prev;
             updateCoins(currentEarnings);  // Начислить текущее значение прогресбара пользователю
             setCurrentGrassEarnings(0);
+            dispatch(setUser({
+              ...user,
+              xp: 0,
+            })); // Обновляем данные пользователя в Redux
             return 0;
           });
         }
