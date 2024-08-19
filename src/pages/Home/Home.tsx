@@ -637,7 +637,6 @@ const Home = () => {
        fetchUserCoins();
       fetchBoosters();
       fetchUserBoosters();
-      setIsCoinPurchased(!isCoinPurchased)
        }
     }, [isCoinPurchased, isBoosterPurchased]);
 
