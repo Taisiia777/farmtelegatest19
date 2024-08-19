@@ -684,7 +684,7 @@ const Home = () => {
         
           if (user) {
                const response = await axios.post(`https://coinfarm.club/api/booster/apply/${user.id}/${boostState.info.boosterId}`);
-               dispatch(setUser({ ...user, coins: user.coins - boostState.info.price}));
+               dispatch(setUser({ ...user, coins: user.coins - boostState.info.price, incomeMultiplier: boostState.info.earning}));
                console.log('Booster applied:', response.data);
          
           }
@@ -757,7 +757,7 @@ const Home = () => {
    async function giveCoin() {
       try {
         const response = await axios.post(`https://coinfarm.club/api/coin/give/${user.id}/${coinState.info.coinId}`);
-        dispatch(setUser({ ...user, coins: user.coins - coinState.info.price}));
+        dispatch(setUser({ ...user, coins: user.coins - coinState.info.price, coinsPerHour: coinState.info.earning}));
 
         console.log('Coin given:', response.data);
       } catch (error) {
