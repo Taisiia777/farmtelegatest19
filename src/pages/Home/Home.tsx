@@ -1032,7 +1032,7 @@ const Home = () => {
 
       fetchRewards();
 }
-    }, []); // Depend on location and user ID
+    }, [user]); // Depend on location and user ID
 
     useEffect(() => {
       // if (energyPopupOpen) {
