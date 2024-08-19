@@ -439,7 +439,7 @@ const Home = () => {
       
       // return () => clearInterval(interval); // Clean up interval on component unmount
   
-    }, []); // Add other dependencies if needed
+    }, [boostState, coinState]); // Add other dependencies if needed
 
 
     
