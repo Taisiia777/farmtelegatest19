@@ -634,7 +634,7 @@ const Home = () => {
        fetchUserCoins();
       fetchBoosters();
       fetchUserBoosters();
-    }, [user]);
+    }, []);
 
     useEffect(() => {
       const fetchRewards = async () => {
