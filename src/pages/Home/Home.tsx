@@ -165,7 +165,6 @@ const Home = () => {
    const [isRainAnim, setIsRainAnim] = useState(false);
    const [currentRainProgress, setCurrentRainProgress] = useState(0);
    const [isFetchedRewards, setIsFetchedRewards] = useState(false);
-   const [isFetchedRewards1, setIsFetchedRewards1] = useState(false);
    const [tasks, setTasks] = useState<Task[]>([]);
    const [rainInterval, setRainInterval] = useState(0);
    const lastUpdateRef = useRef(Date.now());
@@ -1037,21 +1036,17 @@ const isBlocked = index > 0 && !previousMaxed;
     }, [user?.coinsPerHour, user?.incomeMultiplier]);
   
     useEffect(() => {
-      if (user?.id && !isFetchedRewards1) {
         const fetchRewards = async () => {
     try {
-      const response = await axios.get(`https://coinfarm.club/api/reward/${user?.id}`);
-      setRewards(response.data);
-      checkRainReward(response.data);
+      checkRainReward(rewards);
       console.log("check rain");
-      setIsFetchedRewards1(true)
     } catch (error) {
       console.error('Error fetching rewards:', error);
     }
   };
 
       fetchRewards();
-}
+
     }, [user]); // Depend on location and user ID
 
     useEffect(() => {
@@ -1114,7 +1109,6 @@ const isBlocked = index > 0 && !previousMaxed;
           dispatch(growAllToMax());
           setEnergyPopupOpen(false);
           setIsRainAnim(true);
-          setIsFetchedRewards1(false)
           setTimeout(() => setIsRainAnim(false), 5000);
         } catch (error) {
         console.error('Error sending rain reward request:', error);
