@@ -80,13 +80,12 @@ useEffect(() => {
         setUserIdNumber(userData.id);
         const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
         const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "wheel");
-        alert(JSON.stringify(wheelRewards))
         if (wheelRewards.length > 0) {
           const lastReward = wheelRewards[wheelRewards.length - 1];
           const lastRewardDate = new Date(lastReward.createdAt);
           const now = new Date();
           const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60);
-
+          alert(hoursSinceLastReward)
           if (hoursSinceLastReward > 1) {
             setSpins(userData.level + 1); // Обновляем количество спинов
             dispatch(ready());
