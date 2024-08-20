@@ -245,7 +245,7 @@ disabled={!canUpdate} // Делаем кнопку неактивной, есл�
         </div>
         <div className={cn("coinBlock__right")} id="buyCoin">
 
-          {canAfford ? (
+          {canAfford && !isBlocked ? (
             <Button
             className={cn("coinBlock__price")}
             onClick={openCoinBuyPopup}
