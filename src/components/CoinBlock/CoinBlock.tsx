@@ -147,11 +147,11 @@ console.log(userId)
             <Button
             className={cn("coinBlock__price")}
             onClick={() => {
-              if (coinId <= mostExpensiveCoinId) {
+            
                 openCoinBuyPopup();
-              }
+             
             }}
-            // disabled={true} 
+          
 
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
@@ -161,9 +161,7 @@ console.log(userId)
           ) : (
             <Button
             className={cn("coinBlock__price")}
-            // disabled={!canUpdate} // Делаем кнопку неактивной, если монет недостаточно
-            disabled={true} 
-
+            disabled={!canUpdate} // Делаем кнопку неактивной, если монет недостаточно
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
             <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber))}</span>
@@ -185,8 +183,13 @@ console.log(userId)
             {canUpdate && percentNumber <= 100 ? (
 <Button
 className={cn("coinBlock__price")}
-onClick={openCoinBuyPopup}
-
+// onClick={openCoinBuyPopup}
+onClick={() => {
+  if (coinId <= mostExpensiveCoinId) {
+    openCoinBuyPopup();
+  }
+}}
+disabled={coinId > mostExpensiveCoinId} 
 >
 <CoinWhiteBg size="small" iconName={"Bitcoin"} />
 <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber))}</span>
