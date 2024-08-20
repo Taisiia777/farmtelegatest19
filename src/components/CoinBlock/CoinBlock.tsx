@@ -145,7 +145,11 @@ console.log(userId)
                                 {canUpdate && percentNumber <= 100 ? (
             <Button
             className={cn("coinBlock__price")}
-            onClick={openCoinBuyPopup}
+            onClick={() => {
+              if (!isBlocked) {
+                openCoinBuyPopup();
+              }
+            }}
             disabled={isBlocked} 
 
           >
