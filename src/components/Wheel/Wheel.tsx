@@ -76,7 +76,7 @@ useEffect(() => {
         let userData;
         userData = userResponse.data;
 
-        
+        alert(JSON.stringify(userData))
         // Получаем награды пользователя
         const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
         const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "wheel");
