@@ -85,7 +85,7 @@ body {
    font-weight: 700;
    color: #fff;
    // overflow: hidden !important;
-   overflow-y: auto !important;
+   overflow-y: hidden !important;
    overflow-x: hidden !important;
    touch-action: none; /* Отключает жесты прокрутки и зумирования */
    user-select: none; /* Отключает выделение текста */
@@ -97,7 +97,7 @@ body {
 html {
    height: 100%;
    // overflow: hidden !important;
-   overflow-y: auto !important;
+   overflow-y: hidden !important;
    overflow-x: hidden !important;
    touch-action: none; /* Отключает жесты прокрутки и зумирования */
    user-select: none; /* Отключает выделение текста */

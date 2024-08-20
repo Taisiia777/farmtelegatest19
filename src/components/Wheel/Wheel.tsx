@@ -85,9 +85,9 @@ useEffect(() => {
           const lastReward = wheelRewards[wheelRewards.length - 1];
           const lastRewardDate = new Date(lastReward.createdAt);
           const now = new Date();
-          const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60 * 60);
+          const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60);
 
-          if (hoursSinceLastReward > 12) {
+          if (hoursSinceLastReward > 1) {
             setSpins(userData.level + 1); // Обновляем количество спинов
             dispatch(ready());
           } else {
@@ -170,48 +170,7 @@ const sendSpinUpdateRequest = async (spins: number) => {
 };
 
 
-// const spin = () => {
-//   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
-//   const sectorIndex = getRandomSector();
-//   const targetAngle = sectorIndex * sectorAngle;
-//   const spinsCount = Math.floor(Math.random() * 3) + 5; // случайное количество оборотов от 5 до 7
-//   const finalAngle = spinsCount * 360 + targetAngle;
 
-//   setSpins(prev => prev - 1);
-//   setIsSpinning(true);
-//   setRotation(finalAngle);
-
-//   setTimeout(() => {
-//     setIsSpinning(false);
-
-//     // Получаем финальный угол вращения
-//     const finalRotation = finalAngle % 360;
-//     // Определяем сектор на основе конечного угла
-//     const winningIndex = Math.floor(finalRotation / sectorAngle);
-//     const selectedSector = sectors[winningIndex];
-
-//     // Устанавливаем награду и выдаем её пользователю
-//     setReward(selectedSector.reward);
-//     giveUserReward(selectedSector.reward);
-
-//     if (selectedSector.name !== "Sector 8") {
-//       setShowConfetti(true);
-//       setTimeout(() => {
-//         setShowConfetti(false);
-//         setStep(3);
-//         setRotation(0);
-//       }, 2000);
-//     } else {
-//       setReward(0);
-//       setSpins(prev => prev + 1);
-//       setShowConfetti(true);
-//       setTimeout(() => {
-//         setShowConfetti(false);
-//         setRotation(0);
-//       }, 2000);
-//     }
-//   }, 5000);
-// };
 const spin = () => {
   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
 
