@@ -643,23 +643,12 @@ const Home = () => {
       const fetchRewards = async () => {
          if (user?.id && !isFetchedRewards) {
             try {
-               const response = await fetch(`https://coinfarm.club/api/reward/${user.id}`, {
-                  method: 'GET',
-                  headers: {
-                     'Content-Type': 'application/json',
-                     'Accept': 'application/json'
-                  }
-               });
-
-               if (!response.ok) {
-                  throw new Error('Something went wrong');
-               } else {
-                  const rewards = await response.json();
-                  // dispatch(setUserRewards1(rewards));
-                  const hasFirstReward = rewards.some((reward: any) => reward.type === 'first');
+              const response = await axios.get(`https://coinfarm.club/api/reward/${user?.id}`);
+                  const hasFirstReward = response.data.some((reward: any) => reward.type === 'first');
                   setIsFetchedRewards(true)
                   setHasFirstReward(hasFirstReward);
-               }
+                  setRewards(response.data);
+
             } catch (error) {
                console.error('Error:', error);
             }
@@ -1046,7 +1035,6 @@ const isBlocked = index > 0 && !previousMaxed;
   };
 
       fetchRewards();
-
     }, [user]); // Depend on location and user ID
 
     useEffect(() => {
