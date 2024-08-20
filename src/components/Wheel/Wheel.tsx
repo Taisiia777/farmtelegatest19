@@ -76,12 +76,11 @@ useEffect(() => {
         let userData;
         userData = userResponse.data;
 
-        alert(JSON.stringify(userData.id))
         // Получаем награды пользователя
         setUserIdNumber(userData.id);
         const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
         const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "wheel");
-
+        alert(JSON.stringify(wheelRewards))
         if (wheelRewards.length > 0) {
           const lastReward = wheelRewards[wheelRewards.length - 1];
           const lastRewardDate = new Date(lastReward.createdAt);
