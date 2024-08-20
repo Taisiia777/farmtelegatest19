@@ -82,7 +82,7 @@ useEffect(() => {
         const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "wheel");
         if (wheelRewards.length > 0) {
           const lastReward = wheelRewards[wheelRewards.length - 1];
-          const lastRewardDate = new Date(lastReward.createdAt);
+          const lastRewardDate = new Date(lastReward.description);
           const now = new Date();
           const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60);
           alert(hoursSinceLastReward)
