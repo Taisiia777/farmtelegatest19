@@ -1123,6 +1123,7 @@ const isBlocked = index > 0 && !previousMaxed;
           dispatch(growAllToMax());
           setEnergyPopupOpen(false);
           setIsRainAnim(true);
+          setCurrentRainProgress(0); // Если нет наград за дождь, то дождь доступен
           setTimeout(() => setIsRainAnim(false), 5000);
         } catch (error) {
         console.error('Error sending rain reward request:', error);
