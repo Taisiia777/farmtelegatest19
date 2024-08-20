@@ -148,12 +148,10 @@ console.log(userId)
             className={cn("coinBlock__price")}
             onClick={() => {
               if (coinId <= mostExpensiveCoinId) {
-                alert(coinId)
-                alert(mostExpensiveCoinId)
                 openCoinBuyPopup();
               }
             }}
-            disabled={coinId > mostExpensiveCoinId} 
+            disabled={true} 
 
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
