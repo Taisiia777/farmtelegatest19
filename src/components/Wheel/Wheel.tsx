@@ -162,6 +162,9 @@ const giveUserReward = async (reward: number) => {
 };
 const sendSpinUpdateRequest = async (spins: number) => {
   try {
+    if(spins === 0){
+      dispatch(unready());
+    }
     const response = await axios.post(`https://coinfarm.club/api/reward/wheel/${userIdNumber}/${spins}`);
     console.log("Spin update response:", response.data);
     return response.data;
