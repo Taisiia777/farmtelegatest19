@@ -153,7 +153,7 @@ console.log(userId)
           ) : (
             <Button
             className={cn("coinBlock__price")}
-            disabled={!canUpdate} // Делаем кнопку неактивной, если монет недостаточно
+            disabled={!canUpdate || isBlocked} // Делаем кнопку неактивной, если монет недостаточно
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
             <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber))}</span>
