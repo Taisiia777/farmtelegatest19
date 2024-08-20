@@ -148,6 +148,8 @@ console.log(userId)
             className={cn("coinBlock__price")}
             onClick={() => {
               if (coinId <= mostExpensiveCoinId) {
+                alert(coinId)
+                alert(mostExpensiveCoinId)
                 openCoinBuyPopup();
               }
             }}
