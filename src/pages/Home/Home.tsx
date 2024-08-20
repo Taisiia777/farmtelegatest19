@@ -761,15 +761,41 @@ const Home = () => {
     }
 
    const renderCoins = () => {
-      const getMostExpensiveCoin = (userCoins: Coin[]) => {
-         if (userCoins.length === 0) return null;
+      // const getMostExpensiveCoin = (userCoins: Coin[]) => {
+      //    if (userCoins.length === 0) return null;
        
-         return userCoins.reduce((maxCoin, currentCoin) => {
-           return currentCoin.cost > maxCoin.cost ? currentCoin : maxCoin;
-         });
-       };
-       const mostExpensiveCoin = getMostExpensiveCoin(userCoins);
-       const sortedCoins = [...coins].sort((a, b) => a.id - b.id);
+      //    return userCoins.reduce((maxCoin, currentCoin) => {
+      //      return currentCoin.cost > maxCoin.cost ? currentCoin : maxCoin;
+      //    });
+      //  };
+      const getMostExpensiveCoin = (userCoins: Coin[], sortedCoins: Coin[]): Coin | null => {
+        if (userCoins.length === 0) return null;
+    
+        return sortedCoins.reduce<Coin | null>((maxCoin, currentCoin, index) => {
+         
+    
+          // Проверяем, достиг ли предыдущий коин максимального уровня
+          const previousCoin = sortedCoins[index - 1];
+          const previousUserCoin = userCoins.find((userCoin) => userCoin.id === previousCoin?.id);
+          const previousLevel = previousUserCoin ? previousUserCoin.level : 1;
+          const previousTotalLevels = 20 + (index - 1) * 5;
+          const previousMaxed = previousUserCoin && previousLevel >= previousTotalLevels;
+    
+          // Блокируем монету, если предыдущая монета не достигла максимального уровня
+          const isBlocked = index > 0 && !previousMaxed;
+    
+          // Сравниваем только незаблокированные монеты
+          if (!isBlocked && (!maxCoin || currentCoin.cost > maxCoin.cost)) {
+            return currentCoin;
+          }
+    
+          return maxCoin;
+        }, null);
+      };
+    
+      const sortedCoins = [...coins].sort((a, b) => a.id - b.id);
+       const mostExpensiveCoin = getMostExpensiveCoin(userCoins, sortedCoins);
+      //  const sortedCoins = [...coins].sort((a, b) => a.id - b.id);
       return sortedCoins.map((coin, index) => {
         // Проверка, куплена ли монета пользователем
         const userCoin = userCoins.find((userCoin) => userCoin.id === coin.id);
