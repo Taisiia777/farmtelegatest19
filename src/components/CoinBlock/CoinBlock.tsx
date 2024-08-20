@@ -155,7 +155,7 @@ console.log(userId)
 
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-            {/* <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber))}</span> */}
+            <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber))}</span>
             <span>{isBlocked}</span>
 
           </Button>
