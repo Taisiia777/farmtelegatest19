@@ -33,7 +33,7 @@ const Wheel = () => {
    const [showConfetti, setShowConfetti] = useState(false);
    const [spins, setSpins] = useState(0);
    const [reward, setReward] = useState(0);
-  let userIdNumber = 0;
+   const [userIdNumber, setUserIdNumber] = useState(0);
 
 const sectors = [
   { name: "Sector 1", weight: 25, reward: 1000 },
@@ -75,9 +75,9 @@ useEffect(() => {
         let userData;
         userData = userResponse.data;
 
-        alert(JSON.stringify(userData))
+        alert(JSON.stringify(userData.id))
         // Получаем награды пользователя
-        userIdNumber = userData.id;
+        setUserIdNumber(userData.id);
         const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
         const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "wheel");
 
