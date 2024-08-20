@@ -151,7 +151,7 @@ console.log(userId)
                 openCoinBuyPopup();
               }
             }}
-            disabled={true} 
+            // disabled={true} 
 
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
@@ -161,7 +161,9 @@ console.log(userId)
           ) : (
             <Button
             className={cn("coinBlock__price")}
-            disabled={!canUpdate} // Делаем кнопку неактивной, если монет недостаточно
+            // disabled={!canUpdate} // Делаем кнопку неактивной, если монет недостаточно
+            disabled={true} 
+
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
             <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber))}</span>
