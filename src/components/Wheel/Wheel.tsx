@@ -15,7 +15,6 @@ import axios from "axios";
 import { setUser } from "../../store/reducers/userSlice";
 import { retrieveLaunchParams } from '@tma.js/sdk';
 
-import { RootState } from "../../store";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "../../routes/routes";
 
@@ -34,7 +33,7 @@ const Wheel = () => {
    const [showConfetti, setShowConfetti] = useState(false);
    const [spins, setSpins] = useState(0);
    const [reward, setReward] = useState(0);
-
+  let userIdNumber = 0;
 
 const sectors = [
   { name: "Sector 1", weight: 25, reward: 1000 },
@@ -78,6 +77,7 @@ useEffect(() => {
 
         alert(JSON.stringify(userData))
         // Получаем награды пользователя
+        userIdNumber = userData.id;
         const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
         const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "wheel");
 
@@ -116,7 +116,7 @@ useEffect(() => {
 useEffect(() => {
   // const user = useAppSelector((state: RootState) => state.user.user);
   if(isSpinning){
-    sendSpinUpdateRequest(2405, spins)
+    sendSpinUpdateRequest(spins)
   }
 }, [isSpinning]);
 // const getRandomSector = () => {
@@ -146,11 +146,10 @@ const getRandomSector = () => {
   return 0; // если что-то пойдет не так
 };
 const giveUserReward = async (reward: number) => {
-  const user = useAppSelector((state: RootState) => state.user.user);
 
   try {
       if (reward > 0) {
-          const response = await axios.patch(`https://coinfarm.club/api/user/${user.id}/earn/${reward}`);
+          const response = await axios.patch(`https://coinfarm.club/api/user/${userIdNumber}/earn/${reward}`);
           console.log(`Reward given: ${reward} coins`, response.data);
       } else if (reward === 0) {
           console.log("Special sector, no coins given.");
@@ -159,9 +158,9 @@ const giveUserReward = async (reward: number) => {
       console.error('Error awarding coins:', error);
   }
 };
-const sendSpinUpdateRequest = async (userId: number, spins: number) => {
+const sendSpinUpdateRequest = async (spins: number) => {
   try {
-    const response = await axios.post(`https://coinfarm.club/api/reward/wheel/${userId}/${spins}`);
+    const response = await axios.post(`https://coinfarm.club/api/reward/wheel/${userIdNumber}/${spins}`);
     console.log("Spin update response:", response.data);
     return response.data;
   } catch (error) {
