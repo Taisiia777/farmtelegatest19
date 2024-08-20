@@ -139,6 +139,7 @@ console.log(userId)
             paddingRight: "23.5px",
           }}
         >
+  
           { isActive && percentNumber < 100 ? (
 
             <div id="buyCoin1">
@@ -154,7 +155,9 @@ console.log(userId)
 
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-            <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber))}</span>
+            {/* <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber))}</span> */}
+                        <span>{isBlocked}</span>
+
           </Button>
           ) : (
             <Button
@@ -219,41 +222,7 @@ disabled={!canUpdate} // Делаем кнопку неактивной, есл�
         </div>
       </div>
     );
-  } else if (isBlocked) {
-    content = (
-      <div className={cn("coinBlock")}>
-        <div className={cn("coinBlock__left")}>
-          <img
-            className={cn("coinBlock__coin")}
-            src={coinName? `video/${coinName}.gif`: `video/Bitcoin.gif`}
-            alt=""
-          />
-          <div className={cn("coinBlock__info")}>
-            <h3 className="textShadow">{coinName}</h3>
-            <div className={cn("coinBlock__earning")}>
-            <span>{earning} / {t(`h`)}</span>
-            {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
-            </div>
-          </div>
-        </div>
-        {/* <div className={cn("coinBlock__right")}>
-          <div
-            className={cn("coinBlock__invate")}
-            style={{
-              paddingRight: "10px",
-            }}
-          >
-            <span>x10</span>
-            <img
-              onClick={() => navigate("/invite")}
-              src="img/global/person-btn.svg"
-              alt="Invite"
-            />
-          </div>
-        </div> */}
-      </div>
-    );
-  } else {
+  }  else {
     content = (
       <div className={cn("coinBlock")}>
         <div className={cn("coinBlock__left")}>
