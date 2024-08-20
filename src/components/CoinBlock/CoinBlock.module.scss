@@ -165,8 +165,8 @@
       position: absolute;
       top: rem(2.5);
       bottom: rem(3.3);
-      left: rem(3);
-      right: rem(3);
+      left: rem(0);
+      right: rem(0);
    }
 
    &__percent {
@@ -175,7 +175,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      max-width: 96%;
+      max-width: 100%;
       background: linear-gradient(#FFF34A 20%, #FF7C18 85%, #FFC000 100%);
       border-radius: rem(20);
    }
