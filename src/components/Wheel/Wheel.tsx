@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import axios from "axios";
 import { setUser } from "../../store/reducers/userSlice";
 import { retrieveLaunchParams } from '@tma.js/sdk';
-
+import { RootState } from "../../store";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "../../routes/routes";
 
@@ -24,6 +24,7 @@ const Wheel = () => {
    const dispatch = useAppDispatch();
    const isOpen = useAppSelector((state) => state.wheel.isOpen);
    const navigate = useNavigate();
+   const user = useAppSelector((state: RootState) => state.user.user);
 
    // Состояние прелоудреа
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
@@ -150,6 +151,7 @@ const giveUserReward = async (reward: number) => {
   try {
       if (reward > 0) {
           const response = await axios.patch(`https://coinfarm.club/api/user/${userIdNumber}/earn/${reward}`);
+          dispatch(setUser({ ...user, coins: user.coins+reward, totalEarnings: user.totalEarnings+reward}));
           console.log(`Reward given: ${reward} coins`, response.data);
       } else if (reward === 0) {
           console.log("Special sector, no coins given.");
