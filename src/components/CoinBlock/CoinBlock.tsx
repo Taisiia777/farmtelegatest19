@@ -277,7 +277,7 @@ disabled={!canUpdate} // Делаем кнопку неактивной, есл�
           ) : (
             <Button
             className={cn("coinBlock__price")}
-            disabled={!canAfford} // Делаем кнопку неактивной, если монет недостаточно
+            disabled={!canAfford || isBlocked} // Делаем кнопку неактивной, если монет недостаточно
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
             <span>{price}</span>
