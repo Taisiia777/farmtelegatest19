@@ -656,7 +656,7 @@ const Home = () => {
       };
    fetchRewards()
       
-   }, [user]);
+   }, [user, currentRainProgress]);
     const getActiveBoosterIds = (): number[] => {
       return boosters
         .filter(booster => {
@@ -1079,7 +1079,7 @@ const isBlocked = index > 0 && !previousMaxed;
           });
         }
       // }
-    }, [user]);
+    }, [user, currentRainProgress]);
 
     
     const checkRainReward = (rewards: Reward[]) => {
