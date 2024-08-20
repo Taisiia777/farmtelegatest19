@@ -106,5 +106,10 @@ html {
    -ms-content-zooming: none; /* Отключает зумирование в IE на Windows */
 }
 
+/* Стили для включения скролла на странице invite */
+body.invite-page, html.invite-page {
+   overflow-y: auto !important;
+   overflow-x: hidden !important;
+}
 
 @import './scss/globalStyles.scss'
