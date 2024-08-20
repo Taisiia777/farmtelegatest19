@@ -192,6 +192,7 @@ interface IFarmBlockProps {
   onHarvestAnimation: (blockId: number) => void;
 }
 interface Coin {
+  id: number;
   name: string;
   value: number;
   cost: number
@@ -211,15 +212,49 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league, harvestedBlo
   const [lastCoin, setLastCoin] = useState<Coin | null>(null);
   console.log(lastCoin)
   if (!farmBlock) return null;
+  // useEffect(() => {
+  //   const fetchUserCoins = async () => {
+  //     try {
+  //       // const response = await axios.get(`https://coinfarm.club/api/user/${user.id}/coins`);
+  //       // const coins = response.data;
+
+  //       if (coins.length > 0) {
+  //         const mostExpensiveCoin = coins.reduce((prev: Coin, current: Coin) => (prev.cost > current.cost ? prev : current));
+  //         setLastCoin(mostExpensiveCoin);
+  //       }
+  //     } catch (error) {
+  //       console.error('Failed to fetch user coins:', error);
+  //     }
+  //   };
+  
+  //   fetchUserCoins();
+  // }, [coins]);
   useEffect(() => {
     const fetchUserCoins = async () => {
       try {
-        // const response = await axios.get(`https://coinfarm.club/api/user/${user.id}/coins`);
-        // const coins = response.data;
-
         if (coins.length > 0) {
-          const mostExpensiveCoin = coins.reduce((prev: Coin, current: Coin) => (prev.cost > current.cost ? prev : current));
-          setLastCoin(mostExpensiveCoin);
+          const mostExpensiveCoin = coins.reduce((maxCoin: Coin | null, currentCoin: Coin, index: number) => {
+            // Проверяем, достиг ли предыдущий коин максимального уровня
+            const previousCoin = coins[index - 1];
+            const previousUserCoin = coins.find((userCoin: Coin) => userCoin.id === previousCoin?.id);
+            const previousLevel = previousUserCoin ? previousUserCoin.level : 1;
+            const previousTotalLevels = 20 + (index - 1) * 5;
+            const previousMaxed = previousUserCoin && previousLevel >= previousTotalLevels;
+  
+            // Проверяем, заблокирована ли текущая монета
+            const isBlocked = index > 0 && !previousMaxed;
+  
+            // Находим самую дорогую незаблокированную монету
+            if (!isBlocked && (!maxCoin || currentCoin.cost > maxCoin.cost)) {
+              return currentCoin;
+            }
+  
+            return maxCoin;
+          }, null);
+  
+          if (mostExpensiveCoin) {
+            setLastCoin(mostExpensiveCoin);
+          }
         }
       } catch (error) {
         console.error('Failed to fetch user coins:', error);
