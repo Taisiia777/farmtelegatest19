@@ -31,7 +31,7 @@ const CoinBlock = ({
   coinName,
   earning,
   isBought = false,
-  isBlocked = false,
+  isBlocked,
   price,
   isActive = false,
   userId,
