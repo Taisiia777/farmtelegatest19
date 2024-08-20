@@ -4,7 +4,7 @@ import CoinWhiteBg from "../CoinWhiteBg/CoinWhiteBg";
 import { TCoin } from "../../types/globalTypes";
 import classNames from "classnames/bind";
 import styles from "./CoinBlock.module.scss";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCoinIfno } from "../../store/reducers/coin";
 import i18n from '../../i18n';
@@ -42,7 +42,7 @@ const CoinBlock = ({
   level
 }: ICoinBlockProps) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const coinPrice = parseInt(price.replace(/\D/g, ''), 10); // Преобразуем цену в число
   const { t } = useTranslation();
   useEffect(() => {
@@ -230,7 +230,7 @@ disabled={!canUpdate} // Делаем кнопку неактивной, есл�
             </div>
           </div>
         </div>
-        <div className={cn("coinBlock__right")}>
+        {/* <div className={cn("coinBlock__right")}>
           <div
             className={cn("coinBlock__invate")}
             style={{
@@ -244,7 +244,7 @@ disabled={!canUpdate} // Делаем кнопку неактивной, есл�
               alt="Invite"
             />
           </div>
-        </div>
+        </div> */}
       </div>
     );
   } else {
@@ -265,13 +265,7 @@ disabled={!canUpdate} // Делаем кнопку неактивной, есл�
           </div>
         </div>
         <div className={cn("coinBlock__right")} id="buyCoin">
-          {/* <Button
-            className={cn("coinBlock__price")}
-            onClick={openCoinBuyPopup}
-          >
-            <CoinWhiteBg size="small" iconName={"BTC"} />
-            <span>{price}</span>
-          </Button> */}
+
           {canAfford ? (
             <Button
             className={cn("coinBlock__price")}
