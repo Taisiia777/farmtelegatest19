@@ -147,16 +147,15 @@ console.log(userId)
             <Button
             className={cn("coinBlock__price")}
             onClick={() => {
-              if (!isBlocked) {
+              if (coinId <= mostExpensiveCoinId) {
                 openCoinBuyPopup();
               }
             }}
-            disabled={isBlocked} 
+            disabled={coinId > mostExpensiveCoinId} 
 
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
             <span>{Math.round(coinPrice * Math.pow(1.1, levelNumber))}</span>
-            <span>{isBlocked}</span>
 
           </Button>
           ) : (
