@@ -139,7 +139,7 @@ console.log(userId)
             paddingRight: "23.5px",
           }}
         >
-          { isActive ? (
+          { isActive && percentNumber < 100 ? (
 
             <div id="buyCoin1">
                                 {canUpdate && percentNumber <= 100 ? (
