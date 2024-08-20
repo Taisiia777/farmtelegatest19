@@ -656,7 +656,7 @@ const Home = () => {
       };
    fetchRewards()
       
-   }, [user, currentRainProgress]);
+   }, [user]);
     const getActiveBoosterIds = (): number[] => {
       return boosters
         .filter(booster => {
@@ -1079,7 +1079,7 @@ const isBlocked = index > 0 && !previousMaxed;
           });
         }
       // }
-    }, [user, currentRainProgress]);
+    }, [user]);
 
     
     const checkRainReward = (rewards: Reward[]) => {
@@ -1124,6 +1124,15 @@ const isBlocked = index > 0 && !previousMaxed;
           setEnergyPopupOpen(false);
           setIsRainAnim(true);
           setCurrentRainProgress(0); // Если нет наград за дождь, то дождь доступен
+          axios.get(`https://coinfarm.club/api/reward/${user?.id}`)
+          .then(response => {
+            setRewards(response.data);
+            checkRainReward(response.data);
+            console.log("check rain")
+          })
+          .catch(error => {
+            console.error('Error fetching rewards:', error);
+          });
           setTimeout(() => setIsRainAnim(false), 5000);
         } catch (error) {
         console.error('Error sending rain reward request:', error);
