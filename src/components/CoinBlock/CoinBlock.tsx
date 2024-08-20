@@ -260,8 +260,7 @@ disabled={!canUpdate} // Делаем кнопку неактивной, есл�
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
             <span>{price}</span>
-            <span>{isBlocked}</span>
-
+            
           </Button>
           )}
         </div>

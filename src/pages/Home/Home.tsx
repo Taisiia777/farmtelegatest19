@@ -760,100 +760,188 @@ const Home = () => {
       }
     }
 
-   const renderCoins = () => {
-      // const getMostExpensiveCoin = (userCoins: Coin[]) => {
-      //    if (userCoins.length === 0) return null;
+//    const renderCoins = () => {
+//       // const getMostExpensiveCoin = (userCoins: Coin[]) => {
+//       //    if (userCoins.length === 0) return null;
        
-      //    return userCoins.reduce((maxCoin, currentCoin) => {
-      //      return currentCoin.cost > maxCoin.cost ? currentCoin : maxCoin;
-      //    });
-      //  };
-      const getMostExpensiveCoin = (userCoins: Coin[], sortedCoins: Coin[]): Coin | null => {
-        if (userCoins.length === 0) return null;
+//       //    return userCoins.reduce((maxCoin, currentCoin) => {
+//       //      return currentCoin.cost > maxCoin.cost ? currentCoin : maxCoin;
+//       //    });
+//       //  };
+//       const getMostExpensiveCoin = (userCoins: Coin[], sortedCoins: Coin[]): Coin | null => {
+//         if (userCoins.length === 0) return null;
     
-        return sortedCoins.reduce<Coin | null>((maxCoin, currentCoin, index) => {
+//         return sortedCoins.reduce<Coin | null>((maxCoin, currentCoin, index) => {
          
     
-          // Проверяем, достиг ли предыдущий коин максимального уровня
-          const previousCoin = sortedCoins[index - 1];
-          const previousUserCoin = userCoins.find((userCoin) => userCoin.id === previousCoin?.id);
-          const previousLevel = previousUserCoin ? previousUserCoin.level : 1;
-          const previousTotalLevels = 20 + (index - 1) * 5;
-          const previousMaxed = previousUserCoin && previousLevel >= previousTotalLevels;
+//           // Проверяем, достиг ли предыдущий коин максимального уровня
+//           const previousCoin = sortedCoins[index - 1];
+//           const previousUserCoin = userCoins.find((userCoin) => userCoin.id === previousCoin?.id);
+//           const previousLevel = previousUserCoin ? previousUserCoin.level : 1;
+//           const previousTotalLevels = 20 + (index - 1) * 5;
+//           const previousMaxed = previousUserCoin && previousLevel >= previousTotalLevels;
     
-          // Блокируем монету, если предыдущая монета не достигла максимального уровня
-          const isBlocked = index > 0 && !previousMaxed;
+//           // Блокируем монету, если предыдущая монета не достигла максимального уровня
+//           const isBlocked = index > 0 && !previousMaxed;
     
-          // Сравниваем только незаблокированные монеты
-          if (!isBlocked && (!maxCoin || currentCoin.cost > maxCoin.cost)) {
-            return currentCoin;
-          }
+//           // Сравниваем только незаблокированные монеты
+//           if (!isBlocked && (!maxCoin || currentCoin.cost > maxCoin.cost)) {
+//             return currentCoin;
+//           }
     
-          return maxCoin;
-        }, null);
-      };
+//           return maxCoin;
+//         }, null);
+//       };
     
-      const sortedCoins = [...coins].sort((a, b) => a.id - b.id);
-       const mostExpensiveCoin = getMostExpensiveCoin(userCoins, sortedCoins);
-      //  const sortedCoins = [...coins].sort((a, b) => a.id - b.id);
-      return sortedCoins.map((coin, index) => {
-        // Проверка, куплена ли монета пользователем
-        const userCoin = userCoins.find((userCoin) => userCoin.id === coin.id);
-        const isBought = userCoins.some((userCoin) => userCoin.id === coin.id);
-        const isActive =  mostExpensiveCoin ? mostExpensiveCoin.id === coin.id : false;
-        const hourlyIncome = 1000 + index * 100;
-// Вычисляем количество уровней для текущей монеты
-const totalLevels = 20 + index * 5;
-const level = userCoin ? userCoin.level : 1;
-const percent = (level / totalLevels) * 100;
+//       const sortedCoins = [...coins].sort((a, b) => a.id - b.id);
+//        const mostExpensiveCoin = getMostExpensiveCoin(userCoins, sortedCoins);
+//       //  const sortedCoins = [...coins].sort((a, b) => a.id - b.id);
+//       return sortedCoins.map((coin, index) => {
+//         // Проверка, куплена ли монета пользователем
+//         const userCoin = userCoins.find((userCoin) => userCoin.id === coin.id);
+//         const isBought = userCoins.some((userCoin) => userCoin.id === coin.id);
+//         const isActive =  mostExpensiveCoin ? mostExpensiveCoin.id === coin.id : false;
+//         const hourlyIncome = 1000 + index * 100;
+// // Вычисляем количество уровней для текущей монеты
+// const totalLevels = 20 + index * 5;
+// const level = userCoin ? userCoin.level : 1;
+// const percent = (level / totalLevels) * 100;
 
-// Проверяем, достиг ли предыдущий коин максимального уровня
-const previousCoin = sortedCoins[index - 1];
-const previousUserCoin = userCoins.find((userCoin) => userCoin.id === previousCoin?.id);
-const previousLevel = previousUserCoin ? previousUserCoin.level : 1;
-const previousTotalLevels = 20 + (index - 1) * 5;
-const previousMaxed = previousUserCoin && previousLevel >= previousTotalLevels;
+// // Проверяем, достиг ли предыдущий коин максимального уровня
+// const previousCoin = sortedCoins[index - 1];
+// const previousUserCoin = userCoins.find((userCoin) => userCoin.id === previousCoin?.id);
+// const previousLevel = previousUserCoin ? previousUserCoin.level : 1;
+// const previousTotalLevels = 20 + (index - 1) * 5;
+// const previousMaxed = previousUserCoin && previousLevel >= previousTotalLevels;
 
-// Блокируем монету, если предыдущая монета не достигла максимального уровня
-const isBlocked = index > 0 && !previousMaxed;
-        if(user){
-        return (
-          <CoinBlock
-            key={coin.id}
-            coinName={coin.name}
-            earning={coin.hourlyIncome.toString()}
-            price={coin.cost.toString()}
-            isBought={isBought}
-            isBlocked={isBlocked}
-            userId={user.id} // Передача userId
-            userCoins={user.coins} // Передача количества монет пользователя
-            coinId={coin.id} // Передача coinId
-            isActive={isActive}
-            mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
-            perсent={percent.toFixed(2)} // Passing calculated percentage
-            level={level.toString()}
+// // Блокируем монету, если предыдущая монета не достигла максимального уровня
+// const isBlocked = index > 0 && !previousMaxed;
+//         if(user){
+//         return (
+//           <CoinBlock
+//             key={coin.id}
+//             coinName={coin.name}
+//             earning={coin.hourlyIncome.toString()}
+//             price={coin.cost.toString()}
+//             isBought={isBought}
+//             isBlocked={isBlocked}
+//             userId={user.id} // Передача userId
+//             userCoins={user.coins} // Передача количества монет пользователя
+//             coinId={coin.id} // Передача coinId
+//             isActive={isActive}
+//             mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
+//             perсent={percent.toFixed(2)} // Passing calculated percentage
+//             level={level.toString()}
 
-          />
-        );
-      }else{
-         <CoinBlock
-            key={coin.id}
-            coinName={coin.name}
-            earning={hourlyIncome.toString()}
-            price={coin.cost.toString()}
-            isBought={isBought}
-            isBlocked={isBlocked}
-            userId={user.id} // Передача userId
-            userCoins={0} // Передача количества монет пользователяs
-            coinId={coin.id} // Передача coinId
-            mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
-            perсent={percent.toFixed(2)} // Passing calculated percentage
-            level={level.toString()}
+//           />
+//         );
+//       }else{
+//          <CoinBlock
+//             key={coin.id}
+//             coinName={coin.name}
+//             earning={hourlyIncome.toString()}
+//             price={coin.cost.toString()}
+//             isBought={isBought}
+//             isBlocked={isBlocked}
+//             userId={user.id} // Передача userId
+//             userCoins={0} // Передача количества монет пользователяs
+//             coinId={coin.id} // Передача coinId
+//             mostExpensiveCoinId = {mostExpensiveCoin?.id ? mostExpensiveCoin?.id : 2}
+//             perсent={percent.toFixed(2)} // Passing calculated percentage
+//             level={level.toString()}
 
-          />
+//           />
+//       }
+//       });
+//     };
+const renderCoins = () => {
+  const getMostExpensiveCoin = (userCoins: Coin[], sortedCoins: Coin[]): Coin | null => {
+    if (userCoins.length === 0) return null;
+
+    return sortedCoins.reduce<Coin | null>((maxCoin, currentCoin, index) => {
+      // Проверяем, достиг ли предыдущий коин максимального уровня
+      const previousCoin = sortedCoins[index - 1];
+      const previousUserCoin = userCoins.find((userCoin) => userCoin.id === previousCoin?.id);
+      const previousLevel = previousUserCoin ? previousUserCoin.level : 1;
+      const previousTotalLevels = 20 + (index - 1) * 5;
+      const previousMaxed = previousUserCoin && previousLevel >= previousTotalLevels;
+
+      // Блокируем монету, если предыдущая монета не достигла максимального уровня
+      const isBlocked = index > 0 && !previousMaxed;
+
+      // Сравниваем только незаблокированные монеты
+      if (!isBlocked && (!maxCoin || currentCoin.cost > maxCoin.cost)) {
+        return currentCoin;
       }
-      });
-    };
+
+      return maxCoin;
+    }, null);
+  };
+
+  const sortedCoins = [...coins].sort((a, b) => a.id - b.id);
+  const mostExpensiveCoin = getMostExpensiveCoin(userCoins, sortedCoins);
+
+  return sortedCoins.map((coin, index) => {
+    // Проверка, куплена ли монета пользователем
+    const userCoin = userCoins.find((userCoin) => userCoin.id === coin.id);
+    const isBought = userCoins.some((userCoin) => userCoin.id === coin.id);
+    const isActive = mostExpensiveCoin ? mostExpensiveCoin.id === coin.id : false;
+    const hourlyIncome = 1000 + index * 100;
+
+    // Вычисляем количество уровней для текущей монеты
+    const totalLevels = 20 + index * 5;
+    const level = userCoin ? userCoin.level : 1;
+    const percent = (level / totalLevels) * 100;
+
+    // Проверяем, достиг ли предыдущий коин максимального уровня
+    const previousCoin = sortedCoins[index - 1];
+    const previousUserCoin = userCoins.find((userCoin) => userCoin.id === previousCoin?.id);
+    const previousLevel = previousUserCoin ? previousUserCoin.level : 1;
+    const previousTotalLevels = 20 + (index - 1) * 5;
+    const previousMaxed = previousUserCoin && previousLevel >= previousTotalLevels;
+
+    // Блокируем монету, если предыдущая монета не достигла максимального уровня
+    const isBlocked = index > 0 && !previousMaxed;
+
+    if (user) {
+      return (
+        <CoinBlock
+          key={coin.id}
+          coinName={coin.name}
+          earning={coin.hourlyIncome.toString()}
+          price={coin.cost.toString()}
+          isBought={isBought}
+          isBlocked={isBlocked}
+          userId={user.id} // Передача userId
+          userCoins={user.coins} // Передача количества монет пользователя
+          coinId={coin.id} // Передача coinId
+          isActive={isActive}
+          mostExpensiveCoinId={mostExpensiveCoin?.id ? mostExpensiveCoin.id : 2}
+          perсent={percent.toFixed(2)} // Passing calculated percentage
+          level={level.toString()}
+        />
+      );
+    } else {
+      return (
+        <CoinBlock
+          key={coin.id}
+          coinName={coin.name}
+          earning={hourlyIncome.toString()}
+          price={coin.cost.toString()}
+          isBought={isBought}
+          isBlocked={isBlocked}
+          userId={user.id} // Передача userId
+          userCoins={0} // Передача количества монет пользователя
+          coinId={coin.id} // Передача coinId
+          mostExpensiveCoinId={mostExpensiveCoin?.id ? mostExpensiveCoin.id : 2}
+          perсent={percent.toFixed(2)} // Passing calculated percentage
+          level={level.toString()}
+        />
+      );
+    }
+  });
+};
+
     useEffect(() => {
       // Здесь вызывается функция для ререндеринга монет
       renderCoins();
