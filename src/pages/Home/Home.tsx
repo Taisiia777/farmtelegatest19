@@ -1691,7 +1691,7 @@ const renderCoins = () => {
   <PopupList 
     ref={gamesRef} 
     nodes={[
-      <div style={{height: "800px"}}>
+      <>
             <GamesBlock
         imgSrc='img/pages/home/menu/Wheel1.png'
         title={t('wheel_of_fortune')}
@@ -1702,7 +1702,7 @@ const renderCoins = () => {
       <img style={{position: "absolute", top: "100%", left: "0", width: "100%"}} src="img/pages/home/menu/coming2.png" />
       <img style={{position: "absolute", top: "100%", left: "0", width: "100%"}} src="img/pages/home/menu/coming3.png" />
 
-      </div>
+      </>
 
     ]} 
   />
