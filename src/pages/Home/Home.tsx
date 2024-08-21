@@ -1697,7 +1697,11 @@ const renderCoins = () => {
         title={t('wheel_of_fortune')}
         buttonText={t('play')}
       />
-      <img style={{position: "absolute", top: "24%", left: "0", width: "100%"}} src="img/pages/home/menu/coming.png" />
+      <img style={{position: "absolute", top: "100%", left: "0", width: "100%"}} src="img/pages/home/menu/coming.png" />
+      <img style={{position: "absolute", top: "100%", left: "0", width: "100%"}} src="img/pages/home/menu/coming1.png" />
+      <img style={{position: "absolute", top: "100%", left: "0", width: "100%"}} src="img/pages/home/menu/coming2.png" />
+      <img style={{position: "absolute", top: "100%", left: "0", width: "100%"}} src="img/pages/home/menu/coming3.png" />
+
       </>
 
     ]} 
