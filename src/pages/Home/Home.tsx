@@ -1688,24 +1688,66 @@ const renderCoins = () => {
 
               
 {gamesActiveTab !== t("games") && (
+  // <PopupList 
+  //   ref={gamesRef} 
+  //   nodes={[
+  //     <>
+  //           <GamesBlock
+  //       imgSrc='img/pages/home/menu/Wheel1.png'
+  //       title={t('wheel_of_fortune')}
+  //       buttonText={t('play')}
+  //     />
+  //     <img style={{position: "absolute", top: "100%", left: "0", width: "100%"}} src="img/pages/home/menu/coming.png" />
+  //     <img style={{position: "absolute", top: "200%", left: "0", width: "100%"}} src="img/pages/home/menu/coming1.png" />
+  //     <img style={{position: "absolute", top: "300%", left: "0", width: "100%"}} src="img/pages/home/menu/coming2.png" />
+  //     <img style={{position: "absolute", top: "400%", left: "0", width: "100%"}} src="img/pages/home/menu/coming3.png" />
+
+  //     </>
+
+  //   ]} 
+  // />
+  <>
+   <PopupList 
+  ref={gamesRef} 
+  nodes={[
+          <GamesBlock
+      imgSrc='img/pages/home/menu/Wheel1.png'
+      title={t('wheel_of_fortune')}
+      buttonText={t('play')}
+    />
+  ]} 
+/>
   <PopupList 
-    ref={gamesRef} 
-    nodes={[
-      <>
-            <GamesBlock
-        imgSrc='img/pages/home/menu/Wheel1.png'
-        title={t('wheel_of_fortune')}
-        buttonText={t('play')}
-      />
-      <img style={{position: "absolute", top: "100%", left: "0", width: "100%"}} src="img/pages/home/menu/coming.png" />
-      <img style={{position: "absolute", top: "200%", left: "0", width: "100%"}} src="img/pages/home/menu/coming1.png" />
-      <img style={{position: "absolute", top: "300%", left: "0", width: "100%"}} src="img/pages/home/menu/coming2.png" />
-      <img style={{position: "absolute", top: "400%", left: "0", width: "100%"}} src="img/pages/home/menu/coming3.png" />
+  ref={gamesRef} 
+  nodes={[
+    <img style={{position: "absolute", top: "100%", left: "0", width: "100%"}} src="img/pages/home/menu/coming.png" />
 
-      </>
+  ]} 
+/>
+<PopupList 
+  ref={gamesRef} 
+  nodes={[
+    <img style={{position: "absolute", top: "200%", left: "0", width: "100%"}} src="img/pages/home/menu/coming1.png" />
 
-    ]} 
-  />
+  ]} 
+/>
+<PopupList 
+  ref={gamesRef} 
+  nodes={[
+    <img style={{position: "absolute", top: "300%", left: "0", width: "100%"}} src="img/pages/home/menu/coming2.png" />
+
+  ]} 
+/>
+<PopupList 
+  ref={gamesRef} 
+  nodes={[
+    <img style={{position: "absolute", top: "400%", left: "0", width: "100%"}} src="img/pages/home/menu/coming3.png" />
+
+  ]} 
+/>
+  
+  </>
+ 
 )}
 
             </PopupListWrap>
