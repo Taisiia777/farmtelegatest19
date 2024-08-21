@@ -1692,7 +1692,7 @@ const renderCoins = () => {
     ref={gamesRef} 
     nodes={[
       <GamesBlock
-        imgSrc='img/pages/home/menu/Wheel.png'
+        imgSrc='img/pages/home/menu/Wheel1.png'
         title={t('wheel_of_fortune')}
         buttonText={t('play')}
       />
