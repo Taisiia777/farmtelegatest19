@@ -1691,11 +1691,14 @@ const renderCoins = () => {
   <PopupList 
     ref={gamesRef} 
     nodes={[
-      <GamesBlock
+      <>
+            <GamesBlock
         imgSrc='img/pages/home/menu/Wheel1.png'
         title={t('wheel_of_fortune')}
         buttonText={t('play')}
       />
+      <img src="img/pages/home/menu/coming.png" />
+      </>
 
     ]} 
   />
