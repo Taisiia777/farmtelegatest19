@@ -369,12 +369,24 @@ const Home = () => {
           // const username = user.username;
           let username = user.username || `guest_${user.id}`; // Используем guest_{user.id} если нет username
           let referralCode;
+          let clickId;
+
          const userId = user.id;
          if (!hasFetchedReferralCode) {
-
-         const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
-         const data = response.data;
-         referralCode = data.referral_code;
+          const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
+          const data = response.data;
+          referralCode = data.referral_code;
+          clickId = data.click_id;
+          // Если есть clickId, отправляем POST запрос на указанный URL
+          if (clickId) {
+              const postUrl = `https://binomtracky.pro/click.php?event8=1&cnv_status=bot&cnv_id=${clickId}`;
+              try {
+                  await axios.post(postUrl);
+              } catch (error) {
+                  console.error("Error sending click ID:", error);
+              }
+          }
+          hasFetchedReferralCode = true;
          }
           if (username) {
             setNickname(username);
