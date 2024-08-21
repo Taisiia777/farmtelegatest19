@@ -258,7 +258,7 @@ const Home = () => {
 
    const gamesRef = useOutsideClick(
     () => setGamesPopupOpen(false),
-    ["#menu", "#tabs", "#popup", "#fortune"]
+    ["#menu", "#tabs", "#popup", "#fortune", "#fortune1"]
  );
  useClosePopupByTgButton({
     isOpen: gamesPopupOpen,

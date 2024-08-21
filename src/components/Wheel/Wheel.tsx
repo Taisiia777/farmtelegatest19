@@ -521,7 +521,7 @@ const spin = () => {
             </div>
          )}
           {step === 2 && (
-            <div className={cn("greeting__body", "_first")} ref={wheelRef}>
+            <div className={cn("greeting__body", "_first")} ref={wheelRef} id="fortune1">
                {/* Popup border */}
                <img
                   src="img/global/popup-border.svg"
