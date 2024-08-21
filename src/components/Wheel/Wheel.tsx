@@ -406,7 +406,7 @@ const spin = () => {
    useOutsideClick(() => dispatch(finishWheel()), [wheelRef]);
 
    return (
-      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}} >
+      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}} id="fortune">
             {isOpen && !isSpinning && (
                <img
                   src="img/global/closeIcon.svg"
