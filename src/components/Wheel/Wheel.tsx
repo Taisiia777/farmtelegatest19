@@ -36,17 +36,36 @@ const Wheel = () => {
    const [reward, setReward] = useState(0);
    const [userIdNumber, setUserIdNumber] = useState(0);
 
+// const sectors = [
+//   { name: "Sector 1", weight: 25, reward: 1000 },
+  
+//   { name: "Sector 8", weight: 15, reward: 0 },
+//   { name: "Sector 7", weight: 20, reward: 0 },
+//   { name: "Sector 6", weight: 0.1, reward: 500000 },
+//   { name: "Sector 5", weight: 4.9, reward: 100000 },
+//   { name: "Sector 4", weight: 5, reward: 25000 },
+//   { name: "Sector 3", weight: 10, reward: 10000 },
+//   { name: "Sector 2", weight: 20, reward: 5000 }, // "Еще одно вращение"
+// ];
 const sectors = [
-  { name: "Sector 1", weight: 25, reward: 1000 },
-  { name: "Sector 8", weight: 15, reward: 0 },
-  { name: "Sector 7", weight: 20, reward: 0 },
-  { name: "Sector 6", weight: 0.1, reward: 500000 },
-  { name: "Sector 5", weight: 4.9, reward: 100000 },
-  { name: "Sector 4", weight: 5, reward: 25000 },
-  { name: "Sector 3", weight: 10, reward: 10000 },
-  { name: "Sector 2", weight: 20, reward: 5000 }, // "Еще одно вращение"
+  { name: "Sector 1", weight: 13, reward: 5000 },
+  { name: "Sector 17", weight: 13, reward: 0 },
+  { name: "Sector 16", weight: 1, reward: 100000 },
+  { name: "Sector 15", weight: 2, reward: 75000 },
+  { name: "Sector 14", weight: 0, reward: 0 },
+  { name: "Sector 13", weight: 3, reward: 60000 },
+  { name: "Sector 12", weight: 5, reward: 50000 },
+  { name: "Sector 11", weight: 6, reward: 45000 },
+  { name: "Sector 10", weight: 0, reward: 0 },
+  { name: "Sector 9", weight: 7, reward: 35000 },
+  { name: "Sector 8", weight: 8, reward: 30000 },
+  { name: "Sector 7", weight: 9, reward: 25000 },
+  { name: "Sector 6", weight: 0, reward: 0 },
+  { name: "Sector 5", weight: 10, reward: 20000 },
+  { name: "Sector 4", weight: 11, reward: 15000 },
+  { name: "Sector 3", weight: 0, reward: 0 },
+  { name: "Sector 2", weight: 12, reward: 10000 }, // "Еще одно вращение"
 ];
-
 
 useEffect(() => {
   const fetchUserData = async () => {
@@ -117,19 +136,7 @@ useEffect(() => {
     sendSpinUpdateRequest(spins)
   }
 }, [isSpinning]);
-// const getRandomSector = () => {
-//   const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
-//   const random = Math.random() * totalWeight;
 
-//   let currentWeight = 0;
-//   for (let i = 0; i < sectors.length; i++) {
-//       currentWeight += sectors[i].weight;
-//       if (random <= currentWeight) {
-//           return i;
-//       }
-//   }
-//   return 0; // если что-то пойдет не так
-// };
 const getRandomSector = () => {
   const totalWeight = sectors.reduce((total, sector) => total + sector.weight, 0);
   const random = Math.random() * totalWeight;
@@ -173,6 +180,63 @@ const sendSpinUpdateRequest = async (spins: number) => {
 
 
 
+// const spin = () => {
+//   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
+
+//   const sectorIndex = getRandomSector();
+//   const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
+//   const baseAngle = 0; // Начальный угол первого сектора
+
+//   // Вычисляем конечный угол для выбранного сектора
+//   const targetAngle = (baseAngle + ((sectorIndex) * sectorAngle)) % 360;
+
+//   // Случайное количество оборотов (от 5 до 7)
+//   const spinsCount = 5;
+
+//   // Конечный угол вращения (множим на количество оборотов и добавляем целевой угол)
+//   const finalAngle = (spinsCount * 360) + targetAngle;
+
+//   // Устанавливаем состояние для анимации вращения
+//   setSpins(prev => prev - 1);
+//   setIsSpinning(true);
+//   setRotation(finalAngle);
+
+//   // Завершаем вращение и определяем выигрышный сектор
+//   setTimeout(() => {
+//     setIsSpinning(false);
+
+//     // const finalRotation = finalAngle % 360; // Нормализуем угол в пределах 0-360
+//     const winningIndex = sectorIndex; // Поскольку сектор был выбран заранее, просто используем его индекс
+//     const selectedSector = sectors[winningIndex];
+
+//     // Устанавливаем награду и выдаем её пользователю
+//     setReward(selectedSector.reward);
+//     giveUserReward(selectedSector.reward);
+
+//     // Обрабатываем результат вращения
+//     if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 7") {
+//       setShowConfetti(true);
+//       setTimeout(() => {
+//         setShowConfetti(false);
+//         setStep(3);
+//         setRotation(0);
+//       }, 2000);
+//     } else if(selectedSector.name === "Sector 8") {
+//       setReward(0);
+//       setSpins(prev => prev + 1);
+//       setShowConfetti(true);
+//       setTimeout(() => {
+//         setShowConfetti(false);
+//         setRotation(0);
+//       }, 2000);
+//     } else if (selectedSector.name === "Sector 7"){
+//       setReward(0);
+//       setRotation(0);
+//     }
+//   }, 5000);
+// };
+
+
 const spin = () => {
   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
 
@@ -207,22 +271,14 @@ const spin = () => {
     giveUserReward(selectedSector.reward);
 
     // Обрабатываем результат вращения
-    if (selectedSector.name !== "Sector 8" && selectedSector.name !== "Sector 7") {
+    if (selectedSector.name !== "Sector 17") {
       setShowConfetti(true);
       setTimeout(() => {
         setShowConfetti(false);
-        setStep(3);
+        setStep(2);
         setRotation(0);
       }, 2000);
-    } else if(selectedSector.name === "Sector 8") {
-      setReward(0);
-      setSpins(prev => prev + 1);
-      setShowConfetti(true);
-      setTimeout(() => {
-        setShowConfetti(false);
-        setRotation(0);
-      }, 2000);
-    } else if (selectedSector.name === "Sector 7"){
+    } else if (selectedSector.name === "Sector 17"){
       setReward(0);
       setRotation(0);
     }
@@ -363,7 +419,7 @@ const spin = () => {
                />
             )}
          {/* Introduction */}
-         {step === 1 && (
+         {step === 4 && (
             <div className={cn("greeting__body", "_first")} ref={wheelRef}>
                {/* Popup border */}
                <img
@@ -396,7 +452,7 @@ const spin = () => {
                </div>
             </div>
          )}
-{step === 2 && (
+{step === 1 && (
             <div style={{display: 'flex', flexDirection:'column', width: '100%', height:'100%', position:'relative'}}>
                     {showConfetti && <Confetti />}
 
@@ -426,7 +482,7 @@ const spin = () => {
 </p>
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px', zIndex:'10'}} alt="Spin"  />
             <img src="img/pages/home/menu/MoreSpins.png" className={cn("greeting__next")} style={{width: '180px', height: '47px', position: 'absolute', top: '20px', left: '130px', zIndex:'10'}} alt="Spin"  />
-            <img src="img/pages/home/menu/WheelCenter.png" style={{width: '280px', display:'flex', zIndex:'11', position:'absolute', top: '155px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
+            <img src="img/pages/home/menu/WheelCenter2.png" style={{width: '280px', display:'flex', zIndex:'11', position:'absolute', top: '155px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
             <img src="img/pages/home/menu/WheelBorder.png" style={{width: '389px', display:'flex',  zIndex:'10',  position:'absolute', top: '100px'}} alt="Wheel" />
 
             {/* <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '122px', height: '46px', position: 'absolute', top: '70vh',  left: '50%', transform: 'translateX(-50%)'}} alt="Spin"  /> */}
@@ -464,7 +520,7 @@ const spin = () => {
              
             </div>
          )}
-          {step === 3 && (
+          {step === 2 && (
             <div className={cn("greeting__body", "_first")} ref={wheelRef}>
                {/* Popup border */}
                <img
@@ -482,7 +538,7 @@ const spin = () => {
                   src="img/global/next-btn.svg"
                   className={cn("greeting__next")}
                   alt="Далее"
-                  onClick={()=>{setStep(2)}}
+                  onClick={()=>{setStep(1)}}
                />
 
                {/* Контент */}
