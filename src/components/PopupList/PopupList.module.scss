@@ -29,7 +29,8 @@
    align-items: center;
    overflow: auto;
    padding: 0 rem(10) rem(10) rem(10);
-   min-height: 800px;
+   min-height: 600px;
+   border: 1px solid red;
    &__item {
       position: relative;
       margin-bottom: -2.5%;
