@@ -1455,7 +1455,7 @@ const Home = () => {
                />
 
               
-{earnActiveTab === "LEAGUES" && (
+{leaguesActiveTab === "LEAGUES" && (
                <PopupList
                   ref={leaguesRef}
                   nodes={renderLeagues()}
