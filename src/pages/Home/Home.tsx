@@ -234,7 +234,7 @@ const Home = () => {
     setBoostActiveTab("BOOST")
   };
   const openLeaguePopup =  () => {
-    setEarnActiveTab("LEAGUES")
+    setBoostActiveTab("LEAGUES")
   };
   const openSpecialPopup =  () => {
     setEarnActiveTab("TASKS")
@@ -1162,7 +1162,12 @@ const Home = () => {
 
             {!isPopupOpen && (
                <div className={cn("bottom")}>
-                  <Liga onClick={() => {setEarnPopupOpen(true)
+                  {/* Лига */}
+                  {/* <Liga
+                     liga="Diamond"
+                     onLigaOpen={() => setEarnPopupOpen(true)}
+                  /> */}
+                  <Liga onClick={() => {setBoostPopupOpen(true)
                     openLeaguePopup()
                   }} liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
                   <Energy
@@ -1420,10 +1425,17 @@ const Home = () => {
                   nodes={renderLeagues()}
                />
             )}
+          {boostActiveTab === "LEAGUES" && (
+               <PopupList
+                  ref={earnRef}
+                  nodes={renderLeagues()}
+               />
+            )}
               
             </PopupListWrap>
 
-{/* 
+
+            {/* EARN popup */}
             <PopupListWrap isOpen={earnPopupOpen}>
                <PopupListTabs
                   labelClassName={cn("earn__label")}
@@ -1431,6 +1443,12 @@ const Home = () => {
                   activeTab={earnActiveTab}
                   onTabChange={(label) => setEarnActiveTab(label)}
                />
+            {/* {earnActiveTab === "LEAGUES" && (
+               <PopupList
+                  ref={earnRef}
+                  nodes={renderLeagues()}
+               />
+            )} */}
               
 {earnActiveTab === "TASKS" && (
   <PopupList
@@ -1447,37 +1465,90 @@ const Home = () => {
     ))}
   />
 )}
-            </PopupListWrap> */}
-            {/* EARN popup */}
-<PopupListWrap isOpen={earnPopupOpen}>
-  <PopupListTabs
-    labelClassName={cn("earn__label")}
-    labels={[earnActiveTab]} // Оставляем только одну вкладку с текущей меткой
-    activeTab={earnActiveTab}
-    onTabChange={(label) => setEarnActiveTab(label)} // Это можно оставить для динамического изменения вкладок, если это необходимо
-  />
-  
-  {earnActiveTab === "TASKS" ? (
-    <PopupList
-      ref={earnRef}
-      nodes={tasks.map(task => (
-        <FreindOrSpecialBlock
-          key={task.id}
-          imgSrc={task.imgSrc}
-          title={task.description}
-          earning={task.rewardAmount.toString()}
-          link={task.link}
-          defaultButtonText={t('join')}
-        />
-      ))}
-    />
-  ) : (
-    <PopupList
-      ref={earnRef}
-      nodes={renderLeagues()} // Используйте функцию renderLeagues для отображения лиг
-    />
-  )}
-</PopupListWrap>
+
+               {/* {earnActiveTab === "SPECIAL" && (
+                  <PopupList
+                     ref={earnRef}
+                     nodes={[
+                        <FreindOrSpecialBlock
+                           imgSrc="img/social/tg.svg"
+                           title="JOIN GROUP"
+                           earning="20 000"
+                           link="https://t.me/Simple_Tap_Bot"
+                           defaultButtonText="GO OVER"
+                        />,
+                        <FreindOrSpecialBlock
+                           imgSrc="img/social/tg.svg"
+                           title="JOIN CHAT"
+                           earning="20 000"
+                           link="https://t.me/Simple_Tap_Bot"
+                           defaultButtonText="GO OVER"
+
+                        />,
+                        <FreindOrSpecialBlock
+                           imgSrc="img/social/X.svg"
+                           title="JOIN X"
+                           earning="20 000"
+                           link="https://t.me/Simple_Tap_Bot"
+                           defaultButtonText="GO OVER"
+
+                        />,
+                     ]}
+                  />
+               )} */}
+
+               {/* {earnActiveTab === "FRIENDS TASKS" && (
+                  <PopupList
+                     ref={earnRef}
+                     nodes={[
+                        <FreindOrSpecialBlock
+                           imgSrc="img/global/person-btn.svg"
+                           title="1 friend"
+                           earning="x1.5 harvest"
+                           link=""
+                           defaultButtonText="RECEIVE"
+                           refs="1"
+                        />,
+                        <FreindOrSpecialBlock
+                           imgSrc="img/global/person-btn.svg"
+                           title="5 friends"
+                           earning="x2 harvest"
+                           link=""
+                           defaultButtonText="RECEIVE"
+                           refs="5"
+
+                        />,
+                        <FreindOrSpecialBlock
+                           imgSrc="img/global/person-btn.svg"
+                           title="25 friends"
+                           earning="x3 harvest"
+                           link=""
+                           defaultButtonText="RECEIVE"
+                           refs="25"
+
+                        />,
+                        <FreindOrSpecialBlock
+                           imgSrc="img/global/person-btn.svg"
+                           title="50 friends"
+                           earning="x4 harvest"
+                           link=""
+                           defaultButtonText="RECEIVE"
+                           refs="50"
+
+                        />,
+                        <FreindOrSpecialBlock
+                           imgSrc="img/global/person-btn.svg"
+                           title="100 friends"
+                           earning="x5 harvest"
+                           link=""
+                           defaultButtonText="RECEIVE"
+                           refs="100"
+
+                        />,
+                     ]}
+                  />
+               )} */}
+            </PopupListWrap>
 
                         {/* GAMES popup */}
                         <PopupListWrap isOpen={gamesPopupOpen}>
