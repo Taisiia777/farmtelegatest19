@@ -1179,7 +1179,7 @@ const Home = () => {
                   /> */}
                   <Liga onClick={() => {setLeaguesopupOpen(true)
                     openLeaguePopup()
-                  }} liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
+                  }} liga={leagues[level].name as TLiga} onLigaOpen={() => setLeaguesopupOpen(true)} />
                   <Energy
                      total={grassTotal*multiplier}
                      hours={user?.incomeMultiplier}
