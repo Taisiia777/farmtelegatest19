@@ -248,7 +248,7 @@ const Home = () => {
    const [leaguesPopupOpen, setLeaguesopupOpen] = useState(false);
    const leaguesRef = useOutsideClick(
     () => setLeaguesopupOpen(false),
-    ["#menu", "#tabs", "#popup", "#energy"]
+    ["#menu", "#tabs", "#popup"]
  );
  useClosePopupByTgButton({
     isOpen: leaguesPopupOpen,
@@ -1179,7 +1179,7 @@ const Home = () => {
                   /> */}
                   <Liga onClick={() => {setLeaguesopupOpen(true)
                     openLeaguePopup()
-                  }} liga={leagues[level].name as TLiga}  />
+                  }} liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
                   <Energy
                      total={grassTotal*multiplier}
                      hours={user?.incomeMultiplier}
@@ -1455,12 +1455,12 @@ const Home = () => {
                />
 
               
-
+{earnActiveTab === "LEAGUES" && (
                <PopupList
                   ref={leaguesRef}
                   nodes={renderLeagues()}
                />
-
+            )}
 
 
             </PopupListWrap>
