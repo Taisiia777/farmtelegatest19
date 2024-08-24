@@ -572,7 +572,7 @@ const Home = () => {
         let percent;
         if (index <= level) {
           percent = 100; // Прошедшие лиги имеют 100%
-        } else if (index === level+1) {
+        } else if (index === level+1 && friends) {
           percent = (friends.length / league.referralsTo) * 100; // Текущая лига рассчитывается
         } else {
           percent = 0; // Будущие лиги имеют 0%
