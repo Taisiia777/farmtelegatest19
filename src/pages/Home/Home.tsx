@@ -1455,7 +1455,7 @@ const Home = () => {
                />
 
               
-{earnActiveTab === "LEAGUES" && (
+{earnActiveTab !== "LEAGUES" && (
                <PopupList
                   ref={leaguesRef}
                   nodes={renderLeagues()}
@@ -1545,6 +1545,7 @@ const Home = () => {
                      setBoostPopupOpen(false);
                      setEarnPopupOpen(false);
                      setGamesPopupOpen(false);
+                     setLeaguesopupOpen(false)
                   }}
                   className={cn("close")}
                   alt="Close"
