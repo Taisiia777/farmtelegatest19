@@ -192,13 +192,7 @@ const Home = () => {
   //  const isFingerActve = useAppSelector(
   //     (state) => state.growthStages.isFingerActive
   //  );
-  const [leaguesPopupOpen, setLeaguesPopupOpen] = useState(false);
-  const leaguesRef = useOutsideClick(() => setLeaguesPopupOpen(false), ["#menu", "#tabs", "#popup"]);
 
-  useClosePopupByTgButton({
-      isOpen: leaguesPopupOpen,
-      closePopup: () => setLeaguesPopupOpen(false),
-  });
    // Energy popup
    const [energyPopupOpen, setEnergyPopupOpen] = useState(false);
    const energyRef = useOutsideClick(
@@ -251,6 +245,7 @@ const Home = () => {
    // Earn popup
    
    const [earnPopupOpen, setEarnPopupOpen] = useState(false);
+   const [leaguesPopupOpen, setLeaguesPopupOpen] = useState(false);
    const [gamesPopupOpen, setGamesPopupOpen] = useState(false);
 
    const earnRef = useOutsideClick(
@@ -261,7 +256,14 @@ const Home = () => {
       isOpen: earnPopupOpen,
       closePopup: () => setEarnPopupOpen(false),
    });
-
+   const leaguesRef = useOutsideClick(
+    () => setLeaguesPopupOpen(false),
+    ["#menu", "#tabs", "#popup"]
+ );
+   useClosePopupByTgButton({
+    isOpen: leaguesPopupOpen,
+    closePopup: () => setLeaguesPopupOpen(false),
+ });
    const gamesRef = useOutsideClick(
     () => setGamesPopupOpen(false),
     ["#menu", "#tabs", "#popup", "#fortune", "#fortune1"]
@@ -273,6 +275,8 @@ const Home = () => {
 
    // Активный таб в boost popup
    const [earnActiveTab, setEarnActiveTab] = useState("LEAGUES");
+   const [leaguesActiveTab, setLeaguesActiveTab] = useState("LEAGUES");
+
    const [gamesActiveTab, setGamesActiveTab] = useState(t("games"));
 
    // buyCoin popup
@@ -1173,7 +1177,7 @@ const Home = () => {
                      liga="Diamond"
                      onLigaOpen={() => setEarnPopupOpen(true)}
                   /> */}
-                  <Liga onClick={() => {() => setLeaguesPopupOpen(true)
+                  <Liga onClick={() => {setLeaguesPopupOpen(true)
                   }} liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
                   <Energy
                      total={grassTotal*multiplier}
@@ -1408,7 +1412,7 @@ const Home = () => {
             {/* BOOST popup */}
             <PopupListWrap isOpen={boostPopupOpen}>
                <PopupListTabs
-                  labels={["BOOST", "COINS"]}
+                  labels={["BOOST", "COINS", "LEAGUES"]}
                   activeTab={boostActiveTab}
                   onTabChange={(label) => setBoostActiveTab(label)}
                />
@@ -1424,17 +1428,32 @@ const Home = () => {
               {boostActiveTab === "COINS" && (
                <PopupList ref={boostRef} nodes={renderCoins()} />
             )}
-
+                   {boostActiveTab === "LEAGUES" && (
+               <PopupList
+                  ref={earnRef}
+                  nodes={renderLeagues()}
+               />
+            )}
               
             </PopupListWrap>
 
+
+            {/* LEAGUES popup */}
             <PopupListWrap isOpen={leaguesPopupOpen}>
-                <PopupListTabs
-                    labels={["LEAGUES"]}
-                    activeTab="LEAGUES"
-                    onTabChange={() => {}}
-                />
-                <PopupList ref={leaguesRef} nodes={renderLeagues()} />
+               <PopupListTabs
+                  labelClassName={cn("earn__label")}
+                  labels={["LEAGUES"]}
+                  activeTab={leaguesActiveTab}
+                  onTabChange={(label) => setLeaguesActiveTab(label)}
+               />
+              
+{leaguesActiveTab === "LEAGUES" && (
+               <PopupList
+                  ref={leaguesRef}
+                  nodes={renderLeagues()}
+               />
+            )}
+
             </PopupListWrap>
 
             {/* EARN popup */}
@@ -1445,12 +1464,6 @@ const Home = () => {
                   activeTab={earnActiveTab}
                   onTabChange={(label) => setEarnActiveTab(label)}
                />
-            {/* {earnActiveTab === "LEAGUES" && (
-               <PopupList
-                  ref={earnRef}
-                  nodes={renderLeagues()}
-               />
-            )} */}
               
 {earnActiveTab === "TASKS" && (
   <PopupList
@@ -1468,88 +1481,6 @@ const Home = () => {
   />
 )}
 
-               {/* {earnActiveTab === "SPECIAL" && (
-                  <PopupList
-                     ref={earnRef}
-                     nodes={[
-                        <FreindOrSpecialBlock
-                           imgSrc="img/social/tg.svg"
-                           title="JOIN GROUP"
-                           earning="20 000"
-                           link="https://t.me/Simple_Tap_Bot"
-                           defaultButtonText="GO OVER"
-                        />,
-                        <FreindOrSpecialBlock
-                           imgSrc="img/social/tg.svg"
-                           title="JOIN CHAT"
-                           earning="20 000"
-                           link="https://t.me/Simple_Tap_Bot"
-                           defaultButtonText="GO OVER"
-
-                        />,
-                        <FreindOrSpecialBlock
-                           imgSrc="img/social/X.svg"
-                           title="JOIN X"
-                           earning="20 000"
-                           link="https://t.me/Simple_Tap_Bot"
-                           defaultButtonText="GO OVER"
-
-                        />,
-                     ]}
-                  />
-               )} */}
-
-               {/* {earnActiveTab === "FRIENDS TASKS" && (
-                  <PopupList
-                     ref={earnRef}
-                     nodes={[
-                        <FreindOrSpecialBlock
-                           imgSrc="img/global/person-btn.svg"
-                           title="1 friend"
-                           earning="x1.5 harvest"
-                           link=""
-                           defaultButtonText="RECEIVE"
-                           refs="1"
-                        />,
-                        <FreindOrSpecialBlock
-                           imgSrc="img/global/person-btn.svg"
-                           title="5 friends"
-                           earning="x2 harvest"
-                           link=""
-                           defaultButtonText="RECEIVE"
-                           refs="5"
-
-                        />,
-                        <FreindOrSpecialBlock
-                           imgSrc="img/global/person-btn.svg"
-                           title="25 friends"
-                           earning="x3 harvest"
-                           link=""
-                           defaultButtonText="RECEIVE"
-                           refs="25"
-
-                        />,
-                        <FreindOrSpecialBlock
-                           imgSrc="img/global/person-btn.svg"
-                           title="50 friends"
-                           earning="x4 harvest"
-                           link=""
-                           defaultButtonText="RECEIVE"
-                           refs="50"
-
-                        />,
-                        <FreindOrSpecialBlock
-                           imgSrc="img/global/person-btn.svg"
-                           title="100 friends"
-                           earning="x5 harvest"
-                           link=""
-                           defaultButtonText="RECEIVE"
-                           refs="100"
-
-                        />,
-                     ]}
-                  />
-               )} */}
             </PopupListWrap>
 
                         {/* GAMES popup */}
