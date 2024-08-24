@@ -289,7 +289,7 @@ const Home = () => {
 
    // True если хотя бы один попап открыт
    // но кроме попапа Energy!
-   const isPopupOpen = boostPopupOpen || earnPopupOpen || gamesPopupOpen;
+   const isPopupOpen = boostPopupOpen || earnPopupOpen || gamesPopupOpen || leaguesPopupOpen;
 
    // Показываем палец подсказку только когда попапы приветсвия и бонуса прошли.
    // А также только когда первый раз собирает
