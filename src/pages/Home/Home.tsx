@@ -239,9 +239,9 @@ const Home = () => {
   const openBoostPopup =  () => {
     setBoostActiveTab("BOOST")
   };
-  const openLeaguePopup =  () => {
-    setBoostActiveTab("LEAGUES")
-  };
+  // const openLeaguePopup =  () => {
+  //   setBoostActiveTab("LEAGUES")
+  // };
   const openSpecialPopup =  () => {
     setEarnActiveTab("TASKS")
   };
