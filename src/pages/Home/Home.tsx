@@ -233,9 +233,9 @@ const Home = () => {
   const openBoostPopup =  () => {
     setBoostActiveTab("BOOST")
   };
-  // const openLeaguePopup =  () => {
-  //   setBoostActiveTab("LEAGUES")
-  // };
+  const openLeaguePopup =  () => {
+    setEarnActiveTab("LEAGUES")
+  };
   const openSpecialPopup =  () => {
     setEarnActiveTab("TASKS")
   };
@@ -245,7 +245,6 @@ const Home = () => {
    // Earn popup
    
    const [earnPopupOpen, setEarnPopupOpen] = useState(false);
-   const [leaguesPopupOpen, setLeaguesPopupOpen] = useState(false);
    const [gamesPopupOpen, setGamesPopupOpen] = useState(false);
 
    const earnRef = useOutsideClick(
@@ -256,14 +255,7 @@ const Home = () => {
       isOpen: earnPopupOpen,
       closePopup: () => setEarnPopupOpen(false),
    });
-   const leaguesRef = useOutsideClick(
-    () => setLeaguesPopupOpen(false),
-    ["#menu", "#tabs", "#popup"]
- );
-   useClosePopupByTgButton({
-    isOpen: leaguesPopupOpen,
-    closePopup: () => setLeaguesPopupOpen(false),
- });
+
    const gamesRef = useOutsideClick(
     () => setGamesPopupOpen(false),
     ["#menu", "#tabs", "#popup", "#fortune", "#fortune1"]
@@ -275,8 +267,6 @@ const Home = () => {
 
    // Активный таб в boost popup
    const [earnActiveTab, setEarnActiveTab] = useState("LEAGUES");
-   const [leaguesActiveTab, setLeaguesActiveTab] = useState("LEAGUES");
-
    const [gamesActiveTab, setGamesActiveTab] = useState(t("games"));
 
    // buyCoin popup
@@ -289,7 +279,7 @@ const Home = () => {
 
    // True если хотя бы один попап открыт
    // но кроме попапа Energy!
-   const isPopupOpen = boostPopupOpen || earnPopupOpen || gamesPopupOpen || leaguesPopupOpen;
+   const isPopupOpen = boostPopupOpen || earnPopupOpen || gamesPopupOpen;
 
    // Показываем палец подсказку только когда попапы приветсвия и бонуса прошли.
    // А также только когда первый раз собирает
@@ -1172,12 +1162,8 @@ const Home = () => {
 
             {!isPopupOpen && (
                <div className={cn("bottom")}>
-                  {/* Лига */}
-                  {/* <Liga
-                     liga="Diamond"
-                     onLigaOpen={() => setEarnPopupOpen(true)}
-                  /> */}
-                  <Liga onClick={() => {setLeaguesPopupOpen(true)
+                  <Liga onClick={() => {setEarnPopupOpen(true)
+                    openLeaguePopup()
                   }} liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
                   <Energy
                      total={grassTotal*multiplier}
@@ -1437,26 +1423,7 @@ const Home = () => {
               
             </PopupListWrap>
 
-
-            {/* LEAGUES popup */}
-            <PopupListWrap isOpen={leaguesPopupOpen}>
-               <PopupListTabs
-                  labelClassName={cn("earn__label")}
-                  labels={["LEAGUES"]}
-                  activeTab={leaguesActiveTab}
-                  onTabChange={(label) => setLeaguesActiveTab(label)}
-               />
-              
-{leaguesActiveTab === "LEAGUES" && (
-               <PopupList
-                  ref={leaguesRef}
-                  nodes={renderLeagues()}
-               />
-            )}
-
-            </PopupListWrap>
-
-            {/* EARN popup */}
+{/* 
             <PopupListWrap isOpen={earnPopupOpen}>
                <PopupListTabs
                   labelClassName={cn("earn__label")}
@@ -1480,8 +1447,37 @@ const Home = () => {
     ))}
   />
 )}
-
-            </PopupListWrap>
+            </PopupListWrap> */}
+            {/* EARN popup */}
+<PopupListWrap isOpen={earnPopupOpen}>
+  <PopupListTabs
+    labelClassName={cn("earn__label")}
+    labels={[earnActiveTab]} // Оставляем только одну вкладку с текущей меткой
+    activeTab={earnActiveTab}
+    onTabChange={(label) => setEarnActiveTab(label)} // Это можно оставить для динамического изменения вкладок, если это необходимо
+  />
+  
+  {earnActiveTab === "TASKS" ? (
+    <PopupList
+      ref={earnRef}
+      nodes={tasks.map(task => (
+        <FreindOrSpecialBlock
+          key={task.id}
+          imgSrc={task.imgSrc}
+          title={task.description}
+          earning={task.rewardAmount.toString()}
+          link={task.link}
+          defaultButtonText={t('join')}
+        />
+      ))}
+    />
+  ) : (
+    <PopupList
+      ref={earnRef}
+      nodes={renderLeagues()} // Используйте функцию renderLeagues для отображения лиг
+    />
+  )}
+</PopupListWrap>
 
                         {/* GAMES popup */}
                         <PopupListWrap isOpen={gamesPopupOpen}>
