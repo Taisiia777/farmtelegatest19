@@ -1403,7 +1403,7 @@ const Home = () => {
             {/* BOOST popup */}
             <PopupListWrap isOpen={boostPopupOpen}>
                <PopupListTabs
-                  labels={["BOOST", "COINS", "LEAGUES"]}
+                  labels={["BOOST", "COINS", "LEAGUES", "FERTILIZERS"]}
                   activeTab={boostActiveTab}
                   onTabChange={(label) => setBoostActiveTab(label)}
                />
@@ -1425,7 +1425,7 @@ const Home = () => {
                   nodes={renderLeagues()}
                />
             )}
-          {boostActiveTab === "LEAGUES" && (
+          {boostActiveTab === "FERTILIZERS" && (
                <PopupList
                   ref={earnRef}
                   nodes={renderLeagues()}
