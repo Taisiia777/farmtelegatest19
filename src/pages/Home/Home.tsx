@@ -1424,12 +1424,7 @@ const Home = () => {
               {boostActiveTab === "COINS" && (
                <PopupList ref={boostRef} nodes={renderCoins()} />
             )}
-                   {boostActiveTab === "LEAGUES" && (
-               <PopupList
-                  ref={earnRef}
-                  nodes={renderLeagues()}
-               />
-            )}
+
               
             </PopupListWrap>
 
