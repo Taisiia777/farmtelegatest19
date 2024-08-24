@@ -567,6 +567,7 @@ const Home = () => {
 
   
     const renderLeagues = () => {
+      alert("kkkk")
       return leagues.map((league, index) => {
         let percent;
         if (index <= level) {
