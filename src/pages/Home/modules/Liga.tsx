@@ -12,10 +12,9 @@ const cn = classNames.bind(styles);
 interface LigaProps {
    liga: TLiga;
    onLigaOpen: () => void;
-   onClick: () => void;
 }
 
-const Liga = ({ liga, onLigaOpen, onClick }: LigaProps) => {
+const Liga = ({ liga, onLigaOpen }: LigaProps) => {
    const leagues = [
       { name: "Wooden", referralsRequired: 3, referralsTo: 0, harvest: 1 },
       { name: "Silver", referralsRequired: 10, referralsTo: 3, harvest: 1.5 },
@@ -49,10 +48,10 @@ const Liga = ({ liga, onLigaOpen, onClick }: LigaProps) => {
     }
    }, []);
    return (
-      <div style={{position:"absolute", top: "-66vh", left: "50%", transform: "translateX(-50%)", zIndex:"1"}} className={cn("liga")} onClick={onLigaOpen} id="league">
+      <div style={{position:"absolute", top: "-66vh", left: "50%", transform: "translateX(-50%)", zIndex:"1"}} className={cn("liga")} id="league">
          <img src={`img/leagueIcons/${liga}.png`} alt="Wooden" />
          <span className="textShadow textLiga"> {t(`${liga.toLocaleLowerCase()}`)}  {t(`league`)} (x{userHarvestMultiplier})</span>
-         <img onClick={onClick} style={{display: 'flex',  width:'22px', height:'22px'}} src={`img/leagueIcons/Plus.svg`} alt="plus" />
+         <img onClick={onLigaOpen} style={{display: 'flex',  width:'22px', height:'22px'}} src={`img/leagueIcons/Plus.svg`} alt="plus" />
       </div>
    );
 };
