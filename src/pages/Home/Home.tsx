@@ -1179,7 +1179,7 @@ const Home = () => {
                   /> */}
                   <Liga onClick={() => {setLeaguesopupOpen(true)
                     openLeaguePopup()
-                  }} liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
+                  }} liga={leagues[level].name as TLiga} onLigaOpen={() => {setLeaguesopupOpen(true); openLeaguePopup()}} />
                   <Energy
                      total={grassTotal*multiplier}
                      hours={user?.incomeMultiplier}
@@ -1455,12 +1455,12 @@ const Home = () => {
                />
 
               
-{/* {leaguesActiveTab === "LEAGUES" && ( */}
+{leaguesActiveTab === "LEAGUES" && (
                <PopupList
                   ref={leaguesRef}
                   nodes={renderLeagues()}
                />
-            {/* )} */}
+            )}
 
 
             </PopupListWrap>
