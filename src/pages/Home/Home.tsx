@@ -245,7 +245,7 @@ const Home = () => {
    // Earn popup
    
    const [earnPopupOpen, setEarnPopupOpen] = useState(false);
-   const [leaguesPopupOpen, setLeaguesopupOpen] = useState(false);
+   const [leaguesPopupOpen, setLeaguesopupOpen] = useState(true);
    const leaguesRef = useOutsideClick(
     () => setLeaguesopupOpen(false),
     ["#menu", "#tabs", "#popup"]
@@ -1177,9 +1177,9 @@ const Home = () => {
                      liga="Diamond"
                      onLigaOpen={() => setEarnPopupOpen(true)}
                   /> */}
-                  <Liga liga={leagues[level].name as TLiga} onLigaOpen={() => {setLeaguesopupOpen(true)
+                  <Liga onClick={() => {setLeaguesopupOpen(true)
                     openLeaguePopup()
-                  }} />
+                  }} liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
                   <Energy
                      total={grassTotal*multiplier}
                      hours={user?.incomeMultiplier}
