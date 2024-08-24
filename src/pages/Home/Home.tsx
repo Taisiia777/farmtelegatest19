@@ -1455,12 +1455,12 @@ const Home = () => {
                />
 
               
-{leaguesActiveTab === "LEAGUES" && (
+{/* {leaguesActiveTab === "LEAGUES" && ( */}
                <PopupList
                   ref={leaguesRef}
                   nodes={renderLeagues()}
                />
-            )}
+            {/* )} */}
 
 
             </PopupListWrap>
