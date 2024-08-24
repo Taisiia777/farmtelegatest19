@@ -234,7 +234,7 @@ const Home = () => {
     setBoostActiveTab("BOOST")
   };
   const openLeaguePopup =  () => {
-    setBoostActiveTab("LEAGUES")
+    setEarnActiveTab("LEAGUES")
   };
   const openSpecialPopup =  () => {
     setEarnActiveTab("TASKS")
@@ -1167,7 +1167,7 @@ const Home = () => {
                      liga="Diamond"
                      onLigaOpen={() => setEarnPopupOpen(true)}
                   /> */}
-                  <Liga onClick={() => {setBoostPopupOpen(true)
+                  <Liga onClick={() => {setEarnPopupOpen(true)
                     openLeaguePopup()
                   }} liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
                   <Energy
@@ -1403,7 +1403,7 @@ const Home = () => {
             {/* BOOST popup */}
             <PopupListWrap isOpen={boostPopupOpen}>
                <PopupListTabs
-                  labels={["BOOST", "COINS", "LEAGUES", "FERTILIZERS"]}
+                  labels={["BOOST", "COINS", "FERTILIZERS"]}
                   activeTab={boostActiveTab}
                   onTabChange={(label) => setBoostActiveTab(label)}
                />
@@ -1419,12 +1419,7 @@ const Home = () => {
               {boostActiveTab === "COINS" && (
                <PopupList ref={boostRef} nodes={renderCoins()} />
             )}
-                   {boostActiveTab === "LEAGUES" && (
-               <PopupList
-                  ref={earnRef}
-                  nodes={renderLeagues()}
-               />
-            )}
+
           {boostActiveTab === "FERTILIZERS" && (
                <PopupList
                   ref={earnRef}
@@ -1439,7 +1434,7 @@ const Home = () => {
             <PopupListWrap isOpen={earnPopupOpen}>
                <PopupListTabs
                   labelClassName={cn("earn__label")}
-                  labels={["TASKS"]}
+                  labels={["TASKS", "LEAGUES"]}
                   activeTab={earnActiveTab}
                   onTabChange={(label) => setEarnActiveTab(label)}
                />
@@ -1449,7 +1444,12 @@ const Home = () => {
                   nodes={renderLeagues()}
                />
             )} */}
-              
+                   {earnActiveTab === "LEAGUES" && (
+               <PopupList
+                  ref={earnRef}
+                  nodes={renderLeagues()}
+               />
+            )}
 {earnActiveTab === "TASKS" && (
   <PopupList
     ref={earnRef}
