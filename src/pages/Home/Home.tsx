@@ -762,7 +762,7 @@ const Home = () => {
    async function giveCoin() {
       try {
         const response = await axios.post(`https://coinfarm.club/api/coin/give/${user.id}/${coinState.info.coinId}`);
-
+        alert(coinState.info.earning)
         dispatch(setUser({ ...user, coins: user.coins - coinState.info.price, coinsPerHour: coinState.info.earning}));
         setIsCoinPurchased(!isCoinPurchased)
 
