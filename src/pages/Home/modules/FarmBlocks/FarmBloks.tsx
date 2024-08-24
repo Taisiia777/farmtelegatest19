@@ -212,49 +212,15 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league, harvestedBlo
   const [lastCoin, setLastCoin] = useState<Coin | null>(null);
   console.log(lastCoin)
   if (!farmBlock) return null;
-  // useEffect(() => {
-  //   const fetchUserCoins = async () => {
-  //     try {
-  //       // const response = await axios.get(`https://coinfarm.club/api/user/${user.id}/coins`);
-  //       // const coins = response.data;
-
-  //       if (coins.length > 0) {
-  //         const mostExpensiveCoin = coins.reduce((prev: Coin, current: Coin) => (prev.cost > current.cost ? prev : current));
-  //         setLastCoin(mostExpensiveCoin);
-  //       }
-  //     } catch (error) {
-  //       console.error('Failed to fetch user coins:', error);
-  //     }
-  //   };
-  
-  //   fetchUserCoins();
-  // }, [coins]);
   useEffect(() => {
     const fetchUserCoins = async () => {
       try {
+        // const response = await axios.get(`https://coinfarm.club/api/user/${user.id}/coins`);
+        // const coins = response.data;
+
         if (coins.length > 0) {
-          const mostExpensiveCoin = coins.reduce((maxCoin: Coin | null, currentCoin: Coin, index: number) => {
-            // Проверяем, достиг ли предыдущий коин максимального уровня
-            const previousCoin = coins[index - 1];
-            const previousUserCoin = coins.find((userCoin: Coin) => userCoin.id === previousCoin?.id);
-            const previousLevel = previousUserCoin ? previousUserCoin.level : 1;
-            const previousTotalLevels = 20 + (index - 1) * 5;
-            const previousMaxed = previousUserCoin && previousLevel >= previousTotalLevels;
-  
-            // Проверяем, заблокирована ли текущая монета
-            const isBlocked = index > 0 && !previousMaxed;
-  
-            // Находим самую дорогую незаблокированную монету
-            if (!isBlocked && (!maxCoin || currentCoin.cost > maxCoin.cost)) {
-              return currentCoin;
-            }
-  
-            return maxCoin;
-          }, null);
-  
-          if (mostExpensiveCoin) {
-            setLastCoin(mostExpensiveCoin);
-          }
+          const mostExpensiveCoin = coins.reduce((prev: Coin, current: Coin) => (prev.cost > current.cost ? prev : current));
+          setLastCoin(mostExpensiveCoin);
         }
       } catch (error) {
         console.error('Failed to fetch user coins:', error);
@@ -263,82 +229,6 @@ const FarmBlock: React.FC<IFarmBlockProps> = ({ zIndex, id, league, harvestedBlo
   
     fetchUserCoins();
   }, [coins]);
-  // const handlePickWheat = async (blockId: number) => {
-  //   if (farmBlock.stage !== "first" && user) {
-  //     let rewardMultiplier = 0;
-  
-  //     switch (farmBlock.stage) {
-  //       case "second":
-  //         rewardMultiplier = 0.3;
-  //         break;
-  //       case "third":
-  //         rewardMultiplier = 0.7;
-  //         break;
-  //       case "fourth":
-  //         rewardMultiplier = 1;
-  //         break;
-  //       default:
-  //         return; // Ничего не делать, если стадия "first"
-  //     }
-  
-  //     const reward = ((user.coinsPerHour/9) * rewardMultiplier) * user?.incomeMultiplier;
-  
-  //     try {
-  //       const response = await axios.patch(
-  //         `https://coinfarm.club/api/user/${user.id}/earn/${reward}`
-  //       );
-  //       const updatedUser = response.data;
-  
-  //       // Обновление состояния пользователя и локальных монет
-  //       dispatch(
-  //         setUser({
-  //           ...updatedUser,
-  //           coins: parseFloat(updatedUser.coins),
-  //           totalEarnings: parseFloat(updatedUser.totalEarnings),
-  //         })
-  //       );
-  
-  //       setLocalCoins(parseFloat(updatedUser.coins));
-  //       console.log(localCoins);
-  //     } catch (error) {
-  //       console.error("Error:", error);
-  //     }
-  
-  //     dispatch(pickWheat({ id: blockId }));
-  //     onHarvestAnimation(blockId);
-  
-  //     try {
-  //       await axios.patch(`https://coinfarm.club/api/user/${user.id}/grass-stages`, {
-  //         stages: blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage),
-  //       });
-  //     } catch (error) {
-  //       console.error("Failed to update grass growth stage on server:", error);
-  //     }
-  //   }
-  // };
-  
-
-
-  // const bind = useGesture({
-  //   onDrag: ({ xy: [x, y], event }) => {
-  //     event.preventDefault();
-
-  //     const target = document.elementFromPoint(x, y) as HTMLElement;
-  //     if (target) {
-  //       const blockId = target.getAttribute("data-id");
-  //       if (blockId) {
-  //         const id = parseInt(blockId, 10);
-  //         if (!touchedBlocks.has(id)) {
-  //           setTouchedBlocks((prev) => new Set(prev).add(id));
-  //           handlePickWheat(id);
-  //         }
-  //       }
-  //     }
-  //   },
-  //   onDragEnd: () => {
-  //     setTouchedBlocks(new Set());
-  //   },
-  // });
 
 
 
