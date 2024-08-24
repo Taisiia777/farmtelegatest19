@@ -192,7 +192,13 @@ const Home = () => {
   //  const isFingerActve = useAppSelector(
   //     (state) => state.growthStages.isFingerActive
   //  );
+  const [leaguesPopupOpen, setLeaguesPopupOpen] = useState(false);
+  const leaguesRef = useOutsideClick(() => setLeaguesPopupOpen(false), ["#menu", "#tabs", "#popup"]);
 
+  useClosePopupByTgButton({
+      isOpen: leaguesPopupOpen,
+      closePopup: () => setLeaguesPopupOpen(false),
+  });
    // Energy popup
    const [energyPopupOpen, setEnergyPopupOpen] = useState(false);
    const energyRef = useOutsideClick(
@@ -226,7 +232,6 @@ const Home = () => {
    const boostMoneyAnimRef = useRef<HTMLImageElement>(null);
    // Активный таб в boost popup
    const [boostActiveTab, setBoostActiveTab] = useState("BOOST");
-   const [leaguesActiveTab, setLeaguesActiveTab] = useState("LEAGUES");
 
    const openCoinPopup =  () => {
     setBoostActiveTab("COINS")
@@ -235,7 +240,7 @@ const Home = () => {
     setBoostActiveTab("BOOST")
   };
   const openLeaguePopup =  () => {
-    setLeaguesActiveTab("LEAGUES")
+    setBoostActiveTab("LEAGUES")
   };
   const openSpecialPopup =  () => {
     setEarnActiveTab("TASKS")
@@ -246,8 +251,6 @@ const Home = () => {
    // Earn popup
    
    const [earnPopupOpen, setEarnPopupOpen] = useState(false);
-   const [leaguesPopupOpen, setLeaguesPopupOpen] = useState(false);
-
    const [gamesPopupOpen, setGamesPopupOpen] = useState(false);
 
    const earnRef = useOutsideClick(
@@ -258,14 +261,6 @@ const Home = () => {
       isOpen: earnPopupOpen,
       closePopup: () => setEarnPopupOpen(false),
    });
-   const leaguesRef = useOutsideClick(
-    () => setLeaguesPopupOpen(false),
-    ["#menu", "#tabs", "#popup"]
- );
- useClosePopupByTgButton({
-    isOpen: leaguesPopupOpen,
-    closePopup: () => setLeaguesPopupOpen(false),
- });
 
    const gamesRef = useOutsideClick(
     () => setGamesPopupOpen(false),
@@ -1178,9 +1173,8 @@ const Home = () => {
                      liga="Diamond"
                      onLigaOpen={() => setEarnPopupOpen(true)}
                   /> */}
-                  <Liga onClick={() => {setLeaguesPopupOpen(true)
-                    openLeaguePopup()
-                  }} liga={leagues[level].name as TLiga} onLigaOpen={() => setLeaguesPopupOpen(true)} />
+                  <Liga onClick={() => {() => setLeaguesPopupOpen(true)
+                  }} liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
                   <Energy
                      total={grassTotal*multiplier}
                      hours={user?.incomeMultiplier}
@@ -1430,23 +1424,22 @@ const Home = () => {
               {boostActiveTab === "COINS" && (
                <PopupList ref={boostRef} nodes={renderCoins()} />
             )}
-
-              
-            </PopupListWrap>
-            {/* LEAGUES popup */}
-            <PopupListWrap isOpen={leaguesPopupOpen}>
-               <PopupListTabs
-                  labels={[ "LEAGUES"]}
-                  activeTab={leaguesActiveTab}
-                  onTabChange={(label) => setLeaguesActiveTab(label)}
-               />
-                   {leaguesActiveTab === "LEAGUES" && (
+                   {boostActiveTab === "LEAGUES" && (
                <PopupList
-                  ref={leaguesRef}
+                  ref={earnRef}
                   nodes={renderLeagues()}
                />
             )}
               
+            </PopupListWrap>
+
+            <PopupListWrap isOpen={leaguesPopupOpen}>
+                <PopupListTabs
+                    labels={["LEAGUES"]}
+                    activeTab="LEAGUES"
+                    onTabChange={() => {}}
+                />
+                <PopupList ref={leaguesRef} nodes={renderLeagues()} />
             </PopupListWrap>
 
             {/* EARN popup */}
