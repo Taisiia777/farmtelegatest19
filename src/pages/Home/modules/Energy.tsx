@@ -64,49 +64,15 @@ const Energy = ({ total, current, onClick, onClickProgresbar, onClickProgresbarH
    const [lastCoin, setLastCoin] = useState<Coin | null>(null);
   //  const user = useAppSelector((state: RootState) => state.user.user);
    const coins = useAppSelector((state: RootState) => state.userCoins.coins);
-  //  useEffect(() => {
-  //     console.log(user)
-  //     if (coins.length > 0) {
-  //       const mostExpensiveCoin = coins.reduce((prev: Coin, current: Coin) =>
-  //         prev.cost > current.cost ? prev : current
-  //       );
-  //       setLastCoin(mostExpensiveCoin);
-  //     }
-  //   }, [coins]);
-  useEffect(() => {
-    const fetchUserCoins = async () => {
-      try {
-        if (coins.length > 0) {
-          const mostExpensiveCoin = coins.reduce((maxCoin: Coin | null, currentCoin: Coin, index: number) => {
-            // Проверяем, достиг ли предыдущий коин максимального уровня
-            const previousCoin = coins[index - 1];
-            const previousUserCoin = coins.find((userCoin: Coin) => userCoin.id === previousCoin?.id);
-            const previousLevel = previousUserCoin ? previousUserCoin.level : 1;
-            const previousTotalLevels = 20 + (index - 1) * 5;
-            const previousMaxed = previousUserCoin && previousLevel >= previousTotalLevels;
-  
-            // Проверяем, заблокирована ли текущая монета
-            const isBlocked = index > 0 && !previousMaxed;
-  
-            // Находим самую дорогую незаблокированную монету
-            if (!isBlocked && (!maxCoin || currentCoin.cost > maxCoin.cost)) {
-              return currentCoin;
-            }
-  
-            return maxCoin;
-          }, null);
-  
-          if (mostExpensiveCoin) {
-            setLastCoin(mostExpensiveCoin);
-          }
-        }
-      } catch (error) {
-        console.error('Failed to fetch user coins:', error);
+   useEffect(() => {
+      if (coins.length > 0) {
+        const mostExpensiveCoin = coins.reduce((prev: Coin, current: Coin) =>
+          prev.cost > current.cost ? prev : current
+        );
+        setLastCoin(mostExpensiveCoin);
       }
-    };
-  
-    fetchUserCoins();
-  }, [coins]);
+    }, [coins]);
+ 
     const resolvedIconName = lastCoin ? lastCoin.name : iconName || 'Bitcoin';
   //   const userLeagueIndex = user ? user.level : 0;
   // const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
