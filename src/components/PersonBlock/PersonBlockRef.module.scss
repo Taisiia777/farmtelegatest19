@@ -38,7 +38,7 @@
 
    &__name {
       font-size: rem(18);
-
+      max-width: 200px;
       @media screen and (max-width:em(390)) {
          font-size: rem(16);
       }
