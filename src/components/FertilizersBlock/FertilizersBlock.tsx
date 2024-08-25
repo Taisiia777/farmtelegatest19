@@ -59,13 +59,11 @@ console.log(userId)
   function openFertilizersBuyPopup() {
     const baseEarning = parseInt(earning.replace(/\D/g, ''), 10); // Преобразуем доход в число
   // Если монета куплена, рассчитываем цену и доход с учетом уровня
-  const calculatedPrice = isBought 
-    ? Math.round(newPrice * Math.pow(1.45, level)) 
-    : newPrice;
+  const calculatedPrice = Math.round(newPrice * Math.pow(1.45, level)) 
+  ;
 
-  const calculatedEarning = isBought
-    ? Math.round(baseEarning * Math.pow(1.25, level)) 
-    : baseEarning;
+  const calculatedEarning = Math.round(baseEarning * Math.pow(1.25, level)) 
+    
     dispatch(
       setFertilizersIfno({
         earning: calculatedEarning.toString(),  // Передаем рассчитанный доход в виде строки
@@ -78,6 +76,8 @@ console.log(userId)
     // giveCoin();
   }
   const canAfford = userCoins >= fertilizersPrice; // Проверяем, хватает ли монет
+  const calculatedPrice = level === 0 ? newPrice : Math.round(newPrice * Math.pow(1.45, level));
+
   let content;
 
   content = (
@@ -104,7 +104,7 @@ console.log(userId)
           onClick={openFertilizersBuyPopup}
         >
           <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-          <span>{Math.round(newPrice * Math.pow(1.45, level))}</span>
+          <span>{calculatedPrice}</span>
         </Button>
         ) : (
           <Button
@@ -112,7 +112,7 @@ console.log(userId)
           disabled={!canAfford} // Делаем кнопку неактивной, если монет недостаточно
         >
           <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-          <span>{Math.round(newPrice * Math.pow(1.45, level))}</span>
+          <span>{calculatedPrice}</span>
         </Button>
         )}
       </div>
