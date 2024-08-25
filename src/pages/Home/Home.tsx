@@ -1413,7 +1413,7 @@ const Home = () => {
 
            {/* Fertilizers popup */}
            <Popup
-               borderlabel={t(`${fertilizersState.info.fertilizersName.toLocaleLowerCase()}`)} // Используем новое имя бустера
+               borderlabel={t(`${fertilizersState.info.name}`)} // Используем новое имя бустера
                isOpen={fertilizersState.isOpen}
                onClose={() => dispatch(closeFertilizersBuyPopup())}
                ref={fertilizersBuyRef}>
