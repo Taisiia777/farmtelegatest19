@@ -248,7 +248,7 @@ const Home = () => {
    const [leaguesPopupOpen, setLeaguesopupOpen] = useState(false);
    const leaguesRef = useOutsideClick(
     () => setLeaguesopupOpen(false),
-    ["#menu", "#tabs", "#popup", "#energy"]
+    ["#menu", "#tabs", "#popup", "#energy", "#league"]
  );
  useClosePopupByTgButton({
     isOpen: leaguesPopupOpen,
