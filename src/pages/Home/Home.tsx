@@ -1331,7 +1331,7 @@ dispatch(setUser({
                   <Liga onClickLeagues={() => {setLeaguesopupOpen(true)
                   }} liga={leagues[level].name as TLiga} />
                   <Energy
-                     total={user?.coinsPerHour*user?.incomeMultiplier*leagues[user.level-1].harvest}
+                     total={user?.coinsPerHour*user?.incomeMultiplier*leagues[user?.level-1].harvest}
                      hours={user?.incomeMultiplier}
                      current={displayEarnings<=grassTotal*multiplier? Math.round(displayEarnings) : grassTotal*multiplier}
                      onClickProgresbarHarvest={
