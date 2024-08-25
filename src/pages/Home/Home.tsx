@@ -233,9 +233,9 @@ const Home = () => {
   const openBoostPopup =  () => {
     setBoostActiveTab("BOOST")
   };
-  const openLeaguePopup =  () => {
-    setLeaguesActiveTab("LEAGUES")
-  };
+  // const openLeaguePopup =  () => {
+  //   setLeaguesActiveTab("LEAGUES")
+  // };
   const openSpecialPopup =  () => {
     setEarnActiveTab("TASKS")
   };
@@ -245,7 +245,7 @@ const Home = () => {
    // Earn popup
    
    const [earnPopupOpen, setEarnPopupOpen] = useState(false);
-   const [leaguesPopupOpen, setLeaguesopupOpen] = useState(true);
+   const [leaguesPopupOpen, setLeaguesopupOpen] = useState(false);
    const leaguesRef = useOutsideClick(
     () => setLeaguesopupOpen(false),
     ["#menu", "#tabs", "#popup"]
@@ -1178,8 +1178,7 @@ const Home = () => {
                      onLigaOpen={() => setEarnPopupOpen(true)}
                   /> */}
                   <Liga onClick={() => {setLeaguesopupOpen(true)
-                    openLeaguePopup()
-                  }} liga={leagues[level].name as TLiga} onLigaOpen={() => setEarnPopupOpen(true)} />
+                  }} liga={leagues[level].name as TLiga} />
                   <Energy
                      total={grassTotal*multiplier}
                      hours={user?.incomeMultiplier}
