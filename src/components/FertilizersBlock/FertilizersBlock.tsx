@@ -41,7 +41,7 @@ const FertilizersBlock = ({
   const newPrice = parseInt(price.replace(/\D/g, ''), 10)
   const newEarning = parseInt(earning.replace(/\D/g, ''), 10)
 
-  const fertilizersPrice = parseInt(price.replace(/\D/g, ''), 10); // Преобразуем цену в число
+  // const fertilizersPrice = parseInt(price.replace(/\D/g, ''), 10); // Преобразуем цену в число
   const { t } = useTranslation();
   useEffect(() => {
     const initData = window.Telegram.WebApp.initDataUnsafe;
@@ -75,8 +75,8 @@ console.log(userId)
     );
     // giveCoin();
   }
-  const canAfford = userCoins >= fertilizersPrice; // Проверяем, хватает ли монет
   const calculatedPrice = level === 0 ? newPrice : Math.round(newPrice * Math.pow(1.45, level));
+  const canAfford = userCoins >= calculatedPrice; // Проверяем, хватает ли монет
 
   let content;
 
