@@ -39,6 +39,7 @@
    &__name {
       font-size: rem(18);
       max-width: 200px;
+      overflow: hidden;
       @media screen and (max-width:em(390)) {
          font-size: rem(16);
       }
