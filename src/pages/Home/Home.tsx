@@ -6,6 +6,8 @@ import { RootState } from "../../store";
 import { useAppSelector } from "../../store";
 import { closeBoostBuyPopup } from "../../store/reducers/boost";
 import { closeCoinBuyPopup } from "../../store/reducers/coin";
+import { closeFertilizersBuyPopup } from "../../store/reducers/fertilizers";
+
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
 import { retrieveLaunchParams } from '@tma.js/sdk';
@@ -239,7 +241,12 @@ const Home = () => {
       ["#buyBoost"]
    );
 
- 
+   const fertilizersState = useAppSelector((state) => state.fertilizers);
+   const fertilizersBuyRef = useOutsideClick(
+      () => dispatch(closeFertilizersBuyPopup()),
+      ["#buyFertilizers"]
+   );
+
    const { t } = useTranslation();
 
    // Boost popup
@@ -857,7 +864,17 @@ const Home = () => {
      });
       };
 
-
+      async function giveFertilizers() {
+        try {
+          const response = await axios.post(`https://coinfarm.club/api/fertilizers/give/${user.id}/${fertilizersState.info.fertilizersId}`);
+          dispatch(setUser({ ...user, coins: user.coins - fertilizersState.info.price, coinsPerHour: fertilizersState.info.earning}));
+          setIsCoinPurchased(!isCoinPurchased)
+  
+          console.log('Coin given:', response.data);
+        } catch (error) {
+          console.error('Error giving coin:', error);
+        }
+      }
 
     
    async function giveCoin() {
@@ -1394,6 +1411,61 @@ const Home = () => {
       </div>
     </Popup>
 
+           {/* Fertilizers popup */}
+           <Popup
+               borderlabel={t(`${fertilizersState.info.fertilizersName.toLocaleLowerCase()}`)} // Используем новое имя бустера
+               isOpen={fertilizersState.isOpen}
+               onClose={() => dispatch(closeFertilizersBuyPopup())}
+               ref={fertilizersBuyRef}>
+               <div className={cn("popup__body")}>
+                  <div className={cn("popup__bg-lightnings")}>
+                     <img src="img/global/lightning.svg" alt="energy" />
+                     <img src="img/global/lightning.svg" alt="energy" />
+                     <img src="img/global/lightning.svg" alt="energy" />
+                     <img src="img/global/lightning.svg" alt="energy" />
+                     <img src="img/global/lightning.svg" alt="energy" />
+                     <img src="img/global/lightning.svg" alt="energy" />
+                  </div>
+
+                  <img
+                     src={fertilizersState.info.imgSrc}
+                     className={cn("popup__icon", "_boost")}
+                  />
+
+                  <div className={cn("popup__bottom")}>
+                     <div className={cn("popup__earning")}>
+                        <span>+{fertilizersState.info.earning} {t('hour')} ⏰</span>
+                       
+                     </div>
+
+                     <Button
+                        className={cn("popup__btn")}
+                        size={width > 380 ? "big" : "normal"}
+                        onClick={() =>{
+                          giveFertilizers()
+                          buy(boostMoneyAnimRef, () =>
+                              dispatch(closeFertilizersBuyPopup())
+                           )
+                        }
+                           
+                        }>
+                        <CoinWhiteBg
+                           iconName="Bitcoin"
+                           size={width > 380 ? "normall" : "small"}
+                        />
+                        <span>{fertilizersState.info.price}</span>
+                     </Button>
+                     <img
+                        // src={`img/pages/home/${mostExpensiveCoinName}/money.svg`}
+                        src={`img/pages/home/money1.svg`}
+                        className={cn("popup__money-anim")}
+                        ref={boostMoneyAnimRef}
+                     />
+                  </div>
+               </div>
+            </Popup>
+
+
             {/* Boost popup */}
             <Popup
                borderlabel={t(`${boostState.info.boostNameNew.toLocaleLowerCase()}`)} // Используем новое имя бустера
@@ -1507,12 +1579,7 @@ const Home = () => {
                   activeTab={boostActiveTab}
                   onTabChange={(label) => setBoostActiveTab(label)}
                />
-               {/* {boostActiveTab === "BOOST"  ? (
-                  <PopupList ref={boostRef} nodes={renderBoosters()} />
-               ) : (
-                  <PopupList ref={boostRef} nodes={renderCoins()} />
-               )} */}
-               
+
                {boostActiveTab === "BOOST" && (
                <PopupList ref={boostRef} nodes={renderBoosters()} />
             )}
