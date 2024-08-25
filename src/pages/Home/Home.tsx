@@ -242,10 +242,10 @@ const Home = () => {
    );
 
    const fertilizersState = useAppSelector((state) => state.fertilizers);
-   const fertilizersBuyRef = useOutsideClick(
-      () => dispatch(closeFertilizersBuyPopup()),
-      ["#buyFertilizers"]
-   );
+  //  const fertilizersBuyRef = useOutsideClick(
+  //     () => dispatch(closeFertilizersBuyPopup()),
+  //     ["#buyFertilizers"]
+  //  );
 
    const { t } = useTranslation();
 
@@ -1418,7 +1418,7 @@ const Home = () => {
                borderlabel={fertilizersState.info.name}
                isOpen={fertilizersState.isOpen}
                onClose={() => dispatch(closeFertilizersBuyPopup())}
-               ref={fertilizersBuyRef}>
+               ref={coinBuyRef}>
                <div className={cn("popup__body")}>
                   <div className={cn("popup__bg-lightnings")}>
                      <img src="img/global/lightning.svg" alt="energy" />
