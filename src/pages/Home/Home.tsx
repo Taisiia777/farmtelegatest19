@@ -716,8 +716,8 @@ const Home = () => {
       };
        if (user?.id) {
 
-       fetchCoins();
-       fetchUserCoins();
+      fetchCoins();
+      fetchUserCoins();
       fetchBoosters();
       fetchUserBoosters();
       fetchFertilizers();
@@ -830,44 +830,55 @@ const Home = () => {
 
     const renderFertilizers = () => {
       const sortedFertilizers = [...fertilizers].sort((a, b) => a.id - b.id);
-     return sortedFertilizers.map((fertilizers) => {
-       // Проверка, куплена ли монета пользователем
-       const isBought = userFertilizers.some((userFertilizers) => userFertilizers.id === fertilizers.id);
-       const isActive =  false;
-       const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
-       const hourlyIncome = 0;
-       if(user){
-       return (
-         <FertilizersBlock
-           key={fertilizers.id}
-           fertilizersName={fertilizers.name}
-           earning={fertilizers.hourlyIncome.toString()}
-           price={fertilizers.cost.toString()}
-           isBought={isBought}
-           isBlocked={isBlocked}
-           level={fertilizers.level}
-           userId={user.id} // Передача userId
-           userCoins={user.coins} // Передача количества монет пользователя
-           fertilizersId={fertilizers.id} // Передача coinId
-           isActive={isActive}
-         />
-       );
-     }else{
-        <FertilizersBlock
-           key={fertilizers.id}
-           fertilizersName={fertilizers.name}
-           earning={hourlyIncome.toString()}
-           price={fertilizers.cost.toString()}
-           isBought={isBought}
-           isBlocked={isBlocked}
-           level={1}
-           userId={user.id} // Передача userId
-           userCoins={0} // Передача количества монет пользователя
-           fertilizersId={fertilizers.id} // Передача coinId
-         />
-     }
-     });
-      };
+      
+      return sortedFertilizers.map((fertilizer) => {
+        // Найти соответствующий userFertilizer
+        const userFertilizer = userFertilizers.find((uf) => uf.id === fertilizer.id);
+        
+        // Проверка, куплен ли fertilizer пользователем
+        const isBought = Boolean(userFertilizer);
+        const isActive = false;
+        const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
+        const hourlyIncome = isBought ? fertilizer.hourlyIncome : 0;
+    
+        // Определение уровня, если fertilizer куплен, иначе установить level как 1
+        const level = userFertilizer ? userFertilizer.level : 1;
+    
+        if (user) {
+          return (
+            <FertilizersBlock
+              key={fertilizer.id}
+              fertilizersName={fertilizer.name}
+              earning={hourlyIncome.toString()}
+              price={fertilizer.cost.toString()}
+              isBought={isBought}
+              isBlocked={isBlocked}
+              level={level}
+              userId={user.id} // Передача userId
+              userCoins={user.coins} // Передача количества монет пользователя
+              fertilizersId={fertilizer.id} // Передача fertilizersId
+              isActive={isActive}
+            />
+          );
+        } else {
+          return (
+            <FertilizersBlock
+              key={fertilizer.id}
+              fertilizersName={fertilizer.name}
+              earning={hourlyIncome.toString()}
+              price={fertilizer.cost.toString()}
+              isBought={isBought}
+              isBlocked={isBlocked}
+              level={level} // Передача уровня
+              userId={user ? user.id : 0} // Передача userId, если user существует
+              userCoins={0} // Передача количества монет пользователя
+              fertilizersId={fertilizer.id} // Передача fertilizersId
+            />
+          );
+        }
+      });
+    };
+    
 
       async function giveFertilizers() {
         try {
