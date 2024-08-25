@@ -1127,7 +1127,9 @@ const Home = () => {
     
       fetchTasks();
     }, []);
-    
+    useEffect(() => {
+      alert(leaguesPopupOpen);
+    }, [leaguesPopupOpen]);
 
    return (
       <>
@@ -1177,7 +1179,7 @@ const Home = () => {
                      liga="Diamond"
                      onLigaOpen={() => setEarnPopupOpen(true)}
                   /> */}
-                  <Liga onClickLeagues={() => { alert('kkk'); setLeaguesopupOpen(true)
+                  <Liga onClickLeagues={() => {setLeaguesopupOpen(true)
                   }} liga={leagues[level].name as TLiga} />
                   <Energy
                      total={grassTotal*multiplier}

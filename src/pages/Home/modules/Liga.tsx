@@ -51,10 +51,7 @@ const Liga = ({ liga, onClickLeagues }: LigaProps) => {
       <div style={{position:"absolute", top: "-66vh", left: "50%", transform: "translateX(-50%)", zIndex:"1"}} className={cn("liga")}  id="league">
          <img src={`img/leagueIcons/${liga}.png`} alt="Wooden" />
          <span className="textShadow textLiga"> {t(`${liga.toLocaleLowerCase()}`)}  {t(`league`)} (x{userHarvestMultiplier})</span>
-         <img    onClick={() => { 
-      console.log('Plus icon clicked'); 
-      onClickLeagues(); 
-   }}  style={{display: 'flex',  width:'22px', height:'22px'}} src={`img/leagueIcons/Plus.svg`} alt="plus" />
+         <img onClick={onClickLeagues} style={{display: 'flex',  width:'22px', height:'22px'}} src={`img/leagueIcons/Plus.svg`} alt="plus" />
       </div>
    );
 };
