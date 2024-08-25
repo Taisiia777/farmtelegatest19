@@ -85,7 +85,7 @@ console.log(userId)
           </div>
         </div>
       </div>
-      <div className={cn("coinBlock__right")} id="buyCoin">
+      <div className={cn("coinBlock__right")} id="buyFertilizers">
         {canAfford ? (
           <Button
           className={cn("coinBlock__price")}
