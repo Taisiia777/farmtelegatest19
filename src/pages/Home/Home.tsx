@@ -839,8 +839,7 @@ const Home = () => {
         const isBought = Boolean(userFertilizer);
         const isActive = false;
         const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
-        const hourlyIncome = isBought ? fertilizer.hourlyIncome : 0;
-    
+        const hourlyIncome = 0;
         // Определение уровня, если fertilizer куплен, иначе установить level как 1
         const level = userFertilizer ? userFertilizer.level : 1;
     
@@ -849,7 +848,7 @@ const Home = () => {
             <FertilizersBlock
               key={fertilizer.id}
               fertilizersName={fertilizer.name}
-              earning={hourlyIncome.toString()}
+              earning={fertilizer.hourlyIncome.toString()}
               price={fertilizer.cost.toString()}
               isBought={isBought}
               isBlocked={isBlocked}
