@@ -7,7 +7,7 @@ export interface IFertilizersState {
       earning: string;
       price: string;
       fertilizersId: number
-
+      level: number
    };
    isOpen: boolean;
 }
@@ -17,7 +17,8 @@ const initialState: IFertilizersState = {
       name: "Humus Elixir",
       earning: "",
       price: "",
-      fertilizersId: 0
+      fertilizersId: 0,
+      level: 1
    },
    isOpen: false,
 };
@@ -32,7 +33,9 @@ export const fertilizersSlice = createSlice({
             name: TFertilizers;
             earning: string;
             price: string;
-            fertilizersId: number
+            fertilizersId: number;
+            level: number;
+
          }>
       ) => {
          state.info = action.payload;

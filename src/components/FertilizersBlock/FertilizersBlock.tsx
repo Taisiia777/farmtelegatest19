@@ -59,7 +59,8 @@ console.log(userId)
         earning,
         price,
         name: fertilizersName,
-        fertilizersId: fertilizersId
+        fertilizersId: fertilizersId,
+        level: level
       })
     );
     // giveCoin();
