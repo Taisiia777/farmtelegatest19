@@ -38,6 +38,9 @@ const FertilizersBlock = ({
 }: IFertilizersBlockProps) => {
   console.log(isBlocked, isBought, isActive)
   const dispatch = useDispatch();
+  const newPrice = parseInt(price.replace(/\D/g, ''), 10)
+  const newEarning = parseInt(earning.replace(/\D/g, ''), 10)
+
   const fertilizersPrice = parseInt(price.replace(/\D/g, ''), 10); // Преобразуем цену в число
   const { t } = useTranslation();
   useEffect(() => {
@@ -55,7 +58,6 @@ console.log(userId)
 
   function openFertilizersBuyPopup() {
     const baseEarning = parseInt(earning.replace(/\D/g, ''), 10); // Преобразуем доход в число
-    const newPrice = parseInt(price.replace(/\D/g, ''), 10)
   // Если монета куплена, рассчитываем цену и доход с учетом уровня
   const calculatedPrice = isBought 
     ? Math.round(newPrice * Math.pow(1.45, level)) 
@@ -90,7 +92,7 @@ console.log(userId)
           <h3 className="textShadow">{fertilizersName}</h3>
           <div className={cn("coinBlock__earning")}>
             <span>Level {level}</span>
-            <span>+{earning} / {t(`h`)}</span>
+            <span>+{Math.round(newEarning * Math.pow(1.25, level-1))} / {t(`h`)}</span>
             {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
           </div>
         </div>
@@ -102,7 +104,7 @@ console.log(userId)
           onClick={openFertilizersBuyPopup}
         >
           <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-          <span>{price}</span>
+          <span>{Math.round(newPrice * Math.pow(1.45, level))}</span>
         </Button>
         ) : (
           <Button
@@ -110,7 +112,7 @@ console.log(userId)
           disabled={!canAfford} // Делаем кнопку неактивной, если монет недостаточно
         >
           <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-          <span>{price}</span>
+          <span>{Math.round(newPrice * Math.pow(1.45, level))}</span>
         </Button>
         )}
       </div>
