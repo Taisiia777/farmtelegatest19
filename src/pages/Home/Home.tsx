@@ -245,7 +245,7 @@ const Home = () => {
    // Earn popup
    
    const [earnPopupOpen, setEarnPopupOpen] = useState(false);
-   const [leaguesPopupOpen, setLeaguesopupOpen] = useState(true);
+   const [leaguesPopupOpen, setLeaguesopupOpen] = useState(false);
    const leaguesRef = useOutsideClick(
     () => setLeaguesopupOpen(false),
     ["#menu", "#tabs", "#popup"]
