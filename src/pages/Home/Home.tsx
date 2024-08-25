@@ -320,6 +320,8 @@ const Home = () => {
    // buyCoin popup
    const coinState = useAppSelector((state) => state.coin);
    const coinMoneyAnimRef = useRef<HTMLImageElement>(null);
+   const fertilizersMoneyAnimRef = useRef<HTMLImageElement>(null);
+
    const coinBuyRef = useOutsideClick(
       () => dispatch(closeCoinBuyPopup()),
       ["#buyCoin", "#buyCoin1", "#buyCoin2"]
@@ -1412,8 +1414,8 @@ const Home = () => {
     </Popup>
 
            {/* Fertilizers popup */}
-           <Popup
-               borderlabel={t(`${fertilizersState.info.name}`)} // Используем новое имя бустера
+          <Popup
+               borderlabel={fertilizersState.info.name}
                isOpen={fertilizersState.isOpen}
                onClose={() => dispatch(closeFertilizersBuyPopup())}
                ref={fertilizersBuyRef}>
@@ -1427,27 +1429,25 @@ const Home = () => {
                      <img src="img/global/lightning.svg" alt="energy" />
                   </div>
 
-                  <img
-                     src={fertilizersState.info.imgSrc}
-                     className={cn("popup__icon", "_boost")}
+                  <CoinWhiteBg
+                     className={cn("popup__icon", "_coin")}
+                     iconName={fertilizersState.info.name}
                   />
 
                   <div className={cn("popup__bottom")}>
                      <div className={cn("popup__earning")}>
-                        <span>+{fertilizersState.info.earning} {t('hour')} ⏰</span>
-                       
+                        <span>+{fertilizersState.info.earning} / 1{t('h')}</span>
                      </div>
 
                      <Button
                         className={cn("popup__btn")}
                         size={width > 380 ? "big" : "normal"}
                         onClick={() =>{
-                          giveFertilizers()
-                          buy(boostMoneyAnimRef, () =>
+                           giveFertilizers()
+                           buy(fertilizersMoneyAnimRef, () =>
                               dispatch(closeFertilizersBuyPopup())
                            )
                         }
-                           
                         }>
                         <CoinWhiteBg
                            iconName="Bitcoin"
@@ -1459,11 +1459,12 @@ const Home = () => {
                         // src={`img/pages/home/${mostExpensiveCoinName}/money.svg`}
                         src={`img/pages/home/money1.svg`}
                         className={cn("popup__money-anim")}
-                        ref={boostMoneyAnimRef}
+                        ref={fertilizersMoneyAnimRef}
                      />
                   </div>
                </div>
             </Popup>
+
 
 
             {/* Boost popup */}
