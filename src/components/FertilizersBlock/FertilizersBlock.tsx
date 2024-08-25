@@ -73,7 +73,7 @@ console.log(userId)
       <div className={cn("coinBlock__left")}>
         <img
           className={cn("coinBlock__coin")}
-          src={fertilizersName ? `img/fertilizers/${fertilizersName}.png` :  ``}
+          src={fertilizersName ? `img/fertilizers/${fertilizersName}.svg` :  ``}
           alt=""
         />
         <div className={cn("coinBlock__info")}>

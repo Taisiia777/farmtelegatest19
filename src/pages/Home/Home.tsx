@@ -1479,7 +1479,7 @@ dispatch(setUser({
                      </Button>
                      <img
                         // src={`img/pages/home/${mostExpensiveCoinName}/money.svg`}
-                        src={`img/fertilizers/${fertilizersState.info.name}.png`}
+                        src={`img/fertilizers/${fertilizersState.info.name}.svg`}
                         className={cn("popup__money-anim")}
                         ref={fertilizersMoneyAnimRef}
                      />
