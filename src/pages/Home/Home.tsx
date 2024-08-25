@@ -39,6 +39,8 @@ import PopupListTabs from "../../components/PopupList/modules/PopupListTabs";
 import PopupList from "../../components/PopupList/PopupList";
 import BoostBlock from "../../components/BoostBlock/BoostBlock";
 import CoinBlock from "../../components/CoinBlock/CoinBlock";
+import FertilizersBlock from "../../components/FertilizersBlock/FertilizersBlock";
+
 import Boosts from "./modules/Boosts/Boosts";
 import Account from "./modules/Account";
 import LigaBlock from "../../components/LigaBlock/LigaBlock";
@@ -56,7 +58,27 @@ import DailyBonus from "../../components/DailyBonus/DailyBonus";
 type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond" ; // Определение типа TLiga
 type TBoostName = 'mill' | 'drone' | 'minicar' | 'car-2' | 'car-3';
 type TGrowthStage = "first" | "second" | "third" | "fourth";
-
+type TFertilizers =
+  | "Humus Elixir"
+  | "Greenboost"
+  | "Megabloom"
+  | "Rootstrength"
+  | "Harvestmax"
+  | "Ecogro"
+  | "Bio-Compost"
+  | "Nitrogen Blend"
+  | "Potassium Essence"
+  | "Organic Booster"
+  | "Microelement Mix"
+  | "Sea Cocktail"
+  | "Peat Activator"
+  | "Growth Granules"
+  | "Energy Gel"
+  | "Flower Feed"
+  | "Fertility Extract"
+  | "Nectar of Life"
+  | "Moon Infusion"
+  | "Enzyme Boost";
 type TCoin =
    | "Bitcoin"
    | "Ethereum"
@@ -92,6 +114,13 @@ interface Booster {
    hourlyIncome: number;
    level: number
  }
+ interface Fertilizers {
+  id: number;
+  name: TFertilizers;
+  cost: number;
+  hourlyIncome: number;
+  level: number
+}
 
  type Reward = {
    id: number;
@@ -149,6 +178,8 @@ const Home = () => {
    const [isProgressUpdating, setIsProgressUpdating] = useState(false);
    const [boosters, setBoosters] = useState<Booster[]>([]);
    const [userBoosters, setUserBoosters] = useState<Booster[]>([]);
+   const [fertilizers, setFertilizers] = useState<Fertilizers[]>([]);
+   const [userFertilizers, setUserFertilizers] = useState<Fertilizers[]>([]);
    const [coins, setCoins] = useState<Coin[]>([]);
    const [userCoins, setUserCoins] = useState<Coin[]>([]);
    const [hasFirstReward, setHasFirstReward] = useState(true); // Состояние для проверки наличия награды "first"
@@ -652,12 +683,35 @@ const Home = () => {
            }
          }
        };
+       const fetchFertilizers = async () => {
+        try {
+          const response = await fetch("https://coinfarm.club/api/fertilizers");
+          const data = await response.json();
+          setFertilizers(data);
+        } catch (error) {
+          console.error("Error fetching boosters:", error);
+        }
+      };
+    
+      const fetchUserFertilizers = async () => {
+        if (user) {
+          try {
+            const response = await fetch(`https://coinfarm.club/api/user/${user.id}/fertilizers`);
+            const data = await response.json();
+            setUserFertilizers(data);
+          } catch (error) {
+            console.error("Error fetching user boosters:", error);
+          }
+        }
+      };
        if (user?.id) {
 
        fetchCoins();
        fetchUserCoins();
       fetchBoosters();
       fetchUserBoosters();
+      fetchFertilizers();
+      fetchUserFertilizers();
        }
     }, [isCoinPurchased, isBoosterPurchased]);
 
@@ -764,7 +818,44 @@ const Home = () => {
     
 
 
-
+    const renderFertilizers = () => {
+      const sortedFertilizers = [...fertilizers].sort((a, b) => a.id - b.id);
+     return sortedFertilizers.map((fertilizers) => {
+       // Проверка, куплена ли монета пользователем
+       const isBought = userFertilizers.some((userFertilizers) => userFertilizers.id === fertilizers.id);
+       const isActive =  false;
+       const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
+       const hourlyIncome = 0;
+       if(user){
+       return (
+         <FertilizersBlock
+           key={fertilizers.id}
+           fertilizersName={fertilizers.name}
+           earning={fertilizers.hourlyIncome.toString()}
+           price={fertilizers.cost.toString()}
+           isBought={isBought}
+           isBlocked={isBlocked}
+           userId={user.id} // Передача userId
+           userCoins={user.coins} // Передача количества монет пользователя
+           fertilizersId={fertilizers.id} // Передача coinId
+           isActive={isActive}
+         />
+       );
+     }else{
+        <FertilizersBlock
+           key={fertilizers.id}
+           fertilizersName={fertilizers.name}
+           earning={hourlyIncome.toString()}
+           price={fertilizers.cost.toString()}
+           isBought={isBought}
+           isBlocked={isBlocked}
+           userId={user.id} // Передача userId
+           userCoins={0} // Передача количества монет пользователя
+           fertilizersId={fertilizers.id} // Передача coinId
+         />
+     }
+     });
+      };
 
 
 
@@ -1127,9 +1218,7 @@ const Home = () => {
     
       fetchTasks();
     }, []);
-    useEffect(() => {
-      alert(leaguesPopupOpen);
-    }, [leaguesPopupOpen]);
+
 
    return (
       <>
@@ -1433,7 +1522,7 @@ const Home = () => {
                    {boostActiveTab === "FERTILIZERS" && (
                <PopupList
                   ref={earnRef}
-                  nodes={renderLeagues()}
+                  nodes={renderFertilizers()}
                />
             )}
               

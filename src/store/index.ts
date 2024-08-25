@@ -4,6 +4,8 @@ import { useDispatch, useSelector, useStore } from 'react-redux';
 import growthStagesSlice from './reducers/growthStages';
 import boostSlice from './reducers/boost';
 import coinSlice from './reducers/coin';
+import fertilizersSlice from './reducers/fertilizers';
+
 import greetingSlice from './reducers/greeting';
 import guideSlice from './reducers/guide';
 import wheelSlice from './reducers/wheel';
@@ -18,6 +20,7 @@ const store = configureStore({
     growthStages: growthStagesSlice,
     boost: boostSlice,
     coin: coinSlice,
+    fertilizers: fertilizersSlice,
     greeting: greetingSlice,
     guide: guideSlice,
     guide1: guide1Slice,
