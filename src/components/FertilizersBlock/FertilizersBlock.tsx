@@ -54,10 +54,20 @@ console.log(userId)
  
 
   function openFertilizersBuyPopup() {
+    const baseEarning = parseInt(earning.replace(/\D/g, ''), 10); // Преобразуем доход в число
+    const newPrice = parseInt(price.replace(/\D/g, ''), 10)
+  // Если монета куплена, рассчитываем цену и доход с учетом уровня
+  const calculatedPrice = isBought 
+    ? Math.round(newPrice * Math.pow(1.45, level)) 
+    : newPrice;
+
+  const calculatedEarning = isBought
+    ? Math.round(baseEarning * Math.pow(1.25, level)) 
+    : baseEarning;
     dispatch(
       setFertilizersIfno({
-        earning,
-        price,
+        earning: calculatedEarning.toString(),  // Передаем рассчитанный доход в виде строки
+        price: calculatedPrice.toString(),  // Передаем рассчитанную цену в виде строки
         name: fertilizersName,
         fertilizersId: fertilizersId,
         level: level

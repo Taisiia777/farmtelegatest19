@@ -707,7 +707,6 @@ const Home = () => {
           try {
             const response = await fetch(`https://coinfarm.club/api/user/${user.id}/fertilizers`);
             const data = await response.json();
-            alert(JSON.stringify(data))
             setUserFertilizers(data);
           } catch (error) {
             console.error("Error fetching user boosters:", error);
