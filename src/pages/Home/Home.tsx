@@ -840,7 +840,7 @@ const Home = () => {
         const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
         const hourlyIncome = 0;
         // Определение уровня, если fertilizer куплен, иначе установить level как 1
-        const level = userFertilizer ? userFertilizer.level : 1;
+        const level = userFertilizer ? userFertilizer.level : 0;
     
         if (user) {
           return (
