@@ -92,7 +92,7 @@ console.log(userId)
           <h3 className="textShadow">{fertilizersName}</h3>
           <div className={cn("coinBlock__earning")}>
             <span>Level {level}</span>
-            <span>+{Math.round(newEarning * Math.pow(1.25, level-1))} / {t(`h`)}</span>
+            <span>+{Math.round(newEarning * Math.pow(1.25, level))} / {t(`h`)}</span>
             {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
           </div>
         </div>
