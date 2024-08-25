@@ -1177,7 +1177,7 @@ const Home = () => {
                      liga="Diamond"
                      onLigaOpen={() => setEarnPopupOpen(true)}
                   /> */}
-                  <Liga onClickLeagues={() => {setLeaguesopupOpen(true)
+                  <Liga onClickLeagues={() => { alert('kkk'); setLeaguesopupOpen(true)
                   }} liga={leagues[level].name as TLiga} />
                   <Energy
                      total={grassTotal*multiplier}
