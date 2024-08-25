@@ -1451,9 +1451,9 @@ dispatch(setUser({
                      <img src="img/global/lightning.svg" alt="energy" />
                   </div>
 
-                  <CoinWhiteBg
-                     className={cn("popup__icon", "_coin")}
-                     iconName={fertilizersState.info.name}
+                  <img
+                        src={`img/fertilizers/${fertilizersState.info.name}.svg`}
+                        className={cn("popup__icon", "_boost")}
                   />
 
                   <div className={cn("popup__bottom")}>
@@ -1479,7 +1479,7 @@ dispatch(setUser({
                      </Button>
                      <img
                         // src={`img/pages/home/${mostExpensiveCoinName}/money.svg`}
-                        src={`img/fertilizers/${fertilizersState.info.name}.svg`}
+                        src={`img/pages/home/money1.svg`}
                         className={cn("popup__money-anim")}
                         ref={fertilizersMoneyAnimRef}
                      />
