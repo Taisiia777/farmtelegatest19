@@ -761,7 +761,12 @@ const Home = () => {
         
           if (user) {
                const response = await axios.post(`https://coinfarm.club/api/booster/apply/${user.id}/${boostState.info.boosterId}`);
-               dispatch(setUser({ ...user, coins: user.coins - boostState.info.price, incomeMultiplier: user.incomeMultiplier + boostState.info.earning}));
+              //  dispatch(setUser({ ...user, coins: user.coins - boostState.info.price, incomeMultiplier: user.incomeMultiplier + boostState.info.earning}));
+              dispatch(setUser({ 
+                ...user, 
+                coins: Number(user.coins) - Number(boostState.info.price), 
+                incomeMultiplier: Number(user.incomeMultiplier) + Number(boostState.info.earning)
+            }));
                setMultiplier(user.incomeMultiplier + boostState.info.earning);
                console.log('Booster applied:', response.data);
               setIsBoosterPurchased(!isBoosterPurchased)
@@ -902,8 +907,21 @@ dispatch(setUser({
     
    async function giveCoin() {
       try {
+         // Получаем индекс текущей монеты
+         const currentCoinIndex = userCoins.findIndex(coin => coin.id === coinState.info.coinId);
+        
+         // Проверяем, есть ли предыдущая монета
+         const previousEarning = currentCoinIndex > 0 ? Number(userCoins[currentCoinIndex - 1].hourlyIncome) : 0;
+         
+         const currentEarning = Number(coinState.info.earning);
+         const earningDifference = currentEarning - previousEarning;
         const response = await axios.post(`https://coinfarm.club/api/coin/give/${user.id}/${coinState.info.coinId}`);
-        dispatch(setUser({ ...user, coins: user.coins - coinState.info.price, coinsPerHour: coinState.info.earning}));
+        // dispatch(setUser({ ...user, coins: user.coins - coinState.info.price, coinsPerHour: coinState.info.earning}));
+        dispatch(setUser({ 
+          ...user, 
+          coins: Number(user.coins) - Number(coinState.info.price), 
+          coinsPerHour: Number(user.coinsPerHour) + earningDifference
+      }));
         setIsCoinPurchased(!isCoinPurchased)
 
         console.log('Coin given:', response.data);
