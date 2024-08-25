@@ -844,6 +844,7 @@ const Home = () => {
            price={fertilizers.cost.toString()}
            isBought={isBought}
            isBlocked={isBlocked}
+           level={fertilizers.level}
            userId={user.id} // Передача userId
            userCoins={user.coins} // Передача количества монет пользователя
            fertilizersId={fertilizers.id} // Передача coinId
@@ -858,6 +859,7 @@ const Home = () => {
            price={fertilizers.cost.toString()}
            isBought={isBought}
            isBlocked={isBlocked}
+           level={1}
            userId={user.id} // Передача userId
            userCoins={0} // Передача количества монет пользователя
            fertilizersId={fertilizers.id} // Передача coinId
@@ -869,7 +871,16 @@ const Home = () => {
       async function giveFertilizers() {
         try {
           const response = await axios.post(`https://coinfarm.club/api/fertilizers/give/${user.id}/${fertilizersState.info.fertilizersId}`);
-          dispatch(setUser({ ...user, coins: user.coins - fertilizersState.info.price, coinsPerHour: user.coinsPerHour + fertilizersState.info.earning}));
+          // dispatch(setUser({ ...user, coins: user.coins - fertilizersState.info.price, coinsPerHour: user.coinsPerHour + fertilizersState.info.earning}));
+          const coinsPerHour = parseInt(user.coinsPerHour, 10) || 0;
+const earning = parseInt(fertilizersState.info.earning, 10) || 0;
+const price = parseInt(fertilizersState.info.price, 10) || 0;
+
+dispatch(setUser({ 
+  ...user, 
+  coins: user.coins - price, 
+  coinsPerHour: coinsPerHour + earning
+}));
           setIsCoinPurchased(!isCoinPurchased)
   
           console.log('Coin given:', response.data);
