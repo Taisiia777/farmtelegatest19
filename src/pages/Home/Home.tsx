@@ -869,7 +869,7 @@ const Home = () => {
       async function giveFertilizers() {
         try {
           const response = await axios.post(`https://coinfarm.club/api/fertilizers/give/${user.id}/${fertilizersState.info.fertilizersId}`);
-          dispatch(setUser({ ...user, coins: user.coins - fertilizersState.info.price, coinsPerHour: fertilizersState.info.earning}));
+          dispatch(setUser({ ...user, coins: user.coins - fertilizersState.info.price, coinsPerHour: user.coinsPerHour + fertilizersState.info.earning}));
           setIsCoinPurchased(!isCoinPurchased)
   
           console.log('Coin given:', response.data);

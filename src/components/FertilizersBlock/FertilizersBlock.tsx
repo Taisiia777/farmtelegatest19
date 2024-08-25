@@ -52,7 +52,6 @@ console.log(userId)
  
 
   function openFertilizersBuyPopup() {
-    alert("kkk")
     dispatch(
       setFertilizersIfno({
         earning,
@@ -72,7 +71,7 @@ console.log(userId)
         <div className={cn("coinBlock__left")}>
           <img
             className={cn("coinBlock__coin")}
-            src={fertilizersName? `video/${fertilizersName}.gif` : `video/Bitcoin.gif`}
+            src={fertilizersName? `img/fertilizers/${fertilizersName}.png` : ``}
             alt=""
           />
           <div className={cn("coinBlock__info")}>
@@ -112,7 +111,7 @@ console.log(userId)
         <div className={cn("coinBlock__left")}>
           <img
             className={cn("coinBlock__coin")}
-            src={fertilizersName? `video/${fertilizersName}.gif`: `video/Bitcoin.gif`}
+            src={fertilizersName? `img/fertilizers/${fertilizersName}.png`: ``}
             alt=""
           />
           <div className={cn("coinBlock__info")}>
@@ -146,7 +145,7 @@ console.log(userId)
         <div className={cn("coinBlock__left")}>
           <img
             className={cn("coinBlock__coin")}
-            src={fertilizersName ? `video/${fertilizersName}.gif` :  `video/Bitcoin.gif`}
+            src={fertilizersName ? `img/fertilizers/${fertilizersName}.png` :  ``}
             alt=""
           />
           <div className={cn("coinBlock__info")}>
