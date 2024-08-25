@@ -943,8 +943,10 @@ dispatch(setUser({
        const sortedCoins = [...coins].sort((a, b) => a.id - b.id);
       return sortedCoins.map((coin, index) => {
         // Проверка, куплена ли монета пользователем
-        const isBought = userCoins.some((userCoin) => userCoin.id === coin.id);
-        const isActive =  mostExpensiveCoin ? mostExpensiveCoin.id === coin.id : false;
+        // const isBought = userCoins.some((userCoin) => userCoin.id === coin.id);
+        // const isActive =  mostExpensiveCoin ? mostExpensiveCoin.id === coin.id : false;
+        const isBought = userCoins.length === 0 ? index === 0 : userCoins.some((userCoin) => userCoin.id === coin.id);
+        const isActive = userCoins.length === 0 ? index === 0 : (mostExpensiveCoin ? mostExpensiveCoin.id === coin.id : false);
         const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
         const hourlyIncome = 1000 + index * 100;
        
