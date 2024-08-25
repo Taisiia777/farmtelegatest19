@@ -1353,7 +1353,7 @@ dispatch(setUser({
 
                       }
                     }
-                    inHour={user?.coinsPerHour}
+                    inHour={user?.coinsPerHour * leagues[level].harvest}
                      version={0}
                      isRain={!isRain}
 
