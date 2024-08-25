@@ -52,6 +52,7 @@ console.log(userId)
  
 
   function openFertilizersBuyPopup() {
+    alert("kkk")
     dispatch(
       setFertilizersIfno({
         earning,
