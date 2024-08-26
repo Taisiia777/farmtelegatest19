@@ -48,23 +48,25 @@ const Wheel = () => {
 //   { name: "Sector 2", weight: 20, reward: 5000 }, // "Еще одно вращение"
 // ];
 const sectors = [
-  { name: "Sector 1", weight: 13, reward: 5000 },
-  { name: "Sector 17", weight: 13, reward: 0 },
-  { name: "Sector 16", weight: 1, reward: 100000 },
-  { name: "Sector 15", weight: 2, reward: 75000 },
+  { name: "Sector 1", weight: 13, reward: 0 },
+  { name: "Sector 18", weight: 13, reward: 8000 },
+
+  { name: "Sector 17", weight: 13, reward: 12000 },
+  { name: "Sector 16", weight: 1, reward: 500 },
+  { name: "Sector 15", weight: 2, reward: 1000 },
   { name: "Sector 14", weight: 0, reward: 0 },
-  { name: "Sector 13", weight: 3, reward: 60000 },
-  { name: "Sector 12", weight: 5, reward: 50000 },
-  { name: "Sector 11", weight: 6, reward: 45000 },
-  { name: "Sector 10", weight: 0, reward: 0 },
-  { name: "Sector 9", weight: 7, reward: 35000 },
-  { name: "Sector 8", weight: 8, reward: 30000 },
-  { name: "Sector 7", weight: 9, reward: 25000 },
-  { name: "Sector 6", weight: 0, reward: 0 },
-  { name: "Sector 5", weight: 10, reward: 20000 },
-  { name: "Sector 4", weight: 11, reward: 15000 },
-  { name: "Sector 3", weight: 0, reward: 0 },
-  { name: "Sector 2", weight: 12, reward: 10000 }, // "Еще одно вращение"
+  { name: "Sector 13", weight: 3, reward: 7000 },
+  { name: "Sector 12", weight: 5, reward: 20000 },
+  { name: "Sector 11", weight: 6, reward: 0 },
+  { name: "Sector 10", weight: 0, reward: 2000 },
+  { name: "Sector 9", weight: 7, reward: 15000 },
+  { name: "Sector 8", weight: 8, reward: 9000  },
+  { name: "Sector 7", weight: 9, reward: 0 },
+  { name: "Sector 6", weight: 0, reward: 6000 },
+  { name: "Sector 5", weight: 10, reward: 100 },
+  { name: "Sector 4", weight: 11, reward: 3000 },
+  { name: "Sector 3", weight: 0, reward: 10000 },
+  { name: "Sector 2", weight: 12, reward: 5000 }, // "Еще одно вращение"
 ];
 
 useEffect(() => {
@@ -482,7 +484,7 @@ const spin = () => {
 </p>
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px', zIndex:'10'}} alt="Spin"  />
             <img src="img/pages/home/menu/MoreSpins.png" className={cn("greeting__next")} style={{width: '180px', height: '47px', position: 'absolute', top: '20px', left: '130px', zIndex:'10'}} alt="Spin"  />
-            <img src="img/pages/home/menu/WheelCenter2.png" style={{width: '280px', display:'flex', zIndex:'11', position:'absolute', top: '155px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
+            <img src="img/pages/home/menu/WheelCenter3.png" style={{width: '280px', display:'flex', zIndex:'11', position:'absolute', top: '155px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
             <img src="img/pages/home/menu/WheelBorder.png" style={{width: '389px', display:'flex',  zIndex:'10',  position:'absolute', top: '100px'}} alt="Wheel" />
 
             {/* <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '122px', height: '46px', position: 'absolute', top: '70vh',  left: '50%', transform: 'translateX(-50%)'}} alt="Spin"  /> */}
