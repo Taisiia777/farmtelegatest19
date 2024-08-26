@@ -453,7 +453,14 @@ export interface IGrowthStages {
   }>;
   isFingerActive: boolean;
 }
-
+const leagues = [
+  { name: "Wooden", referralsRequired: 3, referralsTo: 0, harvest: 1 },
+  { name: "Silver", referralsRequired: 10, referralsTo: 3, harvest: 1.5 },
+  { name: "Gold", referralsRequired: 50, referralsTo: 10, harvest: 2 },
+  { name: "Fire", referralsRequired: 200, referralsTo: 50, harvest: 3 },
+  { name: "Diamond", referralsRequired: 1000, referralsTo: 200, harvest: 4 },
+  { name: "Ruby", referralsRequired: 1001, referralsTo: 1000, harvest: 5 },
+];
 const initialState: IGrowthStages = {
   blocks: Array.from({ length: 9 }, (_, index) => ({
     id: index + 1,
@@ -519,7 +526,7 @@ export const { pickWheat, changeGrowthStage, growAllToMax, setGrowthStages } = g
 export const selectEarthBlock = (state: RootState, id: number) =>
   state.growthStages.blocks.find((block) => block.id === id);
 
-export const calculateGrassEarnings = (blocks: IGrowthStages['blocks'], coinsPerHour: number, incomeMultiplier: number) => {
+export const calculateGrassEarnings = (blocks: IGrowthStages['blocks'], coinsPerHour: number, incomeMultiplier: number, level: number) => {
   let totalEarnings = 0;
   const rewardMultiplier = {
     "second": 0.3,
@@ -530,13 +537,13 @@ export const calculateGrassEarnings = (blocks: IGrowthStages['blocks'], coinsPer
   blocks.forEach(block => {
     switch (block.stage) {
       case "second":
-        totalEarnings += ((coinsPerHour / 9) * rewardMultiplier["second"]) * incomeMultiplier;
+        totalEarnings += ((coinsPerHour / 9) * rewardMultiplier["second"]) * incomeMultiplier * leagues[level].harvest;
         break;
       case "third":
-        totalEarnings += ((coinsPerHour / 9) * rewardMultiplier["third"]) * incomeMultiplier;
+        totalEarnings += ((coinsPerHour / 9) * rewardMultiplier["third"]) * incomeMultiplier * leagues[level].harvest;
         break;
       case "fourth":
-        totalEarnings += ((coinsPerHour / 9) * rewardMultiplier["fourth"])* incomeMultiplier;
+        totalEarnings += ((coinsPerHour / 9) * rewardMultiplier["fourth"])* incomeMultiplier * leagues[level].harvest;
         break;
     }
   });

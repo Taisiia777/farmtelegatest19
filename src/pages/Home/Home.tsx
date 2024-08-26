@@ -190,7 +190,7 @@ const Home = () => {
    const [isRain, setIsRain] = useState(true); // Состояние для проверки наличия награды "first"
    const [multiplier, setMultiplier] = useState(0); // Состояние для проверки наличия награды "first"
    const [mostExpensiveCoinName, setMostExpensiveCoinName] = useState<string | null>(null);
-   let initialGrassEarnings = calculateGrassEarnings(blocks, user?.coinsPerHour, user?.incomeMultiplier);
+   let initialGrassEarnings = calculateGrassEarnings(blocks, user?.coinsPerHour, user?.incomeMultiplier, user?.level);
    const [currentGrassEarnings, setCurrentGrassEarnings] = useState(initialGrassEarnings);
    const [displayEarnings, setDisplayEarnings] = useState(0);
    const [userXp, setUserXp] = useState(0); // Состояние для проверки наличия награды "first"

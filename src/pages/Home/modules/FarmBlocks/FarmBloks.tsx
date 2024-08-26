@@ -121,7 +121,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
         }
 
         // Вычисляем прибыль
-        const grassEarnings = calculateGrassEarnings(blocks, user.coinsPerHour, user.incomeMultiplier);
+        const grassEarnings = calculateGrassEarnings(blocks, user.coinsPerHour, user.incomeMultiplier, user.level);
         dispatch(updateGrassEarnings(grassEarnings));
         
         console.log('Новое значение прибыли: ', grassEarnings);
