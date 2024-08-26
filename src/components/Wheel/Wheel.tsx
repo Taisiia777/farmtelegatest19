@@ -59,24 +59,24 @@ const Wheel = () => {
 //   { name: "Sector 2", weight: 12, reward: 5000 }, // "Еще одно вращение"
 // ];
 const sectors = [
-  { name: "Sector 1", weight: 10, reward: 0 },      // Награда 0, вес 0
-  { name: "Sector 18", weight: 4, reward: 8000 }, // Большая награда - меньший вес
-  { name: "Sector 17", weight: 7, reward: 12000 }, // Очень большая награда - очень маленький вес
-  { name: "Sector 16", weight: 9, reward: 500 },  // Малая награда - больший вес
-  { name: "Sector 15", weight: 8, reward: 1000 }, // Малая награда - больший вес
+  { name: "Sector 1", weight: 15, reward: 0 },      // Награда 0, вес 0
+  { name: "Sector 18", weight: 5, reward: 8000 }, // Большая награда - меньший вес
+  { name: "Sector 17", weight: 3, reward: 12000 }, // Очень большая награда - очень маленький вес
+  { name: "Sector 16", weight: 12, reward: 500 },  // Малая награда - больший вес
+  { name: "Sector 15", weight: 11, reward: 1000 }, // Малая награда - больший вес
   { name: "Sector 14", weight: 0, reward: 0 },     // Награда 0, вес 0
   { name: "Sector 13", weight: 4, reward: 7000 }, // Большая награда - меньший вес
-  { name: "Sector 12", weight: 3, reward: 20000 }, // Самая большая награда - самый маленький вес
+  { name: "Sector 12", weight: 1, reward: 20000 }, // Самая большая награда - самый маленький вес
   { name: "Sector 11", weight: 0, reward: 0 },     // Награда 0, вес 0
-  { name: "Sector 10", weight: 7, reward: 2000 }, // Малая награда - больший вес
-  { name: "Sector 9", weight: 4, reward: 15000 },  // Очень большая награда - очень маленький вес
-  { name: "Sector 8", weight: 5, reward: 9000 },   // Большая награда - меньший вес
+  { name: "Sector 10", weight: 6, reward: 2000 }, // Малая награда - больший вес
+  { name: "Sector 9", weight: 2, reward: 15000 },  // Очень большая награда - очень маленький вес
+  { name: "Sector 8", weight: 4, reward: 9000 },   // Большая награда - меньший вес
   { name: "Sector 7", weight: 0, reward: 0 },      // Награда 0, вес 0
   { name: "Sector 6", weight: 7, reward: 6000 },  // Средняя награда - средний вес
-  { name: "Sector 5", weight: 10, reward: 100 },   // Очень малая награда - самый большой вес
-  { name: "Sector 4", weight: 9, reward: 3000 },  // Малая награда - больший вес
-  { name: "Sector 3", weight: 5, reward: 10000 },  // Большая награда - меньший вес
-  { name: "Sector 2", weight: 8, reward: 5000 },   // Средняя награда - средний вес
+  { name: "Sector 5", weight: 15, reward: 100 },   // Очень малая награда - самый большой вес
+  { name: "Sector 4", weight: 6, reward: 3000 },  // Малая награда - больший вес
+  { name: "Sector 3", weight: 4, reward: 10000 },  // Большая награда - меньший вес
+  { name: "Sector 2", weight: 5, reward: 5000 },   // Средняя награда - средний вес
 ];
 
 useEffect(() => {
