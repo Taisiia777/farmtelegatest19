@@ -36,37 +36,47 @@ const Wheel = () => {
    const [reward, setReward] = useState(0);
    const [userIdNumber, setUserIdNumber] = useState(0);
 
-// const sectors = [
-//   { name: "Sector 1", weight: 25, reward: 1000 },
   
-//   { name: "Sector 8", weight: 15, reward: 0 },
-//   { name: "Sector 7", weight: 20, reward: 0 },
-//   { name: "Sector 6", weight: 0.1, reward: 500000 },
-//   { name: "Sector 5", weight: 4.9, reward: 100000 },
-//   { name: "Sector 4", weight: 5, reward: 25000 },
-//   { name: "Sector 3", weight: 10, reward: 10000 },
-//   { name: "Sector 2", weight: 20, reward: 5000 }, // "Еще одно вращение"
+
+// const sectors = [
+//   { name: "Sector 1", weight: 13, reward: 0 },
+//   { name: "Sector 18", weight: 13, reward: 8000 },
+//   { name: "Sector 17", weight: 13, reward: 12000 },
+//   { name: "Sector 16", weight: 1, reward: 500 },
+//   { name: "Sector 15", weight: 2, reward: 1000 },
+//   { name: "Sector 14", weight: 0, reward: 0 },
+//   { name: "Sector 13", weight: 3, reward: 7000 },
+//   { name: "Sector 12", weight: 5, reward: 20000 },
+//   { name: "Sector 11", weight: 0, reward: 0 },
+//   { name: "Sector 10", weight: 1, reward: 2000 },
+//   { name: "Sector 9", weight: 7, reward: 15000 },
+//   { name: "Sector 8", weight: 8, reward: 9000  },
+//   { name: "Sector 7", weight: 0, reward: 0 },
+//   { name: "Sector 6", weight: 1, reward: 6000 },
+//   { name: "Sector 5", weight: 10, reward: 100 },
+//   { name: "Sector 4", weight: 11, reward: 3000 },
+//   { name: "Sector 3", weight: 1, reward: 10000 },
+//   { name: "Sector 2", weight: 12, reward: 5000 }, // "Еще одно вращение"
 // ];
 const sectors = [
-  { name: "Sector 1", weight: 13, reward: 0 },
-  { name: "Sector 18", weight: 13, reward: 8000 },
-
-  { name: "Sector 17", weight: 13, reward: 12000 },
-  { name: "Sector 16", weight: 1, reward: 500 },
-  { name: "Sector 15", weight: 2, reward: 1000 },
-  { name: "Sector 14", weight: 0, reward: 0 },
-  { name: "Sector 13", weight: 3, reward: 7000 },
-  { name: "Sector 12", weight: 5, reward: 20000 },
-  { name: "Sector 11", weight: 6, reward: 0 },
-  { name: "Sector 10", weight: 0, reward: 2000 },
-  { name: "Sector 9", weight: 7, reward: 15000 },
-  { name: "Sector 8", weight: 8, reward: 9000  },
-  { name: "Sector 7", weight: 9, reward: 0 },
-  { name: "Sector 6", weight: 0, reward: 6000 },
-  { name: "Sector 5", weight: 10, reward: 100 },
-  { name: "Sector 4", weight: 11, reward: 3000 },
-  { name: "Sector 3", weight: 0, reward: 10000 },
-  { name: "Sector 2", weight: 12, reward: 5000 }, // "Еще одно вращение"
+  { name: "Sector 1", weight: 10, reward: 0 },      // Награда 0, вес 0
+  { name: "Sector 18", weight: 4, reward: 8000 }, // Большая награда - меньший вес
+  { name: "Sector 17", weight: 7, reward: 12000 }, // Очень большая награда - очень маленький вес
+  { name: "Sector 16", weight: 9, reward: 500 },  // Малая награда - больший вес
+  { name: "Sector 15", weight: 8, reward: 1000 }, // Малая награда - больший вес
+  { name: "Sector 14", weight: 0, reward: 0 },     // Награда 0, вес 0
+  { name: "Sector 13", weight: 4, reward: 7000 }, // Большая награда - меньший вес
+  { name: "Sector 12", weight: 3, reward: 20000 }, // Самая большая награда - самый маленький вес
+  { name: "Sector 11", weight: 0, reward: 0 },     // Награда 0, вес 0
+  { name: "Sector 10", weight: 7, reward: 2000 }, // Малая награда - больший вес
+  { name: "Sector 9", weight: 4, reward: 15000 },  // Очень большая награда - очень маленький вес
+  { name: "Sector 8", weight: 5, reward: 9000 },   // Большая награда - меньший вес
+  { name: "Sector 7", weight: 0, reward: 0 },      // Награда 0, вес 0
+  { name: "Sector 6", weight: 7, reward: 6000 },  // Средняя награда - средний вес
+  { name: "Sector 5", weight: 10, reward: 100 },   // Очень малая награда - самый большой вес
+  { name: "Sector 4", weight: 9, reward: 3000 },  // Малая награда - больший вес
+  { name: "Sector 3", weight: 5, reward: 10000 },  // Большая награда - меньший вес
+  { name: "Sector 2", weight: 8, reward: 5000 },   // Средняя награда - средний вес
 ];
 
 useEffect(() => {
