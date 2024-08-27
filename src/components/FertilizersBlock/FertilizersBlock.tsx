@@ -57,17 +57,14 @@ console.log(userId)
  
 
   function openFertilizersBuyPopup() {
-    const baseEarning = parseInt(earning.replace(/\D/g, ''), 10); // Преобразуем доход в число
-  // Если монета куплена, рассчитываем цену и доход с учетом уровня
-  const calculatedPrice = Math.round(newPrice * Math.pow(1.45, level)) 
+
   ;
 
-  const calculatedEarning = Math.round(baseEarning * Math.pow(1.25, level)) 
     
     dispatch(
       setFertilizersIfno({
-        earning: calculatedEarning.toString(),  // Передаем рассчитанный доход в виде строки
-        price: calculatedPrice.toString(),  // Передаем рассчитанную цену в виде строки
+        earning: newEarning.toString(),  // Передаем рассчитанный доход в виде строки
+        price: newPrice.toString(),  // Передаем рассчитанную цену в виде строки
         name: fertilizersName,
         fertilizersId: fertilizersId,
         level: level
@@ -75,8 +72,7 @@ console.log(userId)
     );
     // giveCoin();
   }
-  const calculatedPrice = level === 0 ? newPrice : Math.round(newPrice * Math.pow(1.45, level));
-  const canAfford = userCoins >= calculatedPrice; // Проверяем, хватает ли монет
+  const canAfford = userCoins >= newPrice; // Проверяем, хватает ли монет
 
   let content;
 
@@ -92,7 +88,7 @@ console.log(userId)
           <h3 className="textShadow">{fertilizersName}</h3>
           <div className={cn("coinBlock__earning")}>
             <span>Level {level}</span>
-            <span>+{Math.round(newEarning * Math.pow(1.25, level))} / {t(`h`)}</span>
+            <span>+{newEarning} / {t(`h`)}</span>
             {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
           </div>
         </div>
@@ -104,7 +100,7 @@ console.log(userId)
           onClick={openFertilizersBuyPopup}
         >
           <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-          <span>{calculatedPrice}</span>
+          <span>{newPrice}</span>
         </Button>
         ) : (
           <Button
@@ -112,7 +108,7 @@ console.log(userId)
           disabled={!canAfford} // Делаем кнопку неактивной, если монет недостаточно
         >
           <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-          <span>{calculatedPrice}</span>
+          <span>{newPrice}</span>
         </Button>
         )}
       </div>
