@@ -95,7 +95,7 @@ const Coins = ({ quantity }: CoinsProps) => {
   // );
   const userCoins = parseInt(quantity.replace(/\D/g, ''), 10)
   const formattedPrice = userCoins >= 1000000 
-? (userCoins / 1000000).toFixed(0) + 'M' 
+? (userCoins / 1000000).toFixed(3) + 'M' 
 : userCoins.toString();
   return (
     <div className={cn("coins")}>

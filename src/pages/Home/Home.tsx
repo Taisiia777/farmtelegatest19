@@ -1395,7 +1395,7 @@ console.log(response1)
   ? (parseFloat(coinState.info.price) / 1000000).toFixed(0) + 'M' 
   : parseFloat(coinState.info.price).toString();
   const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000 
-  ? (parseFloat(fertilizersState.info.price) / 1000000).toFixed(0) + 'M' 
+  ? (parseFloat(fertilizersState.info.price) / 1000000).toFixed(3) + 'M' 
   : parseFloat(fertilizersState.info.price).toString();
    return (
       <>

@@ -74,7 +74,7 @@ console.log(userId)
   }
   const canAfford = userCoins >= newPrice; // Проверяем, хватает ли монет
   const formattedPrice = newPrice >= 1000000 
-? (newPrice / 1000000).toFixed(0) + 'M' 
+? (newPrice / 1000000).toFixed(3) + 'M' 
 : newPrice.toString();
   let content;
 
