@@ -462,7 +462,6 @@ const Home = () => {
                 }
               );
 
-
               if (response.status === 409) {
                 const userData =  response.data;
                 alert(`User already exists: ${JSON.stringify(userData)}`);
