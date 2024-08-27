@@ -159,7 +159,7 @@ console.log(lastCoin)
   };
 
   fetchRewards();
-}, [user, dispatch]);
+}, []);
 
 //  useEffect(() => {
 //   const fetchRewards = async () => {
