@@ -1388,7 +1388,15 @@ console.log(response1)
       fetchTasks();
     }, []);
 
-
+    const boostFormattedPrice = parseFloat(boostState.info.price) >= 1000000 
+  ? (parseFloat(boostState.info.price) / 1000000).toFixed(0) + 'M' 
+  : parseFloat(boostState.info.price).toString();
+  const coinFormattedPrice = parseFloat(coinState.info.price) >= 1000000 
+  ? (parseFloat(coinState.info.price) / 1000000).toFixed(0) + 'M' 
+  : parseFloat(coinState.info.price).toString();
+  const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000 
+  ? (parseFloat(fertilizersState.info.price) / 1000000).toFixed(0) + 'M' 
+  : parseFloat(fertilizersState.info.price).toString();
    return (
       <>
        {/* <QRCodeComponent /> */}
@@ -1603,7 +1611,9 @@ console.log(response1)
                            iconName="Bitcoin"
                            size={width > 380 ? "normall" : "small"}
                         />
-                        <span>{fertilizersState.info.price}</span>
+                        {/* <span>{fertilizersState.info.price}</span> */}
+                        <span>{fertFormattedPrice}</span>
+
                      </Button>
                      <img
                         // src={`img/pages/home/${mostExpensiveCoinName}/money.svg`}
@@ -1659,7 +1669,9 @@ console.log(response1)
                            iconName="Bitcoin"
                            size={width > 380 ? "normall" : "small"}
                         />
-                        <span>{boostState.info.price}</span>
+                        {/* <span>{boostState.info.price}</span> */}
+                        <span>{boostFormattedPrice}</span>
+
                      </Button>
                      <img
                         // src={`img/pages/home/${mostExpensiveCoinName}/money.svg`}
@@ -1711,7 +1723,9 @@ console.log(response1)
                            iconName="Bitcoin"
                            size={width > 380 ? "normall" : "small"}
                         />
-                        <span>{coinState.info.price}</span>
+                        {/* <span>{coinState.info.price}</span> */}
+                        <span>{coinFormattedPrice}</span>
+
                      </Button>
                      <img
                         // src={`img/pages/home/${mostExpensiveCoinName}/money.svg`}

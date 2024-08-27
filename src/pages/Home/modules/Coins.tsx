@@ -93,12 +93,16 @@ const Coins = ({ quantity }: CoinsProps) => {
   //     <span className="textShadow">{quantity}</span>
   //   </div>
   // );
+  const userCoins = parseInt(quantity.replace(/\D/g, ''), 10)
+  const formattedPrice = userCoins >= 1000000 
+? (userCoins / 1000000).toFixed(0) + 'M' 
+: userCoins.toString();
   return (
     <div className={cn("coins")}>
       <div className={cn("coins__video-wrap")}>
       {mostExpensiveCoinName && <img src={`video/FarmCoin.gif`} alt="I'm a gif" />}
       </div>
-      <span className="textShadow">{quantity}</span>
+      <span className="textShadow">{formattedPrice}</span>
     </div>
   );
 };
