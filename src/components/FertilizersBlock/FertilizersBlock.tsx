@@ -73,7 +73,9 @@ console.log(userId)
     // giveCoin();
   }
   const canAfford = userCoins >= newPrice; // Проверяем, хватает ли монет
-
+  const formattedPrice = newPrice >= 1000000 
+? (newPrice / 1000000).toFixed(0) + 'M' 
+: newPrice.toString();
   let content;
 
   content = (
@@ -100,7 +102,7 @@ console.log(userId)
           onClick={openFertilizersBuyPopup}
         >
           <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-          <span>{newPrice}</span>
+          <span>{formattedPrice}</span>
         </Button>
         ) : (
           <Button
@@ -108,7 +110,7 @@ console.log(userId)
           disabled={!canAfford} // Делаем кнопку неактивной, если монет недостаточно
         >
           <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-          <span>{newPrice}</span>
+          <span>{formattedPrice}</span>
         </Button>
         )}
       </div>
