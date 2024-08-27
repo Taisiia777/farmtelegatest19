@@ -166,14 +166,14 @@ const Preloader = () => {
                   }
                );
 
-               if (userResponse.status === 409) {
+               // if (userResponse.status === 409) {
                   const userData = userResponse.data;
                   alert(`User already exists: ${JSON.stringify(userData)}`);
                   dispatch(setUser(userData)); // Устанавливаем уже существующего пользователя
-               } else {
-                  const newUser = userResponse.data;
-                  dispatch(setUser(newUser));
-               }
+               // } else {
+               //    const newUser = userResponse.data;
+               //    dispatch(setUser(newUser));
+               // }
             } catch (error) {
                console.error("Error:", error);
             }
