@@ -77,7 +77,7 @@ const Coins = ({ quantity }: CoinsProps) => {
       console.log("User ID:", user.id);
       fetchCoins(user.id);
     }
-  }, [coins, user]);
+  }, [coins]);
 
   // return (
   //   <div className={cn("coins")}>
