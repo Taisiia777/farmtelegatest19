@@ -806,6 +806,10 @@ const Home = () => {
         // const boosterLeagueIndex = leagues.findIndex((league) => league.name === booster.league);
         // const isBlocked = boosterLeagueIndex > currentLeagueIndex;
         const isBlocked = false
+        const formattedPrice = booster.cost >= 1000000 
+      ? (booster.cost / 1000000).toFixed(1) + 'M' 
+      : booster.cost.toString();
+
         if(user){
          return (
             <BoostBlock
@@ -813,7 +817,7 @@ const Home = () => {
               boostName={booster.name}
               boostNameNew={boosterNames[index]}
               earning={booster.yieldIncrease.toString()}
-              price={booster.cost.toString()}
+              price={formattedPrice.toString()}
               ligaName={booster.league as TLiga}
               isBought={isBought}
               isBlocked={isBlocked}
@@ -828,7 +832,7 @@ const Home = () => {
               boostName={booster.name}
               boostNameNew={boosterNames[index]}
               earning={booster.yieldIncrease.toString()}
-              price={booster.cost.toString()}
+              price={formattedPrice.toString()}
               ligaName={booster.league as TLiga}
               isBought={isBought}
               isBlocked={isBlocked}
@@ -1058,14 +1062,16 @@ console.log(response1)
         const isActive = userCoins.length === 0 ? index === 0 : (mostExpensiveCoin ? mostExpensiveCoin.id === coin.id : false);
         const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
         const hourlyIncome = 1000 + index * 100;
-       
+        const formattedPrice = coin.cost >= 1000000 
+      ? (coin.cost / 1000000).toFixed(1) + 'M' 
+      : coin.cost.toString();
         if(user){
         return (
           <CoinBlock
             key={coin.id}
             coinName={coin.name}
             earning={coin.hourlyIncome.toString()}
-            price={coin.cost.toString()}
+            price={formattedPrice.toString()}
             isBought={isBought}
             isBlocked={isBlocked}
             userId={user.id} // Передача userId
@@ -1080,7 +1086,7 @@ console.log(response1)
             key={coin.id}
             coinName={coin.name}
             earning={hourlyIncome.toString()}
-            price={coin.cost.toString()}
+            price={formattedPrice.toString()}
             isBought={isBought}
             isBlocked={isBlocked}
             userId={user.id} // Передача userId
