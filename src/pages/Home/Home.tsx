@@ -1009,25 +1009,26 @@ console.log(response1)
       try {
          // Получаем индекс текущей монеты
          const currentCoinIndex = coinState.info.coinId
-         alert(coinState.info.earning)
+         let coinsToGive = 0;
 
-         // Проверяем, есть ли предыдущая монета
-         const previousEarning = currentCoinIndex > 0 ? userCoins[0].hourlyIncome : 0;
-         alert(previousEarning)
-
-         const currentEarning = Number(coinState.info.earning);
-         const earningDifference = currentEarning - previousEarning;
-         alert(earningDifference)
+         // Логика начисления монет в зависимости от coinId
+         if (currentCoinIndex === 2) {
+           coinsToGive = 1000;
+         } else if (currentCoinIndex >= 3) {
+           const earningsArray = [1000, 3000, 5000, 10000, 30000, 50000, 400000];
+           // Если currentCoinIndex выходит за пределы массива, берем последнее значение
+           coinsToGive = earningsArray[currentCoinIndex - 3] || 400000;
+         }
         const response = await axios.post(`https://coinfarm.club/api/coin/give/${user.id}/${coinState.info.coinId}`);
         // dispatch(setUser({ ...user, coins: user.coins - coinState.info.price, coinsPerHour: coinState.info.earning}));
         dispatch(setUser({ 
           ...user, 
           coins: Number(user.coins) - Number(coinState.info.price), 
-          coinsPerHour: Number(user.coinsPerHour) + earningDifference
+          coinsPerHour: Number(user.coinsPerHour) + coinsToGive
       }));
       const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
         coins: Number(user.coins) - Number(coinState.info.price), 
-        coinsPerHour: Number(user.coinsPerHour) + earningDifference
+        coinsPerHour: Number(user.coinsPerHour) + coinsToGive
       });
       console.log(response1)
         setIsCoinPurchased(!isCoinPurchased)
