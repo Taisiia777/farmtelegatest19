@@ -923,7 +923,7 @@ const Home = () => {
      if (userFertilizer) {
        // Найти удобрение в fertilizers, соответствующее уровню пользователя
        const userLevelFertilizer = fertilizers.find(
-         (f) => f.name === userFertilizer.name && f.level === userFertilizer.level
+         (f) => f.name === userFertilizer.name && f.level === userFertilizer.level + 1
        );
  
        // Если найдено удобрение с уровнем пользователя, использовать его данные
