@@ -1,0 +1,7002 @@
+[
+  {
+      "name": "Humus Elixir",
+      "level": 1,
+      "hourlyIncome": 100,
+      "cost": 500,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 2,
+      "hourlyIncome": 120,
+      "cost": 550,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 3,
+      "hourlyIncome": 140,
+      "cost": 930,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 4,
+      "hourlyIncome": 160,
+      "cost": 1000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 5,
+      "hourlyIncome": 190,
+      "cost": 1700,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 6,
+      "hourlyIncome": 220,
+      "cost": 1800,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 7,
+      "hourlyIncome": 260,
+      "cost": 3000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 8,
+      "hourlyIncome": 310,
+      "cost": 3300,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 9,
+      "hourlyIncome": 370,
+      "cost": 5600,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 10,
+      "hourlyIncome": 440,
+      "cost": 6100,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 11,
+      "hourlyIncome": 520,
+      "cost": 10000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 12,
+      "hourlyIncome": 620,
+      "cost": 11000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 13,
+      "hourlyIncome": 740,
+      "cost": 18000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 14,
+      "hourlyIncome": 880,
+      "cost": 19000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 15,
+      "hourlyIncome": 1000,
+      "cost": 32000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 16,
+      "hourlyIncome": 1200,
+      "cost": 35000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 17,
+      "hourlyIncome": 1400,
+      "cost": 59000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 18,
+      "hourlyIncome": 1600,
+      "cost": 64000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 19,
+      "hourlyIncome": 1900,
+      "cost": 100000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 20,
+      "hourlyIncome": 2200,
+      "cost": 110000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 21,
+      "hourlyIncome": 2600,
+      "cost": 180000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 22,
+      "hourlyIncome": 3100,
+      "cost": 190000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 23,
+      "hourlyIncome": 3700,
+      "cost": 320000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 24,
+      "hourlyIncome": 4400,
+      "cost": 350000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 25,
+      "hourlyIncome": 5200,
+      "cost": 590000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 26,
+      "hourlyIncome": 6200,
+      "cost": 640000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 27,
+      "hourlyIncome": 7400,
+      "cost": 1000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 28,
+      "hourlyIncome": 8800,
+      "cost": 1100000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 29,
+      "hourlyIncome": 10000,
+      "cost": 1800000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 30,
+      "hourlyIncome": 12000,
+      "cost": 1900000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 31,
+      "hourlyIncome": 14000,
+      "cost": 3200000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 32,
+      "hourlyIncome": 16000,
+      "cost": 3500000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 33,
+      "hourlyIncome": 19000,
+      "cost": 5900000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 34,
+      "hourlyIncome": 22000,
+      "cost": 6400000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 35,
+      "hourlyIncome": 26000,
+      "cost": 10000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 36,
+      "hourlyIncome": 31000,
+      "cost": 11000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 37,
+      "hourlyIncome": 37000,
+      "cost": 18000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 38,
+      "hourlyIncome": 44000,
+      "cost": 19000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 39,
+      "hourlyIncome": 52000,
+      "cost": 32000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 40,
+      "hourlyIncome": 62000,
+      "cost": 35000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 41,
+      "hourlyIncome": 74000,
+      "cost": 59000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 42,
+      "hourlyIncome": 88000,
+      "cost": 64000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 43,
+      "hourlyIncome": 100000,
+      "cost": 100000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 44,
+      "hourlyIncome": 120000,
+      "cost": 110000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 45,
+      "hourlyIncome": 140000,
+      "cost": 180000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 46,
+      "hourlyIncome": 160000,
+      "cost": 190000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 47,
+      "hourlyIncome": 190000,
+      "cost": 320000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 48,
+      "hourlyIncome": 220000,
+      "cost": 350000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 49,
+      "hourlyIncome": 260000,
+      "cost": 590000000,
+      "id": 1
+  },
+  {
+      "name": "Humus Elixir",
+      "level": 50,
+      "hourlyIncome": 310000,
+      "cost": 640000000,
+      "id": 1
+  },
+  {
+      "name": "Greenboost",
+      "level": 1,
+      "hourlyIncome": 120,
+      "cost": 530,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 2,
+      "hourlyIncome": 140,
+      "cost": 580,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 3,
+      "hourlyIncome": 150,
+      "cost": 920,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 4,
+      "hourlyIncome": 180,
+      "cost": 1000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 5,
+      "hourlyIncome": 190,
+      "cost": 1600,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 6,
+      "hourlyIncome": 220,
+      "cost": 1700,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 7,
+      "hourlyIncome": 240,
+      "cost": 2700,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 8,
+      "hourlyIncome": 280,
+      "cost": 2900,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 9,
+      "hourlyIncome": 300,
+      "cost": 4600,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 10,
+      "hourlyIncome": 360,
+      "cost": 5000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 11,
+      "hourlyIncome": 390,
+      "cost": 8000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 12,
+      "hourlyIncome": 460,
+      "cost": 8800,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 13,
+      "hourlyIncome": 500,
+      "cost": 14000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 14,
+      "hourlyIncome": 600,
+      "cost": 15000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 15,
+      "hourlyIncome": 660,
+      "cost": 24000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 16,
+      "hourlyIncome": 790,
+      "cost": 26000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 17,
+      "hourlyIncome": 860,
+      "cost": 41000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 18,
+      "hourlyIncome": 1000,
+      "cost": 45000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 19,
+      "hourlyIncome": 1100,
+      "cost": 72000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 20,
+      "hourlyIncome": 1300,
+      "cost": 79000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 21,
+      "hourlyIncome": 1400,
+      "cost": 120000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 22,
+      "hourlyIncome": 1600,
+      "cost": 130000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 23,
+      "hourlyIncome": 1700,
+      "cost": 200000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 24,
+      "hourlyIncome": 2000,
+      "cost": 220000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 25,
+      "hourlyIncome": 2200,
+      "cost": 350000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 26,
+      "hourlyIncome": 2600,
+      "cost": 380000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 27,
+      "hourlyIncome": 2800,
+      "cost": 600000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 28,
+      "hourlyIncome": 3300,
+      "cost": 660000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 29,
+      "hourlyIncome": 3600,
+      "cost": 1000000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 30,
+      "hourlyIncome": 4300,
+      "cost": 1100000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 31,
+      "hourlyIncome": 4700,
+      "cost": 1700000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 32,
+      "hourlyIncome": 5600,
+      "cost": 1800000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 33,
+      "hourlyIncome": 6100,
+      "cost": 2800000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 34,
+      "hourlyIncome": 7300,
+      "cost": 3000000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 35,
+      "hourlyIncome": 8000,
+      "cost": 4800000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 36,
+      "hourlyIncome": 9600,
+      "cost": 5200000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 37,
+      "hourlyIncome": 10000,
+      "cost": 8300000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 38,
+      "hourlyIncome": 12000,
+      "cost": 9100000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 39,
+      "hourlyIncome": 13000,
+      "cost": 14000000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 40,
+      "hourlyIncome": 15000,
+      "cost": 15000000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 41,
+      "hourlyIncome": 16000,
+      "cost": 24000000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 42,
+      "hourlyIncome": 19000,
+      "cost": 26000000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 43,
+      "hourlyIncome": 20000,
+      "cost": 41000000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 44,
+      "hourlyIncome": 24000,
+      "cost": 45000000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 45,
+      "hourlyIncome": 26000,
+      "cost": 72000000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 46,
+      "hourlyIncome": 31000,
+      "cost": 79000000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 47,
+      "hourlyIncome": 34000,
+      "cost": 120000000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 48,
+      "hourlyIncome": 40000,
+      "cost": 130000000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 49,
+      "hourlyIncome": 44000,
+      "cost": 200000000,
+      "id": 2
+  },
+  {
+      "name": "Greenboost",
+      "level": 50,
+      "hourlyIncome": 52000,
+      "cost": 220000000,
+      "id": 2
+  },
+  {
+      "name": "Megabloom",
+      "level": 1,
+      "hourlyIncome": 150,
+      "cost": 700,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 2,
+      "hourlyIncome": 190,
+      "cost": 870,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 3,
+      "hourlyIncome": 220,
+      "cost": 1400,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 4,
+      "hourlyIncome": 280,
+      "cost": 1700,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 5,
+      "hourlyIncome": 330,
+      "cost": 2800,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 6,
+      "hourlyIncome": 420,
+      "cost": 3500,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 7,
+      "hourlyIncome": 500,
+      "cost": 5900,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 8,
+      "hourlyIncome": 650,
+      "cost": 7300,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 9,
+      "hourlyIncome": 780,
+      "cost": 12000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 10,
+      "hourlyIncome": 1000,
+      "cost": 15000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 11,
+      "hourlyIncome": 1200,
+      "cost": 25000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 12,
+      "hourlyIncome": 1500,
+      "cost": 31000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 13,
+      "hourlyIncome": 1800,
+      "cost": 52000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 14,
+      "hourlyIncome": 2300,
+      "cost": 65000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 15,
+      "hourlyIncome": 2700,
+      "cost": 110000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 16,
+      "hourlyIncome": 3500,
+      "cost": 130000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 17,
+      "hourlyIncome": 4200,
+      "cost": 220000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 18,
+      "hourlyIncome": 5400,
+      "cost": 270000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 19,
+      "hourlyIncome": 6400,
+      "cost": 450000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 20,
+      "hourlyIncome": 8300,
+      "cost": 560000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 21,
+      "hourlyIncome": 9900,
+      "cost": 950000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 22,
+      "hourlyIncome": 12000,
+      "cost": 1100000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 23,
+      "hourlyIncome": 14000,
+      "cost": 1800000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 24,
+      "hourlyIncome": 18000,
+      "cost": 2200000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 25,
+      "hourlyIncome": 21000,
+      "cost": 3700000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 26,
+      "hourlyIncome": 27000,
+      "cost": 4600000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 27,
+      "hourlyIncome": 32000,
+      "cost": 7800000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 28,
+      "hourlyIncome": 41000,
+      "cost": 9700000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 29,
+      "hourlyIncome": 49000,
+      "cost": 16000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 30,
+      "hourlyIncome": 63000,
+      "cost": 20000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 31,
+      "hourlyIncome": 75000,
+      "cost": 34000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 32,
+      "hourlyIncome": 97000,
+      "cost": 42000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 33,
+      "hourlyIncome": 110000,
+      "cost": 71000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 34,
+      "hourlyIncome": 140000,
+      "cost": 88000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 35,
+      "hourlyIncome": 160000,
+      "cost": 140000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 36,
+      "hourlyIncome": 200000,
+      "cost": 170000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 37,
+      "hourlyIncome": 240000,
+      "cost": 280000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 38,
+      "hourlyIncome": 310000,
+      "cost": 350000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 39,
+      "hourlyIncome": 370000,
+      "cost": 590000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 40,
+      "hourlyIncome": 480000,
+      "cost": 730000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 41,
+      "hourlyIncome": 570000,
+      "cost": 1200000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 42,
+      "hourlyIncome": 740000,
+      "cost": 1500000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 43,
+      "hourlyIncome": 880000,
+      "cost": 2500000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 44,
+      "hourlyIncome": 1100000,
+      "cost": 3100000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 45,
+      "hourlyIncome": 1300000,
+      "cost": 5200000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 46,
+      "hourlyIncome": 1600000,
+      "cost": 6500000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 47,
+      "hourlyIncome": 1900000,
+      "cost": 11000000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 48,
+      "hourlyIncome": 2400000,
+      "cost": 13000000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 49,
+      "hourlyIncome": 2800000,
+      "cost": 22000000000,
+      "id": 3
+  },
+  {
+      "name": "Megabloom",
+      "level": 50,
+      "hourlyIncome": 3600000,
+      "cost": 27000000000,
+      "id": 3
+  },
+  {
+      "name": "Rootstrength",
+      "level": 1,
+      "hourlyIncome": 200,
+      "cost": 1300,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 2,
+      "hourlyIncome": 260,
+      "cost": 1400,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 3,
+      "hourlyIncome": 270,
+      "cost": 2200,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 4,
+      "hourlyIncome": 350,
+      "cost": 2400,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 5,
+      "hourlyIncome": 360,
+      "cost": 3800,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 6,
+      "hourlyIncome": 460,
+      "cost": 4100,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 7,
+      "hourlyIncome": 480,
+      "cost": 6500,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 8,
+      "hourlyIncome": 620,
+      "cost": 7100,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 9,
+      "hourlyIncome": 650,
+      "cost": 11000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 10,
+      "hourlyIncome": 840,
+      "cost": 12000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 11,
+      "hourlyIncome": 880,
+      "cost": 19000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 12,
+      "hourlyIncome": 1100,
+      "cost": 20000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 13,
+      "hourlyIncome": 1100,
+      "cost": 32000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 14,
+      "hourlyIncome": 1400,
+      "cost": 35000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 15,
+      "hourlyIncome": 1400,
+      "cost": 56000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 16,
+      "hourlyIncome": 1800,
+      "cost": 61000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 17,
+      "hourlyIncome": 1800,
+      "cost": 97000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 18,
+      "hourlyIncome": 2300,
+      "cost": 100000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 19,
+      "hourlyIncome": 2400,
+      "cost": 160000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 20,
+      "hourlyIncome": 3100,
+      "cost": 170000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 21,
+      "hourlyIncome": 3200,
+      "cost": 270000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 22,
+      "hourlyIncome": 4100,
+      "cost": 290000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 23,
+      "hourlyIncome": 4300,
+      "cost": 460000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 24,
+      "hourlyIncome": 5500,
+      "cost": 500000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 25,
+      "hourlyIncome": 5700,
+      "cost": 800000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 26,
+      "hourlyIncome": 7400,
+      "cost": 880000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 27,
+      "hourlyIncome": 7700,
+      "cost": 1400000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 28,
+      "hourlyIncome": 10000,
+      "cost": 1500000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 29,
+      "hourlyIncome": 10000,
+      "cost": 2400000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 30,
+      "hourlyIncome": 13000,
+      "cost": 2600000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 31,
+      "hourlyIncome": 13000,
+      "cost": 4100000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 32,
+      "hourlyIncome": 16000,
+      "cost": 4500000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 33,
+      "hourlyIncome": 16000,
+      "cost": 7200000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 34,
+      "hourlyIncome": 20000,
+      "cost": 7900000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 35,
+      "hourlyIncome": 21000,
+      "cost": 12000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 36,
+      "hourlyIncome": 27000,
+      "cost": 13000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 37,
+      "hourlyIncome": 28000,
+      "cost": 20000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 38,
+      "hourlyIncome": 36000,
+      "cost": 22000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 39,
+      "hourlyIncome": 37000,
+      "cost": 35000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 40,
+      "hourlyIncome": 48000,
+      "cost": 38000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 41,
+      "hourlyIncome": 50000,
+      "cost": 60000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 42,
+      "hourlyIncome": 65000,
+      "cost": 66000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 43,
+      "hourlyIncome": 68000,
+      "cost": 100000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 44,
+      "hourlyIncome": 88000,
+      "cost": 110000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 45,
+      "hourlyIncome": 92000,
+      "cost": 170000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 46,
+      "hourlyIncome": 110000,
+      "cost": 180000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 47,
+      "hourlyIncome": 110000,
+      "cost": 280000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 48,
+      "hourlyIncome": 140000,
+      "cost": 300000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 49,
+      "hourlyIncome": 140000,
+      "cost": 480000000,
+      "id": 4
+  },
+  {
+      "name": "Rootstrength",
+      "level": 50,
+      "hourlyIncome": 180000,
+      "cost": 520000000,
+      "id": 4
+  },
+  {
+      "name": "Harvestmax",
+      "level": 1,
+      "hourlyIncome": 220,
+      "cost": 800,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 2,
+      "hourlyIncome": 240,
+      "cost": 880,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 3,
+      "hourlyIncome": 250,
+      "cost": 1200,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 4,
+      "hourlyIncome": 270,
+      "cost": 1300,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 5,
+      "hourlyIncome": 280,
+      "cost": 1800,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 6,
+      "hourlyIncome": 300,
+      "cost": 1900,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 7,
+      "hourlyIncome": 310,
+      "cost": 2600,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 8,
+      "hourlyIncome": 340,
+      "cost": 2800,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 9,
+      "hourlyIncome": 350,
+      "cost": 3900,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 10,
+      "hourlyIncome": 380,
+      "cost": 4200,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 11,
+      "hourlyIncome": 390,
+      "cost": 5800,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 12,
+      "hourlyIncome": 420,
+      "cost": 6300,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 13,
+      "hourlyIncome": 440,
+      "cost": 8800,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 14,
+      "hourlyIncome": 480,
+      "cost": 9600,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 15,
+      "hourlyIncome": 500,
+      "cost": 13000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 16,
+      "hourlyIncome": 550,
+      "cost": 14000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 17,
+      "hourlyIncome": 570,
+      "cost": 19000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 18,
+      "hourlyIncome": 620,
+      "cost": 20000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 19,
+      "hourlyIncome": 650,
+      "cost": 28000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 20,
+      "hourlyIncome": 710,
+      "cost": 30000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 21,
+      "hourlyIncome": 740,
+      "cost": 42000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 22,
+      "hourlyIncome": 810,
+      "cost": 46000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 23,
+      "hourlyIncome": 850,
+      "cost": 64000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 24,
+      "hourlyIncome": 930,
+      "cost": 70000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 25,
+      "hourlyIncome": 970,
+      "cost": 98000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 26,
+      "hourlyIncome": 1000,
+      "cost": 100000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 27,
+      "hourlyIncome": 1000,
+      "cost": 140000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 28,
+      "hourlyIncome": 1100,
+      "cost": 150000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 29,
+      "hourlyIncome": 1100,
+      "cost": 210000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 30,
+      "hourlyIncome": 1200,
+      "cost": 230000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 31,
+      "hourlyIncome": 1200,
+      "cost": 320000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 32,
+      "hourlyIncome": 1300,
+      "cost": 350000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 33,
+      "hourlyIncome": 1300,
+      "cost": 490000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 34,
+      "hourlyIncome": 1400,
+      "cost": 530000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 35,
+      "hourlyIncome": 1400,
+      "cost": 740000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 36,
+      "hourlyIncome": 1500,
+      "cost": 810000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 37,
+      "hourlyIncome": 1500,
+      "cost": 1100000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 38,
+      "hourlyIncome": 1600,
+      "cost": 1200000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 39,
+      "hourlyIncome": 1600,
+      "cost": 1600000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 40,
+      "hourlyIncome": 1700,
+      "cost": 1700000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 41,
+      "hourlyIncome": 1700,
+      "cost": 2300000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 42,
+      "hourlyIncome": 1800,
+      "cost": 2500000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 43,
+      "hourlyIncome": 1800,
+      "cost": 3500000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 44,
+      "hourlyIncome": 1900,
+      "cost": 3800000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 45,
+      "hourlyIncome": 1900,
+      "cost": 5300000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 46,
+      "hourlyIncome": 2000,
+      "cost": 5800000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 47,
+      "hourlyIncome": 2100,
+      "cost": 8100000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 48,
+      "hourlyIncome": 2300,
+      "cost": 8900000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 49,
+      "hourlyIncome": 2400,
+      "cost": 12000000,
+      "id": 5
+  },
+  {
+      "name": "Harvestmax",
+      "level": 50,
+      "hourlyIncome": 2600,
+      "cost": 13000000,
+      "id": 5
+  },
+  {
+      "name": "Ecogro",
+      "level": 1,
+      "hourlyIncome": 250,
+      "cost": 1000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 2,
+      "hourlyIncome": 350,
+      "cost": 1200,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 3,
+      "hourlyIncome": 360,
+      "cost": 1900,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 4,
+      "hourlyIncome": 500,
+      "cost": 2200,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 5,
+      "hourlyIncome": 520,
+      "cost": 3500,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 6,
+      "hourlyIncome": 720,
+      "cost": 4200,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 7,
+      "hourlyIncome": 750,
+      "cost": 6700,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 8,
+      "hourlyIncome": 1000,
+      "cost": 8000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 9,
+      "hourlyIncome": 1000,
+      "cost": 12000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 10,
+      "hourlyIncome": 1400,
+      "cost": 14000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 11,
+      "hourlyIncome": 1400,
+      "cost": 22000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 12,
+      "hourlyIncome": 1900,
+      "cost": 26000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 13,
+      "hourlyIncome": 1900,
+      "cost": 41000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 14,
+      "hourlyIncome": 2600,
+      "cost": 49000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 15,
+      "hourlyIncome": 2700,
+      "cost": 78000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 16,
+      "hourlyIncome": 3700,
+      "cost": 93000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 17,
+      "hourlyIncome": 3800,
+      "cost": 140000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 18,
+      "hourlyIncome": 5300,
+      "cost": 160000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 19,
+      "hourlyIncome": 5500,
+      "cost": 250000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 20,
+      "hourlyIncome": 7700,
+      "cost": 300000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 21,
+      "hourlyIncome": 8000,
+      "cost": 480000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 22,
+      "hourlyIncome": 11000,
+      "cost": 570000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 23,
+      "hourlyIncome": 11000,
+      "cost": 910000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 24,
+      "hourlyIncome": 15000,
+      "cost": 1000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 25,
+      "hourlyIncome": 15000,
+      "cost": 1600000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 26,
+      "hourlyIncome": 21000,
+      "cost": 1900000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 27,
+      "hourlyIncome": 22000,
+      "cost": 3000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 28,
+      "hourlyIncome": 30000,
+      "cost": 3600000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 29,
+      "hourlyIncome": 31000,
+      "cost": 5700000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 30,
+      "hourlyIncome": 43000,
+      "cost": 6800000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 31,
+      "hourlyIncome": 45000,
+      "cost": 10000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 32,
+      "hourlyIncome": 63000,
+      "cost": 12000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 33,
+      "hourlyIncome": 66000,
+      "cost": 19000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 34,
+      "hourlyIncome": 92000,
+      "cost": 22000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 35,
+      "hourlyIncome": 96000,
+      "cost": 35000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 36,
+      "hourlyIncome": 130000,
+      "cost": 42000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 37,
+      "hourlyIncome": 130000,
+      "cost": 67000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 38,
+      "hourlyIncome": 180000,
+      "cost": 80000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 39,
+      "hourlyIncome": 180000,
+      "cost": 120000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 40,
+      "hourlyIncome": 250000,
+      "cost": 140000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 41,
+      "hourlyIncome": 260000,
+      "cost": 220000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 42,
+      "hourlyIncome": 360000,
+      "cost": 260000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 43,
+      "hourlyIncome": 370000,
+      "cost": 410000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 44,
+      "hourlyIncome": 510000,
+      "cost": 490000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 45,
+      "hourlyIncome": 530000,
+      "cost": 780000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 46,
+      "hourlyIncome": 740000,
+      "cost": 930000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 47,
+      "hourlyIncome": 770000,
+      "cost": 1400000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 48,
+      "hourlyIncome": 1000000,
+      "cost": 1600000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 49,
+      "hourlyIncome": 1000000,
+      "cost": 2500000000,
+      "id": 6
+  },
+  {
+      "name": "Ecogro",
+      "level": 50,
+      "hourlyIncome": 1400000,
+      "cost": 3000000000,
+      "id": 6
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 1,
+      "hourlyIncome": 1000,
+      "cost": 4000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 2,
+      "hourlyIncome": 1100,
+      "cost": 4600,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 3,
+      "hourlyIncome": 1300,
+      "cost": 6900,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 4,
+      "hourlyIncome": 1400,
+      "cost": 7900,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 5,
+      "hourlyIncome": 1600,
+      "cost": 11000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 6,
+      "hourlyIncome": 1800,
+      "cost": 12000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 7,
+      "hourlyIncome": 2100,
+      "cost": 18000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 8,
+      "hourlyIncome": 2400,
+      "cost": 20000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 9,
+      "hourlyIncome": 2800,
+      "cost": 30000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 10,
+      "hourlyIncome": 3200,
+      "cost": 34000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 11,
+      "hourlyIncome": 3800,
+      "cost": 51000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 12,
+      "hourlyIncome": 4300,
+      "cost": 58000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 13,
+      "hourlyIncome": 5100,
+      "cost": 87000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 14,
+      "hourlyIncome": 5800,
+      "cost": 100000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 15,
+      "hourlyIncome": 6900,
+      "cost": 150000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 16,
+      "hourlyIncome": 7900,
+      "cost": 170000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 17,
+      "hourlyIncome": 9400,
+      "cost": 250000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 18,
+      "hourlyIncome": 10000,
+      "cost": 280000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 19,
+      "hourlyIncome": 12000,
+      "cost": 420000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 20,
+      "hourlyIncome": 13000,
+      "cost": 480000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 21,
+      "hourlyIncome": 15000,
+      "cost": 720000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 22,
+      "hourlyIncome": 17000,
+      "cost": 820000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 23,
+      "hourlyIncome": 20000,
+      "cost": 1200000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 24,
+      "hourlyIncome": 23000,
+      "cost": 1300000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 25,
+      "hourlyIncome": 27000,
+      "cost": 1900000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 26,
+      "hourlyIncome": 31000,
+      "cost": 2100000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 27,
+      "hourlyIncome": 37000,
+      "cost": 3100000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 28,
+      "hourlyIncome": 42000,
+      "cost": 3500000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 29,
+      "hourlyIncome": 50000,
+      "cost": 5200000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 30,
+      "hourlyIncome": 57000,
+      "cost": 5900000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 31,
+      "hourlyIncome": 68000,
+      "cost": 8800000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 32,
+      "hourlyIncome": 78000,
+      "cost": 10000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 33,
+      "hourlyIncome": 93000,
+      "cost": 15000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 34,
+      "hourlyIncome": 100000,
+      "cost": 17000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 35,
+      "hourlyIncome": 120000,
+      "cost": 25000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 36,
+      "hourlyIncome": 130000,
+      "cost": 28000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 37,
+      "hourlyIncome": 150000,
+      "cost": 42000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 38,
+      "hourlyIncome": 170000,
+      "cost": 48000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 39,
+      "hourlyIncome": 200000,
+      "cost": 72000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 40,
+      "hourlyIncome": 230000,
+      "cost": 82000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 41,
+      "hourlyIncome": 270000,
+      "cost": 120000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 42,
+      "hourlyIncome": 310000,
+      "cost": 130000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 43,
+      "hourlyIncome": 370000,
+      "cost": 190000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 44,
+      "hourlyIncome": 420000,
+      "cost": 210000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 45,
+      "hourlyIncome": 500000,
+      "cost": 310000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 46,
+      "hourlyIncome": 570000,
+      "cost": 350000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 47,
+      "hourlyIncome": 680000,
+      "cost": 520000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 48,
+      "hourlyIncome": 780000,
+      "cost": 590000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 49,
+      "hourlyIncome": 930000,
+      "cost": 880000000,
+      "id": 7
+  },
+  {
+      "name": "Bio-Compost",
+      "level": 50,
+      "hourlyIncome": 1000000,
+      "cost": 1000000000,
+      "id": 7
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 1,
+      "hourlyIncome": 300,
+      "cost": 1500,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 2,
+      "hourlyIncome": 340,
+      "cost": 1800,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 3,
+      "hourlyIncome": 390,
+      "cost": 2500,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 4,
+      "hourlyIncome": 440,
+      "cost": 3000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 5,
+      "hourlyIncome": 500,
+      "cost": 4200,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 6,
+      "hourlyIncome": 570,
+      "cost": 5000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 7,
+      "hourlyIncome": 650,
+      "cost": 7000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 8,
+      "hourlyIncome": 740,
+      "cost": 8400,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 9,
+      "hourlyIncome": 850,
+      "cost": 11000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 10,
+      "hourlyIncome": 970,
+      "cost": 13000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 11,
+      "hourlyIncome": 1100,
+      "cost": 18000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 12,
+      "hourlyIncome": 1200,
+      "cost": 21000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 13,
+      "hourlyIncome": 1300,
+      "cost": 29000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 14,
+      "hourlyIncome": 1400,
+      "cost": 34000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 15,
+      "hourlyIncome": 1600,
+      "cost": 47000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 16,
+      "hourlyIncome": 1800,
+      "cost": 56000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 17,
+      "hourlyIncome": 2000,
+      "cost": 78000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 18,
+      "hourlyIncome": 2300,
+      "cost": 93000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 19,
+      "hourlyIncome": 2600,
+      "cost": 130000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 20,
+      "hourlyIncome": 2900,
+      "cost": 150000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 21,
+      "hourlyIncome": 3300,
+      "cost": 210000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 22,
+      "hourlyIncome": 3700,
+      "cost": 250000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 23,
+      "hourlyIncome": 4200,
+      "cost": 350000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 24,
+      "hourlyIncome": 4800,
+      "cost": 420000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 25,
+      "hourlyIncome": 5500,
+      "cost": 580000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 26,
+      "hourlyIncome": 6300,
+      "cost": 690000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 27,
+      "hourlyIncome": 7200,
+      "cost": 960000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 28,
+      "hourlyIncome": 8200,
+      "cost": 1100000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 29,
+      "hourlyIncome": 9400,
+      "cost": 1500000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 30,
+      "hourlyIncome": 10000,
+      "cost": 1800000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 31,
+      "hourlyIncome": 11000,
+      "cost": 2500000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 32,
+      "hourlyIncome": 12000,
+      "cost": 3000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 33,
+      "hourlyIncome": 13000,
+      "cost": 4200000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 34,
+      "hourlyIncome": 14000,
+      "cost": 5000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 35,
+      "hourlyIncome": 16000,
+      "cost": 7000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 36,
+      "hourlyIncome": 18000,
+      "cost": 8400000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 37,
+      "hourlyIncome": 20000,
+      "cost": 11000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 38,
+      "hourlyIncome": 23000,
+      "cost": 13000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 39,
+      "hourlyIncome": 26000,
+      "cost": 18000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 40,
+      "hourlyIncome": 29000,
+      "cost": 21000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 41,
+      "hourlyIncome": 33000,
+      "cost": 29000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 42,
+      "hourlyIncome": 37000,
+      "cost": 34000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 43,
+      "hourlyIncome": 42000,
+      "cost": 47000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 44,
+      "hourlyIncome": 48000,
+      "cost": 56000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 45,
+      "hourlyIncome": 55000,
+      "cost": 78000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 46,
+      "hourlyIncome": 63000,
+      "cost": 93000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 47,
+      "hourlyIncome": 72000,
+      "cost": 130000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 48,
+      "hourlyIncome": 82000,
+      "cost": 150000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 49,
+      "hourlyIncome": 94000,
+      "cost": 210000000,
+      "id": 8
+  },
+  {
+      "name": "Nitrogen Blend",
+      "level": 50,
+      "hourlyIncome": 100000,
+      "cost": 250000000,
+      "id": 8
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 1,
+      "hourlyIncome": 100,
+      "cost": 2000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 2,
+      "hourlyIncome": 130,
+      "cost": 2800,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 3,
+      "hourlyIncome": 160,
+      "cost": 3900,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 4,
+      "hourlyIncome": 200,
+      "cost": 5400,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 5,
+      "hourlyIncome": 260,
+      "cost": 7500,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 6,
+      "hourlyIncome": 330,
+      "cost": 10000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 7,
+      "hourlyIncome": 420,
+      "cost": 14000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 8,
+      "hourlyIncome": 540,
+      "cost": 19000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 9,
+      "hourlyIncome": 700,
+      "cost": 26000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 10,
+      "hourlyIncome": 910,
+      "cost": 36000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 11,
+      "hourlyIncome": 1100,
+      "cost": 50000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 12,
+      "hourlyIncome": 1400,
+      "cost": 70000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 13,
+      "hourlyIncome": 1800,
+      "cost": 98000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 14,
+      "hourlyIncome": 2300,
+      "cost": 130000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 15,
+      "hourlyIncome": 2900,
+      "cost": 180000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 16,
+      "hourlyIncome": 3700,
+      "cost": 250000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 17,
+      "hourlyIncome": 4800,
+      "cost": 350000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 18,
+      "hourlyIncome": 6200,
+      "cost": 490000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 19,
+      "hourlyIncome": 8000,
+      "cost": 680000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 20,
+      "hourlyIncome": 10000,
+      "cost": 950000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 21,
+      "hourlyIncome": 13000,
+      "cost": 1300000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 22,
+      "hourlyIncome": 16000,
+      "cost": 1800000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 23,
+      "hourlyIncome": 20000,
+      "cost": 2500000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 24,
+      "hourlyIncome": 26000,
+      "cost": 3500000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 25,
+      "hourlyIncome": 33000,
+      "cost": 4900000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 26,
+      "hourlyIncome": 42000,
+      "cost": 6800000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 27,
+      "hourlyIncome": 54000,
+      "cost": 9500000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 28,
+      "hourlyIncome": 70000,
+      "cost": 13000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 29,
+      "hourlyIncome": 91000,
+      "cost": 18000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 30,
+      "hourlyIncome": 110000,
+      "cost": 25000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 31,
+      "hourlyIncome": 140000,
+      "cost": 35000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 32,
+      "hourlyIncome": 180000,
+      "cost": 49000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 33,
+      "hourlyIncome": 230000,
+      "cost": 68000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 34,
+      "hourlyIncome": 290000,
+      "cost": 95000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 35,
+      "hourlyIncome": 370000,
+      "cost": 130000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 36,
+      "hourlyIncome": 480000,
+      "cost": 180000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 37,
+      "hourlyIncome": 620000,
+      "cost": 250000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 38,
+      "hourlyIncome": 800000,
+      "cost": 350000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 39,
+      "hourlyIncome": 1000000,
+      "cost": 490000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 40,
+      "hourlyIncome": 1300000,
+      "cost": 680000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 41,
+      "hourlyIncome": 1600000,
+      "cost": 950000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 42,
+      "hourlyIncome": 2000000,
+      "cost": 1300000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 43,
+      "hourlyIncome": 2600000,
+      "cost": 1800000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 44,
+      "hourlyIncome": 3300000,
+      "cost": 2500000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 45,
+      "hourlyIncome": 4200000,
+      "cost": 3500000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 46,
+      "hourlyIncome": 5400000,
+      "cost": 4900000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 47,
+      "hourlyIncome": 7000000,
+      "cost": 6800000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 48,
+      "hourlyIncome": 9100000,
+      "cost": 9500000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 49,
+      "hourlyIncome": 11000000,
+      "cost": 13000000000,
+      "id": 9
+  },
+  {
+      "name": "Potassium Essence",
+      "level": 50,
+      "hourlyIncome": 14000000,
+      "cost": 18000000000,
+      "id": 9
+  },
+  {
+      "name": "Organic Booster",
+      "level": 1,
+      "hourlyIncome": 200,
+      "cost": 700,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 2,
+      "hourlyIncome": 230,
+      "cost": 800,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 3,
+      "hourlyIncome": 260,
+      "cost": 1200,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 4,
+      "hourlyIncome": 290,
+      "cost": 1300,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 5,
+      "hourlyIncome": 330,
+      "cost": 2000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 6,
+      "hourlyIncome": 370,
+      "cost": 2300,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 7,
+      "hourlyIncome": 420,
+      "cost": 3600,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 8,
+      "hourlyIncome": 480,
+      "cost": 4100,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 9,
+      "hourlyIncome": 550,
+      "cost": 6500,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 10,
+      "hourlyIncome": 630,
+      "cost": 7400,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 11,
+      "hourlyIncome": 720,
+      "cost": 11000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 12,
+      "hourlyIncome": 820,
+      "cost": 12000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 13,
+      "hourlyIncome": 940,
+      "cost": 19000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 14,
+      "hourlyIncome": 1000,
+      "cost": 21000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 15,
+      "hourlyIncome": 1100,
+      "cost": 33000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 16,
+      "hourlyIncome": 1200,
+      "cost": 37000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 17,
+      "hourlyIncome": 1300,
+      "cost": 59000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 18,
+      "hourlyIncome": 1400,
+      "cost": 67000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 19,
+      "hourlyIncome": 1600,
+      "cost": 100000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 20,
+      "hourlyIncome": 1800,
+      "cost": 110000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 21,
+      "hourlyIncome": 2000,
+      "cost": 170000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 22,
+      "hourlyIncome": 2300,
+      "cost": 190000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 23,
+      "hourlyIncome": 2600,
+      "cost": 300000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 24,
+      "hourlyIncome": 2900,
+      "cost": 340000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 25,
+      "hourlyIncome": 3300,
+      "cost": 540000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 26,
+      "hourlyIncome": 3700,
+      "cost": 620000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 27,
+      "hourlyIncome": 4200,
+      "cost": 990000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 28,
+      "hourlyIncome": 4800,
+      "cost": 1100000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 29,
+      "hourlyIncome": 5500,
+      "cost": 1700000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 30,
+      "hourlyIncome": 6300,
+      "cost": 1900000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 31,
+      "hourlyIncome": 7200,
+      "cost": 3000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 32,
+      "hourlyIncome": 8200,
+      "cost": 3400000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 33,
+      "hourlyIncome": 9400,
+      "cost": 5400000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 34,
+      "hourlyIncome": 10000,
+      "cost": 6200000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 35,
+      "hourlyIncome": 11000,
+      "cost": 9900000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 36,
+      "hourlyIncome": 12000,
+      "cost": 11000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 37,
+      "hourlyIncome": 13000,
+      "cost": 17000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 38,
+      "hourlyIncome": 14000,
+      "cost": 19000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 39,
+      "hourlyIncome": 16000,
+      "cost": 30000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 40,
+      "hourlyIncome": 18000,
+      "cost": 34000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 41,
+      "hourlyIncome": 20000,
+      "cost": 54000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 42,
+      "hourlyIncome": 23000,
+      "cost": 62000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 43,
+      "hourlyIncome": 26000,
+      "cost": 99000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 44,
+      "hourlyIncome": 29000,
+      "cost": 110000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 45,
+      "hourlyIncome": 33000,
+      "cost": 170000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 46,
+      "hourlyIncome": 37000,
+      "cost": 190000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 47,
+      "hourlyIncome": 42000,
+      "cost": 300000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 48,
+      "hourlyIncome": 48000,
+      "cost": 340000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 49,
+      "hourlyIncome": 55000,
+      "cost": 540000000,
+      "id": 10
+  },
+  {
+      "name": "Organic Booster",
+      "level": 50,
+      "hourlyIncome": 63000,
+      "cost": 620000000,
+      "id": 10
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 1,
+      "hourlyIncome": 500,
+      "cost": 3500,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 2,
+      "hourlyIncome": 600,
+      "cost": 3600,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 3,
+      "hourlyIncome": 660,
+      "cost": 6100,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 4,
+      "hourlyIncome": 790,
+      "cost": 6400,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 5,
+      "hourlyIncome": 860,
+      "cost": 10000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 6,
+      "hourlyIncome": 1000,
+      "cost": 10000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 7,
+      "hourlyIncome": 1100,
+      "cost": 17000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 8,
+      "hourlyIncome": 1300,
+      "cost": 17000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 9,
+      "hourlyIncome": 1400,
+      "cost": 28000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 10,
+      "hourlyIncome": 1600,
+      "cost": 29000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 11,
+      "hourlyIncome": 1700,
+      "cost": 49000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 12,
+      "hourlyIncome": 2000,
+      "cost": 51000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 13,
+      "hourlyIncome": 2200,
+      "cost": 86000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 14,
+      "hourlyIncome": 2600,
+      "cost": 90000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 15,
+      "hourlyIncome": 2800,
+      "cost": 150000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 16,
+      "hourlyIncome": 3300,
+      "cost": 150000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 17,
+      "hourlyIncome": 3600,
+      "cost": 250000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 18,
+      "hourlyIncome": 4300,
+      "cost": 260000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 19,
+      "hourlyIncome": 4700,
+      "cost": 440000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 20,
+      "hourlyIncome": 5600,
+      "cost": 460000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 21,
+      "hourlyIncome": 6100,
+      "cost": 780000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 22,
+      "hourlyIncome": 7300,
+      "cost": 810000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 23,
+      "hourlyIncome": 8000,
+      "cost": 1300000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 24,
+      "hourlyIncome": 9600,
+      "cost": 1300000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 25,
+      "hourlyIncome": 10000,
+      "cost": 2200000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 26,
+      "hourlyIncome": 12000,
+      "cost": 2300000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 27,
+      "hourlyIncome": 13000,
+      "cost": 3900000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 28,
+      "hourlyIncome": 15000,
+      "cost": 4000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 29,
+      "hourlyIncome": 16000,
+      "cost": 6800000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 30,
+      "hourlyIncome": 19000,
+      "cost": 7100000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 31,
+      "hourlyIncome": 20000,
+      "cost": 12000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 32,
+      "hourlyIncome": 24000,
+      "cost": 12000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 33,
+      "hourlyIncome": 26000,
+      "cost": 20000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 34,
+      "hourlyIncome": 31000,
+      "cost": 21000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 35,
+      "hourlyIncome": 34000,
+      "cost": 35000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 36,
+      "hourlyIncome": 40000,
+      "cost": 36000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 37,
+      "hourlyIncome": 44000,
+      "cost": 61000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 38,
+      "hourlyIncome": 52000,
+      "cost": 64000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 39,
+      "hourlyIncome": 57000,
+      "cost": 100000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 40,
+      "hourlyIncome": 68000,
+      "cost": 100000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 41,
+      "hourlyIncome": 74000,
+      "cost": 170000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 42,
+      "hourlyIncome": 88000,
+      "cost": 170000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 43,
+      "hourlyIncome": 96000,
+      "cost": 280000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 44,
+      "hourlyIncome": 110000,
+      "cost": 290000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 45,
+      "hourlyIncome": 120000,
+      "cost": 490000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 46,
+      "hourlyIncome": 140000,
+      "cost": 510000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 47,
+      "hourlyIncome": 150000,
+      "cost": 860000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 48,
+      "hourlyIncome": 180000,
+      "cost": 900000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 49,
+      "hourlyIncome": 190000,
+      "cost": 1500000000,
+      "id": 11
+  },
+  {
+      "name": "Microelement Mix",
+      "level": 50,
+      "hourlyIncome": 220000,
+      "cost": 1500000000,
+      "id": 11
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 1,
+      "hourlyIncome": 400,
+      "cost": 1500,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 2,
+      "hourlyIncome": 440,
+      "cost": 1500,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 3,
+      "hourlyIncome": 480,
+      "cost": 2200,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 4,
+      "hourlyIncome": 520,
+      "cost": 2300,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 5,
+      "hourlyIncome": 570,
+      "cost": 3400,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 6,
+      "hourlyIncome": 620,
+      "cost": 3500,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 7,
+      "hourlyIncome": 680,
+      "cost": 5200,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 8,
+      "hourlyIncome": 740,
+      "cost": 5400,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 9,
+      "hourlyIncome": 810,
+      "cost": 8100,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 10,
+      "hourlyIncome": 890,
+      "cost": 8500,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 11,
+      "hourlyIncome": 970,
+      "cost": 12000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 12,
+      "hourlyIncome": 1000,
+      "cost": 12000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 13,
+      "hourlyIncome": 1100,
+      "cost": 18000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 14,
+      "hourlyIncome": 1200,
+      "cost": 18000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 15,
+      "hourlyIncome": 1300,
+      "cost": 27000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 16,
+      "hourlyIncome": 1400,
+      "cost": 28000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 17,
+      "hourlyIncome": 1500,
+      "cost": 42000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 18,
+      "hourlyIncome": 1600,
+      "cost": 44000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 19,
+      "hourlyIncome": 1700,
+      "cost": 66000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 20,
+      "hourlyIncome": 1800,
+      "cost": 69000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 21,
+      "hourlyIncome": 1900,
+      "cost": 100000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 22,
+      "hourlyIncome": 2000,
+      "cost": 100000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 23,
+      "hourlyIncome": 2200,
+      "cost": 150000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 24,
+      "hourlyIncome": 2400,
+      "cost": 150000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 25,
+      "hourlyIncome": 2600,
+      "cost": 220000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 26,
+      "hourlyIncome": 2800,
+      "cost": 230000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 27,
+      "hourlyIncome": 3000,
+      "cost": 340000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 28,
+      "hourlyIncome": 3300,
+      "cost": 350000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 29,
+      "hourlyIncome": 3600,
+      "cost": 520000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 30,
+      "hourlyIncome": 3900,
+      "cost": 540000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 31,
+      "hourlyIncome": 4200,
+      "cost": 810000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 32,
+      "hourlyIncome": 4600,
+      "cost": 850000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 33,
+      "hourlyIncome": 5000,
+      "cost": 1200000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 34,
+      "hourlyIncome": 5500,
+      "cost": 1200000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 35,
+      "hourlyIncome": 6000,
+      "cost": 1800000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 36,
+      "hourlyIncome": 6600,
+      "cost": 1800000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 37,
+      "hourlyIncome": 7200,
+      "cost": 2700000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 38,
+      "hourlyIncome": 7900,
+      "cost": 2800000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 39,
+      "hourlyIncome": 8600,
+      "cost": 4200000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 40,
+      "hourlyIncome": 9400,
+      "cost": 4400000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 41,
+      "hourlyIncome": 10000,
+      "cost": 6600000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 42,
+      "hourlyIncome": 11000,
+      "cost": 6900000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 43,
+      "hourlyIncome": 12000,
+      "cost": 10000000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 44,
+      "hourlyIncome": 13000,
+      "cost": 10000000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 45,
+      "hourlyIncome": 14000,
+      "cost": 15000000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 46,
+      "hourlyIncome": 15000,
+      "cost": 15000000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 47,
+      "hourlyIncome": 16000,
+      "cost": 22000000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 48,
+      "hourlyIncome": 17000,
+      "cost": 23000000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 49,
+      "hourlyIncome": 18000,
+      "cost": 34000000,
+      "id": 12
+  },
+  {
+      "name": "Sea Cocktail",
+      "level": 50,
+      "hourlyIncome": 19000,
+      "cost": 35000000,
+      "id": 12
+  },
+  {
+      "name": "Energy Gel",
+      "level": 1,
+      "hourlyIncome": 2000,
+      "cost": 10000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 2,
+      "hourlyIncome": 2400,
+      "cost": 10000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 3,
+      "hourlyIncome": 2800,
+      "cost": 18000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 4,
+      "hourlyIncome": 3300,
+      "cost": 18000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 5,
+      "hourlyIncome": 3900,
+      "cost": 33000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 6,
+      "hourlyIncome": 4600,
+      "cost": 34000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 7,
+      "hourlyIncome": 5500,
+      "cost": 62000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 8,
+      "hourlyIncome": 6600,
+      "cost": 65000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 9,
+      "hourlyIncome": 7900,
+      "cost": 120000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 10,
+      "hourlyIncome": 9400,
+      "cost": 120000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 11,
+      "hourlyIncome": 11000,
+      "cost": 220000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 12,
+      "hourlyIncome": 13000,
+      "cost": 230000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 13,
+      "hourlyIncome": 15000,
+      "cost": 420000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 14,
+      "hourlyIncome": 18000,
+      "cost": 440000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 15,
+      "hourlyIncome": 21000,
+      "cost": 810000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 16,
+      "hourlyIncome": 25000,
+      "cost": 850000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 17,
+      "hourlyIncome": 30000,
+      "cost": 1500000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 18,
+      "hourlyIncome": 36000,
+      "cost": 1500000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 19,
+      "hourlyIncome": 43000,
+      "cost": 2700000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 20,
+      "hourlyIncome": 51000,
+      "cost": 2800000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 21,
+      "hourlyIncome": 61000,
+      "cost": 5100000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 22,
+      "hourlyIncome": 73000,
+      "cost": 5300000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 23,
+      "hourlyIncome": 87000,
+      "cost": 9800000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 24,
+      "hourlyIncome": 100000,
+      "cost": 10000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 25,
+      "hourlyIncome": 120000,
+      "cost": 18000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 26,
+      "hourlyIncome": 140000,
+      "cost": 18000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 27,
+      "hourlyIncome": 160000,
+      "cost": 33000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 28,
+      "hourlyIncome": 190000,
+      "cost": 34000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 29,
+      "hourlyIncome": 220000,
+      "cost": 62000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 30,
+      "hourlyIncome": 260000,
+      "cost": 65000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 31,
+      "hourlyIncome": 310000,
+      "cost": 120000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 32,
+      "hourlyIncome": 370000,
+      "cost": 120000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 33,
+      "hourlyIncome": 440000,
+      "cost": 220000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 34,
+      "hourlyIncome": 520000,
+      "cost": 230000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 35,
+      "hourlyIncome": 620000,
+      "cost": 420000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 36,
+      "hourlyIncome": 740000,
+      "cost": 440000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 37,
+      "hourlyIncome": 880000,
+      "cost": 810000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 38,
+      "hourlyIncome": 1000000,
+      "cost": 850000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 39,
+      "hourlyIncome": 1200000,
+      "cost": 1500000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 40,
+      "hourlyIncome": 1400000,
+      "cost": 1500000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 41,
+      "hourlyIncome": 1600000,
+      "cost": 2700000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 42,
+      "hourlyIncome": 1900000,
+      "cost": 2800000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 43,
+      "hourlyIncome": 2200000,
+      "cost": 5100000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 44,
+      "hourlyIncome": 2600000,
+      "cost": 5300000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 45,
+      "hourlyIncome": 3100000,
+      "cost": 9800000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 46,
+      "hourlyIncome": 3700000,
+      "cost": 10000000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 47,
+      "hourlyIncome": 4400000,
+      "cost": 18000000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 48,
+      "hourlyIncome": 5200000,
+      "cost": 18000000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 49,
+      "hourlyIncome": 6200000,
+      "cost": 33000000000,
+      "id": 13
+  },
+  {
+      "name": "Energy Gel",
+      "level": 50,
+      "hourlyIncome": 7400000,
+      "cost": 34000000000,
+      "id": 13
+  },
+  {
+      "name": "Flower Feed",
+      "level": 1,
+      "hourlyIncome": 1000,
+      "cost": 20000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 2,
+      "hourlyIncome": 1200,
+      "cost": 24000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 3,
+      "hourlyIncome": 1400,
+      "cost": 33000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 4,
+      "hourlyIncome": 1600,
+      "cost": 39000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 5,
+      "hourlyIncome": 1900,
+      "cost": 54000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 6,
+      "hourlyIncome": 2200,
+      "cost": 64000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 7,
+      "hourlyIncome": 2600,
+      "cost": 89000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 8,
+      "hourlyIncome": 3100,
+      "cost": 100000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 9,
+      "hourlyIncome": 3700,
+      "cost": 140000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 10,
+      "hourlyIncome": 4400,
+      "cost": 160000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 11,
+      "hourlyIncome": 5200,
+      "cost": 220000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 12,
+      "hourlyIncome": 6200,
+      "cost": 260000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 13,
+      "hourlyIncome": 7400,
+      "cost": 360000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 14,
+      "hourlyIncome": 8800,
+      "cost": 430000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 15,
+      "hourlyIncome": 10000,
+      "cost": 600000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 16,
+      "hourlyIncome": 12000,
+      "cost": 720000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 17,
+      "hourlyIncome": 14000,
+      "cost": 1000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 18,
+      "hourlyIncome": 16000,
+      "cost": 1200000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 19,
+      "hourlyIncome": 19000,
+      "cost": 1600000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 20,
+      "hourlyIncome": 22000,
+      "cost": 1900000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 21,
+      "hourlyIncome": 26000,
+      "cost": 2600000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 22,
+      "hourlyIncome": 31000,
+      "cost": 3100000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 23,
+      "hourlyIncome": 37000,
+      "cost": 4300000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 24,
+      "hourlyIncome": 44000,
+      "cost": 5100000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 25,
+      "hourlyIncome": 52000,
+      "cost": 7100000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 26,
+      "hourlyIncome": 62000,
+      "cost": 8500000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 27,
+      "hourlyIncome": 74000,
+      "cost": 11000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 28,
+      "hourlyIncome": 88000,
+      "cost": 13000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 29,
+      "hourlyIncome": 100000,
+      "cost": 18000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 30,
+      "hourlyIncome": 120000,
+      "cost": 21000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 31,
+      "hourlyIncome": 140000,
+      "cost": 29000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 32,
+      "hourlyIncome": 160000,
+      "cost": 34000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 33,
+      "hourlyIncome": 190000,
+      "cost": 47000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 34,
+      "hourlyIncome": 220000,
+      "cost": 56000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 35,
+      "hourlyIncome": 260000,
+      "cost": 78000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 36,
+      "hourlyIncome": 310000,
+      "cost": 93000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 37,
+      "hourlyIncome": 370000,
+      "cost": 130000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 38,
+      "hourlyIncome": 440000,
+      "cost": 150000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 39,
+      "hourlyIncome": 520000,
+      "cost": 210000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 40,
+      "hourlyIncome": 620000,
+      "cost": 250000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 41,
+      "hourlyIncome": 740000,
+      "cost": 350000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 42,
+      "hourlyIncome": 880000,
+      "cost": 420000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 43,
+      "hourlyIncome": 1000000,
+      "cost": 580000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 44,
+      "hourlyIncome": 1200000,
+      "cost": 690000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 45,
+      "hourlyIncome": 1400000,
+      "cost": 960000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 46,
+      "hourlyIncome": 1600000,
+      "cost": 1100000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 47,
+      "hourlyIncome": 1900000,
+      "cost": 1500000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 48,
+      "hourlyIncome": 2200000,
+      "cost": 1800000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 49,
+      "hourlyIncome": 2600000,
+      "cost": 2500000000,
+      "id": 14
+  },
+  {
+      "name": "Flower Feed",
+      "level": 50,
+      "hourlyIncome": 3100000,
+      "cost": 3000000000,
+      "id": 14
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 1,
+      "hourlyIncome": 5000,
+      "cost": 20000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 2,
+      "hourlyIncome": 6000,
+      "cost": 23000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 3,
+      "hourlyIncome": 6600,
+      "cost": 36000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 4,
+      "hourlyIncome": 7900,
+      "cost": 41000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 5,
+      "hourlyIncome": 8600,
+      "cost": 65000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 6,
+      "hourlyIncome": 10000,
+      "cost": 74000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 7,
+      "hourlyIncome": 11000,
+      "cost": 110000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 8,
+      "hourlyIncome": 13000,
+      "cost": 120000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 9,
+      "hourlyIncome": 14000,
+      "cost": 190000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 10,
+      "hourlyIncome": 16000,
+      "cost": 210000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 11,
+      "hourlyIncome": 17000,
+      "cost": 330000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 12,
+      "hourlyIncome": 20000,
+      "cost": 370000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 13,
+      "hourlyIncome": 22000,
+      "cost": 590000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 14,
+      "hourlyIncome": 26000,
+      "cost": 670000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 15,
+      "hourlyIncome": 28000,
+      "cost": 1000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 16,
+      "hourlyIncome": 33000,
+      "cost": 1100000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 17,
+      "hourlyIncome": 36000,
+      "cost": 1700000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 18,
+      "hourlyIncome": 43000,
+      "cost": 1900000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 19,
+      "hourlyIncome": 47000,
+      "cost": 3000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 20,
+      "hourlyIncome": 56000,
+      "cost": 3400000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 21,
+      "hourlyIncome": 61000,
+      "cost": 5400000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 22,
+      "hourlyIncome": 73000,
+      "cost": 6200000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 23,
+      "hourlyIncome": 80000,
+      "cost": 9900000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 24,
+      "hourlyIncome": 96000,
+      "cost": 11000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 25,
+      "hourlyIncome": 100000,
+      "cost": 17000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 26,
+      "hourlyIncome": 120000,
+      "cost": 19000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 27,
+      "hourlyIncome": 130000,
+      "cost": 30000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 28,
+      "hourlyIncome": 150000,
+      "cost": 34000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 29,
+      "hourlyIncome": 160000,
+      "cost": 54000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 30,
+      "hourlyIncome": 190000,
+      "cost": 62000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 31,
+      "hourlyIncome": 200000,
+      "cost": 99000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 32,
+      "hourlyIncome": 240000,
+      "cost": 110000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 33,
+      "hourlyIncome": 260000,
+      "cost": 170000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 34,
+      "hourlyIncome": 310000,
+      "cost": 190000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 35,
+      "hourlyIncome": 340000,
+      "cost": 300000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 36,
+      "hourlyIncome": 400000,
+      "cost": 340000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 37,
+      "hourlyIncome": 440000,
+      "cost": 540000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 38,
+      "hourlyIncome": 520000,
+      "cost": 620000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 39,
+      "hourlyIncome": 570000,
+      "cost": 990000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 40,
+      "hourlyIncome": 680000,
+      "cost": 1100000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 41,
+      "hourlyIncome": 740000,
+      "cost": 1700000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 42,
+      "hourlyIncome": 880000,
+      "cost": 1900000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 43,
+      "hourlyIncome": 960000,
+      "cost": 3000000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 44,
+      "hourlyIncome": 1100000,
+      "cost": 3400000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 45,
+      "hourlyIncome": 1200000,
+      "cost": 5400000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 46,
+      "hourlyIncome": 1400000,
+      "cost": 6200000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 47,
+      "hourlyIncome": 1500000,
+      "cost": 9900000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 48,
+      "hourlyIncome": 1800000,
+      "cost": 11000000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 49,
+      "hourlyIncome": 1900000,
+      "cost": 17000000000,
+      "id": 15
+  },
+  {
+      "name": "Fertility Extract",
+      "level": 50,
+      "hourlyIncome": 2200000,
+      "cost": 19000000000,
+      "id": 15
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 1,
+      "hourlyIncome": 2000,
+      "cost": 10000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 2,
+      "hourlyIncome": 2600,
+      "cost": 12000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 3,
+      "hourlyIncome": 3100,
+      "cost": 19000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 4,
+      "hourlyIncome": 4000,
+      "cost": 23000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 5,
+      "hourlyIncome": 4800,
+      "cost": 36000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 6,
+      "hourlyIncome": 6200,
+      "cost": 45000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 7,
+      "hourlyIncome": 7400,
+      "cost": 72000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 8,
+      "hourlyIncome": 9600,
+      "cost": 90000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 9,
+      "hourlyIncome": 11000,
+      "cost": 140000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 10,
+      "hourlyIncome": 14000,
+      "cost": 170000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 11,
+      "hourlyIncome": 16000,
+      "cost": 270000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 12,
+      "hourlyIncome": 20000,
+      "cost": 330000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 13,
+      "hourlyIncome": 24000,
+      "cost": 520000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 14,
+      "hourlyIncome": 31000,
+      "cost": 650000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 15,
+      "hourlyIncome": 37000,
+      "cost": 1000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 16,
+      "hourlyIncome": 48000,
+      "cost": 1200000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 17,
+      "hourlyIncome": 57000,
+      "cost": 1900000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 18,
+      "hourlyIncome": 74000,
+      "cost": 2300000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 19,
+      "hourlyIncome": 88000,
+      "cost": 3600000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 20,
+      "hourlyIncome": 110000,
+      "cost": 4500000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 21,
+      "hourlyIncome": 130000,
+      "cost": 7200000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 22,
+      "hourlyIncome": 160000,
+      "cost": 9000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 23,
+      "hourlyIncome": 190000,
+      "cost": 14000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 24,
+      "hourlyIncome": 240000,
+      "cost": 17000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 25,
+      "hourlyIncome": 280000,
+      "cost": 27000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 26,
+      "hourlyIncome": 360000,
+      "cost": 33000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 27,
+      "hourlyIncome": 430000,
+      "cost": 52000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 28,
+      "hourlyIncome": 550000,
+      "cost": 65000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 29,
+      "hourlyIncome": 660000,
+      "cost": 100000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 30,
+      "hourlyIncome": 850000,
+      "cost": 120000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 31,
+      "hourlyIncome": 1000000,
+      "cost": 190000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 32,
+      "hourlyIncome": 1300000,
+      "cost": 230000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 33,
+      "hourlyIncome": 1500000,
+      "cost": 360000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 34,
+      "hourlyIncome": 1900000,
+      "cost": 450000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 35,
+      "hourlyIncome": 2200000,
+      "cost": 720000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 36,
+      "hourlyIncome": 2800000,
+      "cost": 900000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 37,
+      "hourlyIncome": 3300000,
+      "cost": 1400000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 38,
+      "hourlyIncome": 4200000,
+      "cost": 1700000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 39,
+      "hourlyIncome": 5000000,
+      "cost": 2700000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 40,
+      "hourlyIncome": 6500000,
+      "cost": 3300000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 41,
+      "hourlyIncome": 7800000,
+      "cost": 5200000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 42,
+      "hourlyIncome": 10000000,
+      "cost": 6500000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 43,
+      "hourlyIncome": 12000000,
+      "cost": 10000000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 44,
+      "hourlyIncome": 15000000,
+      "cost": 12000000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 45,
+      "hourlyIncome": 18000000,
+      "cost": 19000000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 46,
+      "hourlyIncome": 23000000,
+      "cost": 23000000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 47,
+      "hourlyIncome": 27000000,
+      "cost": 36000000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 48,
+      "hourlyIncome": 35000000,
+      "cost": 45000000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 49,
+      "hourlyIncome": 42000000,
+      "cost": 72000000000,
+      "id": 16
+  },
+  {
+      "name": "Nectar of Life",
+      "level": 50,
+      "hourlyIncome": 54000000,
+      "cost": 90000000000,
+      "id": 16
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 1,
+      "hourlyIncome": 10000,
+      "cost": 50000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 2,
+      "hourlyIncome": 12000,
+      "cost": 60000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 3,
+      "hourlyIncome": 14000,
+      "cost": 96000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 4,
+      "hourlyIncome": 16000,
+      "cost": 110000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 5,
+      "hourlyIncome": 19000,
+      "cost": 170000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 6,
+      "hourlyIncome": 22000,
+      "cost": 200000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 7,
+      "hourlyIncome": 26000,
+      "cost": 320000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 8,
+      "hourlyIncome": 31000,
+      "cost": 380000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 9,
+      "hourlyIncome": 37000,
+      "cost": 600000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 10,
+      "hourlyIncome": 44000,
+      "cost": 720000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 11,
+      "hourlyIncome": 52000,
+      "cost": 1100000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 12,
+      "hourlyIncome": 62000,
+      "cost": 1300000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 13,
+      "hourlyIncome": 74000,
+      "cost": 2000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 14,
+      "hourlyIncome": 88000,
+      "cost": 2400000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 15,
+      "hourlyIncome": 100000,
+      "cost": 3800000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 16,
+      "hourlyIncome": 120000,
+      "cost": 4500000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 17,
+      "hourlyIncome": 140000,
+      "cost": 7200000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 18,
+      "hourlyIncome": 160000,
+      "cost": 8600000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 19,
+      "hourlyIncome": 190000,
+      "cost": 13000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 20,
+      "hourlyIncome": 220000,
+      "cost": 15000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 21,
+      "hourlyIncome": 260000,
+      "cost": 24000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 22,
+      "hourlyIncome": 310000,
+      "cost": 28000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 23,
+      "hourlyIncome": 370000,
+      "cost": 44000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 24,
+      "hourlyIncome": 440000,
+      "cost": 52000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 25,
+      "hourlyIncome": 520000,
+      "cost": 83000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 26,
+      "hourlyIncome": 620000,
+      "cost": 99000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 27,
+      "hourlyIncome": 740000,
+      "cost": 150000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 28,
+      "hourlyIncome": 880000,
+      "cost": 180000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 29,
+      "hourlyIncome": 1000000,
+      "cost": 280000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 30,
+      "hourlyIncome": 1200000,
+      "cost": 330000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 31,
+      "hourlyIncome": 1400000,
+      "cost": 520000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 32,
+      "hourlyIncome": 1600000,
+      "cost": 620000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 33,
+      "hourlyIncome": 1900000,
+      "cost": 990000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 34,
+      "hourlyIncome": 2200000,
+      "cost": 1100000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 35,
+      "hourlyIncome": 2600000,
+      "cost": 1700000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 36,
+      "hourlyIncome": 3100000,
+      "cost": 2000000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 37,
+      "hourlyIncome": 3700000,
+      "cost": 3200000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 38,
+      "hourlyIncome": 4400000,
+      "cost": 3800000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 39,
+      "hourlyIncome": 5200000,
+      "cost": 6000000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 40,
+      "hourlyIncome": 6200000,
+      "cost": 7200000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 41,
+      "hourlyIncome": 7400000,
+      "cost": 11000000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 42,
+      "hourlyIncome": 8800000,
+      "cost": 13000000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 43,
+      "hourlyIncome": 10000000,
+      "cost": 20000000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 44,
+      "hourlyIncome": 12000000,
+      "cost": 24000000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 45,
+      "hourlyIncome": 14000000,
+      "cost": 38000000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 46,
+      "hourlyIncome": 16000000,
+      "cost": 45000000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 47,
+      "hourlyIncome": 19000000,
+      "cost": 72000000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 48,
+      "hourlyIncome": 22000000,
+      "cost": 86000000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 49,
+      "hourlyIncome": 26000000,
+      "cost": 130000000000,
+      "id": 17
+  },
+  {
+      "name": "Moon Infusion",
+      "level": 50,
+      "hourlyIncome": 31000000,
+      "cost": 150000000000,
+      "id": 17
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 1,
+      "hourlyIncome": 15000,
+      "cost": 60000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 2,
+      "hourlyIncome": 21000,
+      "cost": 72000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 3,
+      "hourlyIncome": 22000,
+      "cost": 120000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 4,
+      "hourlyIncome": 30000,
+      "cost": 140000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 5,
+      "hourlyIncome": 31000,
+      "cost": 230000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 6,
+      "hourlyIncome": 43000,
+      "cost": 270000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 7,
+      "hourlyIncome": 45000,
+      "cost": 450000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 8,
+      "hourlyIncome": 63000,
+      "cost": 540000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 9,
+      "hourlyIncome": 66000,
+      "cost": 910000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 10,
+      "hourlyIncome": 92000,
+      "cost": 1000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 11,
+      "hourlyIncome": 96000,
+      "cost": 1700000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 12,
+      "hourlyIncome": 130000,
+      "cost": 2000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 13,
+      "hourlyIncome": 130000,
+      "cost": 3400000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 14,
+      "hourlyIncome": 180000,
+      "cost": 4000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 15,
+      "hourlyIncome": 180000,
+      "cost": 6800000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 16,
+      "hourlyIncome": 250000,
+      "cost": 8100000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 17,
+      "hourlyIncome": 260000,
+      "cost": 13000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 18,
+      "hourlyIncome": 360000,
+      "cost": 15000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 19,
+      "hourlyIncome": 370000,
+      "cost": 25000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 20,
+      "hourlyIncome": 510000,
+      "cost": 30000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 21,
+      "hourlyIncome": 530000,
+      "cost": 51000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 22,
+      "hourlyIncome": 740000,
+      "cost": 61000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 23,
+      "hourlyIncome": 770000,
+      "cost": 100000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 24,
+      "hourlyIncome": 1000000,
+      "cost": 120000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 25,
+      "hourlyIncome": 1000000,
+      "cost": 200000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 26,
+      "hourlyIncome": 1400000,
+      "cost": 240000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 27,
+      "hourlyIncome": 1400000,
+      "cost": 400000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 28,
+      "hourlyIncome": 1900000,
+      "cost": 480000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 29,
+      "hourlyIncome": 1900000,
+      "cost": 810000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 30,
+      "hourlyIncome": 2600000,
+      "cost": 970000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 31,
+      "hourlyIncome": 2700000,
+      "cost": 1600000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 32,
+      "hourlyIncome": 3700000,
+      "cost": 1900000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 33,
+      "hourlyIncome": 3800000,
+      "cost": 3200000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 34,
+      "hourlyIncome": 5300000,
+      "cost": 3800000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 35,
+      "hourlyIncome": 5500000,
+      "cost": 6400000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 36,
+      "hourlyIncome": 7700000,
+      "cost": 7600000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 37,
+      "hourlyIncome": 8000000,
+      "cost": 12000000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 38,
+      "hourlyIncome": 11000000,
+      "cost": 14000000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 39,
+      "hourlyIncome": 11000000,
+      "cost": 23000000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 40,
+      "hourlyIncome": 15000000,
+      "cost": 27000000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 41,
+      "hourlyIncome": 15000000,
+      "cost": 45000000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 42,
+      "hourlyIncome": 21000000,
+      "cost": 54000000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 43,
+      "hourlyIncome": 22000000,
+      "cost": 91000000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 44,
+      "hourlyIncome": 30000000,
+      "cost": 100000000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 45,
+      "hourlyIncome": 31000000,
+      "cost": 170000000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 46,
+      "hourlyIncome": 43000000,
+      "cost": 200000000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 47,
+      "hourlyIncome": 45000000,
+      "cost": 340000000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 48,
+      "hourlyIncome": 63000000,
+      "cost": 400000000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 49,
+      "hourlyIncome": 66000000,
+      "cost": 680000000000,
+      "id": 18
+  },
+  {
+      "name": "Enzyme Boost",
+      "level": 50,
+      "hourlyIncome": 92000000,
+      "cost": 810000000000,
+      "id": 18
+  },
+  {
+      "name": "Peat Activator",
+      "level": 1,
+      "hourlyIncome": 50000,
+      "cost": 300000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 2,
+      "hourlyIncome": 65000,
+      "cost": 340000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 3,
+      "hourlyIncome": 74000,
+      "cost": 540000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 4,
+      "hourlyIncome": 96000,
+      "cost": 620000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 5,
+      "hourlyIncome": 110000,
+      "cost": 990000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 6,
+      "hourlyIncome": 140000,
+      "cost": 1100000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 7,
+      "hourlyIncome": 160000,
+      "cost": 1700000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 8,
+      "hourlyIncome": 200000,
+      "cost": 1900000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 9,
+      "hourlyIncome": 230000,
+      "cost": 3000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 10,
+      "hourlyIncome": 290000,
+      "cost": 3400000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 11,
+      "hourlyIncome": 330000,
+      "cost": 5400000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 12,
+      "hourlyIncome": 420000,
+      "cost": 6200000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 13,
+      "hourlyIncome": 480000,
+      "cost": 9900000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 14,
+      "hourlyIncome": 620000,
+      "cost": 11000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 15,
+      "hourlyIncome": 710000,
+      "cost": 17000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 16,
+      "hourlyIncome": 920000,
+      "cost": 19000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 17,
+      "hourlyIncome": 1000000,
+      "cost": 30000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 18,
+      "hourlyIncome": 1300000,
+      "cost": 34000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 19,
+      "hourlyIncome": 1400000,
+      "cost": 54000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 20,
+      "hourlyIncome": 1800000,
+      "cost": 62000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 21,
+      "hourlyIncome": 2000000,
+      "cost": 99000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 22,
+      "hourlyIncome": 2600000,
+      "cost": 110000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 23,
+      "hourlyIncome": 2900000,
+      "cost": 170000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 24,
+      "hourlyIncome": 3700000,
+      "cost": 190000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 25,
+      "hourlyIncome": 4200000,
+      "cost": 300000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 26,
+      "hourlyIncome": 5400000,
+      "cost": 340000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 27,
+      "hourlyIncome": 6200000,
+      "cost": 540000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 28,
+      "hourlyIncome": 8000000,
+      "cost": 620000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 29,
+      "hourlyIncome": 9200000,
+      "cost": 990000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 30,
+      "hourlyIncome": 11000000,
+      "cost": 1100000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 31,
+      "hourlyIncome": 12000000,
+      "cost": 1700000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 32,
+      "hourlyIncome": 15000000,
+      "cost": 1900000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 33,
+      "hourlyIncome": 17000000,
+      "cost": 3000000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 34,
+      "hourlyIncome": 22000000,
+      "cost": 3400000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 35,
+      "hourlyIncome": 25000000,
+      "cost": 5400000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 36,
+      "hourlyIncome": 32000000,
+      "cost": 6200000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 37,
+      "hourlyIncome": 36000000,
+      "cost": 9900000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 38,
+      "hourlyIncome": 46000000,
+      "cost": 11000000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 39,
+      "hourlyIncome": 52000000,
+      "cost": 17000000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 40,
+      "hourlyIncome": 67000000,
+      "cost": 19000000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 41,
+      "hourlyIncome": 77000000,
+      "cost": 30000000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 42,
+      "hourlyIncome": 100000000,
+      "cost": 34000000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 43,
+      "hourlyIncome": 110000000,
+      "cost": 54000000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 44,
+      "hourlyIncome": 140000000,
+      "cost": 62000000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 45,
+      "hourlyIncome": 160000000,
+      "cost": 99000000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 46,
+      "hourlyIncome": 200000000,
+      "cost": 110000000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 47,
+      "hourlyIncome": 230000000,
+      "cost": 170000000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 48,
+      "hourlyIncome": 290000000,
+      "cost": 190000000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 49,
+      "hourlyIncome": 330000000,
+      "cost": 300000000000,
+      "id": 19
+  },
+  {
+      "name": "Peat Activator",
+      "level": 50,
+      "hourlyIncome": 420000000,
+      "cost": 340000000000,
+      "id": 19
+  },
+  {
+      "name": "Growth Granules",
+      "level": 1,
+      "hourlyIncome": 100000,
+      "cost": 500000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 2,
+      "hourlyIncome": 130000,
+      "cost": 570000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 3,
+      "hourlyIncome": 150000,
+      "cost": 960000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 4,
+      "hourlyIncome": 190000,
+      "cost": 1100000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 5,
+      "hourlyIncome": 220000,
+      "cost": 1800000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 6,
+      "hourlyIncome": 280000,
+      "cost": 2000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 7,
+      "hourlyIncome": 330000,
+      "cost": 3400000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 8,
+      "hourlyIncome": 420000,
+      "cost": 3900000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 9,
+      "hourlyIncome": 500000,
+      "cost": 6600000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 10,
+      "hourlyIncome": 650000,
+      "cost": 7500000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 11,
+      "hourlyIncome": 780000,
+      "cost": 12000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 12,
+      "hourlyIncome": 1000000,
+      "cost": 13000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 13,
+      "hourlyIncome": 1200000,
+      "cost": 22000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 14,
+      "hourlyIncome": 1500000,
+      "cost": 25000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 15,
+      "hourlyIncome": 1800000,
+      "cost": 42000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 16,
+      "hourlyIncome": 2300000,
+      "cost": 48000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 17,
+      "hourlyIncome": 2700000,
+      "cost": 81000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 18,
+      "hourlyIncome": 3500000,
+      "cost": 93000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 19,
+      "hourlyIncome": 4200000,
+      "cost": 150000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 20,
+      "hourlyIncome": 5400000,
+      "cost": 170000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 21,
+      "hourlyIncome": 6400000,
+      "cost": 280000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 22,
+      "hourlyIncome": 8300000,
+      "cost": 320000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 23,
+      "hourlyIncome": 9900000,
+      "cost": 540000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 24,
+      "hourlyIncome": 12000000,
+      "cost": 620000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 25,
+      "hourlyIncome": 14000000,
+      "cost": 1000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 26,
+      "hourlyIncome": 18000000,
+      "cost": 1100000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 27,
+      "hourlyIncome": 21000000,
+      "cost": 1800000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 28,
+      "hourlyIncome": 27000000,
+      "cost": 2000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 29,
+      "hourlyIncome": 32000000,
+      "cost": 3400000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 30,
+      "hourlyIncome": 41000000,
+      "cost": 3900000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 31,
+      "hourlyIncome": 49000000,
+      "cost": 6600000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 32,
+      "hourlyIncome": 63000000,
+      "cost": 7500000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 33,
+      "hourlyIncome": 75000000,
+      "cost": 12000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 34,
+      "hourlyIncome": 97000000,
+      "cost": 13000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 35,
+      "hourlyIncome": 110000000,
+      "cost": 22000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 36,
+      "hourlyIncome": 140000000,
+      "cost": 25000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 37,
+      "hourlyIncome": 160000000,
+      "cost": 42000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 38,
+      "hourlyIncome": 200000000,
+      "cost": 48000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 39,
+      "hourlyIncome": 240000000,
+      "cost": 81000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 40,
+      "hourlyIncome": 310000000,
+      "cost": 93000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 41,
+      "hourlyIncome": 370000000,
+      "cost": 150000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 42,
+      "hourlyIncome": 480000000,
+      "cost": 170000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 43,
+      "hourlyIncome": 570000000,
+      "cost": 280000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 44,
+      "hourlyIncome": 740000000,
+      "cost": 320000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 45,
+      "hourlyIncome": 880000000,
+      "cost": 540000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 46,
+      "hourlyIncome": 1100000000,
+      "cost": 620000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 47,
+      "hourlyIncome": 1300000000,
+      "cost": 1000000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 48,
+      "hourlyIncome": 1600000000,
+      "cost": 1100000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 49,
+      "hourlyIncome": 1900000000,
+      "cost": 1800000000000,
+      "id": 20
+  },
+  {
+      "name": "Growth Granules",
+      "level": 50,
+      "hourlyIncome": 2400000000,
+      "cost": 2000000000000,
+      "id": 20
+  }
+]

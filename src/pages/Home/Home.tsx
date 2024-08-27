@@ -26,7 +26,7 @@ import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
 // import Clouds from "./modules/Clouds";
 const cn = classNames.bind(styles);
-
+import fertilizersData from '../../fertilizers_data.json'; // Adjust the path accordingly
 import Coins from "./modules/Coins";
 import Liga from "./modules/Liga";
 import styles from "./Home.module.scss";
@@ -696,6 +696,14 @@ const Home = () => {
           const response = await fetch("https://coinfarm.club/api/fertilizers");
           const data = await response.json();
           setFertilizers(data);
+          const fertilizers: Fertilizers[] = (fertilizersData as Fertilizers[]).map((item: Fertilizers) => ({
+            ...item,
+            name: item.name as TFertilizers
+          }));
+          
+          setFertilizers(fertilizers);
+
+
         } catch (error) {
           console.error("Error fetching boosters:", error);
         }
