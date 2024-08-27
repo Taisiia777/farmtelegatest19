@@ -305,6 +305,9 @@ const BoostBlock = ({
   }
   const canAfford = userCoins >= boosterPrice; // Проверяем, хватает ли монет
   let content;
+  const formattedPrice = boosterPrice >= 1000000 
+? (boosterPrice / 1000000).toFixed(0) + 'M' 
+: boosterPrice.toString();
   const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
@@ -340,7 +343,7 @@ const BoostBlock = ({
               disabled
             >
               <CoinWhiteBg size="small" iconName="BTC" />
-              <span className="textShadow">{price}</span>
+              <span className="textShadow">{formattedPrice}</span>
             </Button>
           </div>
         </div>
@@ -426,7 +429,7 @@ const BoostBlock = ({
             onClick={openBoostBuyPopup}
           >
             <CoinWhiteBg size="small" iconName="BTC" />
-            <span className="textShadow">{price}</span>
+            <span className="textShadow">{formattedPrice}</span>
           </Button>
           ) : (
             <Button
@@ -434,7 +437,7 @@ const BoostBlock = ({
             disabled={!canAfford} // Делаем кнопку неактивной, если монет недостаточно
           >
             <CoinWhiteBg size="small" iconName="BTC" />
-            <span className="textShadow">{price}</span>
+            <span className="textShadow">{formattedPrice}</span>
           </Button>
           )}
         </div>
