@@ -168,7 +168,6 @@ const Preloader = () => {
 
                // if (userResponse.status === 409) {
                   const userData = userResponse.data;
-                  alert(`User already exists: ${JSON.stringify(userData)}`);
                   dispatch(setUser(userData)); // Устанавливаем уже существующего пользователя
                // } else {
                //    const newUser = userResponse.data;

@@ -464,7 +464,6 @@ const Home = () => {
 
               // if (response.status === 409) {
                 const userData =  response.data;
-                alert(`User already exists: ${JSON.stringify(userData)}`);
                 const userLeagueIndex = userData ? userData.level : 0;
                 const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
                 const calculatedInHour = userData?.coinsPerHour * userHarvestMultiplier;
