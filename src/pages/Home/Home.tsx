@@ -1014,6 +1014,7 @@ console.log(response1)
         
          const currentEarning = Number(coinState.info.earning);
          const earningDifference = Number(Math.abs(currentEarning - previousEarning));
+         alert(earningDifference)
         const response = await axios.post(`https://coinfarm.club/api/coin/give/${user.id}/${coinState.info.coinId}`);
         // dispatch(setUser({ ...user, coins: user.coins - coinState.info.price, coinsPerHour: coinState.info.earning}));
         dispatch(setUser({ 
