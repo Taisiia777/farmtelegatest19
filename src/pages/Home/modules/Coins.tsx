@@ -26,6 +26,8 @@ import { useAppSelector } from '../../../store';
 import classNames from "classnames/bind";
 import styles from "../Home.module.scss";
 import { RootState } from "../../../store";
+import { setUserCoins1 } from '../../../store/reducers/userCoinsSlice';
+import { useDispatch} from "react-redux";
 
 const cn = classNames.bind(styles);
 
@@ -41,12 +43,16 @@ interface CoinsProps {
 const Coins = ({ quantity }: CoinsProps) => {
   const user = useAppSelector((state) => state.user.user);
   const coins = useAppSelector((state: RootState) => state.userCoins.coins);
+  const dispatch = useDispatch();
 
   const [mostExpensiveCoinName, setMostExpensiveCoinName] = useState<string | null>(null);
   const giveCoin = async (userId: number) => {
     const coinId = 2; // ID монеты
     try {
       const response = await axios.post(`https://coinfarm.club/api/coin/give/${userId}/${coinId}`);
+      const response1 = await fetch(`https://coinfarm.club/api/user/${user.id}/coins`);
+      const data = await response1.json();
+      dispatch(setUserCoins1(data)); 
       console.log('Coin given:', response.data);
     } catch (error) {
       console.error('Error giving coin:', error);
