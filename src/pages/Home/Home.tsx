@@ -113,7 +113,7 @@ interface Booster {
    id: number;
    name: TCoin;
    cost: number;
-   hourlyIncome: number;
+   hourlyincome: number;
    level: number
  }
  interface Fertilizers {
@@ -1012,8 +1012,8 @@ console.log(response1)
          alert(coinState.info.earning)
 
          // Проверяем, есть ли предыдущая монета
-         const previousEarning = currentCoinIndex > 0 ? userCoins[0].hourlyIncome : 0;
-         alert(previousEarning)
+         const previousEarning = currentCoinIndex > 0 ? userCoins[userCoins.length - 1].hourlyincome : 0;
+         alert(userCoins[userCoins.length - 1].hourlyincome)
 
          const currentEarning = Number(coinState.info.earning);
          const earningDifference = currentEarning - previousEarning;
@@ -1063,7 +1063,7 @@ console.log(response1)
           <CoinBlock
             key={coin.id}
             coinName={coin.name}
-            earning={coin.hourlyIncome.toString()}
+            earning={coin.hourlyincome.toString()}
             price={coin.cost.toString()}
             isBought={isBought}
             isBlocked={isBlocked}
