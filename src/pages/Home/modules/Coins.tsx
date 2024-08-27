@@ -59,6 +59,7 @@ const Coins = ({ quantity }: CoinsProps) => {
         
          if (coins.length === 0) {
         // Если у пользователя нет монет, выдаем монету с ID 1
+        alert("Give coin")
         await giveCoin(userId);
       } else {
         // Найти самую дорогую монету

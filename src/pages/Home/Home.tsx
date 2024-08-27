@@ -1244,6 +1244,7 @@ dispatch(setUser({
          console.log(response)
          const userLeagueIndex = user ? user.level : 0;
          const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
+         alert(user?.coinsPerHour)
          const calculatedInHour = user?.coinsPerHour * userHarvestMultiplier;
           setCurrentGrassEarnings(calculatedInHour*user?.incomeMultiplier);
           setDisplayEarnings(calculatedInHour*user?.incomeMultiplier);

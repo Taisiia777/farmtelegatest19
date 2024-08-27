@@ -283,14 +283,14 @@ const spin = () => {
     giveUserReward(selectedSector.reward);
 
     // Обрабатываем результат вращения
-    if (selectedSector.name !== "Sector 17") {
+    if (selectedSector.name !== "Sector 1") {
       setShowConfetti(true);
       setTimeout(() => {
         setShowConfetti(false);
         setStep(2);
         setRotation(0);
       }, 2000);
-    } else if (selectedSector.name === "Sector 17"){
+    } else if (selectedSector.name === "Sector 1"){
       setReward(0);
       setRotation(0);
     }
