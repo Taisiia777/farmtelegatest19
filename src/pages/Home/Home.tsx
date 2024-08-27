@@ -1012,7 +1012,7 @@ console.log(response1)
          alert(coinState.info.earning)
 
          // Проверяем, есть ли предыдущая монета
-         const previousEarning = currentCoinIndex > 0 ? Number(userCoins[userCoins.length - 1].hourlyIncome) : 0;
+         const previousEarning = currentCoinIndex > 0 ? userCoins[userCoins.length - 1].hourlyIncome : 0;
          alert(previousEarning)
 
          const currentEarning = Number(coinState.info.earning);
