@@ -1707,7 +1707,7 @@ dispatch(setUser({
             {/* BOOST popup */}
             <PopupListWrap isOpen={boostPopupOpen}>
                <PopupListTabs
-                  labels={["BOOST", "FERTILIZERS", "COINS"]}
+                  labels={["FERTILIZERS", "BOOST", "COINS"]}
                   activeTab={boostActiveTab}
                   onTabChange={(label) => setBoostActiveTab(label)}
                />
