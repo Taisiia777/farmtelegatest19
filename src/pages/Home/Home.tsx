@@ -986,8 +986,8 @@ dispatch(setUser({
   coinsPerHour: coinsPerHour + earning
 }));
 const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
-  coins: user.coins,
-  coinsPerHour: user.coinsPerHour
+  coins: user.coins - price,
+  coinsPerHour: coinsPerHour + earning
 });
 
 console.log(response1)
