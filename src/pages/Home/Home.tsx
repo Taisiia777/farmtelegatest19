@@ -839,68 +839,138 @@ const Home = () => {
     
 
 
-    const renderFertilizers = () => {
-        // Отфильтровать удобрения, чтобы убрать дубликаты по имени и id
+  //   const renderFertilizers = () => {
+  //       // Отфильтровать удобрения, чтобы убрать дубликаты по имени и id
+  // const uniqueFertilizers = fertilizers.reduce((acc, fertilizer) => {
+  //   const isDuplicate = acc.some(
+  //     (item) => item.name === fertilizer.name && item.id === fertilizer.id
+  //   );
+  //   if (!isDuplicate) {
+  //     acc.push(fertilizer);
+  //   }
+  //   return acc;
+  // }, [] as Fertilizers[]);
+
+  // // Сортировать удобрения по id
+  // const sortedFertilizers = uniqueFertilizers.sort((a, b) => a.id - b.id);
+      
+  //     return sortedFertilizers.map((fertilizer) => {
+  //       // Найти соответствующий userFertilizer
+  //       const userFertilizer = userFertilizers.find((uf) => uf.id === fertilizer.id);
+        
+  //       // Проверка, куплен ли fertilizer пользователем
+  //       const isBought = Boolean(userFertilizer);
+  //       const isActive = false;
+  //       const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
+  //       const hourlyIncome = 0;
+  //       // Определение уровня, если fertilizer куплен, иначе установить level как 1
+  //       const level = userFertilizer ? userFertilizer.level : 0;
+    
+  //       if (user) {
+  //         return (
+  //           <FertilizersBlock
+  //             key={fertilizer.id}
+  //             fertilizersName={fertilizer.name}
+  //             earning={fertilizer.hourlyIncome.toString()}
+  //             price={fertilizer.cost.toString()}
+  //             isBought={isBought}
+  //             isBlocked={isBlocked}
+  //             level={level}
+  //             userId={user.id} // Передача userId
+  //             userCoins={user.coins} // Передача количества монет пользователя
+  //             fertilizersId={fertilizer.id} // Передача fertilizersId
+  //             isActive={isActive}
+  //           />
+  //         );
+  //       } else {
+  //         return (
+  //           <FertilizersBlock
+  //             key={fertilizer.id}
+  //             fertilizersName={fertilizer.name}
+  //             earning={hourlyIncome.toString()}
+  //             price={fertilizer.cost.toString()}
+  //             isBought={isBought}
+  //             isBlocked={isBlocked}
+  //             level={level} // Передача уровня
+  //             userId={user ? user.id : 0} // Передача userId, если user существует
+  //             userCoins={0} // Передача количества монет пользователя
+  //             fertilizersId={fertilizer.id} // Передача fertilizersId
+  //           />
+  //         );
+  //       }
+  //     });
+  //   };
+  const renderFertilizers = () => {
+     // Отфильтровать удобрения, оставив только одно с каждым уникальным именем
   const uniqueFertilizers = fertilizers.reduce((acc, fertilizer) => {
-    const isDuplicate = acc.some(
-      (item) => item.name === fertilizer.name && item.id === fertilizer.id
-    );
-    if (!isDuplicate) {
+    const existingFertilizer = acc.find((item) => item.name === fertilizer.name);
+    if (!existingFertilizer) {
       acc.push(fertilizer);
     }
     return acc;
   }, [] as Fertilizers[]);
+  
+  return uniqueFertilizers.map((fertilizer) => {
+     // Найти соответствующий userFertilizer
+     const userFertilizer = userFertilizers.find((uf) => uf.name === fertilizer.name);
 
-  // Сортировать удобрения по id
-  const sortedFertilizers = uniqueFertilizers.sort((a, b) => a.id - b.id);
-      
-      return sortedFertilizers.map((fertilizer) => {
-        // Найти соответствующий userFertilizer
-        const userFertilizer = userFertilizers.find((uf) => uf.id === fertilizer.id);
-        
-        // Проверка, куплен ли fertilizer пользователем
-        const isBought = Boolean(userFertilizer);
-        const isActive = false;
-        const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
-        const hourlyIncome = 0;
-        // Определение уровня, если fertilizer куплен, иначе установить level как 1
-        const level = userFertilizer ? userFertilizer.level : 0;
+     let displayedFertilizer = fertilizer;
+ 
+     if (userFertilizer) {
+       // Найти удобрение в fertilizers, соответствующее уровню пользователя
+       const userLevelFertilizer = fertilizers.find(
+         (f) => f.name === userFertilizer.name && f.level === userFertilizer.level
+       );
+ 
+       // Если найдено удобрение с уровнем пользователя, использовать его данные
+       if (userLevelFertilizer) {
+         displayedFertilizer = userLevelFertilizer;
+       }
+     }
     
-        if (user) {
-          return (
-            <FertilizersBlock
-              key={fertilizer.id}
-              fertilizersName={fertilizer.name}
-              earning={fertilizer.hourlyIncome.toString()}
-              price={fertilizer.cost.toString()}
-              isBought={isBought}
-              isBlocked={isBlocked}
-              level={level}
-              userId={user.id} // Передача userId
-              userCoins={user.coins} // Передача количества монет пользователя
-              fertilizersId={fertilizer.id} // Передача fertilizersId
-              isActive={isActive}
-            />
-          );
-        } else {
-          return (
-            <FertilizersBlock
-              key={fertilizer.id}
-              fertilizersName={fertilizer.name}
-              earning={hourlyIncome.toString()}
-              price={fertilizer.cost.toString()}
-              isBought={isBought}
-              isBlocked={isBlocked}
-              level={level} // Передача уровня
-              userId={user ? user.id : 0} // Передача userId, если user существует
-              userCoins={0} // Передача количества монет пользователя
-              fertilizersId={fertilizer.id} // Передача fertilizersId
-            />
-          );
-        }
-      });
-    };
-    
+    // Проверка, куплен ли fertilizer пользователем
+    const isBought = Boolean(userFertilizer);
+    const isActive = false;
+    const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
+    const hourlyIncome = 0;
+    // Определение уровня, если fertilizer куплен, иначе установить level как 1
+    const level = userFertilizer ? userFertilizer.level : 0;
+
+    if (user) {
+      return (
+        <FertilizersBlock
+        key={displayedFertilizer.id}
+        fertilizersName={displayedFertilizer.name}
+        earning={displayedFertilizer.hourlyIncome.toString()}
+        price={displayedFertilizer.cost.toString()}
+        isBought={isBought}
+        isBlocked={isBlocked}
+        level={level}
+        userId={user ? user.id : 0} // Передача userId, если user существует
+        userCoins={user ? user.coins : 0} // Передача количества монет пользователя
+        fertilizersId={displayedFertilizer.id} // Передача fertilizersId
+        isActive={isActive}
+        />
+      );
+    } else {
+      return (
+        <FertilizersBlock
+          key={fertilizer.id}
+          fertilizersName={fertilizer.name}
+          earning={hourlyIncome.toString()}
+          price={fertilizer.cost.toString()}
+          isBought={isBought}
+          isBlocked={isBlocked}
+          level={level} // Передача уровня
+          userId={user ? user.id : 0} // Передача userId, если user существует
+          userCoins={0} // Передача количества монет пользователя
+          fertilizersId={fertilizer.id} // Передача fertilizersId
+        />
+      );
+    }
+  });
+};
+
 
       async function giveFertilizers() {
         try {
