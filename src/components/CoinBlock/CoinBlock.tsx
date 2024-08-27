@@ -66,7 +66,10 @@ console.log(userId)
   }
   const canAfford = userCoins >= coinPrice && coinId <= mostExpensiveCoinId + 1; // Проверяем, хватает ли монет
   let content;
-
+  
+  const formattedPrice = coinPrice >= 1000000 
+  ? (coinPrice / 1000000).toFixed(0) + 'M' 
+  : coinPrice.toString();
   if (isBought) {
     content = (
       <div className={cn("coinBlock")}>
@@ -172,7 +175,7 @@ console.log(userId)
             onClick={openCoinBuyPopup}
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-            <span>{price}</span>
+            <span>{formattedPrice}</span>
           </Button>
           ) : (
             <Button
@@ -180,7 +183,7 @@ console.log(userId)
             disabled={!canAfford} // Делаем кнопку неактивной, если монет недостаточно
           >
             <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-            <span>{price}</span>
+            <span>{formattedPrice}</span>
           </Button>
           )}
         </div>
