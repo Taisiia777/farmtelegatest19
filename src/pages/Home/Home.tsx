@@ -985,6 +985,13 @@ dispatch(setUser({
   coins: user.coins - price, 
   coinsPerHour: coinsPerHour + earning
 }));
+const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
+  coins: user.coins,
+  coinsPerHour: user.coinsPerHour
+});
+
+console.log(response1)
+
           setIsCoinPurchased(!isCoinPurchased)
   
           console.log('Coin given:', response.data);
