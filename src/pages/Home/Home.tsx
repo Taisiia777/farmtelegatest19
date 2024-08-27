@@ -1009,10 +1009,10 @@ console.log(response1)
       try {
          // Получаем индекс текущей монеты
          const currentCoinIndex = Number(coinState.info.coinId)
-
+        alert(currentCoinIndex)
          // Проверяем, есть ли предыдущая монета
          const previousEarning = currentCoinIndex > 0 ? Number(userCoins[currentCoinIndex - 2].hourlyIncome) : 0;
-
+        
          const currentEarning = Number(coinState.info.earning);
          const earningDifference = currentEarning - previousEarning;
         const response = await axios.post(`https://coinfarm.club/api/coin/give/${user.id}/${coinState.info.coinId}`);
