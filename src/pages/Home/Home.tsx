@@ -840,7 +840,19 @@ const Home = () => {
 
 
     const renderFertilizers = () => {
-      const sortedFertilizers = [...fertilizers].sort((a, b) => a.id - b.id);
+        // Отфильтровать удобрения, чтобы убрать дубликаты по имени и id
+  const uniqueFertilizers = fertilizers.reduce((acc, fertilizer) => {
+    const isDuplicate = acc.some(
+      (item) => item.name === fertilizer.name && item.id === fertilizer.id
+    );
+    if (!isDuplicate) {
+      acc.push(fertilizer);
+    }
+    return acc;
+  }, [] as Fertilizers[]);
+
+  // Сортировать удобрения по id
+  const sortedFertilizers = uniqueFertilizers.sort((a, b) => a.id - b.id);
       
       return sortedFertilizers.map((fertilizer) => {
         // Найти соответствующий userFertilizer
