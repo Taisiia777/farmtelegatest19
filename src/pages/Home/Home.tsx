@@ -452,7 +452,7 @@ const Home = () => {
                 "https://coinfarm.club/api/user",
                 {
                   username: username,
-                  coins: 0,
+                  coins: 1000,
                   totalEarnings: 0,
                   incomeMultiplier: 1,
                   coinsPerHour: 0,
