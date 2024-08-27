@@ -1009,10 +1009,10 @@ console.log(response1)
       try {
          // Получаем индекс текущей монеты
          const currentCoinIndex = Number(coinState.info.coinId)
-        
+         alert(JSON.stringify(userCoins))
+
          // Проверяем, есть ли предыдущая монета
          const previousEarning = currentCoinIndex > 0 ? Number(userCoins[currentCoinIndex - 1].hourlyIncome) : 0;
-         alert(previousEarning)
 
          const currentEarning = Number(coinState.info.earning);
          const earningDifference = currentEarning - previousEarning;
