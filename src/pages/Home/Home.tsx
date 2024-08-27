@@ -774,6 +774,11 @@ const Home = () => {
                 coins: Number(user.coins) - Number(boostState.info.price), 
                 incomeMultiplier: Number(user.incomeMultiplier) + Number(boostState.info.earning)
             }));
+            const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
+              coins: Number(user.coins) - Number(boostState.info.price), 
+              incomeMultiplier: Number(user.incomeMultiplier) + Number(boostState.info.earning)
+            });
+            console.log(response1)
                setMultiplier(user.incomeMultiplier + boostState.info.earning);
                console.log('Booster applied:', response.data);
               setIsBoosterPurchased(!isBoosterPurchased)
@@ -1018,6 +1023,11 @@ console.log(response1)
           coins: Number(user.coins) - Number(coinState.info.price), 
           coinsPerHour: Number(user.coinsPerHour) + earningDifference
       }));
+      const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
+        coins: Number(user.coins) - Number(coinState.info.price), 
+        coinsPerHour: Number(user.coinsPerHour) + earningDifference
+      });
+      console.log(response1)
         setIsCoinPurchased(!isCoinPurchased)
 
         console.log('Coin given:', response.data);
