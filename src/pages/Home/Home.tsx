@@ -1008,8 +1008,7 @@ console.log(response1)
    async function giveCoin() {
       try {
          // Получаем индекс текущей монеты
-         alert(coinState.info.coinId)
-         const currentCoinIndex = userCoins.findIndex(coin => coin.id === coinState.info.coinId);
+         const currentCoinIndex = coinState.info.coinId
          
         
          // Проверяем, есть ли предыдущая монета
