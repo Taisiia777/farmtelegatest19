@@ -1013,7 +1013,7 @@ console.log(response1)
 
          // Проверяем, есть ли предыдущая монета
          const previousEarning = currentCoinIndex > 0 ? userCoins[userCoins.length - 1].hourlyIncome : 0;
-         alert(previousEarning)
+         alert(JSON.stringify(userCoins))
 
          const currentEarning = Number(coinState.info.earning);
          const earningDifference = currentEarning - previousEarning;
