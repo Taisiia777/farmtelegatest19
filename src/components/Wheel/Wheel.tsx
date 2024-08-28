@@ -61,21 +61,21 @@ const Wheel = () => {
 const sectors = [
   { name: "Sector 1", weight: 15, reward: 0 },      // Награда 0, вес 0
   { name: "Sector 18", weight: 5, reward: 8000 }, // Большая награда - меньший вес
-  { name: "Sector 17", weight: 3, reward: 12000 }, // Очень большая награда - очень маленький вес
+  { name: "Sector 17", weight: 0, reward: 0 },     // Награда 0, вес 0
   { name: "Sector 16", weight: 12, reward: 500 },  // Малая награда - больший вес
   { name: "Sector 15", weight: 11, reward: 1000 }, // Малая награда - больший вес
-  { name: "Sector 14", weight: 0, reward: 0 },     // Награда 0, вес 0
+  { name: "Sector 14", weight: 3, reward: 12000 }, // Очень большая награда - очень маленький вес
   { name: "Sector 13", weight: 4, reward: 7000 }, // Большая награда - меньший вес
   { name: "Sector 12", weight: 1, reward: 20000 }, // Самая большая награда - самый маленький вес
   { name: "Sector 11", weight: 0, reward: 0 },     // Награда 0, вес 0
   { name: "Sector 10", weight: 6, reward: 2000 }, // Малая награда - больший вес
   { name: "Sector 9", weight: 2, reward: 15000 },  // Очень большая награда - очень маленький вес
   { name: "Sector 8", weight: 4, reward: 9000 },   // Большая награда - меньший вес
-  { name: "Sector 7", weight: 0, reward: 0 },      // Награда 0, вес 0
-  { name: "Sector 6", weight: 7, reward: 6000 },  // Средняя награда - средний вес
-  { name: "Sector 5", weight: 15, reward: 100 },   // Очень малая награда - самый большой вес
-  { name: "Sector 4", weight: 6, reward: 3000 },  // Малая награда - больший вес
-  { name: "Sector 3", weight: 4, reward: 10000 },  // Большая награда - меньший вес
+  { name: "Sector 7", weight: 4, reward: 10000 },
+  { name: "Sector 6", weight: 15, reward: 100 },   // Очень малая награда - самый большой вес
+  { name: "Sector 5", weight: 0, reward: 0 },      // Награда 0, вес 0
+  { name: "Sector 4", weight: 6, reward: 0 },  // Малая награда - больший вес
+  { name: "Sector 3", weight: 7, reward: 6000 }, 
   { name: "Sector 2", weight: 5, reward: 5000 },   // Средняя награда - средний вес
 ];
 
@@ -283,7 +283,7 @@ const spin = () => {
     giveUserReward(selectedSector.reward);
 
     // Обрабатываем результат вращения
-    if (selectedSector.name !== "Sector 1") {
+    if (selectedSector.name !== "Sector 1" && selectedSector.name !== "Sector 4") {
       setShowConfetti(true);
       setTimeout(() => {
         setShowConfetti(false);
@@ -293,6 +293,10 @@ const spin = () => {
     } else if (selectedSector.name === "Sector 1"){
       setReward(0);
       setRotation(0);
+    } else if (selectedSector.name === "Sector 4"){
+      setReward(0);
+      setRotation(0);
+      setSpins(prev => prev + 1);
     }
   }, 5000);
 };
@@ -494,7 +498,7 @@ const spin = () => {
 </p>
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px', zIndex:'10'}} alt="Spin"  />
             <img src="img/pages/home/menu/MoreSpins.png" className={cn("greeting__next")} style={{width: '180px', height: '47px', position: 'absolute', top: '20px', left: '130px', zIndex:'10'}} alt="Spin"  />
-            <img src="img/pages/home/menu/WheelCenter4.png" style={{width: '95vw', display:'flex', zIndex:'11', position:'absolute', top: '90px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
+            <img src="img/pages/home/menu/WheelCenter4.png" style={{width: '95vw', display:'flex', zIndex:'11', position:'absolute', top: '95px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
             <img src="img/pages/home/menu/WheelBorder4.png" style={{width: '100vw', display:'flex',  zIndex:'10',  position:'absolute', top: '100px', left:"1vw"}} alt="Wheel" />
             <img src="img/pages/home/menu/triangle.png" style={{width: '58px', display:'flex',  zIndex:'12',  position:'absolute', top: '115px'}} alt="Wheel" />
 
