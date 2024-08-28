@@ -494,8 +494,8 @@ const spin = () => {
 </p>
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '14px', zIndex:'10'}} alt="Spin"  />
             <img src="img/pages/home/menu/MoreSpins.png" className={cn("greeting__next")} style={{width: '180px', height: '47px', position: 'absolute', top: '20px', left: '130px', zIndex:'10'}} alt="Spin"  />
-            <img src="img/pages/home/menu/WheelCenter4.png" style={{width: '97vw', display:'flex', zIndex:'11', position:'absolute', top: '85px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
-            <img src="img/pages/home/menu/WheelBorder4.png" style={{width: '100vw', display:'flex',  zIndex:'10',  position:'absolute', top: '100px', left:"3vw"}} alt="Wheel" />
+            <img src="img/pages/home/menu/WheelCenter4.png" style={{width: '95vw', display:'flex', zIndex:'11', position:'absolute', top: '90px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
+            <img src="img/pages/home/menu/WheelBorder4.png" style={{width: '100vw', display:'flex',  zIndex:'10',  position:'absolute', top: '100px', left:"1vw"}} alt="Wheel" />
             <img src="img/pages/home/menu/triangle.png" style={{width: '58px', display:'flex',  zIndex:'12',  position:'absolute', top: '115px'}} alt="Wheel" />
 
             {/* <img src="img/global/spin.png" className={cn("greeting__next")} style={{width: '122px', height: '46px', position: 'absolute', top: '70vh',  left: '50%', transform: 'translateX(-50%)'}} alt="Spin"  /> */}
