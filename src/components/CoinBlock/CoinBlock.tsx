@@ -142,6 +142,8 @@ console.log(userId)
             />
           </div>
         </div>
+        <div className={cn("blocked")}>
+        </div>
       </div>
     );
   } else {

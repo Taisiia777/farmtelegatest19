@@ -348,8 +348,6 @@ const BoostBlock = ({
           </div>
         </div>
         <div className={cn("blocked")}>
-          <img src={`img/leagueIcons/${ligaName}.png`} alt={ligaName} />
-          <strong className="textShadow">{ligaName} league</strong>
         </div>
       </>
     );
