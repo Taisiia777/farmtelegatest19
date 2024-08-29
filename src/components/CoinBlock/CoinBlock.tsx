@@ -112,6 +112,7 @@ console.log(userId)
     );
   } else if (isBlocked) {
     content = (
+      <>
       <div className={cn("coinBlock")}>
         <div className={cn("coinBlock__left")}>
           <img
@@ -142,9 +143,11 @@ console.log(userId)
             />
           </div>
         </div>
-        <div className={cn("blocked")}>
-        </div>
+        
       </div>
+      <div className={cn("blocked")}>
+        </div>
+        </>
     );
   } else {
     content = (
