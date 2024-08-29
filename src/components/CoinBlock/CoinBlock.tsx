@@ -224,8 +224,6 @@ console.log(userId)
               </Button>
               <div className={cn("blocked")}>
                 {/* Здесь можно добавить сообщение или иконку, указывающие на блокировку */}
-                <img src="img/blocked_icon.svg" alt="Blocked" />
-                <strong className="textShadow">Unlock previous coins first</strong>
               </div>
             </>
           )}
