@@ -7,7 +7,7 @@ import { setFertilizersIfno } from "../../store/reducers/fertilizers";
 import { TFertilizers } from "../../types/globalTypes";
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 const cn = classNames.bind(styles);
 
 interface IFertilizersBlockProps {
@@ -40,28 +40,7 @@ const FertilizersBlock = ({
   const dispatch = useDispatch();
   const newPrice = parseInt(price.replace(/\D/g, ''), 10)
   const newEarning = parseInt(earning.replace(/\D/g, ''), 10)
-  const [imageSrc, setImageSrc] = useState('');
 
-  useEffect(() => {
-    async function loadImage() {
-      if (fertilizersName) {
-        const svgUrl = `img/fertilizers/${fertilizersName}.svg`;
-        const pngUrl = `img/fertilizers/${fertilizersName}.png`;
-
-        const svgExists = await checkImageExists(svgUrl);
-        setImageSrc(svgExists ? svgUrl : pngUrl);
-      }
-    }
-    loadImage();
-  }, [fertilizersName]);
-  function checkImageExists(url: string) {
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.onload = () => resolve(true);
-      img.onerror = () => resolve(false);
-      img.src = url;
-    });
-  }
   // const fertilizersPrice = parseInt(price.replace(/\D/g, ''), 10); // Преобразуем цену в число
   const { t } = useTranslation();
   useEffect(() => {
@@ -104,7 +83,7 @@ console.log(userId)
       <div className={cn("coinBlock__left")}>
         <img
           className={cn("coinBlock__coin")}
-          src={imageSrc}
+          src={fertilizersName ? `img/fertilizers/${fertilizersName}.png` :  ``}
           alt=""
         />
         <div className={cn("coinBlock__info")}>
