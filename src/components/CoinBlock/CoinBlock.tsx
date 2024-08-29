@@ -145,50 +145,94 @@ console.log(userId)
       </div>
     );
   } else {
+    // content = (
+    //   <div className={cn("coinBlock")}>
+    //     <div className={cn("coinBlock__left")}>
+    //       <img
+    //         className={cn("coinBlock__coin")}
+    //         src={coinName ? `video/${coinName}.gif` :  `video/Bitcoin.gif`}
+    //         alt=""
+    //       />
+    //       <div className={cn("coinBlock__info")}>
+    //         <h3 className="textShadow">{coinName}</h3>
+    //         <div className={cn("coinBlock__earning")}>
+    //           <span>{earning} / {t(`h`)}</span>
+    //           {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
+    //         </div>
+    //       </div>
+    //     </div>
+    //     <div className={cn("coinBlock__right")} id="buyCoin">
+    //       {/* <Button
+    //         className={cn("coinBlock__price")}
+    //         onClick={openCoinBuyPopup}
+    //       >
+    //         <CoinWhiteBg size="small" iconName={"BTC"} />
+    //         <span>{price}</span>
+    //       </Button> */}
+    //       {canAfford ? (
+    //         <Button
+    //         className={cn("coinBlock__price")}
+    //         onClick={openCoinBuyPopup}
+    //       >
+    //         <CoinWhiteBg size="small" iconName={"Bitcoin"} />
+    //         <span>{formattedPrice}</span>
+    //       </Button>
+    //       ) : (
+    //         <Button
+    //         className={cn("coinBlock__price")}
+    //         disabled={!canAfford} // Делаем кнопку неактивной, если монет недостаточно
+    //       >
+    //         <CoinWhiteBg size="small" iconName={"Bitcoin"} />
+    //         <span>{formattedPrice}</span>
+    //       </Button>
+    //       )}
+    //     </div>
+    //   </div>
+    // );
     content = (
-      <div className={cn("coinBlock")}>
+      <div className={cn("coinBlock", { "_blur": coinId > mostExpensiveCoinId + 1 })}>
         <div className={cn("coinBlock__left")}>
           <img
             className={cn("coinBlock__coin")}
-            src={coinName ? `video/${coinName}.gif` :  `video/Bitcoin.gif`}
-            alt=""
+            src={coinName ? `video/${coinName}.gif` : `video/Bitcoin.gif`}
+            alt={coinName}
           />
           <div className={cn("coinBlock__info")}>
             <h3 className="textShadow">{coinName}</h3>
             <div className={cn("coinBlock__earning")}>
-              <span>{earning} / {t(`h`)}</span>
-              {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
+              <span>{earning} / {t('h')}</span>
             </div>
           </div>
         </div>
         <div className={cn("coinBlock__right")} id="buyCoin">
-          {/* <Button
-            className={cn("coinBlock__price")}
-            onClick={openCoinBuyPopup}
-          >
-            <CoinWhiteBg size="small" iconName={"BTC"} />
-            <span>{price}</span>
-          </Button> */}
           {canAfford ? (
             <Button
-            className={cn("coinBlock__price")}
-            onClick={openCoinBuyPopup}
-          >
-            <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-            <span>{formattedPrice}</span>
-          </Button>
+              className={cn("coinBlock__price")}
+              onClick={openCoinBuyPopup}
+            >
+              <CoinWhiteBg size="small" iconName="Bitcoin" />
+              <span>{formattedPrice}</span>
+            </Button>
           ) : (
-            <Button
-            className={cn("coinBlock__price")}
-            disabled={!canAfford} // Делаем кнопку неактивной, если монет недостаточно
-          >
-            <CoinWhiteBg size="small" iconName={"Bitcoin"} />
-            <span>{formattedPrice}</span>
-          </Button>
+            <>
+              <Button
+                className={cn("coinBlock__price")}
+                disabled // Кнопка становится неактивной, если текущая монета заблокирована
+              >
+                <CoinWhiteBg size="small" iconName="Bitcoin" />
+                <span>{formattedPrice}</span>
+              </Button>
+              <div className={cn("blocked")}>
+                {/* Здесь можно добавить сообщение или иконку, указывающие на блокировку */}
+                <img src="img/blocked_icon.svg" alt="Blocked" />
+                <strong className="textShadow">Unlock previous coins first</strong>
+              </div>
+            </>
           )}
         </div>
       </div>
     );
+    
   }
 
   return content;
