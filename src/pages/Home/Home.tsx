@@ -799,17 +799,21 @@ const Home = () => {
       'Super Drone'
     ];
    const renderBoosters = () => {
-    const sortedBoosters = boosters.sort((a, b) => a.id - b.id);
-
-      return sortedBoosters.map((booster, index) => {
-         
-        // Проверка, куплен ли бустер пользователем
-        const isBought = userBoosters.some((userBooster) => userBooster.id === booster.id);
-        // Проверка, доступен ли бустер для текущей или предыдущих лиг
-        // const currentLeagueIndex = leagues.findIndex((league) => league.name === leagues[level].name);
-        // const boosterLeagueIndex = leagues.findIndex((league) => league.name === booster.league);
-        // const isBlocked = boosterLeagueIndex > currentLeagueIndex;
-        const isBlocked = false
+    const getLastBoughtBooster = (userBoosters: Booster[]) => {
+      if (userBoosters.length === 0) return null;
+      
+      return userBoosters.reduce((maxBooster, currentBooster) => {
+        return currentBooster.id > maxBooster.id ? currentBooster : maxBooster;
+      });
+    };
+  
+    const lastBoughtBooster = getLastBoughtBooster(userBoosters);
+    const sortedBoosters = [...boosters].sort((a, b) => a.id - b.id);
+  
+    return sortedBoosters.map((booster, index) => {
+      const isBought = userBoosters.some((userBooster) => userBooster.id === booster.id);
+      const canBuy = lastBoughtBooster ? booster.id === lastBoughtBooster.id + 1 : index === 0;
+      const isBlocked = !canBuy && !isBought; // Блокируем бустер, если он не куплен и не является следующим доступным
         if(user){
          return (
             <BoostBlock

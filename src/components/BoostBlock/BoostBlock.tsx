@@ -199,7 +199,7 @@ const BoostBlock = ({
   price,
   earning,
   ligaName,
-  isBlocked = false,
+  isBlocked,
   isBought = false,
   boosterId,
   userCoins,
