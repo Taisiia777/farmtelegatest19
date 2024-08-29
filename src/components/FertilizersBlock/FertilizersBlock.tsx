@@ -78,7 +78,7 @@ console.log(userId)
 : newPrice.toString();
   let content;
   const getImageSrc = (fertilizersName: string) => {
-    if (fertilizersName === "Humus Elixir" || fertilizersName === "Greenboost") {
+    if (fertilizersName === "Humus Elixir" || fertilizersName === "Greenboost" || fertilizersName === "Megabloom" || fertilizersName === "Rootstrength" || fertilizersName === "Harvestmax" || fertilizersName === "Ecogro") {
       return `img/fertilizers/${fertilizersName}.svg`;
     }
     return `img/fertilizers/${fertilizersName}.png`;
