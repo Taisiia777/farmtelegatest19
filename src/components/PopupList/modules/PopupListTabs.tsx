@@ -53,7 +53,7 @@ const PopupListTabs = ({
                   className={cn("tabs__item", activeTab === label && "_active")}
                   onClick={() => onTabChange(label)}
                   key={label}>
-<span className="textMenu" style={{ height: labels.length === 3 ? '20%' : '73% !important', top: labels.length === 3 ? '40%' : '0 !important', fontSize: labels.length === 3 ? '15px' : '20px !important' }}>{t(`${label.toLocaleLowerCase()}`)}</span>
+<span className="textMenu" style={{ height: labels.length === 3 ? '20%' : '73% !important', top: labels.length === 3 ? '40%' : '0 !important', fontSize: labels.length === 3 ? '15px' : '20px !important' }}>{t(`${label.toLowerCase()}`).toUpperCase()}</span>
 <img src="img/global/border-block/label.svg" alt={label} />
                </li>
             ))}
