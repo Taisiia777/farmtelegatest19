@@ -1485,7 +1485,7 @@ console.log(response1)
                   />
                   <Menu
                      onBoostOpen={() => {setBoostPopupOpen(true)
-                      openBoostPopup()
+                      openFertilizersPopup()
                      }}
                      onEarnOpen={() => {setEarnPopupOpen(true)
                       openSpecialPopup()
