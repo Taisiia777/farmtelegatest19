@@ -77,13 +77,18 @@ console.log(userId)
 ? (newPrice / 1000000).toFixed(3) + 'M' 
 : newPrice.toString();
   let content;
-
+  const getImageSrc = (fertilizersName: string) => {
+    if (fertilizersName === "Humus Elixir" || fertilizersName === "Greenboost") {
+      return `img/fertilizers/${fertilizersName}.svg`;
+    }
+    return `img/fertilizers/${fertilizersName}.png`;
+  };
   content = (
     <div className={cn("coinBlock")}>
       <div className={cn("coinBlock__left")}>
         <img
           className={cn("coinBlock__coin")}
-          src={fertilizersName ? `img/fertilizers/${fertilizersName}.png` :  ``}
+          src={getImageSrc(fertilizersName)}
           alt=""
         />
         <div className={cn("coinBlock__info")}>
