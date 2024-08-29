@@ -182,7 +182,7 @@ const Home = () => {
    const [userBoosters, setUserBoosters] = useState<Booster[]>([]);
    const [fertilizers, setFertilizers] = useState<Fertilizers[]>([]);
    const [userFertilizers, setUserFertilizers] = useState<Fertilizers[]>([]);
-   const [coins, setCoins] = useState<Coin[]>([]);
+    const [coins, setCoins] = useState<Coin[]>([]);
    const [userCoins, setUserCoins] = useState<Coin[]>([]);
    const [hasFirstReward, setHasFirstReward] = useState(true); // Состояние для проверки наличия награды "first"
    const [grassTotal, setGrassTotal] = useState(0);
@@ -268,6 +268,10 @@ const Home = () => {
    const openCoinPopup =  () => {
     setBoostActiveTab("COINS")
   };
+  const openFertilizersPopup =  () => {
+    setBoostActiveTab("FERTILIZERS")
+  };
+  
   const openBoostPopup =  () => {
     setBoostActiveTab("BOOST")
   };
@@ -1454,7 +1458,7 @@ console.log(response1)
                      onClickProgresbarHarvest={
                       () => {
                         setBoostPopupOpen(true);
-                        openCoinPopup()
+                        openFertilizersPopup()
                       }
                      }
                      onClick={() => {
