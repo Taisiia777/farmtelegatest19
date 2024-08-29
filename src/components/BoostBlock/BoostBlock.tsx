@@ -210,6 +210,8 @@ const BoostBlock = ({
   // const { initData } = retrieveLaunchParams();
   const boosterPrice = parseInt(price.replace(/\D/g, ''), 10); // Преобразуем цену в число
   const { t } = useTranslation();
+  const initData = window.Telegram.WebApp.initDataUnsafe;
+  const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
   useEffect(() => {
     const initData = window.Telegram.WebApp.initDataUnsafe;
     const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
@@ -289,7 +291,24 @@ const BoostBlock = ({
   //     console.error('Error applying booster:', error);
   //   }
   // }
+// Функция для склонения слова "час"
+const getHourWord = (n: number) => {
+  const lastDigit = n % 10;
+  const lastTwoDigits = n % 100;
 
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 19) {
+    return 'часов';
+  } else if (lastDigit === 1) {
+    return 'час';
+  } else if (lastDigit >= 2 && lastDigit <= 4) {
+    return 'часа';
+  } else {
+    return 'часов';
+  }
+};
+
+// Применение функции для получения правильного склонения слова
+const hourWord = t(userLanguage === 'ru' ? getHourWord(parseInt(earning.replace(/\D/g, ''), 10)) : 'hour');
   function openBoostBuyPopup() {
     dispatch(
       setBoostInfo({
@@ -369,7 +388,7 @@ const BoostBlock = ({
                 src={`img/leagueIcons/${ligaName}.png`}
                 alt={ligaName}
               /> */}
-              <span className="textShadow">+{earning} {t(`hour`)} ⏰</span>
+              <span className="textShadow">+{earning} {hourWord} ⏰</span>
               {/* <CoinWhiteBg size="small" iconName="BTC" /> */}
             </div>
           </div>
@@ -406,7 +425,7 @@ const BoostBlock = ({
                 src={`img/leagueIcons/${ligaName}.png`}
                 alt={ligaName}
               /> */}
-              <span className="textShadow">+{earning} {t(`hour`)} ⏰</span>
+              <span className="textShadow">+{earning} {hourWord} ⏰</span>
               {/* <CoinWhiteBg size="small" iconName="BTC" /> */}
             </div>
           </div>
