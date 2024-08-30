@@ -1,5 +1,5 @@
 import { RefObject, useRef, useState, useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch} from "react-redux";
 import { setUser } from "../../store/reducers/userSlice";
 import { RootState } from "../../store";
@@ -166,7 +166,7 @@ interface Friend extends User {
 
 
 const Home = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
    const dispatch = useDispatch();
    const { width } = useWindowSize();
@@ -1243,30 +1243,17 @@ console.log(response1)
       }
     };
   
-    // // Этот useEffect устанавливает начальное значение displayEarnings из user.xp при первом рендере
-    // useEffect(() => {
-    //   if (user?.xp && !isXpFetched) {
-    //     setTimeout(() => {
-    //       setDisplayEarnings(user.xp);
-    //       setIsXpFetched(true);
-    //     }, 100); // Задержка, имитирующая время отображения алерта
+    // Этот useEffect устанавливает начальное значение displayEarnings из user.xp при первом рендере
+    useEffect(() => {
+      if (user?.xp && !isXpFetched) {
+        // setTimeout(() => {
+          setDisplayEarnings(user.xp);
+          setIsXpFetched(true);
+        // }, 100); // Задержка, имитирующая время отображения алерта
        
-    //   }
-    // }, [blocks, navigate]);
-    useEffect(() => {
-      if (isXpFetched) {
-        localStorage.setItem('userXp', displayEarnings.toString());
       }
-    }, [displayEarnings]);
-    useEffect(() => {
-      const savedXp = localStorage.getItem('userXp');
-      if (savedXp) {
-        setDisplayEarnings(parseFloat(savedXp));
-      } else if (user?.xp && !isXpFetched) {
-        setDisplayEarnings(user.xp);
-        setIsXpFetched(true);
-      }
-    }, [user]);
+    }, [blocks, navigate]);
+  
     
 
     useEffect(() => {
