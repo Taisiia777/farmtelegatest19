@@ -1246,10 +1246,10 @@ console.log(response1)
     // Этот useEffect устанавливает начальное значение displayEarnings из user.xp при первом рендере
     useEffect(() => {
       if (user?.xp && !isXpFetched) {
-        // setTimeout(() => {
+        setTimeout(() => {
           setDisplayEarnings(user.xp);
           setIsXpFetched(true);
-        // }, 100); // Задержка, имитирующая время отображения алерта
+        }, 100); // Задержка, имитирующая время отображения алерта
        
       }
     }, [blocks, navigate]);

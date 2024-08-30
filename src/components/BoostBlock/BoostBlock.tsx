@@ -205,6 +205,7 @@ const BoostBlock = ({
   userCoins,
   boostNameNew
 }: IBoostBlockProps) => {
+  console.log(ligaName)
   const dispatch = useDispatch();
   // let userId: number;
   // const { initData } = retrieveLaunchParams();
@@ -341,17 +342,17 @@ const hourWord = t(userLanguage === 'ru' ? getHourWord(parseInt(earning.replace(
               alt={boostName}
             />
             <div className={cn("boost__info", "boostInfo")}>
-              <h3 className={`${cn("boostInfo__name")}` + " textShadow textMenu2"}>
-              {capitalizeFirstLetter(t(`${boostNameNew.toLocaleLowerCase()}`))}
-              </h3>
-              <div className={cn("boostInfo__index")}>
-                <img
-                  src={`img/leagueIcons/${ligaName}.png`}
-                  alt={ligaName}
-                />
-                <span className="textShadow">+ {earning}/{t(`h`)}</span>
-                <CoinWhiteBg size="small" iconName="BTC" />
-              </div>
+            <h3 className={`${cn("boostInfo__name")}` + " textShadow textMenu2"}>
+            {capitalizeFirstLetter(t(`${boostNameNew.toLocaleLowerCase()}`))}
+            </h3>
+            <div className={cn("boostInfo__index")}>
+              {/* <img
+                src={`img/leagueIcons/${ligaName}.png`}
+                alt={ligaName}
+              /> */}
+              <span className="textShadow">+{earning} {hourWord} ⏰</span>
+              {/* <CoinWhiteBg size="small" iconName="BTC" /> */}
+            </div>
             </div>
           </div>
 
