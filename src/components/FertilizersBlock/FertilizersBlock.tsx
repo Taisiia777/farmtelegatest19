@@ -76,6 +76,14 @@ console.log(userId)
   const formattedPrice = newPrice >= 1000000 
 ? (newPrice / 1000000).toFixed(3) + 'M' 
 : newPrice.toString();
+
+
+const formattedIncome = newEarning >= 1000000 
+  ? (newEarning / 1000000).toFixed(3) + 'M' 
+  : newEarning >= 100000 
+  ? (newEarning / 1000).toFixed(3) + 'K' 
+  : newEarning.toString();
+
   let content;
   const getImageSrc = (fertilizersName: string) => {
     if (fertilizersName === "Humus Elixir" || fertilizersName === "Greenboost" || fertilizersName === "Megabloom" || fertilizersName === "Rootstrength" || fertilizersName === "Harvestmax" || fertilizersName === "Ecogro") {
@@ -95,7 +103,7 @@ console.log(userId)
           <h3 className="textShadow">{fertilizersName}</h3>
           <div className={cn("coinBlock__earning")}>
             <span>Level {level}</span>
-            <span>+{newEarning} / {t(`h`)}</span>
+            <span>+{formattedIncome} / {t(`h`)}</span>
             {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
           </div>
         </div>
