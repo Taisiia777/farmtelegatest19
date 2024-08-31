@@ -21,7 +21,9 @@ html.invite-page {
    // overflow-x: hidden !important;
    height: 100vh !important;
 }
-
+.popupListWrap {
+   top: rem(150);
+}
 .invite {
    padding: rem(80) rem(16) 0 rem(16);
    overflow: hidden;
