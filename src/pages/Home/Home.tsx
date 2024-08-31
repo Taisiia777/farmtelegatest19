@@ -7,7 +7,7 @@ import { useAppSelector } from "../../store";
 import { closeBoostBuyPopup } from "../../store/reducers/boost";
 import { closeCoinBuyPopup } from "../../store/reducers/coin";
 import { closeFertilizersBuyPopup } from "../../store/reducers/fertilizers";
-
+import { Routes } from "../../routes/routes";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
 import { retrieveLaunchParams } from '@tma.js/sdk';
@@ -1453,7 +1453,9 @@ console.log(response1)
                      liga="Diamond"
                      onLigaOpen={() => setEarnPopupOpen(true)}
                   /> */}
-                  <Liga onClickLeagues={() => {setLeaguesopupOpen(true)
+                  <Liga onClickLeagues={() => {
+                    // setLeaguesopupOpen(true)
+                    navigate(Routes.INVITE)
                   }} liga={leagues[level].name as TLiga} />
                   <Energy
                      total={user?.coinsPerHour*user?.incomeMultiplier*leagues[level].harvest}
