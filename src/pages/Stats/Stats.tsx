@@ -23,7 +23,7 @@ const Stats = () => {
    // const [totalEarnings, setTotalEarnings] = useState(0);
    // alert(JSON.stringify(user))
    useEffect(() => {
-      tg.BackButton.show();
+      tg.BackButton.hide();
       tg.BackButton.onClick(() => navigate(-1));
       return () => tg.BackButton.hide();
    }, [navigate]);
