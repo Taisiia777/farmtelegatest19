@@ -46,7 +46,15 @@ html.invite-page {
       width: 91%;
       top: rem(150);
       height: 50% !important;
-      min-height: 50% !important;
+      min-height: 0px !important;
+      animation: appear 0.4s ease-in-out;
+      border: 1px solid red;
+   }
+   &__list1 {
+      width: 100%;
+      top: rem(150);
+      height: 50% !important;
+      min-height: 0px !important;
       animation: appear 0.4s ease-in-out;
       border: 1px solid red;
    }
