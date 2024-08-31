@@ -45,14 +45,14 @@ html.invite-page {
    &__list {
       width: 91%;
       top: rem(150);
-      height: 66%;
+      height: 66% !important;
       animation: appear 0.4s ease-in-out;
       border: 1px solid red;
    }
    &__list1 {
       width: 110%;
       top: rem(150);
-      height: 66%;
+      height: 66% !important;
       animation: appear 0.4s ease-in-out;
       border: 1px solid red;
    }
