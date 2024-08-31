@@ -52,7 +52,7 @@ const Invite = () => {
   // const [friends, setFriends] = useState<Friend[]>([]);
   const { friends } = useOutletContext<OutletContext>();
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState(location.state?.label ?? "FARM FRENDS");
+  const [activeTab, setActiveTab] = useState(location.state?.label ?? "FRENDS");
 
   const [notificationVisible, setNotificationVisible] = useState(false);
   const { t } = useTranslation();
@@ -288,7 +288,7 @@ const Invite = () => {
       coinAmount={''}
     />
   ))}
-  type="third"
+  type="first"
 />
 
 
@@ -316,7 +316,7 @@ const Invite = () => {
           {activeTab === "LEAGUES" && (
             <PopupList
             nodes={renderLeagues()}
-            type="second"
+            type="first"
             />
           )}
         </PopupListWrap>
