@@ -42,7 +42,12 @@ html.invite-page {
       font-weight: 400;
       margin-bottom: rem(35);
    }
-
+   &__list {
+      width: 100%;
+      top: rem(150);
+      height: 66%;
+      animation: appear 0.4s ease-in-out;
+   }
    &__users {
       display: flex;
       flex-direction: column;
