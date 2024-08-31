@@ -1882,6 +1882,7 @@ console.log(response1)
 
                      // Возвращаем позицию прокрутки в начальную точку при размонтировании компонента
                      return () => {
+                      alert("lll")
                        window.scrollTo(0, initialScrollPosition);
                      };
                   }}
