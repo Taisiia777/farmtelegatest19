@@ -1878,8 +1878,8 @@ console.log(response1)
                      setEarnPopupOpen(false);
                      setGamesPopupOpen(false);
                      setLeaguesopupOpen(false)
-                     const initialScrollPosition = window.scrollY;
-                    alert(initialScrollPosition)
+                      window.scrollTo(0, 100);
+
                   }}
                   className={cn("close")}
                   alt="Close"
