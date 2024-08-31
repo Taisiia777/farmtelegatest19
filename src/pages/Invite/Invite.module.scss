@@ -47,6 +47,7 @@ html.invite-page {
       top: rem(150);
       height: 72% !important;
       animation: appear 0.4s ease-in-out;
+      min-height: 500px !important;
       // border: 1px solid red;
    }
    &__list1 {
@@ -54,6 +55,7 @@ html.invite-page {
       top: rem(150);
       height: 72% !important;
       animation: appear 0.4s ease-in-out;
+      min-height: 500px !important;
       // border: 1px solid red;
    }
    &__users {
