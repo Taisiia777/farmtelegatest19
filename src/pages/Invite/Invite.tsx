@@ -156,7 +156,7 @@ const Invite = () => {
 
   
   useEffect(() => {
-    tg.BackButton.show();
+    tg.BackButton.hide();
     tg.BackButton.onClick(() => navigate(-1));
     return () => tg.BackButton.hide();
   }, [navigate]);

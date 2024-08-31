@@ -13,7 +13,7 @@ const useClosePopupByTgButton = ({
 }: IClosePopupByTgButtonProps) => {
    useEffect(() => {
       if (isOpen) {
-         tg.BackButton.show();
+         tg.BackButton.hide();
          tg.BackButton.onClick(() => {
             tg.BackButton.hide();
             closePopup();
