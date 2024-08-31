@@ -1879,12 +1879,8 @@ console.log(response1)
                      setGamesPopupOpen(false);
                      setLeaguesopupOpen(false)
                      const initialScrollPosition = window.scrollY;
+                     window.scrollTo(0, initialScrollPosition);
 
-                     // Возвращаем позицию прокрутки в начальную точку при размонтировании компонента
-                     return () => {
-                      alert("lll")
-                       window.scrollTo(0, initialScrollPosition);
-                     };
                   }}
                   className={cn("close")}
                   alt="Close"
