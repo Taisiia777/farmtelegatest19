@@ -108,7 +108,7 @@ html {
 
 /* Стили для включения скролла на странице invite */
 body.invite-page, html.invite-page {
-   overflow-y: auto !important;
+   overflow-y: hidden !important;
    overflow-x: hidden !important;
 }
 
