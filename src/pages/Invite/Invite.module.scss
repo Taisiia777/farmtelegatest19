@@ -1,25 +1,24 @@
 @import '/src/index.scss';
 
-// body{
-//    overflow-y: auto !important;
-//    overflow-x: hidden !important;
-// }
-// html{
-//    overflow-y: auto !important;
-//    overflow-x: hidden !important;
-// }
-// .wrap {
-//    height: auto !important;
-//    // overflow: hidden;
-//    overflow-y: auto !important;
-//    overflow-x: hidden !important;
-// }
+body{
+   overflow-y: auto !important;
+   overflow-x: hidden !important;
+}
+html{
+   overflow-y: auto !important;
+   overflow-x: hidden !important;
+}
+
 body.invite-page,
 html.invite-page {
    overflow: hidden !important;
 }
 
 .wrap {
+   height: auto !important;
+   overflow: hidden !important;
+   // overflow-y: auto !important;
+   // overflow-x: hidden !important;
    height: 100vh !important;
 }
 
