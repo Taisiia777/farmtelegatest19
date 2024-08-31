@@ -56,12 +56,12 @@ const Invite = () => {
 
   const [notificationVisible, setNotificationVisible] = useState(false);
   const { t } = useTranslation();
-  useEffect(() => {
-    // Добавляем класс при монтировании компонента
-    document.body.classList.add('invite-page');
-    document.documentElement.classList.add('invite-page');
+  // useEffect(() => {
+  //   // Добавляем класс при монтировании компонента
+  //   document.body.classList.add('invite-page');
+  //   document.documentElement.classList.add('invite-page');
 
-  }, []);
+  // }, []);
   
   useEffect(() => {
     const initData = window.Telegram.WebApp.initDataUnsafe;
