@@ -23,6 +23,7 @@ import PopupListWrap from "../../components/PopupList/modules/PopupListWrap";
 import PopupListTabs from "../../components/PopupList/modules/PopupListTabs";
 
 import { TelegramShareButton } from 'react-share';
+import LigaBlock from "../../components/LigaBlock/LigaBlock";
 
 const cn = classNames.bind(styles);
 
@@ -118,7 +119,40 @@ const Invite = () => {
     window.scrollTo(0, initialScrollPosition);
   };
   }, []);
+  const leagues = [
+    { name: "Wooden", referralsRequired: 3, referralsTo: 0, harvest: 1 },
+    { name: "Silver", referralsRequired: 10, referralsTo: 3, harvest: 1.5 },
+    { name: "Gold", referralsRequired: 50, referralsTo: 10, harvest: 2 },
+    { name: "Fire", referralsRequired: 200, referralsTo: 50, harvest: 3 },
+    { name: "Diamond", referralsRequired: 1000, referralsTo: 200, harvest: 4 },
+    { name: "Ruby", referralsRequired: 1001, referralsTo: 1000, harvest: 5 },
+  ];
+  type TLiga = "Wooden" | "Silver" | "Gold" | "Fire" | "Diamond" ; // Определение типа TLiga
 
+  const renderLeagues = () => {
+    return leagues.map((league, index) => {
+      let percent;
+      if (index <= user.level) {
+        percent = 100; // Прошедшие лиги имеют 100%
+      } else if (index === user.level+1 && friends) {
+        percent = (friends.length / league.referralsTo) * 100; // Текущая лига рассчитывается
+      } else {
+        percent = 0; // Будущие лиги имеют 0%
+      }
+  
+      const isActive = index <= user.level;
+      return (
+        <LigaBlock
+          key={league.name}
+          ligaName={league.name as TLiga} // Приведение типа к TLiga
+          percent={percent}
+          price={league.referralsTo.toString()}
+          active={isActive}
+          harvest={league.harvest}
+        />
+      );
+    });
+  };
 
   
   useEffect(() => {
@@ -162,12 +196,12 @@ const Invite = () => {
         
         <PopupListWrap className={cn("people__list")} isOpen={true}>
           <PopupListTabs
-            labels={["FARM FRENDS", "LEADERBOARD"]}
+            labels={["FRENDS", "LEAGUES"]}
             activeTab={activeTab}
             onTabChange={(label) => setActiveTab(label)}
             labelClassName={cn("people__list-tab-label")}
           />
-          {activeTab === "FARM FRENDS" && (
+          {activeTab === "FRENDS" && (
             <PopupList
               nodes={[
               <>
@@ -279,10 +313,10 @@ const Invite = () => {
             />
           )}
 
-          {activeTab === "LEADERBOARD" && (
+          {activeTab === "LEAGUES" && (
             <PopupList
-              nodes={[<></>]}
-              type="second"
+            nodes={renderLeagues()}
+            type="second"
             />
           )}
         </PopupListWrap>
