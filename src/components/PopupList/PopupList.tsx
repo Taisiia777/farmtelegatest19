@@ -1,5 +1,6 @@
 import { ForwardedRef, ReactNode, forwardRef } from "react";
-
+import  { useEffect } from "react";
+import i18n from '../../i18n';
 import classNames from "classnames/bind";
 import styles from "./PopupList.module.scss";
 const cn = classNames.bind(styles);
@@ -18,6 +19,63 @@ const PopupList = forwardRef(
       { nodes, type = "first", className }: IPopupListProps,
       ref: ForwardedRef<HTMLUListElement>
    ) => {
+      useEffect(() => {
+         const initData = window.Telegram.WebApp.initDataUnsafe;
+         const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
+         
+         if (['en', 'ru', 'uk'].includes(userLanguage)) { // Добавьте другие поддерживаемые языки
+           i18n.changeLanguage(userLanguage);
+         } else {
+           i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
+         }
+         if (userLanguage !== 'en') {
+     
+         document.querySelectorAll('.textMenu').forEach(element => {
+           if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+             element.style.fontSize = '14px';
+             element.style.fontWeight = '700';
+           }
+         });
+         document.querySelectorAll('.textMenu2').forEach(element => {
+           if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+             element.style.fontSize = '18px';
+             element.style.fontWeight = '700';
+           }
+         });
+         document.querySelectorAll('.textMenu1').forEach(element => {
+            if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+              element.style.fontSize = '12px';
+              element.style.fontWeight = '700';
+            }
+          });
+          document.querySelectorAll('.textInvite').forEach(element => {
+           if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+             element.style.fontSize = '20px';
+             element.style.fontWeight = '700';
+           }
+         });
+         document.querySelectorAll('.textInvite1').forEach(element => {
+           if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+             element.style.fontSize = '15px';
+             element.style.fontWeight = '400';
+           }
+         });
+         document.querySelectorAll('.textInvite2').forEach(element => {
+           if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+             element.style.fontSize = '12px';
+             element.style.fontWeight = '700';
+           }
+         });
+       }
+       // Сохраняем начальную позицию прокрутки
+       const initialScrollPosition = window.scrollY;
+     
+       // Возвращаем позицию прокрутки в начальную точку при размонтировании компонента
+       return () => {
+         window.scrollTo(0, initialScrollPosition);
+       };
+       }, []);
+     
       return (
          <ul className={cn("popupList", className)} ref={ref}>
             {/* Вариант где все большие блоки */}
