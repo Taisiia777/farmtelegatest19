@@ -350,7 +350,15 @@ const Home = () => {
          callback();
       }, 500);
    }
+   useEffect(() => {
+  // Сохраняем начальную позицию прокрутки
+  const initialScrollPosition = window.scrollY;
 
+  // Возвращаем позицию прокрутки в начальную точку при размонтировании компонента
+  return () => {
+    window.scrollTo(0, initialScrollPosition);
+  };
+  }, [openBoostPopup, openCoinPopup, openFertilizersPopup, openGamesPopup, openSpecialPopup]);
   //  useEffect(() => {
   //   const checkIfDesktop = () => {
   //     const userAgent = navigator.userAgent;
@@ -1878,9 +1886,7 @@ console.log(response1)
                      setEarnPopupOpen(false);
                      setGamesPopupOpen(false);
                      setLeaguesopupOpen(false)
-                     const initialScrollPosition = window.scrollY;
-                     window.scrollTo(0, initialScrollPosition);
-
+                     
                   }}
                   className={cn("close")}
                   alt="Close"
