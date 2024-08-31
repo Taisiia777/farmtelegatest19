@@ -45,9 +45,8 @@ html.invite-page {
    &__list {
       width: 91%;
       top: rem(150);
-      padding-top: 30px;
       height: 50% !important;
-      min-width: 50% !important;
+      min-height: 50% !important;
       animation: appear 0.4s ease-in-out;
       border: 1px solid red;
    }
@@ -56,6 +55,8 @@ html.invite-page {
       flex-direction: column;
       gap: rem(10);
       margin-bottom: rem(23);
+      margin-top: rem(23);
+
    }
 
    &__friends-control {
