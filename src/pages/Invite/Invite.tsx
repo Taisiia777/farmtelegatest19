@@ -59,12 +59,7 @@ const Invite = () => {
     // Добавляем класс при монтировании компонента
     document.body.classList.add('invite-page');
     document.documentElement.classList.add('invite-page');
-  
-    return () => {
-      // Убираем класс при размонтировании компонента
-      document.body.classList.remove('invite-page');
-      document.documentElement.classList.remove('invite-page');
-    };
+
   }, []);
   
   useEffect(() => {
