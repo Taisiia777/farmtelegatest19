@@ -277,7 +277,6 @@ const Invite = () => {
           <img src="img/pages/people/star.svg" alt="star" />
           <img src="img/pages/people/star.svg" alt="star" />
         </div>
-        <GreenBg />
                 
         </>  ]}
               type="second"
@@ -294,6 +293,7 @@ const Invite = () => {
         {/* Invite users blocks */}
 
       </div>
+        <GreenBg />
 
       {/* Кнопка закрытия страниц */}
       <img
