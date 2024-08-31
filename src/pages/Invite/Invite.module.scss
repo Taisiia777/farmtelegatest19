@@ -38,10 +38,11 @@ html.invite-page {
       text-align: center;
       font-size: rem(18);
       font-weight: 400;
-      margin-bottom: rem(35);
+      margin-bottom: rem(10);
    }
 
    &__users {
+      margin-top: 50px;
       display: flex;
       flex-direction: column;
       gap: rem(10);
