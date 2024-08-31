@@ -45,16 +45,14 @@ html.invite-page {
    &__list {
       width: 91%;
       top: rem(150);
-      height: 50% !important;
-      min-height: 0px !important;
+      height: 66%;
       animation: appear 0.4s ease-in-out;
       border: 1px solid red;
    }
    &__list1 {
-      width: 100%;
-      top: rem(160);
-      height: 10% !important;
-      min-height: 0px !important;
+      width: 110%;
+      top: rem(150);
+      height: 66%;
       animation: appear 0.4s ease-in-out;
       border: 1px solid red;
    }
@@ -63,7 +61,6 @@ html.invite-page {
       flex-direction: column;
       gap: rem(10);
       margin-bottom: rem(23);
-      margin-top: rem(23);
 
    }
 
@@ -213,7 +210,7 @@ html.invite-page {
    align-items: center;
    justify-content: space-between;
    gap: rem(10);
-   padding: rem(14) rem(10) rem(14) rem(18);
+   padding: rem(24) rem(10) rem(14) rem(18);
 
    background-color: #A2C521;
    border-radius: rem(12);
