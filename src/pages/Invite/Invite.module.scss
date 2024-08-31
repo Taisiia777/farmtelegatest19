@@ -84,12 +84,12 @@ html.invite-page {
 
    &__listWrap {
       top: rem(480) !important;
-      height: auto !important;
+      height: auto;
       animation: appear 0.4s ease-in-out;
    }
 
    &__list {
-      height: auto !important;
+      height: auto;
       padding: 0 rem(16) rem(80) rem(16) !important;
    }
 
