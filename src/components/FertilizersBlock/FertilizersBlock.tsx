@@ -79,9 +79,9 @@ console.log(userId)
 
 
 const formattedIncome = newEarning >= 1000000 
-  ? (newEarning / 1000000).toFixed(3) + 'M' 
+  ? (newEarning / 1000000).toFixed(2) + 'M' 
   : newEarning >= 100000 
-  ? (newEarning / 1000).toFixed(3) + 'K' 
+  ? (newEarning / 1000).toFixed(0) + 'K' 
   : newEarning.toString();
 
   let content;
