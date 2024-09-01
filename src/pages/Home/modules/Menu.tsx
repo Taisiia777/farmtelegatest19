@@ -175,6 +175,9 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                   <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", left: "5px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Guide.svg" alt="Stats" />
                   </li>
+                  <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", right: "5px", zIndex:"1"}}>
+                     <img src="img/pages/home/menu/Wallet.svg" alt="Stats" />
+                  </li>
                </ul>
             </div>
          </div>
