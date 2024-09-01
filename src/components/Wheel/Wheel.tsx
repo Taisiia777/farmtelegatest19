@@ -908,10 +908,10 @@ const spin = () => {
            className={cn("wheel", { spinning: isSpinning })}
           >
 
-<p className={`${cn("content__text", "_first")}` + ' textWheel'} style={{width: '106px', height: '20px', position: 'absolute', top: '-32px', left: '50%', transform: 'translate(-50%)', zIndex:'11'}}>
+<p className={`${cn("content__text", "_first")}` + ' textWheel'} style={{width: '106px', height: '20px', position: 'absolute', top: '-5vh', left: '50%', transform: 'translate(-50%)', zIndex:'11'}}>
   {spins} {t('spins')}
 </p>
-<p className={`${cn("content__text", "_first")}` + ' textWheel'} style={{width: '200px', height: '20px', position: 'absolute', top: '0', left: '50%', transform: 'translate(-50%)', zIndex:'11'}}>
+<p className={`${cn("content__text", "_first")}` + ' textWheel'} style={{width: '200px', height: '20px', position: 'absolute', top: '2vh', left: '50%', transform: 'translate(-50%)', zIndex:'11'}}>
   +1 вращение каждые 12 часов
 </p>
 
