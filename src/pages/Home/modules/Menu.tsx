@@ -121,7 +121,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                   {/* <li onClick={harvestAllWheat}> */}
                   <li onClick={() => onGamesOpen()}>
 
-                     <img src="img/pages/home/menu/Farm22.png" alt="Farm" style={{width: "115px", height:"85px"}} />
+                     <img src="img/pages/home/menu/Farm22.png" alt="Farm" style={{width: "85px", height:"85px"}} />
                      {isReady && (
     <img 
       src="img/pages/home/menu/ready.svg" 
@@ -172,7 +172,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                   {/* <li onClick={handleWheelClick} style={{position:"absolute", top: "-75vh", left: "20px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Wheel.png" alt="Stats" style={{height:"54px", width: "50px"}}/>
                   </li> */}
-                  <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", right: "5px", zIndex:"1"}}>
+                  <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", left: "5px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Guide.svg" alt="Stats" />
                   </li>
                </ul>
