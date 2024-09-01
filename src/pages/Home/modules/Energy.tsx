@@ -85,7 +85,7 @@ const Energy = ({ total, current, onClick, onClickProgresbar, onClickProgresbarH
             display: 'flex',
             position: 'absolute',
             top: '-30px',
-            left: "50%",
+            left: "52%",
             width: 'max-content',
             height: '22px',
             transform: "translateX(-50%)",
