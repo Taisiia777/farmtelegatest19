@@ -911,7 +911,9 @@ const spin = () => {
 <p className={`${cn("content__text", "_first")}` + ' textWheel'} style={{width: '106px', height: '20px', position: 'absolute', top: '-25px', left: '50%', transform: 'translate(-50%)', zIndex:'11'}}>
   {spins} {t('spins')}
 </p>
-
+<p className={`${cn("content__text", "_first")}` + ' textWheel'} style={{width: '106px', height: '20px', position: 'absolute', top: '0', left: '50%', transform: 'translate(-50%)', zIndex:'11'}}>
+  +1 вращение каждые 12 часов
+</p>
 
             <img src="img/pages/home/menu/YourSpins.png" className={cn("greeting__next")} style={{width: '106px', height: '47px', position: 'absolute', top: '20px', left: '50%', transform: 'translate(-50%)', zIndex:'10'}} alt="Spin"  />
             <img src="img/pages/home/menu/WheelCenter4.png" style={{width: '95vw', display:'flex', zIndex:'11', position:'absolute', top: '92.5px', transform: `rotate(${rotation}deg)`,transition: isSpinning ? "transform 5s cubic-bezier(0.25, 0.1, 0.25, 1)" : "none",transformOrigin: "center" }} alt="Wheel" />
