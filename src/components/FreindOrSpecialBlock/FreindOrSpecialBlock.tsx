@@ -508,7 +508,7 @@ const FreindOrSpecialBlock = ({
     setIsReciebed(true);
     return; // предотвращаем выполнение оставшегося кода
   }
-        if (link) {
+        if (link && title !== "Connect wallet") {
           window.Telegram.WebApp.openLink(link);
         }
 
