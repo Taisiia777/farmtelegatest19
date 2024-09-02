@@ -10,6 +10,8 @@ import { useTranslation } from 'react-i18next';
 import { useEffect } from "react";
 import { useAppDispatch } from "../../../store";
 import { openGuide1 } from "../../../store/reducers/guide1";
+import { openWallet } from "../../../store/reducers/wallet";
+
 // import { openWheel } from "../../../store/reducers/wheel";
 
 // import { useOutletContext } from 'react-router-dom';
@@ -44,6 +46,7 @@ interface IMenuProps {
    onEarnOpen: () => void;
    onCoinsOpen: () => void;
    onGamesOpen: () => void;
+
 }
 
 const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) => {
@@ -54,6 +57,11 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
    const handleGuideClick = () => {
       dispatch(openGuide1());
   };
+  const handleWalletClick = () => {
+   dispatch(openWallet());
+};
+
+  
 //   const handleWheelClick = () => {
 //    dispatch(openWheel());
 // };
@@ -121,7 +129,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                   {/* <li onClick={harvestAllWheat}> */}
                   <li onClick={() => onGamesOpen()}>
 
-                     <img src="img/pages/home/menu/Farm22.svg" alt="Farm" style={{width: "85px", height:"85px"}} />
+                     <img src="img/pages/home/menu/Farm21.svg" alt="Farm" style={{width: "85px", height:"85px"}} />
                      {isReady && (
     <img 
       src="img/pages/home/menu/ready.svg" 
@@ -129,8 +137,8 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
       style={{ display: 'flex', position: 'absolute', top: '-4px', right:'3px', width: "20px", height:"20px", zIndex:'3' }} 
     />
   )}
-                     {/* <span className="textShadow textMenu1" style={{zIndex:'3', display: 'flex', position: 'absolute', bottom:'3px'
-                     }}>{t('apps')}</span> */}
+                     <span className="textShadow textMenu1" style={{zIndex:'3', display: 'flex', position: 'absolute', bottom:'3px'
+                     }}>{t('apps')}</span>
 
                   </li>
                   {/* <li
@@ -175,7 +183,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                   <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", left: "5px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Guide.svg" alt="Stats" />
                   </li>
-                  <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", right: "5px", zIndex:"1"}}>
+                  <li onClick={handleWalletClick} style={{position:"absolute", top: "-10vh", right: "5px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Wallet.svg" alt="Stats" />
                   </li>
                </ul>

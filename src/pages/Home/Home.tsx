@@ -1499,6 +1499,7 @@ console.log(response1)
                      onCoinsOpen={() => {
                       setBoostPopupOpen(true)
                       openCoinPopup()}}
+                      
                   />
                </div>
             )}
@@ -1878,7 +1879,7 @@ console.log(response1)
                      setEarnPopupOpen(false);
                      setGamesPopupOpen(false);
                      setLeaguesopupOpen(false)
-                      window.scrollTo(0, 100);
+                     window.scrollTo(0, 100);
 
                   }}
                   className={cn("close")}
