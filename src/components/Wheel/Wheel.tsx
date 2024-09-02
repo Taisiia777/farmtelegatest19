@@ -745,7 +745,24 @@ const spin = () => {
          dispatch(finishWheel());
       // }, 500);
    }
-   
+   const getCorrectSpinsText = (spins: number) => {
+    const remainder10 = spins % 10;
+    const remainder100 = spins % 100;
+  
+    if (remainder100 >= 11 && remainder100 <= 19) {
+      return 'попыток'; // для чисел от 11 до 19
+    }
+  
+    if (remainder10 === 1) {
+      return 'попытка'; // для чисел оканчивающихся на 1 (кроме 11)
+    }
+  
+    if (remainder10 >= 2 && remainder10 <= 4) {
+      return 'попытки'; // для чисел оканчивающихся на 2, 3, 4 (кроме 12, 13, 14)
+    }
+  
+    return 'попыток'; // для всех остальных случаев
+  };
    const { t } = useTranslation();
    useEffect(() => {
      const initData = window.Telegram.WebApp.initDataUnsafe;
@@ -755,7 +772,7 @@ const spin = () => {
      } else {
        i18n.changeLanguage('en'); // Язык по умолчанию, если язык пользователя не поддерживается
      }
- 
+    
    const applyStyles = () => {
       document.querySelectorAll('.textMenu').forEach(element => {
          if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
@@ -909,7 +926,7 @@ const spin = () => {
           >
 
 <p className={`${cn("content__text", "_first")}` + ' textWheel'} style={{width: '106px', height: '20px', position: 'absolute', top: '-3.25vh', left: '50%', transform: 'translate(-50%)', zIndex:'11'}}>
-  {spins} {t('spins')}
+  {spins} {getCorrectSpinsText(spins)}
 </p>
 <p className={`${cn("content__text", "_first")}` + ' textWheel'} style={{width: '200px', height: '20px', position: 'absolute', top: '2vh', left: '50%', transform: 'translate(-50%)', zIndex:'11'}}>
   +1 вращение каждые 12 часов
