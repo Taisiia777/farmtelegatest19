@@ -58,6 +58,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
       dispatch(openGuide1());
   };
   const handleWalletClick = () => {
+   alert("lll")
    dispatch(openWallet());
 };
 
