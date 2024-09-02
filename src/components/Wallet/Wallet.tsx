@@ -3,12 +3,13 @@ import { useRef, useState, useEffect} from "react";
 
 import classNames from "classnames/bind";
 import styles from "./Wallet.module.scss";
-
+import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { finishWallet } from "../../store/reducers/wallet";
 
 import useOutsideClick from '../../pages/Home/hooks/useOutsideClick'; // Импортируйте ваш хук
 import { TonConnectButton, useTonAddress } from '@tonconnect/ui-react';
+import { RootState } from "../../store";
 
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
@@ -18,19 +19,29 @@ const cn = classNames.bind(styles);
 const Wallet = () => {
    const dispatch = useAppDispatch();
    const isOpen = useAppSelector((state) => state.wallet.isOpen);
+   const user = useAppSelector((state: RootState) => state.user.user);
 
    // Состояние прелоудреа
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
    const [step, setStep] = useState(1);
 
-   const address = useTonAddress(); // Получаем адрес кошелька
-
-
-
+   const address = useTonAddress();
+   
    useEffect(() => {
-      if (address) {
-         console.log('Кошелек подключен:', address);
-      }
+      const fetchData = async () => {
+         if (address) {
+            try {
+               const { data } = await axios.get(`https://coinfarm.club/api/wallet/${user.id}`);
+               if (data.address !== address) {
+                  await axios.post('https://coinfarm.club/api/wallet', { userId: user.id, walletAddress: address });
+               }
+            } catch (error) {
+               console.error('Error fetching wallet data', error);
+            }
+         }
+      };
+      
+      fetchData();
    }, [address]);
 
 
