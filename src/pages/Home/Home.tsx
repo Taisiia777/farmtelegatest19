@@ -53,6 +53,7 @@ import Greeting from "../../components/Greeting/Greeting";
 import Guide from "../../components/Guide/Guide";
 import Guide1 from "../../components/Guide1/Guide1";
 import Wheel from "../../components/Wheel/Wheel";
+import Wallet from "../../components/Wallet/Wallet";
 
 import DailyBonus from "../../components/DailyBonus/DailyBonus";
 // import { set } from "lodash";
@@ -1893,6 +1894,7 @@ console.log(response1)
          {showGuide && <Guide />}
          <Guide1 />
         <Wheel />
+        <Wallet />
          {/* Ежедневный бонус */}
          <DailyBonus />
       </>

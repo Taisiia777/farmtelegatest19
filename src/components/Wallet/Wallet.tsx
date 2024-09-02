@@ -150,7 +150,7 @@ const Wallet = () => {
    useOutsideClick(() => dispatch(finishWallet()), [wheelRef]);
 
    return (
-      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}} id="wallet">
+      <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}} id="fortune">
             {isOpen && (
                <img
                   src="img/global/closeIcon.svg"
