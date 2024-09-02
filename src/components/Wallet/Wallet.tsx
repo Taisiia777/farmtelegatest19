@@ -17,7 +17,7 @@ const cn = classNames.bind(styles);
 
 const Wallet = () => {
    const dispatch = useAppDispatch();
-   const isOpen = useAppSelector((state) => state.wheel.isOpen);
+   const isOpen = useAppSelector((state) => state.wallet.isOpen);
 
    // Состояние прелоудреа
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
