@@ -475,11 +475,7 @@ const FreindOrSpecialBlock = ({
       console.error("User ID is not available or task is already completed");
       return;
     }
-      // Проверяем, если заголовок "Connect wallet", выполняем dispatch и завершаем функцию
-  if (title === "Connect wallet") {
-    dispatch(openWallet());
-    return; // предотвращаем выполнение оставшегося кода
-  }
+
     setButtonText(t('check'));
 
     try {
@@ -502,6 +498,13 @@ const FreindOrSpecialBlock = ({
         setIsCompleted(true);
         setButtonText(t('check'));
         
+              // Проверяем, если заголовок "Connect wallet", выполняем dispatch и завершаем функцию
+  if (title === "Connect wallet") {
+    dispatch(openWallet());
+    await axios.patch(`https://coinfarm.club/api/reward/${response.data.id}`, { isReciebed: true });
+    setIsReciebed(true);
+    return; // предотвращаем выполнение оставшегося кода
+  }
         if (link) {
           window.Telegram.WebApp.openLink(link);
         }
