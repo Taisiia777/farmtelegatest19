@@ -301,6 +301,7 @@ import { useOutletContext } from 'react-router-dom';
 import { useDispatch} from "react-redux";
 import { setUser } from "../../store/reducers/userSlice";
 import { openWallet } from "../../store/reducers/wallet";
+import { useTonAddress } from '@tonconnect/ui-react';
 
 const cn = classNames.bind(styles);
 
@@ -359,6 +360,8 @@ const FreindOrSpecialBlock = ({
     coinsEarned?: number;
   }
   const { t } = useTranslation();
+  const address = useTonAddress();
+
   useEffect(() => {
     const initData = window.Telegram.WebApp.initDataUnsafe;
     const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
@@ -454,7 +457,7 @@ const FreindOrSpecialBlock = ({
 
 
     fetchCompletedTasks();
-  }, [userId, title, refs]);
+  }, [userId, title, refs, address]);
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
@@ -485,7 +488,7 @@ const FreindOrSpecialBlock = ({
         setIsReciebed(true);
         setButtonText(t('done'));
         setMoneyAnimACtive(true);
-        dispatch(setUser({ ...user, coins: user.coins + 20000}));
+        dispatch(setUser({ ...user, coins: user.coins + 10000}));
         setTimeout(() => {
           setMoneyAnimACtive(false);
         }, 500);
