@@ -222,9 +222,15 @@ const Wallet = () => {
                   {t('wallet1')}
                   </p>
                   {/* Иконка next */}
-                  <div style={{display: 'flex', margin: '0 auto'}}>
-                  <TonConnectButton />
-                  </div>
+                  <div style={{ 
+   position: 'absolute', 
+   top:"20vh",
+   left: '50%', 
+   transform: 'translateX(-50%)' 
+}}>
+   <TonConnectButton />
+</div>
+
                </div>
             </div>
          )}
