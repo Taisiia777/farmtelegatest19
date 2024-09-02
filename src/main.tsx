@@ -11,7 +11,7 @@ import { Provider } from "react-redux";
 ReactDOM.createRoot(document.getElementById("root")!).render(
    <React.StrictMode>
       <Provider store={store}>
-         <TonConnectUIProvider manifestUrl={'https://raw.githubusercontent.com/Sanch3zCode/mnf/main/manifest.json'}>
+         <TonConnectUIProvider manifestUrl={'https://coinfarm.club/tonconnect-manifest.json'}>
             <App />
          </TonConnectUIProvider>
       </Provider>
