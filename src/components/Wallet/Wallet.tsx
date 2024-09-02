@@ -224,7 +224,7 @@ const Wallet = () => {
                   {/* Иконка next */}
                   <div style={{ 
    position: 'absolute', 
-   top:"20vh",
+   top:"30vh",
    left: '50%', 
    transform: 'translateX(-50%)' 
 }}>
