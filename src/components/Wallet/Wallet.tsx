@@ -173,7 +173,7 @@ const Wallet = () => {
 
                {/* Надпись на popup-border */}
                <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>
-               {t('wheel_title')}
+               {t('wallet_title')}
                </strong>
 
                {/* Иконка next */}
@@ -187,7 +187,7 @@ const Wallet = () => {
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
                   <img
-                     src="img/pages/home/menu/Wheel.png"
+                     src="img/pages/home/menu/Wallet.png"
                      className={cn("content__person-img", "_first2")}
                   />
                   <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
@@ -206,22 +206,23 @@ const Wallet = () => {
 
                {/* Надпись на popup-border */}
                <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>
-               {t('wheel_title')}
+               {t('wallet_title1')}
                </strong>
 
-               {/* Иконка next */}
-               <TonConnectButton />
+               
 
 
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
                   <img
-                     src="img/pages/home/menu/Wheel.png"
+                     src="img/pages/home/menu/Wallet.png"
                      className={cn("content__person-img", "_first2")}
                   />
                   <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
-                  {t('wallet')}
+                  {t('wallet1')}
                   </p>
+                  {/* Иконка next */}
+               <TonConnectButton />
                </div>
             </div>
          )}

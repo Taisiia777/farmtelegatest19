@@ -117,13 +117,17 @@
          object-fit: contain;
          width: 60%;
          left: -18%;
-         top: 20%
+         top: 20%;
+         transform: rotate(-45deg); // Поворот на 45 градусов влево
+
       }
       &._first1 {
          object-fit: contain;
          width: 55%;
          left: 0%;
-         top: 13.5%
+         top: 13.5%;
+         transform: rotate(-45deg); // Поворот на 45 градусов влево
+
       }
       &._first2 {
          object-fit: contain;
