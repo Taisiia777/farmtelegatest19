@@ -25,26 +25,62 @@ const Wallet = () => {
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
    const [step, setStep] = useState(1);
 
-   const address = useTonAddress();
+  //  const address = useTonAddress();
    
-   useEffect(() => {
-      const fetchData = async () => {
-         if (address) {
-            try {
-               const { data } = await axios.get(`https://coinfarm.club/api/wallet/${user.id}`);
-               if (data.address !== address) {
-                  await axios.post('https://coinfarm.club/api/wallet', { userId: user.id, walletAddress: address });
-               }
-            } catch (error) {
-               console.error('Error fetching wallet data', error);
-            }
-         }
-      };
+  //  useEffect(() => {
+  //     const fetchData = async () => {
+  //        if (address) {
+  //           try {
+  //              const { data } = await axios.get(`https://coinfarm.club/api/wallet/${user.id}`);
+  //              if (data.address !== address) {
+  //                 await axios.post('https://coinfarm.club/api/wallet', { userId: user.id, walletAddress: address });
+  //              }
+  //           } catch (error) {
+  //              console.error('Error fetching wallet data', error);
+  //           }
+  //        }
+  //     };
       
-      fetchData();
-   }, [address]);
+  //     fetchData();
+  //  }, [address]);
 
+  const address = useTonAddress();
 
+  useEffect(() => {
+     const fetchData = async () => {
+        if (address) {
+           try {
+              const { data } = await axios.get(`https://coinfarm.club/api/wallet/${user.id}`);
+              // Если кошелек уже существует, проверяем адрес и обновляем его при необходимости
+              if (data.address !== address) {
+                 await axios.post('https://coinfarm.club/api/wallet', { userId: user.id, walletAddress: address });
+              }
+           } catch (error: unknown) {
+              if (axios.isAxiosError(error)) {
+                 if (error.response && error.response.status === 404) {
+                    // Если кошелек не найден (404), создаем новый
+                    try {
+                       await axios.post('https://coinfarm.club/api/wallet', { userId: user.id, walletAddress: address });
+                    } catch (createError: unknown) {
+                       if (axios.isAxiosError(createError)) {
+                          console.error('Error creating wallet', createError.message);
+                       } else {
+                          console.error('Unexpected error creating wallet', createError);
+                       }
+                    }
+                 } else {
+                    console.error('Error fetching wallet data', error.message);
+                 }
+              } else {
+                 console.error('Unexpected error fetching wallet data', error);
+              }
+           }
+        }
+     };
+     
+     fetchData();
+  }, [address]);
+  
 
   //  function goNext() {
   //     setStep((prev) => prev + 1);
