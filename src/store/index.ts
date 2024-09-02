@@ -8,6 +8,8 @@ import fertilizersSlice from './reducers/fertilizers';
 
 import greetingSlice from './reducers/greeting';
 import guideSlice from './reducers/guide';
+import walletSlice from './reducers/wallet';
+
 import wheelSlice from './reducers/wheel';
 import guide1Slice from './reducers/guide1';
 
@@ -23,6 +25,7 @@ const store = configureStore({
     fertilizers: fertilizersSlice,
     greeting: greetingSlice,
     guide: guideSlice,
+    wallet: walletSlice,
     guide1: guide1Slice,
     wheel: wheelSlice,
     preloader: preloaderSlice,
