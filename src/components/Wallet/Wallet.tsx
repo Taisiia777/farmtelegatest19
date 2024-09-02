@@ -187,7 +187,7 @@ const Wallet = () => {
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
                   <img
-                     src="img/pages/home/menu/Wallet.png"
+                     src="img/pages/home/menu/Wallet1.svg"
                      className={cn("content__person-img", "_first2")}
                   />
                   <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
