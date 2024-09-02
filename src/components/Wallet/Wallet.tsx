@@ -35,9 +35,9 @@ const Wallet = () => {
 
 
 
-   function goNext() {
-      setStep((prev) => prev + 1);
-   }
+  //  function goNext() {
+  //     setStep((prev) => prev + 1);
+  //  }
 
 
   //  function fihish() {
@@ -176,13 +176,7 @@ const Wallet = () => {
                {t('wallet_title')}
                </strong>
 
-               {/* Иконка next */}
-               <img
-                  src="img/global/next-btn.svg"
-                  className={cn("greeting__next")}
-                  alt="Далее"
-                  onClick={() => {goNext()}}
-               />
+              
 
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
@@ -193,6 +187,14 @@ const Wallet = () => {
                   <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
                   {t('wallet')}
                   </p>
+                  <div style={{ 
+   position: 'absolute', 
+   top:"30vh",
+   left: '50%', 
+   transform: 'translateX(-50%)' 
+}}>
+   <TonConnectButton />
+</div>
                </div>
             </div>
          )}
