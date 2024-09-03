@@ -52,7 +52,7 @@ import {
  tg.expand();
  tg.ready();
  tg.enableClosingConfirmation();
- 
+
  const App = () => {
    // Чтобы tg не закрывался когда делаем touchmove вниз
    const queryClient = new QueryClient();
@@ -64,19 +64,11 @@ import {
      document.body.style.height = window.innerHeight + overflow + "px";
      document.body.style.paddingBottom = `${overflow}px`;
      document.body.style.minHeight = "100vh";
- 
      document.documentElement.style.overflow = "hidden";
      document.documentElement.style.height = "auto";
  
      window.scrollTo(0, overflow);
-          // Регулярное повторение вызова expand для поддержания приложения развернутым
-          const intervalId = setInterval(() => {
-            tg.expand();
-          }, 1000); // Вызываем tg.expand() каждую секунду
      
-          return () => {
-            clearInterval(intervalId); // Очищаем интервал при размонтировании компонента
-          };
    }, []);
  
    return (

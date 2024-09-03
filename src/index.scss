@@ -84,9 +84,9 @@ body {
    font-size: rem(50);
    font-weight: 700;
    color: #fff;
-   // overflow: hidden !important;
-   overflow-y: hidden !important;
-   overflow-x: hidden !important;
+   overflow: hidden;
+   // overflow-y: hidden !important;
+   // overflow-x: hidden !important;
    touch-action: none; /* Отключает жесты прокрутки и зумирования */
    user-select: none; /* Отключает выделение текста */
    -webkit-user-select: none; /* Отключает выделение текста в Safari */
@@ -96,9 +96,9 @@ body {
 
 html {
    height: 100%;
-   // overflow: hidden !important;
-   overflow-y: hidden !important;
-   overflow-x: hidden !important;
+   overflow: hidden;
+   // overflow-y: hidden !important;
+   // overflow-x: hidden !important;
    touch-action: none; /* Отключает жесты прокрутки и зумирования */
    user-select: none; /* Отключает выделение текста */
    -webkit-user-select: none; /* Отключает выделение текста в Safari */
