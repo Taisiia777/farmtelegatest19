@@ -132,34 +132,23 @@ const router = createBrowserRouter(
   )
 );
 
-tg.expand();
-tg.ready();
-tg.enableClosingConfirmation();
-
 const App = () => {
-  // Чтобы tg не закрывался когда делаем touchmove вниз
   const queryClient = new QueryClient();
 
   useEffect(() => {
-    // Отключение прокрутки и фиксирование высоты
-    const overflow = 100;
-    document.body.style.overflow = "hidden";
-    document.body.style.marginTop = `${overflow}px`;
-    document.body.style.height = "100vh"; // фиксированная высота экрана
-    document.body.style.paddingBottom = `${overflow}px`;
-    document.body.style.position = "fixed"; // фиксация положения, чтобы предотвратить прокрутку
+    tg.expand();  // Гарантирует, что приложение остается развернутым
+    tg.ready();
+    tg.enableClosingConfirmation(); // Подтверждение при попытке закрытия
 
-    document.documentElement.style.overflow = "hidden";
-    document.documentElement.style.height = "100vh"; // фиксированная высота для всего документа
+    // Оставляем возможность скролла, но предотвращаем сворачивание при скролле вниз
+    const handleTouchMove = () => {
+      tg.expand(); // Повторно расширяем приложение при скролле
+    };
 
-    window.addEventListener('touchmove', function(event) {
-      event.preventDefault();
-    }, { passive: false }); // предотвращаем поведение прокрутки на мобильных устройствах
+    window.addEventListener('scroll', handleTouchMove);
 
     return () => {
-      window.removeEventListener('touchmove', function(event) {
-        event.preventDefault();
-      });
+      window.removeEventListener('scroll', handleTouchMove);
     };
   }, []);
 
