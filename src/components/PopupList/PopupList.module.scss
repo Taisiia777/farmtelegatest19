@@ -1,3 +1,100 @@
+// @import '/src/index.scss';
+
+// .popupListWrap {
+//    position: fixed;
+//    z-index: 100;
+//    top: rem(200);
+//    width: 100%;
+//    left: 0;
+//    height: 73%;
+//    display: flex;
+//    flex-direction: column;
+//    align-items: center;
+//    opacity: 0;
+//    visibility: hidden;
+
+//    transform: translateY(100%);
+//    transition: all 0.4s ease-in-out;
+
+//    &._open {
+//       opacity: 1;
+//       visibility: visible;
+//       transform: translateY(0%);
+//    }
+// }
+
+// .popupList {
+//    display: flex;
+//    flex-direction: column;
+//    align-items: center;
+//    overflow: auto !important;
+//    padding: 0 rem(10) rem(10) rem(10);
+//    min-height: 460px;
+//    &__item {
+//       position: relative;
+//       margin-bottom: -2.5%;
+
+//       &>img {
+//          width: 100%;
+//       }
+//    }
+
+//    &__item-body {
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//       width: 100%;
+//       height: 90%;
+//       &._big {
+//          height: 94%;
+//       } 
+//    }
+// }
+
+// .tabs {
+//    position: relative;
+//    z-index: 100;
+//    display: flex;
+//    justify-content: center;
+//    align-items: center;
+//    margin-bottom: rem(-35);
+//    padding: 0 rem(20);
+
+//    &__list {
+//       display: flex;
+//       align-items: center;
+//       justify-content: space-between;
+//       gap: rem(4);
+//    }
+
+//    &__item {
+//       position: relative;
+
+//       span {
+//          position: absolute;
+//          top: 0;
+//          left: 0;
+//          width: 100%;
+//          height: 73%;
+//          display: flex;
+//          align-items: center;
+//          justify-content: center;
+//          font-size: rem(20);
+//          opacity: 0.5;
+//       }
+
+//       &._active {
+//          span {
+//             opacity: 1;
+//          }
+//       }
+
+//       &>img {
+//          width: 100%;
+//       }
+//    }
+
+// }
 @import '/src/index.scss';
 
 .popupListWrap {
@@ -27,9 +124,9 @@
    display: flex;
    flex-direction: column;
    align-items: center;
-   overflow: auto !important;
+   overflow: auto;
    padding: 0 rem(10) rem(10) rem(10);
-   // min-height: 460px;
+
    &__item {
       position: relative;
       margin-bottom: -2.5%;
@@ -45,6 +142,7 @@
       left: 0;
       width: 100%;
       height: 90%;
+
       &._big {
          height: 94%;
       } 
