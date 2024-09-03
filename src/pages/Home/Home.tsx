@@ -54,6 +54,7 @@ import Guide from "../../components/Guide/Guide";
 import Guide1 from "../../components/Guide1/Guide1";
 import Wheel from "../../components/Wheel/Wheel";
 import Wallet from "../../components/Wallet/Wallet";
+import { tg } from "../../constants/app";
 
 import DailyBonus from "../../components/DailyBonus/DailyBonus";
 // import { set } from "lodash";
@@ -227,6 +228,22 @@ const Home = () => {
   //     (state) => state.growthStages.isFingerActive
   //  );
 
+  useEffect(() => {
+    tg.expand();  // Гарантирует, что приложение остается развернутым
+    tg.ready();
+    tg.enableClosingConfirmation(); // Подтверждение при попытке закрытия
+
+    // Оставляем возможность скролла, но предотвращаем сворачивание при скролле вниз
+    const handleTouchMove = () => {
+      tg.expand(); // Повторно расширяем приложение при скролле
+    };
+
+    window.addEventListener('scroll', handleTouchMove);
+
+    return () => {
+      window.removeEventListener('scroll', handleTouchMove);
+    };
+  }, []);
    // Energy popup
    const [energyPopupOpen, setEnergyPopupOpen] = useState(false);
    const energyRef = useOutsideClick(
