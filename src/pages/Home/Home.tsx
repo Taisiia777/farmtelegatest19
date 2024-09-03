@@ -1154,6 +1154,8 @@ console.log(response1)
         if(user?.totalEarnings <= 3000 && !showGuide){
           dispatch(openGuide());
           setShowGuide(true);
+          window.scrollTo(0, 100);
+
         }
     
       }, 10000); // 10 секунд бездействия
