@@ -27,7 +27,8 @@
    display: flex;
    flex-direction: column;
    align-items: center;
-   overflow: auto;
+   // overflow: auto;
+   overflow-y: scroll;
    padding: 0 rem(10) rem(10) rem(10);
    min-height: 460px;
    &__item {
