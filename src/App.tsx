@@ -69,6 +69,14 @@ import {
      document.documentElement.style.height = "auto";
  
      window.scrollTo(0, overflow);
+          // Регулярное повторение вызова expand для поддержания приложения развернутым
+          const intervalId = setInterval(() => {
+            tg.expand();
+          }, 1000); // Вызываем tg.expand() каждую секунду
+     
+          return () => {
+            clearInterval(intervalId); // Очищаем интервал при размонтировании компонента
+          };
    }, []);
  
    return (
