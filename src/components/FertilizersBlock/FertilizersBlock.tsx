@@ -102,7 +102,7 @@ const formattedIncome = newEarning >= 1000000
         <div className={cn("coinBlock__info")}>
           <h3 className="textShadow">{fertilizersName}</h3>
           <div className={cn("coinBlock__earning")}>
-          <span style={{ color: 'lightgreen' }}>Level {level}</span>
+          <span style={{ color: 'green' }}>Level {level}</span>
 
             <span>+{formattedIncome} / {t(`h`)}</span>
             {/* <img src="img/coins/FarmCoin.svg" alt="Energy" /> */}
