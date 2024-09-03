@@ -375,8 +375,7 @@ const Home = () => {
   // };
 
   useEffect(() => {
-    window.scrollTo(0, 100);
-
+    
     const initData = window.Telegram.WebApp.initDataUnsafe;
     const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
     
