@@ -1600,9 +1600,14 @@ console.log(response1)
                   </div>
 
                   <img
-                        src={`img/fertilizers/${fertilizersState.info.name}.svg`}
-                        className={cn("popup__icon", "_boost")}
-                  />
+  src={`img/fertilizers/${fertilizersState.info.name}.svg`}
+  onError={(e) => {
+    e.currentTarget.onerror = null; // предотвращаем бесконечный цикл в случае отсутствия обоих форматов
+    e.currentTarget.src = `img/fertilizers/${fertilizersState.info.name}.png`;
+  }}
+  className={cn("popup__icon", "_boost")}
+/>
+
 
                   <div className={cn("popup__bottom")}>
                      <div className={cn("popup__earning")}>
