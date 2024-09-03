@@ -70,7 +70,28 @@ import {
      window.scrollTo(0, overflow);
      
    }, []);
- 
+   useEffect(() => {
+    tg.expand();
+    tg.ready();
+    tg.enableClosingConfirmation();
+  
+    // Повторный вызов expand при прокрутке
+    const handleScroll = () => {
+      tg.expand();
+    };
+  
+    window.addEventListener('scroll', handleScroll);
+  
+    // Дополнительно: вызывайте tg.expand() периодически
+    const intervalId = setInterval(() => {
+      tg.expand();
+    }, 1000);
+  
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearInterval(intervalId);
+    };
+  }, []);
    return (
      <>
     <QueryClientProvider client={queryClient}>
