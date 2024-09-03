@@ -236,7 +236,7 @@ const Wallet = () => {
                   </p>
                   <div style={{ 
    position: 'absolute', 
-   top:"30vh",
+   top:"27vh",
    left: '50%', 
    transform: 'translateX(-50%)' 
 }}>
