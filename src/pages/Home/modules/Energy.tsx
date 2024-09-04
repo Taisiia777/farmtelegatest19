@@ -87,11 +87,19 @@ const Energy = ({ total, current, onClick, onClickProgresbar, onClickProgresbarH
   : current >= 1000000 
   ? (current / 1000000).toFixed(3) + 'M'
   : current.toString();
-  const energyInHourFormattedPrice = inHour >= 1000000000 
+  // const energyInHourFormattedPrice = inHour >= 1000000000 
+  // ? (inHour / 1000000000).toFixed(3) + 'B'
+  // : inHour >= 1000000 
+  // ? (inHour / 1000000).toFixed(3) + 'M'
+  // : inHour.toString();
+  const energyInHourFormattedPrice = typeof inHour === 'number' && inHour >= 1000000000 
   ? (inHour / 1000000000).toFixed(3) + 'B'
-  : inHour >= 1000000 
+  : typeof inHour === 'number' && inHour >= 1000000 
   ? (inHour / 1000000).toFixed(3) + 'M'
-  : inHour.toString();
+  : typeof inHour === 'number'
+  ? inHour.toString()
+  : '0'; // Добавляем fallback на случай, если inHour не число
+
    return (
       <div className={cn("energy")} id="energy" style={containerStyle} >
           {version === 0 && (
