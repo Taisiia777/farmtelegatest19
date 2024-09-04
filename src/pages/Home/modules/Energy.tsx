@@ -77,6 +77,21 @@ const Energy = ({ total, current, onClick, onClickProgresbar, onClickProgresbarH
   //   const userLeagueIndex = user ? user.level : 0;
   // const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
   // const calculatedInHour = inHour * userHarvestMultiplier;
+  const energyTotalFormattedPrice = total >= 1000000000 
+  ? (total / 1000000000).toFixed(3) + 'B'
+  : total >= 1000000 
+  ? (total / 1000000).toFixed(3) + 'M'
+  : total.toString();
+  const energyCurrentFormattedPrice = current >= 1000000000 
+  ? (current / 1000000000).toFixed(3) + 'B'
+  : current >= 1000000 
+  ? (current / 1000000).toFixed(3) + 'M'
+  : current.toString();
+  // const energyInHourFormattedPrice = inHour >= 1000000000 
+  // ? (inHour / 1000000000).toFixed(3) + 'B'
+  // : inHour >= 1000000 
+  // ? (inHour / 1000000).toFixed(3) + 'M'
+  // : inHour.toString();
    return (
       <div className={cn("energy")} id="energy" style={containerStyle} >
           {version === 0 && (
@@ -180,7 +195,7 @@ const Energy = ({ total, current, onClick, onClickProgresbar, onClickProgresbarH
             ></div>
             {version !== 1 && (
           <span>
-            {current} / {total}
+            {energyCurrentFormattedPrice} / {energyTotalFormattedPrice}
           </span>
         )}
          </div>
