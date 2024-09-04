@@ -1429,6 +1429,8 @@ console.log(response1)
   const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000 
   ? (parseFloat(fertilizersState.info.price) / 1000000).toFixed(3) + 'M' 
   : parseFloat(fertilizersState.info.price).toString();
+
+  
    return (
       <>
        <QRCodeComponent />
