@@ -95,9 +95,9 @@ const Coins = ({ quantity }: CoinsProps) => {
   // );
   
   const profileFormattedPrice = parseFloat(quantity) >= 1000000000 
-  ? (parseFloat(quantity) / 1000000000).toFixed(3) + 'B'
+  ? (parseFloat(quantity) / 1000000000).toFixed(3) + 'b'
   : parseFloat(quantity) >= 1000000 
-  ? (parseFloat(quantity) / 1000000).toFixed(3) + 'M'
+  ? (parseFloat(quantity) / 1000000).toFixed(3) + 'm'
   : parseFloat(quantity).toString();
 
   return (

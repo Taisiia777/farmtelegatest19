@@ -78,14 +78,14 @@ const Energy = ({ total, current, onClick, onClickProgresbar, onClickProgresbarH
   // const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
   // const calculatedInHour = inHour * userHarvestMultiplier;
   const energyTotalFormattedPrice = total >= 1000000000 
-  ? (total / 1000000000).toFixed(3) + 'B'
+  ? (total / 1000000000).toFixed(3) + 'b'
   : total >= 1000000 
-  ? (total / 1000000).toFixed(3) + 'M'
+  ? (total / 1000000).toFixed(3) + 'm'
   : total.toString();
   const energyCurrentFormattedPrice = current >= 1000000000 
-  ? (current / 1000000000).toFixed(3) + 'B'
+  ? (current / 1000000000).toFixed(3) + 'b'
   : current >= 1000000 
-  ? (current / 1000000).toFixed(3) + 'M'
+  ? (current / 1000000).toFixed(3) + 'm'
   : current.toString();
   // const energyInHourFormattedPrice = inHour >= 1000000000 
   // ? (inHour / 1000000000).toFixed(3) + 'B'
@@ -93,9 +93,9 @@ const Energy = ({ total, current, onClick, onClickProgresbar, onClickProgresbarH
   // ? (inHour / 1000000).toFixed(3) + 'M'
   // : inHour.toString();
   const energyInHourFormattedPrice = typeof inHour === 'number' && inHour >= 1000000000 
-  ? (inHour / 1000000000).toFixed(3) + 'B'
+  ? (inHour / 1000000000).toFixed(3) + 'b'
   : typeof inHour === 'number' && inHour >= 1000000 
-  ? (inHour / 1000000).toFixed(3) + 'M'
+  ? (inHour / 1000000).toFixed(3) + 'm'
   : typeof inHour === 'number'
   ? inHour.toString()
   : '0'; // Добавляем fallback на случай, если inHour не число
