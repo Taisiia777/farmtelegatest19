@@ -93,13 +93,23 @@ const Coins = ({ quantity }: CoinsProps) => {
   //     <span className="textShadow">{quantity}</span>
   //   </div>
   // );
-  
-  const profileFormattedPrice = parseFloat(quantity) >= 1000000000 
-  ? (parseFloat(quantity) / 1000000000).toFixed(3) + 'b'
-  : parseFloat(quantity) >= 1000000 
-  ? (parseFloat(quantity) / 1000000).toFixed(3) + 'm'
-  : parseFloat(quantity).toString();
 
+  const formatLargeNumber = (num: number, divisor: number, suffix: string): string => {
+    return num % divisor === 0 
+      ? (num / divisor).toFixed(0) + suffix // Без точки, если делится без остатка
+      : (num / divisor).toFixed(3) + suffix; // С дробной частью, если остаток есть
+  };
+  
+  // Преобразование quantity к числу
+  const numericQuantity = parseFloat(quantity);
+  
+  // Форматирование total
+  const profileFormattedPrice = numericQuantity >= 1000000000 
+    ? formatLargeNumber(numericQuantity, 1000000000, 'B')
+    : numericQuantity >= 1000000 
+    ? formatLargeNumber(numericQuantity, 1000000, 'M')
+    : numericQuantity.toString();
+  
   return (
     <div className={cn("coins")}>
       <div className={cn("coins__video-wrap")}>

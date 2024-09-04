@@ -77,29 +77,53 @@ const Energy = ({ total, current, onClick, onClickProgresbar, onClickProgresbarH
   //   const userLeagueIndex = user ? user.level : 0;
   // const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
   // const calculatedInHour = inHour * userHarvestMultiplier;
-  const energyTotalFormattedPrice = total >= 1000000000 
-  ? (total / 1000000000).toFixed(3) + 'b'
+
+  // const energyTotalFormattedPrice = total >= 1000000000 
+  // ? (total / 1000000000).toFixed(3) + 'b'
+  // : total >= 1000000 
+  // ? (total / 1000000).toFixed(3) + 'm'
+  // : total.toString();
+  // const energyCurrentFormattedPrice = current >= 1000000000 
+  // ? (current / 1000000000).toFixed(3) + 'b'
+  // : current >= 1000000 
+  // ? (current / 1000000).toFixed(3) + 'm'
+  // : current.toString();
+
+  // const energyInHourFormattedPrice = typeof inHour === 'number' && inHour >= 1000000000 
+  // ? (inHour / 1000000000).toFixed(3) + 'b'
+  // : typeof inHour === 'number' && inHour >= 1000000 
+  // ? (inHour / 1000000).toFixed(3) + 'm'
+  // : typeof inHour === 'number'
+  // ? inHour.toString()
+  // : '0'; // Добавляем fallback на случай, если inHour не число
+  const formatLargeNumber = (num: number, divisor: number, suffix: string): string => {
+    return num % divisor === 0 
+    ? (num / divisor).toFixed(0) + suffix // Без точки, если делится без остатка
+    : (num / divisor).toFixed(3) + suffix; // С дробной частью, если остаток есть
+};
+
+// Форматирование total
+const energyTotalFormattedPrice = total >= 1000000000 
+  ? formatLargeNumber(total, 1000000000, 'B')
   : total >= 1000000 
-  ? (total / 1000000).toFixed(3) + 'm'
+  ? formatLargeNumber(total, 1000000, 'M')
   : total.toString();
-  const energyCurrentFormattedPrice = current >= 1000000000 
-  ? (current / 1000000000).toFixed(3) + 'b'
+
+// Форматирование current
+const energyCurrentFormattedPrice = current >= 1000000000 
+  ? formatLargeNumber(current, 1000000000, 'B')
   : current >= 1000000 
-  ? (current / 1000000).toFixed(3) + 'm'
+  ? formatLargeNumber(current, 1000000, 'M')
   : current.toString();
-  // const energyInHourFormattedPrice = inHour >= 1000000000 
-  // ? (inHour / 1000000000).toFixed(3) + 'B'
-  // : inHour >= 1000000 
-  // ? (inHour / 1000000).toFixed(3) + 'M'
-  // : inHour.toString();
-  const energyInHourFormattedPrice = typeof inHour === 'number' && inHour >= 1000000000 
-  ? (inHour / 1000000000).toFixed(3) + 'b'
+
+// Форматирование inHour
+const energyInHourFormattedPrice = typeof inHour === 'number' && inHour >= 1000000000 
+  ? formatLargeNumber(inHour, 1000000000, 'B')
   : typeof inHour === 'number' && inHour >= 1000000 
-  ? (inHour / 1000000).toFixed(3) + 'm'
+  ? formatLargeNumber(inHour, 1000000, 'M')
   : typeof inHour === 'number'
   ? inHour.toString()
   : '0'; // Добавляем fallback на случай, если inHour не число
-
    return (
       <div className={cn("energy")} id="energy" style={containerStyle} >
           {version === 0 && (
