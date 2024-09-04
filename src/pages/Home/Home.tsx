@@ -663,6 +663,28 @@ const Home = () => {
             const response = await fetch(`https://coinfarm.club/api/user/${user.id}/boosters`);
             const data = await response.json();
             setUserBoosters(data);
+                  // Определяем количество бустеров
+      const boosterCount = data.length; // Предполагается, что data — это массив с бустерами
+
+      // Определяем множитель в зависимости от количества бустеров
+      let newIncomeMultiplier = 1;
+      if (boosterCount === 1) {
+        newIncomeMultiplier = 2;
+      } else if (boosterCount === 2) {
+        newIncomeMultiplier = 3;
+      } else if (boosterCount === 3) {
+        newIncomeMultiplier = 5;
+      } else if (boosterCount === 4) {
+        newIncomeMultiplier = 8;
+      } else if (boosterCount >= 5) {
+        newIncomeMultiplier = 12;
+      }
+
+      // Отправляем запрос на сервер для обновления множителя
+      const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
+        incomeMultiplier: newIncomeMultiplier
+      });
+      console.log(response1)
           } catch (error) {
             console.error("Error fetching user boosters:", error);
           }
@@ -1154,8 +1176,7 @@ console.log(response1)
         if(user?.totalEarnings <= 3000 && !showGuide){
           dispatch(openGuide());
           setShowGuide(true);
-          window.scrollTo(0, 100);
-
+          
         }
     
       }, 10000); // 10 секунд бездействия
