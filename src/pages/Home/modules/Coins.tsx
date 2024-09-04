@@ -93,12 +93,19 @@ const Coins = ({ quantity }: CoinsProps) => {
   //     <span className="textShadow">{quantity}</span>
   //   </div>
   // );
+  
+  const profileFormattedPrice = parseFloat(quantity) >= 1000000000 
+  ? (parseFloat(quantity) / 1000000000).toFixed(0) + 'B'
+  : parseFloat(quantity) >= 1000000 
+  ? (parseFloat(quantity) / 1000000).toFixed(0) + 'M'
+  : parseFloat(quantity).toString();
+
   return (
     <div className={cn("coins")}>
       <div className={cn("coins__video-wrap")}>
       {mostExpensiveCoinName && <img src={`video/FarmCoin.gif`} alt="I'm a gif" />}
       </div>
-      <span className="textShadow">{quantity}</span>
+      <span className="textShadow">{profileFormattedPrice}</span>
     </div>
   );
 };
