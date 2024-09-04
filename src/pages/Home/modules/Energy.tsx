@@ -72,23 +72,7 @@ const Energy = ({ total, current, onClick, onClickProgresbar, onClickProgresbarH
         setLastCoin(mostExpensiveCoin);
       }
     }, [coins]);
-
-    const energyTotalFormattedPrice = total >= 1000000000 
-      ? (total / 1000000000).toFixed(3) + 'B'
-      : total >= 1000000 
-      ? (total / 1000000).toFixed(3) + 'M'
-      : total.toString();
-      const energyCurrentFormattedPrice = current >= 1000000000 
-      ? (current / 1000000000).toFixed(3) + 'B'
-      : current >= 1000000 
-      ? (current / 1000000).toFixed(3) + 'M'
-      : current.toString();
-      const energyInHourFormattedPrice = inHour >= 1000000000 
-      ? (inHour / 1000000000).toFixed(3) + 'B'
-      : inHour >= 1000000 
-      ? (inHour / 1000000).toFixed(3) + 'M'
-      : inHour.toString();
-      console.log(energyInHourFormattedPrice)
+ 
     const resolvedIconName = lastCoin ? lastCoin.name : iconName || 'Bitcoin';
   //   const userLeagueIndex = user ? user.level : 0;
   // const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
@@ -196,7 +180,7 @@ const Energy = ({ total, current, onClick, onClickProgresbar, onClickProgresbarH
             ></div>
             {version !== 1 && (
           <span>
-            {energyCurrentFormattedPrice} / {energyTotalFormattedPrice}
+            {current} / {total}
           </span>
         )}
          </div>
