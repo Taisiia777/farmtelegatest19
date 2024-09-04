@@ -87,11 +87,11 @@ const Energy = ({ total, current, onClick, onClickProgresbar, onClickProgresbarH
   : current >= 1000000 
   ? (current / 1000000).toFixed(3) + 'M'
   : current.toString();
-  // const energyInHourFormattedPrice = inHour >= 1000000000 
-  // ? (inHour / 1000000000).toFixed(3) + 'B'
-  // : inHour >= 1000000 
-  // ? (inHour / 1000000).toFixed(3) + 'M'
-  // : inHour.toString();
+  const energyInHourFormattedPrice = inHour >= 1000000000 
+  ? (inHour / 1000000000).toFixed(3) + 'B'
+  : inHour >= 1000000 
+  ? (inHour / 1000000).toFixed(3) + 'M'
+  : inHour.toString();
    return (
       <div className={cn("energy")} id="energy" style={containerStyle} >
           {version === 0 && (
@@ -145,7 +145,7 @@ const Energy = ({ total, current, onClick, onClickProgresbar, onClickProgresbarH
               fontWeight: 'bold',
               color: '#FFF',
               marginRight: '10px',
-            }}>{inHour} / 1{t('h')}</span>
+            }}>{energyInHourFormattedPrice} / 1{t('h')}</span>
             <img
               src="img/leagueIcons/Plus.svg" // Replace with the path to your plus icon
               alt="Plus"
