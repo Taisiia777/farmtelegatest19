@@ -207,8 +207,7 @@ const Home = () => {
    const { friends } = useOutletContext<OutletContext>();
    const [isBoosterPurchased, setIsBoosterPurchased] = useState(false);
    const [isCoinPurchased, setIsCoinPurchased] = useState(false);
-   const [anotherUpdate, setAnotherUpdate] = useState(false);
-
+   
   // useWheatTrunctaion();
   // useHarvestAllWheat()
   console.log(mostExpensiveCoinName)
@@ -502,8 +501,7 @@ const Home = () => {
       };
   
       fetchData(); // Initial fetch on component mount
-      
-
+  
       // const interval = setInterval(fetchData, 2000); // Fetch every 2 seconds
       
       // return () => clearInterval(interval); // Clean up interval on component unmount
@@ -519,7 +517,6 @@ const Home = () => {
     useEffect(() => {
       const updateOnlineStatus = async () => {
          let userId = user?.id
-         setAnotherUpdate(!anotherUpdate)
         try {
           await axios.post('https://coinfarm.club/api/user/online', { userId });
         } catch (error) {
@@ -758,7 +755,7 @@ const Home = () => {
       fetchFertilizers();
       fetchUserFertilizers();
        }
-    }, [isCoinPurchased, isBoosterPurchased, anotherUpdate]);
+    }, [isCoinPurchased, isBoosterPurchased]);
 
     useEffect(() => {
       const fetchRewards = async () => {
