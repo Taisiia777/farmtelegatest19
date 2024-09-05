@@ -1179,12 +1179,8 @@ console.log(response1)
           );
     
           // Теперь используем обновленные значения для отправки на сервер
-          const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
-            coins: Number(updatedCoins),
-            totalEarnings: Number(updatedTotalEarnings),
-          });
+          await axios.patch(`https://coinfarm.club/api/user/${user.id}/earn/${updatedCoins}`)
     
-          console.log('Server response:', response1);
     
           // Обновляем XP на сервере
           await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${xpToSend}`);
