@@ -206,7 +206,8 @@ const Home = () => {
    const { friends } = useOutletContext<OutletContext>();
    const [isBoosterPurchased, setIsBoosterPurchased] = useState(false);
    const [isCoinPurchased, setIsCoinPurchased] = useState(false);
-   
+   const [isProcessing, setIsProcessing] = useState(false); // Состояние для блокировки кнопки
+
   // useWheatTrunctaion();
   // useHarvestAllWheat()
   console.log(mostExpensiveCoinName)
@@ -242,11 +243,14 @@ const Home = () => {
    );
 
    const fertilizersState = useAppSelector((state) => state.fertilizers);
+  //  const fertilizersBuyRef = useOutsideClick(
+  //     () => dispatch(closeFertilizersBuyPopup()),
+  //     ["#buyFertilizers"]
+  //  );
    const fertilizersBuyRef = useOutsideClick(
-      () => dispatch(closeFertilizersBuyPopup()),
-      ["#buyFertilizers"]
-   );
-
+    () => console.log("jjj"),
+    ["#buyFertilizers"]
+ );
    const { t } = useTranslation();
 
    // Boost popup
@@ -953,7 +957,9 @@ const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
   coins: user.coins - price,
   coinsPerHour: coinsPerHour + earning
 }).then(() => {
-  setIsCoinPurchased(!isCoinPurchased); // Выполняем действие после задержки
+  setIsCoinPurchased(!isCoinPurchased); // Обновляем состояние
+  setIsProcessing(false); // Разблокируем кнопку
+  dispatch(closeFertilizersBuyPopup()); // Закрываем попап только после завершения запроса
 });
 
 console.log(response1)
@@ -1567,63 +1573,52 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
     </Popup>
 
            {/* Fertilizers popup */}
-          <Popup
-               borderlabel={fertilizersState.info.name}
-               isOpen={fertilizersState.isOpen}
-               onClose={() => dispatch(closeFertilizersBuyPopup())}
-               ref={fertilizersBuyRef}>
-               <div className={cn("popup__body")}>
-                  <div className={cn("popup__bg-lightnings")}>
-                     <img src="img/global/lightning.svg" alt="energy" />
-                     <img src="img/global/lightning.svg" alt="energy" />
-                     <img src="img/global/lightning.svg" alt="energy" />
-                     <img src="img/global/lightning.svg" alt="energy" />
-                     <img src="img/global/lightning.svg" alt="energy" />
-                     <img src="img/global/lightning.svg" alt="energy" />
-                  </div>
+           <Popup
+      borderlabel={fertilizersState.info.name}
+      isOpen={fertilizersState.isOpen}
+      onClose={() => dispatch(closeFertilizersBuyPopup())}
+      ref={fertilizersBuyRef}
+    >
+      <div className={cn("popup__body")}>
+        <div className={cn("popup__bg-lightnings")}>
+          {/* Изображения молний */}
+        </div>
 
-                  <img
-  src={`img/fertilizers/${fertilizersState.info.name}.svg`}
-  onError={(e) => {
-    e.currentTarget.onerror = null; // предотвращаем бесконечный цикл в случае отсутствия обоих форматов
-    e.currentTarget.src = `img/fertilizers/${fertilizersState.info.name}.png`;
-  }}
-  className={cn("popup__icon", "_boost")}
-/>
+        <img
+          src={`img/fertilizers/${fertilizersState.info.name}.svg`}
+          onError={(e) => {
+            e.currentTarget.onerror = null;
+            e.currentTarget.src = `img/fertilizers/${fertilizersState.info.name}.png`;
+          }}
+          className={cn("popup__icon", "_boost")}
+        />
 
+        <div className={cn("popup__bottom")}>
+          <div className={cn("popup__earning")}>
+            <span>+{fertilizersState.info.earning} / 1{t('h')}</span>
+          </div>
 
-                  <div className={cn("popup__bottom")}>
-                     <div className={cn("popup__earning")}>
-                        <span>+{fertilizersState.info.earning} / 1{t('h')}</span>
-                     </div>
+          <Button
+            className={cn("popup__btn")}
+            size={width > 380 ? "big" : "normal"}
+            onClick={giveFertilizers} // Вызываем функцию для выполнения запроса
+            disabled={isProcessing} // Блокируем кнопку, если идет запрос
+          >
+            <CoinWhiteBg
+              iconName="Bitcoin"
+              size={width > 380 ? "normall" : "small"}
+            />
+            <span>{fertFormattedPrice}</span>
+          </Button>
 
-                     <Button
-                        className={cn("popup__btn")}
-                        size={width > 380 ? "big" : "normal"}
-                        onClick={() =>{
-                           giveFertilizers()
-                           buy(fertilizersMoneyAnimRef, () =>
-                              dispatch(closeFertilizersBuyPopup())
-                           )
-                        }
-                        }>
-                        <CoinWhiteBg
-                           iconName="Bitcoin"
-                           size={width > 380 ? "normall" : "small"}
-                        />
-                        {/* <span>{fertilizersState.info.price}</span> */}
-                        <span>{fertFormattedPrice}</span>
-
-                     </Button>
-                     <img
-                        // src={`img/pages/home/${mostExpensiveCoinName}/money.svg`}
-                        src={`img/pages/home/money1.svg`}
-                        className={cn("popup__money-anim")}
-                        ref={fertilizersMoneyAnimRef}
-                     />
-                  </div>
-               </div>
-            </Popup>
+          <img
+            src={`img/pages/home/money1.svg`}
+            className={cn("popup__money-anim")}
+            ref={fertilizersMoneyAnimRef}
+          />
+        </div>
+      </div>
+    </Popup>
 
 
 
