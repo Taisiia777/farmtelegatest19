@@ -1202,12 +1202,55 @@ console.log(response1)
       return blocks.filter(block => block.stage !== "first").length;
     };
     
+    // useEffect(() => {
+    //   const handleHarvest = (event: Event) => {
+    //     const customEvent = event as CustomEvent<number>;
+    //     const harvestedCount = customEvent.detail;
+    
+    //     // Получить количество блоков с несрезанными стадиями
+    //     const nonFirstStageCount = getNonFirstStageCount(blocks);
+    
+    //     setCanShowFinger(false);
+    
+    //     if (user?.totalEarnings <= 3000 && !showGuide) {
+    //       dispatch(openGuide());
+    //       setShowGuide(true);
+    //     }
+    
+    //     if (nonFirstStageCount > 0 && harvestedCount > 0) {
+    //       // Если есть блоки для сбора
+    //       const decrementPerBlock = displayEarnings / nonFirstStageCount;
+    
+    //       // Общая сумма, которую нужно вычесть за собранные блоки
+    //       const totalDecrementAmount = Math.min(decrementPerBlock * harvestedCount, displayEarnings);
+    
+    //       // Обновляем заработок пользователя и начисляем монеты локально
+    //       setDisplayEarnings(prev => {
+    //         const newEarnings = Math.max(prev - totalDecrementAmount, 0);
+    //         updateCoins(totalDecrementAmount); // Сразу обновляем баланс монет пользователя
+    //         return newEarnings;
+    //       });
+    
+    //       console.log("Total decrement amount:", totalDecrementAmount);
+    //     } else if (nonFirstStageCount === 0 && harvestedCount > 0) {
+    //       // Если все стадии срезаны, но harvestCount > 0
+    //       setDisplayEarnings(0);
+    //       updateCoins(displayEarnings); // Начисляем текущее значение пользователю
+    //     }
+    //   };
+    
+    //   document.addEventListener("harvest", handleHarvest);
+    
+    //   return () => {
+    //     document.removeEventListener("harvest", handleHarvest);
+    //   };
+    // }, [blocks, displayEarnings, user]);
+    
     useEffect(() => {
       const handleHarvest = (event: Event) => {
         const customEvent = event as CustomEvent<number>;
         const harvestedCount = customEvent.detail;
     
-        // Получить количество блоков с несрезанными стадиями
         const nonFirstStageCount = getNonFirstStageCount(blocks);
     
         setCanShowFinger(false);
@@ -1218,24 +1261,17 @@ console.log(response1)
         }
     
         if (nonFirstStageCount > 0 && harvestedCount > 0) {
-          // Если есть блоки для сбора
           const decrementPerBlock = displayEarnings / nonFirstStageCount;
-    
-          // Общая сумма, которую нужно вычесть за собранные блоки
           const totalDecrementAmount = Math.min(decrementPerBlock * harvestedCount, displayEarnings);
     
-          // Обновляем заработок пользователя и начисляем монеты локально
           setDisplayEarnings(prev => {
             const newEarnings = Math.max(prev - totalDecrementAmount, 0);
-            updateCoins(totalDecrementAmount); // Сразу обновляем баланс монет пользователя
+            updateCoins(totalDecrementAmount);  // Обновляем локально и на сервере
             return newEarnings;
           });
-    
-          console.log("Total decrement amount:", totalDecrementAmount);
         } else if (nonFirstStageCount === 0 && harvestedCount > 0) {
-          // Если все стадии срезаны, но harvestCount > 0
           setDisplayEarnings(0);
-          updateCoins(displayEarnings); // Начисляем текущее значение пользователю
+          updateCoins(displayEarnings);  // Обновляем локально и на сервере
         }
       };
     
@@ -1246,24 +1282,11 @@ console.log(response1)
       };
     }, [blocks, displayEarnings, user]);
     
-    
-  
-
-    
-
-  
-    // Этот useEffect устанавливает начальное значение displayEarnings из user.xp при первом рендере
-    useEffect(() => {
-      if (user?.xp && !isXpFetched) {
-        // Инициализируем displayEarnings значением xp, если оно доступно
-        setDisplayEarnings(user.xp);
-        setIsXpFetched(true);
-      }
-    }, [user]);
   
     const syncDisplayEarningsWithServer = async (earnings: number) => {
       try {
         await axios.put(`https://coinfarm.club/api/user/${user.id}`, { xp: earnings });
+        console.log("Synchronized earnings with server:", earnings);
       } catch (error) {
         console.error("Error syncing displayEarnings:", error);
       }
@@ -1271,32 +1294,39 @@ console.log(response1)
     
     const updateDisplayEarnings = (newDisplayEarnings: number) => {
       setDisplayEarnings(newDisplayEarnings);
-      dispatch(setUser({ ...user, xp: newDisplayEarnings }));  // сохраняем локально
-      syncDisplayEarningsWithServer(newDisplayEarnings);  // синхронизируем с сервером
+      dispatch(setUser({ ...user, xp: newDisplayEarnings }));  // сохраняем в Redux
+      syncDisplayEarningsWithServer(newDisplayEarnings);  // отправляем на сервер
     };
-
+    
+    
+    useEffect(() => {
+      if (user?.xp && !isXpFetched) {
+        // Инициализируем displayEarnings значением xp
+        setDisplayEarnings(user.xp);
+        setIsXpFetched(true);
+      }
+    }, [user]);
     useEffect(() => {
       const handleVisibilityChange = () => {
         if (!document.hidden) {
           lastUpdateRef.current = Date.now();
         }
       };
-  
+    
       document.addEventListener('visibilitychange', handleVisibilityChange);
-  
+    
       const interval = setInterval(() => {
         const now = Date.now();
         const elapsed = (now - lastUpdateRef.current) / 1000; // Время в секундах
         lastUpdateRef.current = now;
         const calculatedInHour = user?.coinsPerHour * leagues[user.level].harvest;
     
-        // Рассчитываем прирост заработка за прошедшее время
         const earningsIncrement = (calculatedInHour / 3600 || 0) * elapsed;
+        const maxEarnings = calculatedInHour * user?.incomeMultiplier;
     
         // Обновляем значение и сохраняем его
         setDisplayEarnings(prevDisplayEarnings => {
           const newDisplayEarnings = prevDisplayEarnings + earningsIncrement;
-          const maxEarnings = calculatedInHour * user?.incomeMultiplier;
     
           if (newDisplayEarnings <= maxEarnings) {
             updateDisplayEarnings(newDisplayEarnings);
@@ -1307,12 +1337,75 @@ console.log(response1)
           }
         });
       }, 3000);
-  
+    
       return () => {
         clearInterval(interval);
         document.removeEventListener('visibilitychange', handleVisibilityChange);
       };
     }, [user?.coinsPerHour, user?.incomeMultiplier]);
+        
+  
+    // // Этот useEffect устанавливает начальное значение displayEarnings из user.xp при первом рендере
+    // useEffect(() => {
+    //   if (user?.xp && !isXpFetched) {
+    //     // Инициализируем displayEarnings значением xp, если оно доступно
+    //     setDisplayEarnings(user.xp);
+    //     setIsXpFetched(true);
+    //   }
+    // }, [user]);
+  
+    // const syncDisplayEarningsWithServer = async (earnings: number) => {
+    //   try {
+    //     await axios.put(`https://coinfarm.club/api/user/${user.id}`, { xp: earnings });
+    //   } catch (error) {
+    //     console.error("Error syncing displayEarnings:", error);
+    //   }
+    // };
+    
+    // const updateDisplayEarnings = (newDisplayEarnings: number) => {
+    //   setDisplayEarnings(newDisplayEarnings);
+    //   dispatch(setUser({ ...user, xp: newDisplayEarnings }));  // сохраняем локально
+    //   syncDisplayEarningsWithServer(newDisplayEarnings);  // синхронизируем с сервером
+    // };
+
+    // useEffect(() => {
+    //   const handleVisibilityChange = () => {
+    //     if (!document.hidden) {
+    //       lastUpdateRef.current = Date.now();
+    //     }
+    //   };
+  
+    //   document.addEventListener('visibilitychange', handleVisibilityChange);
+  
+    //   const interval = setInterval(() => {
+    //     const now = Date.now();
+    //     const elapsed = (now - lastUpdateRef.current) / 1000; // Время в секундах
+    //     lastUpdateRef.current = now;
+    //     const calculatedInHour = user?.coinsPerHour * leagues[user.level].harvest;
+    
+    //     // Рассчитываем прирост заработка за прошедшее время
+    //     const earningsIncrement = (calculatedInHour / 3600 || 0) * elapsed;
+    
+    //     // Обновляем значение и сохраняем его
+    //     setDisplayEarnings(prevDisplayEarnings => {
+    //       const newDisplayEarnings = prevDisplayEarnings + earningsIncrement;
+    //       const maxEarnings = calculatedInHour * user?.incomeMultiplier;
+    
+    //       if (newDisplayEarnings <= maxEarnings) {
+    //         updateDisplayEarnings(newDisplayEarnings);
+    //         return newDisplayEarnings;
+    //       } else {
+    //         updateDisplayEarnings(maxEarnings);
+    //         return maxEarnings;
+    //       }
+    //     });
+    //   }, 3000);
+  
+    //   return () => {
+    //     clearInterval(interval);
+    //     document.removeEventListener('visibilitychange', handleVisibilityChange);
+    //   };
+    // }, [user?.coinsPerHour, user?.incomeMultiplier]);
   
     useEffect(() => {
         const fetchRewards = async () => {
