@@ -1256,10 +1256,10 @@ console.log(response1)
       try {
         await axios.patch(`https://coinfarm.club/api/user/${user?.id}/xp/${amount}`);
               // Отправляем запрос на сервер для обновления множителя
-      const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
-        coins: user.coins
-      });
-      console.log(response1)
+      // const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
+      //   coins: user.coins
+      // });
+      // console.log(response1)
       } catch (error) {
         console.error('Error updating XP:', error);
       }
