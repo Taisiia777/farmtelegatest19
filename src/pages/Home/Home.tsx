@@ -734,6 +734,7 @@ const Home = () => {
             const response = await fetch(`https://coinfarm.club/api/user/${user.id}/fertilizers`);
             const data = await response.json();
             setUserFertilizers(data);
+            setIsProcessing(false); // Разблокируем кнопку
           } catch (error) {
             console.error("Error fetching user boosters:", error);
           }
@@ -960,7 +961,6 @@ const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
   coinsPerHour: coinsPerHour + earning
 }).then(() => {
   setIsCoinPurchased(!isCoinPurchased); // Обновляем состояние
-  setIsProcessing(false); // Разблокируем кнопку
   dispatch(closeFertilizersBuyPopup()); // Закрываем попап только после завершения запроса
 });
 
