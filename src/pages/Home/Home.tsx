@@ -1252,7 +1252,7 @@ console.log(response1)
   
     const syncDisplayEarningsWithServer = async (earnings: number) => {
       try {
-        await axios.put(`https://coinfarm.club/api/user/${user.id}`, { xp: earnings });
+        await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${earnings}`);
         console.log("Synchronized earnings with server:", earnings);
       } catch (error) {
         console.error("Error syncing displayEarnings:", error);
