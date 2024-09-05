@@ -1228,13 +1228,7 @@ console.log(response1)
             xp: xpToSend,
           });
     
-          if (response.status === 200) {
-            console.log('Данные успешно обновлены на сервере:', response.data);
-          } else {
-            // Если сервер вернул ошибку, возвращаем старое состояние
-            console.error('Ошибка обновления данных на сервере');
-            dispatch(setUser(previousUserState)); // Откатываем изменения, если что-то пошло не так
-          }
+         console.log(response)
         } catch (error) {
           console.error("Ошибка обновления баланса пользователя:", error);
           // Откат состояния в случае ошибки
