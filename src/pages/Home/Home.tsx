@@ -11,7 +11,7 @@ import { Routes } from "../../routes/routes";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
 import { retrieveLaunchParams } from '@tma.js/sdk';
-import { calculateGrassEarnings, growAllToMax, } from "../../store/reducers/growthStages";
+import {  growAllToMax, } from "../../store/reducers/growthStages";
 import axios from "axios";
 import classNames from "classnames/bind";
 import useWindowSize from "../../hooks/useWindowSize";
@@ -191,8 +191,8 @@ const Home = () => {
    const [isRain, setIsRain] = useState(true); // Состояние для проверки наличия награды "first"
    const [multiplier, setMultiplier] = useState(0); // Состояние для проверки наличия награды "first"
    const [mostExpensiveCoinName, setMostExpensiveCoinName] = useState<string | null>(null);
-   let initialGrassEarnings = calculateGrassEarnings(blocks, user?.coinsPerHour, user?.incomeMultiplier, user?.level);
-   const [currentGrassEarnings, setCurrentGrassEarnings] = useState(initialGrassEarnings);
+  //  let initialGrassEarnings = calculateGrassEarnings(blocks, user?.coinsPerHour, user?.incomeMultiplier, user?.level);
+  //  const [currentGrassEarnings, setCurrentGrassEarnings] = useState(initialGrassEarnings);
    const [displayEarnings, setDisplayEarnings] = useState(0);
    const [userXp, setUserXp] = useState(0); // Состояние для проверки наличия награды "first"
    const [isXpFetched, setIsXpFetched] = useState(false);
@@ -212,7 +212,6 @@ const Home = () => {
   // useHarvestAllWheat()
   console.log(mostExpensiveCoinName)
    console.log(rewards)
-   console.log(currentGrassEarnings)
    console.log(userXp)
    console.log(grassTotal)
    console.log(multiplier)
@@ -1201,9 +1200,7 @@ console.log(response1)
         // Получить количество блоков с несрезанными стадиями
         const nonFirstStageCount = getNonFirstStageCount(blocks);
     
-        console.log("Non-first stage count:", nonFirstStageCount);
-        console.log("Current grass earnings:", currentGrassEarnings);
-        console.log("Harvested count:", harvestedCount);
+
         setCanShowFinger(false);
         if(user?.totalEarnings <= 3000 && !showGuide){
           dispatch(openGuide());
@@ -1212,7 +1209,7 @@ console.log(response1)
 
         if (nonFirstStageCount > 0) {
           let totalDecrementAmount = 0;
-          let newGrassEarnings = currentGrassEarnings;
+          let newGrassEarnings = displayEarnings;
     
           for (let i = 0; i < harvestedCount; i++) {
             const decrementAmount = newGrassEarnings / nonFirstStageCount;
@@ -1222,7 +1219,6 @@ console.log(response1)
             newGrassEarnings = Math.max(newGrassEarnings - decrementAmount, 0);
           }
     
-          setCurrentGrassEarnings(newGrassEarnings);
           setDisplayEarnings(prev => {
             let newDecrementAmount = 0;
             let newEarnings = prev;
@@ -1243,7 +1239,7 @@ console.log(response1)
           setDisplayEarnings(prev => {
             const currentEarnings = prev;
             updateCoins(currentEarnings);  // Начислить текущее значение прогресбара пользователю
-            setCurrentGrassEarnings(0);
+            setDisplayEarnings(0);
             return 0;
           });
         }
@@ -1254,7 +1250,7 @@ console.log(response1)
       return () => {
         document.removeEventListener("harvest", handleHarvest);
       };
-    }, [blocks, currentGrassEarnings, user]);
+    }, [blocks, displayEarnings, user]);
     
     
     
@@ -1394,7 +1390,6 @@ console.log(response1)
          const userLeagueIndex = user ? user.level : 0;
          const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
          const calculatedInHour = user?.coinsPerHour * userHarvestMultiplier;
-          setCurrentGrassEarnings(calculatedInHour*user?.incomeMultiplier);
           setDisplayEarnings(calculatedInHour * user?.incomeMultiplier);
           dispatch(growAllToMax());
           setEnergyPopupOpen(false);
