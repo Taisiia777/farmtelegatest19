@@ -1251,7 +1251,9 @@ console.log(response1)
     //     document.removeEventListener("harvest", handleHarvest);
     //   };
     // }, [blocks, displayEarnings, user]);
-    
+
+
+
     useEffect(() => {
       const handleHarvest = (event: Event) => {
         const customEvent = event as CustomEvent<number>;
@@ -1267,8 +1269,8 @@ console.log(response1)
           setShowGuide(true);
         }
     
-        // Если есть блоки с несрезанными стадиями
         if (nonFirstStageCount > 0 && harvestedCount > 0) {
+          // Если есть блоки для сбора
           const decrementPerBlock = displayEarnings / nonFirstStageCount;
     
           // Общая сумма, которую нужно вычесть за собранные блоки
@@ -1281,13 +1283,10 @@ console.log(response1)
           updateCoins(totalDecrementAmount);
     
           console.log("Total decrement amount:", totalDecrementAmount);
-        } else {
-          // Если все блоки срезаны, начисляем оставшиеся монеты и обнуляем прогресс
-          setDisplayEarnings(prev => {
-            const currentEarnings = prev;
-            updateCoins(currentEarnings);  // Начисляем все оставшиеся монеты
-            return 0;
-          });
+        } else if (nonFirstStageCount === 0 && harvestedCount > 0) {
+          // Если все стадии срезаны, но harvestCount > 0
+          setDisplayEarnings(0);
+          updateCoins(displayEarnings); // Начисляем текущее значение пользователю
         }
       };
     
@@ -1297,6 +1296,7 @@ console.log(response1)
         document.removeEventListener("harvest", handleHarvest);
       };
     }, [blocks, displayEarnings, user]);
+    
     
     
   
