@@ -1307,7 +1307,6 @@ console.log(response1)
     };
     const updateDisplayEarnings = (newDisplayEarnings: number) => {
       setDisplayEarnings(newDisplayEarnings);
-      alert(JSON.stringify(user))
       dispatch(setUser({ ...user, xp: newDisplayEarnings }));  // сохраняем в Redux
       syncDisplayEarningsWithServer(newDisplayEarnings);  // отправляем на сервер
     };
