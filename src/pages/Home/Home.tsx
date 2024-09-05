@@ -1169,7 +1169,8 @@ console.log(response1)
           const xpToSend = newXp > 0 ? newXp : 0;
           
           
-        
+          alert(user.coins + amount)
+
           // Локальное обновление состояния пользователя
           dispatch(
             setUser({
@@ -1178,10 +1179,12 @@ console.log(response1)
               totalEarnings: user.totalEarnings + amount, // обновляем общий заработок
             })
           );
+          alert(user.coins)
+
           const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
             coins: user.coins
           });
-          alert(JSON.stringify(response1))
+          console.log(response1)
           await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${xpToSend}`);
 
         } catch (error) {
