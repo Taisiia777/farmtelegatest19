@@ -1163,7 +1163,14 @@ console.log(response1)
       return blocks.filter(block => block.stage !== "first").length;
     };
     
-
+    useEffect(() => {
+      if (user && user.coinsPerHour && leagues[level]) {
+        const calculatedEarnings = user.coinsPerHour * user.incomeMultiplier * leagues[level].harvest;
+        const maxEarnings = grassTotal * multiplier;
+        setDisplayEarnings(Math.min(calculatedEarnings, maxEarnings));
+      }
+    }, [user, level, grassTotal, multiplier]);
+    
     
     useEffect(() => {
       const handleHarvest = () => {
@@ -1393,7 +1400,7 @@ console.log(response1)
          const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
          const calculatedInHour = user?.coinsPerHour * userHarvestMultiplier;
           setCurrentGrassEarnings(calculatedInHour*user?.incomeMultiplier);
-          setDisplayEarnings(calculatedInHour*user?.incomeMultiplier);
+          setDisplayEarnings(calculatedInHour * user?.incomeMultiplier);
           dispatch(growAllToMax());
           setEnergyPopupOpen(false);
           setIsRainAnim(true);
