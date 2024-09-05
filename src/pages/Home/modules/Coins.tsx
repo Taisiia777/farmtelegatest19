@@ -85,26 +85,30 @@ const Coins = ({ quantity }: CoinsProps) => {
     }
   }, [coins]);
 
+  // return (
+  //   <div className={cn("coins")}>
+  //     <div className={cn("coins__video-wrap")}>
+  //     {mostExpensiveCoinName && <img src={`video/${mostExpensiveCoinName}.gif`} alt="I'm a gif" />}
+  //     </div>
+  //     <span className="textShadow">{quantity}</span>
+  //   </div>
+  // );
 
   const formatLargeNumber = (num: number, divisor: number, suffix: string): string => {
-    const result = num / divisor;
-    // Если дробная часть равна 0, отображаем целое число, иначе 3 знака после запятой
-    return result % 1 === 0
-      ? result.toFixed(0) + suffix // Целое число без десятичных
-      : result.toFixed(3) + suffix; // Три знака после запятой
+    return num % divisor === 0 
+      ? (num / divisor).toFixed(0) + suffix // Без точки, если делится без остатка
+      : (num / divisor).toFixed(3) + suffix; // С дробной частью, если остаток есть
   };
   
   // Преобразование quantity к числу
   const numericQuantity = parseFloat(quantity);
   
   // Форматирование total
-  const profileFormattedPrice = numericQuantity >= 1000000000
+  const profileFormattedPrice = numericQuantity >= 1000000000 
     ? formatLargeNumber(numericQuantity, 1000000000, 'B')
-    : numericQuantity >= 1000000
+    : numericQuantity >= 1000000 
     ? formatLargeNumber(numericQuantity, 1000000, 'M')
     : numericQuantity.toString();
-  
-  
   
   return (
     <div className={cn("coins")}>
