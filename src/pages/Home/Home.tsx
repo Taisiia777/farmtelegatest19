@@ -1169,7 +1169,7 @@ console.log(response1)
           const xpToSend = newXp > 0 ? newXp : 0;
           
           
-          alert(user.coins + amount)
+          alert(typeof(user.coins + amount))
 
           // Локальное обновление состояния пользователя
           dispatch(
