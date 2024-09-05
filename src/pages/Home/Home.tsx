@@ -941,6 +941,8 @@ const Home = () => {
 
 
       async function giveFertilizers() {
+        setIsProcessing(true); // Блокируем кнопку и меняем текст на "Loading..."
+
         try {
           const response = await axios.post(`https://coinfarm.club/api/fertilizers/give/${user.id}/${fertilizersState.info.fertilizersId}`);
           // dispatch(setUser({ ...user, coins: user.coins - fertilizersState.info.price, coinsPerHour: user.coinsPerHour + fertilizersState.info.earning}));
@@ -1573,52 +1575,64 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
     </Popup>
 
            {/* Fertilizers popup */}
-           <Popup
-      borderlabel={fertilizersState.info.name}
-      isOpen={fertilizersState.isOpen}
-      onClose={() => dispatch(closeFertilizersBuyPopup())}
-      ref={fertilizersBuyRef}
-    >
-      <div className={cn("popup__body")}>
-        <div className={cn("popup__bg-lightnings")}>
-          {/* Изображения молний */}
-        </div>
+          <Popup
+               borderlabel={fertilizersState.info.name}
+               isOpen={fertilizersState.isOpen}
+               onClose={() => dispatch(closeFertilizersBuyPopup())}
+               ref={fertilizersBuyRef}>
+               <div className={cn("popup__body")}>
+                  <div className={cn("popup__bg-lightnings")}>
+                     <img src="img/global/lightning.svg" alt="energy" />
+                     <img src="img/global/lightning.svg" alt="energy" />
+                     <img src="img/global/lightning.svg" alt="energy" />
+                     <img src="img/global/lightning.svg" alt="energy" />
+                     <img src="img/global/lightning.svg" alt="energy" />
+                     <img src="img/global/lightning.svg" alt="energy" />
+                  </div>
 
-        <img
-          src={`img/fertilizers/${fertilizersState.info.name}.svg`}
-          onError={(e) => {
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = `img/fertilizers/${fertilizersState.info.name}.png`;
-          }}
-          className={cn("popup__icon", "_boost")}
-        />
+                  <img
+  src={`img/fertilizers/${fertilizersState.info.name}.svg`}
+  onError={(e) => {
+    e.currentTarget.onerror = null; // предотвращаем бесконечный цикл в случае отсутствия обоих форматов
+    e.currentTarget.src = `img/fertilizers/${fertilizersState.info.name}.png`;
+  }}
+  className={cn("popup__icon", "_boost")}
+/>
 
-        <div className={cn("popup__bottom")}>
-          <div className={cn("popup__earning")}>
-            <span>+{fertilizersState.info.earning} / 1{t('h')}</span>
-          </div>
 
-          <Button
-            className={cn("popup__btn")}
-            size={width > 380 ? "big" : "normal"}
-            onClick={giveFertilizers} // Вызываем функцию для выполнения запроса
-            disabled={isProcessing} // Блокируем кнопку, если идет запрос
-          >
-            <CoinWhiteBg
-              iconName="Bitcoin"
-              size={width > 380 ? "normall" : "small"}
-            />
-            <span>{fertFormattedPrice}</span>
-          </Button>
+                  <div className={cn("popup__bottom")}>
+                     <div className={cn("popup__earning")}>
+                        <span>+{fertilizersState.info.earning} / 1{t('h')}</span>
+                     </div>
 
-          <img
-            src={`img/pages/home/money1.svg`}
-            className={cn("popup__money-anim")}
-            ref={fertilizersMoneyAnimRef}
-          />
-        </div>
-      </div>
-    </Popup>
+                     <Button
+                        className={cn("popup__btn")}
+                        size={width > 380 ? "big" : "normal"}
+                        disabled={isProcessing} // Блокируем кнопку, если идет запрос
+                        onClick={() =>{
+                           giveFertilizers()
+                           buy(fertilizersMoneyAnimRef, () =>
+                              dispatch(closeFertilizersBuyPopup())
+                           )
+                        }
+
+                        }>
+                        <CoinWhiteBg
+                           iconName="Bitcoin"
+                           size={width > 380 ? "normall" : "small"}
+                        />
+                        <span>{isProcessing ? 'Loading...' : fertFormattedPrice}</span> {/* Изменяем текст кнопки */}
+
+                     </Button>
+                     <img
+                        // src={`img/pages/home/${mostExpensiveCoinName}/money.svg`}
+                        src={`img/pages/home/money1.svg`}
+                        className={cn("popup__money-anim")}
+                        ref={fertilizersMoneyAnimRef}
+                     />
+                  </div>
+               </div>
+            </Popup>
 
 
 
