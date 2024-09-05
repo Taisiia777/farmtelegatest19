@@ -194,7 +194,6 @@ const Home = () => {
   //  let initialGrassEarnings = calculateGrassEarnings(blocks, user?.coinsPerHour, user?.incomeMultiplier, user?.level);
   //  const [currentGrassEarnings, setCurrentGrassEarnings] = useState(initialGrassEarnings);
    const [displayEarnings, setDisplayEarnings] = useState(0);
-   const [userXp, setUserXp] = useState(0); // Состояние для проверки наличия награды "first"
    const [isXpFetched, setIsXpFetched] = useState(false);
    const [isRainAnim, setIsRainAnim] = useState(false);
    const [currentRainProgress, setCurrentRainProgress] = useState(0);
@@ -212,7 +211,6 @@ const Home = () => {
   // useHarvestAllWheat()
   console.log(mostExpensiveCoinName)
    console.log(rewards)
-   console.log(userXp)
    console.log(grassTotal)
    console.log(multiplier)
    // Состояние прелоудера
@@ -1252,31 +1250,30 @@ console.log(response1)
   
 
     
-    const updateXP = async (amount: number) => {
-      try {
-        await axios.patch(`https://coinfarm.club/api/user/${user?.id}/xp/${amount}`);
-              // Отправляем запрос на сервер для обновления множителя
-      // const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
-      //   coins: user.coins
-      // });
-      // console.log(response1)
-      } catch (error) {
-        console.error('Error updating XP:', error);
-      }
-    };
+
   
     // Этот useEffect устанавливает начальное значение displayEarnings из user.xp при первом рендере
     useEffect(() => {
       if (user?.xp && !isXpFetched) {
-        setTimeout(() => {
-          setDisplayEarnings(user.xp);
-          setIsXpFetched(true);
-        }, 100); // Задержка, имитирующая время отображения алерта
-       
+        // Инициализируем displayEarnings значением xp, если оно доступно
+        setDisplayEarnings(user.xp);
+        setIsXpFetched(true);
       }
-    }, [blocks, navigate]);
+    }, [user]);
   
+    const syncDisplayEarningsWithServer = async (earnings: number) => {
+      try {
+        await axios.put(`https://coinfarm.club/api/user/${user.id}`, { xp: earnings });
+      } catch (error) {
+        console.error("Error syncing displayEarnings:", error);
+      }
+    };
     
+    const updateDisplayEarnings = (newDisplayEarnings: number) => {
+      setDisplayEarnings(newDisplayEarnings);
+      dispatch(setUser({ ...user, xp: newDisplayEarnings }));  // сохраняем локально
+      syncDisplayEarningsWithServer(newDisplayEarnings);  // синхронизируем с сервером
+    };
 
     useEffect(() => {
       const handleVisibilityChange = () => {
@@ -1289,23 +1286,23 @@ console.log(response1)
   
       const interval = setInterval(() => {
         const now = Date.now();
-        const elapsed = (now - lastUpdateRef.current) / 1000; // время в секундах
+        const elapsed = (now - lastUpdateRef.current) / 1000; // Время в секундах
         lastUpdateRef.current = now;
-        const userLeagueIndex = user ? user.level : 0;
-        const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
-        const calculatedInHour = user?.coinsPerHour * userHarvestMultiplier;
+        const calculatedInHour = user?.coinsPerHour * leagues[user.level].harvest;
+    
+        // Рассчитываем прирост заработка за прошедшее время
+        const earningsIncrement = (calculatedInHour / 3600 || 0) * elapsed;
+    
+        // Обновляем значение и сохраняем его
         setDisplayEarnings(prevDisplayEarnings => {
-          const earningsIncrement = (calculatedInHour / 3600 || 0) * elapsed;
           const newDisplayEarnings = prevDisplayEarnings + earningsIncrement;
           const maxEarnings = calculatedInHour * user?.incomeMultiplier;
-  
+    
           if (newDisplayEarnings <= maxEarnings) {
-            updateXP(newDisplayEarnings);
-            setUserXp(newDisplayEarnings);
+            updateDisplayEarnings(newDisplayEarnings);
             return newDisplayEarnings;
           } else {
-            updateXP(maxEarnings);
-            setUserXp(maxEarnings);
+            updateDisplayEarnings(maxEarnings);
             return maxEarnings;
           }
         });
