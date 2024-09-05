@@ -1293,13 +1293,31 @@ console.log(response1)
       }
     };
     
-    const updateDisplayEarnings = (newDisplayEarnings: number) => {
-      setDisplayEarnings(newDisplayEarnings);
-      alert(JSON.stringify(user))
-      dispatch(setUser({ ...user, xp: newDisplayEarnings }));  // сохраняем в Redux
-      syncDisplayEarningsWithServer(newDisplayEarnings);  // отправляем на сервер
-    };
+    // const updateDisplayEarnings = (newDisplayEarnings: number) => {
+    //   setDisplayEarnings(newDisplayEarnings);
+    //   alert(JSON.stringify(user))
+    //   dispatch(setUser({ ...user, xp: newDisplayEarnings }));  // сохраняем в Redux
+    //   syncDisplayEarningsWithServer(newDisplayEarnings);  // отправляем на сервер
+    // };
     
+    const updateDisplayEarnings = (newDisplayEarnings: number) => {
+      // Получаем все актуальные данные пользователя
+      const updatedUser = {
+        ...user, 
+        xp: newDisplayEarnings,  // Обновляем xp (заработок)
+        coins: user.coins,       // Сохраняем текущее количество монет
+        totalEarnings: user.totalEarnings // Сохраняем общий заработок
+      };
+    
+      // Обновляем локальное состояние
+      setDisplayEarnings(newDisplayEarnings);
+    
+      // Обновляем Redux с актуальными данными пользователя
+      dispatch(setUser(updatedUser));
+    
+      // Отправляем обновление на сервер
+      syncDisplayEarningsWithServer(newDisplayEarnings);
+    };
     
     useEffect(() => {
       if (user?.xp && !isXpFetched) {
