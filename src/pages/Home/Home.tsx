@@ -214,6 +214,8 @@ const Home = () => {
    console.log(rewards)
    console.log(currentGrassEarnings)
    console.log(userXp)
+   console.log(grassTotal)
+   console.log(multiplier)
    // Состояние прелоудера
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
 
@@ -1491,7 +1493,7 @@ console.log(response1)
                   <Energy
                      total={user?.coinsPerHour*user?.incomeMultiplier*leagues[level].harvest}
                      hours={user?.incomeMultiplier}
-                     current={displayEarnings<=grassTotal*multiplier? Math.round(displayEarnings) : grassTotal*multiplier}
+                     current={Math.round(displayEarnings)}
                      onClickProgresbarHarvest={
                       () => {
                         setBoostPopupOpen(true);
