@@ -17,7 +17,7 @@ import classNames from "classnames/bind";
 import useWindowSize from "../../hooks/useWindowSize";
 import { setUserCoins1 } from '../../store/reducers/userCoinsSlice';
 import RainAnimation from './modules/RainAnimation';
-import QRCodeComponent from './QRCodeComponent';
+// import QRCodeComponent from './QRCodeComponent';
 import { openGuide } from "../../store/reducers/guide";
 import { useOutletContext } from 'react-router-dom';
 // import useWheatTrunctaion from "./hooks/useWheatTrunctation";
@@ -201,7 +201,7 @@ const Home = () => {
    const [tasks, setTasks] = useState<Task[]>([]);
    const [rainInterval, setRainInterval] = useState(0);
    const lastUpdateRef = useRef(Date.now());
-   const [showQRCode, setShowQRCode] = useState(false);
+  //  const [showQRCode, setShowQRCode] = useState(false);
    const [showGuide, setShowGuide] = useState(false);
    const { friends } = useOutletContext<OutletContext>();
    const [isBoosterPurchased, setIsBoosterPurchased] = useState(false);
@@ -351,27 +351,17 @@ const Home = () => {
       }, 500);
    }
 
-   useEffect(() => {
-    const checkIfDesktop = () => {
-      const userAgent = navigator.userAgent;
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-      setShowQRCode(!isMobile);
-    };
+  //  useEffect(() => {
+  //   const checkIfDesktop = () => {
+  //     const userAgent = navigator.userAgent;
+  //     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+  //     setShowQRCode(!isMobile);
+  //   };
   
-    checkIfDesktop();
-  }, []);
+  //   checkIfDesktop();
+  // }, []);
   
 
-  //  const fetchUserReferralsCount = async (userId: number) => {
-  //   try {
-  //     const response = await fetch(`https://coinfarm.club/api/user/${userId}/referrals`);
-  //     const data = await response.json();
-  //     return data.length;
-  //   } catch (error) {
-  //     console.error('Error fetching user referrals:', error);
-  //     return 0;
-  //   }
-  // };
 
   useEffect(() => {
     
@@ -1295,8 +1285,7 @@ console.log(response1)
         const latestRainReward = rainRewards[rainRewards.length - 1];
         const rewardTime = new Date(latestRainReward.description);
         const currentTime = new Date();
-        // const timeDifference = (currentTime.getTime() - rewardTime.getTime()) / (1000 * 60 * 60); // in hours
-        const timeDifference = (currentTime.getTime() - rewardTime.getTime()) / (1000); // in hours
+        const timeDifference = (currentTime.getTime() - rewardTime.getTime()) / (1000 * 60 * 60); // in hours
 
         // Устанавливаем прогресс до следующего дождя
         setCurrentRainProgress(timeDifference);
@@ -1397,8 +1386,8 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
   
    return (
       <>
-       <QRCodeComponent />
-       {!showQRCode && (
+       {/* <QRCodeComponent /> */}
+       {!false && (
  <>
 
  {/* { isRain && <Clouds
