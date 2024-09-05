@@ -1428,7 +1428,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                   nickname={nickname.toUpperCase()}
                   // imgSrc={imgSrc}
                   />
-               <Coins quantity={Math.round(user?.coins || 0).toString()} />
+               <Coins quantity={user?.coins.toString()} />
             </div>
 
             {!isPopupOpen && (

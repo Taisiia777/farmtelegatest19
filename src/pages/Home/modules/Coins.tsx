@@ -85,21 +85,13 @@ const Coins = ({ quantity }: CoinsProps) => {
     }
   }, [coins]);
 
-  // return (
-  //   <div className={cn("coins")}>
-  //     <div className={cn("coins__video-wrap")}>
-  //     {mostExpensiveCoinName && <img src={`video/${mostExpensiveCoinName}.gif`} alt="I'm a gif" />}
-  //     </div>
-  //     <span className="textShadow">{quantity}</span>
-  //   </div>
-  // );
 
   const formatLargeNumber = (num: number, divisor: number, suffix: string): string => {
     const result = num / divisor;
-    // Проверяем, равна ли тысячная часть нулю
+    // Если дробная часть равна 0, отображаем целое число, иначе 3 знака после запятой
     return result % 1 === 0
-      ? result.toFixed(0) + suffix // Без дробной части
-      : result.toFixed(3) + suffix; // С дробной частью
+      ? result.toFixed(0) + suffix // Целое число без десятичных
+      : result.toFixed(3) + suffix; // Три знака после запятой
   };
   
   // Преобразование quantity к числу
@@ -111,6 +103,7 @@ const Coins = ({ quantity }: CoinsProps) => {
     : numericQuantity >= 1000000
     ? formatLargeNumber(numericQuantity, 1000000, 'M')
     : numericQuantity.toString();
+  
   
   
   return (
