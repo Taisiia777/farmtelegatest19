@@ -1179,8 +1179,13 @@ console.log(response1)
           );
     
           // Теперь используем обновленные значения для отправки на сервер
-          await axios.patch(`https://coinfarm.club/api/user/${user.id}/earn/${updatedCoins}`)
+          const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
+            coins: Number(updatedCoins),
+            totalEarnings: Number(updatedTotalEarnings),
+
+          });
     
+          console.log('Server response:', response1);
     
           // Обновляем XP на сервере
           await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${xpToSend}`);
@@ -1248,7 +1253,7 @@ console.log(response1)
   
     const syncDisplayEarningsWithServer = async (earnings: number) => {
       try {
-        await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${earnings}`);
+        await axios.put(`https://coinfarm.club/api/user/${user.id}`, { xp: earnings, coins: user.coins, totalEarnings: user.totalEarnings });
         console.log("Synchronized earnings with server:", earnings);
       } catch (error) {
         console.error("Error syncing displayEarnings:", error);
@@ -1308,67 +1313,7 @@ console.log(response1)
     }, [user?.coinsPerHour, user?.incomeMultiplier]);
         
   
-    // // Этот useEffect устанавливает начальное значение displayEarnings из user.xp при первом рендере
-    // useEffect(() => {
-    //   if (user?.xp && !isXpFetched) {
-    //     // Инициализируем displayEarnings значением xp, если оно доступно
-    //     setDisplayEarnings(user.xp);
-    //     setIsXpFetched(true);
-    //   }
-    // }, [user]);
-  
-    // const syncDisplayEarningsWithServer = async (earnings: number) => {
-    //   try {
-    //     await axios.put(`https://coinfarm.club/api/user/${user.id}`, { xp: earnings });
-    //   } catch (error) {
-    //     console.error("Error syncing displayEarnings:", error);
-    //   }
-    // };
-    
-    // const updateDisplayEarnings = (newDisplayEarnings: number) => {
-    //   setDisplayEarnings(newDisplayEarnings);
-    //   dispatch(setUser({ ...user, xp: newDisplayEarnings }));  // сохраняем локально
-    //   syncDisplayEarningsWithServer(newDisplayEarnings);  // синхронизируем с сервером
-    // };
 
-    // useEffect(() => {
-    //   const handleVisibilityChange = () => {
-    //     if (!document.hidden) {
-    //       lastUpdateRef.current = Date.now();
-    //     }
-    //   };
-  
-    //   document.addEventListener('visibilitychange', handleVisibilityChange);
-  
-    //   const interval = setInterval(() => {
-    //     const now = Date.now();
-    //     const elapsed = (now - lastUpdateRef.current) / 1000; // Время в секундах
-    //     lastUpdateRef.current = now;
-    //     const calculatedInHour = user?.coinsPerHour * leagues[user.level].harvest;
-    
-    //     // Рассчитываем прирост заработка за прошедшее время
-    //     const earningsIncrement = (calculatedInHour / 3600 || 0) * elapsed;
-    
-    //     // Обновляем значение и сохраняем его
-    //     setDisplayEarnings(prevDisplayEarnings => {
-    //       const newDisplayEarnings = prevDisplayEarnings + earningsIncrement;
-    //       const maxEarnings = calculatedInHour * user?.incomeMultiplier;
-    
-    //       if (newDisplayEarnings <= maxEarnings) {
-    //         updateDisplayEarnings(newDisplayEarnings);
-    //         return newDisplayEarnings;
-    //       } else {
-    //         updateDisplayEarnings(maxEarnings);
-    //         return maxEarnings;
-    //       }
-    //     });
-    //   }, 3000);
-  
-    //   return () => {
-    //     clearInterval(interval);
-    //     document.removeEventListener('visibilitychange', handleVisibilityChange);
-    //   };
-    // }, [user?.coinsPerHour, user?.incomeMultiplier]);
   
     useEffect(() => {
         const fetchRewards = async () => {
