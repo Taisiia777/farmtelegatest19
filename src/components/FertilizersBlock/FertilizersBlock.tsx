@@ -120,7 +120,7 @@ const formattedIncome = newEarning >= 1000000
         </div>
       </div>
       <div className={cn("coinBlock__right")} id="buyFertilizers">
-        {canAfford ? (
+        {/* {canAfford ? (
           <Button
           className={cn("coinBlock__price")}
           onClick={openFertilizersBuyPopup}
@@ -136,6 +136,32 @@ const formattedIncome = newEarning >= 1000000
           <CoinWhiteBg size="small" iconName={"Bitcoin"} />
           <span>{formattedPrice}</span>
         </Button>
+        )} */}
+         {level >= 50 ? (
+          // Если уровень 50, блокируем кнопку и пишем "max"
+          <Button
+            className={cn("coinBlock__price")}
+            disabled={true} // Блокируем кнопку
+          >
+            <CoinWhiteBg size="small" iconName={"Bitcoin"} />
+            <span>max</span>
+          </Button>
+        ) : canAfford ? (
+          <Button
+            className={cn("coinBlock__price")}
+            onClick={openFertilizersBuyPopup}
+          >
+            <CoinWhiteBg size="small" iconName={"Bitcoin"} />
+            <span>{formattedPrice}</span>
+          </Button>
+        ) : (
+          <Button
+            className={cn("coinBlock__price")}
+            disabled={!canAfford} // Делаем кнопку неактивной, если монет недостаточно
+          >
+            <CoinWhiteBg size="small" iconName={"Bitcoin"} />
+            <span>{formattedPrice}</span>
+          </Button>
         )}
       </div>
     </div>

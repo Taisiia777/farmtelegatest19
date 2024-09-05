@@ -95,20 +95,23 @@ const Coins = ({ quantity }: CoinsProps) => {
   // );
 
   const formatLargeNumber = (num: number, divisor: number, suffix: string): string => {
-    return num % divisor === 0 
-      ? (num / divisor).toFixed(0) + suffix // Без точки, если делится без остатка
-      : (num / divisor).toFixed(3) + suffix; // С дробной частью, если остаток есть
+    const result = num / divisor;
+    // Проверяем, равна ли тысячная часть нулю
+    return result % 1 === 0
+      ? result.toFixed(0) + suffix // Без дробной части
+      : result.toFixed(3) + suffix; // С дробной частью
   };
   
   // Преобразование quantity к числу
   const numericQuantity = parseFloat(quantity);
   
   // Форматирование total
-  const profileFormattedPrice = numericQuantity >= 1000000000 
+  const profileFormattedPrice = numericQuantity >= 1000000000
     ? formatLargeNumber(numericQuantity, 1000000000, 'B')
-    : numericQuantity >= 1000000 
+    : numericQuantity >= 1000000
     ? formatLargeNumber(numericQuantity, 1000000, 'M')
     : numericQuantity.toString();
+  
   
   return (
     <div className={cn("coins")}>
