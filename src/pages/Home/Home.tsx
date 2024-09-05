@@ -17,7 +17,7 @@ import classNames from "classnames/bind";
 import useWindowSize from "../../hooks/useWindowSize";
 import { setUserCoins1 } from '../../store/reducers/userCoinsSlice';
 import RainAnimation from './modules/RainAnimation';
-import QRCodeComponent from './QRCodeComponent';
+// import QRCodeComponent from './QRCodeComponent';
 import { openGuide } from "../../store/reducers/guide";
 import { useOutletContext } from 'react-router-dom';
 // import useWheatTrunctaion from "./hooks/useWheatTrunctation";
@@ -202,7 +202,7 @@ const Home = () => {
    const [tasks, setTasks] = useState<Task[]>([]);
    const [rainInterval, setRainInterval] = useState(0);
    const lastUpdateRef = useRef(Date.now());
-   const [showQRCode, setShowQRCode] = useState(false);
+  //  const [showQRCode, setShowQRCode] = useState(false);
    const [showGuide, setShowGuide] = useState(false);
    const { friends } = useOutletContext<OutletContext>();
    const [isBoosterPurchased, setIsBoosterPurchased] = useState(false);
@@ -353,15 +353,15 @@ const Home = () => {
       }, 500);
    }
 
-   useEffect(() => {
-    const checkIfDesktop = () => {
-      const userAgent = navigator.userAgent;
-      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-      setShowQRCode(!isMobile);
-    };
+  //  useEffect(() => {
+  //   const checkIfDesktop = () => {
+  //     const userAgent = navigator.userAgent;
+  //     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+  //     setShowQRCode(!isMobile);
+  //   };
   
-    checkIfDesktop();
-  }, []);
+  //   checkIfDesktop();
+  // }, []);
   
 
   //  const fetchUserReferralsCount = async (userId: number) => {
@@ -1424,8 +1424,8 @@ console.log(response1)
   
    return (
       <>
-       <QRCodeComponent />
-       {!showQRCode && (
+       {/* <QRCodeComponent /> */}
+       {!false && (
  <>
 
  {/* { isRain && <Clouds
