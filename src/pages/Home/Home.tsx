@@ -1251,6 +1251,7 @@ console.log(response1)
         const customEvent = event as CustomEvent<number>;
         const harvestedCount = customEvent.detail;
     
+        // Получить количество блоков с несрезанными стадиями
         const nonFirstStageCount = getNonFirstStageCount(blocks);
     
         setCanShowFinger(false);
@@ -1261,17 +1262,23 @@ console.log(response1)
         }
     
         if (nonFirstStageCount > 0 && harvestedCount > 0) {
+          // Если есть блоки для сбора
           const decrementPerBlock = displayEarnings / nonFirstStageCount;
+    
+          // Общая сумма, которую нужно вычесть за собранные блоки
           const totalDecrementAmount = Math.min(decrementPerBlock * harvestedCount, displayEarnings);
     
-          setDisplayEarnings(prev => {
-            const newEarnings = Math.max(prev - totalDecrementAmount, 0);
-            updateCoins(totalDecrementAmount);  // Обновляем локально и на сервере
-            return newEarnings;
-          });
+          // Обновляем заработок пользователя и начисляем монеты локально
+          const newEarnings = Math.max(displayEarnings - totalDecrementAmount, 0);
+          setDisplayEarnings(newEarnings);  // Сначала обновляем значение прогресса
+    
+          console.log("Total decrement amount:", totalDecrementAmount);
+    
+          updateCoins(totalDecrementAmount);  // Обновляем монеты пользователя
         } else if (nonFirstStageCount === 0 && harvestedCount > 0) {
-          setDisplayEarnings(0);
-          updateCoins(displayEarnings);  // Обновляем локально и на сервере
+          // Если все стадии срезаны, но harvestCount > 0
+          setDisplayEarnings(0);  // Обнуляем значение прогресса
+          updateCoins(displayEarnings);  // Начисляем текущее значение пользователю
         }
       };
     
@@ -1281,6 +1288,7 @@ console.log(response1)
         document.removeEventListener("harvest", handleHarvest);
       };
     }, [blocks, displayEarnings, user]);
+    
     
   
     const syncDisplayEarningsWithServer = async (earnings: number) => {
