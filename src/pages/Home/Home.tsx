@@ -1163,13 +1163,6 @@ console.log(response1)
       return blocks.filter(block => block.stage !== "first").length;
     };
     
-    useEffect(() => {
-      if (user && user.coinsPerHour && leagues[level]) {
-        const calculatedEarnings = user.coinsPerHour * user.incomeMultiplier * leagues[level].harvest;
-        const maxEarnings = grassTotal * multiplier;
-        setDisplayEarnings(Math.min(calculatedEarnings, maxEarnings));
-      }
-    }, [user, level, grassTotal, multiplier]);
     
     
     useEffect(() => {
