@@ -1201,9 +1201,7 @@ console.log(response1)
     const updateCoins = async (amount: number) => {
       if (user) {
         // Создаем копию текущего состояния пользователя до обновления
-        const previousUserState = { ...user }; // Копия состояния пользователя
     
-        try {
           // Обновляем локально XP
           const newXp = user.xp - amount;
           const xpToSend = newXp > 0 ? newXp : 0;
@@ -1229,11 +1227,7 @@ console.log(response1)
           });
     
          console.log(response)
-        } catch (error) {
-          console.error("Ошибка обновления баланса пользователя:", error);
-          // Откат состояния в случае ошибки
-          dispatch(setUser(previousUserState));
-        }
+        
       }
     };
     
