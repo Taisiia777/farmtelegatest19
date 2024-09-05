@@ -955,8 +955,13 @@ const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
 });
 
 console.log(response1)
-
-          setIsCoinPurchased(!isCoinPurchased)
+    // Задержка в 1 секунду перед изменением состояния
+    Promise.resolve()
+      .then(() => new Promise(resolve => setTimeout(resolve, 1000))) // Задержка 1 секунда
+      .then(() => {
+        setIsCoinPurchased(!isCoinPurchased); // Выполняем действие после задержки
+      });
+          // setIsCoinPurchased(!isCoinPurchased)
   
           console.log('Coin given:', response.data);
         } catch (error) {
@@ -991,7 +996,13 @@ console.log(response1)
         coinsPerHour: Number(user.coinsPerHour) + coinsToGive
       });
       console.log(response1)
-        setIsCoinPurchased(!isCoinPurchased)
+          // Задержка в 1 секунду перед изменением состояния
+    Promise.resolve()
+    .then(() => new Promise(resolve => setTimeout(resolve, 1000))) // Задержка 1 секунда
+    .then(() => {
+      setIsCoinPurchased(!isCoinPurchased); // Выполняем действие после задержки
+    });
+        // setIsCoinPurchased(!isCoinPurchased)
 
         console.log('Coin given:', response.data);
       } catch (error) {
@@ -1422,7 +1433,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                   nickname={nickname.toUpperCase()}
                   // imgSrc={imgSrc}
                   />
-               <Coins quantity={user?.coins.toString()} />
+               <Coins quantity={Math.round(user?.coins).toString()} />
             </div>
 
             {!isPopupOpen && (
