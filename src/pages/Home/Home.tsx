@@ -1366,8 +1366,12 @@ console.log(response1)
 // Вспомогательная функция для форматирования чисел
 
 
-const formatLargeNumber = (value: number, divisor: number, suffix: string) => {
-  return (value / divisor).toFixed(0) + suffix;
+const formatLargeNumber = (num: number, divisor: number, suffix: string): string => {
+  const result = num / divisor;
+  // Если дробная часть равна 0, отображаем целое число, иначе 3 знака после запятой
+  return result % 1 === 0
+    ? result.toFixed(0) + suffix // Целое число без десятичных
+    : result.toFixed(3) + suffix; // Три знака после запятой
 };
 
 // Пример использования с форматированием цен для бустеров, монет и удобрений
