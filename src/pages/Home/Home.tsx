@@ -1200,40 +1200,36 @@ console.log(response1)
     
     const updateCoins = async (amount: number) => {
       if (user) {
-        // Обновляем локально XP
-        const newXp = user.xp - amount;
-        const xpToSend = newXp > 0 ? newXp : 0;
+        // Создаем копию текущего состояния пользователя до обновления
     
-        // Рассчитываем новое количество монет
-        const updatedCoins = user.coins + amount;
-        const updatedTotalEarnings = user.totalEarnings + amount;
+          // Обновляем локально XP
+          const newXp = user.xp - amount;
+          const xpToSend = newXp > 0 ? newXp : 0;
     
-        // Обновляем локальное состояние в Redux после успешного ответа сервера
-        try {
+          // Рассчитываем новое количество монет
+          const updatedCoins = user.coins + amount;
+          const updatedTotalEarnings = user.totalEarnings + amount;
+    
+          // Локально обновляем Redux store
+          dispatch(
+            setUser({
+              ...user,
+              coins: updatedCoins,
+              totalEarnings: updatedTotalEarnings,
+            })
+          );
+    
+          // Отправляем обновленные данные на сервер
           const response = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
             coins: updatedCoins,
             totalEarnings: updatedTotalEarnings,
             xp: xpToSend,
           });
     
-          if (response.status === 200) {
-            dispatch(
-              setUser({
-                ...user,
-                coins: updatedCoins,
-                totalEarnings: updatedTotalEarnings,
-              })
-            );
-            console.log('Баланс обновлен на сервере:', response.data);
-          } else {
-            console.error('Ошибка обновления на сервере:', response.data);
-          }
-        } catch (error) {
-          console.error("Ошибка при обновлении монет на сервере:", error);
-        }
+         console.log(response)
+        
       }
     };
-    
     
     
     const getNonFirstStageCount = (blocks: { id: number; stage: TGrowthStage }[]) => {
@@ -1299,6 +1295,7 @@ console.log(response1)
     
     const updateDisplayEarnings = (newDisplayEarnings: number) => {
       setDisplayEarnings(newDisplayEarnings);
+      alert(JSON.stringify(user))
       dispatch(setUser({ ...user, xp: newDisplayEarnings }));  // сохраняем в Redux
       syncDisplayEarningsWithServer(newDisplayEarnings);  // отправляем на сервер
     };
