@@ -1167,27 +1167,30 @@ console.log(response1)
     
           // Проверка перед отправкой
           const xpToSend = newXp > 0 ? newXp : 0;
-          
-          
-          alert(typeof(user.coins + amount))
-
-          // Локальное обновление состояния пользователя
+    
+          // Обновляем локальное состояние пользователя и сохраняем актуальные значения
+          const updatedCoins = user.coins + amount;
+          const updatedTotalEarnings = user.totalEarnings + amount;
+    
           dispatch(
             setUser({
               ...user,  // обновляем текущее состояние, сохраняя старые данные
-              coins: user.coins + amount, // увеличиваем баланс пользователя
-              totalEarnings: user.totalEarnings + amount, // обновляем общий заработок
+              coins: updatedCoins,  // увеличиваем баланс пользователя
+              totalEarnings: updatedTotalEarnings,  // обновляем общий заработок
             })
           );
-
+    
+          // Теперь используем обновленные значения для отправки на сервер
           const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
-            coins: user.coins + amount,
-            totalEarnings: user.totalEarnings + amount, // обновляем общий заработок
-
+            coins: updatedCoins,
+            totalEarnings: updatedTotalEarnings,
           });
-          console.log(response1)
+    
+          console.log('Server response:', response1);
+    
+          // Обновляем XP на сервере
           await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${xpToSend}`);
-
+    
         } catch (error) {
           console.error("Error updating user coins:", error);
         }
@@ -1195,6 +1198,7 @@ console.log(response1)
         console.log("No user or amount is zero"); // Лог для отладки
       }
     };
+    
     
     const getNonFirstStageCount = (blocks: { id: number; stage: TGrowthStage }[]) => {
       return blocks.filter(block => block.stage !== "first").length;
