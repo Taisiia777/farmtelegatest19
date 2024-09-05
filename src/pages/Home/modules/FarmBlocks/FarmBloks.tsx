@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch  } from "react-redux";
 import styles from "./FarmBlocks.module.scss";
 import classNames from "classnames/bind";
+import { useNavigate } from "react-router-dom";
+
 import {
   selectEarthBlock,
   changeGrowthStage,
@@ -34,6 +36,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
   const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
   // const hasSetGrowthStages = useRef(false); // Флаг для отслеживания установки стадии роста
   const [harvestedBlocks, setHarvestedBlocks] = useState<Set<number>>(new Set());
+  const navigate = useNavigate();
 
   useWheatTrunctaion();
 
@@ -61,7 +64,7 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
     if (user && !sessionStorage.getItem('hasSetGrowthStages')) {
       fetchGrowthStages();
     }
-  }, [user, dispatch]);
+  }, [user, dispatch, navigate]);
   // useEffect(() => {
   //   const fetchGrowthStages = async () => {
   //     try {

@@ -11,7 +11,7 @@ import { Routes } from "../../routes/routes";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
 import { retrieveLaunchParams } from '@tma.js/sdk';
-import {  growAllToMax, } from "../../store/reducers/growthStages";
+import { calculateGrassEarnings, growAllToMax, } from "../../store/reducers/growthStages";
 import axios from "axios";
 import classNames from "classnames/bind";
 import useWindowSize from "../../hooks/useWindowSize";
@@ -191,8 +191,8 @@ const Home = () => {
    const [isRain, setIsRain] = useState(true); // Состояние для проверки наличия награды "first"
    const [multiplier, setMultiplier] = useState(0); // Состояние для проверки наличия награды "first"
    const [mostExpensiveCoinName, setMostExpensiveCoinName] = useState<string | null>(null);
-  //  let initialGrassEarnings = calculateGrassEarnings(blocks, user?.coinsPerHour, user?.incomeMultiplier, user?.level);
-   const [currentGrassEarnings, setCurrentGrassEarnings] = useState(0);
+   let initialGrassEarnings = calculateGrassEarnings(blocks, user?.coinsPerHour, user?.incomeMultiplier, user?.level);
+   const [currentGrassEarnings, setCurrentGrassEarnings] = useState(initialGrassEarnings);
    const [displayEarnings, setDisplayEarnings] = useState(0);
    const [userXp, setUserXp] = useState(0); // Состояние для проверки наличия награды "first"
    const [isXpFetched, setIsXpFetched] = useState(false);
