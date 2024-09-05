@@ -1284,40 +1284,36 @@ console.log(response1)
     
     
   
-    const syncDisplayEarningsWithServer = async (earnings: number) => {
+    // const syncDisplayEarningsWithServer = async (earnings: number) => {
+    //   try {
+    //     await axios.put(`https://coinfarm.club/api/user/${user.id}`, { xp: earnings });
+    //     console.log("Synchronized earnings with server:", earnings);
+    //   } catch (error) {
+    //     console.error("Error syncing displayEarnings:", error);
+    //   }
+    // };
+        const syncDisplayEarningsWithServer = async (newDisplayEarnings: number) => {
       try {
-        await axios.put(`https://coinfarm.club/api/user/${user.id}`, { xp: earnings });
-        console.log("Synchronized earnings with server:", earnings);
+        const response = await axios.put(`https://coinfarm.club/api/user/${user.id}`, { xp: newDisplayEarnings });
+        const updatedUserData = response.data;
+    
+        // Сохраняем актуальные данные в Redux после синхронизации с сервером
+        dispatch(setUser(updatedUserData));
+    
+        console.log("Синхронизация заработка с сервером прошла успешно:", updatedUserData);
       } catch (error) {
-        console.error("Error syncing displayEarnings:", error);
+        console.error("Ошибка при синхронизации displayEarnings:", error);
       }
     };
-    
-    // const updateDisplayEarnings = (newDisplayEarnings: number) => {
-    //   setDisplayEarnings(newDisplayEarnings);
-    //   alert(JSON.stringify(user))
-    //   dispatch(setUser({ ...user, xp: newDisplayEarnings }));  // сохраняем в Redux
-    //   syncDisplayEarningsWithServer(newDisplayEarnings);  // отправляем на сервер
-    // };
-    
     const updateDisplayEarnings = (newDisplayEarnings: number) => {
-      // Получаем все актуальные данные пользователя
-      const updatedUser = {
-        ...user, 
-        xp: newDisplayEarnings,  // Обновляем xp (заработок)
-        coins: user.coins,       // Сохраняем текущее количество монет
-        totalEarnings: user.totalEarnings // Сохраняем общий заработок
-      };
-    
-      // Обновляем локальное состояние
       setDisplayEarnings(newDisplayEarnings);
-    
-      // Обновляем Redux с актуальными данными пользователя
-      dispatch(setUser(updatedUser));
-    
-      // Отправляем обновление на сервер
-      syncDisplayEarningsWithServer(newDisplayEarnings);
+      alert(JSON.stringify(user))
+      dispatch(setUser({ ...user, xp: newDisplayEarnings }));  // сохраняем в Redux
+      syncDisplayEarningsWithServer(newDisplayEarnings);  // отправляем на сервер
     };
+    
+
+    
     
     useEffect(() => {
       if (user?.xp && !isXpFetched) {
