@@ -1200,36 +1200,40 @@ console.log(response1)
     
     const updateCoins = async (amount: number) => {
       if (user) {
-        // Создаем копию текущего состояния пользователя до обновления
+        // Обновляем локально XP
+        const newXp = user.xp - amount;
+        const xpToSend = newXp > 0 ? newXp : 0;
     
-          // Обновляем локально XP
-          const newXp = user.xp - amount;
-          const xpToSend = newXp > 0 ? newXp : 0;
+        // Рассчитываем новое количество монет
+        const updatedCoins = user.coins + amount;
+        const updatedTotalEarnings = user.totalEarnings + amount;
     
-          // Рассчитываем новое количество монет
-          const updatedCoins = user.coins + amount;
-          const updatedTotalEarnings = user.totalEarnings + amount;
-    
-          // Локально обновляем Redux store
-          dispatch(
-            setUser({
-              ...user,
-              coins: updatedCoins,
-              totalEarnings: updatedTotalEarnings,
-            })
-          );
-    
-          // Отправляем обновленные данные на сервер
+        // Обновляем локальное состояние в Redux после успешного ответа сервера
+        try {
           const response = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
             coins: updatedCoins,
             totalEarnings: updatedTotalEarnings,
             xp: xpToSend,
           });
     
-         console.log(response)
-        
+          if (response.status === 200) {
+            dispatch(
+              setUser({
+                ...user,
+                coins: updatedCoins,
+                totalEarnings: updatedTotalEarnings,
+              })
+            );
+            console.log('Баланс обновлен на сервере:', response.data);
+          } else {
+            console.error('Ошибка обновления на сервере:', response.data);
+          }
+        } catch (error) {
+          console.error("Ошибка при обновлении монет на сервере:", error);
+        }
       }
     };
+    
     
     
     const getNonFirstStageCount = (blocks: { id: number; stage: TGrowthStage }[]) => {
