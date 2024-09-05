@@ -1158,43 +1158,88 @@ console.log(response1)
     
 
 
+    // const updateCoins = async (amount: number) => {
+    //   if (user) {
+    //     try {
+    //       const newXp = user.xp - amount;
+    
+    //       // Проверка перед отправкой
+    //       const xpToSend = newXp > 0 ? newXp : 0;
+    
+    //       // Обновляем локальное состояние пользователя и сохраняем актуальные значения
+    //       const updatedCoins = user.coins + amount;
+    //       const updatedTotalEarnings = user.totalEarnings + amount;
+    
+    //       dispatch(
+    //         setUser({
+    //           ...user,  // обновляем текущее состояние, сохраняя старые данные
+    //           coins: updatedCoins,  // увеличиваем баланс пользователя
+    //           totalEarnings: updatedTotalEarnings,  // обновляем общий заработок
+    //         })
+    //       );
+    
+    //       // Теперь используем обновленные значения для отправки на сервер
+    //       const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
+    //         coins: Number(updatedCoins),
+    //         totalEarnings: Number(updatedTotalEarnings),
+
+    //       });
+    
+    //       console.log('Server response:', response1);
+    
+    //       // Обновляем XP на сервере
+    //       await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${xpToSend}`);
+    
+    //     } catch (error) {
+    //       console.error("Error updating user coins:", error);
+    //     }
+    //   } else {
+    //     console.log("No user or amount is zero"); // Лог для отладки
+    //   }
+    // };
+    
     const updateCoins = async (amount: number) => {
       if (user) {
-        try {
-          const newXp = user.xp - amount;
+        // Создаем копию текущего состояния пользователя до обновления
+        const previousUserState = { ...user }; // Копия состояния пользователя
     
-          // Проверка перед отправкой
+        try {
+          // Обновляем локально XP
+          const newXp = user.xp - amount;
           const xpToSend = newXp > 0 ? newXp : 0;
     
-          // Обновляем локальное состояние пользователя и сохраняем актуальные значения
+          // Рассчитываем новое количество монет
           const updatedCoins = user.coins + amount;
           const updatedTotalEarnings = user.totalEarnings + amount;
     
+          // Локально обновляем Redux store
           dispatch(
             setUser({
-              ...user,  // обновляем текущее состояние, сохраняя старые данные
-              coins: updatedCoins,  // увеличиваем баланс пользователя
-              totalEarnings: updatedTotalEarnings,  // обновляем общий заработок
+              ...user,
+              coins: updatedCoins,
+              totalEarnings: updatedTotalEarnings,
             })
           );
     
-          // Теперь используем обновленные значения для отправки на сервер
-          const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
-            coins: Number(updatedCoins),
-            totalEarnings: Number(updatedTotalEarnings),
-
+          // Отправляем обновленные данные на сервер
+          const response = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
+            coins: updatedCoins,
+            totalEarnings: updatedTotalEarnings,
+            xp: xpToSend,
           });
     
-          console.log('Server response:', response1);
-    
-          // Обновляем XP на сервере
-          await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${xpToSend}`);
-    
+          if (response.status === 200) {
+            console.log('Данные успешно обновлены на сервере:', response.data);
+          } else {
+            // Если сервер вернул ошибку, возвращаем старое состояние
+            console.error('Ошибка обновления данных на сервере');
+            dispatch(setUser(previousUserState)); // Откатываем изменения, если что-то пошло не так
+          }
         } catch (error) {
-          console.error("Error updating user coins:", error);
+          console.error("Ошибка обновления баланса пользователя:", error);
+          // Откат состояния в случае ошибки
+          dispatch(setUser(previousUserState));
         }
-      } else {
-        console.log("No user or amount is zero"); // Лог для отладки
       }
     };
     
@@ -1253,7 +1298,7 @@ console.log(response1)
   
     const syncDisplayEarningsWithServer = async (earnings: number) => {
       try {
-        await axios.put(`https://coinfarm.club/api/user/${user.id}`, { xp: earnings, coins: user.coins, totalEarnings: user.totalEarnings });
+        await axios.put(`https://coinfarm.club/api/user/${user.id}`, { xp: earnings });
         console.log("Synchronized earnings with server:", earnings);
       } catch (error) {
         console.error("Error syncing displayEarnings:", error);
