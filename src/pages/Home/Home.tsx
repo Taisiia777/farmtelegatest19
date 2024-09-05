@@ -17,7 +17,7 @@ import classNames from "classnames/bind";
 import useWindowSize from "../../hooks/useWindowSize";
 import { setUserCoins1 } from '../../store/reducers/userCoinsSlice';
 import RainAnimation from './modules/RainAnimation';
-// import QRCodeComponent from './QRCodeComponent';
+import QRCodeComponent from './QRCodeComponent';
 import { openGuide } from "../../store/reducers/guide";
 import { useOutletContext } from 'react-router-dom';
 // import useWheatTrunctaion from "./hooks/useWheatTrunctation";
@@ -201,7 +201,7 @@ const Home = () => {
    const [tasks, setTasks] = useState<Task[]>([]);
    const [rainInterval, setRainInterval] = useState(0);
    const lastUpdateRef = useRef(Date.now());
-  //  const [showQRCode, setShowQRCode] = useState(false);
+   const [showQRCode, setShowQRCode] = useState(false);
    const [showGuide, setShowGuide] = useState(false);
    const { friends } = useOutletContext<OutletContext>();
    const [isBoosterPurchased, setIsBoosterPurchased] = useState(false);
@@ -351,15 +351,15 @@ const Home = () => {
       }, 500);
    }
 
-  //  useEffect(() => {
-  //   const checkIfDesktop = () => {
-  //     const userAgent = navigator.userAgent;
-  //     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-  //     setShowQRCode(!isMobile);
-  //   };
+   useEffect(() => {
+    const checkIfDesktop = () => {
+      const userAgent = navigator.userAgent;
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+      setShowQRCode(!isMobile);
+    };
   
-  //   checkIfDesktop();
-  // }, []);
+    checkIfDesktop();
+  }, []);
   
 
   //  const fetchUserReferralsCount = async (userId: number) => {
@@ -873,67 +873,7 @@ const Home = () => {
     
 
 
-  //   const renderFertilizers = () => {
-  //       // Отфильтровать удобрения, чтобы убрать дубликаты по имени и id
-  // const uniqueFertilizers = fertilizers.reduce((acc, fertilizer) => {
-  //   const isDuplicate = acc.some(
-  //     (item) => item.name === fertilizer.name && item.id === fertilizer.id
-  //   );
-  //   if (!isDuplicate) {
-  //     acc.push(fertilizer);
-  //   }
-  //   return acc;
-  // }, [] as Fertilizers[]);
 
-  // // Сортировать удобрения по id
-  // const sortedFertilizers = uniqueFertilizers.sort((a, b) => a.id - b.id);
-      
-  //     return sortedFertilizers.map((fertilizer) => {
-  //       // Найти соответствующий userFertilizer
-  //       const userFertilizer = userFertilizers.find((uf) => uf.id === fertilizer.id);
-        
-  //       // Проверка, куплен ли fertilizer пользователем
-  //       const isBought = Boolean(userFertilizer);
-  //       const isActive = false;
-  //       const isBlocked = false; // Здесь можно добавить логику блокировки, если требуется
-  //       const hourlyIncome = 0;
-  //       // Определение уровня, если fertilizer куплен, иначе установить level как 1
-  //       const level = userFertilizer ? userFertilizer.level : 0;
-    
-  //       if (user) {
-  //         return (
-  //           <FertilizersBlock
-  //             key={fertilizer.id}
-  //             fertilizersName={fertilizer.name}
-  //             earning={fertilizer.hourlyIncome.toString()}
-  //             price={fertilizer.cost.toString()}
-  //             isBought={isBought}
-  //             isBlocked={isBlocked}
-  //             level={level}
-  //             userId={user.id} // Передача userId
-  //             userCoins={user.coins} // Передача количества монет пользователя
-  //             fertilizersId={fertilizer.id} // Передача fertilizersId
-  //             isActive={isActive}
-  //           />
-  //         );
-  //       } else {
-  //         return (
-  //           <FertilizersBlock
-  //             key={fertilizer.id}
-  //             fertilizersName={fertilizer.name}
-  //             earning={hourlyIncome.toString()}
-  //             price={fertilizer.cost.toString()}
-  //             isBought={isBought}
-  //             isBlocked={isBlocked}
-  //             level={level} // Передача уровня
-  //             userId={user ? user.id : 0} // Передача userId, если user существует
-  //             userCoins={0} // Передача количества монет пользователя
-  //             fertilizersId={fertilizer.id} // Передача fertilizersId
-  //           />
-  //         );
-  //       }
-  //     });
-  //   };
   const renderFertilizers = () => {
      // Отфильтровать удобрения, оставив только одно с каждым уникальным именем
   const uniqueFertilizers = fertilizers.reduce((acc, fertilizer) => {
@@ -1157,46 +1097,6 @@ console.log(response1)
     }, []);
     
 
-
-    // const updateCoins = async (amount: number) => {
-    //   if (user) {
-    //     try {
-    //       const newXp = user.xp - amount;
-    
-    //       // Проверка перед отправкой
-    //       const xpToSend = newXp > 0 ? newXp : 0;
-    
-    //       // Обновляем локальное состояние пользователя и сохраняем актуальные значения
-    //       const updatedCoins = user.coins + amount;
-    //       const updatedTotalEarnings = user.totalEarnings + amount;
-    
-    //       dispatch(
-    //         setUser({
-    //           ...user,  // обновляем текущее состояние, сохраняя старые данные
-    //           coins: updatedCoins,  // увеличиваем баланс пользователя
-    //           totalEarnings: updatedTotalEarnings,  // обновляем общий заработок
-    //         })
-    //       );
-    
-    //       // Теперь используем обновленные значения для отправки на сервер
-    //       const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
-    //         coins: Number(updatedCoins),
-    //         totalEarnings: Number(updatedTotalEarnings),
-
-    //       });
-    
-    //       console.log('Server response:', response1);
-    
-    //       // Обновляем XP на сервере
-    //       await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${xpToSend}`);
-    
-    //     } catch (error) {
-    //       console.error("Error updating user coins:", error);
-    //     }
-    //   } else {
-    //     console.log("No user or amount is zero"); // Лог для отладки
-    //   }
-    // };
     
     const updateCoins = async (amount: number) => {
       if (user) {
@@ -1284,14 +1184,6 @@ console.log(response1)
     
     
   
-    // const syncDisplayEarningsWithServer = async (earnings: number) => {
-    //   try {
-    //     await axios.put(`https://coinfarm.club/api/user/${user.id}`, { xp: earnings });
-    //     console.log("Synchronized earnings with server:", earnings);
-    //   } catch (error) {
-    //     console.error("Error syncing displayEarnings:", error);
-    //   }
-    // };
         const syncDisplayEarningsWithServer = async (newDisplayEarnings: number) => {
       try {
         const response = await axios.put(`https://coinfarm.club/api/user/${user.id}`, { xp: newDisplayEarnings });
@@ -1403,8 +1295,7 @@ console.log(response1)
         const latestRainReward = rainRewards[rainRewards.length - 1];
         const rewardTime = new Date(latestRainReward.description);
         const currentTime = new Date();
-        // const timeDifference = (currentTime.getTime() - rewardTime.getTime()) / (1000 * 60 * 60); // in hours
-        const timeDifference = (currentTime.getTime() - rewardTime.getTime()) / (1000); // in hours
+        const timeDifference = (currentTime.getTime() - rewardTime.getTime()) / (1000 * 60 * 60); // in hours
 
         // Устанавливаем прогресс до следующего дождя
         setCurrentRainProgress(timeDifference);
@@ -1463,21 +1354,46 @@ console.log(response1)
       fetchTasks();
     }, []);
 
-    const boostFormattedPrice = parseFloat(boostState.info.price) >= 1000000 
-  ? (parseFloat(boostState.info.price) / 1000000).toFixed(0) + 'M' 
+  //   const boostFormattedPrice = parseFloat(boostState.info.price) >= 1000000 
+  // ? (parseFloat(boostState.info.price) / 1000000).toFixed(0) + 'M' 
+  // : parseFloat(boostState.info.price).toString();
+  // const coinFormattedPrice = parseFloat(coinState.info.price) >= 1000000 
+  // ? (parseFloat(coinState.info.price) / 1000000).toFixed(0) + 'M' 
+  // : parseFloat(coinState.info.price).toString();
+  // const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000 
+  // ? (parseFloat(fertilizersState.info.price) / 1000000).toFixed(3) + 'M' 
+  // : parseFloat(fertilizersState.info.price).toString();
+// Вспомогательная функция для форматирования чисел
+
+
+const formatLargeNumber = (value: number, divisor: number, suffix: string) => {
+  return (value / divisor).toFixed(0) + suffix;
+};
+
+// Пример использования с форматированием цен для бустеров, монет и удобрений
+const boostFormattedPrice = parseFloat(boostState.info.price) >= 1000000000
+  ? formatLargeNumber(parseFloat(boostState.info.price), 1000000000, 'B')
+  : parseFloat(boostState.info.price) >= 1000000
+  ? formatLargeNumber(parseFloat(boostState.info.price), 1000000, 'M')
   : parseFloat(boostState.info.price).toString();
-  const coinFormattedPrice = parseFloat(coinState.info.price) >= 1000000 
-  ? (parseFloat(coinState.info.price) / 1000000).toFixed(0) + 'M' 
+
+const coinFormattedPrice = parseFloat(coinState.info.price) >= 1000000000
+  ? formatLargeNumber(parseFloat(coinState.info.price), 1000000000, 'B')
+  : parseFloat(coinState.info.price) >= 1000000
+  ? formatLargeNumber(parseFloat(coinState.info.price), 1000000, 'M')
   : parseFloat(coinState.info.price).toString();
-  const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000 
-  ? (parseFloat(fertilizersState.info.price) / 1000000).toFixed(3) + 'M' 
+
+const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
+  ? formatLargeNumber(parseFloat(fertilizersState.info.price), 1000000000, 'B')
+  : parseFloat(fertilizersState.info.price) >= 1000000
+  ? formatLargeNumber(parseFloat(fertilizersState.info.price), 1000000, 'M')
   : parseFloat(fertilizersState.info.price).toString();
 
   
    return (
       <>
-       {/* <QRCodeComponent /> */}
-       {!false && (
+       <QRCodeComponent />
+       {!showQRCode && (
  <>
 
  {/* { isRain && <Clouds

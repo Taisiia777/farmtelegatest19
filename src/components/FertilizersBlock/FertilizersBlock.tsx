@@ -73,10 +73,20 @@ console.log(userId)
     // giveCoin();
   }
   const canAfford = userCoins >= newPrice; // Проверяем, хватает ли монет
-  const formattedPrice = newPrice >= 1000000 
-? (newPrice / 1000000).toFixed(3) + 'M' 
-: newPrice.toString();
+//   const formattedPrice = newPrice >= 1000000 
+// ? (newPrice / 1000000).toFixed(3) + 'M' 
+// : newPrice.toString();
+// Вспомогательная функция для форматирования чисел
+const formatLargeNumber = (value: number, divisor: number, suffix: string) => {
+  return (value / divisor).toFixed(3) + suffix;
+};
 
+// Пример использования с форматированием newPrice
+const formattedPrice = newPrice >= 1000000000
+  ? formatLargeNumber(newPrice, 1000000000, 'B')
+  : newPrice >= 1000000
+  ? formatLargeNumber(newPrice, 1000000, 'M')
+  : newPrice.toString();
 
 const formattedIncome = newEarning >= 1000000 
   ? (newEarning / 1000000).toFixed(2) + 'M' 
