@@ -728,34 +728,17 @@ const Home = () => {
         }
       };
     
-      // const fetchUserFertilizers = async () => {
-      //   if (user) {
-      //     try {
-      //       const response = await fetch(`https://coinfarm.club/api/user/${user.id}/fertilizers`);
-      //       const data = await response.json();
-      //       setUserFertilizers(data);
-      //     } catch (error) {
-      //       console.error("Error fetching user boosters:", error);
-      //     }
-      //   }
-      // };
       const fetchUserFertilizers = async () => {
         if (user) {
-          setIsProcessing(true); // Блокируем интерфейс до завершения запроса
           try {
             const response = await fetch(`https://coinfarm.club/api/user/${user.id}/fertilizers`);
             const data = await response.json();
-            
-            setUserFertilizers(data); // Сначала устанавливаем данные удобрений
-            
-            setIsProcessing(false); // После установки данных снимаем блокировку
+            setUserFertilizers(data);
           } catch (error) {
-            console.error("Error fetching user fertilizers:", error);
-            setIsProcessing(false); // Разблокируем интерфейс даже при ошибке
+            console.error("Error fetching user boosters:", error);
           }
         }
       };
-      
        if (user?.id) {
 
       fetchCoins();
@@ -764,6 +747,7 @@ const Home = () => {
       fetchUserBoosters();
       fetchFertilizers();
       fetchUserFertilizers();
+      setIsProcessing(false)
        }
     }, [isCoinPurchased, isBoosterPurchased]);
 
