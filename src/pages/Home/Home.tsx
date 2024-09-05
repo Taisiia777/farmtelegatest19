@@ -1182,8 +1182,8 @@ console.log(response1)
     
           // Теперь используем обновленные значения для отправки на сервер
           const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
-            coins: updatedCoins,
-            totalEarnings: updatedTotalEarnings,
+            coins: Number(updatedCoins),
+            totalEarnings: Number(updatedTotalEarnings),
           });
     
           console.log('Server response:', response1);
