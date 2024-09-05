@@ -488,7 +488,11 @@ const FreindOrSpecialBlock = ({
         setIsReciebed(true);
         setButtonText(t('done'));
         setMoneyAnimACtive(true);
-        dispatch(setUser({ ...user, coins: user.coins + 10000}));
+        if (title === "Connect wallet") {
+          dispatch(setUser({ ...user, coins: user.coins + 20000}));
+        }else{
+          dispatch(setUser({ ...user, coins: user.coins + 10000}));
+        }
         setTimeout(() => {
           setMoneyAnimACtive(false);
         }, 500);
