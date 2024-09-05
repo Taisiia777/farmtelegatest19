@@ -1179,10 +1179,11 @@ console.log(response1)
               totalEarnings: user.totalEarnings + amount, // обновляем общий заработок
             })
           );
-          alert(user.coins)
 
           const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
-            coins: user.coins
+            coins: user.coins + amount,
+            totalEarnings: user.totalEarnings + amount, // обновляем общий заработок
+
           });
           console.log(response1)
           await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${xpToSend}`);
