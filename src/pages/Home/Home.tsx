@@ -1168,24 +1168,22 @@ console.log(response1)
           // Проверка перед отправкой
           const xpToSend = newXp > 0 ? newXp : 0;
           
-          await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${xpToSend}`);
           
-          const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
-            coins: user.coins + amount
-          });
-          
-          const updatedUser = response1.data;
-    
+        
           // Локальное обновление состояния пользователя
           dispatch(
             setUser({
               ...user,  // обновляем текущее состояние, сохраняя старые данные
-              coins: parseFloat(user.coins) + amount, // увеличиваем баланс пользователя
-              totalEarnings: parseFloat(updatedUser.totalEarnings), // обновляем общий заработок
+              coins: user.coins + amount, // увеличиваем баланс пользователя
+              totalEarnings: user.totalEarnings + amount, // обновляем общий заработок
             })
           );
-    
-          console.log("Coins updated successfully:", updatedUser); // Лог успешного обновления монет
+          const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
+            coins: user.coins
+          });
+          alert(JSON.stringify(response1))
+          await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${xpToSend}`);
+
         } catch (error) {
           console.error("Error updating user coins:", error);
         }
