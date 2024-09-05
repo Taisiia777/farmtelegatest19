@@ -1170,11 +1170,11 @@ console.log(response1)
           
           await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${xpToSend}`);
           
-          const response = await axios.patch(
-            `https://coinfarm.club/api/user/${user.id}/earn/${amount}`
-          );
+          const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
+            coins: user.coins + amount
+          });
           
-          const updatedUser = response.data;
+          const updatedUser = response1.data;
     
           // Локальное обновление состояния пользователя
           dispatch(
