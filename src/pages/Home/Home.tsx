@@ -1128,41 +1128,7 @@ console.log(response1)
       renderCoins();
     }, [user, coins, coinState]);
     
-    const updateCoins = async (amount: number) => {
-      if (user) {
-        try {
-          const newXp = user.xp - amount;
 
-          // Проверка перед отправкой
-          const xpToSend = newXp > 0 ? newXp : 0;
-          
-          await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${xpToSend}`);
-          
-          const response = await axios.patch(
-            `https://coinfarm.club/api/user/${user.id}/earn/${amount}`
-          );
-          
-          const updatedUser = response.data;
-          // Обновление состояния пользователя
-          dispatch(
-            setUser({
-              ...updatedUser,
-              coins: parseFloat(updatedUser.coins),
-              totalEarnings: parseFloat(updatedUser.totalEarnings),
-            })
-          );
-          console.log("Coins updated successfully:", updatedUser); // Лог успешного обновления монет
-        } catch (error) {
-          console.error("Error updating user coins:", error);
-        }
-      } else {
-        console.log("No user or amount is zero"); // Лог для отладки
-      }
-    };
-    
-    const getNonFirstStageCount = (blocks: { id: number; stage: TGrowthStage }[]) => {
-      return blocks.filter(block => block.stage !== "first").length;
-    };
     
     
     
@@ -1192,68 +1158,46 @@ console.log(response1)
       };
     }, []);
     
-    // useEffect(() => {
-    //   const handleHarvest = (event: Event) => {
-    //     const customEvent = event as CustomEvent<number>;
-    //     const harvestedCount = customEvent.detail;
-    
-    //     // Получить количество блоков с несрезанными стадиями
-    //     const nonFirstStageCount = getNonFirstStageCount(blocks);
-    
-
-    //     setCanShowFinger(false);
-    //     if(user?.totalEarnings <= 3000 && !showGuide){
-    //       dispatch(openGuide());
-    //       setShowGuide(true);
-    //     }
-
-    //     if (nonFirstStageCount > 0) {
-    //       let totalDecrementAmount = 0;
-    //       let newGrassEarnings = displayEarnings;
-    
-    //       for (let i = 0; i < harvestedCount; i++) {
-    //         const decrementAmount = newGrassEarnings / nonFirstStageCount;
-    //         console.log("Decrement amount:", decrementAmount);
-    
-    //         totalDecrementAmount += decrementAmount;
-    //         newGrassEarnings = Math.max(newGrassEarnings - decrementAmount, 0);
-    //       }
-    
-    //       setDisplayEarnings(prev => {
-    //         let newDecrementAmount = 0;
-    //         let newEarnings = prev;
-    //         for (let i = 0; i < harvestedCount; i++) {
-    //           const decrementAmount = newEarnings / nonFirstStageCount;
-    //           newDecrementAmount += decrementAmount;
-    //           newEarnings = Math.max(Math.round(newEarnings - decrementAmount), 0);
-    //         }
-    //         updateCoins(newDecrementAmount);  // Начислить монеты пользователю
-    //         return newEarnings;
-    //       });
-    
-    //       console.log("Final current grass earnings:", newGrassEarnings);
-    //       console.log("Total decrement amount:", totalDecrementAmount);
-         
-    //     } else {
-
-    //       setDisplayEarnings(prev => {
-    //         const currentEarnings = prev;
-    //         updateCoins(currentEarnings);  // Начислить текущее значение прогресбара пользователю
-    //         setDisplayEarnings(0);
-    //         return 0;
-    //       });
-    //     }
-    //   };
-    
-    //   document.addEventListener("harvest", handleHarvest);
-    
-    //   return () => {
-    //     document.removeEventListener("harvest", handleHarvest);
-    //   };
-    // }, [blocks, displayEarnings, user]);
 
 
-
+    const updateCoins = async (amount: number) => {
+      if (user) {
+        try {
+          const newXp = user.xp - amount;
+    
+          // Проверка перед отправкой
+          const xpToSend = newXp > 0 ? newXp : 0;
+          
+          await axios.patch(`https://coinfarm.club/api/user/${user.id}/xp/${xpToSend}`);
+          
+          const response = await axios.patch(
+            `https://coinfarm.club/api/user/${user.id}/earn/${amount}`
+          );
+          
+          const updatedUser = response.data;
+    
+          // Локальное обновление состояния пользователя
+          dispatch(
+            setUser({
+              ...user,  // обновляем текущее состояние, сохраняя старые данные
+              coins: parseFloat(user.coins) + amount, // увеличиваем баланс пользователя
+              totalEarnings: parseFloat(updatedUser.totalEarnings), // обновляем общий заработок
+            })
+          );
+    
+          console.log("Coins updated successfully:", updatedUser); // Лог успешного обновления монет
+        } catch (error) {
+          console.error("Error updating user coins:", error);
+        }
+      } else {
+        console.log("No user or amount is zero"); // Лог для отладки
+      }
+    };
+    
+    const getNonFirstStageCount = (blocks: { id: number; stage: TGrowthStage }[]) => {
+      return blocks.filter(block => block.stage !== "first").length;
+    };
+    
     useEffect(() => {
       const handleHarvest = (event: Event) => {
         const customEvent = event as CustomEvent<number>;
@@ -1276,11 +1220,12 @@ console.log(response1)
           // Общая сумма, которую нужно вычесть за собранные блоки
           const totalDecrementAmount = Math.min(decrementPerBlock * harvestedCount, displayEarnings);
     
-          // Обновляем заработок пользователя
-          setDisplayEarnings(prev => Math.max(prev - totalDecrementAmount, 0));
-    
-          // Начисляем монеты пользователю
-          updateCoins(totalDecrementAmount);
+          // Обновляем заработок пользователя и начисляем монеты локально
+          setDisplayEarnings(prev => {
+            const newEarnings = Math.max(prev - totalDecrementAmount, 0);
+            updateCoins(totalDecrementAmount); // Сразу обновляем баланс монет пользователя
+            return newEarnings;
+          });
     
           console.log("Total decrement amount:", totalDecrementAmount);
         } else if (nonFirstStageCount === 0 && harvestedCount > 0) {
@@ -1296,7 +1241,6 @@ console.log(response1)
         document.removeEventListener("harvest", handleHarvest);
       };
     }, [blocks, displayEarnings, user]);
-    
     
     
   
