@@ -1617,12 +1617,19 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                         }
 
                         }>
-                        <CoinWhiteBg
+
+                        {/* <CoinWhiteBg
                            iconName="Bitcoin"
                            size={width > 380 ? "normall" : "small"}
                         />
-                        <span>{isProcessing ? 'Loading...' : fertFormattedPrice}</span> {/* Изменяем текст кнопки */}
-
+                        <span>{isProcessing ? 'Loading...' : fertFormattedPrice}</span> */}
+ {!isProcessing && (
+    <CoinWhiteBg
+      iconName="Bitcoin"
+      size={width > 380 ? "normall" : "small"}
+    />
+  )}
+  <span>{isProcessing ? 'Loading...' : fertFormattedPrice}</span>
                      </Button>
                      <img
                         // src={`img/pages/home/${mostExpensiveCoinName}/money.svg`}
