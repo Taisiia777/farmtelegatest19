@@ -952,15 +952,12 @@ dispatch(setUser({
 const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
   coins: user.coins - price,
   coinsPerHour: coinsPerHour + earning
+}).then(() => {
+  setIsCoinPurchased(!isCoinPurchased); // Выполняем действие после задержки
 });
 
 console.log(response1)
-    // Задержка в 1 секунду перед изменением состояния
-    Promise.resolve()
-      .then(() => new Promise(resolve => setTimeout(resolve, 1000))) // Задержка 1 секунда
-      .then(() => {
-        setIsCoinPurchased(!isCoinPurchased); // Выполняем действие после задержки
-      });
+
           // setIsCoinPurchased(!isCoinPurchased)
   
           console.log('Coin given:', response.data);
@@ -994,14 +991,11 @@ console.log(response1)
       const response1 = await axios.put(`https://coinfarm.club/api/user/${user.id}`, {
         coins: Number(user.coins) - Number(coinState.info.price), 
         coinsPerHour: Number(user.coinsPerHour) + coinsToGive
-      });
+      }).then(() => {
+        setIsCoinPurchased(!isCoinPurchased); // Выполняем действие после задержки
+      });;
       console.log(response1)
-          // Задержка в 1 секунду перед изменением состояния
-    Promise.resolve()
-    .then(() => new Promise(resolve => setTimeout(resolve, 1000))) // Задержка 1 секунда
-    .then(() => {
-      setIsCoinPurchased(!isCoinPurchased); // Выполняем действие после задержки
-    });
+
         // setIsCoinPurchased(!isCoinPurchased)
 
         console.log('Coin given:', response.data);
