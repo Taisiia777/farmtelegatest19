@@ -44,7 +44,7 @@
    }
    &__list {
       width: 91%;
-      top: rem(100);
+      top: rem(0);
       height: 100vh !important;
       animation: appear 0.4s ease-in-out;
       min-height: 100vh !important;
@@ -52,14 +52,14 @@
    }
    &__list1 {
       width: 100%;
-      top: rem(100);
+      top: rem(0);
       height: 72% !important;
       animation: appear 0.4s ease-in-out;
       min-height: 550px !important;
    }
    &__list2 {
       width: 91%;
-      top: rem(100);
+      top: rem(0);
       height: max-content !important;
       animation: appear 0.4s ease-in-out;
       min-height: max-content !important;
