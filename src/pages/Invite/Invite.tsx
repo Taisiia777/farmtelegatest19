@@ -278,7 +278,7 @@ const Invite = () => {
 
 
         <PopupList
-  className={cn("invite__list")}
+  className={cn("invite__list2")}
   nodes={friends.slice(-100).reverse().map((user) => (  // Используем slice(-100) и reverse() для отображения последних 100 элементов реверсивно
     <PersonBlockRef
       key={user.id}

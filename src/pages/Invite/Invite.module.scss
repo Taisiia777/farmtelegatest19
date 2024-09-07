@@ -45,9 +45,9 @@
    &__list {
       width: 91%;
       top: rem(150);
-      height: 72% !important;
+      height: 100% !important;
       animation: appear 0.4s ease-in-out;
-      min-height: 500px !important;
+      min-height: 100% !important;
    }
    &__list1 {
       width: 110%;
@@ -55,6 +55,13 @@
       height: 72% !important;
       animation: appear 0.4s ease-in-out;
       min-height: 550px !important;
+   }
+   &__list2 {
+      width: 110%;
+      top: rem(150);
+      height: max-content !important;
+      animation: appear 0.4s ease-in-out;
+      min-height: max-content !important;
    }
    &__users {
       display: flex;
