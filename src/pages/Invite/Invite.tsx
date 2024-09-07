@@ -194,7 +194,7 @@ const Invite = () => {
 
         </p>
         
-        <PopupListWrap  isOpen={true}>
+        <PopupListWrap className={cn("popupListWrap")}  isOpen={true}>
           <PopupListTabs
             labels={["FRENDS", "LEAGUES"]}
             activeTab={activeTab}
