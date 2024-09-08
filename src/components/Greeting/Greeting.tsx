@@ -85,7 +85,8 @@ const Greeting = () => {
          coinMoneyAnimRef.current?.classList.remove("moneyAnim");
          dispatch(finishGreeting());
       }, 500);
-      
+      window.location.reload(); // Полная перезагрузка страницы
+
    }
    
    const { t } = useTranslation();
