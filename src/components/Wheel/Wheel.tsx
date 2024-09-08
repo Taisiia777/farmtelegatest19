@@ -221,7 +221,7 @@ const getRandomSector = () => {
 //       console.error('Error awarding coins:', error);
 //   }
 // };
-const giveUserReward = (reward) => {
+const giveUserReward = (reward: number) => {
   // Уведомляем, что запрос еще не завершен
   dispatch(unready());
 
