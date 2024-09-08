@@ -221,39 +221,37 @@ const getRandomSector = () => {
 //       console.error('Error awarding coins:', error);
 //   }
 // };
-const giveUserReward = async (reward: number) => {
-  try {
-    // Уведомляем, что запрос еще не завершен
-    dispatch(unready());
+const giveUserReward = (reward) => {
+  // Уведомляем, что запрос еще не завершен
+  dispatch(unready());
 
-    if (reward > 0) {
-      const response = await axios.patch(`https://coinfarm.club/api/user/${userIdNumber}/earn/${reward}`);
-      
-      // Обновляем пользователя после успешного ответа
-      dispatch(setUser({
-        ...user,
-        coins: user.coins + reward,
-        totalEarnings: user.totalEarnings + reward
-      }));
-
-      console.log(`Reward given: ${reward} coins`, response.data);
-
-      // Уведомляем, что запрос успешно завершен
-      dispatch(ready());
-
-    } else if (reward === 0) {
-      console.log("Special sector, no coins given.");
-      
-      // Запрос завершен, но награды нет (также уведомляем, что процесс завершен)
-      dispatch(ready());
-    }
-  } catch (error) {
-    console.error('Error awarding coins:', error);
-
-    // В случае ошибки также вызываем ready, чтобы уведомить, что процесс завершен
+  if (reward > 0) {
+    axios
+      .patch(`https://coinfarm.club/api/user/${userIdNumber}/earn/${reward}`)
+      .then((response) => {
+        // Обновляем пользователя после успешного ответа
+        dispatch(setUser({
+          ...user,
+          coins: user.coins + reward,
+          totalEarnings: user.totalEarnings + reward
+        }));
+        
+        console.log(`Reward given: ${reward} coins`, response.data);
+        // Уведомляем, что запрос успешно завершен
+        dispatch(ready());
+      })
+      .catch((error) => {
+        console.error('Error awarding coins:', error);
+        // В случае ошибки также вызываем ready, чтобы уведомить, что процесс завершен
+        dispatch(ready());
+      });
+  } else if (reward === 0) {
+    console.log("Special sector, no coins given.");
+    // Уведомляем, что запрос завершен, хотя награда не была выдана
     dispatch(ready());
   }
 };
+
 
 const sendSpinUpdateRequest = async (spins: number) => {
   try {
