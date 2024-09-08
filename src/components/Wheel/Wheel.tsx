@@ -158,8 +158,7 @@ useEffect(() => {
           const lastReward = wheelRewards[wheelRewards.length - 1];
           const lastRewardDate = new Date(lastReward.description);
           const now = new Date();
-          // const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60 * 60);
-          const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000);
+          const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60 * 60);
 
           if (hoursSinceLastReward > 12) {
             setSpins(1); // Обновляем количество спинов

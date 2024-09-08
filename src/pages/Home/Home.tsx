@@ -1299,8 +1299,7 @@ console.log(response1)
         const latestRainReward = rainRewards[rainRewards.length - 1];
         const rewardTime = new Date(latestRainReward.description);
         const currentTime = new Date();
-        // const timeDifference = (currentTime.getTime() - rewardTime.getTime()) / (1000 * 60 * 60); // in hours
-        const timeDifference = (currentTime.getTime() - rewardTime.getTime()) / (1000); // in hours
+        const timeDifference = (currentTime.getTime() - rewardTime.getTime()) / (1000 * 60 * 60); // in hours
 
         // Устанавливаем прогресс до следующего дождя
         setCurrentRainProgress(timeDifference);
