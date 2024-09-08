@@ -224,7 +224,7 @@ const getRandomSector = () => {
 // };
 const giveUserReward = (reward: number) => {
   // Уведомляем, что запрос еще не завершен
-  dispatch(unready());
+  setIsSpinning(true)
 
   if (reward > 0) {
     axios
@@ -239,17 +239,17 @@ const giveUserReward = (reward: number) => {
         
         console.log(`Reward given: ${reward} coins`, response.data);
         // Уведомляем, что запрос успешно завершен
-        dispatch(ready());
+        setIsSpinning(false)
       })
       .catch((error) => {
         console.error('Error awarding coins:', error);
         // В случае ошибки также вызываем ready, чтобы уведомить, что процесс завершен
-        dispatch(ready());
+        setIsSpinning(false)
       });
   } else if (reward === 0) {
     console.log("Special sector, no coins given.");
     // Уведомляем, что запрос завершен, хотя награда не была выдана
-    dispatch(ready());
+    setIsSpinning(false)
   }
 };
 
