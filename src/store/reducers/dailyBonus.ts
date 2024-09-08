@@ -15,10 +15,13 @@ export const dailyBonusSlice = createSlice({
       closeDailyBonus: (state) => {
          state.isOpen = false;
       },
+      openDailyBonus: (state) => {
+         state.isOpen = true;
+      },
    },
 });
 
-export const { closeDailyBonus } = dailyBonusSlice.actions;
+export const { closeDailyBonus, openDailyBonus } = dailyBonusSlice.actions;
 
 export default dailyBonusSlice.reducer;
 

@@ -13,6 +13,8 @@ import axios from "axios";
 import { updateGrassEarnings } from "../../store/reducers/userSlice";
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
+import { openDailyBonus } from "../../store/reducers/dailyBonus";
+
 const cn = classNames.bind(styles);
 
 const Greeting = () => {
@@ -85,6 +87,7 @@ const Greeting = () => {
          coinMoneyAnimRef.current?.classList.remove("moneyAnim");
          dispatch(finishGreeting());
       }, 500);
+      dispatch(openDailyBonus());
    }
    
    const { t } = useTranslation();
