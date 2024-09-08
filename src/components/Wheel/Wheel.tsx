@@ -162,7 +162,7 @@ useEffect(() => {
           const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000);
 
           if (hoursSinceLastReward > 12) {
-            setSpins(userData.level + 1); // Обновляем количество спинов
+            setSpins(1); // Обновляем количество спинов
             dispatch(ready());
           } else {
             setSpins(lastReward.amount); // Устанавливаем количество спинов по последней награде
@@ -174,7 +174,7 @@ useEffect(() => {
             }
           }
         } else {
-          setSpins(userData.level + 1); // Устанавливаем спины, если нет наград
+          setSpins(1); // Устанавливаем спины, если нет наград
           dispatch(ready());
         }
 
