@@ -1198,9 +1198,9 @@ console.log(response1)
         // Получить количество блоков, которые находятся не на первой стадии
         const nonFirstStageCount = getNonFirstStageCount(blocks);
     
-        // Выводим данные в alert для отладки
-        alert(`Total blocks not in first stage: ${nonFirstStageCount}`);
-        alert(`Harvested blocks count: ${harvestedCount}`);
+        // // Выводим данные в alert для отладки
+        // alert(`Total blocks not in first stage: ${nonFirstStageCount}`);
+        // alert(`Harvested blocks count: ${harvestedCount}`);
     
         setCanShowFinger(false);
     
@@ -1216,20 +1216,20 @@ console.log(response1)
           // Общая сумма, которую нужно начислить за собранные блоки
           const totalDecrementAmount = decrementPerBlock * harvestedCount;
     
-          // Выводим данные в alert для отладки
-          alert(`Decrement per block: ${decrementPerBlock}`);
-          alert(`Total decrement amount for harvested blocks: ${totalDecrementAmount}`);
+          // // Выводим данные в alert для отладки
+          // alert(`Decrement per block: ${decrementPerBlock}`);
+          // alert(`Total decrement amount for harvested blocks: ${totalDecrementAmount}`);
     
           // Обновляем заработок пользователя и начисляем монеты локально
           setDisplayEarnings(prev => {
             const newEarnings = Math.max(prev - totalDecrementAmount, 0);
-            alert(`New earnings after decrement: ${newEarnings}`);
+            // alert(`New earnings after decrement: ${newEarnings}`);
             updateCoins(totalDecrementAmount); // Начисляем только за собранные блоки
             return newEarnings;
           });
         } else if (nonFirstStageCount === 0 && harvestedCount > 0) {
           // Если все блоки собраны, начисляем полную сумму пользователю
-          alert(`All blocks harvested, crediting full earnings: ${displayEarnings}`);
+          // alert(`All blocks harvested, crediting full earnings: ${displayEarnings}`);
           setDisplayEarnings(0);
           updateCoins(displayEarnings); // Начисляем текущий заработок пользователю
         }
