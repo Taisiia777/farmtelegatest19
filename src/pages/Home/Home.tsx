@@ -1204,15 +1204,15 @@ console.log(response1)
     
         if (nonFirstStageCount > 0 && harvestedCount > 0) {
           // Если есть блоки для сбора на стадиях, которые можно собирать
-          const decrementPerBlock = displayEarnings / (nonFirstStageCount*0.66);
+          const decrementPerBlock = displayEarnings / nonFirstStageCount;
     
-          // Общая сумма, которую нужно вычесть за собранные блоки
-          const totalDecrementAmount = Math.min(decrementPerBlock * harvestedCount, displayEarnings);
+          // Общая сумма, которую нужно начислить за собранные блоки
+          const totalDecrementAmount = decrementPerBlock * harvestedCount;
     
           // Обновляем заработок пользователя и начисляем монеты локально
           setDisplayEarnings(prev => {
             const newEarnings = Math.max(prev - totalDecrementAmount, 0);
-            updateCoins(totalDecrementAmount); // Сразу обновляем баланс монет пользователя
+            updateCoins(totalDecrementAmount); // Начисляем только за собранные блоки
             return newEarnings;
           });
     
@@ -1230,6 +1230,7 @@ console.log(response1)
         document.removeEventListener("harvest", handleHarvest);
       };
     }, [blocks, displayEarnings, user]);
+    
     
     
     
