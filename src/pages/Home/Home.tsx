@@ -1204,7 +1204,7 @@ console.log(response1)
     
         if (nonFirstStageCount > 0 && harvestedCount > 0) {
           // Если есть блоки для сбора на стадиях, которые можно собирать
-          const decrementPerBlock = displayEarnings / nonFirstStageCount;
+          const decrementPerBlock = displayEarnings / (nonFirstStageCount/3);
     
           // Общая сумма, которую нужно вычесть за собранные блоки
           const totalDecrementAmount = Math.min(decrementPerBlock * harvestedCount, displayEarnings);
