@@ -1135,57 +1135,6 @@ console.log(response1)
     };
     
     
-    // const getNonFirstStageCount = (blocks: { id: number; stage: TGrowthStage }[]) => {
-    //   return blocks.filter(block => block.stage !== "first").length;
-    // };
-    
-    // useEffect(() => {
-    //   const handleHarvest = (event: Event) => {
-    //     const customEvent = event as CustomEvent<number>;
-    //     const harvestedCount = customEvent.detail;
-    
-    //     // Получить количество блоков с несрезанными стадиями
-    //     const nonFirstStageCount = getNonFirstStageCount(blocks);
-    
-    //     setCanShowFinger(false);
-    
-    //     if (user?.totalEarnings <= 3000 && !showGuide) {
-    //       dispatch(openGuide());
-    //       setShowGuide(true);
-    //     }
-    
-    //     if (nonFirstStageCount > 0 && harvestedCount > 0) {
-    //       // Если есть блоки для сбора
-    //       const decrementPerBlock = displayEarnings / nonFirstStageCount;
-    
-    //       // Общая сумма, которую нужно вычесть за собранные блоки
-    //       const totalDecrementAmount = Math.min(decrementPerBlock * harvestedCount, displayEarnings);
-    
-    //       // Обновляем заработок пользователя и начисляем монеты локально
-    //       setDisplayEarnings(prev => {
-    //         const newEarnings = Math.max(prev - totalDecrementAmount, 0);
-    //         updateCoins(totalDecrementAmount); // Сразу обновляем баланс монет пользователя
-    //         return newEarnings;
-    //       });
-    
-    //       console.log("Total decrement amount:", totalDecrementAmount);
-    //     } else if (nonFirstStageCount === 0 && harvestedCount > 0) {
-    //       // Если все стадии срезаны, но harvestCount > 0
-    //       setDisplayEarnings(0);
-    //       updateCoins(displayEarnings); // Начисляем текущее значение пользователю
-    //     }
-    //   };
-    
-    //   document.addEventListener("harvest", handleHarvest);
-    
-    //   return () => {
-    //     document.removeEventListener("harvest", handleHarvest);
-    //   };
-    // }, [blocks, displayEarnings, user]);
-   
-
-
-
     const getNonFirstStageCount = (blocks: { id: number; stage: TGrowthStage }[]) => {
       return blocks.filter(block => block.stage !== "first").length;
     };
@@ -1195,12 +1144,8 @@ console.log(response1)
         const customEvent = event as CustomEvent<number>;
         const harvestedCount = customEvent.detail;
     
-        // Получить количество блоков, которые находятся не на первой стадии
+        // Получить количество блоков с несрезанными стадиями
         const nonFirstStageCount = getNonFirstStageCount(blocks);
-    
-        // // Выводим данные в alert для отладки
-        // alert(`Total blocks not in first stage: ${nonFirstStageCount}`);
-        // alert(`Harvested blocks count: ${harvestedCount}`);
     
         setCanShowFinger(false);
     
@@ -1210,28 +1155,24 @@ console.log(response1)
         }
     
         if (nonFirstStageCount > 0 && harvestedCount > 0) {
-          // Если есть блоки для сбора на стадиях, которые можно собирать
+          // Если есть блоки для сбора
           const decrementPerBlock = displayEarnings / nonFirstStageCount;
     
-          // Общая сумма, которую нужно начислить за собранные блоки
-          const totalDecrementAmount = decrementPerBlock * harvestedCount;
-    
-          // // Выводим данные в alert для отладки
-          // alert(`Decrement per block: ${decrementPerBlock}`);
-          // alert(`Total decrement amount for harvested blocks: ${totalDecrementAmount}`);
+          // Общая сумма, которую нужно вычесть за собранные блоки
+          const totalDecrementAmount = Math.min(decrementPerBlock * harvestedCount, displayEarnings);
     
           // Обновляем заработок пользователя и начисляем монеты локально
           setDisplayEarnings(prev => {
             const newEarnings = Math.max(prev - totalDecrementAmount, 0);
-            // alert(`New earnings after decrement: ${newEarnings}`);
-            updateCoins(totalDecrementAmount); // Начисляем только за собранные блоки
+            updateCoins(totalDecrementAmount); // Сразу обновляем баланс монет пользователя
             return newEarnings;
           });
+    
+          console.log("Total decrement amount:", totalDecrementAmount);
         } else if (nonFirstStageCount === 0 && harvestedCount > 0) {
-          // Если все блоки собраны, начисляем полную сумму пользователю
-          // alert(`All blocks harvested, crediting full earnings: ${displayEarnings}`);
+          // Если все стадии срезаны, но harvestCount > 0
           setDisplayEarnings(0);
-          updateCoins(displayEarnings); // Начисляем текущий заработок пользователю
+          updateCoins(displayEarnings); // Начисляем текущее значение пользователю
         }
       };
     
@@ -1241,6 +1182,10 @@ console.log(response1)
         document.removeEventListener("harvest", handleHarvest);
       };
     }, [blocks, displayEarnings, user]);
+   
+
+
+
     
   
         const syncDisplayEarningsWithServer = async (newDisplayEarnings: number) => {

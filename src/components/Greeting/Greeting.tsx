@@ -13,12 +13,10 @@ import axios from "axios";
 import { updateGrassEarnings } from "../../store/reducers/userSlice";
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from "react-router-dom";
-import { Routes } from "../../routes/routes";
+
 const cn = classNames.bind(styles);
 
 const Greeting = () => {
-   const navigate = useNavigate();
 
    const dispatch = useAppDispatch();
    const isOpen = useAppSelector((state) => state.greeting.isOpen);
@@ -88,8 +86,7 @@ const Greeting = () => {
       setTimeout(() => {
          coinMoneyAnimRef.current?.classList.remove("moneyAnim");
          dispatch(finishGreeting());
-         navigate(Routes.INVITE)
-         navigate(Routes.HOME)
+
    
       }, 500);
 
