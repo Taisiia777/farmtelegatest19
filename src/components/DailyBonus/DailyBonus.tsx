@@ -24,8 +24,7 @@ interface Coin {
 const DailyBonus = () => {
   const dispatch = useAppDispatch();
   const isDailyBonusOpen = useAppSelector((state) => state.dailyBonus.isOpen);
-  const isDailyGreetingOpen = useAppSelector((state) => state.greeting.isOpen);
-
+  
   // const isGreetingOpen = useAppSelector((state) => state.greeting.isOpen);
   const [hasFirstReward, setHasFirstReward] = useState(true); // Состояние для проверки наличия награды "first"
   const [isDaily, setIsDaily] = useState(false); // Состояние для проверки наличия награды "first"
@@ -161,7 +160,7 @@ console.log(lastCoin)
   };
 
   fetchRewards();
-}, [user, dispatch, isDailyGreetingOpen]);
+}, [user, dispatch, ]);
 
 //  useEffect(() => {
 //   const fetchRewards = async () => {
