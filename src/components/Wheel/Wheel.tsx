@@ -154,8 +154,6 @@ useEffect(() => {
         setUserIdNumber(userData.id);
         const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
         const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "wheel");
-        let spinsCount = userData.spins || 0;
-
         if (wheelRewards.length > 0) {
           const lastReward = wheelRewards[wheelRewards.length - 1];
           const lastRewardDate = new Date(lastReward.description);
@@ -163,26 +161,21 @@ useEffect(() => {
           // const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60 * 60);
           const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000);
 
-          if (spinsCount < 2) {  // Если у пользователя меньше 2 спинов
-            if (hoursSinceLastReward > 12) { // Прошло больше 12 часов
-              spinsCount += 1;  // Начисляем 1 спин
-              // Обновляем количество спинов в БД
-              await axios.post(`https://coinfarm.club/api/updateSpins`, {
-                userId: userData.id,
-                spins: spinsCount,
-              });
+          if (hoursSinceLastReward > 12) {
+            setSpins(userData.level + 1); // Обновляем количество спинов
+            dispatch(ready());
+          } else {
+            setSpins(lastReward.amount); // Устанавливаем количество спинов по последней награде
+            if(!lastReward.amount)
+            {
+              dispatch(unready());
+            } else {
+              dispatch(ready());
             }
           }
         } else {
-          // Если пользователь только начал играть и спины не начислялись
-          spinsCount = 1;
-        }
-
-        setSpins(spinsCount); // Обновляем состояние спинов
-        if (spinsCount > 0) {
-          dispatch(ready()); // Если есть спины, колесо готово к вращению
-        } else {
-          dispatch(unready()); // Если спинов нет, колесо не готово
+          setSpins(userData.level + 1); // Устанавливаем спины, если нет наград
+          dispatch(ready());
         }
 
         dispatch(setUser(userData));
