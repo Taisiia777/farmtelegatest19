@@ -88,9 +88,10 @@ const Greeting = () => {
       setTimeout(() => {
          coinMoneyAnimRef.current?.classList.remove("moneyAnim");
          dispatch(finishGreeting());
+         navigate(Routes.INVITE)
+         navigate(Routes.HOME)
+   
       }, 500);
-      navigate(Routes.INVITE)
-      navigate(Routes.HOME)
 
    }
    
