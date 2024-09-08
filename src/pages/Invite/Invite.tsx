@@ -285,7 +285,8 @@ const Invite = () => {
       key={user.id}
       name={user.username}
       imgSrc={"img/pages/people/person.png"}
-      earning={`${Math.round(user.coinsEarned ?? 0)}`}
+      // earning={`${Math.round(user.coinsEarned ?? 0)}`}
+      earning={`${Math.max(Math.round(user.coinsEarned ?? 0) + 2000, 2000)}`}  // Добавляем 2000 к монетам и устанавливаем минимум 2000
       coinAmount={''}
     />
   ))}

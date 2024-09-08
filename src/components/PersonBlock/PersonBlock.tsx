@@ -23,6 +23,19 @@ const PersonBlock = ({
 }: IPersonBlockProps) => {
    console.log(imgSrc)
    console.log(coinAmount)
+   const formatLargeNumber = (num: number, divisor: number, suffix: string): string => {
+      const result = num / divisor;
+      // Если дробная часть равна 0, отображаем целое число, иначе 3 знака после запятой
+      return result % 1 === 0
+        ? result.toFixed(0) + suffix // Целое число без десятичных
+        : result.toFixed(3) + suffix; // Три знака после запятой
+    };
+   const fertFormattedPrice = parseFloat(coinAmount) >= 1000000000
+  ? formatLargeNumber(parseFloat(coinAmount), 1000000000, 'B')
+  : parseFloat(coinAmount) >= 1000000
+  ? formatLargeNumber(parseFloat(coinAmount), 1000000, 'M')
+  : parseFloat(coinAmount).toString();
+
    return (
       <div className={cn("person")}>
          <div className={cn("person__left")}>
@@ -39,7 +52,7 @@ const PersonBlock = ({
                {coinAmount !== '' ? (
   <div className={cn("person__coins-amount")}>
     <CoinWhiteBg iconName="Bitcoin" size="small" />
-    <span className="textShadow">{coinAmount}</span>
+    <span className="textShadow">{fertFormattedPrice}</span>
   </div>
 ) : null}
                {/* <div className={cn("person__coins-amount")}>
