@@ -1895,7 +1895,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
 
          {/* Приветствие */}
          {!hasFirstReward && <Greeting />}
-         {showGuide && <Guide />}
+         {showGuide && false && <Guide />}
          <Guide1 />
         <Wheel />
         <Wallet />
