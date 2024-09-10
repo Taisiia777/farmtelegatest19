@@ -14,7 +14,7 @@ import useWheatTrunctaion from "../../hooks/useWheatTrunctation";
 import { RootState } from "../../../../store";
 // import { setUser } from "../../../../store/reducers/userSlice";
 import { updateGrassEarnings} from "../../../../store/reducers/userSlice";
-import axios from "axios";
+// import axios from "axios";
 // import { useGesture } from '@use-gesture/react';
 
 const cn = classNames.bind(styles);
@@ -92,7 +92,8 @@ const FarmBloks: React.FC<FarmBlocksProps> = ({ league }) => {
       if (user) {
         try {
           const stages = blocks.map((block: { id: number, stage: TGrowthStage }) => block.stage);
-          await axios.patch(`https://coinfarm.club/api/user/${user.id}/grass-stages`, { stages });
+          console.log(stages)
+          // await axios.patch(`https://coinfarm.club/api/user/${user.id}/grass-stages`, { stages });
         } catch (error) {
           console.error('Failed to update grass growth stages:', error);
         }

@@ -522,7 +522,7 @@ const Home = () => {
       updateOnlineStatus();
       const intervalId = setInterval(() => {
         updateOnlineStatus();
-      }, 10000); // Обновление каждые 60 секунд
+      }, 60000); // Обновление каждые 60 секунд
   
       return () => clearInterval(intervalId);
     }, []);
