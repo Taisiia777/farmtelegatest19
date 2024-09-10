@@ -1247,7 +1247,7 @@ console.log(response1)
             return maxEarnings;
           }
         });
-      }, 3000);
+      }, 5000);
     
       return () => {
         clearInterval(interval);
