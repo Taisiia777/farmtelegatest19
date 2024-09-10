@@ -1231,13 +1231,13 @@ console.log(response1)
         const updatedUserData = response.data;
     
         // Сохраняем актуальные данные в Redux после синхронизации с сервером
-        dispatch(setUser(updatedUserData));
-        // dispatch(
-        //   setUser({
-        //     ...user, // Берем текущее состояние пользователя
-        //     xp: updatedUserData.xp, // Обновляем только xp
-        //   })
-        // );
+        // dispatch(setUser(updatedUserData));
+        dispatch(
+          setUser({
+            ...user, // Берем текущее состояние пользователя
+            xp: updatedUserData.xp, // Обновляем только xp
+          })
+        );
         console.log("Синхронизация заработка с сервером прошла успешно:", updatedUserData);
       } catch (error) {
         console.error("Ошибка при синхронизации displayEarnings:", error);
