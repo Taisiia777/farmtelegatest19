@@ -33,44 +33,69 @@ const Greeting = () => {
    function goNext() {
       setStep((prev) => prev + 1);
    }
-   async function addCoins(userId: number, amount: number) {   
-      console.log(`пользователь ${JSON.stringify(user)} количество ${amount}`)
-      try {
-         const response = await axios.post(
-            `https://coinfarm.club/api/reward/first/${userId}`
-          ); 
-          console.log(response)
-          const response1 = await axios.patch(
-            `https://coinfarm.club/api/user/${userId}/earn/${amount}`
-          );
-          const updatedUser = response1.data;
-          // Обновление состояния пользователя и локальных монет
-          dispatch(
-            setUser({
-              ...updatedUser,
-              coins: updatedUser.coins,
-              totalEarnings: updatedUser.totalEarnings,
-            })
-          );
-          setLocalCoins(2000)
-          dispatch(updateGrassEarnings(0));
+//    async function addCoins(userId: number, amount: number) {   
+//       console.log(`пользователь ${JSON.stringify(user)} количество ${amount}`)
+//       try {
+//          const response = await axios.post(
+//             `https://coinfarm.club/api/reward/first/${userId}`
+//           ); 
+//           console.log(response)
+//           const response1 = await axios.patch(
+//             `https://coinfarm.club/api/user/${userId}/earn/${amount}`
+//           );
+//           const updatedUser = response1.data;
+//           // Обновление состояния пользователя и локальных монет
+//           dispatch(
+//             setUser({
+//               ...updatedUser,
+//               coins: updatedUser.coins,
+//               totalEarnings: updatedUser.totalEarnings,
+//             })
+//           );
+//           setLocalCoins(2000)
+//           dispatch(updateGrassEarnings(0));
 
-          console.log(localCoins)
-            //   const updatedUser = await response.json();
-            //   // Преобразование значений coins и totalEarnings в числа
-            //   console.log(`updated user ${JSON.stringify(updatedUser)}`)
-            //   dispatch(setUser({
-            //       ...updatedUser,
-            //       coins: Number(updatedUser.coins),
-            //       totalEarnings: Number(updatedUser.totalEarnings)
-            //   })); // Обновляем данные пользователя в Redux
-              
+//           console.log(localCoins)
+
           
-      } catch (error) {
-          console.error('Error:', error);
-      }
-  }
-  
+//       } catch (error) {
+//           console.error('Error:', error);
+//       }
+//   }
+function addCoins(userId: number, amount: number) {
+   console.log(`пользователь ${JSON.stringify(user)} количество ${amount}`);
+ 
+   axios
+     .post(`https://coinfarm.club/api/reward/first/${userId}`)
+     .then((response) => {
+       console.log(response);
+ 
+       // После первого запроса делаем второй
+       return axios.patch(`https://coinfarm.club/api/user/${userId}/earn/${amount}`);
+     })
+     .then((response1) => {
+       const updatedUser = response1.data;
+ 
+       // Обновление состояния пользователя и локальных монет
+       dispatch(
+         setUser({
+           ...updatedUser,
+           coins: updatedUser.coins,
+           totalEarnings: updatedUser.totalEarnings,
+         })
+       );
+ 
+       // Обновляем локальные данные
+       setLocalCoins(2000);
+       dispatch(updateGrassEarnings(0));
+ 
+       console.log(localCoins);
+     })
+     .catch((error) => {
+       console.error('Error:', error);
+     });
+ }
+ 
    function handleAddCoins() {
       if (user?.id) {
          addCoins(user.id, 0);
