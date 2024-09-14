@@ -90,16 +90,19 @@ const Combo = () => {
   
             // Log if it's after 14:00 today
             if (now >= today14) {
-              console.log("Текущее время уже после 14:00 сегодняшнего дня.");
+              alert("Текущее время уже после 14:00 сегодняшнего дня.");
             }
   
             // Check if last reward was between 14:00 of yesterday and today
             if (lastRewardDate >= yesterday14 && lastRewardDate < today14) {
+              alert("true")
               setIsCompleted(true); // Reward received in this window
             } else {
+              alert("false")
               setIsCompleted(false); // No reward in this window
             }
           } else {
+            alert("false1")
             setIsCompleted(false); // No combo rewards found
           }
   
