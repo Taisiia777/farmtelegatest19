@@ -279,3 +279,8 @@
    height: 122px;
  }
  
+ .grid-container._inactive {
+   opacity: 0.5; /* Полупрозрачность */
+   pointer-events: none; /* Отключение всех кликов */
+ }
+ 

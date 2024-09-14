@@ -29,12 +29,84 @@ const Combo = () => {
   const [step, setStep] = useState(1); // Текущий шаг
   const user = useAppSelector((state: RootState) => state.user.user);
   const isLoading = useAppSelector((state) => state.preloader.isLodaing);
+  const [reward, setReward] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   
 
 
+  const leagues = [
+    { name: "Wooden", referralsRequired: 3, referralsTo: 0, harvest: 1 },
+    { name: "Silver", referralsRequired: 10, referralsTo: 3, harvest: 1.5 },
+    { name: "Gold", referralsRequired: 50, referralsTo: 10, harvest: 2 },
+    { name: "Fire", referralsRequired: 200, referralsTo: 50, harvest: 3 },
+    { name: "Diamond", referralsRequired: 1000, referralsTo: 200, harvest: 4 },
+    { name: "Ruby", referralsRequired: 1001, referralsTo: 1000, harvest: 5 },
+  ];
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // Получаем награды пользователя
+        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${user.id}`);
+        const comboRewards = rewardsResponse.data.filter((reward: any) => reward.type === "combo");
+        
+        if (comboRewards.length > 0) {
+          // Получаем последнюю награду
+          const lastReward = comboRewards[comboRewards.length - 1];
+          const lastRewardDate = new Date(lastReward.createdAt); // Предполагается, что поле с датой — `createdAt`
+          
+          // const now = new Date();
+          
+          // Определяем даты 14:00 прошлого и текущего дня
+          const today14 = new Date();
+          today14.setHours(14, 0, 0, 0);
 
+          const yesterday14 = new Date(today14);
+          yesterday14.setDate(today14.getDate() - 1);
 
+          // Проверяем, была ли награда за комбо получена между 14:00 прошлого дня и 14:00 текущего дня
+          if (lastRewardDate >= yesterday14 && lastRewardDate < today14) {
+            setIsCompleted(true); // Награда получена в этом промежутке
+          } else {
+            setIsCompleted(false); // Награда не получена в этом промежутке
+          }
+        } else {
+          setIsCompleted(false); // Наград нет, значит комбо не выполнено
+        }
+      } catch (error) {
+        console.error("Error fetching user rewards:", error);
+        setIsCompleted(false); // В случае ошибки — комбо недоступно
+      }
+    };
+
+    fetchUserData();
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+       
+       
+         
+  //         const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${user.id}`);
+  //         const wheelRewards = rewardsResponse.data.filter((reward: any) => reward.type === "combo");
+  //         if (wheelRewards.length > 0) {
+  //           const lastReward = wheelRewards[wheelRewards.length - 1];
+  //           const lastRewardDate = new Date(lastReward.description);
+  //           const now = new Date();
+  //           const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000 * 60 * 60);
+  //           // const hoursSinceLastReward = (now.getTime() - lastRewardDate.getTime()) / (1000);
+  
+
+  //         } else {
+            
+  //         }
+  
+       
+      
+  //   };
+  
+  //   fetchUserData();
+  // }, [dispatch]);
   // Функция для выдачи награды
   const giveUserReward = (reward: number) => {
     // Уведомляем, что запрос еще не завершен
@@ -53,6 +125,8 @@ const Combo = () => {
         .catch((error) => {
           console.error('Error awarding coins:', error);
         });
+      axios.post(`https://coinfarm.club/api/reward/combo/${user.id}`)
+        
     }
   };
 
@@ -77,18 +151,18 @@ const Combo = () => {
   // Проверка на выигрыш или проигрыш
   useEffect(() => {
     if (leafCount === 3) {
+      const userLeagueIndex =  user.level;
+      const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
+      const calculatedInHour = user.coinsPerHour * userHarvestMultiplier;
+      setReward(calculatedInHour / 3)
+      giveUserReward(calculatedInHour / 3); // Выдаем 1000 монет
       setStep(2); // Переключаем на step 2
-      giveUserReward(1000); // Выдаем 1000 монет
     } else if (skullCount === 1) {
       setStep(3); // Переключаем на step 3
     }
   }, [leafCount, skullCount]); // Выполняем проверку при изменении листиков или черепов
 
-  //  function fihish() {
 
-  //        setStep(1)
-  //        dispatch(finishCombo());
-  //  }
 
    const { t } = useTranslation();
    useEffect(() => {
@@ -212,11 +286,12 @@ const Combo = () => {
 
 
 
-        <div className={cn("grid-container")} >
+        {/* <div className={cn("grid-container")} >
         {items.map((item, index) => (
           <div
             key={index}
             className={cn("grid-item")}
+            
             onClick={() => handleItemClick(index)}
           >
             {item === 'box' && <img src="img/pages/home/menu/combo_box.png" alt="Box" />}
@@ -224,7 +299,20 @@ const Combo = () => {
             {item === 'skull' && <img src="img/pages/home/menu/combo_scull.png" alt="Skull" />}
           </div>
         ))}
-      </div>
+      </div> */}
+<div className={cn("grid-container", { "_inactive": isCompleted })}>
+  {items.map((item, index) => (
+    <div
+      key={index}
+      className={cn("grid-item")}
+      onClick={() => !isCompleted && handleItemClick(index)} // Отключаем клик, если isCompleted true
+    >
+      {item === 'box' && <img src="img/pages/home/menu/combo_box.png" alt="Box" />}
+      {item === 'leaf' && <img src="img/pages/home/menu/combo_leaf.png" alt="Leaf" />}
+      {item === 'skull' && <img src="img/pages/home/menu/combo_scull.png" alt="Skull" />}
+    </div>
+  ))}
+</div>
 
              
             </div>
@@ -256,7 +344,7 @@ const Combo = () => {
                      className={cn("content__person-img", "_first1")}
                   />
                   <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
-                  {t('wheel_reward')} 1000 FarmCoins
+                  {t('wheel_reward')} {reward} FarmCoins
                   </p>
                </div>
             </div>
