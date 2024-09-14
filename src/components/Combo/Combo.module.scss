@@ -260,3 +260,18 @@
 .greeting__next.disabled {
    pointer-events: none;
  }
+
+
+ .wheel .grid-container {
+   display: grid;
+   grid-template-columns: repeat(3, 122px);
+   grid-template-rows: repeat(3, 122px);
+   gap: 10px; /* Если нужно добавить отступы между блоками */
+ }
+ 
+ .wheel .grid-item {
+   width: 122px;
+   height: 122px;
+   border: 1px solid #ccc;
+ }
+ 
