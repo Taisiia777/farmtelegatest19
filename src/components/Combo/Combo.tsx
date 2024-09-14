@@ -45,7 +45,6 @@ const Combo = () => {
     { name: "Ruby", referralsRequired: 1001, referralsTo: 1000, harvest: 5 },
   ];
 
-
   useEffect(() => {
     const fetchUserData = async () => {
       const { initData } = retrieveLaunchParams();
@@ -53,13 +52,13 @@ const Combo = () => {
         const user = initData.user;
         const username = user.username;
         const userId = user.id;
-
+  
         try {
-          // Получаем реферальный код
-          const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
-          const referralCode = response.data.referral_code;
-
-          // Создаем или обновляем пользователя
+          // Fetch referral code
+          const referralResponse = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
+          const referralCode = referralResponse.data.referral_code;
+  
+          // Fetch user data
           const userResponse = await axios.post("https://coinfarm.club/api/user", {
             username: username,
             coins: 0,
@@ -70,56 +69,50 @@ const Combo = () => {
             level: 0,
             referralCode: referralCode,
           });
-
+  
           let userData = userResponse.data;
-
-          // Получаем награды пользователя
+  
+          // Fetch rewards
           const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
           const comboRewards = rewardsResponse.data.filter((reward: any) => reward.type === "combo");
-
+  
           if (comboRewards.length > 0) {
-            // Получаем дату последней награды
             const lastReward = comboRewards[comboRewards.length - 1];
             const lastRewardDate = new Date(lastReward.createdAt);
-
             const now = new Date();
-
-            // Определяем даты 14:00 сегодняшнего и вчерашнего дня
+  
+            // Set 14:00 of today and yesterday
             const today14 = new Date();
             today14.setHours(14, 0, 0, 0);
-
+  
             const yesterday14 = new Date(today14);
             yesterday14.setDate(today14.getDate() - 1);
-
-            // Проверяем, если текущее время меньше 14:00, то проверяем с 14:00 вчерашнего дня до текущего момента
-            if (now < today14) {
-              // Проверяем, была ли награда за комбо получена между 14:00 вчерашнего дня и сейчас
-              if (lastRewardDate >= yesterday14 && lastRewardDate < today14) {
-                setIsCompleted(true);
-              } else {
-                setIsCompleted(false);
-              }
+  
+            // Log if it's after 14:00 today
+            if (now >= today14) {
+              console.log("Текущее время уже после 14:00 сегодняшнего дня.");
+            }
+  
+            // Check if last reward was between 14:00 of yesterday and today
+            if (lastRewardDate >= yesterday14 && lastRewardDate < today14) {
+              setIsCompleted(true); // Reward received in this window
             } else {
-              // Проверяем, была ли награда за комбо получена между 14:00 сегодняшнего и предыдущего дня
-              if (lastRewardDate >= today14) {
-                setIsCompleted(true);
-              } else {
-                setIsCompleted(false);
-              }
+              setIsCompleted(false); // No reward in this window
             }
           } else {
-            setIsCompleted(false); // Наград нет, значит комбо не выполнено
+            setIsCompleted(false); // No combo rewards found
           }
-
+  
           dispatch(setUser(userData));
         } catch (error) {
-          console.error("Error fetching user data:", error);
+          console.error("Error fetching user/rewards:", error);
         }
       }
     };
-
+  
     fetchUserData();
   }, [dispatch]);
+  
   // Функция для выдачи награды
   const giveUserReward = (reward: number) => {
     // Уведомляем, что запрос еще не завершен
