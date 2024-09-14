@@ -177,12 +177,10 @@ const Combo = () => {
             )}
 
 {step === 1 && (
-            <div style={{display: 'flex', flexDirection:'column', width: '100%', height:'100%', position:'relative'}}>
-
-               <div className={cn("greeting__body", "_first")} >
+            <div style={{display: 'flex', flexDirection:'column', width: '100%', height:'100%', position:'relative'}} ref={wheelRef}>
 
 
-        <div className={cn("content__person-img", "_first")} ref={wheelRef}>
+
         <div className="grid-container">
         {items.map((item, index) => (
           <div
@@ -196,10 +194,8 @@ const Combo = () => {
           </div>
         ))}
       </div>
-        </div>
 
         <img src="img/global/next-btn.svg" className={cn("greeting__next")} alt="Finish" onClick={fihish} />
-      </div>
              
             </div>
          )}
