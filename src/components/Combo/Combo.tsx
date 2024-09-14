@@ -181,11 +181,11 @@ const Combo = () => {
 
 
 
-        <div className="grid-container">
+        <div className={cn("grid-container")} >
         {items.map((item, index) => (
           <div
             key={index}
-            className="grid-item"
+            className={cn("grid-item")}
             onClick={() => handleItemClick(index)}
           >
             {item === 'box' && <img src="img/pages/home/menu/combo_box.png" alt="Box" />}
