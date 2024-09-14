@@ -6,7 +6,7 @@ import { RootState } from "../../store";
 import { useAppSelector } from "../../store";
 import { closeBoostBuyPopup } from "../../store/reducers/boost";
 import { closeCoinBuyPopup } from "../../store/reducers/coin";
-import { closeFertilizersBuyPopup } from "../../store/reducers/fertilizers";
+import { closeFertilizersBuyPopup, loading, noLoading } from "../../store/reducers/fertilizers";
 import { Routes } from "../../routes/routes";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import useClosePopupByTgButton from "../../hooks/useClosePopupByTgButton";
@@ -17,7 +17,7 @@ import classNames from "classnames/bind";
 import useWindowSize from "../../hooks/useWindowSize";
 import { setUserCoins1 } from '../../store/reducers/userCoinsSlice';
 import RainAnimation from './modules/RainAnimation';
-// import QRCodeComponent from './QRCodeComponent';
+import QRCodeComponent from './QRCodeComponent';
 import { openGuide } from "../../store/reducers/guide";
 import { useOutletContext } from 'react-router-dom';
 // import useWheatTrunctaion from "./hooks/useWheatTrunctation";
@@ -172,6 +172,8 @@ const Home = () => {
    const dispatch = useDispatch();
    const { width } = useWindowSize();
     const user = useAppSelector((state: RootState) => state.user.user);
+    const fertilizersLoading = useAppSelector((state: RootState) => state.fertilizers.isLoading);
+
    const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
    const [nickname, setNickname] = useState(''); // Состояние для никнейма
    // const [imgSrc, setImgSrc] = useState("img/pages/people/person.png");
@@ -201,12 +203,12 @@ const Home = () => {
    const [tasks, setTasks] = useState<Task[]>([]);
    const [rainInterval, setRainInterval] = useState(0);
    const lastUpdateRef = useRef(Date.now());
-  //  const [showQRCode, setShowQRCode] = useState(false);
+   const [showQRCode, setShowQRCode] = useState(false);
    const [showGuide, setShowGuide] = useState(false);
    const { friends } = useOutletContext<OutletContext>();
    const [isBoosterPurchased, setIsBoosterPurchased] = useState(false);
    const [isCoinPurchased, setIsCoinPurchased] = useState(false);
-   const [isProcessing, setIsProcessing] = useState(false); // Состояние для блокировки кнопки
+  //  const [isProcessing, setIsProcessing] = useState(false); // Состояние для блокировки кнопки
 
   // useWheatTrunctaion();
   // useHarvestAllWheat()
@@ -355,15 +357,15 @@ const Home = () => {
       }, 500);
    }
 
-  //  useEffect(() => {
-  //   const checkIfDesktop = () => {
-  //     const userAgent = navigator.userAgent;
-  //     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-  //     setShowQRCode(!isMobile);
-  //   };
+   useEffect(() => {
+    const checkIfDesktop = () => {
+      const userAgent = navigator.userAgent;
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+      setShowQRCode(!isMobile);
+    };
   
-  //   checkIfDesktop();
-  // }, []);
+    checkIfDesktop();
+  }, []);
   
 
 
@@ -747,8 +749,8 @@ const Home = () => {
       fetchUserBoosters();
       fetchFertilizers();
       fetchUserFertilizers();
-      setIsProcessing(false)
-       }
+      dispatch(noLoading());
+    }
     }, [isCoinPurchased, isBoosterPurchased]);
 
     useEffect(() => {
@@ -942,7 +944,7 @@ const Home = () => {
 
 
       async function giveFertilizers() {
-        setIsProcessing(true); // Блокируем кнопку и меняем текст на "Loading..."
+        dispatch(loading());
 
         try {
           const response = await axios.post(`https://coinfarm.club/api/fertilizers/give/${user.id}/${fertilizersState.info.fertilizersId}`);
@@ -1355,33 +1357,75 @@ console.log(response1)
     
 
   
+    // const handleRainReward = async () => {
+    //   try {
+    //   //   const userId = 'yourUserId'; // Replace with actual user ID
+    //     const response = await axios.post(`https://coinfarm.club/api/reward/rain/${user?.id}`);
+    //      console.log(response)
+    //     //  const userLeagueIndex = user ? user.level : 0;
+    //     //  const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
+    //     //  const calculatedInHour = user?.coinsPerHour * userHarvestMultiplier;
+    //     //   setDisplayEarnings(calculatedInHour * user?.incomeMultiplier);
+    //     //   dispatch(growAllToMax());
+    //     //   setEnergyPopupOpen(false);
+    //     //   setIsRainAnim(true);
+    //     //   setCurrentRainProgress(0); // Если нет наград за дождь, то дождь доступен
+    //       axios.get(`https://coinfarm.club/api/reward/${user?.id}`)
+    //       .then(response => {
+    //         setRewards(response.data);
+    //         checkRainReward(response.data);
+    //         console.log("check rain")
+    //         const userLeagueIndex = user ? user.level : 0;
+    //         const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
+    //         const calculatedInHour = user?.coinsPerHour * userHarvestMultiplier;
+    //         setDisplayEarnings(calculatedInHour * user?.incomeMultiplier);
+    //         dispatch(growAllToMax());
+    //         setEnergyPopupOpen(false);
+    //         setIsRainAnim(true);
+    //         setCurrentRainProgress(0); 
+    //         setTimeout(() => setIsRainAnim(false), 5000);
+    //       })
+    //       .catch(error => {
+    //         console.error('Error fetching rewards:', error);
+    //       });
+    //       // setTimeout(() => setIsRainAnim(false), 5000);
+    //     } catch (error) {
+    //     console.error('Error sending rain reward request:', error);
+    //   }
+    // };
     const handleRainReward = async () => {
       try {
-      //   const userId = 'yourUserId'; // Replace with actual user ID
+        // Отправляем запрос на получение награды за дождь
         const response = await axios.post(`https://coinfarm.club/api/reward/rain/${user?.id}`);
-         console.log(response)
-         const userLeagueIndex = user ? user.level : 0;
-         const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
-         const calculatedInHour = user?.coinsPerHour * userHarvestMultiplier;
-          setDisplayEarnings(calculatedInHour * user?.incomeMultiplier);
-          dispatch(growAllToMax());
-          setEnergyPopupOpen(false);
-          setIsRainAnim(true);
-          setCurrentRainProgress(0); // Если нет наград за дождь, то дождь доступен
-          axios.get(`https://coinfarm.club/api/reward/${user?.id}`)
-          .then(response => {
-            setRewards(response.data);
-            checkRainReward(response.data);
-            console.log("check rain")
-          })
-          .catch(error => {
-            console.error('Error fetching rewards:', error);
-          });
-          setTimeout(() => setIsRainAnim(false), 5000);
-        } catch (error) {
-        console.error('Error sending rain reward request:', error);
+        console.log('Rain reward response:', response);
+    
+        // Получаем награды пользователя после успешного дождя
+        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${user?.id}`);
+        setRewards(rewardsResponse.data);
+        
+        // Проверяем награды и выполняем расчет
+        checkRainReward(rewardsResponse.data);
+        console.log("Rewards checked");
+    
+        const userLeagueIndex = user ? user.level : 0;
+        const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
+        const calculatedInHour = user?.coinsPerHour * userHarvestMultiplier;
+        setDisplayEarnings(calculatedInHour * user?.incomeMultiplier);
+    
+        // Обновляем статус анимации и прогресса
+        dispatch(growAllToMax());
+        setEnergyPopupOpen(false);
+        setIsRainAnim(true);
+        setCurrentRainProgress(0);
+    
+        // Останавливаем анимацию через 5 секунд
+        setTimeout(() => setIsRainAnim(false), 5000);
+    
+      } catch (error) {
+        console.error('Error handling rain reward:', error);
       }
     };
+    
     useEffect(() => {
       const fetchTasks = async () => {
         try {
@@ -1437,8 +1481,8 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
   
    return (
       <>
-       {/* <QRCodeComponent /> */}
-       {!false && (
+       <QRCodeComponent />
+       {!showQRCode && (
  <>
 
  {/* { isRain && <Clouds
@@ -1646,7 +1690,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                      <Button
                         className={cn("popup__btn")}
                         size={width > 380 ? "big" : "normal"}
-                        disabled={isProcessing} // Блокируем кнопку, если идет запрос
+                        disabled={fertilizersLoading} // Блокируем кнопку, если идет запрос
                         onClick={() =>{
                            giveFertilizers()
                            buy(fertilizersMoneyAnimRef, () =>
@@ -1661,13 +1705,13 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                            size={width > 380 ? "normall" : "small"}
                         />
                         <span>{isProcessing ? 'Loading...' : fertFormattedPrice}</span> */}
- {!isProcessing && (
+ {!fertilizersLoading && (
     <CoinWhiteBg
       iconName="Bitcoin"
       size={width > 380 ? "normall" : "small"}
     />
   )}
-  <span>{isProcessing ? 'Loading...' : fertFormattedPrice}</span>
+  <span>{fertilizersLoading ? 'Loading...' : fertFormattedPrice}</span>
                      </Button>
                      <img
                         // src={`img/pages/home/${mostExpensiveCoinName}/money.svg`}
@@ -1859,7 +1903,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                />
 
               
-{earnActiveTab === "TASKS" && (
+{/* {earnActiveTab === "TASKS" && (
   <PopupList
     ref={earnRef}
     nodes={tasks.map(task => (
@@ -1873,8 +1917,25 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
       />
     ))}
   />
-)}
+)} */}
 
+{earnActiveTab === "TASKS" && (
+  <PopupList
+    ref={earnRef}
+    nodes={tasks
+      .sort((a, b) => a.id - b.id)  // Сортировка по возрастанию id
+      .map(task => (
+        <FreindOrSpecialBlock
+          key={task.id}
+          imgSrc={task.imgSrc}
+          title={task.description}
+          earning={task.rewardAmount.toString()}
+          link={task.link}
+          defaultButtonText={t('join')}
+        />
+      ))}
+  />
+)}
 
             </PopupListWrap>
 

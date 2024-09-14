@@ -10,6 +10,8 @@ export interface IFertilizersState {
       level: number
    };
    isOpen: boolean;
+   isLoading: boolean;
+
 }
 
 const initialState: IFertilizersState = {
@@ -21,6 +23,8 @@ const initialState: IFertilizersState = {
       level: 1
    },
    isOpen: false,
+   isLoading: false,
+
 };
 
 export const fertilizersSlice = createSlice({
@@ -44,9 +48,15 @@ export const fertilizersSlice = createSlice({
       closeFertilizersBuyPopup: (state) => {
          state.isOpen = false;
       },
+      noLoading: (state) => {
+         state.isLoading = false;
+      },
+      loading: (state) => {
+         state.isLoading = true;
+      },
    },
 });
 
-export const { setFertilizersIfno, closeFertilizersBuyPopup } = fertilizersSlice.actions;
+export const { setFertilizersIfno, closeFertilizersBuyPopup, loading, noLoading } = fertilizersSlice.actions;
 
 export default fertilizersSlice.reducer;
