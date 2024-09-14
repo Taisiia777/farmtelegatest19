@@ -4,10 +4,10 @@
 import { useRef, useState, useEffect} from "react";
 
 import classNames from "classnames/bind";
-import styles from "./Wheel.module.scss";
+import styles from "./Combo.module.scss";
 
 import { useAppDispatch, useAppSelector } from "../../store";
-import { finishWheel, ready, unready } from "../../store/reducers/wheel";
+import { finishCombo, ready, unready } from "../../store/reducers/combo";
 
 import useOutsideClick from '../../pages/Home/hooks/useOutsideClick'; // Импортируйте ваш хук
 
@@ -23,6 +23,7 @@ const cn = classNames.bind(styles);
 const Combo = () => {
    const dispatch = useAppDispatch();
    const isOpen = useAppSelector((state) => state.combo.isOpen);
+   alert(isOpen)
    const user = useAppSelector((state: RootState) => state.user.user);
 
    // Состояние прелоудреа
@@ -261,7 +262,7 @@ const spin = () => {
       // setTimeout(() => {
       //    coinMoneyAnimRef.current?.classList.remove("moneyAnim");
          setStep(1)
-         dispatch(finishWheel());
+         dispatch(finishCombo());
       // }, 500);
    }
    const getCorrectSpinsText = (spins: number) => {
@@ -383,7 +384,7 @@ const spin = () => {
    }, []);
    const wheelRef = useRef<HTMLDivElement>(null);
 
-   useOutsideClick(() => dispatch(finishWheel()), [wheelRef]);
+   useOutsideClick(() => dispatch(finishCombo()), [wheelRef]);
 
    return (
       <div className={cn("greeting", !isLoading && isOpen && "_active")} style={{zIndex: '100'}} id="fortune">
@@ -392,7 +393,7 @@ const spin = () => {
                   src="img/global/closeIcon.svg"
                   onClick={() => {
                     setStep(1)
-                    dispatch(finishWheel());
+                    dispatch(finishCombo());
                   }}
                   className={cn("close")}
                   alt="Close"

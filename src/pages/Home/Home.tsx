@@ -54,6 +54,8 @@ import Greeting from "../../components/Greeting/Greeting";
 import Guide from "../../components/Guide/Guide";
 import Guide1 from "../../components/Guide1/Guide1";
 import Wheel from "../../components/Wheel/Wheel";
+import Combo from "../../components/Combo/Combo";
+
 import Wallet from "../../components/Wallet/Wallet";
 
 import DailyBonus from "../../components/DailyBonus/DailyBonus";
@@ -2003,6 +2005,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
          {showGuide && false && <Guide />}
          <Guide1 />
         <Wheel />
+        <Combo />
         <Wallet />
          {/* Ежедневный бонус */}
          <DailyBonus />

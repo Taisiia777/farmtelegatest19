@@ -120,7 +120,7 @@ const GamesBlock = ({
   const dispatch = useAppDispatch();
 
   const handleWheelClick = () => {
-   alert("lll")
+      alert("lll")
     dispatch(openCombo());
  };
    return (
