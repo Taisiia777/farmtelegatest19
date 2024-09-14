@@ -129,31 +129,31 @@ const Combo = () => {
        
                if (comboRewards.length > 0) {
                  const lastReward = comboRewards[comboRewards.length - 1];
-                 const lastRewardDate = new Date(lastReward.description); // Используем поле description
-                //  const now = new Date();
+                 const lastRewardDate = new Date(lastReward.description);
        
-                 // Set 14:00 of today and yesterday in local timezone
-                 const today14 = new Date();
-                 today14.setHours(14, 0, 0, 0);
+                 // Преобразование времени награды в московское время (UTC+3)
+                 const lastRewardMsk = new Date(lastRewardDate.toLocaleString("en-US", { timeZone: "Europe/Moscow" }));
        
-                 const yesterday14 = new Date(today14);
-                 yesterday14.setDate(today14.getDate() - 1);
+                 // Получаем текущее время по московскому времени
+                 const nowMsk = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" }));
        
-                 // Logging the dates for debugging
-                 console.log("Last Reward Date:", lastRewardDate.toLocaleString());
-                 console.log("Yesterday 14:00:", yesterday14.toLocaleString());
-                 console.log("Today 14:00:", today14.toLocaleString());
+                 // Устанавливаем 14:00 сегодняшнего дня по московскому времени
+                 const today14Msk = new Date(nowMsk);
+                 today14Msk.setHours(14, 0, 0, 0);
        
-                 // Check if last reward was between 14:00 of yesterday and today
-                 if (lastRewardDate >= yesterday14 && lastRewardDate < today14) {
-                   alert("true");
-                   setIsCompleted(true); // Reward received in this window
+                 // Устанавливаем 14:00 вчерашнего дня по московскому времени
+                 const yesterday14Msk = new Date(today14Msk);
+                 yesterday14Msk.setDate(today14Msk.getDate() - 1);
+       
+   
+                 // Проверяем, была ли награда получена между 14:00 вчерашнего дня и 14:00 сегодняшнего дня по московскому времени
+                 if (lastRewardMsk >= yesterday14Msk && lastRewardMsk < today14Msk) {
+                   setIsCompleted(true); // Награда получена в этом промежутке
                  } else {
-                   alert("false");
-                   setIsCompleted(false); // No reward in this window
+                   setIsCompleted(false); // Награда не получена в этом промежутке
                  }
                } else {
-                 setIsCompleted(false); // No combo rewards found
+                 setIsCompleted(false); // Наград нет, значит комбо не выполнено
                }
           dispatch(setUser(userData));
         } catch (error) {
@@ -183,9 +183,8 @@ const Combo = () => {
         .catch((error) => {
           console.error('Error awarding coins:', error);
         });
-      alert("sasjaisjia")
       axios.post(`https://coinfarm.club/api/reward/combo/${user.id}`)
-        
+      
     }
   };
 
