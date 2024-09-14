@@ -46,7 +46,6 @@ const Combo = () => {
   ];
 
 
-
   useEffect(() => {
     const fetchUserData = async () => {
       const { initData } = retrieveLaunchParams();
@@ -54,13 +53,13 @@ const Combo = () => {
         const user = initData.user;
         const username = user.username;
         const userId = user.id;
-  
+
         try {
+          // Получаем реферальный код
           const response = await axios.get(`https://coinfarm.club/api1/getReferralCode?user_id=${userId}`);
-          const data = response.data;
-          const referralCode = data.referral_code;
-  
-          // Получаем информацию о пользователе
+          const referralCode = response.data.referral_code;
+
+          // Создаем или обновляем пользователя
           const userResponse = await axios.post("https://coinfarm.club/api/user", {
             username: username,
             coins: 0,
@@ -71,50 +70,54 @@ const Combo = () => {
             level: 0,
             referralCode: referralCode,
           });
-  
-          let userData;
-          userData = userResponse.data;
-  
-                 // Получаем награды пользователя
-        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
-        const comboRewards = rewardsResponse.data.filter((reward: any) => reward.type === "combo");
-        alert(JSON.stringify(comboRewards))
-        if (comboRewards.length > 0) {
-          // Получаем последнюю награду
-          const lastReward = comboRewards[comboRewards.length - 1];
-          const lastRewardDate = new Date(lastReward.createdAt); // Предполагается, что поле с датой — `createdAt`
-          
-          const now = new Date();
-          
-          // Определяем даты 14:00 сегодняшнего и вчерашнего дня
-          const today14 = new Date();
-          today14.setHours(14, 0, 0, 0);
 
-          const yesterday14 = new Date(today14);
-          yesterday14.setDate(today14.getDate() - 1);
+          let userData = userResponse.data;
 
-          // Проверяем, находится ли текущий момент после 14:00 сегодняшнего дня
-          if (now >= today14) {
-            console.log("Текущее время уже после 14:00 сегодняшнего дня.");
-          }
+          // Получаем награды пользователя
+          const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
+          const comboRewards = rewardsResponse.data.filter((reward: any) => reward.type === "combo");
 
-          // Проверяем, была ли награда за комбо получена между 14:00 прошлого дня и 14:00 текущего дня
-          if (lastRewardDate >= yesterday14 && lastRewardDate < today14) {
-            setIsCompleted(true); // Награда получена в этом промежутке
+          if (comboRewards.length > 0) {
+            // Получаем дату последней награды
+            const lastReward = comboRewards[comboRewards.length - 1];
+            const lastRewardDate = new Date(lastReward.createdAt);
+
+            const now = new Date();
+
+            // Определяем даты 14:00 сегодняшнего и вчерашнего дня
+            const today14 = new Date();
+            today14.setHours(14, 0, 0, 0);
+
+            const yesterday14 = new Date(today14);
+            yesterday14.setDate(today14.getDate() - 1);
+
+            // Проверяем, если текущее время меньше 14:00, то проверяем с 14:00 вчерашнего дня до текущего момента
+            if (now < today14) {
+              // Проверяем, была ли награда за комбо получена между 14:00 вчерашнего дня и сейчас
+              if (lastRewardDate >= yesterday14 && lastRewardDate < today14) {
+                setIsCompleted(true);
+              } else {
+                setIsCompleted(false);
+              }
+            } else {
+              // Проверяем, была ли награда за комбо получена между 14:00 сегодняшнего и предыдущего дня
+              if (lastRewardDate >= today14) {
+                setIsCompleted(true);
+              } else {
+                setIsCompleted(false);
+              }
+            }
           } else {
-            setIsCompleted(false); // Награда не получена в этом промежутке
+            setIsCompleted(false); // Наград нет, значит комбо не выполнено
           }
-        } else {
-          setIsCompleted(false); // Наград нет, значит комбо не выполнено
-        }
-  
+
           dispatch(setUser(userData));
         } catch (error) {
-          console.error("Error:", error);
+          console.error("Error fetching user data:", error);
         }
       }
     };
-  
+
     fetchUserData();
   }, [dispatch]);
   // Функция для выдачи награды
