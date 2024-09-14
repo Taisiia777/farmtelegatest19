@@ -73,7 +73,7 @@ const Combo = () => {
           let userData = userResponse.data;
   
                // Fetch rewards
-               const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userId}`);
+               const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
                const comboRewards = rewardsResponse.data.filter((reward: any) => reward.type === "combo");
        
                if (comboRewards.length > 0) {
