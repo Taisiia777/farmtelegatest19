@@ -72,40 +72,38 @@ const Combo = () => {
   
           let userData = userResponse.data;
   
-          // Fetch rewards
-          const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
-          const comboRewards = rewardsResponse.data.filter((reward: any) => reward.type === "combo");
-  
-          if (comboRewards.length > 0) {
-            const lastReward = comboRewards[comboRewards.length - 1];
-            const lastRewardDate = new Date(lastReward.createdAt);
-            const now = new Date();
-  
-            // Set 14:00 of today and yesterday
-            const today14 = new Date();
-            today14.setHours(14, 0, 0, 0);
-  
-            const yesterday14 = new Date(today14);
-            yesterday14.setDate(today14.getDate() - 1);
-  
-            // Log if it's after 14:00 today
-            if (now >= today14) {
-              alert("Текущее время уже после 14:00 сегодняшнего дня.");
-            }
-  
-            // Check if last reward was between 14:00 of yesterday and today
-            if (lastRewardDate >= yesterday14 && lastRewardDate < today14) {
-              alert("true")
-              setIsCompleted(true); // Reward received in this window
-            } else {
-              alert("false")
-              setIsCompleted(false); // No reward in this window
-            }
-          } else {
-            alert("false1")
-            setIsCompleted(false); // No combo rewards found
-          }
-  
+               // Fetch rewards
+               const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userId}`);
+               const comboRewards = rewardsResponse.data.filter((reward: any) => reward.type === "combo");
+       
+               if (comboRewards.length > 0) {
+                 const lastReward = comboRewards[comboRewards.length - 1];
+                 const lastRewardDate = new Date(lastReward.description); // Используем поле description
+                //  const now = new Date();
+       
+                 // Set 14:00 of today and yesterday in local timezone
+                 const today14 = new Date();
+                 today14.setHours(14, 0, 0, 0);
+       
+                 const yesterday14 = new Date(today14);
+                 yesterday14.setDate(today14.getDate() - 1);
+       
+                 // Logging the dates for debugging
+                 console.log("Last Reward Date:", lastRewardDate.toLocaleString());
+                 console.log("Yesterday 14:00:", yesterday14.toLocaleString());
+                 console.log("Today 14:00:", today14.toLocaleString());
+       
+                 // Check if last reward was between 14:00 of yesterday and today
+                 if (lastRewardDate >= yesterday14 && lastRewardDate < today14) {
+                   alert("true");
+                   setIsCompleted(true); // Reward received in this window
+                 } else {
+                   alert("false");
+                   setIsCompleted(false); // No reward in this window
+                 }
+               } else {
+                 setIsCompleted(false); // No combo rewards found
+               }
           dispatch(setUser(userData));
         } catch (error) {
           console.error("Error fetching user/rewards:", error);
@@ -355,7 +353,7 @@ const Combo = () => {
                      className={cn("content__person-img", "_first1")}
                   />
                   <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
-                  {t('wheel_reward')} {reward} FarmCoins
+                  {t('wheel_reward')} {Math.round(reward)} FarmCoins
                   </p>
                </div>
             </div>
