@@ -150,7 +150,7 @@ const Combo = () => {
 
     }
   
-    // Перезапуск применения стилей при изменении количества элементов
+    // Перезапуск применения стилей при изменении количества элементовs
     const observer = new MutationObserver(applyStyles);
     observer.observe(document.body, { childList: true, subtree: true });
   
