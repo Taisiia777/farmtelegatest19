@@ -25,7 +25,7 @@ const GamesBlock = ({
     dispatch(openCombo());
  };
    return (
-      <div className={cn("block")} style={{position: "absolute", top: "150%", left: "0", width: "100%",
+      <div className={cn("block")} style={{position: "absolute", top: "100%", left: "0", width: "100%", height: "126px",
          backgroundImage: `url("img/global/border-block/item.svg")`,
          backgroundSize: "cover",
          backgroundPosition: "center"}}>
