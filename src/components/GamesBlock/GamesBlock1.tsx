@@ -120,10 +120,11 @@ const GamesBlock = ({
   const dispatch = useAppDispatch();
 
   const handleWheelClick = () => {
+   alert("lll")
     dispatch(openCombo());
  };
    return (
-      <div className={cn("block")} style={{position: "absolute", top: "100%", left: "0", width: "100%"}}>
+      <div className={cn("block")} style={{position: "absolute", top: "200%", left: "0", width: "100%"}}>
          <div className={cn("block__inner")}>
             <div className={cn("block__left")}>
                <img
