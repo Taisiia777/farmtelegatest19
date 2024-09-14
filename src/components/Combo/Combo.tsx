@@ -183,28 +183,12 @@ const Combo = () => {
         .catch((error) => {
           console.error('Error awarding coins:', error);
         });
+      alert("sasjaisjia")
       axios.post(`https://coinfarm.club/api/reward/combo/${user.id}`)
         
     }
   };
 
-  // // Функция обработки клика по ячейке
-  // const handleItemClick = (index: number) => {
-  //   setItems((prevItems) => {
-  //     const newItems = [...prevItems];
-  //     const itemConfig = comboConfig.items.find(item => item.id === index + 1);
-  //     if (itemConfig) {
-  //       newItems[index] = itemConfig.type; // Меняем на лист или череп
-  //       // Обновляем счетчики
-  //       if (itemConfig.type === 'leaf') {
-  //         setLeafCount((prev) => prev + 1);
-  //       } else if (itemConfig.type === 'skull') {
-  //         setSkullCount((prev) => prev + 1);
-  //       }
-  //     }
-  //     return newItems;
-  //   });
-  // };
 
   // Проверка на выигрыш или проигрыш
   useEffect(() => {
