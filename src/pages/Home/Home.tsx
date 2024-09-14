@@ -48,6 +48,7 @@ import Account from "./modules/Account";
 import LigaBlock from "../../components/LigaBlock/LigaBlock";
 import FreindOrSpecialBlock from "../../components/FreindOrSpecialBlock/FreindOrSpecialBlock";
 import GamesBlock from "../../components/GamesBlock/GamesBlock";
+import GamesBlock1 from "../../components/GamesBlock/GamesBlock1";
 
 import Greeting from "../../components/Greeting/Greeting";
 import Guide from "../../components/Guide/Guide";
@@ -1959,7 +1960,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
         title={t('wheel_of_fortune')}
         buttonText={t('play')}
       />
-                  <GamesBlock
+                  <GamesBlock1
         imgSrc='img/pages/home/menu/DailyCombo.png'
         title={t('daily_combo')}
         buttonText={t('play')}
