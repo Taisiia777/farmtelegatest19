@@ -78,7 +78,7 @@ const Combo = () => {
                  // Получаем награды пользователя
         const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
         const comboRewards = rewardsResponse.data.filter((reward: any) => reward.type === "combo");
-        
+        alert(JSON.stringify(comboRewards))
         if (comboRewards.length > 0) {
           // Получаем последнюю награду
           const lastReward = comboRewards[comboRewards.length - 1];
