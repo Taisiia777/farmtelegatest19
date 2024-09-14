@@ -195,7 +195,6 @@ const Combo = () => {
         ))}
       </div>
 
-        <img src="img/global/next-btn.svg" className={cn("greeting__next")} alt="Finish" onClick={fihish} />
              
             </div>
          )}
