@@ -1959,6 +1959,11 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
         title={t('wheel_of_fortune')}
         buttonText={t('play')}
       />
+                  <GamesBlock
+        imgSrc='img/pages/home/menu/DailyCombo.png'
+        title={t('daily_combo')}
+        buttonText={t('play')}
+      />
       <img style={{position: "absolute", top: "100%", left: "0", width: "100%"}} src="img/pages/home/menu/coming.png" />
       <img style={{position: "absolute", top: "200%", left: "0", width: "100%"}} src="img/pages/home/menu/coming1.png" />
       <img style={{position: "absolute", top: "300%", left: "0", width: "100%"}} src="img/pages/home/menu/coming2.png" />
