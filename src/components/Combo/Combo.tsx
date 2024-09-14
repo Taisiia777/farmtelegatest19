@@ -163,8 +163,10 @@ const Combo = () => {
       setReward(calculatedInHour / 3)
       giveUserReward(calculatedInHour / 3); // Выдаем 1000 монет
       setStep(2); // Переключаем на step 2
+      setIsCompleted(true)
     } else if (skullCount === 1) {
       setStep(3); // Переключаем на step 3
+      setIsCompleted(true)
     }
   }, [leafCount, skullCount]); // Выполняем проверку при изменении листиков или черепов
 
