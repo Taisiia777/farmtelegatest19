@@ -1,4 +1,5 @@
-{
+[{   
+    "date":"14.09.2024",
     "items": [
       { "id": 1, "type": "leaf" },
       { "id": 2, "type": "leaf" },
@@ -10,5 +11,19 @@
       { "id": 8, "type": "skull" },
       { "id": 9, "type": "skull" }
     ]
+  },
+{   
+    "date":"15.09.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "skull" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "leaf" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "leaf" },
+      { "id": 8, "type": "leaf" },
+      { "id": 9, "type": "skull" }
+    ]
   }
-  
+]

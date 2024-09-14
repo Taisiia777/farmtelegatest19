@@ -18,15 +18,25 @@ import { RootState } from "../../store";
 import { setUser } from "../../store/reducers/userSlice";
 import { retrieveLaunchParams } from '@tma.js/sdk';
 
+// Описываем интерфейс для элемента Combo
+interface ComboItem {
+  id: number;
+  type: 'leaf' | 'skull' | 'box'; // Допустимые типы
+}
 
+// Описываем интерфейс для данных из JSON
+interface ComboConfig {
+  date: string;
+  items: ComboItem[];
+}
 const cn = classNames.bind(styles);
 
 const Combo = () => {
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state) => state.combo.isOpen);
-  const [items, setItems] = useState(Array(9).fill('box')); // Изначально все блоки с коробкой
-  const [leafCount, setLeafCount] = useState(0); // Состояние для отслеживания количества листиков
-  const [skullCount, setSkullCount] = useState(0); // Состояние для отслеживания количества черепов
+  const [items, setItems] = useState<ComboItem[]>([]); // Указываем, что items — это массив объектов ComboItem
+  const [leafCount, setLeafCount] = useState(0);
+  const [skullCount, setSkullCount] = useState(0);
   const [step, setStep] = useState(1); // Текущий шаг
   const user = useAppSelector((state: RootState) => state.user.user);
   const isLoading = useAppSelector((state) => state.preloader.isLodaing);
@@ -44,7 +54,45 @@ const Combo = () => {
     { name: "Diamond", referralsRequired: 1000, referralsTo: 200, harvest: 4 },
     { name: "Ruby", referralsRequired: 1001, referralsTo: 1000, harvest: 5 },
   ];
+    // Функция для проверки допустимых значений type
+  const isValidType = (type: string): type is ComboItem['type'] => {
+    return ['leaf', 'skull', 'box'].includes(type);
+  };
 
+  // Функция для получения конфигурации на текущую дату
+  const getCurrentComboConfig = () => {
+    const now = new Date();
+    const nowMsk = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Moscow" }));
+    const todayDateStr = nowMsk.toLocaleDateString('ru-RU'); // Формат ДД.ММ.ГГГГ
+    
+    const todayCombo = (comboConfig as ComboConfig[]).find((combo) => combo.date === todayDateStr);
+    if (todayCombo) {
+      const validItems: ComboItem[] = todayCombo.items.filter(item => isValidType(item.type)); // Проверяем, что тип допустимый
+      setItems(validItems); // Устанавливаем только валидные элементы
+    }
+  };
+
+  useEffect(() => {
+    getCurrentComboConfig(); // Загружаем данные для актуальной даты при монтировании компонента
+  }, []);
+
+  // Функция обработки клика по ячейке
+  const handleItemClick = (index: number) => {
+    setItems((prevItems) => {
+      const newItems = [...prevItems];
+      const itemConfig = items.find(item => item.id === index + 1); // Берем данные из актуальных items
+      if (itemConfig) {
+        newItems[index] = { ...newItems[index], type: itemConfig.type }; // Меняем на лист или череп
+        // Обновляем счетчики
+        if (itemConfig.type === 'leaf') {
+          setLeafCount((prev) => prev + 1);
+        } else if (itemConfig.type === 'skull') {
+          setSkullCount((prev) => prev + 1);
+        }
+      }
+      return newItems;
+    });
+  };
   useEffect(() => {
     const fetchUserData = async () => {
       const { initData } = retrieveLaunchParams();
@@ -137,23 +185,23 @@ const Combo = () => {
     }
   };
 
-  // Функция обработки клика по ячейке
-  const handleItemClick = (index: number) => {
-    setItems((prevItems) => {
-      const newItems = [...prevItems];
-      const itemConfig = comboConfig.items.find(item => item.id === index + 1);
-      if (itemConfig) {
-        newItems[index] = itemConfig.type; // Меняем на лист или череп
-        // Обновляем счетчики
-        if (itemConfig.type === 'leaf') {
-          setLeafCount((prev) => prev + 1);
-        } else if (itemConfig.type === 'skull') {
-          setSkullCount((prev) => prev + 1);
-        }
-      }
-      return newItems;
-    });
-  };
+  // // Функция обработки клика по ячейке
+  // const handleItemClick = (index: number) => {
+  //   setItems((prevItems) => {
+  //     const newItems = [...prevItems];
+  //     const itemConfig = comboConfig.items.find(item => item.id === index + 1);
+  //     if (itemConfig) {
+  //       newItems[index] = itemConfig.type; // Меняем на лист или череп
+  //       // Обновляем счетчики
+  //       if (itemConfig.type === 'leaf') {
+  //         setLeafCount((prev) => prev + 1);
+  //       } else if (itemConfig.type === 'skull') {
+  //         setSkullCount((prev) => prev + 1);
+  //       }
+  //     }
+  //     return newItems;
+  //   });
+  // };
 
   // Проверка на выигрыш или проигрыш
   useEffect(() => {
@@ -316,9 +364,9 @@ const Combo = () => {
       className={cn("grid-item")}
       onClick={() => !isCompleted && handleItemClick(index)} // Отключаем клик, если isCompleted true
     >
-      {item === 'box' && <img src="img/pages/home/menu/combo_box.png" alt="Box" />}
-      {item === 'leaf' && <img src="img/pages/home/menu/combo_leaf.png" alt="Leaf" />}
-      {item === 'skull' && <img src="img/pages/home/menu/combo_scull.png" alt="Skull" />}
+      {item.type === 'box' && <img src="img/pages/home/menu/combo_box.png" alt="Box" />}
+      {item.type === 'leaf' && <img src="img/pages/home/menu/combo_leaf.png" alt="Leaf" />}
+      {item.type === 'skull' && <img src="img/pages/home/menu/combo_scull.png" alt="Skull" />}
     </div>
   ))}
 </div>
