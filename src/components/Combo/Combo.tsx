@@ -53,11 +53,11 @@ const Combo = () => {
  
 
 
-   function fihish() {
+  //  function fihish() {
 
-         setStep(1)
-         dispatch(finishCombo());
-   }
+  //        setStep(1)
+  //        dispatch(finishCombo());
+  //  }
 
    const { t } = useTranslation();
    useEffect(() => {
