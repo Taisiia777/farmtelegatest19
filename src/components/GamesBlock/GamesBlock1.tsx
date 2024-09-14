@@ -103,7 +103,7 @@ import classNames from "classnames/bind";
 import styles from "./GamesBlock.module.scss";
 import Button from "../Button/Button";
 import { useAppDispatch } from "../../store";
-import { openWheel } from "../../store/reducers/wheel";
+import { openCombo } from "../../store/reducers/combo";
 const cn = classNames.bind(styles);
 
 interface IGamesBlockProps {
@@ -120,7 +120,7 @@ const GamesBlock = ({
   const dispatch = useAppDispatch();
 
   const handleWheelClick = () => {
-    dispatch(openWheel());
+    dispatch(openCombo());
  };
    return (
       <div className={cn("block")} style={{position: "absolute", top: "100%", left: "0", width: "100%"}}>
