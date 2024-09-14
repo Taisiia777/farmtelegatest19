@@ -54,7 +54,8 @@ const Combo = () => {
     { name: "Diamond", referralsRequired: 1000, referralsTo: 200, harvest: 4 },
     { name: "Ruby", referralsRequired: 1001, referralsTo: 1000, harvest: 5 },
   ];
-    // Функция для проверки допустимых значений type
+  
+  // Функция для проверки допустимых значений type
   const isValidType = (type: string): type is ComboItem['type'] => {
     return ['leaf', 'skull', 'box'].includes(type);
   };
@@ -67,8 +68,9 @@ const Combo = () => {
     
     const todayCombo = (comboConfig as ComboConfig[]).find((combo) => combo.date === todayDateStr);
     if (todayCombo) {
-      const validItems: ComboItem[] = todayCombo.items.filter(item => isValidType(item.type)); // Проверяем, что тип допустимый
-      setItems(validItems); // Устанавливаем только валидные элементы
+      // Инициализируем все элементы как "box" независимо от их типа в JSON
+      const initializedItems: ComboItem[] = todayCombo.items.map(item => ({ id: item.id, type: 'box' }));
+      setItems(initializedItems); // Устанавливаем все элементы как "box"
     }
   };
 
@@ -80,8 +82,9 @@ const Combo = () => {
   const handleItemClick = (index: number) => {
     setItems((prevItems) => {
       const newItems = [...prevItems];
-      const itemConfig = items.find(item => item.id === index + 1); // Берем данные из актуальных items
-      if (itemConfig) {
+      // Меняем на "leaf" или "skull" в зависимости от данных JSON
+      const itemConfig = comboConfig.find(combo => combo.date === new Date().toLocaleDateString('ru-RU'))?.items[index];
+      if (itemConfig && isValidType(itemConfig.type)) {
         newItems[index] = { ...newItems[index], type: itemConfig.type }; // Меняем на лист или череп
         // Обновляем счетчики
         if (itemConfig.type === 'leaf') {
