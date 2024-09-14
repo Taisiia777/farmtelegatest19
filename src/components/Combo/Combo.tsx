@@ -183,10 +183,7 @@ const Combo = () => {
 
 
         <div className={cn("content__person-img", "_first")} ref={wheelRef}>
-          <div
-           className={cn("wheel")}
-          >
-  <div className="grid-container">
+        <div className="grid-container">
         {items.map((item, index) => (
           <div
             key={index}
@@ -199,8 +196,6 @@ const Combo = () => {
           </div>
         ))}
       </div>
-
-          </div>
         </div>
 
         <img src="img/global/next-btn.svg" className={cn("greeting__next")} alt="Finish" onClick={fihish} />
