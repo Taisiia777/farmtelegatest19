@@ -23,7 +23,6 @@ const cn = classNames.bind(styles);
 const Combo = () => {
    const dispatch = useAppDispatch();
    const isOpen = useAppSelector((state) => state.combo.isOpen);
-   alert(isOpen)
    const user = useAppSelector((state: RootState) => state.user.user);
 
    // Состояние прелоудреа
