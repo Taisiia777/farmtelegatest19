@@ -75,34 +75,38 @@ const Combo = () => {
           let userData;
           userData = userResponse.data;
   
-          // Получаем награды пользователя
-          const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
-          alert("lll")
-          const comboRewards = rewardsResponse.data.filter((reward: any) => reward.type === "combo");
+                 // Получаем награды пользователя
+        const rewardsResponse = await axios.get(`https://coinfarm.club/api/reward/${userData.id}`);
+        const comboRewards = rewardsResponse.data.filter((reward: any) => reward.type === "combo");
+        
+        if (comboRewards.length > 0) {
+          // Получаем последнюю награду
+          const lastReward = comboRewards[comboRewards.length - 1];
+          const lastRewardDate = new Date(lastReward.createdAt); // Предполагается, что поле с датой — `createdAt`
           
-          if (comboRewards.length > 0) {
-            // Получаем последнюю награду
-            const lastReward = comboRewards[comboRewards.length - 1];
-            const lastRewardDate = new Date(lastReward.createdAt); // Предполагается, что поле с датой — `createdAt`
-            
-            // const now = new Date();
-            
-            // Определяем даты 14:00 прошлого и текущего дня
-            const today14 = new Date();
-            today14.setHours(14, 0, 0, 0);
-        
-            const yesterday14 = new Date(today14);
-            yesterday14.setDate(today14.getDate() - 1);
-        
-            // Проверяем, была ли награда за комбо получена между 14:00 прошлого дня и 14:00 текущего дня
-            if (lastRewardDate >= yesterday14 && lastRewardDate < today14) {
-              setIsCompleted(true); // Награда получена в этом промежутке
-            } else {
-              setIsCompleted(false); // Награда не получена в этом промежутке
-            }
-          } else {
-            setIsCompleted(false); // Наград нет, значит комбо не выполнено
+          const now = new Date();
+          
+          // Определяем даты 14:00 сегодняшнего и вчерашнего дня
+          const today14 = new Date();
+          today14.setHours(14, 0, 0, 0);
+
+          const yesterday14 = new Date(today14);
+          yesterday14.setDate(today14.getDate() - 1);
+
+          // Проверяем, находится ли текущий момент после 14:00 сегодняшнего дня
+          if (now >= today14) {
+            console.log("Текущее время уже после 14:00 сегодняшнего дня.");
           }
+
+          // Проверяем, была ли награда за комбо получена между 14:00 прошлого дня и 14:00 текущего дня
+          if (lastRewardDate >= yesterday14 && lastRewardDate < today14) {
+            setIsCompleted(true); // Награда получена в этом промежутке
+          } else {
+            setIsCompleted(false); // Награда не получена в этом промежутке
+          }
+        } else {
+          setIsCompleted(false); // Наград нет, значит комбо не выполнено
+        }
   
           dispatch(setUser(userData));
         } catch (error) {
