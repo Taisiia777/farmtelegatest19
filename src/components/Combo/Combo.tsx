@@ -14,6 +14,8 @@ import axios from "axios";
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
 import comboConfig from './comboConfig.json'; // Импортируем JSON с конфигурацией
+import { RootState } from "../../store";
+import { setUser } from "../../store/reducers/userSlice";
 
 
 const cn = classNames.bind(styles);
@@ -25,7 +27,7 @@ const Combo = () => {
   const [leafCount, setLeafCount] = useState(0); // Состояние для отслеживания количества листиков
   const [skullCount, setSkullCount] = useState(0); // Состояние для отслеживания количества черепов
   const [step, setStep] = useState(1); // Текущий шаг
-  const userIdNumber = 123; // Пример: идентификатор пользователя
+  const user = useAppSelector((state: RootState) => state.user.user);
   const isLoading = useAppSelector((state) => state.preloader.isLodaing);
 
   
@@ -38,9 +40,14 @@ const Combo = () => {
     // Уведомляем, что запрос еще не завершен
     if (reward > 0) {
       axios
-        .patch(`https://coinfarm.club/api/user/${userIdNumber}/earn/${reward}`)
+        .patch(`https://coinfarm.club/api/user/${user.id}/earn/${reward}`)
         .then((response) => {
           // Выводим сообщение об успешной выдаче награды
+          dispatch(setUser({
+            ...user,
+            coins: user.coins + reward,
+            totalEarnings: user.totalEarnings + reward
+          }));
           console.log(`Reward given: ${reward} coins`, response.data);
         })
         .catch((error) => {
@@ -72,7 +79,7 @@ const Combo = () => {
     if (leafCount === 3) {
       setStep(2); // Переключаем на step 2
       giveUserReward(1000); // Выдаем 1000 монет
-    } else if (skullCount === 3) {
+    } else if (skullCount === 1) {
       setStep(3); // Переключаем на step 3
     }
   }, [leafCount, skullCount]); // Выполняем проверку при изменении листиков или черепов
@@ -281,7 +288,7 @@ const Combo = () => {
                      className={cn("content__person-img", "_first1")}
                   />
                   <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
-                  {t('wheel_reward')} 1000 FarmCoins
+                  {t('wheel_reward')} 0 FarmCoins
                   </p>
                </div>
             </div>
