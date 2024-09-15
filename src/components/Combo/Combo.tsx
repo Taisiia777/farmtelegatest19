@@ -390,8 +390,8 @@ useEffect(() => {
     id="fortune1"
     style={{
       zIndex: 13,
-      width: "395px",
-      height: "240px",
+      width: "90%",
+      height: "200px",
       position: "absolute",  // Абсолютное позиционирование
       top: "50%",            // Отступ сверху 50%
       left: "50%",           // Отступ слева 50%
@@ -462,14 +462,14 @@ useEffect(() => {
           className={cn("grid-item")}
           onClick={() => !isCompleted && handleItemClick(index)} // Отключаем клик, если isCompleted true
         >
-          {item.type === 'box' && <img src="img/pages/home/menu/combo_box.png" alt="Box" />}
+          {item.type === 'box' && <img src="img/pages/home/menu/combo_box.png" alt="Box" style={{ width: "100%", height: "100%", objectFit: "contain" }}/>}
           
           {item.type === 'leaf' && (
             // Берем изображение для 'leaf' по индексу
-            <img src={`img/pages/home/menu/combo_leaf${leafIndices[index]}.png`} alt="Leaf" />
+            <img src={`img/pages/home/menu/combo_leaf${leafIndices[index]}.png`} alt="Leaf" style={{ width: "100%", height: "100%", objectFit: "contain" }}/>
           )}
           
-          {item.type === 'skull' && <img src="img/pages/home/menu/combo_scull.png" alt="Skull" />}
+          {item.type === 'skull' && <img src="img/pages/home/menu/combo_scull.png" alt="Skull" style={{ width: "100%", height: "100%", objectFit: "contain" }}/>}
         </div>
       ))}
     </div>
