@@ -343,7 +343,11 @@ const Combo = () => {
           </div>
         ))}
       </div> */}
+
 <div className={cn("grid-container", { "_inactive": isCompleted })}>
+  <div>
+    <img src="img/pages/home/menu/combo_light.png" alt="Box" />
+  </div>
   {items.map((item, index) => (
     <div
       key={index}
