@@ -411,7 +411,7 @@ useEffect(() => {
        }}>
        The next combo will be available in:
                   </p>
-    <div style={{ textAlign: "center", height: "80px" }}>
+    <div style={{ textAlign: "center" }}>
         <div
           style={{
             backgroundColor: "#718A06", // Цвет блока для цифр
@@ -424,9 +424,9 @@ useEffect(() => {
         >
           {timeLeft.match(/(\d+)ч/)?.[1] || "00"}  {/* Часы */}
         </div>
-        <span style={{ fontSize: "16px", color: "#fff" }}>hours</span>
+        <span style={{ fontSize: "16px", color: "#fff", position: "absolute", top: "80px", left: "50%", transform: "translate(-50%)" }}>hours</span>
       </div>
-      <div style={{ textAlign: "center", height: "80px" }}>
+      <div style={{ textAlign: "center" }}>
         <div
           style={{
             backgroundColor: "#718A06",
@@ -439,9 +439,9 @@ useEffect(() => {
         >
           {timeLeft.match(/(\d+)м/)?.[1] || "00"}  {/* Минуты */}
         </div>
-        <span style={{ fontSize: "16px", color: "#fff" }}>minutes</span>
+        <span style={{ fontSize: "16px", color: "#fff", position: "absolute", top: "80px", left: "50%", transform: "translate(-50%)" }}>minutes</span>
       </div>
-      <div style={{ textAlign: "center", height: "80px" }}>
+      <div style={{ textAlign: "center" }}>
         <div
           style={{
             backgroundColor: "#718A06",
@@ -454,7 +454,7 @@ useEffect(() => {
         >
           {timeLeft.match(/(\d+)с/)?.[1] || "00"}  {/* Секунды */}
         </div>
-        <span style={{ fontSize: "16px", color: "#fff" }}>seconds</span>
+        <span style={{ fontSize: "16px", color: "#fff", position: "absolute", top: "80px", left: "50%", transform: "translate(-50%)" }}>seconds</span>
       </div>
           </div>
   </div>
