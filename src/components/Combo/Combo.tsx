@@ -43,6 +43,7 @@ const Combo = () => {
   const [reward, setReward] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
   const [leafIndices, setLeafIndices] = useState<number[]>([]); // Состояние для хранения индексов элементов с типом 'leaf'
+  const [timeLeft, setTimeLeft] = useState<string>(""); // Состояние для обратного отсчета
 
   
 
@@ -60,7 +61,37 @@ const Combo = () => {
   const isValidType = (type: string): type is ComboItem['type'] => {
     return ['leaf', 'skull', 'box'].includes(type);
   };
+// Функция для расчета времени до следующего комбо
+const calculateTimeLeft = () => {
+  const nowMsk = new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Moscow" }));
 
+  // Устанавливаем 14:00 следующего дня
+  const nextComboTime = new Date(nowMsk);
+  nextComboTime.setDate(nextComboTime.getDate() + 1);
+  nextComboTime.setHours(14, 0, 0, 0);
+
+  const difference = nextComboTime.getTime() - nowMsk.getTime();
+
+  if (difference > 0) {
+    const hours = Math.floor(difference / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    setTimeLeft(`${hours}ч ${minutes}м ${seconds}с`);
+  } else {
+    setTimeLeft("0ч 0м 0с");
+  }
+};
+// Обновляем таймер каждую секунду
+useEffect(() => {
+  if (isCompleted) {
+    const timer = setInterval(() => {
+      calculateTimeLeft();
+    }, 1000);
+
+    return () => clearInterval(timer); // Очищаем таймер при размонтировании компонента
+  }
+}, [isCompleted]);
   // Функция для получения конфигурации на текущую дату
   const getCurrentComboConfig = () => {
     const now = new Date();
@@ -352,7 +383,15 @@ const Combo = () => {
 
 
 
-
+{isCompleted && (
+  <div className={cn("greeting__body", "_first")} ref={wheelRef} id="fortune1" style={{ zIndex: 13 }}>
+    <img src="img/global/popup-border.svg" className={cn("greeting__border")} alt="border" />
+    <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>До следующего комбо:</strong>
+    <div className={cn("greeting__content", "content")}>
+      <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>{timeLeft}</p>
+    </div>
+  </div>
+)}
 
 <div className={cn("grid-container")}>
       <div style={{ zIndex: "10", position: "absolute", top: "13%", left: "50%", transform: "translate(-50%)" }}>
