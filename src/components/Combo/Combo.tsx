@@ -42,6 +42,7 @@ const Combo = () => {
   const isLoading = useAppSelector((state) => state.preloader.isLodaing);
   const [reward, setReward] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [leafIndices, setLeafIndices] = useState<number[]>([]); // Состояние для хранения индексов элементов с типом 'leaf'
 
   
 
@@ -306,6 +307,28 @@ const Combo = () => {
       observer.disconnect();
     };
    }, []);
+
+   const initializeLeafIndices = () => {
+    const indices: number[] = [];
+    let leafCount = 0;
+
+    // Определяем индексы для каждого элемента с типом 'leaf'
+    items.forEach((item, index) => {
+      if (item.type === 'leaf') {
+        leafCount = leafCount % 6 + 1; // Цикличное присваивание от 1 до 5
+        indices[index] = leafCount;
+      }
+    });
+
+    setLeafIndices(indices); // Сохраняем индексы для 'leaf' элементов
+  };
+
+  // Инициализируем индексы для листьев при первой загрузке компонента
+  useEffect(() => {
+    initializeLeafIndices();
+  }, [items]); // Этот эффект будет срабатывать только при изменении items
+
+
    const wheelRef = useRef<HTMLDivElement>(null);
 
    useOutsideClick(() => dispatch(finishCombo()), [wheelRef]);
@@ -329,39 +352,9 @@ const Combo = () => {
 
 
 
-        {/* <div className={cn("grid-container")} >
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className={cn("grid-item")}
-            
-            onClick={() => handleItemClick(index)}
-          >
-            {item === 'box' && <img src="img/pages/home/menu/combo_box.png" alt="Box" />}
-            {item === 'leaf' && <img src="img/pages/home/menu/combo_leaf.png" alt="Leaf" />}
-            {item === 'skull' && <img src="img/pages/home/menu/combo_scull.png" alt="Skull" />}
-          </div>
-        ))}
-      </div> */}
 
 {/* <div className={cn("grid-container", { "_inactive": isCompleted })}>
-<div style={{ zIndex:"10",position: "absolute", top: "25%", left: "50%", transform: "translate(-50%)"}}>
-  <img src="img/pages/home/menu/combo_light.png" alt="Box" />
-</div>
-  {items.map((item, index) => (
-    <div
-      key={index}
-      className={cn("grid-item")}
-      onClick={() => !isCompleted && handleItemClick(index)} // Отключаем клик, если isCompleted true
-    >
-      {item.type === 'box' && <img src="img/pages/home/menu/combo_box.png" alt="Box" />}
-      {item.type === 'leaf' && <img src="img/pages/home/menu/combo_leaf.png" alt="Leaf" />}
-      {item.type === 'skull' && <img src="img/pages/home/menu/combo_scull.png" alt="Skull" />}
-    </div>
-  ))}
-</div> */}
-<div className={cn("grid-container", { "_inactive": isCompleted })}>
-  <div style={{ zIndex: "10", position: "absolute", top: "25%", left: "50%", transform: "translate(-50%)" }}>
+  <div style={{ zIndex: "10", position: "absolute", top: "15%", left: "50%", transform: "translate(-50%)" }}>
     <img src="img/pages/home/menu/combo_light.png" alt="Box" />
   </div>
   {items.map((item, index) => (
@@ -380,8 +373,28 @@ const Combo = () => {
       {item.type === 'skull' && <img src="img/pages/home/menu/combo_scull.png" alt="Skull" />}
     </div>
   ))}
-</div>
-
+</div> */}
+<div className={cn("grid-container", { "_inactive": isCompleted })}>
+      <div style={{ zIndex: "10", position: "absolute", top: "25%", left: "50%", transform: "translate(-50%)" }}>
+        <img src="img/pages/home/menu/combo_light.png" alt="Box" />
+      </div>
+      {items.map((item, index) => (
+        <div
+          key={index}
+          className={cn("grid-item")}
+          onClick={() => !isCompleted && handleItemClick(index)} // Отключаем клик, если isCompleted true
+        >
+          {item.type === 'box' && <img src="img/pages/home/menu/combo_box.png" alt="Box" />}
+          
+          {item.type === 'leaf' && (
+            // Берем изображение для 'leaf' по индексу
+            <img src={`img/pages/home/menu/combo_leaf${leafIndices[index]}.png`} alt="Leaf" />
+          )}
+          
+          {item.type === 'skull' && <img src="img/pages/home/menu/combo_scull.png" alt="Skull" />}
+        </div>
+      ))}
+    </div>
              
             </div>
          )}
