@@ -384,7 +384,19 @@ useEffect(() => {
 
 
 {isCompleted && (
-  <div className={cn("greeting__body", "_first")} ref={wheelRef} id="fortune1" style={{ zIndex: 13 }}>
+  <div
+    className={cn("greeting__body", "_first")}
+    ref={wheelRef}
+    id="fortune1"
+    style={{
+      zIndex: 13,
+      position: "absolute",  // Абсолютное позиционирование
+      top: "13%",            // Отступ сверху 50%
+      left: "50%",           // Отступ слева 50%
+      transform: "translate(-50%)",  // Смещаем по оси X и Y для точного центрирования
+      textAlign: "center"    // Центрирование текста внутри блока
+    }}
+  >
     <img src="img/global/popup-border.svg" className={cn("greeting__border")} alt="border" />
     <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>До следующего комбо:</strong>
     <div className={cn("greeting__content", "content")}>
@@ -392,6 +404,7 @@ useEffect(() => {
     </div>
   </div>
 )}
+
 
 <div className={cn("grid-container")}>
       <div style={{ zIndex: "10", position: "absolute", top: "13%", left: "50%", transform: "translate(-50%)" }}>
