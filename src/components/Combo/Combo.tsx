@@ -405,7 +405,7 @@ useEffect(() => {
     >
        <p className={`${cn("content__text")}` + ' textInvite3'} style={{
               position: "absolute",  // Абсолютное позиционирование
-              top: "7%",            // Отступ сверху 50%
+              top: "-50px",            // Отступ сверху 50%
               left: "50%",           // Отступ слева 50%
               transform: "translate(-50%)",  // Смещаем по оси X и Y для точного центрирования
        }}>
