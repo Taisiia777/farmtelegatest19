@@ -826,23 +826,48 @@ useEffect(() => {
   };
   
 
-  // Проверка на выигрыш или проигрыш
-  useEffect(() => {
-    if (leafCount === 3) {
-      const userLeagueIndex =  user.level;
-      const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
-      const calculatedInHour = user.coinsPerHour * userHarvestMultiplier;
-      setReward(calculatedInHour / 3)
-      giveUserReward(calculatedInHour / 3); // Выдаем 1000 монет
-      setStep(2); // Переключаем на step 2
-      setIsCompleted(true)
-    } else if (skullCount === 1) {
-      giveUserReward(0); // Выдаем 1000 монет
-      setStep(3); // Переключаем на step 3
-      setIsCompleted(true)
-    }
-  }, [leafCount, skullCount]); // Выполняем проверку при изменении листиков или черепов
+  // // Проверка на выигрыш или проигрыш
+  // useEffect(() => {
+  //   if (leafCount === 3) {
+  //     const userLeagueIndex =  user.level;
+  //     const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
+  //     const calculatedInHour = user.coinsPerHour * userHarvestMultiplier;
+  //     setReward(calculatedInHour / 3)
+  //     giveUserReward(calculatedInHour / 3); // Выдаем 1000 монет
+  //     setStep(2); // Переключаем на step 2
+  //     setIsCompleted(true)
+  //   } else if (skullCount === 1) {
+  //     giveUserReward(0); // Выдаем 1000 монет
+  //     setStep(3); // Переключаем на step 3
+  //     setIsCompleted(true)
+  //   }
+  // }, [leafCount, skullCount]); // Выполняем проверку при изменении листиков или черепов
 
+// Проверка на выигрыш или проигрыш
+useEffect(() => {
+  if (leafCount === 3) {
+    const userLeagueIndex = user.level;
+    const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
+    const calculatedInHour = user.coinsPerHour * userHarvestMultiplier;
+    setReward(calculatedInHour / 3);
+    giveUserReward(calculatedInHour / 3); // Выдаем награду
+    
+    // Добавляем задержку в 1 секунду перед переходом на step 2
+    setTimeout(() => {
+      setStep(2); 
+      setIsCompleted(true);
+    }, 1000); // 1000 миллисекунд = 1 секунда
+
+  } else if (skullCount === 1) {
+    giveUserReward(0); // Выдаем 0 монет
+
+    // Добавляем задержку в 1 секунду перед переходом на step 3
+    setTimeout(() => {
+      setStep(3);
+      setIsCompleted(true);
+    }, 1000); // 1000 миллисекунд = 1 секунда
+  }
+}, [leafCount, skullCount]); // Выполняем проверку при изменении листиков или черепов
 
 
    const { t } = useTranslation();
