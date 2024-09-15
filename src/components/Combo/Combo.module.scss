@@ -266,17 +266,17 @@
    margin-top: 20vh;
    width: auto; /* Измените ширину на auto */
    display: grid;
-   grid-template-columns: repeat(3, 100px);
-   grid-template-rows: repeat(3, 100px);
-   gap: 20px; /* Отступы между блоками */
+   grid-template-columns: repeat(3, 80px);
+   grid-template-rows: repeat(3, 80px);
+   gap: 35px; /* Отступы между блоками */
    justify-content: center; /* Центрирование по горизонтали */
 }
 
  
 .grid-item {
-   width: 100px;
-   max-width: 101px;
-   height: 100px;
+   width: 80px;
+   max-width: 81px;
+   height: 80px;
    z-index: 11;
  }
  
