@@ -1963,7 +1963,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
         buttonText={t('play')}
       />
                   <GamesBlock1
-        imgSrc='img/pages/home/menu/DailyCombo.png'
+        imgSrc='img/pages/home/menu/combo_box.png'
         title={t('daily_combo')}
         buttonText={t('play')}
       />
