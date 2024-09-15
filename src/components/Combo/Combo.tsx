@@ -399,7 +399,7 @@ useEffect(() => {
     }}
   >
     <img src="img/global/popup-border.svg" className={cn("greeting__border")} alt="border" />
-    <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>До следующего комбо:</strong>
+    <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>Таймер</strong>
     <div className={cn("greeting__content", "content")}>
       <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>{timeLeft}</p>
     </div>
@@ -408,7 +408,7 @@ useEffect(() => {
 
 
 <div className={cn("grid-container")}>
-      <div style={{ zIndex: "10", position: "absolute", top: "13%", left: "50%", transform: "translate(-50%)" }}>
+      <div style={{ zIndex: "10", position: "absolute", top: "20%", left: "50%", transform: "translate(-50%)" }}>
         <img src="img/pages/home/menu/combo_light.png" alt="Box" />
       </div>
       {items.map((item, index) => (
