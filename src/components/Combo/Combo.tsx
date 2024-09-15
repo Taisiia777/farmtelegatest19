@@ -401,7 +401,8 @@ useEffect(() => {
   >
     <img src="img/global/popup-border.svg" className={cn("greeting__border")} alt="border" />
     <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>Таймер</strong>
-    <div className={cn("greeting__content", "content")}>
+    <div className={cn("greeting__content", "content")}       style={{ display: "flex", justifyContent: "center", gap: "15px", marginTop: "20px" }}  // Выравнивание по центру и промежутки
+    >
     <div style={{ textAlign: "center" }}>
         <div
           style={{
