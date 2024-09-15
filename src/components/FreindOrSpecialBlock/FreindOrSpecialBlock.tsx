@@ -269,7 +269,7 @@ const FreindOrSpecialBlock = ({
   }
         if (link && title !== "Connect wallet") {
           // window.Telegram.WebApp.openLink(link);
-          window.Telegram.WebApp.openLink("@coinfarmcom");
+          window.Telegram.WebApp.openLink("tg://resolve?domain=coinfarmcom");
 
         }
 
