@@ -405,13 +405,13 @@ useEffect(() => {
     >
        <p className={`${cn("content__text")}` + ' textInvite3'} style={{
               position: "absolute",  // Абсолютное позиционирование
-              top: "-50px",            // Отступ сверху 50%
+              top: "-65px",            // Отступ сверху 50%
               left: "50%",           // Отступ слева 50%
               transform: "translate(-50%)",  // Смещаем по оси X и Y для точного центрирования
        }}>
        The next combo will be available in:
                   </p>
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center", height: "80px" }}>
         <div
           style={{
             backgroundColor: "#718A06", // Цвет блока для цифр
@@ -426,7 +426,7 @@ useEffect(() => {
         </div>
         <span style={{ fontSize: "16px", color: "#fff" }}>hours</span>
       </div>
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center", height: "80px" }}>
         <div
           style={{
             backgroundColor: "#718A06",
@@ -441,7 +441,7 @@ useEffect(() => {
         </div>
         <span style={{ fontSize: "16px", color: "#fff" }}>minutes</span>
       </div>
-      <div style={{ textAlign: "center" }}>
+      <div style={{ textAlign: "center", height: "80px" }}>
         <div
           style={{
             backgroundColor: "#718A06",
