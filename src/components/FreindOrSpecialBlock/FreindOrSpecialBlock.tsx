@@ -268,7 +268,9 @@ const FreindOrSpecialBlock = ({
     return; // предотвращаем выполнение оставшегося кода
   }
         if (link && title !== "Connect wallet") {
-          window.Telegram.WebApp.openLink(link);
+          // window.Telegram.WebApp.openLink(link);
+          window.Telegram.WebApp.openLink("@coinfarmcom");
+
         }
 
         // Обновление isReciebed на сервере
