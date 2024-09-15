@@ -382,7 +382,6 @@ useEffect(() => {
             <div style={{display: 'flex', flexDirection:'column', width: '100%', height:'100%', position:'relative'}} ref={wheelRef}>
 
 
-
 {isCompleted && (
   <div
     className={cn("greeting__body", "_first")}
@@ -390,50 +389,66 @@ useEffect(() => {
     id="fortune1"
     style={{
       zIndex: 13,
-      minWidth:"400px",
-      width: "90%",
+      width: "90vw",
       height: "200px",
       position: "absolute",  // Абсолютное позиционирование
       top: "50%",            // Отступ сверху 50%
       left: "50%",           // Отступ слева 50%
       transform: "translate(-50%, -50%)",  // Смещаем по оси X и Y для точного центрирования
-      textAlign: "center"    // Центрирование текста внутри блока
+      textAlign: "center",    // Центрирование текста внутри блока
     }}
   >
     <img src="img/global/popup-border.svg" className={cn("greeting__border")} alt="border" />
-    <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>Таймер</strong>
-    <div className={cn("greeting__content", "content")}       style={{ display: "flex", justifyContent: "center", gap: "15px", marginTop: "100px" }}  // Выравнивание по центру и промежутки
-    >
-    <div style={{ textAlign: "center" }}>
-        <div
-          style={{
-            backgroundColor: "#718A06", // Цвет блока для цифр
-            padding: "15px",
-            borderRadius: "8px",
-            fontSize: "36px",  // Размер текста для цифр
-            color: "#fff",  // Белый цвет текста
-            minWidth: "50px",
-          }}
-        >
-          {timeLeft.match(/(\d+)ч/)?.[1] || "00"}  {/* Часы */}
+    <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'} style={{ fontSize: "24px", color: "#fff" }}>
+      Таймер
+    </strong>
+    <div className={cn("greeting__content", "content")} style={{ display: "flex", justifyContent: "center", gap: "10px", marginTop: "20px" }}>
+      
+      {/* Часы */}
+      <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+        <div style={{ textAlign: "center" }}>
+          <div
+            style={{
+              backgroundColor: "#718A06", // Цвет блока для цифр
+              padding: "15px",
+              borderRadius: "8px",
+              fontSize: "36px",  // Размер текста для цифр
+              color: "#fff",  // Белый цвет текста
+              minWidth: "50px",
+            }}
+          >
+            {timeLeft.match(/(\d+)ч/)?.[1] || "00"}  {/* Часы */}
+          </div>
+          <span style={{ fontSize: "16px", color: "#fff" }}>hours</span>
         </div>
-        <span style={{ fontSize: "16px", color: "#fff" }}>hours</span>
+
+        {/* Двоеточие после часов */}
+        <div style={{ fontSize: "36px", color: "#fff", padding: "0 5px" }}>:</div>
       </div>
-      <div style={{ textAlign: "center" }}>
-        <div
-          style={{
-            backgroundColor: "#718A06",
-            padding: "15px",
-            borderRadius: "8px",
-            fontSize: "36px",
-            color: "#fff",
-            minWidth: "50px",
-          }}
-        >
-          {timeLeft.match(/(\d+)м/)?.[1] || "00"}  {/* Минуты */}
+
+      {/* Минуты */}
+      <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+        <div style={{ textAlign: "center" }}>
+          <div
+            style={{
+              backgroundColor: "#718A06",
+              padding: "15px",
+              borderRadius: "8px",
+              fontSize: "36px",
+              color: "#fff",
+              minWidth: "50px",
+            }}
+          >
+            {timeLeft.match(/(\d+)м/)?.[1] || "00"}  {/* Минуты */}
+          </div>
+          <span style={{ fontSize: "16px", color: "#fff" }}>minutes</span>
         </div>
-        <span style={{ fontSize: "16px", color: "#fff" }}>minutes</span>
+
+        {/* Двоеточие после минут */}
+        <div style={{ fontSize: "36px", color: "#fff", padding: "0 5px" }}>:</div>
       </div>
+
+      {/* Секунды */}
       <div style={{ textAlign: "center" }}>
         <div
           style={{
@@ -449,12 +464,13 @@ useEffect(() => {
         </div>
         <span style={{ fontSize: "16px", color: "#fff" }}>seconds</span>
       </div>
-          </div>
+    </div>
   </div>
 )}
 
+
 <div className={cn("grid-container")}>
-      <div style={{ zIndex: "10", position: "absolute", top: "13%", left: "50%", transform: "translate(-50%)" }}>
+      <div style={{ zIndex: "10", position: "absolute", top: "15%", left: "50%", transform: "translate(-50%)" }}>
         <img src="img/pages/home/menu/combo_light.png" alt="Box" />
       </div>
       {items.map((item, index) => (
