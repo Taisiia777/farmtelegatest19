@@ -383,7 +383,7 @@ useEffect(() => {
 
 
 
-{/* {isCompleted && (
+{isCompleted && (
   <div
     className={cn("greeting__body", "_first")}
     ref={wheelRef}
@@ -402,51 +402,10 @@ useEffect(() => {
     <img src="img/global/popup-border.svg" className={cn("greeting__border")} alt="border" />
     <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>Таймер</strong>
     <div className={cn("greeting__content", "content")}>
-      <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>{timeLeft}</p>
-    </div>
-  </div>
-)} */}
-
-{isCompleted && (
-  <div
-    className={cn("greeting__body", "_first")}
-    ref={wheelRef}
-    id="fortune1"
-    style={{
-      zIndex: 13,
-      width: "80%",
-      height: "auto",
-      position: "absolute",  // Абсолютное позиционирование
-      top: "50%",            // Отступ сверху 50%
-      left: "50%",           // Отступ слева 50%
-      transform: "translate(-50%, -50%)",  // Смещаем по оси X и Y для точного центрирования
-      textAlign: "center",    // Центрирование текста внутри блока
-      backgroundColor: "#a0d342",  // Зеленый фон как на изображении
-      borderRadius: "15px",  // Закругленные углы
-      padding: "20px",       // Внутренние отступы
-      border: "5px solid #d47c28",  // Оранжевая рамка как на фигме
-    }}
-  >
-    <strong
-      className={`${cn("greeting__label", "_first")}` + ' textInvite3'}
-      style={{
-        display: "block",
-        fontSize: "24px", // Размер текста для заголовка
-        marginBottom: "10px", // Отступ снизу
-        color: "#fff",  // Белый цвет текста
-        textTransform: "uppercase",
-      }}
-    >
-      The next combo will be available in:
-    </strong>
-    <div
-      className={cn("greeting__content", "content")}
-      style={{ display: "flex", justifyContent: "center", gap: "15px", marginTop: "20px" }}  // Выравнивание по центру и промежутки
-    >
-      <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center" }}>
         <div
           style={{
-            backgroundColor: "#4a752a", // Цвет блока для цифр
+            backgroundColor: "#718A06", // Цвет блока для цифр
             padding: "15px",
             borderRadius: "8px",
             fontSize: "36px",  // Размер текста для цифр
@@ -461,7 +420,7 @@ useEffect(() => {
       <div style={{ textAlign: "center" }}>
         <div
           style={{
-            backgroundColor: "#4a752a",
+            backgroundColor: "#718A06",
             padding: "15px",
             borderRadius: "8px",
             fontSize: "36px",
@@ -476,7 +435,7 @@ useEffect(() => {
       <div style={{ textAlign: "center" }}>
         <div
           style={{
-            backgroundColor: "#4a752a",
+            backgroundColor: "#718A06",
             padding: "15px",
             borderRadius: "8px",
             fontSize: "36px",
@@ -488,10 +447,9 @@ useEffect(() => {
         </div>
         <span style={{ fontSize: "16px", color: "#fff" }}>seconds</span>
       </div>
-    </div>
+          </div>
   </div>
 )}
-
 
 <div className={cn("grid-container")}>
       <div style={{ zIndex: "10", position: "absolute", top: "13%", left: "50%", transform: "translate(-50%)" }}>
