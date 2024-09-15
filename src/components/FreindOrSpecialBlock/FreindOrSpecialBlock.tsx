@@ -271,7 +271,6 @@ const FreindOrSpecialBlock = ({
           window.Telegram.WebApp.openLink(link);
           // let chatId = "@MarketMaker_one"
           // window.Telegram.WebApp.openTelegramLink('https://t.me/' + chatId.replace('@', ''));
-
         }
 
         // Обновление isReciebed на сервере
