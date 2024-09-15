@@ -454,7 +454,7 @@ useEffect(() => {
             minWidth: "50px",
           }}
         >
-          {timeLeft.split(":")[0]}  {/* Часы */}
+          {timeLeft.match(/(\d+)ч/)?.[1] || "00"}  {/* Часы */}
         </div>
         <span style={{ fontSize: "16px", color: "#fff" }}>hours</span>
       </div>
@@ -469,7 +469,7 @@ useEffect(() => {
             minWidth: "50px",
           }}
         >
-          {timeLeft.split(":")[1]}  {/* Минуты */}
+          {timeLeft.match(/(\d+)м/)?.[1] || "00"}  {/* Минуты */}
         </div>
         <span style={{ fontSize: "16px", color: "#fff" }}>minutes</span>
       </div>
@@ -484,7 +484,7 @@ useEffect(() => {
             minWidth: "50px",
           }}
         >
-          {timeLeft.split(":")[2]}  {/* Секунды */}
+          {timeLeft.match(/(\d+)с/)?.[1] || "00"}  {/* Секунды */}
         </div>
         <span style={{ fontSize: "16px", color: "#fff" }}>seconds</span>
       </div>
