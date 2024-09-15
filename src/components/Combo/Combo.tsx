@@ -402,7 +402,51 @@ useEffect(() => {
     <img src="img/global/popup-border.svg" className={cn("greeting__border")} alt="border" />
     <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>Таймер</strong>
     <div className={cn("greeting__content", "content")}>
-      <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>{timeLeft}</p>
+    <div style={{ textAlign: "center" }}>
+        <div
+          style={{
+            backgroundColor: "#4a752a", // Цвет блока для цифр
+            padding: "15px",
+            borderRadius: "8px",
+            fontSize: "36px",  // Размер текста для цифр
+            color: "#fff",  // Белый цвет текста
+            minWidth: "50px",
+          }}
+        >
+          {timeLeft.split(":")[0]}  {/* Часы */}
+        </div>
+        <span style={{ fontSize: "14px", color: "#fff" }}>hours</span>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <div
+          style={{
+            backgroundColor: "#4a752a",
+            padding: "15px",
+            borderRadius: "8px",
+            fontSize: "36px",
+            color: "#fff",
+            minWidth: "50px",
+          }}
+        >
+          {timeLeft.split(":")[1]}  {/* Минуты */}
+        </div>
+        <span style={{ fontSize: "14px", color: "#fff" }}>minutes</span>
+      </div>
+      <div style={{ textAlign: "center" }}>
+        <div
+          style={{
+            backgroundColor: "#4a752a",
+            padding: "15px",
+            borderRadius: "8px",
+            fontSize: "36px",
+            color: "#fff",
+            minWidth: "50px",
+          }}
+        >
+          {timeLeft.split(":")[2]}  {/* Секунды */}
+        </div>
+        <span style={{ fontSize: "14px", color: "#fff" }}>seconds</span>
+      </div>
     </div>
   </div>
 )}
