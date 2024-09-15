@@ -391,8 +391,9 @@ useEffect(() => {
     style={{
       zIndex: 13,
       width: "80%",
+      height: "240px",
       position: "absolute",  // Абсолютное позиционирование
-      top: "50%",            // Отступ сверху 50%
+      top: "0%",            // Отступ сверху 50%
       left: "50%",           // Отступ слева 50%
       transform: "translate(-50%, -50%)",  // Смещаем по оси X и Y для точного центрирования
       textAlign: "center"    // Центрирование текста внутри блока
@@ -408,7 +409,7 @@ useEffect(() => {
 
 
 <div className={cn("grid-container")}>
-      <div style={{ zIndex: "10", position: "absolute", top: "20%", left: "50%", transform: "translate(-50%)" }}>
+      <div style={{ zIndex: "10", position: "absolute", top: "13%", left: "50%", transform: "translate(-50%)" }}>
         <img src="img/pages/home/menu/combo_light.png" alt="Box" />
       </div>
       {items.map((item, index) => (
