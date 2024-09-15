@@ -353,29 +353,9 @@ const Combo = () => {
 
 
 
-{/* <div className={cn("grid-container", { "_inactive": isCompleted })}>
-  <div style={{ zIndex: "10", position: "absolute", top: "15%", left: "50%", transform: "translate(-50%)" }}>
-    <img src="img/pages/home/menu/combo_light.png" alt="Box" />
-  </div>
-  {items.map((item, index) => (
-    <div
-      key={index}
-      className={cn("grid-item")}
-      onClick={() => !isCompleted && handleItemClick(index)} // Отключаем клик, если isCompleted true
-    >
-      {item.type === 'box' && <img src="img/pages/home/menu/combo_box.png" alt="Box" />}
-      
-      {item.type === 'leaf' && (
-        // Выбираем случайное изображение для каждого элемента с типом 'leaf'
-        <img src={`img/pages/home/menu/combo_leaf${Math.floor(Math.random() * 5) + 1}.png`} alt="Leaf" />
-      )}
-      
-      {item.type === 'skull' && <img src="img/pages/home/menu/combo_scull.png" alt="Skull" />}
-    </div>
-  ))}
-</div> */}
-<div className={cn("grid-container", { "_inactive": isCompleted })}>
-      <div style={{ zIndex: "10", position: "absolute", top: "25%", left: "50%", transform: "translate(-50%)" }}>
+
+<div className={cn("grid-container")}>
+      <div style={{ zIndex: "10", position: "absolute", top: "15%", left: "50%", transform: "translate(-50%)" }}>
         <img src="img/pages/home/menu/combo_light.png" alt="Box" />
       </div>
       {items.map((item, index) => (
