@@ -804,7 +804,6 @@ useEffect(() => {
   // };
   const giveUserReward = async (reward: number) => {
     try {
-      if (reward > 0) {
         console.log(`Attempting to give user ${reward} FarmCoins.`);
   
         // Запрос на выдачу награды
@@ -823,7 +822,7 @@ useEffect(() => {
         // Отправляем подтверждение награды на сервер
         const rewardResponse = await axios.post(`https://coinfarm.club/api/reward/combo/${user.id}`);
         console.log('Reward confirmation response: ', rewardResponse.data);
-      }
+      
     } catch (error) {
       console.error('Error awarding coins:', error);
     }
