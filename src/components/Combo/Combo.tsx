@@ -424,7 +424,7 @@ useEffect(() => {
         >
           {timeLeft.match(/(\d+)ч/)?.[1] || "00"}  {/* Часы */}
         </div>
-        <span style={{ fontSize: "16px", color: "#fff", position: "absolute", top: "80px", left: "50%", transform: "translate(-50%)" }}>hours</span>
+        <span style={{ fontSize: "16px", color: "#fff", position: "absolute", top: "80px", left: "10%"}}>hours</span>
       </div>
       <div style={{ textAlign: "center" }}>
         <div
@@ -454,7 +454,7 @@ useEffect(() => {
         >
           {timeLeft.match(/(\d+)с/)?.[1] || "00"}  {/* Секунды */}
         </div>
-        <span style={{ fontSize: "16px", color: "#fff", position: "absolute", top: "80px", left: "50%", transform: "translate(-50%)" }}>seconds</span>
+        <span style={{ fontSize: "16px", color: "#fff", position: "absolute", top: "80px", left: "90%"}}>seconds</span>
       </div>
           </div>
   </div>
