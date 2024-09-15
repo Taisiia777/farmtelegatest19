@@ -780,29 +780,55 @@ useEffect(() => {
     fetchUserData();
   }, [dispatch]);
   
-  // Функция для выдачи награды
-  const giveUserReward = (reward: number) => {
-    // Уведомляем, что запрос еще не завершен
-    if (reward > 0) {
-      axios
-        .patch(`https://coinfarm.club/api/user/${user.id}/earn/${reward}`)
-        .then((response) => {
-          // Выводим сообщение об успешной выдаче награды
-          dispatch(setUser({
-            ...user,
-            coins: user.coins + reward,
-            totalEarnings: user.totalEarnings + reward
-          }));
-          console.log(`Reward given: ${reward} coins`, response.data);
-        })
-        .catch((error) => {
-          console.error('Error awarding coins:', error);
-        });
-      axios.post(`https://coinfarm.club/api/reward/combo/${user.id}`)
+  // // Функция для выдачи награды
+  // const giveUserReward = (reward: number) => {
+  //   // Уведомляем, что запрос еще не завершен
+  //   if (reward > 0) {
+  //     axios
+  //       .patch(`https://coinfarm.club/api/user/${user.id}/earn/${reward}`)
+  //       .then((response) => {
+  //         // Выводим сообщение об успешной выдаче награды
+  //         dispatch(setUser({
+  //           ...user,
+  //           coins: user.coins + reward,
+  //           totalEarnings: user.totalEarnings + reward
+  //         }));
+  //         console.log(`Reward given: ${reward} coins`, response.data);
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error awarding coins:', error);
+  //       });
+  //     axios.post(`https://coinfarm.club/api/reward/combo/${user.id}`)
       
+  //   }
+  // };
+  const giveUserReward = async (reward: number) => {
+    try {
+      if (reward > 0) {
+        console.log(`Attempting to give user ${reward} FarmCoins.`);
+  
+        // Запрос на выдачу награды
+        const response = await axios.patch(`https://coinfarm.club/api/user/${user.id}/earn/${reward}`);
+        console.log(`Reward response: `, response.data);
+  
+        dispatch(setUser({
+          ...user,
+          coins: user.coins + reward,
+          totalEarnings: user.totalEarnings + reward,
+        }));
+  
+        // Логирование успешной награды
+        console.log(`Reward of ${reward} coins given successfully.`);
+  
+        // Отправляем подтверждение награды на сервер
+        const rewardResponse = await axios.post(`https://coinfarm.club/api/reward/combo/${user.id}`);
+        console.log('Reward confirmation response: ', rewardResponse.data);
+      }
+    } catch (error) {
+      console.error('Error awarding coins:', error);
     }
   };
-
+  
 
   // Проверка на выигрыш или проигрыш
   useEffect(() => {
