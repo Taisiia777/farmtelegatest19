@@ -840,6 +840,7 @@ useEffect(() => {
       setStep(2); // Переключаем на step 2
       setIsCompleted(true)
     } else if (skullCount === 1) {
+      giveUserReward(0); // Выдаем 1000 монет
       setStep(3); // Переключаем на step 3
       setIsCompleted(true)
     }
