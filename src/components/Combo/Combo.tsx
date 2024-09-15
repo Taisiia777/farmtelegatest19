@@ -760,14 +760,11 @@ useEffect(() => {
         startOfDay.setHours(0, 0, 0, 0); // Устанавливаем на начало дня
 
         if (lastRewardMsk >= startOfDay && lastRewardMsk <= nowMsk) {
-          alert("true")
           setIsCompleted(true); // Награда получена сегодня
         } else {
-          alert("false")
           setIsCompleted(false); // Награда не получена сегодня
         }
       } else {
-        alert("false1")
         setIsCompleted(false); // Наград нет, значит комбо не выполнено
       }
           dispatch(setUser(userData));
