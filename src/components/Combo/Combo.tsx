@@ -403,7 +403,12 @@ useEffect(() => {
     <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'} style={{top:"10px"}}>Таймер</strong>
     <div className={cn("greeting__content", "content")}       style={{ display: "flex", justifyContent: "center", gap: "15px", marginTop: "100px" }}  // Выравнивание по центру и промежутки
     >
-       <p className={`${cn("content__text")}` + ' textInvite3'}>
+       <p className={`${cn("content__text")}` + ' textInvite3'} style={{
+              position: "absolute",  // Абсолютное позиционирование
+              top: "25%",            // Отступ сверху 50%
+              left: "50%",           // Отступ слева 50%
+              transform: "translate(-50%)",  // Смещаем по оси X и Y для точного центрирования
+       }}>
        The next combo will be available in:
                   </p>
     <div style={{ textAlign: "center" }}>
