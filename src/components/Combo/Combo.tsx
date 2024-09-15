@@ -382,7 +382,7 @@ useEffect(() => {
             <div style={{display: 'flex', flexDirection:'column', width: '100%', height:'100%', position:'relative'}} ref={wheelRef}>
 
 
-
+{/* 
 {isCompleted && (
   <div
     className={cn("greeting__body", "_first")}
@@ -393,7 +393,7 @@ useEffect(() => {
       width: "80%",
       height: "240px",
       position: "absolute",  // Абсолютное позиционирование
-      top: "0%",            // Отступ сверху 50%
+      top: "50%",            // Отступ сверху 50%
       left: "50%",           // Отступ слева 50%
       transform: "translate(-50%, -50%)",  // Смещаем по оси X и Y для точного центрирования
       textAlign: "center"    // Центрирование текста внутри блока
@@ -402,7 +402,46 @@ useEffect(() => {
     <img src="img/global/popup-border.svg" className={cn("greeting__border")} alt="border" />
     <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>Таймер</strong>
     <div className={cn("greeting__content", "content")}>
-    <div style={{ textAlign: "center" }}>
+      <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>{timeLeft}</p>
+    </div>
+  </div>
+)} */}
+{isCompleted && (
+  <div
+    className={cn("greeting__body", "_first")}
+    ref={wheelRef}
+    id="fortune1"
+    style={{
+      zIndex: 13,
+      width: "80%",
+      height: "240px",
+      position: "absolute",  // Абсолютное позиционирование
+      top: "50%",            // Отступ сверху 50%
+      left: "50%",           // Отступ слева 50%
+      transform: "translate(-50%, -50%)",  // Смещаем по оси X и Y для точного центрирования
+      textAlign: "center",    // Центрирование текста внутри блока
+      backgroundColor: "#a0d342",  // Зеленый фон как на изображении
+      borderRadius: "15px",  // Закругленные углы
+      padding: "20px",       // Внутренние отступы
+    }}
+  >
+    <img src="img/global/popup-border.svg" className={cn("greeting__border")} alt="border" />
+    <strong
+      className={`${cn("greeting__label", "_first")}` + ' textInvite3'}
+      style={{
+        display: "block",
+        fontSize: "28px", // Размер текста для заголовка
+        marginBottom: "20px", // Отступ снизу
+        color: "#fff",  // Белый цвет текста
+      }}
+    >
+      The next combo will be available in:
+    </strong>
+    <div
+      className={cn("greeting__content", "content")}
+      style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "15px" }}  // Выравнивание по центру и промежутки
+    >
+      <div style={{ textAlign: "center" }}>
         <div
           style={{
             backgroundColor: "#4a752a", // Цвет блока для цифр
