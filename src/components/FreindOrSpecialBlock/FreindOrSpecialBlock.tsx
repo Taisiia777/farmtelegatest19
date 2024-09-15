@@ -269,7 +269,8 @@ const FreindOrSpecialBlock = ({
   }
         if (link && title !== "Connect wallet") {
           // window.Telegram.WebApp.openLink(link);
-          window.Telegram.WebApp.openLink("tg://resolve?domain=coinfarmcom");
+          let chatId = "@MarketMaker_one"
+          window.Telegram.WebApp.openTelegramLink('https://t.me/' + chatId.replace('@', ''));
 
         }
 
