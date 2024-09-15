@@ -1,7 +1,7 @@
 [{   
     "date":"14.09.2024",
     "items": [
-      { "id": 1, "type": "leaf" },
+      { "id": 1, "type": "skull" },
       { "id": 2, "type": "leaf" },
       { "id": 3, "type": "leaf" },
       { "id": 4, "type": "leaf" },
@@ -19,7 +19,7 @@
       { "id": 2, "type": "skull" },
       { "id": 3, "type": "leaf" },
       { "id": 4, "type": "leaf" },
-      { "id": 5, "type": "leaf" },
+      { "id": 5, "type": "skull" },
       { "id": 6, "type": "leaf" },
       { "id": 7, "type": "leaf" },
       { "id": 8, "type": "leaf" },
@@ -32,7 +32,7 @@
       { "id": 1, "type": "skull" },
       { "id": 2, "type": "leaf" },
       { "id": 3, "type": "leaf" },
-      { "id": 4, "type": "leaf" },
+      { "id": 4, "type": "skull" },
       { "id": 5, "type": "leaf" },
       { "id": 6, "type": "skull" },
       { "id": 7, "type": "leaf" },
