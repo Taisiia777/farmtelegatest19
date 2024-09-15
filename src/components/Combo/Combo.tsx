@@ -399,8 +399,8 @@ useEffect(() => {
       textAlign: "center"    // Центрирование текста внутри блока
     }}
   >
-    <img src="img/global/popup-border.png" className={cn("greeting__border")} alt="border" />
-    <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'} >Таймер</strong>
+    <img src="img/global/popup-border.png" className={cn("greeting__border")} style={{      objectFit: "cover"}} alt="border" />
+    <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'} style={{top:"10px"}}>Таймер</strong>
     <div className={cn("greeting__content", "content")}       style={{ display: "flex", justifyContent: "center", gap: "15px", marginTop: "100px" }}  // Выравнивание по центру и промежутки
     >
     <div style={{ textAlign: "center" }}>
