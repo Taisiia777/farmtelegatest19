@@ -382,8 +382,8 @@ useEffect(() => {
             <div style={{display: 'flex', flexDirection:'column', width: '100%', height:'100%', position:'relative'}} ref={wheelRef}>
 
 
-{/* 
-{isCompleted && (
+
+{/* {isCompleted && (
   <div
     className={cn("greeting__body", "_first")}
     ref={wheelRef}
@@ -406,6 +406,7 @@ useEffect(() => {
     </div>
   </div>
 )} */}
+
 {isCompleted && (
   <div
     className={cn("greeting__body", "_first")}
@@ -414,7 +415,7 @@ useEffect(() => {
     style={{
       zIndex: 13,
       width: "80%",
-      height: "240px",
+      height: "auto",
       position: "absolute",  // Абсолютное позиционирование
       top: "50%",            // Отступ сверху 50%
       left: "50%",           // Отступ слева 50%
@@ -423,23 +424,24 @@ useEffect(() => {
       backgroundColor: "#a0d342",  // Зеленый фон как на изображении
       borderRadius: "15px",  // Закругленные углы
       padding: "20px",       // Внутренние отступы
+      border: "5px solid #d47c28",  // Оранжевая рамка как на фигме
     }}
   >
-    <img src="img/global/popup-border.svg" className={cn("greeting__border")} alt="border" />
     <strong
       className={`${cn("greeting__label", "_first")}` + ' textInvite3'}
       style={{
         display: "block",
-        fontSize: "28px", // Размер текста для заголовка
-        marginBottom: "20px", // Отступ снизу
+        fontSize: "24px", // Размер текста для заголовка
+        marginBottom: "10px", // Отступ снизу
         color: "#fff",  // Белый цвет текста
+        textTransform: "uppercase",
       }}
     >
       The next combo will be available in:
     </strong>
     <div
       className={cn("greeting__content", "content")}
-      style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "15px" }}  // Выравнивание по центру и промежутки
+      style={{ display: "flex", justifyContent: "center", gap: "15px", marginTop: "20px" }}  // Выравнивание по центру и промежутки
     >
       <div style={{ textAlign: "center" }}>
         <div
@@ -454,7 +456,7 @@ useEffect(() => {
         >
           {timeLeft.split(":")[0]}  {/* Часы */}
         </div>
-        <span style={{ fontSize: "14px", color: "#fff" }}>hours</span>
+        <span style={{ fontSize: "16px", color: "#fff" }}>hours</span>
       </div>
       <div style={{ textAlign: "center" }}>
         <div
@@ -469,7 +471,7 @@ useEffect(() => {
         >
           {timeLeft.split(":")[1]}  {/* Минуты */}
         </div>
-        <span style={{ fontSize: "14px", color: "#fff" }}>minutes</span>
+        <span style={{ fontSize: "16px", color: "#fff" }}>minutes</span>
       </div>
       <div style={{ textAlign: "center" }}>
         <div
@@ -484,7 +486,7 @@ useEffect(() => {
         >
           {timeLeft.split(":")[2]}  {/* Секунды */}
         </div>
-        <span style={{ fontSize: "14px", color: "#fff" }}>seconds</span>
+        <span style={{ fontSize: "16px", color: "#fff" }}>seconds</span>
       </div>
     </div>
   </div>
