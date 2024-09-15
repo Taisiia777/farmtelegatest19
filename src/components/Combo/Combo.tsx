@@ -390,7 +390,7 @@ useEffect(() => {
     id="fortune1"
     style={{
       zIndex: 13,
-      width: "400px",
+      width: "98vw",
       height: "240px",
       position: "absolute",  // Абсолютное позиционирование
       top: "50%",            // Отступ сверху 50%
@@ -400,7 +400,7 @@ useEffect(() => {
     }}
   >
     <img src="img/global/popup-border.png" className={cn("greeting__border")} alt="border" />
-    <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'} style={{top: "30px"}}>Таймер</strong>
+    <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'} >Таймер</strong>
     <div className={cn("greeting__content", "content")}       style={{ display: "flex", justifyContent: "center", gap: "15px", marginTop: "100px" }}  // Выравнивание по центру и промежутки
     >
     <div style={{ textAlign: "center" }}>
