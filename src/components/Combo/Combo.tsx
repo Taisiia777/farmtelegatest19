@@ -420,6 +420,7 @@ useEffect(() => {
             fontSize: "36px",  // Размер текста для цифр
             color: "#fff",  // Белый цвет текста
             minWidth: "50px",
+            position: "relative"
           }}
         >
           {timeLeft.match(/(\d+)ч/)?.[1] || "00"}  {/* Часы */}
@@ -436,6 +437,8 @@ useEffect(() => {
             fontSize: "36px",
             color: "#fff",
             minWidth: "50px",
+            position: "relative"
+
           }}
         >
           {timeLeft.match(/(\d+)м/)?.[1] || "00"}  {/* Минуты */}
@@ -452,6 +455,8 @@ useEffect(() => {
             fontSize: "36px",
             color: "#fff",
             minWidth: "50px",
+            position: "relative"
+
           }}
         >
           {timeLeft.match(/(\d+)с/)?.[1] || "00"}  {/* Секунды */}
