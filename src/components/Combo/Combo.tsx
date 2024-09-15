@@ -390,8 +390,8 @@ useEffect(() => {
     id="fortune1"
     style={{
       zIndex: 13,
-      width: "98vw",
-      height: "240px",
+      width: "100%",
+      height: "auto",
       position: "absolute",  // Абсолютное позиционирование
       top: "50%",            // Отступ сверху 50%
       left: "50%",           // Отступ слева 50%
