@@ -345,7 +345,7 @@ const Combo = () => {
       </div> */}
 
 <div className={cn("grid-container", { "_inactive": isCompleted })}>
-<div style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
+<div style={{ zIndex:"10",position: "absolute", top: "0", left: "50%", transform: "translate(-50%)"}}>
   <img src="img/pages/home/menu/combo_light.png" alt="Box" />
 </div>
   {items.map((item, index) => (
