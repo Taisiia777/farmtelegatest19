@@ -162,7 +162,7 @@ useEffect(() => {
                if (comboRewards.length > 0) {
                  const lastReward = comboRewards[comboRewards.length - 1];
                  const lastRewardDate = new Date(lastReward.description);
-       
+                alert("kkkk")
                  // Преобразование времени награды в московское время (UTC+3)
                  const lastRewardMsk = new Date(lastRewardDate.toLocaleString("en-US", { timeZone: "Europe/Moscow" }));
        
@@ -180,11 +180,17 @@ useEffect(() => {
    
                  // Проверяем, была ли награда получена между 14:00 вчерашнего дня и 14:00 сегодняшнего дня по московскому времени
                  if (lastRewardMsk >= yesterday14Msk && lastRewardMsk < today14Msk) {
+                  alert("true")
+
                    setIsCompleted(true); // Награда получена в этом промежутке
                  } else {
+                  alert("false")
+
                    setIsCompleted(false); // Награда не получена в этом промежутке
                  }
                } else {
+                alert("false1")
+
                  setIsCompleted(false); // Наград нет, значит комбо не выполнено
                }
           dispatch(setUser(userData));
