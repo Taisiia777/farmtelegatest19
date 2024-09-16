@@ -106,16 +106,29 @@ const Preloader = () => {
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
    const user = useAppSelector((state: RootState) => state.user.user);
    const [energy, setEnergy] = useState(0); // состояние энергии
-
+   const [daysLeft, setDaysLeft] = useState(0); // состояние для количества дней
+   const calculateDaysLeft = () => {
+      const targetDate = new Date('2024-12-13'); // 13 декабря 2024
+      const currentDate = new Date();
+      
+      // Use the getTime() method to get the time in milliseconds since January 1, 1970
+      const difference = targetDate.getTime() - currentDate.getTime(); // разница в миллисекундах
+      
+      // Convert the difference from milliseconds to days
+      const days = Math.ceil(difference / (1000 * 60 * 60 * 24)); // переводим в дни
+      
+      setDaysLeft(days);
+    };
+    
    useEffect(() => {
       // Установить состояние загрузки в true при первом рендере
       dispatch(loadingToggle(true));
-      
+      calculateDaysLeft();
+
       // Запустить таймер на 5 секунд, после чего скрыть заставку
       const timer = setTimeout(() => {
          dispatch(loadingToggle(false));
       }, 5000);
-
       // Очистить таймер при размонтировании компонента
       return () => clearTimeout(timer);
    }, [dispatch]);
@@ -199,14 +212,14 @@ const Preloader = () => {
                   <img src={logo} alt="Logo" className={cn("logo")} />
                </div>
                <span style={{ position: "absolute", bottom: "13vh", left: "50%", width: "240px", fontSize: "24px", textAlign: "center", transform: "translateX(-50%)" }}>
-  Token mining ends in 
+  Token mining ends in  
   <span style={{ 
     background: "linear-gradient(90deg, #82AD00 0%, #1F7201 100%)", 
     WebkitBackgroundClip: "text", 
     backgroundClip: "text", 
     color: "transparent"
   }}>
-    89 days
+    {daysLeft} days
   </span>
 </span>
 
