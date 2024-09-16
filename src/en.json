@@ -90,7 +90,8 @@
     "daily_combo": "DAILY COMBO",
     "wheel_reward_fail": "Oops. Today is not your day. Come back tomorrow",
     "combo_timer": "The next combo will be available in:",
-    "combo_timer_title": "Timer"
+    "combo_timer_title": "Timer",
+    "wheel_rew_title_fail":"Oops"
 
 
   }

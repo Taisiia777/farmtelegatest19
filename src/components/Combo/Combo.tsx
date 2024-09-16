@@ -1128,7 +1128,7 @@ useEffect(() => {
 
                {/* Надпись на popup-border */}
                <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'}>
-               {t('wheel_rew_title')}
+               {t('wheel_rew_title_fail')}
                </strong>
 
                {/* Иконка next */}

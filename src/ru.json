@@ -75,6 +75,7 @@
     "wheel_title": "Испытай удачу",
     "wheel_reward":"Поздравляем! Вы выиграли ",
     "wheel_rew_title":"Ваша награда",
+    "wheel_rew_title_fail":"Вы проигали",
     "spins": "ПОПЫТОК",
     "more_spins": "БОЛЬШЕ ПОПЫТОК",
     "spin": "ВРАЩАТЬ",
