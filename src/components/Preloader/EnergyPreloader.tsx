@@ -23,14 +23,15 @@ const EnergyPreloader = ({ total, current, version }: EnergyProps) => {
          alt="Energy board"
       />
          <div className={cn("energy__progressBarWrap")} >
+         <span>
+            Loading...
+          </span>
             <div
                className={cn({ "energy__progressBar": version !== 1, "energy__progressBar1": version === 1 })}
                style={{ width: `${progressPercentage}%` }}
                
             >
-                         <span>
-            Loading...
-          </span>
+
             </div>
          </div>
       </div>
