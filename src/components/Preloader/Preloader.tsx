@@ -198,10 +198,18 @@ const Preloader = () => {
                <div className={cn("preloader")}>
                   <img src={logo} alt="Logo" className={cn("logo")} />
                </div>
-               <span style={{position: "absolute", bottom: "13vh", left: "50%", width: "240px", fontSize:"24px",
-   transform: "translateX(-50%)"}}>
-                  Token mining ends in <span style={{color: "linear-gradient(90deg, #82AD00 0%, #1F7201 100%)"}}>89 days</span>
-               </span>
+               <span style={{ position: "absolute", bottom: "13vh", left: "50%", width: "240px", fontSize: "24px", textAlign: "center", transform: "translateX(-50%)" }}>
+  Token mining ends in 
+  <span style={{ 
+    background: "linear-gradient(90deg, #82AD00 0%, #1F7201 100%)", 
+    WebkitBackgroundClip: "text", 
+    backgroundClip: "text", 
+    color: "transparent"
+  }}>
+    89 days
+  </span>
+</span>
+
                <EnergyPreloader
                      total={100}
                      current={energy} // текущее значение энергии
