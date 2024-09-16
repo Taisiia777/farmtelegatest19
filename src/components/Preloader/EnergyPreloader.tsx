@@ -23,7 +23,7 @@ const EnergyPreloader = ({ total, current, version }: EnergyProps) => {
          alt="Energy board"
       />
          <div className={cn("energy__progressBarWrap")} >
-         <span>
+         <span style={{zIndex:"100", marginTop:"5px"}}>
             Loading...
           </span>
             <div
