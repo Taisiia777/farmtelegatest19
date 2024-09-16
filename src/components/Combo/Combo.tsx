@@ -809,7 +809,7 @@ useEffect(() => {
 
 // Проверка на выигрыш или проигрыш
 useEffect(() => {
-  if (leafCount === 3) {
+  if (leafCount === 5) {
     const userLeagueIndex = user.level;
     const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
     const calculatedInHour = user.coinsPerHour * userHarvestMultiplier;
