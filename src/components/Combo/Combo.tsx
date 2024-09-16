@@ -1142,7 +1142,7 @@ useEffect(() => {
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
                   <img
-                     src="img/pages/home/menu/Reward.png"
+                     src="img/pages/home/menu/Fail.png"
                      className={cn("content__person-img", "_first1")}
                   />
                   <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
