@@ -11,7 +11,7 @@ interface EnergyProps {
 
 
 const EnergyPreloader = ({ total, current, version }: EnergyProps) => {
-  const progressPercentage = ((current / total) * 100) + 20;
+  const progressPercentage = ((current / total) * 100) + 23;
 
    return (
       <div className={cn("energy")} id="energy">
@@ -27,7 +27,11 @@ const EnergyPreloader = ({ total, current, version }: EnergyProps) => {
                className={cn({ "energy__progressBar": version !== 1, "energy__progressBar1": version === 1 })}
                style={{ width: `${progressPercentage}%` }}
                
-            ></div>
+            >
+                         <span>
+            Loading...
+          </span>
+            </div>
          </div>
       </div>
    );

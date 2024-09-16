@@ -40,7 +40,7 @@
 
 
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
 import { loadingToggle } from "../../store/reducers/preloader";
@@ -105,6 +105,8 @@ const Preloader = () => {
    const dispatch = useAppDispatch();
    const isLoading = useAppSelector((state) => state.preloader.isLodaing);
    const user = useAppSelector((state: RootState) => state.user.user);
+   const [energy, setEnergy] = useState(0); // состояние энергии
+
    useEffect(() => {
       // Установить состояние загрузки в true при первом рендере
       dispatch(loadingToggle(true));
@@ -112,11 +114,20 @@ const Preloader = () => {
       // Запустить таймер на 5 секунд, после чего скрыть заставку
       const timer = setTimeout(() => {
          dispatch(loadingToggle(false));
-      }, 50000);
+      }, 5000);
 
       // Очистить таймер при размонтировании компонента
       return () => clearTimeout(timer);
    }, [dispatch]);
+   useEffect(() => {
+      // Обновление энергии каждые 1 секунду
+      const energyInterval = setInterval(() => {
+         setEnergy((prev) => Math.min(prev + 20, 100)); // увеличение на 20, но не более 100
+      }, 1000);
+
+      // Очистить интервал при размонтировании
+      return () => clearInterval(energyInterval);
+   }, []);
    useEffect(() => {
       const fetchUserData = async () => {
          const { initData } = retrieveLaunchParams();
@@ -189,7 +200,7 @@ const Preloader = () => {
                </div>
                <EnergyPreloader
                      total={100}
-                     current={100}
+                     current={energy} // текущее значение энергии
                      version={0}
                   />
             </div>
