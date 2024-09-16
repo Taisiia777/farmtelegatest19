@@ -464,7 +464,7 @@ const Home = () => {
                   referralCode: referralCode,
                 }
               );
-
+              alert("2")
               // if (response.status === 409) {
                 const userData =  response.data;
                 const userLeagueIndex = userData ? userData.level : 0;
@@ -757,20 +757,6 @@ const Home = () => {
     }, [isCoinPurchased, isBoosterPurchased]);
 
     useEffect(() => {
-      // const fetchRewards = async () => {
-      //    if (user?.id && !isFetchedRewards) {
-      //       try {
-      //         const response = await axios.get(`https://coinfarm.club/api/reward/${user?.id}`);
-      //             const hasFirstReward = response.data.some((reward: any) => reward.type === 'first');
-      //             setIsFetchedRewards(true)
-      //             setHasFirstReward(hasFirstReward);
-      //             setRewards(response.data);
-
-      //       } catch (error) {
-      //          console.error('Error:', error);
-      //       }
-      //    }
-      // };
       const fetchRewards = () => {
         if (user?.id && !isFetchedRewards) {
           axios
@@ -1374,43 +1360,7 @@ console.log(response1)
     };
     
 
-  
-    // const handleRainReward = async () => {
-    //   try {
-    //   //   const userId = 'yourUserId'; // Replace with actual user ID
-    //     const response = await axios.post(`https://coinfarm.club/api/reward/rain/${user?.id}`);
-    //      console.log(response)
-    //     //  const userLeagueIndex = user ? user.level : 0;
-    //     //  const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
-    //     //  const calculatedInHour = user?.coinsPerHour * userHarvestMultiplier;
-    //     //   setDisplayEarnings(calculatedInHour * user?.incomeMultiplier);
-    //     //   dispatch(growAllToMax());
-    //     //   setEnergyPopupOpen(false);
-    //     //   setIsRainAnim(true);
-    //     //   setCurrentRainProgress(0); // Если нет наград за дождь, то дождь доступен
-    //       axios.get(`https://coinfarm.club/api/reward/${user?.id}`)
-    //       .then(response => {
-    //         setRewards(response.data);
-    //         checkRainReward(response.data);
-    //         console.log("check rain")
-    //         const userLeagueIndex = user ? user.level : 0;
-    //         const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
-    //         const calculatedInHour = user?.coinsPerHour * userHarvestMultiplier;
-    //         setDisplayEarnings(calculatedInHour * user?.incomeMultiplier);
-    //         dispatch(growAllToMax());
-    //         setEnergyPopupOpen(false);
-    //         setIsRainAnim(true);
-    //         setCurrentRainProgress(0); 
-    //         setTimeout(() => setIsRainAnim(false), 5000);
-    //       })
-    //       .catch(error => {
-    //         console.error('Error fetching rewards:', error);
-    //       });
-    //       // setTimeout(() => setIsRainAnim(false), 5000);
-    //     } catch (error) {
-    //     console.error('Error sending rain reward request:', error);
-    //   }
-    // };
+ 
     const handleRainReward = async () => {
       try {
         // Отправляем запрос на получение награды за дождь
@@ -1457,16 +1407,7 @@ console.log(response1)
       fetchTasks();
     }, []);
 
-  //   const boostFormattedPrice = parseFloat(boostState.info.price) >= 1000000 
-  // ? (parseFloat(boostState.info.price) / 1000000).toFixed(0) + 'M' 
-  // : parseFloat(boostState.info.price).toString();
-  // const coinFormattedPrice = parseFloat(coinState.info.price) >= 1000000 
-  // ? (parseFloat(coinState.info.price) / 1000000).toFixed(0) + 'M' 
-  // : parseFloat(coinState.info.price).toString();
-  // const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000 
-  // ? (parseFloat(fertilizersState.info.price) / 1000000).toFixed(3) + 'M' 
-  // : parseFloat(fertilizersState.info.price).toString();
-// Вспомогательная функция для форматирования чисел
+
 
 
 const formatLargeNumber = (num: number, divisor: number, suffix: string): string => {

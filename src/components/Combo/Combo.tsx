@@ -738,7 +738,8 @@ useEffect(() => {
             level: 0,
             referralCode: referralCode,
           });
-  
+          alert("4")
+
           let userData = userResponse.data;
   
              // Fetch rewards
