@@ -11,7 +11,7 @@ interface EnergyProps {
 
 
 const EnergyPreloader = ({ total, current, version }: EnergyProps) => {
-  const progressPercentage = (current / total) * 100;
+  const progressPercentage = ((current / total) * 100) + 20;
 
    return (
       <div className={cn("energy")} id="energy">
