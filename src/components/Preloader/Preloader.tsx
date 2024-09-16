@@ -198,6 +198,10 @@ const Preloader = () => {
                <div className={cn("preloader")}>
                   <img src={logo} alt="Logo" className={cn("logo")} />
                </div>
+               <span style={{position: "absolute", bottom: "20vh", left: "50%", width: "240px",
+   transform: "translateX(-50%)"}}>
+                  Token mining ends in 89 days
+               </span>
                <EnergyPreloader
                      total={100}
                      current={energy} // текущее значение энергии
