@@ -1145,7 +1145,7 @@ useEffect(() => {
                      src="img/pages/home/menu/Fail.svg"
                      className={cn("content__person-img", "_first1")}
                   />
-                  <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
+                  <p className={`${cn("content__text", "_second")}` + ' textInvite3'}>
                   {t('wheel_reward_fail')}
                   </p>
                </div>
