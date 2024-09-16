@@ -16,7 +16,12 @@ const EnergyPreloader = ({ total, current, version }: EnergyProps) => {
    return (
       <div className={cn("energy")} id="energy">
          
-        
+         <img
+         src="img/pages/home/energy/board.svg"
+         style={{bottom:'5vh'}}
+         className={cn("energy__board")}
+         alt="Energy board"
+      />
          <div className={cn("energy__progressBarWrap")} >
             <div
                className={cn({ "energy__progressBar": version !== 1, "energy__progressBar1": version === 1 })}

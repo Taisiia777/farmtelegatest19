@@ -148,9 +148,10 @@
 
 .energy {
    border: 1px solid red;
-   position: relative;
-   padding-bottom: 10%;
-   margin: 0 rem(17) rem(27) rem(17);
+   position: absolute;
+   bottom: 5vh;
+   left: 50%;
+   transform: translateX(-50%);
    width: 90vw;
 
    &__board {
