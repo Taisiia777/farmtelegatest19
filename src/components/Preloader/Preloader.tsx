@@ -189,7 +189,7 @@ const Preloader = () => {
                </div>
                <EnergyPreloader
                      total={100}
-                     current={30}
+                     current={100}
                      version={0}
                   />
             </div>
