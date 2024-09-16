@@ -51,7 +51,7 @@ import logo from "../../../public/img/pages/home/pig.png"; // Путь к ваш
 import { setUser } from "../../store/reducers/userSlice";
 import { retrieveLaunchParams } from '@tma.js/sdk';
 import axios from "axios";
-
+import EnergyPreloader from "./EnergyPreloader";
 const cn = classNames.bind(styles);
 
 interface User {
@@ -187,6 +187,11 @@ const Preloader = () => {
                <div className={cn("preloader")}>
                   <img src={logo} alt="Logo" className={cn("logo")} />
                </div>
+               <EnergyPreloader
+                     total={100}
+                     current={30}
+                     version={0}
+                  />
             </div>
          )}
          <Outlet context={{ friends }} /> {/* Передаем загруженные данные через Outlet */}
