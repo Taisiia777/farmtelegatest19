@@ -143,15 +143,10 @@ const Preloader = () => {
                      referralCode: referralCode,
                   }
                );
-               alert("1")
 
-               // if (userResponse.status === 409) {
                   const userData = userResponse.data;
                   dispatch(setUser(userData)); // Устанавливаем уже существующего пользователя
-               // } else {
-               //    const newUser = userResponse.data;
-               //    dispatch(setUser(newUser));
-               // }
+
             } catch (error) {
                console.error("Error:", error);
             }

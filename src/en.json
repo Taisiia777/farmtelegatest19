@@ -87,6 +87,10 @@
     "wallet1": "You can disable it or copy the wallet address",
     "wallet_title": "TON wallet",
     "wallet_title1": "TON wallet",
-    "daily_combo": "DAILY COMBO"
+    "daily_combo": "DAILY COMBO",
+    "wheel_reward_fail": "Oops. Today is not your day. Come back tomorrow",
+    "combo_timer": "The next combo will be available in:",
+    "combo_timer_title": "Timer"
+
 
   }

@@ -464,8 +464,6 @@ const Home = () => {
                   referralCode: referralCode,
                 }
               );
-              alert("2")
-              // if (response.status === 409) {
                 const userData =  response.data;
                 const userLeagueIndex = userData ? userData.level : 0;
                 const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
@@ -474,18 +472,7 @@ const Home = () => {
                 setLevel(userData.level);
                 setMultiplier(userData.incomeMultiplier)
                 setIsBoosterPurchased(!isBoosterPurchased)
-              // }else {
-              //   const newUser =  response.data;
-              //   const userLeagueIndex = newUser ? newUser.level : 0;
-              //   const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
-              //   const calculatedInHour = newUser?.coinsPerHour * userHarvestMultiplier;
-              //   setGrassTotal(calculatedInHour);
-              //   setLevel(newUser.level);
-              //   dispatch(setUser(newUser));
-              //   setMultiplier(newUser.incomeMultiplier)   
-              //   setIsBoosterPurchased(!isBoosterPurchased)
              
-              // }
             } catch (error) {
               console.error("Error:", error);
             }
@@ -499,10 +486,6 @@ const Home = () => {
       };
   
       fetchData(); // Initial fetch on component mount
-  
-      // const interval = setInterval(fetchData, 2000); // Fetch every 2 seconds
-      
-      // return () => clearInterval(interval); // Clean up interval on component unmount
   
     }, []); // Add other dependencies if needed
 

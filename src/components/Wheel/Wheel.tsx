@@ -146,7 +146,6 @@ useEffect(() => {
           level: 0,
           referralCode: referralCode,
         });
-        alert("3")
         let userData;
         userData = userResponse.data;
 

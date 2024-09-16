@@ -738,7 +738,6 @@ useEffect(() => {
             level: 0,
             referralCode: referralCode,
           });
-          alert("4")
 
           let userData = userResponse.data;
   
@@ -778,28 +777,7 @@ useEffect(() => {
     fetchUserData();
   }, [dispatch]);
   
-  // // Функция для выдачи награды
-  // const giveUserReward = (reward: number) => {
-  //   // Уведомляем, что запрос еще не завершен
-  //   if (reward > 0) {
-  //     axios
-  //       .patch(`https://coinfarm.club/api/user/${user.id}/earn/${reward}`)
-  //       .then((response) => {
-  //         // Выводим сообщение об успешной выдаче награды
-  //         dispatch(setUser({
-  //           ...user,
-  //           coins: user.coins + reward,
-  //           totalEarnings: user.totalEarnings + reward
-  //         }));
-  //         console.log(`Reward given: ${reward} coins`, response.data);
-  //       })
-  //       .catch((error) => {
-  //         console.error('Error awarding coins:', error);
-  //       });
-  //     axios.post(`https://coinfarm.club/api/reward/combo/${user.id}`)
-      
-  //   }
-  // };
+
   const giveUserReward = async (reward: number) => {
     try {
         console.log(`Attempting to give user ${reward} FarmCoins.`);
@@ -827,22 +805,7 @@ useEffect(() => {
   };
   
 
-  // // Проверка на выигрыш или проигрыш
-  // useEffect(() => {
-  //   if (leafCount === 3) {
-  //     const userLeagueIndex =  user.level;
-  //     const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
-  //     const calculatedInHour = user.coinsPerHour * userHarvestMultiplier;
-  //     setReward(calculatedInHour / 3)
-  //     giveUserReward(calculatedInHour / 3); // Выдаем 1000 монет
-  //     setStep(2); // Переключаем на step 2
-  //     setIsCompleted(true)
-  //   } else if (skullCount === 1) {
-  //     giveUserReward(0); // Выдаем 1000 монет
-  //     setStep(3); // Переключаем на step 3
-  //     setIsCompleted(true)
-  //   }
-  // }, [leafCount, skullCount]); // Выполняем проверку при изменении листиков или черепов
+
 
 // Проверка на выигрыш или проигрыш
 useEffect(() => {
@@ -1032,7 +995,7 @@ useEffect(() => {
     }}
   >
     <img src="img/global/popup-border.png" className={cn("greeting__border")} style={{      objectFit: "cover"}} alt="border" />
-    <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'} style={{top:"10px"}}>Таймер</strong>
+    <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'} style={{top:"10px"}}>{t('combo_timer_title')}</strong>
     <div className={cn("greeting__content", "content")}       style={{ display: "flex", justifyContent: "center", gap: "15px", marginTop: "100px" }}  // Выравнивание по центру и промежутки
     >
        <p className={`${cn("content__text")}` + ' textInvite3'} style={{
@@ -1041,7 +1004,7 @@ useEffect(() => {
               left: "50%",           // Отступ слева 50%
               transform: "translate(-50%)",  // Смещаем по оси X и Y для точного центрирования
        }}>
-       The next combo will be available in:
+{t('combo_timer')}
                   </p>
     <div style={{ textAlign: "center" }}>
         <div
@@ -1183,7 +1146,7 @@ useEffect(() => {
                      className={cn("content__person-img", "_first1")}
                   />
                   <p className={`${cn("content__text", "_first")}` + ' textInvite3'}>
-                  {t('wheel_reward')} 0 FarmCoins
+                  {t('wheel_reward_fail')}
                   </p>
                </div>
             </div>
