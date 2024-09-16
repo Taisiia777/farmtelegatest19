@@ -217,7 +217,8 @@ const Preloader = () => {
     background: "linear-gradient(90deg, #82AD00 0%, #1F7201 100%)", 
     WebkitBackgroundClip: "text", 
     backgroundClip: "text", 
-    color: "transparent"
+    color: "transparent",
+    marginLeft:"5px"
   }}>
     {daysLeft} days
   </span>
