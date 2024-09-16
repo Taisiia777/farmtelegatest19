@@ -757,19 +757,34 @@ const Home = () => {
     }, [isCoinPurchased, isBoosterPurchased]);
 
     useEffect(() => {
-      const fetchRewards = async () => {
-         if (user?.id && !isFetchedRewards) {
-            try {
-              const response = await axios.get(`https://coinfarm.club/api/reward/${user?.id}`);
-                  const hasFirstReward = response.data.some((reward: any) => reward.type === 'first');
-                  setIsFetchedRewards(true)
-                  setHasFirstReward(hasFirstReward);
-                  setRewards(response.data);
+      // const fetchRewards = async () => {
+      //    if (user?.id && !isFetchedRewards) {
+      //       try {
+      //         const response = await axios.get(`https://coinfarm.club/api/reward/${user?.id}`);
+      //             const hasFirstReward = response.data.some((reward: any) => reward.type === 'first');
+      //             setIsFetchedRewards(true)
+      //             setHasFirstReward(hasFirstReward);
+      //             setRewards(response.data);
 
-            } catch (error) {
-               console.error('Error:', error);
-            }
-         }
+      //       } catch (error) {
+      //          console.error('Error:', error);
+      //       }
+      //    }
+      // };
+      const fetchRewards = () => {
+        if (user?.id && !isFetchedRewards) {
+          axios
+            .get(`https://coinfarm.club/api/reward/${user?.id}`)
+            .then((response) => {
+              const hasFirstReward = response.data.some((reward: any) => reward.type === 'first');
+              setIsFetchedRewards(true);
+              setHasFirstReward(hasFirstReward);
+              setRewards(response.data);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        }
       };
    fetchRewards()
       
