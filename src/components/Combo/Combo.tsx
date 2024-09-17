@@ -428,7 +428,7 @@ useEffect(() => {
   >
     <img src="img/global/popup-border.png" className={cn("greeting__border")} style={{      objectFit: "cover"}} alt="border" />
     <strong className={`${cn("greeting__label", "_first")}` + ' textInvite3'} style={{top:"10px"}}>{t('combo_timer_title')}</strong>
-    <div className={cn("greeting__content", "content")}       style={{ display: "flex", justifyContent: "center", gap: "15px", marginTop: "100px" }}  // Выравнивание по центру и промежутки
+    <div className={cn("greeting__content", "content")}       style={{ display: "flex", justifyContent: "center", gap: "15px", marginTop: "110px" }}  // Выравнивание по центру и промежутки
     >
        <p className={`${cn("content__text")}` + ' textInvite3'} style={{
               position: "absolute",  // Абсолютное позиционирование
