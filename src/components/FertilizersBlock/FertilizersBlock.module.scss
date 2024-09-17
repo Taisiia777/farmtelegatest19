@@ -33,10 +33,10 @@
       gap: rem(10);
 
       &>h3 {
-         font-size: rem(23);
+         font-size: rem(18);
 
          @media screen and (max-width:rem(390)) {
-            font-size: rem(21);
+            font-size: rem(16);
          }
       }
 
@@ -74,7 +74,7 @@
       display: flex;
       align-items: center;
       gap: rem(5);
-      font-size: rem(15);
+      font-size: rem(12);
 
       &>img {
          height: rem(20);
@@ -99,7 +99,7 @@
       gap: rem(4);
 
       &>span {
-         font-size: rem(24);
+         font-size: rem(18);
 
       }
    }
