@@ -1064,7 +1064,7 @@ useEffect(() => {
 )}
 
 <div className={cn("grid-container")}>
-      <span style={{position: "absolute", top: "30vh", left: "50%", width: "240px", fontSize: "24px", textAlign: "center", transform: "translateX(-50%)" }}>Угадай 5 удобрений и не попади на бомбу</span>
+      <span style={{position: "absolute", top: "12vh", left: "50%", width: "240px", fontSize: "24px", textAlign: "center", transform: "translateX(-50%)" }}>Угадай 5 удобрений и не попади на бомбу</span>
       <div style={{ zIndex: "10", position: "absolute", top: "15%", left: "50%", transform: "translate(-50%)" }}>
         <img src="img/pages/home/menu/combo_light.png" alt="Box" />
       </div>
