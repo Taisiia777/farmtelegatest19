@@ -1435,7 +1435,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
   onClick={() => setEnergyPopupOpen(true)}
   />} */}
           {isRainAnim && <RainAnimation />}
-          {!energyPopupOpen && !isPopupOpen && <Energy 
+          {!energyPopupOpen && !isPopupOpen && false && <Energy 
             hours={user?.incomeMultiplier}
            total={rainInterval}
            current={currentRainProgress}
