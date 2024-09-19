@@ -575,7 +575,7 @@ useEffect(() => {
                {/* Контент */}
                <div className={cn("greeting__content", "content")}>
                   <img
-                     src="img/pages/home/menu/Fail.svg"
+                     src="img/pages/home/menu/Fail1.png"
                      className={cn("content__person-img", "_first1")}
                   />
                   <p className={`${cn("content__text", "_second")}` + ' textInvite3'}>
