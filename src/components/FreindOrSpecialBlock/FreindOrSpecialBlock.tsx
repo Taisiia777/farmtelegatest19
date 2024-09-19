@@ -239,10 +239,10 @@ const FreindOrSpecialBlock = ({
         setButtonText(t('done'));
         setMoneyAnimACtive(true);
         if (title === "Connect wallet") {
-          dispatch(setUser({ ...user, coins: user.coins + 20000}));
+          dispatch(setUser({ ...user, coins: user.coins + 10000}));
         }else{
           if(title === "Join HappyCrypto" || title === "Join Crypto Daily" || title === "Join DAILY COMBO" || title === "Subscribe DAILY COMBO"  ){
-            dispatch(setUser({ ...user, coins: user.coins + 15000}));
+            dispatch(setUser({ ...user, coins: user.coins + 5000}));
           }else{
             dispatch(setUser({ ...user, coins: user.coins + 10000}));
           }
