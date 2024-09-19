@@ -88,7 +88,7 @@ const Invite = () => {
     });
     document.querySelectorAll('.textMenu1').forEach(element => {
        if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
-         element.style.fontSize = '12px';
+         element.style.fontSize = '10px';
          element.style.fontWeight = '700';
        }
      });
