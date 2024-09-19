@@ -104,6 +104,12 @@ const Invite = () => {
         element.style.fontWeight = '400';
       }
     });
+    document.querySelectorAll('.textInvite11').forEach(element => {
+      if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
+        element.style.fontSize = '16px';
+        element.style.fontWeight = '700';
+      }
+    });
     document.querySelectorAll('.textInvite2').forEach(element => {
       if (element instanceof HTMLElement) { // Проверяем, что элемент является HTMLElement
         element.style.fontSize = '12px';
@@ -225,7 +231,7 @@ const Invite = () => {
 
           <div className={cn("inviteUsersBlock")}>
             <div className={cn("inviteUsersBlock__left")}>
-              <b className={`${cn("inviteUsersBlock__title")}` + ' textShadow_center textMenu1'}>
+              <b className={`${cn("inviteUsersBlock__title")}` + ' textShadow_center textInvite11'}>
               {t('invite_1')}
               </b>
               <p className={`${cn("inviteUsersBlock__subtitle")}` + " textShadow_center textInvite1"}>
