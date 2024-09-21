@@ -328,7 +328,7 @@ const Home = () => {
    // Активный таб в boost popup
    const [earnActiveTab, setEarnActiveTab] = useState("LEAGUES");
    const [leaguesActiveTab, setLeaguesActiveTab] = useState("LEAGUES");
-   const [gamesActiveTab, setGamesActiveTab] = useState(t("games"));
+   const [gamesActiveTab, setGamesActiveTab] = useState("GAMES");
 
    // buyCoin popup
    const coinState = useAppSelector((state) => state.coin);
