@@ -329,7 +329,7 @@ const Home = () => {
    const [earnActiveTab, setEarnActiveTab] = useState("LEAGUES");
    const [leaguesActiveTab, setLeaguesActiveTab] = useState("LEAGUES");
    const [gamesActiveTab, setGamesActiveTab] = useState("GAMES");
-
+    console.log(gamesActiveTab)
    // buyCoin popup
    const coinState = useAppSelector((state) => state.coin);
    const coinMoneyAnimRef = useRef<HTMLImageElement>(null);
@@ -1886,12 +1886,12 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                <PopupListTabs
                   labelClassName={cn("earn__label")}
                   labels={[t("games")]}
-                  activeTab={"GAMES"}
+                  activeTab={t("games")}
                   onTabChange={(label) => setGamesActiveTab(label)}
                />
 
               
-{gamesActiveTab === t("games") && (
+
   <PopupList 
     ref={gamesRef} 
     nodes={[
@@ -1917,7 +1917,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
   />
 
  
-)}
+
 
             </PopupListWrap>
 
