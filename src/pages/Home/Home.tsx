@@ -1891,7 +1891,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                />
 
               
-{gamesActiveTab !== t("games") && (
+{gamesActiveTab === t("games") && (
   <PopupList 
     ref={gamesRef} 
     nodes={[
