@@ -1,15 +1,15 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './en.json';
-// import ru from './ru.json';
+import ru from './ru.json';
 // import ukr from './ukr.json';
 const resources = {
   en: {
     translation: en
   },
-  // ru: {
-  //   translation: ru
-  // },
+  ru: {
+    translation: ru
+  },
   // uk: {
   //   translation: ukr
   // },
