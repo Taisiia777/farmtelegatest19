@@ -274,9 +274,9 @@ const Home = () => {
    // Активный таб в boost popup
    const [boostActiveTab, setBoostActiveTab] = useState("BOOST");
 
-   const openCoinPopup =  () => {
-    setBoostActiveTab("COINS")
-  };
+  //  const openCoinPopup =  () => {
+  //   setBoostActiveTab("COINS")
+  // };
   const openFertilizersPopup =  () => {
     setBoostActiveTab("FERTILIZERS")
   };
@@ -1514,7 +1514,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                      }}
                      onCoinsOpen={() => {
                       setBoostPopupOpen(true)
-                      openCoinPopup()}}
+                      openBoostPopup()}}
                       
                   />
                </div>
