@@ -1886,7 +1886,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                <PopupListTabs
                   labelClassName={cn("earn__label")}
                   labels={[t("games")]}
-                  activeTab={t("games")}
+                  activeTab={"GAMES"}
                   onTabChange={(label) => setGamesActiveTab(label)}
                />
 
