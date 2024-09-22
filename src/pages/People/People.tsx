@@ -51,7 +51,19 @@ const People = () => {
   const { t } = useTranslation();
   const currentLanguage = i18n.language;
   const { friends } = useOutletContext<OutletContext>();
+  useEffect(() => {
+    const overflow = 0;
+    document.body.style.overflowY = "hidden";
+    document.body.style.marginTop = `${overflow}px`;
+    document.body.style.height = window.innerHeight + overflow + "px";
+    document.body.style.paddingBottom = `${overflow}px`;
+    document.body.style.minHeight = "100vh";
+    document.documentElement.style.overflow = "hidden";
+    document.documentElement.style.height = "auto";
 
+    window.scrollTo(0, overflow);
+    
+  }, []);
   useEffect(() => {
     const initData = window.Telegram.WebApp.initDataUnsafe;
     const userLanguage = initData.user?.language_code || 'en';
