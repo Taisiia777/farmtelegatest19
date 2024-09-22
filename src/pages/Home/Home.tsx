@@ -1942,7 +1942,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                      setEarnPopupOpen(false);
                      setGamesPopupOpen(false);
                      setLeaguesopupOpen(false)
-                     window.scrollTo(0, 100);
+                    //  window.scrollTo(0, 100);
 
                   }}
                   className={cn("close")}
