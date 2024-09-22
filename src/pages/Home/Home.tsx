@@ -410,7 +410,20 @@ const Home = () => {
     }
   }, []);
 
-  
+  useEffect(() => {
+    const overflow = 100;
+    document.body.style.overflowY = "hidden";
+    document.body.style.marginTop = `${overflow}px`;
+    document.body.style.height = window.innerHeight + overflow + "px";
+    document.body.style.paddingBottom = `${overflow}px`;
+    document.body.style.minHeight = "100vh";
+    document.documentElement.style.overflow = "hidden";
+    document.documentElement.style.height = "auto";
+
+    window.scrollTo(0, overflow);
+    
+  }, []);
+
    useEffect(() => {
     let hasFetchedReferralCode = false;
     let hasSavedUserId = false;

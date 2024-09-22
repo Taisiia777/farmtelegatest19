@@ -58,7 +58,7 @@ import {
    const queryClient = new QueryClient();
 
    useEffect(() => {
-     const overflow = 0;
+     const overflow = 100;
      document.body.style.overflowY = "hidden";
      document.body.style.marginTop = `${overflow}px`;
      document.body.style.height = window.innerHeight + overflow + "px";
