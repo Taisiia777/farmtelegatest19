@@ -52,14 +52,14 @@ const Combo = () => {
   
 
 
-  const leagues = [
-    { name: "Wooden", referralsRequired: 3, referralsTo: 0, harvest: 1 },
-    { name: "Silver", referralsRequired: 10, referralsTo: 3, harvest: 1.5 },
-    { name: "Gold", referralsRequired: 50, referralsTo: 10, harvest: 2 },
-    { name: "Fire", referralsRequired: 200, referralsTo: 50, harvest: 3 },
-    { name: "Diamond", referralsRequired: 1000, referralsTo: 200, harvest: 4 },
-    { name: "Ruby", referralsRequired: 1001, referralsTo: 1000, harvest: 5 },
-  ];
+  // const leagues = [
+  //   { name: "Wooden", referralsRequired: 3, referralsTo: 0, harvest: 1 },
+  //   { name: "Silver", referralsRequired: 10, referralsTo: 3, harvest: 1.5 },
+  //   { name: "Gold", referralsRequired: 50, referralsTo: 10, harvest: 2 },
+  //   { name: "Fire", referralsRequired: 200, referralsTo: 50, harvest: 3 },
+  //   { name: "Diamond", referralsRequired: 1000, referralsTo: 200, harvest: 4 },
+  //   { name: "Ruby", referralsRequired: 1001, referralsTo: 1000, harvest: 5 },
+  // ];
   
   // Функция для проверки допустимых значений type
   const isValidType = (type: string): type is ComboItem['type'] => {
@@ -242,12 +242,13 @@ useEffect(() => {
 // Проверка на выигрыш или проигрыш
 useEffect(() => {
   if (leafCount === 5) {
-    const userLeagueIndex = user.level;
-    const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
-    const calculatedInHour = user.coinsPerHour * userHarvestMultiplier;
-    setReward(calculatedInHour / 3);
-    giveUserReward(calculatedInHour / 3); // Выдаем награду
-    
+    // const userLeagueIndex = user.level;
+    // const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
+    // const calculatedInHour = user.coinsPerHour * userHarvestMultiplier;
+    // setReward(calculatedInHour / 3);
+    // giveUserReward(calculatedInHour / 3); // Выдаем награду
+    setReward(user.coinsPerHour);
+    giveUserReward(user.coinsPerHour); // Выдаем награду
     // Добавляем задержку в 1 секунду перед переходом на step 2
     setTimeout(() => {
       setStep(2); 
