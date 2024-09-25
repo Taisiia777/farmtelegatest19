@@ -249,7 +249,7 @@ interface User {
   coinsPerHour: number;
   xp: number;
   level: number;
-  referralsCount?: number; // Поле для количества рефералов
+  referralCount?: number; // Поле для количества рефералов
 }
 
 interface OutletContext {
@@ -365,8 +365,8 @@ const People = () => {
                   key={user.id}
                   name={user.username}
                   imgSrc={"img/pages/people/person.png"}
-                  earning={(user.referralsCount || 0).toString()} // Отображаем количество рефералов
-                  coinAmount={(user.referralsCount || 0).toString()}
+                  earning={(user.referralCount || 0).toString()} // Отображаем количество рефералов
+                  coinAmount={(user.referralCount || 0).toString()}
                   inviteMode
                   rating={index + 1}
                 />
