@@ -91,7 +91,7 @@ const People = () => {
       try {
         const [usersResponse, referralsResponse] = await Promise.all([
           fetch('https://coinfarm.club/api/user/top-earners'),
-          fetch('https://coinfarm.club/api/referral')
+          fetch('https://coinfarm.club/api/referral/top-referers')
         ]);
 
         const usersData: User[] = await usersResponse.json();
