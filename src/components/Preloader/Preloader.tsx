@@ -176,8 +176,8 @@ const Preloader = () => {
    return (
       <>
          {isLoading && (
-            <div className={cn("wrap")}>
-               <div className={cn("preloader")} style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover' }}>
+            <div className={cn("wrap")} style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover' }}>
+               <div className={cn("preloader")}>
                   {/* <img src={logo} alt="Logo" className={cn("logo")} /> */}
                </div>
                <span style={{ position: "absolute", bottom: "13vh", left: "50%", width: "240px", fontSize: "24px", textAlign: "center", transform: "translateX(-50%)" }}>
