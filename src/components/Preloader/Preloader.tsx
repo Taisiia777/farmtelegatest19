@@ -1,45 +1,3 @@
-
-
-
-
-// import  { useEffect } from "react";
-// import { Outlet } from "react-router-dom";
-// import { useAppDispatch, useAppSelector } from "../../store";
-// import { loadingToggle } from "../../store/reducers/preloader";
-// import styles from "./Preloader.module.scss";
-// import classNames from "classnames/bind";
-// import logo from "../../../public/img/pages/home/pig.png"; // Путь к вашему логотипу
-
-// const cn = classNames.bind(styles);
-
-// const Preloader = () => {
-//    const dispatch = useAppDispatch();
-//    const isLodaing = useAppSelector((state) => state.preloader.isLodaing);
-
-//    useEffect(() => {
-//       setTimeout(() => {
-//          dispatch(loadingToggle(false));
-//       }, 5000);
-//    });
-
-//    return (
-//       <>
-//          {isLodaing && (
-//             <div className={cn("wrap")}>
-//                <div className={cn("preloader")}>
-//                   <img src={logo} alt="Logo" className={cn("logo")} />
-//                </div>
-//             </div>
-//          )}
-//          <Outlet />
-//       </>
-//    );
-// };
-
-// export default Preloader;
-
-
-
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
@@ -47,7 +5,10 @@ import { loadingToggle } from "../../store/reducers/preloader";
 import { useQuery } from '@tanstack/react-query';
 import styles from "./Preloader.module.scss";
 import classNames from "classnames/bind";
-import logo from "../../../public/img/pages/home/pig.png"; // Путь к вашему логотипу
+// import logo from "../../../public/img/pages/home/pig.png"; // Путь к вашему логотипу
+import background1 from "../../../public/img/backgrounds/bg1.jpg"; // Путь к первому фону
+import background2 from "../../../public/img/backgrounds/bg2.jpg"; // Путь ко второму фону
+import background3 from "../../../public/img/backgrounds/bg3.jpg"; // Путь к третьему фону
 import { setUser } from "../../store/reducers/userSlice";
 import { retrieveLaunchParams } from '@tma.js/sdk';
 import axios from "axios";
@@ -107,6 +68,14 @@ const Preloader = () => {
    const user = useAppSelector((state: RootState) => state.user.user);
    const [energy, setEnergy] = useState(0); // состояние энергии
    const [daysLeft, setDaysLeft] = useState(0); // состояние для количества дней
+   const backgrounds = [background1, background2, background3];
+   const [backgroundImage, setBackgroundImage] = useState("");
+   useEffect(() => {
+      const randomBackground = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+      setBackgroundImage(randomBackground);
+      // Другой код
+  }, [dispatch]);
+  
    const calculateDaysLeft = () => {
       const targetDate = new Date('2024-12-13'); // 13 декабря 2024
       const currentDate = new Date();
@@ -208,8 +177,8 @@ const Preloader = () => {
       <>
          {isLoading && (
             <div className={cn("wrap")}>
-               <div className={cn("preloader")}>
-                  <img src={logo} alt="Logo" className={cn("logo")} />
+               <div className={cn("preloader")} style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover' }}>
+                  {/* <img src={logo} alt="Logo" className={cn("logo")} /> */}
                </div>
                <span style={{ position: "absolute", bottom: "13vh", left: "50%", width: "240px", fontSize: "24px", textAlign: "center", transform: "translateX(-50%)" }}>
   Token mining ends in  

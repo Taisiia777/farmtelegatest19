@@ -119,8 +119,8 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                <ul className={cn("menu__list")}>
              
                   <li  onClick={() => onCoinsOpen()}>
-                  <img src="img/pages/home/menu/Earn.svg" alt="Earn" />
-                     <span className="textShadow textMenu1">{t('coins')}</span>
+                  <img src="img/pages/home/menu/drone_menu.png" alt="Earn" />
+                     <span className="textShadow textMenu1">{t('boost')}</span>
                   </li>
                   <li onClick={() => onBoostOpen()}>
                      <img src="img/pages/home/menu/Boost.svg" alt="Boost" />
