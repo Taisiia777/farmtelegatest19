@@ -90,7 +90,7 @@ const People = () => {
     const fetchUsersAndReferrals = async () => {
       try {
         const [usersResponse, referralsResponse] = await Promise.all([
-          fetch('https://coinfarm.club/api/user/'),
+          fetch('https://coinfarm.club/api/user/top-earners'),
           fetch('https://coinfarm.club/api/referral')
         ]);
 
