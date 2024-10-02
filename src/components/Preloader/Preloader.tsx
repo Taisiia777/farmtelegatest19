@@ -40,13 +40,13 @@ interface Friend extends User {
 // Функция для выполнения запроса на получение рефералов
 const fetchReferralsAndEarnings = async (userId: number) => {
    console.log(userId)
-  const referralsResponse = await fetch(`https://coinfarm.club/api/user/8720/referrals`);
+  const referralsResponse = await fetch(`https://coinfarm.club/api/user/${userId}/referrals`);
   if (!referralsResponse.ok) {
     throw new Error('Failed to fetch referrals');
   }
   const referralsData = await referralsResponse.json();
 
-  const earningsResponse = await fetch(`https://coinfarm.club/api/user/8720/referrals/earnings`);
+  const earningsResponse = await fetch(`https://coinfarm.club/api/user/${userId}/referrals/earnings`);
   if (!earningsResponse.ok) {
     throw new Error('Failed to fetch earnings');
   }
