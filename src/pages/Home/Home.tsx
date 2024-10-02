@@ -1476,7 +1476,17 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
             hours={user?.incomeMultiplier}
            total={rainInterval}
            current={currentRainProgress}
-           onClick={() => setEnergyPopupOpen(true)}
+           onClick={() => {
+           // Play sound on progress bar harvest click
+           const sound = new Audio('sounds/popup.mp3');
+           sound.play();
+
+           // Stop the sound after 1 second
+           setTimeout(() => {
+           sound.pause();
+           sound.currentTime = 0;  // Reset sound to the beginning
+           }, 1000);
+            setEnergyPopupOpen(true)}}
            onClickProgresbar={() => console.log('kkk')}
            version={1}
            inHour={user?.coinsPerHour}
