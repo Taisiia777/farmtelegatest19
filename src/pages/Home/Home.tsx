@@ -1197,6 +1197,15 @@ console.log(response1)
     
     useEffect(() => {
       const handleHarvest = (event: Event) => {
+                   // Play sound on progress bar harvest click
+                   const sound = new Audio('sounds/harvest.mp3');
+                   sound.play();
+        
+                   // Stop the sound after 1 second
+                   setTimeout(() => {
+                   sound.pause();
+                   sound.currentTime = 0;  // Reset sound to the beginning
+                   }, 1000);
         const customEvent = event as CustomEvent<number>;
         const harvestedCount = customEvent.detail;
     
