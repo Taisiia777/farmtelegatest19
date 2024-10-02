@@ -1373,7 +1373,6 @@ console.log(response1)
     };
     
 
- 
     const handleRainReward = async () => {
       try {
         // Отправляем запрос на получение награды за дождь
@@ -1392,7 +1391,12 @@ console.log(response1)
         const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
         const calculatedInHour = user?.coinsPerHour * userHarvestMultiplier;
         setDisplayEarnings(calculatedInHour * user?.incomeMultiplier);
-    
+        // Создаем аудио объект для звука дождя
+        const rainSound = new Audio('sounds/rain.wav'); // Укажи правильный путь к звуку дождя
+
+        // Включаем звук дождя и зацикливаем его во время анимации
+        rainSound.play();
+        rainSound.loop = true;
         // Обновляем статус анимации и прогресса
         dispatch(growAllToMax());
         setEnergyPopupOpen(false);
@@ -1400,8 +1404,11 @@ console.log(response1)
         setCurrentRainProgress(0);
     
         // Останавливаем анимацию через 5 секунд
-        setTimeout(() => setIsRainAnim(false), 5000);
-    
+        setTimeout(() => {
+          setIsRainAnim(false);
+          rainSound.pause(); // Останавливаем звук дождя
+          rainSound.currentTime = 0; // Возвращаем аудио к началу для повторного использования
+        }, 10000);    
       } catch (error) {
         console.error('Error handling rain reward:', error);
       }
