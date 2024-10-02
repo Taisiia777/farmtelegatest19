@@ -24,7 +24,7 @@
 
    &__icon {
       width: rem(64);
-
+      border-radius: 50%;
       @media screen and (max-width:em(400)) {
          width: rem(58);
       }

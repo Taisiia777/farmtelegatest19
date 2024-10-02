@@ -238,13 +238,13 @@ const FreindOrSpecialBlock = ({
         setIsReciebed(true);
         setButtonText(t('done'));
         setMoneyAnimACtive(true);
-        if (title === "Connect wallet") {
-          dispatch(setUser({ ...user, coins: user.coins + 10000}));
+        if (title === "Connect wallet" || title === "Join chat" || title === "Join chanel" || title === "Sign up and get 50’000$" || title === "Join Political Warfare" || title === "Join Cats") {
+          dispatch(setUser({ ...user, coins: user.coins + 5000}));
         }else{
-          if(title === "Join HappyCrypto" || title === "Join Crypto Daily" || title === "Join DAILY COMBO" || title === "Subscribe DAILY COMBO"  ){
-            dispatch(setUser({ ...user, coins: user.coins + 5000}));
-          }else{
-            dispatch(setUser({ ...user, coins: user.coins + 10000}));
+          if(title === "Join HappyCrypto" || title === "Join Crypto Daily" || title === "Join DAILY COMBO" || title === "Subscribe DAILY COMBO"  ||  title === "CryptoZona" ||  title === "LiveMine" ||  title === "Tonext"){
+            dispatch(setUser({ ...user, coins: user.coins + 2000}));
+          }else if( title === "Play Starsfi" ){
+            dispatch(setUser({ ...user, coins: user.coins + 3000}));
           }
         
         }

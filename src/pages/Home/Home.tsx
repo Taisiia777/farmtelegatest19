@@ -176,7 +176,6 @@ const Home = () => {
    const { width } = useWindowSize();
     const user = useAppSelector((state: RootState) => state.user.user);
     const fertilizersLoading = useAppSelector((state: RootState) => state.fertilizers.isLoading);
-
    const blocks = useAppSelector((state: RootState) => state.growthStages.blocks);
    const [nickname, setNickname] = useState(''); // Состояние для никнейма
    // const [imgSrc, setImgSrc] = useState("img/pages/people/person.png");
@@ -945,13 +944,19 @@ const Home = () => {
 
       async function giveFertilizers() {
         dispatch(loading());
-
+        if (fertilizersLoading) return; // Если уже идет запрос, просто выходим
+        const coinsPerHour = parseInt(user.coinsPerHour, 10) || 0;
+        const earning = parseInt(fertilizersState.info.earning, 10) || 0;
+        const price = parseInt(fertilizersState.info.price, 10) || 0;
+        if (user.coins < price) {
+          return;
+        }
         try {
           const response = await axios.post(`https://coinfarm.club/api/fertilizers/give/${user.id}/${fertilizersState.info.fertilizersId}`);
-          // dispatch(setUser({ ...user, coins: user.coins - fertilizersState.info.price, coinsPerHour: user.coinsPerHour + fertilizersState.info.earning}));
-          const coinsPerHour = parseInt(user.coinsPerHour, 10) || 0;
-const earning = parseInt(fertilizersState.info.earning, 10) || 0;
-const price = parseInt(fertilizersState.info.price, 10) || 0;
+
+          //           const coinsPerHour = parseInt(user.coinsPerHour, 10) || 0;
+// const earning = parseInt(fertilizersState.info.earning, 10) || 0;
+// const price = parseInt(fertilizersState.info.price, 10) || 0;
 
 dispatch(setUser({ 
   ...user, 
@@ -1460,7 +1465,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
   onClick={() => setEnergyPopupOpen(true)}
   />} */}
           {isRainAnim && <RainAnimation />}
-          {!energyPopupOpen && !isPopupOpen && false && <Energy 
+          {!energyPopupOpen && !isPopupOpen && !isLoading && <Energy 
             hours={user?.incomeMultiplier}
            total={rainInterval}
            current={currentRainProgress}
@@ -1660,7 +1665,8 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                         size={width > 380 ? "big" : "normal"}
                         disabled={fertilizersLoading} // Блокируем кнопку, если идет запрос
                         onClick={() =>{
-                           giveFertilizers()
+                          // dispatch(loading());
+                          giveFertilizers()
                            buy(fertilizersMoneyAnimRef, () =>
                               dispatch(closeFertilizersBuyPopup())
                            )
@@ -1870,29 +1876,33 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                   onTabChange={(label) => setEarnActiveTab(label)}
                />
 
-              
-{/* {earnActiveTab === "TASKS" && (
-  <PopupList
-    ref={earnRef}
-    nodes={tasks.map(task => (
-      <FreindOrSpecialBlock
-        key={task.id}
-        imgSrc={task.imgSrc}
-        title={task.description}
-        earning={task.rewardAmount.toString()}
-        link={task.link}
-        defaultButtonText={t('join')}
-      />
-    ))}
-  />
-)} */}
+{/*               
 
 {earnActiveTab === "TASKS" && (
   <PopupList
     ref={earnRef}
     nodes={tasks
       .sort((a, b) => a.id - b.id)  // Сортировка по возрастанию id
-      .map(task => (
+      .reduce((acc: Task[], task: Task) => {
+        if (task.description === "Sign up and get 50’000$") {
+          // Вставляем это задание на 4-е место (индекс 3)
+          acc.splice(3, 0, task);
+        } else if (task.description === "Play Starsfi") {
+          // Вставляем это задание на 5-е место (индекс 4)
+          acc.splice(4, 0, task);
+        } else if (task.description === "LiveMine") {
+          // Вставляем это задание на 6-е место (индекс 5)
+          acc.splice(5, 0, task);
+        } else if (task.description === "Tonext") {
+          // Вставляем это задание на 7-е место (индекс 6)
+          acc.splice(6, 0, task);
+        } else {
+          // Добавляем задание в массив, если оно не равно целевому
+          acc.push(task);
+        }
+        return acc;
+      }, [])
+      .map((task: Task) => (
         <FreindOrSpecialBlock
           key={task.id}
           imgSrc={task.imgSrc}
@@ -1902,6 +1912,85 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
           defaultButtonText={t('join')}
         />
       ))}
+  />
+)} */}
+{/* {earnActiveTab === "TASKS" && ( 
+  <PopupList
+    ref={earnRef}
+    nodes={tasks
+      .reduce((acc: Task[], task: Task) => {
+        if (task.description === "Join Political Warfare") {
+          // Вставляем это задание на первое место (индекс 0)
+          acc.unshift(task);
+        } else if (task.description === "Sign up and get 50’000$") {
+          // Вставляем это задание на 5-е место (индекс 4)
+          acc.splice(4, 0, task);
+        } else if (task.description === "Play Starsfi") {
+          // Вставляем это задание на 6-е место (индекс 5)
+          acc.splice(5, 0, task);
+        } else if (task.description === "LiveMine") {
+          // Вставляем это задание на 7-е место (индекс 6)
+          acc.splice(6, 0, task);
+        } else if (task.description === "Tonext") {
+          // Вставляем это задание на 8-е место (индекс 7)
+          acc.splice(7, 0, task);
+        } else {
+          // Добавляем задание в конец массива, если оно не равно целевым
+          acc.push(task);
+        }
+        return acc;
+      }, [])
+      .map((task: Task) => (
+        <FreindOrSpecialBlock
+          key={task.id}
+          imgSrc={task.imgSrc}
+          title={task.description}
+          earning={task.rewardAmount.toString()}
+          link={task.link}
+          defaultButtonText={t('join')}
+        />
+      ))}
+  />
+)} */}
+{earnActiveTab === "TASKS" && ( 
+  <PopupList
+    ref={earnRef}
+    nodes={tasks
+      .reduce((acc: Task[], task: Task) => {
+        if (task.description === "Join Political Warfare") {
+          // Вставляем это задание на 4-е место (индекс 3)
+          acc.splice(4, 0, task);
+        } else if (task.description === "Join Cats") {
+          // Вставляем это задание на 3-е место (индекс 2)
+          acc.splice(3, 0, task);
+        } else if (task.description === "Sign up and get 50’000$") {
+          // Вставляем это задание на 5-е место (индекс 4)
+          acc.splice(5, 0, task);
+        } else if (task.description === "Play Starsfi") {
+          // Вставляем это задание на 6-е место (индекс 5)
+          acc.splice(6, 0, task);
+        } else if (task.description === "LiveMine") {
+          // Вставляем это задание на 7-е место (индекс 6)
+          acc.splice(7, 0, task);
+        } else if (task.description === "Tonext") {
+          // Вставляем это задание на 8-е место (индекс 7)
+          acc.splice(8, 0, task);
+        } else {
+          // Добавляем задание в конец массива, если оно не равно целевым
+          acc.push(task);
+        }
+        return acc;
+      }, [])
+      .map((task: Task) => (
+        <FreindOrSpecialBlock
+          key={task.id}
+          imgSrc={task.imgSrc}
+          title={task.description}
+          earning={task.rewardAmount.toString()}
+          link={task.link}
+          defaultButtonText={t('join')}
+        />
+      ))} 
   />
 )}
 
