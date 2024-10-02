@@ -28,7 +28,9 @@ const GamesBlock = ({
       <div className={cn("block")} style={{position: "absolute", top: "100%", left: "0", width: "100%", height: "126px",
          backgroundImage: `url("img/global/border-block/item.svg")`,
          backgroundSize: "contain",
-         backgroundPosition: "center"}}>
+         backgroundPosition: "center",
+         backgroundRepeat: "no-repeat"
+      }}>
          <div className={cn("block__inner")}>
             <div className={cn("block__left")}>
                <img
