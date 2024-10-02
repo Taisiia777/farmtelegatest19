@@ -38,7 +38,15 @@ const Stats = () => {
       document.documentElement.style.height = "auto";
   
       window.scrollTo(0, overflow);
-      
+       // Play sound on progress bar harvest click
+       const sound = new Audio('sounds/popup.mp3');
+       sound.play();
+
+       // Stop the sound after 1 second
+       setTimeout(() => {
+       sound.pause();
+       sound.currentTime = 0;  // Reset sound to the beginning
+       }, 1000);
     }, []);
    const { t } = useTranslation();
    useEffect(() => {
