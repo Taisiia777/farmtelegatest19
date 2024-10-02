@@ -106,13 +106,32 @@ export default function useWheatTrunctaion() {
         const growthStageImgID = target.getAttribute("data-id");
         const moneyAnimation = target.nextElementSibling;
 
+        // if (moneyAnimation) {
+        //   moneyAnimation.classList.add(cn("_anim"));
+        //   setTimeout(() => {
+        //     moneyAnimation.classList.remove(cn("_anim"));
+        //   }, 500);
+        // }
         if (moneyAnimation) {
+          // Добавляем анимацию
           moneyAnimation.classList.add(cn("_anim"));
+        
+          // Воспроизводим звук
+          const sound = new Audio('sounds/harvest.mp3');
+          sound.play();
+        
+          // Удаляем анимацию через 500 мс
           setTimeout(() => {
             moneyAnimation.classList.remove(cn("_anim"));
           }, 500);
+        
+          // Останавливаем звук через 1 секунду
+          setTimeout(() => {
+            sound.pause();
+            sound.currentTime = 0; // Возвращаем воспроизведение на начало
+          }, 1000);
         }
-
+        
         if (
           growthStageImgID &&
           !harvestedBlocks.some((block) => block.id === +growthStageImgID)
