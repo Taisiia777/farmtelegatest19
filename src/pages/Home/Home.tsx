@@ -350,13 +350,29 @@ const Home = () => {
 
    // Осуществляет покупку в попапе и делает анимацию монет
    function buy(ref: RefObject<HTMLImageElement>, callback: () => void) {
+    const audio = new Audio('sounds/coins.mp3');
 
-      ref.current?.classList.add("moneyAnim");
+    // Воспроизводим звук
+    audio.play();
 
-      setTimeout(() => {
-         ref.current?.classList.remove("moneyAnim");
-         callback();
-      }, 500);
+    ref.current?.classList.add("moneyAnim");
+
+    setTimeout(() => {
+        ref.current?.classList.remove("moneyAnim");
+        callback();
+
+        // Останавливаем звук через 1 секунду
+        setTimeout(() => {
+            audio.pause();
+            audio.currentTime = 0; // Возвращаем воспроизведение на начало
+        }, 1000); // 1 секунда
+    }, 500);
+      // ref.current?.classList.add("moneyAnim");
+
+      // setTimeout(() => {
+      //    ref.current?.classList.remove("moneyAnim");
+      //    callback();
+      // }, 500);
    }
 
    useEffect(() => {
