@@ -1517,18 +1517,45 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                      current={Math.min(Math.round(displayEarnings), user?.coinsPerHour * user?.incomeMultiplier * leagues[level].harvest)}
                      onClickProgresbarHarvest={
                       () => {
+                        // Play sound on progress bar harvest click
+                        const sound = new Audio('sounds/popup.mp3');
+                        sound.play();
+
+                        // Stop the sound after 1 second
+                        setTimeout(() => {
+                          sound.pause();
+                          sound.currentTime = 0;  // Reset sound to the beginning
+                        }, 1000);
                         setBoostPopupOpen(true);
                         openFertilizersPopup()
                       }
                      }
                      onClick={() => {
                       () => {
+                        // Play sound on progress bar harvest click
+                        const sound = new Audio('sounds/popup.mp3');
+                        sound.play();
+
+                        // Stop the sound after 1 second
+                        setTimeout(() => {
+                          sound.pause();
+                          sound.currentTime = 0;  // Reset sound to the beginning
+                        }, 1000);
                         setBoostPopupOpen(true);
                         openBoostPopup()
                       }
                     }}
                     onClickProgresbar={
                       () => {
+                        // Play sound on progress bar harvest click
+                        const sound = new Audio('sounds/popup.mp3');
+                        sound.play();
+
+                        // Stop the sound after 1 second
+                        setTimeout(() => {
+                          sound.pause();
+                          sound.currentTime = 0;  // Reset sound to the beginning
+                        }, 1000);
                         setBoostPopupOpen(true);
                         openBoostPopup()
 
@@ -1540,17 +1567,55 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
 
                   />
                   <Menu
-                     onBoostOpen={() => {setBoostPopupOpen(true)
+                     onBoostOpen={() => {
+                        // Play sound on progress bar harvest click
+                        const sound = new Audio('sounds/popup.mp3');
+                        sound.play();
+
+                        // Stop the sound after 1 second
+                        setTimeout(() => {
+                          sound.pause();
+                          sound.currentTime = 0;  // Reset sound to the beginning
+                        }, 1000);
+                      setBoostPopupOpen(true)
                       openFertilizersPopup()
                      }}
-                     onEarnOpen={() => {setEarnPopupOpen(true)
+                     onEarnOpen={() => {
+                        // Play sound on progress bar harvest click
+                        const sound = new Audio('sounds/popup.mp3');
+                        sound.play();
+
+                        // Stop the sound after 1 second
+                        setTimeout(() => {
+                          sound.pause();
+                          sound.currentTime = 0;  // Reset sound to the beginning
+                        }, 1000);
+                      setEarnPopupOpen(true)
                       openSpecialPopup()
                      }}
                      onGamesOpen={()=>{
+                        // Play sound on progress bar harvest click
+                        const sound = new Audio('sounds/popup.mp3');
+                        sound.play();
+
+                        // Stop the sound after 1 second
+                        setTimeout(() => {
+                          sound.pause();
+                          sound.currentTime = 0;  // Reset sound to the beginning
+                        }, 1000);
                       setGamesPopupOpen(true)
                       openGamesPopup()
                      }}
                      onCoinsOpen={() => {
+                       // Play sound on progress bar harvest click
+                        const sound = new Audio('sounds/popup.mp3');
+                        sound.play();
+
+                        // Stop the sound after 1 second
+                        setTimeout(() => {
+                          sound.pause();
+                          sound.currentTime = 0;  // Reset sound to the beginning
+                        }, 1000);
                       setBoostPopupOpen(true)
                       openBoostPopup()}}
                       
