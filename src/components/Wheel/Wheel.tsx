@@ -289,6 +289,14 @@ const spin = () => {
 
   // Устанавливаем состояние для анимации вращения
   setSpins(prev => prev - 1);
+  const sound = new Audio('sounds/spin.mp3');
+  sound.play();
+
+  // Stop the sound after 1 second
+  setTimeout(() => {
+  sound.pause();
+  sound.currentTime = 0;  // Reset sound to the beginning
+  }, 5000);
   setIsSpinning(true);
   setRotation(finalAngle);
 
@@ -306,6 +314,15 @@ const spin = () => {
 
     // Обрабатываем результат вращения
     if (selectedSector.name !== "Sector 1" && selectedSector.name !== "Sector 4") {
+         // Play sound on progress bar harvest click
+         const sound = new Audio('sounds/win.mp3');
+         sound.play();
+
+         // Stop the sound after 1 second
+         setTimeout(() => {
+         sound.pause();
+         sound.currentTime = 0;  // Reset sound to the beginning
+         }, 1000);
       setShowConfetti(true);
       setTimeout(() => {
         setShowConfetti(false);
@@ -313,6 +330,14 @@ const spin = () => {
         setRotation(0);
       }, 2000);
     } else if (selectedSector.name === "Sector 1"){
+      const sound = new Audio('sounds/lose.mp3');
+      sound.play();
+
+      // Stop the sound after 1 second
+      setTimeout(() => {
+      sound.pause();
+      sound.currentTime = 0;  // Reset sound to the beginning
+      }, 1000);
       setReward(0);
       setRotation(0);
     } else if (selectedSector.name === "Sector 4"){
