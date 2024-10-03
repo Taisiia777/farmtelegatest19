@@ -290,13 +290,29 @@ const spin = () => {
   // Устанавливаем состояние для анимации вращения
   setSpins(prev => prev - 1);
   const sound = new Audio('sounds/spin.mp3');
-  sound.play();
 
-  // Stop the sound after 1 second
+  let startTime = Date.now();  // Время начала воспроизведения
+  let duration = 5000;  // Длительность в миллисекундах (5 секунд)
+  
+  const loopSound = () => {
+    sound.currentTime = 0;  // Возвращаем звук в начало
+    sound.play();
+  
+    sound.onended = () => {
+      if (Date.now() - startTime < duration) {
+        loopSound();  // Если не прошло 5 секунд, продолжаем воспроизводить
+      }
+    };
+  };
+  
+  // Начать воспроизведение и зациклить звук
+  loopSound();
+  
+  // Прекратить звук после 5 секунд
   setTimeout(() => {
-  sound.pause();
-  sound.currentTime = 0;  // Reset sound to the beginning
-  }, 5000);
+    sound.pause();
+    sound.currentTime = 0;
+  }, duration);
   setIsSpinning(true);
   setRotation(finalAngle);
 
