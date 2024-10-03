@@ -242,6 +242,14 @@ useEffect(() => {
 // Проверка на выигрыш или проигрыш
 useEffect(() => {
   if (leafCount === 5) {
+    const sound = new Audio('sounds/win.mp3');
+         sound.play();
+
+         // Stop the sound after 1 second
+         setTimeout(() => {
+         sound.pause();
+         sound.currentTime = 0;  // Reset sound to the beginning
+         }, 1000);
     // const userLeagueIndex = user.level;
     // const userHarvestMultiplier = leagues[userLeagueIndex]?.harvest || 1;
     // const calculatedInHour = user.coinsPerHour * userHarvestMultiplier;
@@ -256,6 +264,14 @@ useEffect(() => {
     }, 1000); // 1000 миллисекунд = 1 секунда
 
   } else if (skullCount === 1) {
+    const sound = new Audio('sounds/lose.mp3');
+    sound.play();
+
+    // Stop the sound after 1 second
+    setTimeout(() => {
+    sound.pause();
+    sound.currentTime = 0;  // Reset sound to the beginning
+    }, 1000);
     giveUserReward(0); // Выдаем 0 монет
 
     // Добавляем задержку в 1 секунду перед переходом на step 3
