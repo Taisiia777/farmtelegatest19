@@ -1409,7 +1409,7 @@ console.log(response1)
         const calculatedInHour = user?.coinsPerHour * userHarvestMultiplier;
         setDisplayEarnings(calculatedInHour * user?.incomeMultiplier);
         // Создаем аудио объект для звука дождя
-        const rainSound = new Audio('sounds/rain.wav'); // Укажи правильный путь к звуку дождя
+        const rainSound = new Audio('sounds/rain.mp3'); // Укажи правильный путь к звуку дождя
 
         // Включаем звук дождя и зацикливаем его во время анимации
         rainSound.play();
