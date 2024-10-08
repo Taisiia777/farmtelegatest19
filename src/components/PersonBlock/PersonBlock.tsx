@@ -30,12 +30,18 @@ const PersonBlock = ({
         ? result.toFixed(0) + suffix // Целое число без десятичных
         : result.toFixed(3) + suffix; // Три знака после запятой
     };
-   const fertFormattedPrice = parseFloat(coinAmount) >= 1000000000
-  ? formatLargeNumber(parseFloat(coinAmount), 1000000000, 'B')
-  : parseFloat(coinAmount) >= 1000000
-  ? formatLargeNumber(parseFloat(coinAmount), 1000000, 'M')
-  : parseFloat(coinAmount).toString();
-
+//    const fertFormattedPrice = parseFloat(coinAmount) >= 1000000000
+//   ? formatLargeNumber(parseFloat(coinAmount), 1000000000, 'B')
+//   : parseFloat(coinAmount) >= 1000000
+//   ? formatLargeNumber(parseFloat(coinAmount), 1000000, 'M')
+//   : parseFloat(coinAmount).toString();
+const fertFormattedPrice = parseFloat(coinAmount) >= 1000000000000
+? formatLargeNumber(parseFloat(coinAmount), 1000000000000, 'T')
+: parseFloat(coinAmount) >= 1000000000
+? formatLargeNumber(parseFloat(coinAmount), 1000000000, 'B')
+: parseFloat(coinAmount) >= 1000000
+? formatLargeNumber(parseFloat(coinAmount), 1000000, 'M')
+: parseFloat(coinAmount).toString();
    return (
       <div className={cn("person")}>
          <div className={cn("person__left")}>

@@ -1413,7 +1413,7 @@ console.log(response1)
 
         // Включаем звук дождя и зацикливаем его во время анимации
         rainSound.play();
-        rainSound.loop = true;
+        rainSound.loop = false;
         // Обновляем статус анимации и прогресса
         dispatch(growAllToMax());
         setEnergyPopupOpen(false);
@@ -1425,7 +1425,7 @@ console.log(response1)
           setIsRainAnim(false);
           rainSound.pause(); // Останавливаем звук дождя
           rainSound.currentTime = 0; // Возвращаем аудио к началу для повторного использования
-        }, 10000);    
+        }, 5000);    
       } catch (error) {
         console.error('Error handling rain reward:', error);
       }
@@ -1455,26 +1455,49 @@ const formatLargeNumber = (num: number, divisor: number, suffix: string): string
     : result.toFixed(3) + suffix; // Три знака после запятой
 };
 
-// Пример использования с форматированием цен для бустеров, монет и удобрений
-const boostFormattedPrice = parseFloat(boostState.info.price) >= 1000000000
-  ? formatLargeNumber(parseFloat(boostState.info.price), 1000000000, 'B')
-  : parseFloat(boostState.info.price) >= 1000000
-  ? formatLargeNumber(parseFloat(boostState.info.price), 1000000, 'M')
-  : parseFloat(boostState.info.price).toString();
+// // Пример использования с форматированием цен для бустеров, монет и удобрений
+// const boostFormattedPrice = parseFloat(boostState.info.price) >= 1000000000
+//   ? formatLargeNumber(parseFloat(boostState.info.price), 1000000000, 'B')
+//   : parseFloat(boostState.info.price) >= 1000000
+//   ? formatLargeNumber(parseFloat(boostState.info.price), 1000000, 'M')
+//   : parseFloat(boostState.info.price).toString();
 
-const coinFormattedPrice = parseFloat(coinState.info.price) >= 1000000000
-  ? formatLargeNumber(parseFloat(coinState.info.price), 1000000000, 'B')
-  : parseFloat(coinState.info.price) >= 1000000
-  ? formatLargeNumber(parseFloat(coinState.info.price), 1000000, 'M')
-  : parseFloat(coinState.info.price).toString();
+// const coinFormattedPrice = parseFloat(coinState.info.price) >= 1000000000
+//   ? formatLargeNumber(parseFloat(coinState.info.price), 1000000000, 'B')
+//   : parseFloat(coinState.info.price) >= 1000000
+//   ? formatLargeNumber(parseFloat(coinState.info.price), 1000000, 'M')
+//   : parseFloat(coinState.info.price).toString();
 
-const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
-  ? formatLargeNumber(parseFloat(fertilizersState.info.price), 1000000000, 'B')
-  : parseFloat(fertilizersState.info.price) >= 1000000
-  ? formatLargeNumber(parseFloat(fertilizersState.info.price), 1000000, 'M')
-  : parseFloat(fertilizersState.info.price).toString();
+// const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
+//   ? formatLargeNumber(parseFloat(fertilizersState.info.price), 1000000000, 'B')
+//   : parseFloat(fertilizersState.info.price) >= 1000000
+//   ? formatLargeNumber(parseFloat(fertilizersState.info.price), 1000000, 'M')
+//   : parseFloat(fertilizersState.info.price).toString();
 
-  
+const boostFormattedPrice = parseFloat(boostState.info.price) >= 1000000000000
+? formatLargeNumber(parseFloat(boostState.info.price), 1000000000000, 'T')
+: parseFloat(boostState.info.price) >= 1000000000
+? formatLargeNumber(parseFloat(boostState.info.price), 1000000000, 'B')
+: parseFloat(boostState.info.price) >= 1000000
+? formatLargeNumber(parseFloat(boostState.info.price), 1000000, 'M')
+: parseFloat(boostState.info.price).toString();
+
+const coinFormattedPrice = parseFloat(coinState.info.price) >= 1000000000000
+? formatLargeNumber(parseFloat(coinState.info.price), 1000000000000, 'T')
+: parseFloat(coinState.info.price) >= 1000000000
+? formatLargeNumber(parseFloat(coinState.info.price), 1000000000, 'B')
+: parseFloat(coinState.info.price) >= 1000000
+? formatLargeNumber(parseFloat(coinState.info.price), 1000000, 'M')
+: parseFloat(coinState.info.price).toString();
+
+const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000000
+? formatLargeNumber(parseFloat(fertilizersState.info.price), 1000000000000, 'T')
+: parseFloat(fertilizersState.info.price) >= 1000000000
+? formatLargeNumber(parseFloat(fertilizersState.info.price), 1000000000, 'B')
+: parseFloat(fertilizersState.info.price) >= 1000000
+? formatLargeNumber(parseFloat(fertilizersState.info.price), 1000000, 'M')
+: parseFloat(fertilizersState.info.price).toString();
+
    return (
       <>
       <QRCodeComponent />
