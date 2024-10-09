@@ -103,13 +103,20 @@ const Coins = ({ quantity }: CoinsProps) => {
   // Преобразование quantity к числу
   const numericQuantity = parseFloat(quantity);
   
-  // Форматирование total
-  const profileFormattedPrice = numericQuantity >= 1000000000 
-    ? formatLargeNumber(numericQuantity, 1000000000, 'B')
-    : numericQuantity >= 1000000 
-    ? formatLargeNumber(numericQuantity, 1000000, 'M')
-    : numericQuantity.toString();
-  
+  // // Форматирование total
+  // const profileFormattedPrice = numericQuantity >= 1000000000 
+  //   ? formatLargeNumber(numericQuantity, 1000000000, 'B')
+  //   : numericQuantity >= 1000000 
+  //   ? formatLargeNumber(numericQuantity, 1000000, 'M')
+  //   : numericQuantity.toString();
+  const profileFormattedPrice = numericQuantity >= 1000000000000
+  ? formatLargeNumber(numericQuantity, 1000000000000, 'T')
+  : numericQuantity >= 1000000000
+  ? formatLargeNumber(numericQuantity, 1000000000, 'B')
+  : numericQuantity >= 1000000
+  ? formatLargeNumber(numericQuantity, 1000000, 'M')
+  : numericQuantity.toString();
+
   return (
     <div className={cn("coins")}>
       <div className={cn("coins__video-wrap")}>
