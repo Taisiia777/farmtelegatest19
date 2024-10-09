@@ -1998,7 +1998,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
                   onTabChange={(label) => setEarnActiveTab(label)}
                />
 
-{earnActiveTab === "TASKS" && ( 
+{/* {earnActiveTab === "TASKS" && ( 
   <PopupList
     ref={earnRef}
     nodes={tasks
@@ -2038,8 +2038,54 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
         />
       ))} 
   />
+)} */}
+{earnActiveTab === "TASKS" && ( 
+  <PopupList
+    ref={earnRef}
+    nodes={tasks
+      .reduce((acc: Task[], task: Task) => {
+        if (task.description === "Win 10USDT") {
+          // Вставляем это задание на 4-е место (индекс 3)
+          acc.splice(3, 0, task);
+        } else if (task.description === "Join Hrum") {
+          // Вставляем это задание на 4-е место (индекс 3)
+          acc.splice(4, 0, task);
+        } else if (task.description === "Join Political Warfare") {
+          // Вставляем это задание на 4-е место (индекс 3)
+          acc.splice(5, 0, task);
+        } else if (task.description === "Join Cats") {
+          // Вставляем это задание на 3-е место (индекс 2)
+          acc.splice(6, 0, task);
+        } else if (task.description === "Sign up and get 50’000$") {
+          // Вставляем это задание на 5-е место (индекс 4)
+          acc.splice(7, 0, task);
+        } else if (task.description === "Play Starsfi") {
+          // Вставляем это задание на 6-е место (индекс 5)
+          acc.splice(8, 0, task);
+        } else if (task.description === "LiveMine") {
+          // Вставляем это задание на 7-е место (индекс 6)
+          acc.splice(9, 0, task);
+        } else if (task.description === "Tonext") {
+          // Вставляем это задание на 8-е место (индекс 7)
+          acc.splice(10, 0, task);
+        } else {
+          // Добавляем задание в конец массива, если оно не равно целевым
+          acc.push(task);
+        }
+        return acc;
+      }, [])
+      .map((task: Task) => (
+        <FreindOrSpecialBlock
+          key={task.id}
+          imgSrc={task.imgSrc}
+          title={task.description}
+          earning={task.rewardAmount.toString()}
+          link={task.link}
+          defaultButtonText={t('join')}
+        />
+      ))} 
+  />
 )}
-
             </PopupListWrap>
 
                         {/* GAMES popup */}
