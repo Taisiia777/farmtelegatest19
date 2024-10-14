@@ -6,9 +6,9 @@ import { useQuery } from '@tanstack/react-query';
 import styles from "./Preloader.module.scss";
 import classNames from "classnames/bind";
 // import logo from "../../../public/img/pages/home/pig.png"; // Путь к вашему логотипу
-import background1 from "../../../public/img/backgrounds/bg1.jpg"; // Путь к первому фону
-import background2 from "../../../public/img/backgrounds/bg2.jpg"; // Путь ко второму фону
-import background3 from "../../../public/img/backgrounds/bg3.jpg"; // Путь к третьему фону
+import background1 from "../../../public/img/backgrounds/bg1.avif"; // Путь к первому фону
+import background2 from "../../../public/img/backgrounds/bg2.avif"; // Путь ко второму фону
+import background3 from "../../../public/img/backgrounds/bg3.avif"; // Путь к третьему фону
 import { setUser } from "../../store/reducers/userSlice";
 import { retrieveLaunchParams } from '@tma.js/sdk';
 import axios from "axios";
