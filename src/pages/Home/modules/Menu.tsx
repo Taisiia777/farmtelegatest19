@@ -170,21 +170,21 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                      <span className="textShadow textMenu1">{t('earn')}</span>
                   </li>
                   <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/Stats2.png" alt="Stats" style={{height:"54px", width: "50px"}}/>
+                     <img src="img/pages/home/menu/stats.svg" alt="Stats" style={{height:"54px", width: "50px"}}/>
                      <span className="textShadow">{t('stats')}</span>
                   </li>
                   <li onClick={() => window.Telegram.WebApp.openLink('https://t.me/+JznU1FxTemM5NjY8')} style={{position:"absolute", top: "-85vh", left: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/Chat1.png" alt="Stats" style={{height:"54px", width: "50px"}}/>
+                     <img src="img/pages/home/menu/chat.svg" alt="Stats" style={{height:"54px", width: "50px"}}/>
                      <span className="textShadow">{t('chat')}</span>
                   </li>
                   {/* <li onClick={handleWheelClick} style={{position:"absolute", top: "-75vh", left: "20px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Wheel.png" alt="Stats" style={{height:"54px", width: "50px"}}/>
                   </li> */}
                   <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", left: "5px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/Guide.svg" alt="Stats" />
+                     <img src="img/pages/home/menu/guide.svg" alt="Stats" />
                   </li>
                   <li onClick={handleWalletClick} style={{position:"absolute", top: "-10vh", right: "5px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/Wallet.svg" alt="Stats" />
+                     <img src="img/pages/home/menu/wallet.svg" alt="Stats" />
                   </li>
                </ul>
             </div>
