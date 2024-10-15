@@ -235,7 +235,11 @@
       opacity: 0;
       visibility: hidden;
    }
-
+   &__farm {
+      image-rendering: crisp-edges;
+      image-rendering: -webkit-optimize-contrast;
+      
+   }
    &__border {
       position: absolute;
       top: -2.5%;
