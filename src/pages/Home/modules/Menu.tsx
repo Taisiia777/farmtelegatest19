@@ -169,7 +169,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                      <img src="img/pages/home/menu/guide.svg" alt="Stats" style={{width:"45px", height: "45px"}}/>
                   </li>
                   <li onClick={handleWalletClick} style={{position:"absolute", top: "-10vh", right: "5px", zIndex:"1",}}>
-                     <img src="img/pages/home/menu/wallet.svg" alt="Stats" style={{width:"45px", height: "45px"}}/>
+                     <img src="img/pages/home/menu/wallet.svg" alt="Stats" style={{width:"45px", height: "45px", imageRendering: "crisp-edges"}}/>
                   </li>
                </ul>
             </div>
