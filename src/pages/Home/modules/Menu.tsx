@@ -118,7 +118,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
             <div className={cn("menu__body")}>
                <ul className={cn("menu__list")}>
                <li onClick={() => onBoostOpen()}>
-                     <img src="img/pages/home/menu/Boost.svg" alt="Boost" />
+                     <img src="img/pages/home/menu/Boost.svg" alt="Boost"/>
                      <span className="textShadow textMenu1">{t('fertilizers')}</span>
                   </li>
                   <li  onClick={() => onCoinsOpen()}>
@@ -170,21 +170,21 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                      <span className="textShadow textMenu1">{t('earn')}</span>
                   </li>
                   <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/stats.svg" alt="Stats" style={{height:"54px", width: "50px"}}/>
+                     <img src="img/pages/home/menu/stats.svg" alt="Stats" style={{height:"50px", width: "50px"}}/>
                      <span className="textShadow">{t('stats')}</span>
                   </li>
                   <li onClick={() => window.Telegram.WebApp.openLink('https://t.me/+JznU1FxTemM5NjY8')} style={{position:"absolute", top: "-85vh", left: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/chat.svg" alt="Stats" style={{height:"54px", width: "50px"}}/>
+                     <img src="img/pages/home/menu/chat.svg" alt="Stats" style={{height:"50px", width: "50px"}}/>
                      <span className="textShadow">{t('chat')}</span>
                   </li>
                   {/* <li onClick={handleWheelClick} style={{position:"absolute", top: "-75vh", left: "20px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Wheel.png" alt="Stats" style={{height:"54px", width: "50px"}}/>
                   </li> */}
                   <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", left: "5px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/guide.svg" alt="Stats" />
+                     <img src="img/pages/home/menu/guide.svg" alt="Stats" style={{width:"50px", height: "50px"}}/>
                   </li>
-                  <li onClick={handleWalletClick} style={{position:"absolute", top: "-10vh", right: "5px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/wallet.svg" alt="Stats" />
+                  <li onClick={handleWalletClick} style={{position:"absolute", top: "-10vh", right: "5px", zIndex:"1",}}>
+                     <img src="img/pages/home/menu/wallet.svg" alt="Stats" style={{width:"50px", height: "50px"}}/>
                   </li>
                </ul>
             </div>
