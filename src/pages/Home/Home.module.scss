@@ -238,7 +238,7 @@
    &__farm {
       image-rendering: crisp-edges;
       image-rendering: -webkit-optimize-contrast;
-      
+      z-index: 10;
    }
    &__border {
       position: absolute;
