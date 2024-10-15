@@ -118,12 +118,12 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
             <div className={cn("menu__body")}>
                <ul className={cn("menu__list")}>
                <li onClick={() => onBoostOpen()}>
-                     <img src="img/pages/home/menu/Boost.svg" style={{width:"55px", height: "55px"}} alt="Boost"/>
-                     <span className="textShadow textMenu1">{t('fertilizers')}</span>
+                     <img src="img/pages/home/menu/Boost.svg" style={{width:"55px", height: "55px", marginTop: "-6px"}} alt="Boost"/>
+                     <span className="textShadow textMenu1" style={{marginTop: "-4px"}}>{t('fertilizers')}</span>
                   </li>
                   <li  onClick={() => onCoinsOpen()}>
                   <img src="img/pages/home/menu/lopata.svg" style={{width:"46px", height: "46px"}} alt="Earn" />
-                     <span className="textShadow textMenu1">{t('boost')}</span>
+                     <span className="textShadow textMenu1" style={{marginTop: "4px"}}>{t('boost')}</span>
                   </li>
                   
                   {/* <li onClick={harvestAllWheat}> */}
@@ -137,33 +137,18 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
       style={{ display: 'flex', position: 'absolute', top: '-4px', right:'3px', width: "20px", height:"20px", zIndex:'3' }} 
     />
   )}
-                     <span className="textShadow textMenu1" style={{zIndex:'3', display: 'flex', position: 'absolute', bottom:'3px'
-                     }}>{t('apps')}</span>
+                     {/* <span className="textShadow textMenu1" style={{zIndex:'3', display: 'flex', position: 'absolute', bottom:'3px'
+                     }}>{t('apps')}</span> */}
 
                   </li>
-                  {/* <li
-                
-                     // onClick={() =>
-                     //    navigate(Routes.PEOPLE, {
-                     //       state: {
-                     //          label: "LEADERBOARD",
-                     //       },
-                     //    })
-                     // }
-                     onClick={() => navigate(Routes.INVITE)}
-                     >
-                     <img src="img/pages/home/menu/Top.svg" alt="Top" />
-                     <span className="textShadow">{t('frens')}</span>
-                  </li> */}
+                  
                    <li
-                     // onClick={() => !isFrensDisabled && navigate(Routes.INVITE)}
                      onClick={() => navigate(Routes.INVITE)}
                      
-                     // className={cn({ 'disabled': isFrensDisabled })} // Добавляем класс для отключенной кнопки
-                     // style={isFrensDisabled ? { pointerEvents: 'none', opacity: 0.5 } : {}}
+                   
                   >
                      <img src="img/pages/home/menu/Top.svg" style={{width:"46px", height: "45px"}} alt="Top" />
-                     <span className="textShadow textMenu1">{t('frens')}</span>
+                     <span className="textShadow textMenu1" style={{marginTop: "4px"}}>{t('frens')}</span>
                   </li>
                   <li onClick={() => onEarnOpen()}>
                      <img src="img/pages/home/menu/Stats.svg" style={{width:"55px", height: "46px"}} alt="Stats" />
