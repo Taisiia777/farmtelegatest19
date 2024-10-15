@@ -227,7 +227,7 @@
 
 .menu {
    position: relative;
-   padding-bottom: 12.5%;
+   padding-bottom: 22.5%;
    border-radius: rem(25) rem(25) 0 0;
    background: linear-gradient(#A2C521, #667E00);
 
@@ -238,7 +238,7 @@
 
    &__border {
       position: absolute;
-      top: -2.5%;
+      top: 0;
       left: 0;
       height: 100%;
       width: 100%;
@@ -254,6 +254,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
    }
 
    &__list {
