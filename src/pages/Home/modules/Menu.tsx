@@ -108,7 +108,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
          <div className={cn("menu")} id="menu">
             {/* Border */}
             <img
-               src="img/pages/home/menu/border.png"
+               src="img/pages/home/menu/menu_bottom_border.svg"
                className={cn("menu__border")}
                alt="border"
                style={{position:"absolute", top:"-8%"}}
