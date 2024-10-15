@@ -295,7 +295,7 @@
          }
 
          &:nth-child(3) {
-            transform: translateY(rem(-5));
+            transform: translate(rem(-5), rem(-5));
             // & img:last-child {
             //    position: absolute;
             //    top: 17%;
