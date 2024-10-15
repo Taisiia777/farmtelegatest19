@@ -118,11 +118,11 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
             <div className={cn("menu__body")}>
                <ul className={cn("menu__list")}>
                <li onClick={() => onBoostOpen()}>
-                     <img src="img/pages/home/menu/Boost.svg" alt="Boost"/>
+                     <img src="img/pages/home/menu/Boost.svg" style={{width:"46px", height: "46px"}} alt="Boost"/>
                      <span className="textShadow textMenu1">{t('fertilizers')}</span>
                   </li>
                   <li  onClick={() => onCoinsOpen()}>
-                  <img src="img/pages/home/menu/lopata.svg" alt="Earn" />
+                  <img src="img/pages/home/menu/lopata.svg" style={{width:"46px", height: "46px"}} alt="Earn" />
                      <span className="textShadow textMenu1">{t('boost')}</span>
                   </li>
                   
@@ -162,29 +162,29 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                      // className={cn({ 'disabled': isFrensDisabled })} // Добавляем класс для отключенной кнопки
                      // style={isFrensDisabled ? { pointerEvents: 'none', opacity: 0.5 } : {}}
                   >
-                     <img src="img/pages/home/menu/Top.svg" alt="Top" />
+                     <img src="img/pages/home/menu/Top.svg" style={{width:"46px", height: "45px"}} alt="Top" />
                      <span className="textShadow textMenu1">{t('frens')}</span>
                   </li>
                   <li onClick={() => onEarnOpen()}>
-                     <img src="img/pages/home/menu/Stats.svg" alt="Stats" />
+                     <img src="img/pages/home/menu/Stats.svg" style={{width:"55px", height: "46px"}} alt="Stats" />
                      <span className="textShadow textMenu1">{t('earn')}</span>
                   </li>
                   <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/stats.svg" alt="Stats" style={{height:"40px", width: "40px"}}/>
+                     <img src="img/pages/home/menu/stats.svg" alt="Stats" style={{height:"45px", width: "45px"}}/>
                      <span className="textShadow">{t('stats')}</span>
                   </li>
                   <li onClick={() => window.Telegram.WebApp.openLink('https://t.me/+JznU1FxTemM5NjY8')} style={{position:"absolute", top: "-85vh", left: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/chat.svg" alt="Stats" style={{height:"40px", width: "40px"}}/>
+                     <img src="img/pages/home/menu/chat.svg" alt="Stats" style={{height:"45px", width: "45px"}}/>
                      <span className="textShadow">{t('chat')}</span>
                   </li>
                   {/* <li onClick={handleWheelClick} style={{position:"absolute", top: "-75vh", left: "20px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/Wheel.png" alt="Stats" style={{height:"54px", width: "50px"}}/>
                   </li> */}
                   <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", left: "5px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/guide.svg" alt="Stats" style={{width:"40px", height: "40px"}}/>
+                     <img src="img/pages/home/menu/guide.svg" alt="Stats" style={{width:"45px", height: "45px"}}/>
                   </li>
                   <li onClick={handleWalletClick} style={{position:"absolute", top: "-10vh", right: "5px", zIndex:"1",}}>
-                     <img src="img/pages/home/menu/wallet.svg" alt="Stats" style={{width:"40px", height: "40px"}}/>
+                     <img src="img/pages/home/menu/wallet.svg" alt="Stats" style={{width:"45px", height: "45px"}}/>
                   </li>
                </ul>
             </div>
