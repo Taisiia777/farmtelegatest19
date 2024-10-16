@@ -134,7 +134,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
     <img 
       src="img/pages/home/menu/ready.svg" 
       alt="Ready" 
-      style={{ display: 'flex', position: 'absolute', top: '-4px', right:'3px', width: "20px", height:"20px", zIndex:'3' }} 
+      style={{ display: 'flex', position: 'absolute', top: '3px', right:'3px', width: "20px", height:"20px", zIndex:'12' }} 
     />
   )}
                      {/* <span className="textShadow textMenu1" style={{zIndex:'3', display: 'flex', position: 'absolute', bottom:'3px'
