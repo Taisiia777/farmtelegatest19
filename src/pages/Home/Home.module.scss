@@ -199,14 +199,14 @@
 
    &__progressBar {
       position: absolute;
-      top: 0;
-      left: 9%;
+      top: -1px;
+      left: 13%;
       right: 0;
       height: 100%;
       width: 30%;
       max-width: 86%;
       min-width: 0%;
-      border-radius: rem(10);
+      border-radius: rem(5);
       background: linear-gradient(#FFF34A 20%, #FF7C18 85%, #FFC000 100%);
    }
    &__progressBar1 {
