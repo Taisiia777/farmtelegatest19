@@ -303,8 +303,8 @@
             box-sizing: border-box;
             // background-color: rgba(255, 243, 74, 0.2); /* Yellow with 0% opacity for Figma color */
             // filter: blur(33px); /* Adjust based on blur from Figma */
-            box-shadow: 0 0 33px rgba(255, 243, 74, 0.2); /* Оттенок тени и радиус размытия */
-
+            width: 85px;
+            height: 85px;
          }
 
          &:nth-child(4) {

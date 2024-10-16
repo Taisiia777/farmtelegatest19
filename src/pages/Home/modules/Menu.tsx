@@ -127,9 +127,9 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                   </li>
                   
                   {/* <li onClick={harvestAllWheat}> */}
-                  <li onClick={() => onGamesOpen()}>
+                  <li onClick={() => onGamesOpen()} style={{}}>
 
-                     <img src="img/pages/home/menu/Farm21.svg" className={cn("menu__farm")}  alt="Farm"  />
+                     <img src="img/pages/home/menu/Farm21.svg" className={cn("menu__farm")}  alt="Farm"  style={{width: "85px", height: "89px"}}/>
                      {isReady && (
     <img 
       src="img/pages/home/menu/ready.svg" 
