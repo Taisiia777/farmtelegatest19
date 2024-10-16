@@ -303,6 +303,7 @@
             background-color: rgba(255, 243, 74, 0.2); /* Yellow with 0% opacity for Figma color */
             filter: blur(33px); /* Adjust based on blur from Figma */
             display: contents;
+            border: 1px solid red;
             // & img:last-child {
             //    position: absolute;
             //    top: 17%;
