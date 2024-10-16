@@ -307,10 +307,10 @@
          }
 
          &:nth-child(4) {
-            
+            transform: translate(-15%, 4%);
+
             @media screen and (max-width:em(420)) {
                // transform: translateY(4%);
-               transform: translate(-15%, 4%)
                & img {
                   width: rem(50);
 
