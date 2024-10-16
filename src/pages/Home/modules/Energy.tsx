@@ -226,7 +226,7 @@ const energyInHourFormattedPrice = typeof inHour === 'number' && inHour >= 10000
                
             ></div>
             {version !== 1 && (
-          <span style={{marginLeft: "30px", marginTop: "-2px"}}>
+          <span style={{marginLeft: "10px", marginTop: "-2px"}}>
             {energyCurrentFormattedPrice} / {energyTotalFormattedPrice}
           </span>
         )}
