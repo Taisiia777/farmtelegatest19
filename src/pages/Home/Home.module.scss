@@ -236,6 +236,7 @@
       visibility: hidden;
    }
    &__farm {
+      display: flex;
       image-rendering: crisp-edges;
       image-rendering: -webkit-optimize-contrast;
       z-index: 10;
@@ -302,8 +303,11 @@
             transform: translate(rem(-20), rem(-20));
             background-color: rgba(255, 243, 74, 0.2); /* Yellow with 0% opacity for Figma color */
             filter: blur(33px); /* Adjust based on blur from Figma */
-            display: contents;
             border: 1px solid red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
             // & img:last-child {
             //    position: absolute;
             //    top: 17%;
