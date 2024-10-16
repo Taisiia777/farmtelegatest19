@@ -3,8 +3,6 @@ import styles from "../Home.module.scss";
 import { useNavigate } from "react-router-dom";
 import { Routes } from "../../../routes/routes";
 import { useAppSelector } from "../../../store";
-
-// import { useHarvestAllWheat } from "../hooks/useHarvestAllWheat";
 import i18n from '../../../i18n';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from "react";
@@ -12,35 +10,10 @@ import { useAppDispatch } from "../../../store";
 import { openGuide1 } from "../../../store/reducers/guide1";
 import { openWallet } from "../../../store/reducers/wallet";
 
-// import { openWheel } from "../../../store/reducers/wheel";
-
-// import { useOutletContext } from 'react-router-dom';
 
 const cn = classNames.bind(styles);
 
-// interface User {
-//    id: number;
-//    username: string;
-//    coins: number;
-//    totalEarnings: number;
-//    incomeMultiplier: number;
-//    coinsPerHour: number;
-//    xp: number;
-//    level: number;
-//  }
-//  interface OutletContext {
-//    friends: Friend[];
-//  }
- 
- // interface ReferralEarnings {
- //   id: number;
- //   coinsEarned: number;
- // }
-//  interface Friend extends User {
-//    coinsEarned?: number;
-//    secondTierEarnings?: number; // Заработки с рефералов второго уровня
-//    thirdTierEarnings?: number; // Заработки с рефералов третьего уровня
-//  }
+
 interface IMenuProps {
    onBoostOpen: () => void;
    onEarnOpen: () => void;
@@ -50,7 +23,6 @@ interface IMenuProps {
 }
 
 const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) => {
-   // const { friends } = useOutletContext<OutletContext>();
    const dispatch = useAppDispatch();
    const isReady = useAppSelector((state) => state.wheel.isReady);
 
@@ -62,11 +34,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
 };
 
   
-//   const handleWheelClick = () => {
-//    dispatch(openWheel());
-// };
-  
-   // const harvestAllWheat = useHarvestAllWheat();
+
    const { t } = useTranslation();
    useEffect(() => {
      const initData = window.Telegram.WebApp.initDataUnsafe;
@@ -101,14 +69,13 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
      
    }, []);
    const navigate = useNavigate();
-   // const isFrensDisabled = !friends || friends.length === 0;
    return (
       <>
          
          <div className={cn("menu")} id="menu">
             {/* Border */}
             <img
-               src="img/pages/home/menu/menu_bottom_border.svg"
+               src="img/pages/home/menu/menu_bottom_border1.svg"
                className={cn("menu__border")}
                alt="border"
                style={{position:"absolute", top:"0"}}
@@ -162,9 +129,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                      <img src="img/pages/home/menu/chat.svg" alt="Stats" style={{height:"45px", width: "45px"}}/>
                      <span className="textShadow">{t('chat')}</span>
                   </li>
-                  {/* <li onClick={handleWheelClick} style={{position:"absolute", top: "-75vh", left: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/Wheel.png" alt="Stats" style={{height:"54px", width: "50px"}}/>
-                  </li> */}
+               
                   <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", left: "5px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/guide.svg" alt="Stats" style={{width:"45px", height: "45px"}}/>
                   </li>
