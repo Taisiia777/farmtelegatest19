@@ -300,6 +300,7 @@
 
          &:nth-child(3) {
             transform: translate(rem(-5), rem(-8));
+            box-sizing: border-box;
             // background-color: rgba(255, 243, 74, 0.2); /* Yellow with 0% opacity for Figma color */
             // filter: blur(33px); /* Adjust based on blur from Figma */
 
@@ -308,8 +309,8 @@
          &:nth-child(4) {
             
             @media screen and (max-width:em(420)) {
-               transform: translateY(4%);
-
+               // transform: translateY(4%);
+               transform: translate(-15%, 4%)
                & img {
                   width: rem(50);
 
@@ -318,7 +319,9 @@
          }
 
          &:nth-child(5) {
-            transform: translateY(6.5%);
+            // transform: translateY(6.5%);
+            transform: translate(-15%, 6.5%);
+
          }
       }
    }
