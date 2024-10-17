@@ -76,7 +76,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
             {/* Border */}
 
             <img
-               src="img/pages/home/menu/menu_bottom_border.svg"
+               src="img/pages/home/menu/menu_bottom_border.png"
                className={cn("menu__border")}
                alt="border"
                style={{position:"absolute", top:"0"}}
@@ -97,7 +97,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                   {/* <li onClick={harvestAllWheat}> */}
                   <li onClick={() => onGamesOpen()} style={{}}>
 
-                     <img src="img/pages/home/menu/Farm228.png" className={cn("menu__farm")}style={{width:"100px", height:"110px"}}  alt="Farm" />
+                     <img src="img/pages/home/menu/Farm228.png" className={cn("menu__farm")}style={{width:"90px", height:"100px"}}  alt="Farm" />
                      {isReady && (
     <img 
       src="img/pages/home/menu/ready.svg" 
