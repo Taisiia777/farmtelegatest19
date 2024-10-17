@@ -202,7 +202,7 @@ const energyInHourFormattedPrice = typeof inHour === 'number' && inHour >= 10000
        />
         ):
         (<img
-         src="img/pages/home/energy/progressBar_border.svg"
+         src="img/pages/home/energy/progressBar_border.png"
          style={{top:'-7%'}}
          className={cn("energy__board")}
          alt="Energy board"
