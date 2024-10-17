@@ -123,12 +123,12 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                      <span className="textShadow textMenu1">{t('earn')}</span>
                   </li>
                   <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/stats.png" alt="Stats" style={{height:"45px", width: "48px"}}/>
-                     <span className="textShadow">{t('stats')}</span>
+                     <img src="img/pages/home/menu/stats.png" alt="Stats" style={{height:"45px", width: "50px"}}/>
+                     <span className="textShadow" style={{display:"flex",marginTop:"-5px"}}>{t('stats')}</span>
                   </li>
                   <li onClick={() => window.Telegram.WebApp.openLink('https://t.me/+JznU1FxTemM5NjY8')} style={{position:"absolute", top: "-85vh", left: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/chat.png" alt="Stats" style={{height:"45px", width: "48px"}}/>
-                     <span className="textShadow">{t('chat')}</span>
+                     <img src="img/pages/home/menu/chat.png" alt="Stats" style={{height:"45px", width: "50px"}}/>
+                     <span className="textShadow" style={{display:"flex",marginTop:"-5px"}}>{t('chat')}</span>
                   </li>
                
                   <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", left: "5px", zIndex:"1"}}>
