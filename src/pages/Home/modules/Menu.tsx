@@ -122,11 +122,11 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                      <img src="img/pages/home/menu/Stats.svg" style={{width:"55px", height: "46px"}} alt="Stats" />
                      <span className="textShadow textMenu1">{t('earn')}</span>
                   </li>
-                  <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "20px", zIndex:"1"}}>
+                  <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "5px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/stats.png" alt="Stats" style={{height:"48px", width: "45px"}}/>
                      <span className="textShadow" style={{display:"flex",marginTop:"-10px"}}>{t('stats')}</span>
                   </li>
-                  <li onClick={() => window.Telegram.WebApp.openLink('https://t.me/+JznU1FxTemM5NjY8')} style={{position:"absolute", top: "-85vh", left: "20px", zIndex:"1"}}>
+                  <li onClick={() => window.Telegram.WebApp.openLink('https://t.me/+JznU1FxTemM5NjY8')} style={{position:"absolute", top: "-85vh", left: "5px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/chat.png" alt="Stats" style={{height:"48px", width: "45px"}}/>
                      <span className="textShadow" style={{display:"flex",marginTop:"-10px"}}>{t('chat')}</span>
                   </li>
