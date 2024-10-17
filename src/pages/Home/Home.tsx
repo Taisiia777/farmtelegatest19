@@ -2046,10 +2046,10 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
       .reduce((acc: Task[], task: Task) => {
         if (task.description === "Win 10USDT") {
           // Вставляем это задание на 4-е место (индекс 3)
-          acc.splice(3, 0, task);
-        } else if (task.description === "Join Hrum") {
-          // Вставляем это задание на 4-е место (индекс 3)
           acc.splice(4, 0, task);
+        } else if (task.description === "Join CRYPTO DAILY") {
+          // Вставляем это задание на 4-е место (индекс 3)
+          acc.splice(3, 0, task);
         } else if (task.description === "Join Political Warfare") {
           // Вставляем это задание на 4-е место (индекс 3)
           acc.splice(5, 0, task);
@@ -2065,7 +2065,7 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
         } else if (task.description === "LiveMine") {
           // Вставляем это задание на 7-е место (индекс 6)
           acc.splice(9, 0, task);
-        } else if (task.description === "Tonext") {
+        } else if (task.description === "Join Hrum") {
           // Вставляем это задание на 8-е место (индекс 7)
           acc.splice(10, 0, task);
         } else {

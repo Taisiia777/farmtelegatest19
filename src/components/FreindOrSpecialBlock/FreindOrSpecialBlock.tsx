@@ -81,7 +81,11 @@ const FreindOrSpecialBlock = ({
   }
   const { t } = useTranslation();
   const address = useTonAddress();
-
+  const buttonImageSrc = isCompleted
+    ? 'img/global/checkbox/grey.svg'
+    : isReciebed === false
+    ? 'img/global/checkbox/green.svg'
+    : 'img/global/btn1.png';  // По дефолту
   useEffect(() => {
     const initData = window.Telegram.WebApp.initDataUnsafe;
     const userLanguage = initData.user?.language_code || 'en'; // Получаем язык пользователя
@@ -243,7 +247,7 @@ const FreindOrSpecialBlock = ({
         }else{
           if(title === "Join HappyCrypto" || title === "Join Crypto Daily" || title === "Join DAILY COMBO" || title === "Subscribe DAILY COMBO"  ||  title === "CryptoZona" ||  title === "LiveMine" ||  title === "Tonext"){
             dispatch(setUser({ ...user, coins: user.coins + 2000}));
-          }else if( title === "Play Starsfi" ){
+          }else if( title === "Play Starsfi" || title === "Join CRYPTO DAILY"){
             dispatch(setUser({ ...user, coins: user.coins + 3000}));
           }
         
@@ -312,13 +316,23 @@ const FreindOrSpecialBlock = ({
             <Button
               className="textShadow_center"
               disabled={isButtonDisabled || isTaskButtonDisabled}>
-              {`${isCompleted ? t('done') : buttonText}`}
+              {/* {`${isCompleted ? t('done') : buttonText}`} */}
+              <img
+              src={buttonImageSrc}
+              alt={buttonText}
+              style={{ width: '20px', height: '20px' }}
+            />
             </Button>
           ) : (
             <Button
               className="textShadow_center"
               onClick={handleButtonClick}>
-              {buttonText}
+              {/* {buttonText} */}
+              <img
+              src={buttonImageSrc}
+              alt={buttonText}
+              style={{ width: '20px', height: '20px' }}
+            />
             </Button>
           )}
 
