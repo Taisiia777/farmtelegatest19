@@ -318,10 +318,11 @@ const FreindOrSpecialBlock = ({
               disabled={isButtonDisabled || isTaskButtonDisabled}>
               {/* {`${isCompleted ? t('done') : buttonText}`} */}
               <img
-              src={buttonImageSrc}
-              alt={buttonText}
-              style={{ width: '20px', height: '20px' }}
-            />
+            src={buttonImageSrc}
+            alt={buttonText}
+            onClick={handleButtonClick}
+            style={{ width: '50px', height: '50px', cursor: 'pointer' }}
+          />
             </Button>
           ) : (
             <Button
@@ -329,10 +330,11 @@ const FreindOrSpecialBlock = ({
               onClick={handleButtonClick}>
               {/* {buttonText} */}
               <img
-              src={buttonImageSrc}
-              alt={buttonText}
-              style={{ width: '20px', height: '20px' }}
-            />
+            src={buttonImageSrc}
+            alt={buttonText}
+            onClick={handleButtonClick}
+            style={{ width: '50px', height: '50px', cursor: 'pointer' }}
+          />
             </Button>
           )}
 
