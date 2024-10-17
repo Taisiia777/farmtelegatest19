@@ -97,7 +97,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                   {/* <li onClick={harvestAllWheat}> */}
                   <li onClick={() => onGamesOpen()} style={{}}>
 
-                     <img src="img/pages/home/menu/Farm228.png" className={cn("menu__farm")}  alt="Farm" />
+                     <img src="img/pages/home/menu/Farm228.png" className={cn("menu__farm")}style={{width:"85px", height:"89px"}}  alt="Farm" />
                      {isReady && (
     <img 
       src="img/pages/home/menu/ready.svg" 
@@ -123,11 +123,11 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                      <span className="textShadow textMenu1">{t('earn')}</span>
                   </li>
                   <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/stats.png" alt="Stats" style={{height:"45px", width: "50px"}}/>
+                     <img src="img/pages/home/menu/stats.png" alt="Stats" style={{height:"48px", width: "45px"}}/>
                      <span className="textShadow" style={{display:"flex",marginTop:"-5px"}}>{t('stats')}</span>
                   </li>
                   <li onClick={() => window.Telegram.WebApp.openLink('https://t.me/+JznU1FxTemM5NjY8')} style={{position:"absolute", top: "-85vh", left: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/chat.png" alt="Stats" style={{height:"45px", width: "50px"}}/>
+                     <img src="img/pages/home/menu/chat.png" alt="Stats" style={{height:"48px", width: "45px"}}/>
                      <span className="textShadow" style={{display:"flex",marginTop:"-5px"}}>{t('chat')}</span>
                   </li>
                
