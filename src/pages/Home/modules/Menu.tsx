@@ -123,19 +123,19 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                      <span className="textShadow textMenu1">{t('earn')}</span>
                   </li>
                   <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/stats.png" alt="Stats" style={{height:"45px", width: "45px"}}/>
+                     <img src="img/pages/home/menu/stats.png" alt="Stats" style={{height:"45px", width: "48px"}}/>
                      <span className="textShadow">{t('stats')}</span>
                   </li>
                   <li onClick={() => window.Telegram.WebApp.openLink('https://t.me/+JznU1FxTemM5NjY8')} style={{position:"absolute", top: "-85vh", left: "20px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/chat.png" alt="Stats" style={{height:"45px", width: "45px"}}/>
+                     <img src="img/pages/home/menu/chat.png" alt="Stats" style={{height:"45px", width: "48px"}}/>
                      <span className="textShadow">{t('chat')}</span>
                   </li>
                
                   <li onClick={handleGuideClick} style={{position:"absolute", top: "-10vh", left: "5px", zIndex:"1"}}>
-                     <img src="img/pages/home/menu/guide.png" alt="Stats" style={{width:"45px", height: "45px"}}/>
+                     <img src="img/pages/home/menu/guide.png" alt="Stats" style={{width:"45px", height: "48px"}}/>
                   </li>
                   <li onClick={handleWalletClick} style={{position:"absolute", top: "-10vh", right: "5px", zIndex:"1",}}>
-                     <img src="img/pages/home/menu/wallet.png" alt="Stats" style={{width:"45px", height: "42px"}}/>
+                     <img src="img/pages/home/menu/wallet.png" alt="Stats" style={{width:"45px", height: "48px"}}/>
                   </li>
                </ul>
             </div>
