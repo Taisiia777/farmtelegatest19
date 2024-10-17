@@ -2116,7 +2116,6 @@ const fertFormattedPrice = parseFloat(fertilizersState.info.price) >= 1000000000
       <img style={{position: "absolute", top: "200%", left: "0", width: "100%"}} src="img/pages/home/menu/coming.png" />
       <img style={{position: "absolute", top: "300%", left: "0", width: "100%"}} src="img/pages/home/menu/coming1.png" />
       <img style={{position: "absolute", top: "400%", left: "0", width: "100%"}} src="img/pages/home/menu/coming2.png" />
-      <img style={{position: "absolute", top: "500%", left: "0", width: "100%"}} src="img/pages/home/menu/coming3.png" />
 
       </div>
 
