@@ -165,21 +165,21 @@ const Stats = () => {
                   label={t('online')}
                   imgSrc="img/pages/stats/star.svg"
                   // number={onlineUsersCount.toString()} 
-                  number={456+onlineUsersCount+''} 
+                  number={288+onlineUsersCount+''} 
                   onClick={() => console.log('kkk')}
                />
                <BorderBlock
                   label={t('daily_users')}
                   imgSrc="img/pages/stats/rubin.svg"
                   // number={recentlyOnlineUsersCount.toLocaleString()} 
-                  number={7890+recentlyOnlineUsersCount+''} 
+                  number={12703+recentlyOnlineUsersCount+''} 
                   onClick={() => console.log('kkk')}
                />
                <BorderBlock
                   label={t('total_players')}
                   imgSrc="img/pages/stats/medal.svg"
                   // number={totalPlayers.toLocaleString()} 
-                  number={654321 + totalPlayers + ''} 
+                  number={198956 + totalPlayers + ''} 
                   onClick={() => navigate(Routes.PEOPLE)}
                />
             </div>
