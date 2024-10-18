@@ -105,7 +105,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
       style={{ display: 'flex', position: 'absolute', top: '3px', right:'3px', width: "20px", height:"20px", zIndex:'12' }} 
     />
   )}
-                     <span className="textShadow textMenu1" style={{zIndex:'3', display: 'flex', position: 'absolute', bottom:'-2px'
+                     <span className="textShadow textMenu1" style={{zIndex:'3', display: 'flex', position: 'absolute', bottom:'2px'
                      }}>{t('apps')}</span>
 
                   </li>
