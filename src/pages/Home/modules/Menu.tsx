@@ -105,7 +105,7 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
       style={{ display: 'flex', position: 'absolute', top: '3px', right:'3px', width: "20px", height:"20px", zIndex:'12' }} 
     />
   )}
-                     <span className="textShadow textMenu1" style={{zIndex:'3', display: 'flex', position: 'absolute', bottom:'2px'
+                     <span className="textShadow textMenu1" style={{zIndex:'15', display: 'flex', position: 'absolute', bottom:'2px'
                      }}>{t('apps')}</span>
 
                   </li>
@@ -116,11 +116,11 @@ const Menu = ({ onBoostOpen, onEarnOpen, onCoinsOpen, onGamesOpen}: IMenuProps) 
                    
                   >
                      <img src="img/pages/home/menu/Top.svg" style={{width:"46px", height: "45px"}} alt="Top" />
-                     <span className="textShadow textMenu1" style={{marginTop: "4px"}}>{t('frens')}</span>
+                     <span className="textShadow textMenu1" style={{marginTop: "6px"}}>{t('frens')}</span>
                   </li>
                   <li onClick={() => onEarnOpen()}>
                      <img src="img/pages/home/menu/Stats.svg" style={{width:"55px", height: "46px"}} alt="Stats" />
-                     <span className="textShadow textMenu1">{t('earn')}</span>
+                     <span className="textShadow textMenu1" style={{marginTop: "2px"}}>{t('earn')}</span>
                   </li>
                   <li onClick={() => navigate(Routes.STATS)} style={{position:"absolute", top: "-85vh", right: "5px", zIndex:"1"}}>
                      <img src="img/pages/home/menu/stats.png" alt="Stats" style={{height:"48px", width: "45px"}}/>
