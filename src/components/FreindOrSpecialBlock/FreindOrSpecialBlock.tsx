@@ -314,7 +314,7 @@ const FreindOrSpecialBlock = ({
         <div className={cn("block__link")}>
           {isButtonDisabled || isCompleted || isTaskButtonDisabled ? (
             <Button
-              className="textShadow_center"
+              // className="textShadow_center"
               disabled={isButtonDisabled || isTaskButtonDisabled}>
               {/* {`${isCompleted ? t('done') : buttonText}`} */}
               <img
@@ -326,7 +326,7 @@ const FreindOrSpecialBlock = ({
             </Button>
           ) : (
             <Button
-              className="textShadow_center"
+              // className="textShadow_center"
               onClick={handleButtonClick}>
               {/* {buttonText} */}
               <img
