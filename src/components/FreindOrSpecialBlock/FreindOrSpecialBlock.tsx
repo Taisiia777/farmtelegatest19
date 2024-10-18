@@ -8,7 +8,7 @@
 
 import classNames from 'classnames/bind';
 import styles from './FriendOrSpecialBlock.module.scss';
-import Button from '../Button/Button';
+import Button1 from '../Button/Button1';
 import CoinWhiteBg from '../CoinWhiteBg/CoinWhiteBg';
 import axios from 'axios';
 import { useAppSelector } from '../../store'; // Adjust the path as necessary
@@ -313,29 +313,28 @@ const FreindOrSpecialBlock = ({
         </div>
         <div className={cn("block__link")}>
           {isButtonDisabled || isCompleted || isTaskButtonDisabled ? (
-            <Button
-              // className="textShadow_center"
-              disabled={isButtonDisabled || isTaskButtonDisabled}>
-              {/* {`${isCompleted ? t('done') : buttonText}`} */}
+            <Button1
+              className="textShadow_center"
+          >
+       
               <img
             src={buttonImageSrc}
             alt={buttonText}
             onClick={handleButtonClick}
             style={{ width: '50px', height: '50px', cursor: 'pointer' }}
           />
-            </Button>
+            </Button1>
           ) : (
-            <Button
-              // className="textShadow_center"
+            <Button1
+              className="textShadow_center"
               onClick={handleButtonClick}>
-              {/* {buttonText} */}
               <img
             src={buttonImageSrc}
             alt={buttonText}
             onClick={handleButtonClick}
             style={{ width: '50px', height: '50px', cursor: 'pointer' }}
           />
-            </Button>
+            </Button1>
           )}
 
           <img
