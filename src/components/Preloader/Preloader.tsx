@@ -208,7 +208,7 @@
 // export default Preloader;
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import { RootState, useAppDispatch, useAppSelector } from "../../store";
+import {  useAppDispatch } from "../../store";
 import { loadingToggle } from "../../store/reducers/preloader";
 // import { useQuery } from '@tanstack/react-query';
 import styles from "./Preloader.module.scss";
@@ -227,7 +227,7 @@ const Preloader = () => {
   const dispatch = useAppDispatch();
   const backgrounds = [background1, background2, background3];
   const [backgroundImage, setBackgroundImage] = useState("");
-  const user = useAppSelector((state: RootState) => state.user.user);
+//   const user = useAppSelector((state: RootState) => state.user.user);
 
   // Use this state to control the visibility of the message overlay
   const [showMessage, setShowMessage] = useState(true);
