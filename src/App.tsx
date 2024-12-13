@@ -10,13 +10,13 @@ import {
  import { useEffect } from "react";
  
  import { tg } from "./constants/app";
- import { Routes } from "./routes/routes";
+//  import { Routes } from "./routes/routes";
  import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
- import Home from "./pages/Home/Home";
- import Stats from "./pages/Stats/Stats";
- import People from "./pages/People/People";
- import Invite from "./pages/Invite/Invite";
+//  import Home from "./pages/Home/Home";
+//  import Stats from "./pages/Stats/Stats";
+//  import People from "./pages/People/People";
+//  import Invite from "./pages/Invite/Invite";
  import Preloader from "./components/Preloader/Preloader";
  
  const RedirectToTelegram = () => {
