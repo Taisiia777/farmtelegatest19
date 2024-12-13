@@ -285,7 +285,7 @@ const handleLearnMore = async () => {
                  "💸 Каждая покупка токенов на премаркете не только увеличивает цену токенов, которые выйдут на бирже ByBit, но и повышает сумму аирдропа, который ты получишь! Чем больше ты купишь токенов, тем выше будет твой бонус в аирдропе и тем больше возможностей для будущего роста твоих активов!\n\n" +
                  "🔥 Не упусти шанс стать частью Farm и сделать шаг к новым высотам! Жми на кнопку и покупай токены прямо сейчас!\n\n" +
                  "To the moon! 🚀\n\n" +
-                 "-------------------------------------------------\n" +
+                 "---------------------------------\n" +
                  "🚨 Attention, crypto enthusiasts! 🚨\n\n" +
                  "We are launching the presale of Farm tokens on the Coin Farm platform! This is your chance to become one of the first token holders, who could earn excellent dividends in the future! 📈\n\n" +
                  "✅ Benefits of the presale:\n\n" +
@@ -313,7 +313,7 @@ const handleLearnMore = async () => {
                  "📉 Места с 6 по 100 — по $100 каждому\n\n" +
                  "💥 Участвуй, покупай токены и увеличивай свои шансы на победу! Чем больше токенов Farm ты приобретешь, тем ближе ты к огромным призам!\n\n" +
                  "To the moon! 🚀\n\n" +
-                 "-------------------------------------------------\n" +
+                 "---------------------------------\n" +
                  "🎉 Friends, ready for the contest? 🎉\n\n" +
                  "We are launching an incredible contest with a prize pool of $35,000! And the best part is, winners will be determined by the number of Farm tokens purchased! The more tokens you buy — the higher your chances of winning! 🏆\n\n" +
                  "🏅 Prize pool:\n" +
@@ -331,7 +331,7 @@ const handleLearnMore = async () => {
                  "Рады сообщить, что ведем переговоры с одной из крупнейших криптобирж — ByBit! 🔥 20 декабря ожидается официальное листингование токенов Farm на платформе ByBit! Это отличная новость для всех наших пользователей!\n\n" +
                  "💎 Листинг на ByBit — это огромный шаг в развитие токенов Farm и расширение возможностей для их торговли! Не упустите шанс и следите за новостями!\n\n" +
                  "To the moon! 🚀\n\n" +
-                 "-------------------------------------------------\n" +
+                 "---------------------------------\n" +
                  "🌟 We are one step closer to big achievements! 🌟\n\n" +
                  "We are excited to announce that we are in talks with one of the largest crypto exchanges — ByBit! 🔥 On December 20th, the official listing of Farm tokens on ByBit will take place! This is great news for all our users!\n\n" +
                  "💎 Listing on ByBit is a huge step for the development of Farm tokens and expanding trading opportunities! Don't miss the chance and stay tuned for updates!\n\n" +
