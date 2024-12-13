@@ -238,31 +238,123 @@ const Preloader = () => {
     dispatch(loadingToggle(true)); // Always show preloader
   }, [dispatch]);
 
-  const handleLearnMore = async () => {
-   alert("skdkkd")
+//   const handleLearnMore = async () => {
+//    const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
+//    if (initData && initData.user) {
+
+//    const user = initData.user;
+//    let username = user.id;
+//       try {
+//         const message = "🎉 **АИРДРОП ОТ FARM!**\n\n" +
+//                        "🚀 Прими участие в эксклюзивном аирдропе!\n" +
+//                        "🎯 Активность в игре и участие в премаркете увеличивают твой бонус!\n" +
+//                        "👉 Узнай, как получить свои токены!";
+
+//         await axios.post('https://coinfarm.club/api1/notifyUserHarvestReady', {
+//           userName: username,
+//           message: message
+//         });
+
+//         setShowMessage(false); // Hide the message after sending
+//       } catch (error) {
+//         console.error('Error sending message:', error);
+//       }
+//    }
+//   };
+const handleLearnMore = async () => {
    const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
    if (initData && initData.user) {
-
-   const user = initData.user;
-   let username = user.id;
-      try {
-        const message = "🎉 **АИРДРОП ОТ FARM!**\n\n" +
-                       "🚀 Прими участие в эксклюзивном аирдропе!\n" +
-                       "🎯 Активность в игре и участие в премаркете увеличивают твой бонус!\n" +
-                       "👉 Узнай, как получить свои токены!";
-
-        await axios.post('https://coinfarm.club/api1/notifyUserHarvestReady', {
-          userName: username,
-          message: message
-        });
-
-        setShowMessage(false); // Hide the message after sending
-      } catch (error) {
-        console.error('Error sending message:', error);
-      }
+ 
+     const user = initData.user;
+     let username = user.id;
+ 
+     // Сообщения
+     const messages = [
+       {
+         text: "🚨 Внимание, криптоэнтузиасты! 🚨\n\n" +
+                 "Мы запускаем премаркет токенов Farm на платформе Coin Farm! Это твой шанс стать одним из первых владельцев токенов, которые могут принести отличные дивиденды в будущем! 📈\n\n" +
+                 "✅ Преимущества премаркетинга:\n\n" +
+                 "🚀 Быстрая покупка токенов по специальной цене\n" +
+                 "💰 Возможность заработать на росте стоимости токенов\n" +
+                 "🛠️ Поддержка новых технологий и устойчивых решений\n\n" +
+                 "💥 Закрытый аирдроп для нашего комьюнити! Он будет выдан только тем, кто:\n\n" +
+                 "Купил токены на премаркете на любую сумму\n" +
+                 "Играл в нашу игру и проявил активность!\n\n" +
+                 "🚫 Этот аирдроп предназначен только для тех, кто является частью нашего активного комьюнити и поддерживает проект. Мы отсекаем участников, которые не проявляют интерес или не участвуют в жизни нашего сообщества.\n\n" +
+                 "🎯 Дата аирдропа: 20 декабря в 00:00 по МСК.\n\n" +
+                 "💸 Каждая покупка токенов на премаркете не только увеличивает цену токенов, которые выйдут на бирже ByBit, но и повышает сумму аирдропа, который ты получишь! Чем больше ты купишь токенов, тем выше будет твой бонус в аирдропе и тем больше возможностей для будущего роста твоих активов!\n\n" +
+                 "🔥 Не упусти шанс стать частью Farm и сделать шаг к новым высотам! Жми на кнопку и покупай токены прямо сейчас!\n\n" +
+                 "To the moon! 🚀\n\n" +
+                 "-------------------------------------------------\n" +
+                 "🚨 Attention, crypto enthusiasts! 🚨\n\n" +
+                 "We are launching the presale of Farm tokens on the Coin Farm platform! This is your chance to become one of the first token holders, who could earn excellent dividends in the future! 📈\n\n" +
+                 "✅ Benefits of the presale:\n\n" +
+                 "🚀 Quick purchase of tokens at a special price\n" +
+                 "💰 Opportunity to profit from the token's price increase\n" +
+                 "🛠️ Support for new technologies and sustainable solutions\n\n" +
+                 "💥 Closed airdrop for our community! It will be given only to those who:\n\n" +
+                 "Bought tokens in the presale for any amount\n" +
+                 "Played our game and showed activity!\n\n" +
+                 "🚫 This airdrop is only for those who are part of our active community and support the project. We are excluding participants who do not show interest or do not engage with our community.\n\n" +
+                 "🎯 Airdrop date: December 20th at 00:00 MSK.\n\n" +
+                 "💸 Every purchase of tokens in the presale not only increases the price of tokens that will be listed on ByBit but also increases the airdrop amount you will receive! The more tokens you buy, the higher your airdrop bonus and the greater the potential for future growth of your assets!\n\n" +
+                 "🔥 Don't miss the chance to be a part of Farm and take a step towards new heights! Click the button and buy tokens now!\n\n" +
+                 "To the moon! 🚀"
+       },
+       {
+         text: "🎉 Друзья, готовы к конкурсу? 🎉\n\n" +
+                 "Мы запускаем невероятный конкурс с призовым фондом $35,000! А самое главное, что победители будут определяться по количеству купленных токенов Farm! Чем больше токенов ты купишь — тем выше твои шансы на победу! 🏆\n\n" +
+                 "🏅 Призовой фонд:\n" +
+                 "1️⃣ Место — $10,000\n" +
+                 "2️⃣ Место — $7,000\n" +
+                 "3️⃣ Место — $5,000\n" +
+                 "4️⃣ Место — $2,500\n" +
+                 "5️⃣ Место — $1,000\n" +
+                 "📉 Места с 6 по 100 — по $100 каждому\n\n" +
+                 "💥 Участвуй, покупай токены и увеличивай свои шансы на победу! Чем больше токенов Farm ты приобретешь, тем ближе ты к огромным призам!\n\n" +
+                 "To the moon! 🚀\n\n" +
+                 "-------------------------------------------------\n" +
+                 "🎉 Friends, ready for the contest? 🎉\n\n" +
+                 "We are launching an incredible contest with a prize pool of $35,000! And the best part is, winners will be determined by the number of Farm tokens purchased! The more tokens you buy — the higher your chances of winning! 🏆\n\n" +
+                 "🏅 Prize pool:\n" +
+                 "1️⃣ First place — $10,000\n" +
+                 "2️⃣ Second place — $7,000\n" +
+                 "3️⃣ Third place — $5,000\n" +
+                 "4️⃣ Fourth place — $2,500\n" +
+                 "5️⃣ Fifth place — $1,000\n" +
+                 "📉 6th to 100th places — $100 each\n\n" +
+                 "💥 Participate, buy tokens, and increase your chances of winning! The more Farm tokens you buy, the closer you are to huge prizes!\n\n" +
+                 "To the moon! 🚀"
+       },
+       {
+         text: "🌟 Мы на шаг ближе к большим достижениям! 🌟\n\n" +
+                 "Рады сообщить, что ведем переговоры с одной из крупнейших криптобирж — ByBit! 🔥 20 декабря ожидается официальное листингование токенов Farm на платформе ByBit! Это отличная новость для всех наших пользователей!\n\n" +
+                 "💎 Листинг на ByBit — это огромный шаг в развитие токенов Farm и расширение возможностей для их торговли! Не упустите шанс и следите за новостями!\n\n" +
+                 "To the moon! 🚀\n\n" +
+                 "-------------------------------------------------\n" +
+                 "🌟 We are one step closer to big achievements! 🌟\n\n" +
+                 "We are excited to announce that we are in talks with one of the largest crypto exchanges — ByBit! 🔥 On December 20th, the official listing of Farm tokens on ByBit will take place! This is great news for all our users!\n\n" +
+                 "💎 Listing on ByBit is a huge step for the development of Farm tokens and expanding trading opportunities! Don't miss the chance and stay tuned for updates!\n\n" +
+                 "To the moon! 🚀"
+       }
+     ];
+ 
+     // Отправка сообщений по очереди
+     for (const message of messages) {
+       try {
+         await axios.post('https://coinfarm.club/api1/notifyUserHarvestReady', {
+           userName: username,
+           message: message.text
+         });
+       } catch (error) {
+         console.error('Error sending message:', error);
+       }
+     }
+ 
+     setShowMessage(false); // Скрыть сообщение после отправки
    }
-  };
-
+ };
+ 
   return (
     <>
       <div className={cn("wrap")} style={{ 
