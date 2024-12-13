@@ -210,14 +210,14 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { RootState, useAppDispatch, useAppSelector } from "../../store";
 import { loadingToggle } from "../../store/reducers/preloader";
-import { useQuery } from '@tanstack/react-query';
+// import { useQuery } from '@tanstack/react-query';
 import styles from "./Preloader.module.scss";
 import classNames from "classnames/bind";
 import background1 from "../../../public/img/backgrounds/bg1.avif";
 import background2 from "../../../public/img/backgrounds/bg2.avif";
 import background3 from "../../../public/img/backgrounds/bg3.avif";
-import { setUser } from "../../store/reducers/userSlice";
-import { retrieveLaunchParams } from '@tma.js/sdk';
+// import { setUser } from "../../store/reducers/userSlice";
+// import { retrieveLaunchParams } from '@tma.js/sdk';
 import axios from "axios";
 
 const cn = classNames.bind(styles);
