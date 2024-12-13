@@ -655,6 +655,440 @@
       { "id": 8, "type": "skull" },
       { "id": 9, "type": "leaf" }
     ]
+  },
+  {
+    "date": "31.10.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "skull" },
+      { "id": 4, "type": "leaf" },
+      { "id": 5, "type": "skull" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "leaf" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "01.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "skull" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "02.11.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "skull" },
+      { "id": 4, "type": "leaf" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "skull" },
+      { "id": 7, "type": "leaf" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "03.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "skull" },
+      { "id": 4, "type": "leaf" },
+      { "id": 5, "type": "skull" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "leaf" },
+      { "id": 9, "type": "skull" }
+    ]
+  },
+  {
+    "date": "04.11.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "skull" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "leaf" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "05.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "skull" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "leaf" },
+      { "id": 9, "type": "skull" }
+    ]
+  },
+  {
+    "date": "06.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "skull" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "skull" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "leaf" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "07.11.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "leaf" },
+      { "id": 5, "type": "skull" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "08.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "skull" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "leaf" },
+      { "id": 5, "type": "skull" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "09.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "skull" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "skull" },
+      { "id": 7, "type": "leaf" },
+      { "id": 8, "type": "leaf" },
+      { "id": 9, "type": "skull" }
+    ]
+  },
+  {
+    "date": "10.11.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "11.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "skull" },
+      { "id": 3, "type": "skull" },
+      { "id": 4, "type": "leaf" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "skull" },
+      { "id": 7, "type": "leaf" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "12.11.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "leaf" },
+      { "id": 5, "type": "skull" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "13.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "skull" },
+      { "id": 3, "type": "skull" },
+      { "id": 4, "type": "leaf" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "skull" },
+      { "id": 7, "type": "leaf" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "14.11.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "leaf" },
+      { "id": 9, "type": "skull" }
+    ]
+  },
+  {
+    "date": "15.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "skull" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "leaf" },
+      { "id": 5, "type": "skull" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "leaf" },
+      { "id": 9, "type": "skull" }
+    ]
+  },
+  {
+    "date": "16.11.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "leaf" },
+      { "id": 9, "type": "skull" }
+    ]
+  },
+  {
+    "date": "17.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "skull" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "skull" },
+      { "id": 7, "type": "leaf" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "18.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "skull" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "19.11.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "leaf" },
+      { "id": 9, "type": "skull" }
+    ]
+  },
+  {
+    "date": "20.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "skull" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "21.11.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "leaf" },
+      { "id": 5, "type": "skull" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "22.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "skull" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "leaf" },
+      { "id": 5, "type": "skull" },
+      { "id": 6, "type": "skull" },
+      { "id": 7, "type": "leaf" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "23.11.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "skull" },
+      { "id": 7, "type": "leaf" },
+      { "id": 8, "type": "leaf" },
+      { "id": 9, "type": "skull" }
+    ]
+  },
+  {
+    "date": "24.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "skull" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "25.11.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "leaf" },
+      { "id": 9, "type": "skull" }
+    ]
+  },
+  {
+    "date": "26.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "skull" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "leaf" },
+      { "id": 5, "type": "skull" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "27.11.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "leaf" },
+      { "id": 9, "type": "skull" }
+    ]
+  },
+  {
+    "date": "28.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "skull" },
+      { "id": 3, "type": "skull" },
+      { "id": 4, "type": "leaf" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "leaf" },
+      { "id": 9, "type": "skull" }
+    ]
+  },
+  {
+    "date": "29.11.2024",
+    "items": [
+      { "id": 1, "type": "skull" },
+      { "id": 2, "type": "leaf" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "leaf" },
+      { "id": 7, "type": "skull" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
+  },
+  {
+    "date": "30.11.2024",
+    "items": [
+      { "id": 1, "type": "leaf" },
+      { "id": 2, "type": "skull" },
+      { "id": 3, "type": "leaf" },
+      { "id": 4, "type": "skull" },
+      { "id": 5, "type": "leaf" },
+      { "id": 6, "type": "skull" },
+      { "id": 7, "type": "leaf" },
+      { "id": 8, "type": "skull" },
+      { "id": 9, "type": "leaf" }
+    ]
   }
   
 ]

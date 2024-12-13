@@ -311,7 +311,7 @@ const FreindOrSpecialBlock = ({
             </div>
           </div>
         </div>
-        <div className={cn("block__link")}>
+        <div className={cn("block__link")} style={{display:"flex", position:"absolute", left:"220px"}}>
           {isButtonDisabled || isCompleted || isTaskButtonDisabled ? (
             <Button1
               className="textShadow_center"

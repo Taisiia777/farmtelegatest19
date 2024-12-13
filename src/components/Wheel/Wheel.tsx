@@ -268,9 +268,6 @@ const sendSpinUpdateRequest = async (spins: number) => {
 };
 
 
-
-
-
 const spin = () => {
   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
 
@@ -291,28 +288,9 @@ const spin = () => {
   setSpins(prev => prev - 1);
   const sound = new Audio('sounds/spin.mp3');
 
-  let startTime = Date.now();  // Время начала воспроизведения
-  let duration = 5000;  // Длительность в миллисекундах (5 секунд)
+  // Воспроизвести звук один раз
+  sound.play();
   
-  const loopSound = () => {
-    sound.currentTime = 0;  // Возвращаем звук в начало
-    sound.play();
-  
-    sound.onended = () => {
-      if (Date.now() - startTime < duration) {
-        loopSound();  // Если не прошло 5 секунд, продолжаем воспроизводить
-      }
-    };
-  };
-  
-  // Начать воспроизведение и зациклить звук
-  loopSound();
-  
-  // Прекратить звук после 5 секунд
-  setTimeout(() => {
-    sound.pause();
-    sound.currentTime = 0;
-  }, duration);
   setIsSpinning(true);
   setRotation(finalAngle);
 
@@ -320,7 +298,6 @@ const spin = () => {
   setTimeout(() => {
     setIsSpinning(false);
 
-    // const finalRotation = finalAngle % 360; // Нормализуем угол в пределах 0-360
     const winningIndex = sectorIndex; // Поскольку сектор был выбран заранее, просто используем его индекс
     const selectedSector = sectors[winningIndex];
 
@@ -330,15 +307,14 @@ const spin = () => {
 
     // Обрабатываем результат вращения
     if (selectedSector.name !== "Sector 1" && selectedSector.name !== "Sector 4") {
-         // Play sound on progress bar harvest click
-         const sound = new Audio('sounds/win.mp3');
-         sound.play();
+      const sound = new Audio('sounds/win.mp3');
+      sound.play();
 
-         // Stop the sound after 1 second
-         setTimeout(() => {
-         sound.pause();
-         sound.currentTime = 0;  // Reset sound to the beginning
-         }, 1000);
+      setTimeout(() => {
+        sound.pause();
+        sound.currentTime = 0;  // Reset sound to the beginning
+      }, 1000);
+      
       setShowConfetti(true);
       setTimeout(() => {
         setShowConfetti(false);
@@ -349,11 +325,11 @@ const spin = () => {
       const sound = new Audio('sounds/lose.mp3');
       sound.play();
 
-      // Stop the sound after 1 second
       setTimeout(() => {
-      sound.pause();
-      sound.currentTime = 0;  // Reset sound to the beginning
+        sound.pause();
+        sound.currentTime = 0;  // Reset sound to the beginning
       }, 1000);
+      
       setReward(0);
       setRotation(0);
     } else if (selectedSector.name === "Sector 4"){
@@ -363,6 +339,101 @@ const spin = () => {
     }
   }, 5000);
 };
+
+
+
+// const spin = () => {
+//   if (spins <= 0 || isSpinning) return; // Блокируем кнопку, если нет спинов или колесо уже крутится
+
+//   const sectorIndex = getRandomSector();
+//   const sectorAngle = 360 / sectors.length; // 45 градусов на сектор
+//   const baseAngle = 0; // Начальный угол первого сектора
+
+//   // Вычисляем конечный угол для выбранного сектора
+//   const targetAngle = (baseAngle + ((sectorIndex) * sectorAngle)) % 360;
+
+//   // Случайное количество оборотов (от 5 до 7)
+//   const spinsCount = 5;
+
+//   // Конечный угол вращения (множим на количество оборотов и добавляем целевой угол)
+//   const finalAngle = (spinsCount * 360) + targetAngle;
+
+//   // Устанавливаем состояние для анимации вращения
+//   setSpins(prev => prev - 1);
+//   const sound = new Audio('sounds/spin.mp3');
+
+//   let startTime = Date.now();  // Время начала воспроизведения
+//   let duration = 5000;  // Длительность в миллисекундах (5 секунд)
+  
+//   const loopSound = () => {
+//     sound.currentTime = 0;  // Возвращаем звук в начало
+//     sound.play();
+  
+//     sound.onended = () => {
+//       if (Date.now() - startTime < duration) {
+//         loopSound();  // Если не прошло 5 секунд, продолжаем воспроизводить
+//       }
+//     };
+//   };
+  
+//   // Начать воспроизведение и зациклить звук
+//   loopSound();
+  
+//   // Прекратить звук после 5 секунд
+//   setTimeout(() => {
+//     sound.pause();
+//     sound.currentTime = 0;
+//   }, duration);
+//   setIsSpinning(true);
+//   setRotation(finalAngle);
+
+//   // Завершаем вращение и определяем выигрышный сектор
+//   setTimeout(() => {
+//     setIsSpinning(false);
+
+//     // const finalRotation = finalAngle % 360; // Нормализуем угол в пределах 0-360
+//     const winningIndex = sectorIndex; // Поскольку сектор был выбран заранее, просто используем его индекс
+//     const selectedSector = sectors[winningIndex];
+
+//     // Устанавливаем награду и выдаем её пользователю
+//     setReward(selectedSector.reward);
+//     giveUserReward(selectedSector.reward);
+
+//     // Обрабатываем результат вращения
+//     if (selectedSector.name !== "Sector 1" && selectedSector.name !== "Sector 4") {
+//          // Play sound on progress bar harvest click
+//          const sound = new Audio('sounds/win.mp3');
+//          sound.play();
+
+//          // Stop the sound after 1 second
+//          setTimeout(() => {
+//          sound.pause();
+//          sound.currentTime = 0;  // Reset sound to the beginning
+//          }, 1000);
+//       setShowConfetti(true);
+//       setTimeout(() => {
+//         setShowConfetti(false);
+//         setStep(2);
+//         setRotation(0);
+//       }, 2000);
+//     } else if (selectedSector.name === "Sector 1"){
+//       const sound = new Audio('sounds/lose.mp3');
+//       sound.play();
+
+//       // Stop the sound after 1 second
+//       setTimeout(() => {
+//       sound.pause();
+//       sound.currentTime = 0;  // Reset sound to the beginning
+//       }, 1000);
+//       setReward(0);
+//       setRotation(0);
+//     } else if (selectedSector.name === "Sector 4"){
+//       setReward(0);
+//       setRotation(0);
+//       setSpins(prev => prev + 1);
+//     }
+//   }, 5000);
+// };
 
 
 
