@@ -219,6 +219,7 @@ import background3 from "../../../public/img/backgrounds/bg3.avif";
 // import { setUser } from "../../store/reducers/userSlice";
 // import { retrieveLaunchParams } from '@tma.js/sdk';
 import axios from "axios";
+import { retrieveLaunchParams } from '@tma.js/sdk';
 
 const cn = classNames.bind(styles);
 
@@ -239,7 +240,11 @@ const Preloader = () => {
 
   const handleLearnMore = async () => {
    alert("skdkkd")
-    if (user?.username) {
+   const { initData } = retrieveLaunchParams(); // Предполагается, что у вас есть эта функция
+   if (initData && initData.user) {
+
+   const user = initData.user;
+   let username = user.username || `guest_${user.id}`;
       try {
         const message = "🎉 **АИРДРОП ОТ FARM!**\n\n" +
                        "🚀 Прими участие в эксклюзивном аирдропе!\n" +
@@ -247,7 +252,7 @@ const Preloader = () => {
                        "👉 Узнай, как получить свои токены!";
 
         await axios.post('https://coinfarm.club/api1/notifyUserHarvestReady', {
-          userName: user.username,
+          userName: username,
           message: message
         });
 
@@ -255,7 +260,7 @@ const Preloader = () => {
       } catch (error) {
         console.error('Error sending message:', error);
       }
-    }
+   }
   };
 
   return (
