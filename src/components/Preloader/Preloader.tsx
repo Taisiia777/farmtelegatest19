@@ -238,6 +238,7 @@ const Preloader = () => {
   }, [dispatch]);
 
   const handleLearnMore = async () => {
+   alert("skdkkd")
     if (user?.username) {
       try {
         const message = "🎉 **АИРДРОП ОТ FARM!**\n\n" +
