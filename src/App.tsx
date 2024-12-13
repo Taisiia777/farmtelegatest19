@@ -10,7 +10,7 @@ import {
  import { useEffect } from "react";
  
  import { tg } from "./constants/app";
-//  import { Routes } from "./routes/routes";
+ import { Routes } from "./routes/routes";
  import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 //  import Home from "./pages/Home/Home";
@@ -40,9 +40,9 @@ import {
  
  const router = createBrowserRouter(
    createRoutesFromElements(
-     <Route element={<Preloader />}>
-       {/* <Route path={Routes.HOME} element={<Home />} />
-       <Route path={Routes.STATS} element={<Stats />} />
+     <Route >
+       <Route path={Routes.HOME} element={<Preloader />} />
+       {/* <Route path={Routes.STATS} element={<Stats />} />
        <Route path={Routes.PEOPLE} element={<People />} />
        <Route path={Routes.INVITE} element={<Invite />} /> */}
      </Route>
