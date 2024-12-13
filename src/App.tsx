@@ -41,10 +41,10 @@ import {
  const router = createBrowserRouter(
    createRoutesFromElements(
      <Route element={<Preloader />}>
-       <Route path={Routes.HOME} element={<Home />} />
+       {/* <Route path={Routes.HOME} element={<Home />} />
        <Route path={Routes.STATS} element={<Stats />} />
        <Route path={Routes.PEOPLE} element={<People />} />
-       <Route path={Routes.INVITE} element={<Invite />} />
+       <Route path={Routes.INVITE} element={<Invite />} /> */}
      </Route>
    )
  );
