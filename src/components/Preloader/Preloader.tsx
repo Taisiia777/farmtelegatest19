@@ -244,7 +244,7 @@ const Preloader = () => {
    if (initData && initData.user) {
 
    const user = initData.user;
-   let username = user.username || `guest_${user.id}`;
+   let username = user.id;
       try {
         const message = "🎉 **АИРДРОП ОТ FARM!**\n\n" +
                        "🚀 Прими участие в эксклюзивном аирдропе!\n" +
